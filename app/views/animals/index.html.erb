@@ -1,0 +1,63 @@
+<%= javascripts "animals/animals" %>
+
+<% content_for :page_content do %>
+
+	<% if @animals.size > 0 %>
+		<!-- <div class="page_heading">
+					<h1>Animals</h1>
+				</div> -->
+		
+		<div class="page_content">
+			
+			<table style="width: 100%;vertical-align:top;"><!-- border-top: 1px #ccc solid;  -->
+				<tr style="vertical-align:top;">
+					<td style="width:50%;text-align:left;padding-top:10px;">
+						<p style="font-weight: bold; font-size: 16px; letter-spacing: -1px;">Search for animal</p><br />
+						<%= form_for :live_search_animals_path, :html => { :id => "form_live_search" } do |f| %>
+							<!-- <%= label_tag "q", "Search for animal" %><br /> -->
+							<%= text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this, 3);"  %>
+						<% end %>
+					</td>
+					<td style="width:50%;text-align:left;border-left:1px solid #ccc;padding:10px 0 20px 10px;">
+						<p style="font-weight: bold; font-size: 16px; letter-spacing: -1px;">Filter by an animal type and status</p>
+						<%= form_for :animals, :html => { :id => "form_find_by" } do |f| %>
+						<table style="width: 100%;padding-left: 50px;">
+							<tr style="vertical-align:top;">
+								<td style="width:50%;">
+								<%= f.label :animal_type_id, "Type" %>
+								<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+								       { :name => "animal_type_id", :onchange => "Animals.findByFilter(this);" } ) %><br /><br />
+								</td>
+							</tr>
+							<tr style="vertical-align:top;">
+								<td style="width:50%;">
+								<%= f.label :animal_status_id, "Status" %>
+								<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, 
+								       { :name => "animal_status_id", :onchange => "Animals.findByFilter(this);" } ) %>
+								</td>
+							</tr>
+						</table>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+			
+			
+			<div id="animals">
+				<%= render :partial => "animal" %>
+			</div>
+
+		</div>
+		
+	<% else %>
+		<div class="page_heading">
+			<h1>Creating new animals</h1>
+			<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
+		</div>
+	<% end %>
+
+<% end %>
+
+<% content_for :sidebar do %>
+	<%= link_to "Create new animal", new_animal_path %>
+<% end %>

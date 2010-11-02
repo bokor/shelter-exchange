@@ -1,0 +1,131 @@
+<%= javascripts "animals/animals" %>
+<%= javascripts "alerts/alerts" %>
+
+<% content_for :page_content do %>
+	
+	<div class="page_heading blue_background">
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="links right">
+					<%= link_to "Create new animal", new_animal_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Edit", edit_animal_path(@animal)%>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p><%= @animal.animal_type.name %>:  <%= format_breed(@animal.is_mix_breed, @animal.primary_breed, @animal.secondary_breed) %></p>
+				</td>
+				<td class="right">
+					<p><%= @animal.animal_status.name %></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		
+		<%= render :partial => "global/flash_messages" %>
+				  
+		<table class="animal_details">
+			<tr>
+				<td class="image"><%= image_tag @animal.photo.url(:medium) %></td>
+				<td class="metadata">
+					<% unless @animal.chip_id.blank? %><p><b>chip_id:</b><br /><%= @animal.chip_id %></p><% end %>
+					<% unless @animal.sex.blank? %><p><b>sex:</b><br /><%= @animal.sex %></p><% end %>
+					<% unless @animal.weight.blank? %><p><b>weight:</b><br /><%= @animal.weight %></p><% end %>
+					<% unless @animal.age.blank? %><p><b>age:</b><br /><%= @animal.age %></p><% end %>
+					<% unless @animal.is_sterilized.blank? %><p><b>is_sterilized:</b><br /><%= @animal.is_sterilized %></p><% end %>
+					<% unless @animal.color.blank? %><p><b>color:</b><br /><%= @animal.color %></p><% end %>
+				</td>
+			</tr>
+		</table>
+		<% unless @animal.description.blank? %><br /><h3><b>Description:</b></h3><p><%= @animal.description %></p><% end %>
+	</div>
+	
+	<div class="note_filters yellow_background">
+		<h2>Notes</h2>
+		<div class="links">
+			<%= link_to 'All', {:controller => :animals, :id => @animal.id, :action => :scoped_notes_for_animal, :scope => "All" }, :method => :get, :remote => true, :id => "all_notes_link" %>&nbsp;|&nbsp;
+			<%= link_to 'General', {:controller => :animals, :id => @animal.id, :action => :scoped_notes_for_animal, :scope => "General" }, :method => :get, :remote => true, :id => "general_notes_link" %>&nbsp;|&nbsp;
+			<%= link_to 'Medical', {:controller => :animals, :id => @animal.id, :action => :scoped_notes_for_animal, :scope => "Medical" }, :method => :get, :remote => true, :id => "medical_notes_link" %>&nbsp;|&nbsp;
+			<%= link_to 'Behavior', {:controller => :animals, :id => @animal.id, :action => :scoped_notes_for_animal, :scope => "Behavior" }, :method => :get, :remote => true, :id => "behavior_notes_link" %>
+		</div>
+	</div>
+	
+	<div id="notes" class="page_content">
+		<%= render @animal.notes %>
+	</div>
+
+<% end %>
+
+<% content_for :sidebar do %>
+<script type="text/javascript">
+
+
+// jQuery(function( $ ){
+//  
+// // Bind click events to links. This will bind a click
+// // handler to all current links as well as all new
+// // links added to the page.
+// $( "a" ).live(
+// "click",
+// function( event ){
+// alert( "Link clicked!" );
+// }
+// );
+//  
+// });
+
+
+    $(document).ready(function() {
+        $('#add_alert_link, #cancel_alert').click(function() {
+            $('#create_alert').slideToggle();
+        });
+		$('#add_note_link, #cancel_note').click(function() {
+            $('#create_note').slideToggle();
+        });
+
+    });
+</script>
+	<ul>
+		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :title => 'Add a new alert', :class => "button" -%></li>
+		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :title => 'Add a new note', :class => "button" -%></li>
+	</ul>
+	
+	<div id="create_alert" style="display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
+		<h2>Add an alert for <%= @animal.name %></h2>
+		<%= form_for (Alert.new), :remote => true do |f| %>
+			<%= f.hidden_field :subject_id, :value => @animal.id %>
+			<%= f.hidden_field :subject_type, :value => Alert::SUBJECT_TYPE[:animal] %>
+			<%= render :partial => "alerts/form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_alert" -%>
+			</div>
+		<% end %>
+	</div>
+	<br /><br />
+	<div id="create_note" style="display: none;border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px;">
+		<h2>Add a note for <%= @animal.name %></h2>
+		<%= form_for (Note.new), :remote => true do |f| %>
+			<%= f.hidden_field :subject_id, :value => @animal.id %>
+			<%= f.hidden_field :subject_type, :value => Note::SUBJECT_TYPE[:animal] %>
+			<%= render :partial => "notes/form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" -%>
+			</div>
+		<% end %>
+		<div id="another_note_category" style="display:none;"></div>
+	</div>
+	<br /><br />
+	<div id="alerts">
+		<%= render @animal.alerts %>
+	</div>
+
+<% end %>
+	

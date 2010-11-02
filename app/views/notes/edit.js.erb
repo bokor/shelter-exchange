@@ -1,0 +1,3 @@
+$('note_<%=@note.id%>').hide();
+$('edit_note_<%=@note.id%>').show();
+$('edit_note_<%=@note.id%>').html( "<%= escape_javascript(render 'edit_note', :collection => @note) %>" );

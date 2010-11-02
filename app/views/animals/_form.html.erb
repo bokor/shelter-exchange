@@ -1,0 +1,67 @@
+<%= form_for (@animal), :html => { :multipart => :true } do |f| %>
+	<!-- <%= f.error_messages %> -->
+	<ul class="form">
+		<li>
+			<% unless @animal.photo_file_name.blank? %><%= image_tag @animal.photo.url(:thumb) %><br /><% end %>
+			<%= f.label :photo, "Image" %><br />
+			<%= f.file_field :photo %>
+		</li>
+		<li>
+			<%= f.label :chip_id , "Chip ID" %><br />
+			<%= f.text_field :chip_id %>
+		</li>
+		<li>
+			<%= f.label :name, "Name" %><br />
+			<%= f.text_field :name %>
+		</li>
+		<li>
+			<%= f.label :description, "Description" %><br />
+			<%= f.text_area :description %>
+		</li>
+		<li>
+			<%= f.label :sex, "Sex" %><br />
+			<% Animal::SEX.each do |value| %>
+				<%= f.radio_button "sex", value %>
+				<%= f.label "sex_#{value.downcase}", "#{value}" %>
+			<% end %>
+		</li>
+		<li>
+			<%= f.label :weight, "Weight" %><br />
+			<%= f.text_field :weight %>
+		</li>
+		<li>
+			<%= f.label :age, "Age" %><br />
+			<%= f.text_field :age %>
+		</li>
+		<li>
+			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilization" %>
+		</li>
+		<li>
+			<%= f.label :color, "Color" %><br />
+			<%= f.text_field :color %>
+		</li>
+		<li>
+			<%= f.label :animal_type_id, "Animal Type" %><br />
+			<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, :prompt => "Select Type") %>
+		</li>
+		<li> 
+			<div id="primary_breed_field">
+				<%= f.label :primary_breed, "Breed name" %><br />
+				<%= f.text_field :primary_breed, :autocomplete => "/breeds/auto_complete" %>
+				
+				<p style="padding: 5px 0px 0px 10px"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Is mix breed?" %></p>
+			</div>
+			<div id="secondary_breed_field">
+				<%= f.label :secondary_breed, "Secondary breed name" %><br />
+				<%= f.text_field :secondary_breed, :autocomplete => :off %>
+			</div>
+		</li>
+		<li>
+			<%= f.label :animal_status_id, "Animal Status" %><br />
+			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
+		</li>
+	</ul>
+	<div class="actions">
+		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+	</div>
+<% end %>

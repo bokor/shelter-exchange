@@ -1,0 +1,50 @@
+/******************************************************************/
+/* -------------------------- COMMON  -------------------------- */
+/******************************************************************/
+.active_link {color:#888; text-decoration:none; cursor:default; }
+
+/******************************************************************/
+/* -------------------------- ANIMALS  -------------------------- */
+/******************************************************************/
+.animals ul { list-style:none;}
+
+/* -------------------------- ANIMALS FORMS -------------------------- */
+.animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
+
+/* -------------------------- INDEX - ANIMALS  -------------------------- */
+.index_animals .page_heading {/* COLORS PADDING FONTS */}
+.index_animals table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.index_animals table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.index_animals table.list td.image { width:100px; }
+.index_animals table.list td.details { width:400px;padding-left: 20px;color:#666; }
+.index_animals table.list td.status { width:150px;padding-left: 20px; text-align:right;}
+
+/* -------------------------- SHOW - ANIMALS  -------------------------- */
+.show_animals .page_heading{/* COLORS PADDING FONTS */border-bottom:1px solid #ddd; }
+.show_animals table.animal{width:100%;}
+.show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
+.show_animals table.animal td.right{text-align: right;}
+.show_animals table.animal td.links{font-size:12px;line-height:100%;height:100%;padding-top:5px;}
+.show_animals table.animal td h1 {}
+.show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
+.show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+
+.show_animals table.animal_details{}
+.show_animals table.animal_details td.image{}
+.show_animals table.animal_details td.metadata{padding-left: 30px;}
+
+.show_animals .note_filters {padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_animals .note_filters h2 {float:left;}
+.show_animals .note_filters .links {float:right; text-align: right;padding-top:5px;}
+.show_animals .note_filters:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/******************************************************************/
+/* -------------------------- ALERTS  -------------------------- */
+/******************************************************************/
+.alerts {}/* body class that is specific for an alerts page - Add action as well */
+.index_alerts {}
+
+.alerts ul { list-style:none; padding-bottom: 20px;  }
+
+.alerts #screen ul {  }
+.alerts #screen ul li { padding-bottom: 5px; }

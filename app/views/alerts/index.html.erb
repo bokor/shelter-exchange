@@ -1,0 +1,60 @@
+<%= javascripts "alerts/alerts" %>
+
+<% content_for :page_content do %>
+
+	<% if @alerts.size > 0 %>
+		<div class="page_heading">
+			<h1>Alerts</h1>
+		</div>
+		
+		<div class="page_content">
+			<% @global_alerts = Alert.scoped_by_subject_type(nil) %>
+			<% unless @global_alerts.blank?%>
+			<h3 style="border-bottom:1px #999 solid;">Global</h3>
+			<% end %>
+			<% @global_alerts.each do |alert| %>
+			<ul id="<%= "alert_#{alert.id}" %>">
+				<li>SubjectID Remove LATER: <%= alert.subject_id %></li>
+				<li>SubjectType Remove LATER: <%= alert.subject_type %></li>
+				<li>Title: <%= alert.title %></li>
+				<li>Type: <%= alert.alert_type.name %></li>
+				<li>Description: <%= alert.description %></li>
+				<li>Is Broadcast: <%= alert.is_broadcast %></li>
+				<li>Start Date: <%= alert.start_date %></li>
+				<li>End Date: <%= alert.end_date %></li>
+				<li><%= link_to "Edit", edit_alert_path(alert) %></li>
+				<li><%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></li>
+			</ul>
+			<% end %>
+			<% @animal_alerts = Alert.scoped_by_subject_type(Alert::SUBJECT_TYPE[:animal]) %>
+			<% unless @animal_alerts.blank?%>
+			<h3 style="border-bottom:1px #999 solid;"><%= Alert::SUBJECT_TYPE[:animal] %></h3>
+			<% end %>
+			<% @animal_alerts.each do |alert| %>
+			<ul id="<%= "alert_#{alert.id}" %>">
+				<li>SubjectID Remove LATER: <%= alert.subject_id %></li>
+				<li>SubjectType Remove LATER: <%= alert.subject_type %></li>
+				<li>Title: <%= alert.title %></li>
+				<li>Type: <%= alert.alert_type.name %></li>
+				<li>Description: <%= alert.description %></li>
+				<li>Is Broadcast: <%= alert.is_broadcast %></li>
+				<li>Start Date: <%= alert.start_date %></li>
+				<li>End Date: <%= alert.end_date %></li>
+				<li><%= link_to "Edit", edit_alert_path(alert) %></li>
+				<li><%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></li>
+			</ul>
+			<% end %>
+		</div>
+		
+	<% else %>
+		<div class="page_heading">
+			<h1>Creating new alerts</h1>
+			<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
+		</div>
+	<% end %>
+
+<% end %>
+
+<% content_for :sidebar do %>
+	<%= link_to "New Alert", new_alert_path %>
+<% end %>

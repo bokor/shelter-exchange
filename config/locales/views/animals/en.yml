@@ -1,0 +1,39 @@
+en:
+  animals:
+    index:
+      new:                   "New Animal"
+      show:                  "Show"
+      edit:                  "Edit"
+      delete:                "Delete"
+      confirm:               "Are you sure?"
+    show:
+      new:                   "New Animal"
+      back:                  "Back"
+      edit:                  "Edit"
+      delete:                "Delete"
+      confirm:               "Are you sure?"
+    edit:
+      edit_form_title:       "Editing animal"
+      edit_form_description: "Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information."
+      form_submit:           "Update animal"
+    new:
+      new_form_title:        "New animal"
+      new_form_description:  "To create a new animal fill out form and hit create animals.To create a new animal fill out form and hit create animals.To create a new animal fill out form and hit create animals"
+      form_submit:           "Create animal"
+    form:
+        chip_id:               "Chip ID"
+        id_number:             "ID Number"
+        name:                  "Name"
+        description:           "Description"
+        sex:                   "Sex"
+        weight:                "Weight"
+        age:                   "Age"
+        sterilization:         "Sterilization"
+        image_url:             "Image URL"
+        color:                 "Color"
+        animal_type:           "Animal Type"
+        animal_status:         "Animal Status"
+        animal_type_prompt:    "Select Type"
+        animal_status_prompt:  "Select Status"
+        submit:                "Create Animal"
+    

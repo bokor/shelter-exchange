@@ -1,0 +1,13 @@
+<div class="note" id="note_<%=note.id %>" style="border-radius: 5px; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+  <p style="color:#666;font-weight: bold;"><%= format_date(:long, note.created_at) %></p>	 
+  <h3><%= note.title %> (<i><%= note.note_category.name if !note.note_category.blank?  %></i>)</h3>
+  <em><%= note.description %></em>
+  <span class="actions_note" style="float: right;">
+	<%= link_to "Edit", edit_note_path(note), :remote => true %>
+	<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>
+  </span>
+  <div style="clear:both;padding-bottom:10px;"></div>
+
+</div>
+<div class="edit_note" id="edit_note_<%=note.id %>" style="display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:10px; margin-bottom:10px;">
+</div>

@@ -1,0 +1,22 @@
+<%= javascripts "animals/animals" %>
+
+<% content_for :page_content do %>
+	
+	<div class="page_heading">
+		<h1>Editing animal: <%= @animal.name %></h1>
+		<p>Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information.</p>
+	</div>
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @animal %>
+		<%= render "form", :button_text => "Update Animal" %>
+			
+	</div>
+<% end %>
+
+<% content_for :sidebar do %>
+	<ul>
+		<li><%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete %></li>
+		<!--><li><%= link_to "All Animals", animals_path %></li>-->
+	</ul>
+
+<% end %>

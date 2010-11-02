@@ -1,0 +1,24 @@
+<%= javascripts "alerts/alerts" %>
+
+<% content_for :page_content do %>
+	
+	<div class="page_heading">
+		<h1>Editing alert: <%= @alert.title %></h1>
+		<p>Editing the alert below is to provide updated information. Editing the alert below is to provide updated information. Editing the alert below is to provide updated information.</p>
+	</div>
+	
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @alert %>
+	
+		<%= form_for(@alert) do |f| %>
+			<%= render :partial => "form", :locals => { :f => f } %>
+	    	<div class="actions">
+				<%= f.submit "Update Alert", :disable_with => "Submitting...", :class => 'button' %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+
+<% content_for :sidebar do %>
+
+<% end %>

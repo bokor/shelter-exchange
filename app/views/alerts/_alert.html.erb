@@ -1,0 +1,14 @@
+<div class="alert" id="alert_<%=alert.id %>" style="border: 1px #999 solid; background-color: #fce2ec; padding: 15px;">
+ 	<ul>
+		<li><h2><%= alert.title %></h2></li>
+		<li><%= alert.description %></li>
+		<li><%= alert.is_broadcast %></li>
+		<li><%= alert.start_date %></li>
+		<li><%= alert.end_date %></li>
+	</ul>
+
+  <span class="actions_alert">
+	<%= link_to 'Delete', alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>
+  </span>
+
+</div>

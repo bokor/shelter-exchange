@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+	<title><% yield(:title) %></title>
+  
+ 	<%= stylesheet_link_tag :all, :media => "screen", :cache => "cache/all" %>
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/humanity/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+	<%= yield(:stylesheets) %>
+	
+	<%= javascript_include_tag "jquery.min", "jquery-ui.min","jquery.ui.autocomplete.selectFirst","jquery.ui.autocomplete.html", "jquery.ui.autocomplete.highlight","rails", "application", "#{controller_name}/#{controller_name}", :cache => "cache/all" %>
+	<!--"jquery.ui.autocomplete.highlight",-->
+	<%= yield(:javascripts) %>
+	
+	<%= csrf_meta_tag %>
+	
+
+</head>
+<body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
+	
+	<%= render :partial => "global/header" %>
+	
+	<div id="main">
+		
+		<div id="left">
+			
+			<div id="content">
+				<% if content_for?(:page_content) %>
+			  		<%= yield(:page_content) %>
+				<% end %>
+			</div>
+			<!--//end screen -->
+			
+			<%= render :partial => "global/footer" %>
+			
+		</div>
+		<!--//end left -->
+		
+		<div id="right">
+			
+			<div id="sidebar">
+				<% if content_for?(:sidebar) %>
+			  		<%= yield(:sidebar) %>
+				<% end %>
+			</div>
+			<!--//end sidebar -->
+			
+		</div>
+		<!--//end right -->
+		
+	</div>
+	<!--//end main -->
+	<%= render :partial => "global/debug" %>
+	
+</body>
+
+</html>

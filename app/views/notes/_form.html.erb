@@ -1,0 +1,14 @@
+	<ul class="form">
+		<li>
+			<%= f.label :title %><br />
+    		<%= f.text_field :title, :rows => 5 %>
+		</li>
+		<li>
+    		<%= f.label :note_category_id, "Category" %><br />
+  			<%= collection_select(:note, :note_category_id, NoteCategory.all, :id, :name, :prompt => "Select Category") %>
+		</li>
+		<li>
+  			<%= f.label :description %><br />
+  			<%= f.text_area :description, :rows => 5 %>
+		</li>
+	</ul>

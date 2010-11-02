@@ -1,0 +1,6 @@
+<% unless @note.errors.any? %>
+	$('edit_note_<%=@note.id%>').toggle('slide',{duration: .5}); 
+	$('note_<%=@note.id%>').html( "<%= escape_javascript(render @note) %>" );
+	$('note_<%=@note.id%>').show().highlight();
+<% end %>
+

@@ -1,0 +1,28 @@
+module ApplicationHelper
+  
+  def title(title)
+    content_for(:title) { title }
+  end
+  
+  def javascripts(*files)
+    content_for(:javascripts) { javascript_include_tag(*files) }
+  end
+  
+  def stylesheets(*files)
+    content_for(:stylesheets) { stylesheet_include_tag(*files) }
+  end
+  
+  def format_date(type, date)
+    case type
+      when :long 
+        date.strftime("%B %d, %Y")
+      when :default
+        date.strftime("%m.%d.%Y")
+    end
+  end
+  
+  def current_year
+    Time.now.year
+  end
+  
+end
