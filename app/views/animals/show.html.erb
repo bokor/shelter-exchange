@@ -3,7 +3,7 @@
 
 <% content_for :page_content do %>
 	
-	<div class="page_heading blue_background">
+	<div class="page_heading">
 		<table class="animal">
 			<tr>
 				<td>
@@ -29,21 +29,28 @@
 	<div class="page_content">
 		
 		<%= render :partial => "global/flash_messages" %>
-				  
+		  
 		<table class="animal_details">
 			<tr>
 				<td class="image"><%= image_tag @animal.photo.url(:medium) %></td>
 				<td class="metadata">
-					<% unless @animal.chip_id.blank? %><p><b>chip_id:</b><br /><%= @animal.chip_id %></p><% end %>
-					<% unless @animal.sex.blank? %><p><b>sex:</b><br /><%= @animal.sex %></p><% end %>
-					<% unless @animal.weight.blank? %><p><b>weight:</b><br /><%= @animal.weight %></p><% end %>
-					<% unless @animal.age.blank? %><p><b>age:</b><br /><%= @animal.age %></p><% end %>
-					<% unless @animal.is_sterilized.blank? %><p><b>is_sterilized:</b><br /><%= @animal.is_sterilized %></p><% end %>
-					<% unless @animal.color.blank? %><p><b>color:</b><br /><%= @animal.color %></p><% end %>
+					<h3>Details:</h3>
+					<ul>
+						<% unless @animal.chip_id.blank? %><li>Chip_Id: <%= @animal.chip_id %></li><% end %>
+						<% unless @animal.weight.blank? %><li>Weight: <%= @animal.weight %></li><% end %>
+						<% unless @animal.age.blank? %><li>Age: <%= @animal.age %></li><% end %>
+					</ul>
+					<ul>
+						<% unless @animal.color.blank? %><li>Color: <%= @animal.color %></li><% end %>
+						<% unless @animal.sex.blank? %><li><%= @animal.sex %> <% if @animal.is_sterilized %>(Sterilized)<% end %></li><% end %>
+					</ul>
+					<div class="clear"></div>
+					<% unless @animal.description.blank? %><h3>Description:</h3><p><%= @animal.description %></p><% end %>
 				</td>
 			</tr>
 		</table>
-		<% unless @animal.description.blank? %><br /><h3><b>Description:</b></h3><p><%= @animal.description %></p><% end %>
+
+		
 	</div>
 	
 	<div class="note_filters yellow_background">

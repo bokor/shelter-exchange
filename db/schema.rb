@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(:version => 20101102042242) do
 
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
-  add_index "animals", ["chip_id"], :name => "index_animals_on_chip_id"
   add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["name"], :name => "index_animals_on_name"
 

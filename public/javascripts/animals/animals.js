@@ -15,7 +15,7 @@ $(document).ready(function() {
 		minLength: 3,
 		selectFirst: true,
 		html: true,
-		delay: 400,
+		delay: 300, //maybe 400
 		// highlight: true, MAKE EXT LATER
 		source: function( request, response ) {
 			$.ajax({

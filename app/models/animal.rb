@@ -3,7 +3,7 @@ class Animal < ActiveRecord::Base
   # Associations
   belongs_to :animal_type, :readonly => true
   belongs_to :animal_status, :readonly => true
-  has_many :breeds
+  has_many :breeds, :readonly => true
   has_many :notes, :foreign_key => "subject_id", :dependent => :destroy, :order => "notes.created_at DESC"
   has_many :alerts, :foreign_key => "subject_id", :dependent => :destroy, :order => "alerts.created_at DESC"
   
