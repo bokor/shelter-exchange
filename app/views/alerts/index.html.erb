@@ -8,41 +8,35 @@
 		</div>
 		
 		<div class="page_content">
+			<%= render :partial => "global/flash_messages" %>
+			
 			<% @global_alerts = Alert.scoped_by_subject_type(nil) %>
-			<% unless @global_alerts.blank?%>
-			<h3 style="border-bottom:1px #999 solid;">Global</h3>
+			<% unless @global_alerts.blank? %>
+				<h3>Global</h3>
+				<table class="alert_list">
+					<% @global_alerts.each do |alert| %>
+					<tr id="<%= "alert_#{alert.id}" %>">
+						<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
+						<td class="details"><h3><%= alert.title %> (<%= alert.is_broadcast %>)</h3></td>
+						<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
+					</tr>
+					<% end %>
+				</table>
 			<% end %>
-			<% @global_alerts.each do |alert| %>
-			<ul id="<%= "alert_#{alert.id}" %>">
-				<li>SubjectID Remove LATER: <%= alert.subject_id %></li>
-				<li>SubjectType Remove LATER: <%= alert.subject_type %></li>
-				<li>Title: <%= alert.title %></li>
-				<li>Type: <%= alert.alert_type.name %></li>
-				<li>Description: <%= alert.description %></li>
-				<li>Is Broadcast: <%= alert.is_broadcast %></li>
-				<li>Start Date: <%= alert.start_date %></li>
-				<li>End Date: <%= alert.end_date %></li>
-				<li><%= link_to "Edit", edit_alert_path(alert) %></li>
-				<li><%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></li>
-			</ul>
-			<% end %>
+				
+
 			<% @animal_alerts = Alert.scoped_by_subject_type(Alert::SUBJECT_TYPE[:animal]) %>
 			<% unless @animal_alerts.blank?%>
-			<h3 style="border-bottom:1px #999 solid;"><%= Alert::SUBJECT_TYPE[:animal] %></h3>
-			<% end %>
-			<% @animal_alerts.each do |alert| %>
-			<ul id="<%= "alert_#{alert.id}" %>">
-				<li>SubjectID Remove LATER: <%= alert.subject_id %></li>
-				<li>SubjectType Remove LATER: <%= alert.subject_type %></li>
-				<li>Title: <%= alert.title %></li>
-				<li>Type: <%= alert.alert_type.name %></li>
-				<li>Description: <%= alert.description %></li>
-				<li>Is Broadcast: <%= alert.is_broadcast %></li>
-				<li>Start Date: <%= alert.start_date %></li>
-				<li>End Date: <%= alert.end_date %></li>
-				<li><%= link_to "Edit", edit_alert_path(alert) %></li>
-				<li><%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></li>
-			</ul>
+				<h3>Animal</h3>
+				<table class="alert_list">
+					<% @animal_alerts.each do |alert| %>
+					<tr id="<%= "alert_#{alert.id}" %>">
+						<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
+						<td class="details"><h3><%= alert.title %> (<%= alert.is_broadcast %>)</h3></td>
+						<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
+					</tr>
+					<% end %>
+				</table>
 			<% end %>
 		</div>
 		

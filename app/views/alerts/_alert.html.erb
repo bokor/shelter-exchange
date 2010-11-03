@@ -2,13 +2,10 @@
  	<ul>
 		<li><h2><%= alert.title %></h2></li>
 		<li><%= alert.description %></li>
-		<li><%= alert.is_broadcast %></li>
-		<li><%= alert.start_date %></li>
-		<li><%= alert.end_date %></li>
 	</ul>
 
-  <span class="actions_alert">
+  <div class="actions right">
 	<%= link_to 'Delete', alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>
-  </span>
+  </div>
 
 </div>

@@ -7,15 +7,15 @@ class AnimalsController < ApplicationController
   end
   
   def show
-    # begin
+    begin
       session[:scope] = nil
       @animal = Animal.find(params[:id])
       respond_with(@animal)
-    # rescue ActiveRecord::RecordNotFound
-      # logger.error(":::Attempt to access invalid animal => #{params[:id]}")
-      # flash[:error] = "You have requested an invalid animal!"
-      # redirect_to animals_path and return
-    # end
+    rescue ActiveRecord::RecordNotFound
+      logger.error(":::Attempt to access invalid animal => #{params[:id]}")
+      flash[:error] = "You have requested an invalid animal!"
+      redirect_to animals_path and return
+    end
   end
   
   def edit

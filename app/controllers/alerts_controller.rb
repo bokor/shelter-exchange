@@ -6,20 +6,15 @@ class AlertsController < ApplicationController
     respond_with(@alerts)
   end
   
-  # def show
-  #   # begin
-  #     @alert = Alert.find(params[:id])
-  #     respond_with(@alert)
-  #   # rescue ActiveRecord::RecordNotFound
-  #     # logger.error(":::Attempt to access invalid animal => #{params[:id]}")
-  #     # flash[:error] = "You have requested an invalid animal!"
-  #     # redirect_to animals_path and return
-  #   # end
-  # end
-  
   def edit
-    @alert = Alert.find(params[:id])
-    respond_with(@alert)
+    begin
+      @alert = Alert.find(params[:id])
+      respond_with(@alert)
+    rescue ActiveRecord::RecordNotFound
+      logger.error(":::Attempt to access invalid alert => #{params[:id]}")
+      flash[:error] = "You have requested an invalid alert!"
+      redirect_to alerts_path and return
+    end
   end
   
   def new

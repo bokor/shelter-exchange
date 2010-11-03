@@ -1,45 +1,3 @@
-// document.observe('dom:loaded', function() {	
-// 	$$(".hover_observer").each(function(element){
-// 		element.up(1).observe("mouseout", function(e){
-// 			element.toggle();
-// 		});
-// 		element.up(1).observe("mouseover", function(e){
-// 			element.toggle();
-// 		});
-// 	});
-// 
-// });
-
-$(document).ready(function() {
-	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
-		minLength: 3,
-		selectFirst: true,
-		html: true,
-		delay: 300, //maybe 400
-		// highlight: true, MAKE EXT LATER
-		source: function( request, response ) {
-			$.ajax({
-				url: "/breeds/auto_complete",
-				dataType: "json",
-				data: {
-					q: request.term,
-					animal_type_id: $("#animal_animal_type_id").val()
-				},
-				success: function( data ) {
-					response( $.map( data, function( item ) {
-						var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
-						return {
-							label: item.label.replace(matcher,'<strong>$1</strong>'),
-							value: item.value
-						}  
-					}));
-				}
-			});
-		}			
-	});			
-});
-
 // $(document).ready(function() {
 // 	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 // 		minLength: 3,
@@ -76,6 +34,25 @@ $(document).ready(function() {
 //      alert("Data Loaded: " + data);
 //    });
 
+
+// jQuery(function( $ ){
+//  
+// // Bind click events to links. This will bind a click
+// // handler to all current links as well as all new
+// // links added to the page.
+// $( "a" ).live(
+// "click",
+// function( event ){
+// alert( "Link clicked!" );
+// }
+// );
+//  
+// });
+
+
+
+
+
 /*
 	INDEX
 */
@@ -94,6 +71,36 @@ var Animals = {
 	}
 	
 };
+
+$(document).ready(function() {
+	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
+		minLength: 3,
+		selectFirst: true,
+		html: true,
+		delay: 300, //maybe 400
+		// highlight: true, MAKE EXT LATER
+		source: function( request, response ) {
+			$.ajax({
+				url: "/breeds/auto_complete",
+				dataType: "json",
+				data: {
+					q: request.term,
+					animal_type_id: $("#animal_animal_type_id").val()
+				},
+				success: function( data ) {
+					response( $.map( data, function( item ) {
+						var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+						return {
+							label: item.label.replace(matcher,'<strong>$1</strong>'),
+							value: item.value
+						}  
+					}));
+				}
+			});
+		}			
+	});			
+});
 
 /*
 	FORM
@@ -128,28 +135,19 @@ function showSecondaryBreed() {
 /*
 	SHOW
 */
-
-
-// $(document).ready(function() {
-// 	liveValidateForm();
-// });
-// function liveValidateForm() {
-// 	// var sayHello = new LiveValidation("note_title", { validMessage: 'Hey there!', wait: 500});
-// 	// sayHello.add(Validate.Presence, {failureMessage: "Don't just ignore me, I wanna be your friend!"});
-// 	// sayHello.add(Validate.Format, {pattern: /^hello$/i, failureMessage: "How come you've not said 'hello' yet?" } );	
-// }
-
 $(document).ready(function() {
+	// Animal Show - Note Section - Filter Links
 	$('#all_notes_link').addClass('active_link');
-	
-	$('#all_notes_link').bind("click", function(event) {updateNotesLink(event)});
-	$('#general_notes_link').bind("click", function(event) {updateNotesLink(event)});
-	$('#behavior_notes_link').bind("click", function(event) {updateNotesLink(event)});
-	$('#medical_notes_link').bind("click", function(event) {updateNotesLink(event)});
+	$('#all_notes_link, #general_notes_link, #behavior_notes_link, #medical_notes_link').click(function(event) {
+		$('.active_link').removeClass('active_link');
+		$(event.target).addClass('active_link');
+	});
+	// Animal Show - Sidebar - Form Show/Hide
+	$('#add_alert_link, #cancel_alert').click(function() {
+		$('#create_alert').slideToggle();
+	});
+	$('#add_note_link, #cancel_note').click(function() {
+		$('#create_note').slideToggle();
+	});
 
 });
-
-function updateNotesLink(event) {
-  $('.active_link').removeClass('active_link');
-  $(event.target).addClass('active_link');
-}

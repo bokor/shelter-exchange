@@ -8,7 +8,7 @@ Shelterexchange::Application.routes.draw do
     end
   end
   
-  resources :alerts
+  resources :alerts 
   
   resources :breeds do
     collection do

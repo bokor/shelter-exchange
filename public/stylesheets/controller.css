@@ -2,11 +2,11 @@
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
 .active_link {color:#888; text-decoration:none; cursor:default; }
-
+.actions{padding-top: 20px;}
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
-.animals ul { list-style:none;}
+.animals ul {list-style:none;}
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
@@ -23,7 +23,6 @@
 .show_animals .page_heading{background-color:#e0f1fa;border-bottom:1px solid #ddd; }
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
-.show_animals table.animal td.right{text-align: right;}
 .show_animals table.animal td.links{font-size:12px;line-height:100%;height:100%;padding-top:5px;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
@@ -31,16 +30,18 @@
 
 .show_animals table.animal_details{padding: 0; margin:0;}
 .show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_animals table.animal_details ul{float:left; width:40%; list-style: none;padding: 0 0 20px 10px;}
-.show_animals table.animal_details ul li {font-weight:bold; }
+.show_animals table.animal_details ul{float:left; width:42%; list-style: none;}
+.show_animals table.animal_details ul.first{padding: 0 20px 0 0;}
+.show_animals table.animal_details ul li{width:100%;}
 .show_animals table.animal_details td{vertical-align:top; }
 .show_animals table.animal_details td.image{}
 .show_animals table.animal_details td.metadata{width:100%;padding: 0 0 0 15px; margin:0 0 0 0; }
+.show_animals table.animal_details .description{clear: both; padding: 15px 0 0 0; }
 
-.show_animals .note_filters {padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
-.show_animals .note_filters h2 {float:left;}
-.show_animals .note_filters .links {float:right; text-align: right;padding-top:5px;}
-.show_animals .note_filters:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_animals .note_filters{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_animals .note_filters h2{float:left;}
+.show_animals .note_filters .links{float:right; text-align: right;padding-top:5px;}
+.show_animals .note_filters:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /******************************************************************/
 /* -------------------------- ALERTS  -------------------------- */
@@ -48,7 +49,23 @@
 .alerts {}/* body class that is specific for an alerts page - Add action as well */
 .index_alerts {}
 
-.alerts ul { list-style:none; padding-bottom: 20px;  }
+.alerts ul { list-style:none;}
 
-.alerts #screen ul {  }
-.alerts #screen ul li { padding-bottom: 5px; }
+.index_alerts .alert_list li{float: left;}
+.index_alerts .alert_list:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* -------------------------- INDEX - ANIMALS  -------------------------- */
+.index_alerts .page_content h3{border-bottom:1px #999 solid;}
+.index_alerts table.alert_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
+.index_alerts table.alert_list tr{padding: 10px 0 10px 0;}
+.index_alerts table.alert_list td{vertical-align:top;padding: 6px 0;}
+/*.index_alerts table.alert_list td.border{border-bottom:1px #ccc dotted;}*/
+.index_alerts table.alert_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.index_alerts table.alert_list td.details{padding-left: 10px;}
+.index_alerts table.alert_list td.details h3 {padding:0; margin:0; border:0;}
+.index_alerts table.alert_list td.description{padding-left: 10px;}
+.index_alerts table.alert_list td.links{width:150px; text-align:right;}
+
+.index_alerts table.alert_list td.high{background-color:red;color:#fff;}
+.index_alerts table.alert_list td.medium{background-color:orange;color:#fff;}
+.index_alerts table.alert_list td.low{background-color:gray;color:#fff;}

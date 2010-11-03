@@ -9,7 +9,7 @@
 
 	<%= yield(:stylesheets) %>
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min","jquery.ui.autocomplete.selectFirst","jquery.ui.autocomplete.html", "jquery.ui.autocomplete.highlight","rails", "application", "#{controller_name}/#{controller_name}", :cache => "cache/all" %>
+	<%= javascript_include_tag "jquery.min", "jquery-ui.min","jquery.ui.autocomplete.selectFirst","jquery.ui.autocomplete.html","rails", "application", :cache => "cache/all" %>
 	<!--"jquery.ui.autocomplete.highlight",-->
 	<%= yield(:javascripts) %>
 	
