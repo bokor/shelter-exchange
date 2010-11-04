@@ -33,5 +33,4 @@ class NotesController < ApplicationController
       nil
     end
     
-    
 end

@@ -117,10 +117,10 @@
 	</div>
 	<br />
 	<div id="alerts">
-		<%= render @animal.alerts %>
+		<%= render :partial => 'alerts/subject_alert', :collection => @animal.alerts, :as => :alert %>
 	</div>
 	<div id="tasks">
-		<%= render @animal.tasks %>
+		<%= render :partial => 'tasks/subject_task', :collection => @animal.tasks, :as => :task %>
 	</div>
 
 <% end %>

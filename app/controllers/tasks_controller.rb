@@ -58,7 +58,6 @@ class TasksController < ApplicationController
   #   if @task.save
   #     respond_with(@task, :status => :created, :location => @task) do |format|
   #       flash[:notice] = "Task has been created."
-  #       format.js { render :partial => "tasks/index", :layout => false, :status => :created }
   #       format.html { redirect_to tasks_path }
   #     end
   #   else

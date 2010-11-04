@@ -33,9 +33,9 @@ class AlertsController < ApplicationController
     else
       @alert = @subject.alerts.build(params[:alert])
     end
-    @alert.save
+    
     respond_with(@alert) do |format|
-      if @alert.valid?
+      if @alert.save
         flash[:notice] = "#{@alert.title} has been created."
         format.html { redirect_to alerts_path }
       else

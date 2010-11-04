@@ -4,6 +4,7 @@
 	$('#edit_note_<%=@note.id%>').slideToggle();
 	$('#note_<%=@note.id%>').replaceWith( "<%= escape_javascript(render @note) %>" );
 	$('#note_<%=@note.id%>').show().effect("highlight", {}, 2000);
+	$('#note_errors').html("");
 <% end %>
 <% flash.discard %>
 
