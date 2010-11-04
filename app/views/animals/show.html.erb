@@ -1,9 +1,9 @@
 <%= javascripts "animals/animals" %>
-<%= javascripts "alerts/alerts" %>
+<%= javascripts "calendar/calendar" %>
 
 <% content_for :page_content do %>
 	
-	<div class="page_heading">
+	<div class="page_heading blue_background">
 		<table class="animal">
 			<tr>
 				<td>
@@ -76,13 +76,13 @@
 	<ul>
 		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :title => 'Add a new alert', :class => "button" -%></li>
 		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :title => 'Add a new note', :class => "button" -%></li>
+		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :title => 'Add a new task', :class => "button" -%></li>
 	</ul>
 	
 	<div id="create_alert" style="display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
 		<h2>Add an alert for <%= @animal.name %></h2>
-		<%= form_for (Alert.new), :remote => true do |f| %>
-			<%= f.hidden_field :subject_id, :value => @animal.id %>
-			<%= f.hidden_field :subject_type, :value => Alert::SUBJECT_TYPE[:animal] %>
+		<div id="alert_errors"></div>
+		<%= form_for ([@animal, Alert.new]), :remote => true do |f| %>
 			<%= render :partial => "alerts/form", :locals => { :f => f } %>
 		    <div class="actions">
 				<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
@@ -93,9 +93,8 @@
 	<br /><br />
 	<div id="create_note" style="display: none;border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px;">
 		<h2>Add a note for <%= @animal.name %></h2>
-		<%= form_for (Note.new), :remote => true do |f| %>
-			<%= f.hidden_field :subject_id, :value => @animal.id %>
-			<%= f.hidden_field :subject_type, :value => Note::SUBJECT_TYPE[:animal] %>
+		<div id="note_errors"></div>
+		<%= form_for ([@animal, Note.new]), :remote => true do |f| %>
 			<%= render :partial => "notes/form", :locals => { :f => f } %>
 		    <div class="actions">
 				<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
@@ -105,8 +104,23 @@
 		<div id="another_note_category" style="display:none;"></div>
 	</div>
 	<br /><br />
+	<div id="create_task" style="display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
+		<h2>Add a task for <%= @animal.name %></h2>
+		<div id="task_errors"></div>
+		<%= form_for ([@animal, Task.new]), :remote => true do |f| %>
+			<%= render :partial => "tasks/form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_task" -%>
+			</div>
+		<% end %>
+	</div>
+	<br />
 	<div id="alerts">
 		<%= render @animal.alerts %>
+	</div>
+	<div id="tasks">
+		<%= render @animal.tasks %>
 	</div>
 
 <% end %>

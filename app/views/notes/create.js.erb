@@ -1,4 +1,6 @@
-<% unless @note.errors.any? %>
+<% if @note.errors.any? %>
+	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
+<% else %>
 	<% if session[:scope] == @note.note_category.name or session[:scope] == "All" or session[:scope].blank? %>
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
@@ -9,3 +11,4 @@
 	$('#new_note').get(0).reset();
 	
 <% end %>
+<% flash.discard %>

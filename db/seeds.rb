@@ -35,6 +35,8 @@ truncate_db_table("notes")
 truncate_db_table("note_categories")
 truncate_db_table("alerts")
 truncate_db_table("alert_types")
+truncate_db_table("tasks")
+truncate_db_table("task_categories")
 
 #######################################################################################################################
 #
@@ -633,4 +635,16 @@ AlertType.create([
   { :name => "High" },
   { :name => "Medium" },
   { :name => "Low" }
+])
+
+#######################################################################################################################
+#
+#   TaskCategory Create
+#      Creates the TaskCategory so that we have a standard set of TaskCategories
+#
+#######################################################################################################################
+TaskCategory.create([
+  { :name => "Test" },
+  { :name => "Test2" },
+  { :name => "Test3" }
 ])

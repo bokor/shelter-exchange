@@ -43,12 +43,14 @@ class AnimalsController < ApplicationController
   def destroy
      @animal = Animal.find(params[:id])
      @animal.destroy
+     flash[:error] = "#{@animal.name} has been deleted."
      respond_with(@animal)
   end
   
   def scoped_notes_for_animal
     @animal = Animal.find(params[:id])
     @scope = params[:scope]
+    
     if @scope == "General"
       @notes = @animal.notes.general
       session[:scope] = "General"

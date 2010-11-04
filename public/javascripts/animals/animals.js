@@ -72,6 +72,21 @@ var Animals = {
 	
 };
 
+// $(document).ready(function() {
+// var data = {items: [
+// {value: "21", name: "Mick Jagger"},
+// {value: "43", name: "Johnny Storm"},
+// {value: "46", name: "Richard Hatch"},
+// {value: "54", name: "Kelly Slater"},
+// {value: "55", name: "Rudy Hamilton"},
+// {value: "79", name: "Michael Jordan"}
+// ]};
+// $("#animal_primary_breed").autoSuggest(data.items, {selectedItemProp: "name", searchObjProps: "name"});
+// 
+// 
+// 	// $("#animal_primary_breed").autoSuggest("/breeds/auto_suggest", {});		
+// });
+
 $(document).ready(function() {
 	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 		minLength: 3,
@@ -148,6 +163,9 @@ $(document).ready(function() {
 	});
 	$('#add_note_link, #cancel_note').click(function() {
 		$('#create_note').slideToggle();
+	});
+	$('#add_task_link, #cancel_task').click(function() {
+		$('#create_task').slideToggle();
 	});
 
 });

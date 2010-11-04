@@ -1,6 +1,8 @@
-//$('alert-errors').update( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
-<% unless @alert.errors.any? %>
-$('#alerts').prepend("<%= escape_javascript(render @alert) %>"); 
-$(".alert").first().effect("highlight", {}, 1000);
-$('#new_alert').get(0).reset();
+<% if @alert.errors.any? %>
+	$('#alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
+<% else %>
+	$('#alerts').prepend("<%= escape_javascript(render @alert) %>"); 
+	$(".alert").first().effect("highlight", {}, 1000);
+	$('#new_alert').get(0).reset();
 <% end %>
+<% flash.discard %>

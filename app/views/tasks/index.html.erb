@@ -1,0 +1,52 @@
+<%= javascripts "tasks/tasks" %>
+
+<% content_for :page_content do %>
+
+	<% if !@tasks.blank? %>
+		<div class="page_heading blue_background">
+			<h1>Tasks</h1>
+		</div>
+		
+		<div class="page_content">
+			<%= render :partial => "global/flash_messages" %>
+			
+			<div id="tasks">
+				<%= render @tasks %>
+			</div>
+			
+		</div>
+		
+	<% else %>
+		<div class="page_heading">
+			<h1>Creating your first task</h1>
+			<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
+		</div>
+		
+		<div class="page_content">
+			<%= render "global/error_messages", :target => @task %>
+
+			<%= form_for(@task) do |f| %>
+				<%= render :partial => "form", :locals => { :f => f } %>
+		    	<div class="actions">
+					<%= f.submit "Create Task", :disable_with => "Submitting...", :class => 'button' %>
+				</div>
+			<% end %>	
+		</div>
+	<% end %>
+
+<% end %>
+
+<% content_for :sidebar do %>
+	<% if !@tasks.blank? %>
+	<div id="create_task" style="background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
+		<h2>Add a task</h2>
+		<div id="task_errors"></div>
+		<%= form_for (Task.new), :remote => true do |f| %>
+			<%= render :partial => "form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
+<% end %>

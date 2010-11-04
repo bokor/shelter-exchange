@@ -3,8 +3,7 @@ class CreateNotes < ActiveRecord::Migration
     create_table :notes do |t|
       t.string :title
       t.text :description
-      t.integer :subject_id #id of item note attached too (example animal_id)
-      t.string :subject_type #typeof item note attached too (example Animal)
+      t.references :subject, :polymorphic => true
       t.references :note_category #, :foreign_key => true, :null => false
 
       t.timestamps

@@ -1,23 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '3.0.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mysql'
+#gem 'mysql'
 
 
 
 # Login/Authentication
-gem 'authlogic'
+#gem 'authlogic'
 
 # Authorization
-gem 'declarative_authorization'
+#gem 'declarative_authorization'
 
 # Navigation
 gem 'simple-navigation'
 gem 'will_paginate'
-gem 'css_sprite'
-gem 'dynamic_form'
-gem 'rails3-generators'
+#gem 'css_sprite'
+#gem 'dynamic_form'
+#gem 'rails3-generators'
 gem 'paperclip'
 
 gem 'jquery-rails'

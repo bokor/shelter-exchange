@@ -6,6 +6,10 @@ class AlertsController < ApplicationController
     respond_with(@alerts)
   end
   
+  def show
+    redirect_to alerts_path and return
+  end
+  
   def edit
     begin
       @alert = Alert.find(params[:id])
@@ -16,34 +20,58 @@ class AlertsController < ApplicationController
       redirect_to alerts_path and return
     end
   end
-  
+
   def new
     @alert = Alert.new
     respond_with(@alert)
   end
   
   def create
-    @alert = Alert.new(params[:alert])
-    flash[:notice] = "#{@alert.title} has been created." if @alert.save
-    respond_to do |format|  
-      format.html { redirect_to alerts_url }
-      format.js 
+    @subject = find_subject
+    if @subject.blank?
+      @alert = Alert.new(params[:alert])
+    else
+      @alert = @subject.alerts.build(params[:alert])
+    end
+    @alert.save
+    respond_with(@alert) do |format|
+      if @alert.valid?
+        flash[:notice] = "#{@alert.title} has been created."
+        format.html { redirect_to alerts_path }
+      else
+        format.html { render :action => :new }
+      end
     end
   end
   
   def update
-    @alert = Alert.find(params[:id])
-    flash[:notice] = "#{@alert.title} has been updated." if @alert.update_attributes(params[:alert])      
-    respond_to do |format|  
-      format.html { redirect_to alerts_url }
-      format.js 
+    @alert = Alert.find(params[:id])   
+    respond_with(@alert) do |format|
+      if @alert.update_attributes(params[:alert])  
+        flash[:notice] = "#{@alert.title} has been updated."
+        format.html { redirect_to alerts_path }
+      else
+        format.html { render :action => :edit }
+      end
     end
   end
   
   def destroy
      @alert = Alert.find(params[:id])
      @alert.destroy
+     flash[:error] = "#{@alert.title} has been deleted."
      respond_with(@alert)
   end
+  
+  private
+
+    def find_subject
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+          return $1.classify.constantize.find(value)
+        end
+      end
+      nil
+    end
 
 end

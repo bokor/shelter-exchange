@@ -1,0 +1,10 @@
+<ul class="form">
+	<li>
+		<%= f.label :info, "Info" %><br />
+		<%= f.text_field :info %>
+	</li>
+	<li>
+		<%= f.label :task_category_id, "Task Type" %><br />
+		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :prompt => "Select Type") %>
+	</li>	
+</ul>

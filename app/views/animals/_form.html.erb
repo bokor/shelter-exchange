@@ -1,5 +1,4 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
-	<!-- <%= f.error_messages %> -->
 	<ul class="form">
 		<li>
 			<% unless @animal.photo_file_name.blank? %><%= image_tag @animal.photo.url(:thumb) %><br /><% end %>
@@ -47,7 +46,7 @@
 		<li> 
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Breed name" %><br />
-				<%= f.text_field :primary_breed, :autocomplete => "/breeds/auto_complete" %>
+				<%= f.text_field :primary_breed %>
 				
 				<p style="padding: 5px 0px 0px 10px"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Is mix breed?" %></p>
 			</div>

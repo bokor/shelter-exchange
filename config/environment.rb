@@ -8,7 +8,7 @@ Shelterexchange::Application.initialize!
 #   "#{html_tag}".html_safe # Makes the errors blank
 # end
 
-# ActionView::Base.field_error_proc = proc { |input, instance| input }
+ActionView::Base.field_error_proc = proc { |input, instance| input }
 # ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 #   :default => "%m/%d/%Y",
 #   :date_time12  => "%m/%d/%Y %I:%M%p",

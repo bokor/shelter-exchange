@@ -1,0 +1,19 @@
+<%= javascripts "shelters/shelters" %>
+
+<% content_for :page_content do %>
+
+	<div class="page_heading">
+		<h1>Shelters</h1>
+	</div>
+		
+	<div class="page_content">
+		<%= render :partial => "global/flash_messages" %>
+			
+		
+	</div>
+	
+<% end %>
+
+<% content_for :sidebar do %>
+	<%= link_to "New Shelter", new_shelter_path %>
+<% end %>

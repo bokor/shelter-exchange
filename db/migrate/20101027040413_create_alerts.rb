@@ -3,8 +3,7 @@ class CreateAlerts < ActiveRecord::Migration
     create_table :alerts do |t|
       t.string :title
       t.text :description
-      t.integer :subject_id
-      t.string :subject_type
+      t.references :subject, :polymorphic => true
       t.references :alert_type
 
       t.timestamps

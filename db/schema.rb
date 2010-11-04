@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102042242) do
+ActiveRecord::Schema.define(:version => 20101104024509) do
 
   create_table "alert_types", :force => true do |t|
     t.string   "name"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(:version => 20101102042242) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_broadcast"
-    t.date     "start_date"
-    t.date     "end_date"
   end
 
   add_index "alerts", ["description"], :name => "index_alerts_on_description"
@@ -67,12 +65,14 @@ ActiveRecord::Schema.define(:version => 20101102042242) do
     t.datetime "photo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "shelter_id"
   end
 
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
   add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["name"], :name => "index_animals_on_name"
+  add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
 
   create_table "breeds", :force => true do |t|
     t.string   "name"
@@ -105,5 +105,40 @@ ActiveRecord::Schema.define(:version => 20101102042242) do
   add_index "notes", ["subject_id"], :name => "index_notes_on_subject_id"
   add_index "notes", ["subject_type"], :name => "index_notes_on_subject_type"
   add_index "notes", ["title"], :name => "index_notes_on_title"
+
+  create_table "shelters", :force => true do |t|
+    t.string   "name"
+    t.string   "main_phone"
+    t.string   "fax_phone"
+    t.string   "website"
+    t.string   "twitter"
+    t.text     "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "info"
+    t.string   "due_at"
+    t.date     "due_date"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.integer  "task_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["info"], :name => "index_tasks_on_info"
+  add_index "tasks", ["subject_id"], :name => "index_tasks_on_subject_id"
+  add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
 
 end

@@ -9,7 +9,7 @@
 		<td class="details">
 			<h3><%= link_to animal.name, animal %></h3>
 			<p><%= format_breed(animal.is_mix_breed, animal.primary_breed, animal.secondary_breed) %></p>
-			<p><%= animal.animal_type.name %>: <%= animal.sex %> <% if animal.is_sterilized %>(Sterilized)<% end %>
+			<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex %> <% end %><% if animal.is_sterilized %>(Sterilized)<% end %>
 		</td>
 		<td class="status">
 			<p><b><%= animal.animal_status.name %></b></p>

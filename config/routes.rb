@@ -1,6 +1,14 @@
 Shelterexchange::Application.routes.draw do
+  
   resources :notes
+  resources :tasks
+  resources :alerts
+  resources :shelters
+  
   resources :animals do
+    resources :notes
+    resources :alerts
+    resources :tasks
     collection do
       get :scoped_notes_for_animal
       get :find_by
@@ -8,22 +16,21 @@ Shelterexchange::Application.routes.draw do
     end
   end
   
-  resources :alerts 
-  
   resources :breeds do
     collection do
       get :auto_complete
+      get :auto_suggest
     end
   end
   
   resources :javascripts 
   resources :animal_types
   
-  resources :apis do
-    collection do
-      get "animals"
-    end
-  end
+  # resources :apis do
+  #     collection do
+  #       get "animals"
+  #     end
+  #   end
   
 
   # The priority is based upon order of creation:

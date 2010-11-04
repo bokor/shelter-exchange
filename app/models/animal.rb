@@ -1,11 +1,19 @@
 class Animal < ActiveRecord::Base
   
+  # Hash (Key/Value Pairs)
+  SEX = [ "Male", "Female" ]
+  # Will_Paginate
+  PER_PAGE = 5
+  
   # Associations
   belongs_to :animal_type, :readonly => true
   belongs_to :animal_status, :readonly => true
+  belongs_to :shelter
+  
   has_many :breeds, :readonly => true
-  has_many :notes, :foreign_key => "subject_id", :dependent => :destroy, :order => "notes.created_at DESC"
-  has_many :alerts, :foreign_key => "subject_id", :dependent => :destroy, :order => "alerts.created_at DESC"
+  has_many :notes, :as => :subject, :dependent => :destroy, :order => "created_at DESC"
+  has_many :alerts, :as => :subject, :dependent => :destroy, :order => "created_at DESC"
+  has_many :tasks, :as => :subject, :dependent => :destroy, :order => "created_at DESC"
   
   has_attached_file :photo, :default_url => "/images/default_:style_photo.jpg", 
                             :styles => { :small => ["250x150>", :jpg],
@@ -40,11 +48,6 @@ class Animal < ActiveRecord::Base
   # scope :live_search, lambda { |q| { 
   #   :conditions => ["LOWER(name) LIKE LOWER('%?%')", q.to_s] 
   # }}
-  
-  # Hash (Key/Value Pairs)
-  SEX = [ "Male", "Female" ]
-  # Will_Paginate
-  PER_PAGE = 5
 
   private
     def primary_breed_exists

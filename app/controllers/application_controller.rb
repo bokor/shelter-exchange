@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   
   
   protected
-  
     def is_integer(test)
       test =~ /\A-?\d+\Z/
     end

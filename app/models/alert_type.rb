@@ -1,10 +1,12 @@
 class AlertType < ActiveRecord::Base
+
   # Associations
-   has_many :alerts
+  has_many :alerts
 
-   # Validations
+  # Validations
 
-   # Callbacks
+  # Callbacks
 
-   # Scopes
+  # Scopes
+
 end

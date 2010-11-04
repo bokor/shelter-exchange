@@ -1,9 +1,7 @@
 class Alert < ActiveRecord::Base
   
-  SUBJECT_TYPE = { :animal => "Animal" }
-  
   # Associations
-  belongs_to :animal, :foreign_key => "subject_id"
+  belongs_to :subject, :polymorphic => true
   belongs_to :alert_type, :readonly => true
   
   # Validations
@@ -14,4 +12,5 @@ class Alert < ActiveRecord::Base
   # Callbacks
   
   # Scopes
+  
 end
