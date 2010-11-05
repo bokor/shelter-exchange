@@ -11,9 +11,9 @@ class NotesController < ApplicationController
   end
   
   def create
-    @subject = find_subject
-    @note = @subject.notes.build(params[:note])
-    # @note = Note.new(params[:note])
+    @notable = find_polymorphic_class
+    # @note = @notable.notes.build(params[:note])
+    @note = Note.new(params[:note].merge(:notable => @notable))
     flash[:notice] = "#{@note.title} has been created." if  @note.save
   end
   
@@ -22,15 +22,4 @@ class NotesController < ApplicationController
     @note.destroy
   end
   
-  private
-
-    def find_subject
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
-      end
-      nil
-    end
-    
 end

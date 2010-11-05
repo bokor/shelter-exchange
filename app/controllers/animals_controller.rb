@@ -50,20 +50,12 @@ class AnimalsController < ApplicationController
   def scoped_notes_for_animal
     @animal = Animal.find(params[:id])
     @scope = params[:scope]
-    
-    if @scope == "General"
-      @notes = @animal.notes.general
-      session[:scope] = "General"
-    elsif @scope == "Medical"
-      @notes = @animal.notes.medical
-      session[:scope] = "Medical"
-    elsif @scope == "Behavior"
-      @notes = @animal.notes.behavior
-      session[:scope] = "Behavior"
-    else
+    if @scope.blank?
       @notes = @animal.notes
-      session[:scope] = "All"
-    end  
+    else
+      @notes = @animal.notes.animal_filter(@scope)
+    end
+    session[:scope] = @scope
   end
   
   def live_search

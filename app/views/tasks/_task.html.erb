@@ -1,6 +1,11 @@
 <div class="task" id="task_<%=task.id %>" style="border: 1px #999 solid; background-color: #fce2ec; padding: 15px;">
  	<ul>
-		<li><h2><%= task.info %></h2></li>
+		
+		<% if task.taskable_id.blank? %>
+			<li><h2><%= task.info %></h2></li>
+		<% else %>
+			<li><h2><%= task.taskable_type %> Task - <%= task.info %></h2></li>
+		<% end %>
 		<li><h2><%= task.task_category.name %></h2></li>
 	</ul>
 

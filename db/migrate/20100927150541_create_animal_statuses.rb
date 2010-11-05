@@ -5,9 +5,11 @@ class CreateAnimalStatuses < ActiveRecord::Migration
       
       t.timestamps
     end
+    add_index(:animal_statuses, :name)
   end
 
   def self.down
     drop_table :animal_statuses
+    remove_index :animal_statuses, :column => :name
   end
 end

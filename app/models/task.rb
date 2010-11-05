@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   
   # Associations
-  belongs_to :subject, :polymorphic => true
+  belongs_to :taskable, :polymorphic => true
   belongs_to :task_category, :readonly => true
   
   # Validations

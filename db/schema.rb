@@ -18,19 +18,23 @@ ActiveRecord::Schema.define(:version => 20101104024509) do
     t.datetime "updated_at"
   end
 
+  add_index "alert_types", ["name"], :name => "index_alert_types_on_name"
+
   create_table "alerts", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "subject_id"
-    t.string   "subject_type"
+    t.integer  "alertable_id"
+    t.string   "alertable_type"
     t.integer  "alert_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_broadcast"
   end
 
+  add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
+  add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
+  add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
   add_index "alerts", ["description"], :name => "index_alerts_on_description"
-  add_index "alerts", ["subject_id"], :name => "index_alerts_on_subject_id"
   add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
   create_table "animal_statuses", :force => true do |t|
@@ -39,11 +43,15 @@ ActiveRecord::Schema.define(:version => 20101104024509) do
     t.datetime "updated_at"
   end
 
+  add_index "animal_statuses", ["name"], :name => "index_animal_statuses_on_name"
+
   create_table "animal_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "animal_types", ["name"], :name => "index_animal_types_on_name"
 
   create_table "animals", :force => true do |t|
     t.string   "chip_id"
@@ -90,20 +98,23 @@ ActiveRecord::Schema.define(:version => 20101104024509) do
     t.datetime "updated_at"
   end
 
+  add_index "note_categories", ["name"], :name => "index_note_categories_on_name"
+
   create_table "notes", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "subject_id"
-    t.string   "subject_type"
+    t.integer  "notable_id"
+    t.string   "notable_type"
     t.integer  "note_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "notes", ["description"], :name => "index_notes_on_description"
+  add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
+  add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
+  add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
   add_index "notes", ["note_category_id"], :name => "index_notes_on_note_category_id"
-  add_index "notes", ["subject_id"], :name => "index_notes_on_subject_id"
-  add_index "notes", ["subject_type"], :name => "index_notes_on_subject_type"
   add_index "notes", ["title"], :name => "index_notes_on_title"
 
   create_table "shelters", :force => true do |t|
@@ -126,19 +137,23 @@ ActiveRecord::Schema.define(:version => 20101104024509) do
     t.datetime "updated_at"
   end
 
+  add_index "task_categories", ["name"], :name => "index_task_categories_on_name"
+
   create_table "tasks", :force => true do |t|
     t.string   "info"
     t.string   "due_at"
     t.date     "due_date"
-    t.integer  "subject_id"
-    t.string   "subject_type"
+    t.integer  "taskable_id"
+    t.string   "taskable_type"
     t.integer  "task_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "tasks", ["info"], :name => "index_tasks_on_info"
-  add_index "tasks", ["subject_id"], :name => "index_tasks_on_subject_id"
   add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
+  add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
+  add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"
+  add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"
 
 end

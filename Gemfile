@@ -2,25 +2,34 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-#gem 'mysql'
+gem 'mysql'
 
 
 
 # Login/Authentication
-#gem 'authlogic'
+gem 'authlogic'
 
 # Authorization
-#gem 'declarative_authorization'
+gem 'declarative_authorization'
 
 # Navigation
 gem 'simple-navigation'
 gem 'will_paginate'
-#gem 'css_sprite'
-#gem 'dynamic_form'
-#gem 'rails3-generators'
+# HTML/JS
+gem 'dynamic_form'
+gem 'jquery-rails'
+
+# Attachments
 gem 'paperclip'
 
-gem 'jquery-rails'
+# Query Searching
+
+# Generators
+gem 'rails3-generators'
+
+#gem 'searchlogic' - Doesn't work with rails 3
+#gem 'css_sprite' - Doesn't work with rails 3, failing on Rake Class Task
+
 
 
 ##TESTING THESE GEMS/Plugins

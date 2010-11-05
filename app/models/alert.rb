@@ -1,7 +1,7 @@
 class Alert < ActiveRecord::Base
   
   # Associations
-  belongs_to :subject, :polymorphic => true
+  belongs_to :alertable, :polymorphic => true
   belongs_to :alert_type, :readonly => true
   
   # Validations

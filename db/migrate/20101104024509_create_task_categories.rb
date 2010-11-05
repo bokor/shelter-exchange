@@ -5,9 +5,11 @@ class CreateTaskCategories < ActiveRecord::Migration
       
       t.timestamps
     end
+    add_index(:task_categories, :name)
   end
 
   def self.down
     drop_table :task_categories
+    remove_index :task_categories, :column => :name
   end
 end

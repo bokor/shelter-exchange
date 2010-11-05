@@ -32,40 +32,18 @@ class TasksController < ApplicationController
   end
   
   def create
-    @subject = find_subject
-    if @subject.blank?
-      @task = Task.new(params[:task])
-    else
-      @task = @subject.tasks.build(params[:task])
-    end
+    @taskable = find_polymorphic_class
+    @task = Task.new(params[:task].merge(:taskable => @taskable))
+
     respond_with(@task) do |format|
       if @task.save
         flash[:notice] = "Task has been created."
         format.html { redirect_to tasks_path }
       else
-        format.html { render :action => :index }
+        format.html { render :action => :new }
       end
     end
   end
-  
-  # def create
-  #   @subject = find_subject
-  #   if @subject.blank?
-  #     @task = Task.new(params[:task])
-  #   else
-  #     @task = @subject.tasks.build(params[:task])
-  #   end
-  #   if @task.save
-  #     respond_with(@task, :status => :created, :location => @task) do |format|
-  #       flash[:notice] = "Task has been created."
-  #       format.html { redirect_to tasks_path }
-  #     end
-  #   else
-  #     respond_with(@task.errors, :status => :unprocessable_entity) do |format|
-  #       format.html { render :action => :index }
-  #     end
-  #   end
-  # end
   
   def update
     @task = Task.find(params[:id])   
@@ -85,16 +63,6 @@ class TasksController < ApplicationController
      flash[:error] = "Task has been deleted."
      respond_with(@task)
   end
-  
-  private
 
-    def find_subject
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
-      end
-      nil
-    end
 
 end

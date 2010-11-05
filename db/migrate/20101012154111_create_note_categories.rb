@@ -5,9 +5,11 @@ class CreateNoteCategories < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index(:note_categories, :name)
   end
 
   def self.down
     drop_table :note_categories
+    remove_index :note_categories, :column => :name
   end
 end

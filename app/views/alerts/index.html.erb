@@ -10,7 +10,7 @@
 		<div class="page_content">
 			<%= render :partial => "global/flash_messages" %>
 			
-			<% @global_alerts = Alert.scoped_by_subject_type(nil).find(:all, :order => "created_at DESC") %>
+			<% @global_alerts = Alert.scoped_by_alertable_type(nil).find(:all, :order => "created_at DESC") %>
 			<% unless @global_alerts.blank? %>
 				<h3>Global</h3>
 				<table class="alert_list">
@@ -25,12 +25,12 @@
 			<% end %>
 				
 
-			<% @animal_alerts = Alert.scoped_by_subject_type("Animal").find(:all, :order => "created_at DESC") %>
+			<% @animal_alerts = Alert.scoped_by_alertable_type("Animal").find(:all, :order => "created_at DESC") %>
 			<% unless @animal_alerts.blank?%>
 				<h3>Animal</h3>
 				<table class="alert_list">
 					<% @animal_alerts.each do |alert| %>
-					<% animal = Animal.find_by_id(alert.subject_id) %>
+					<% animal = Animal.find_by_id(alert.alertable_id) %>
 					<tr id="<%= "alert_#{alert.id}" %>">
 						<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
 						<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>  (<%= link_to animal.name, animal_path(animal)%>)	</h3>

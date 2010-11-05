@@ -27,12 +27,8 @@ class AlertsController < ApplicationController
   end
   
   def create
-    @subject = find_subject
-    if @subject.blank?
-      @alert = Alert.new(params[:alert])
-    else
-      @alert = @subject.alerts.build(params[:alert])
-    end
+    @alertable = find_polymorphic_class
+    @alert = Alert.new(params[:alert].merge(:alertable => @alertable))
     
     respond_with(@alert) do |format|
       if @alert.save
@@ -62,16 +58,5 @@ class AlertsController < ApplicationController
      flash[:error] = "#{@alert.title} has been deleted."
      respond_with(@alert)
   end
-  
-  private
-
-    def find_subject
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
-      end
-      nil
-    end
 
 end

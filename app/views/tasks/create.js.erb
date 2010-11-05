@@ -1,11 +1,7 @@
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
-	<% if @task.subject_id.blank? %>
-		$('#tasks').prepend("<%= escape_javascript(render @task) %>"); 
-	<% else %>
-		$('#tasks').prepend("<%= escape_javascript(render 'subject_task', :task => @task) %>"); 
-	<% end %>
+	$('#tasks').prepend("<%= escape_javascript(render @task) %>"); 
 	$(".task").first().effect("highlight", {}, 1000);
 	$('#new_task').get(0).reset();
 	$('#task_errors').html("");
