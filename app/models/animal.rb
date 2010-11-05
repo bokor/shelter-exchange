@@ -45,14 +45,10 @@ class Animal < ActiveRecord::Base
   # Callbacks
 
   # Scopes
-  scope :live_search, lambda { |q| { 
-      :conditions => "LOWER(name) LIKE LOWER('%#{q}%') 
-                   OR LOWER(description) LIKE LOWER('%#{q}%') 
-                   OR LOWER(chip_id) LIKE LOWER('%#{q}%') 
-                   OR LOWER(color) LIKE LOWER('%#{q}%') 
-                   OR LOWER(primary_breed) LIKE LOWER('%#{q}%') 
-                   OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')" }}
-
+  scope :live_search, lambda { |q| { :conditions => "LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') 
+                                                  OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') 
+                                                  OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')" }}
+                  
   private
     def primary_breed_exists
       if self.primary_breed && self.animal_type_id

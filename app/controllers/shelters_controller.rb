@@ -14,7 +14,7 @@ class SheltersController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid shelter => #{params[:id]}")
       flash[:error] = "You have requested an invalid shelter!"
-      redirect_to Shelters_path and return
+      redirect_to shelters_path and return
     end
   end
   
@@ -29,7 +29,7 @@ class SheltersController < ApplicationController
   end
   
   def create
-    @shelter = Shelter.new(params[:Shelter])
+    @shelter = Shelter.new(params[:shelter])
     flash[:notice] = "#{@shelter.name} has been created." if @shelter.save
     respond_with(@shelter)
   end
