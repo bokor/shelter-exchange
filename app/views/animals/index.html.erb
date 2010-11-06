@@ -15,15 +15,15 @@
 				<tr style="vertical-align:top;">
 					<td style="width:50%;text-align:left;padding-top:10px;">
 						<p style="font-weight: bold; font-size: 16px; letter-spacing: -1px;">Search for animal</p><br />
-						<!-- FIX FORM TO WORK WITH ENTER -->
-						<%= form_for live_search_animals_url, :method => :get, :remote => true, :html => { :id => "form_live_search" } do |f| %>
+						<%= form_for :animals, :url => { :action => "live_search"}, :remote => true, :html => { :id => "form_live_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this, 3);"  %>
-							<%= f.submit "Go" %>
+							<!--<%= f.submit "Go" %>-->
 						<% end %>
 					</td>
 					<td style="width:50%;text-align:left;border-left:1px solid #ccc;padding:10px 0 20px 10px;">
 						<p style="font-weight: bold; font-size: 16px; letter-spacing: -1px;">Filter by an animal type and status</p>
-						<%= form_for :animals, :html => { :id => "form_find_by" } do |f| %>
+		
+						<%= form_for :animals, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
 						<table style="width: 100%;padding-left: 50px;">
 							<tr style="vertical-align:top;">
 								<td style="width:50%;">
