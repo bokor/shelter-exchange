@@ -3,7 +3,7 @@ class Animal < ActiveRecord::Base
   # Hash (Key/Value Pairs)
   SEX = [ "Male", "Female" ]
   # Will_Paginate
-  PER_PAGE = 5
+  PER_PAGE = 2
   
   # Associations
   belongs_to :animal_type, :readonly => true

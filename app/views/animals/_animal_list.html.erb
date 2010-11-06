@@ -1,5 +1,3 @@
-<%= will_paginate @animals %>
-
 <table class="list">
 	<% @animals.each do |animal| %>
 	<tr id="<%= "animal_#{animal.id}" %>">
@@ -20,4 +18,5 @@
 	<% end %>
 </table>
 
-<%= will_paginate @animals %>
+
+<%= will_paginate @animals, :renderer => 'RemoteLinkRenderer' %>

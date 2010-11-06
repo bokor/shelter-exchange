@@ -7,14 +7,9 @@ Shelterexchange::Application.routes.draw do
   
   resources :animals do
     resources :notes
-    resources :alerts do
-      collection do 
-        get :create_subject
-      end
-    end
+    resources :alerts 
     resources :tasks
     collection do
-      get :scoped_notes_for_animal
       get :find_by
       get :live_search
     end

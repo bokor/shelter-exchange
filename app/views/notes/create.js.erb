@@ -1,13 +1,13 @@
 <% if @note.errors.any? %>
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
-	<% if session[:scope] == @note.note_category.name or session[:scope] == "All" or session[:scope].blank? %>
+	if (filter == '<%=@note.note_category.name%>' || filter == '') {
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
-	<% else %>
+	} else {
 		$("#another_note_category").html("<p>Added to Category: <%= @note.note_category.name%> <!--<a href='#' onclick='$(this).parent().hide();'>X</a>--></p>").show();
 		$("#another_note_category").delay(1500).fadeOut();
-	<% end %>
+	}
 	$('#new_note').get(0).reset();
 	$('#note_errors').html("");
 <% end %>

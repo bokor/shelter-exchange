@@ -15,9 +15,10 @@
 				<tr style="vertical-align:top;">
 					<td style="width:50%;text-align:left;padding-top:10px;">
 						<p style="font-weight: bold; font-size: 16px; letter-spacing: -1px;">Search for animal</p><br />
-						<%= form_for :live_search_animals_path, :html => { :id => "form_live_search" } do |f| %>
-							<!-- <%= label_tag "q", "Search for animal" %><br /> -->
+						<!-- FIX FORM TO WORK WITH ENTER -->
+						<%= form_for live_search_animals_url, :method => :get, :remote => true, :html => { :id => "form_live_search" } do |f| %>
 							<%= text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this, 3);"  %>
+							<%= f.submit "Go" %>
 						<% end %>
 					</td>
 					<td style="width:50%;text-align:left;border-left:1px solid #ccc;padding:10px 0 20px 10px;">
@@ -46,7 +47,7 @@
 			
 			
 			<div id="animals">
-				<%= render :partial => "animal" %>
+				<%= render :partial => 'animal_list' %>
 			</div>
 
 		</div>

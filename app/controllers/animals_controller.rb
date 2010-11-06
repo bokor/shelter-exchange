@@ -8,8 +8,8 @@ class AnimalsController < ApplicationController
   
   def show
     begin
-      session[:scope] = nil
       @animal = Animal.find(params[:id])
+      filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid animal => #{params[:id]}")
@@ -47,24 +47,16 @@ class AnimalsController < ApplicationController
      respond_with(@animal)
   end
   
-  def scoped_notes_for_animal
-    @animal = Animal.find(params[:id])
-    @scope = params[:scope]
-    if @scope.blank?
-      @notes = @animal.notes
+  def filter_notes(filter, animal)
+    if filter.blank?
+      @notes = animal.notes
     else
-      @notes = @animal.notes.animal_filter(@scope)
+      @notes = animal.notes.animal_filter(filter)
     end
-    session[:scope] = @scope
   end
   
   def live_search
     q = params[:q].strip
-    # TODO - Figure out a way if a shelter were to type text that each string might add an AND statement and another set of ORs
-    # ALSO - look to move this function into the model.
-    # temp = params[:q].strip.split
-    # q = temp.map {|str| str}.join("%")
-    # @animals = Animal.where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')").paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     @animals = Animal.live_search(q).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
   end
   
@@ -92,5 +84,13 @@ class AnimalsController < ApplicationController
   #             }
   #           end
   # end
+  
+  # LIVE SEARCH OTHER CODE
+  # TODO - Figure out a way if a shelter were to type text that each string might add an AND statement and another set of ORs
+  # ALSO - look to move this function into the model.
+  # temp = params[:q].strip.split
+  # q = temp.map {|str| str}.join("%")
+  # @animals = Animal.where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')").paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+  
   
 end
