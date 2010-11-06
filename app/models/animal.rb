@@ -1,8 +1,7 @@
 class Animal < ActiveRecord::Base
+  default_scope :order => 'created_at DESC'
   
-  # Hash (Key/Value Pairs)
   SEX = [ "Male", "Female" ]
-  # Will_Paginate
   PER_PAGE = 2
   
   # Associations
@@ -11,9 +10,9 @@ class Animal < ActiveRecord::Base
   belongs_to :shelter
   
   has_many :breeds, :readonly => true
-  has_many :notes, :as => :notable, :dependent => :destroy, :order => "created_at DESC"
-  has_many :alerts, :as => :alertable, :dependent => :destroy, :order => "created_at DESC"
-  has_many :tasks, :as => :taskable, :dependent => :destroy, :order => "created_at DESC"
+  has_many :notes, :as => :notable, :dependent => :destroy
+  has_many :alerts, :as => :alertable, :dependent => :destroy
+  has_many :tasks, :as => :taskable, :dependent => :destroy
   
   has_attached_file :photo, :default_url => "/images/default_:style_photo.jpg", 
                             :styles => { :small => ["250x150>", :jpg],

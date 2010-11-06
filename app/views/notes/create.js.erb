@@ -1,11 +1,11 @@
 <% if @note.errors.any? %>
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
-	if (filter == '<%=@note.note_category.name%>' || filter == '') {
+	if (note_filter == '<%=@note.note_category.name%>' || note_filter == null) {
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {
-		$("#another_note_category").html("<p>Added to Category: <%= @note.note_category.name%> <!--<a href='#' onclick='$(this).parent().hide();'>X</a>--></p>").show();
+		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.note_category.name%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>').show();
 		$("#another_note_category").delay(1500).fadeOut();
 	}
 	$('#new_note').get(0).reset();

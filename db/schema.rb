@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101104024509) do
+ActiveRecord::Schema.define(:version => 20101106054903) do
 
   create_table "alert_types", :force => true do |t|
     t.string   "name"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20101104024509) do
     t.integer  "task_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "due_category"
   end
 
   add_index "tasks", ["info"], :name => "index_tasks_on_info"

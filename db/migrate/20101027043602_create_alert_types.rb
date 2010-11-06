@@ -6,10 +6,12 @@ class CreateAlertTypes < ActiveRecord::Migration
       t.timestamps
     end
     add_index(:alert_types, :name)
+    add_index(:alertl_types, :created_at)
   end
 
   def self.down
     drop_table :alert_types
     remove_index :alert_types, :column => :name
+    remove_index :alert_types, :column => :created_at
   end
 end

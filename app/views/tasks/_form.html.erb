@@ -1,10 +1,34 @@
+<script>
+$(document).ready(function() {
+	$('#task_due_category').click(function() {showDueDate()});
+	function showDueDate() {
+		var due_category = $('#task_due_category').val();
+		if (due_category != 'specific_date') {
+			$('#due_date_field').hide();
+		} else {
+			$('#due_date_field').show();
+		}
+	}
+});
+</script>
+
 <ul class="form">
 	<li>
 		<%= f.label :info, "Info" %><br />
 		<%= f.text_field :info %>
 	</li>
 	<li>
-		<%= f.label :task_category_id, "Task Type" %><br />
-		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :prompt => "Select Type") %>
+		<%= f.label :task_category_id, "Category" %><br />
+		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :include_blank =>  "Select Type") %>
+	</li>
+	<li>
+		<%= f.label :due_category, "due?" %><br />
+		<%= select :task, :due_category, Task::DUE_CATEGORY %>
+	</li>
+	<li>
+		<div id="due_date_field" style="display:none;">
+			<%= f.label :due_date, "Due:" %><br />
+			<%= f.text_field :due_date %>
+		</div>
 	</li>	
 </ul>

@@ -14,6 +14,7 @@ class CreateNotes < ActiveRecord::Migration
     add_index(:notes, :note_category_id)
     add_index(:notes, :title)
     add_index(:notes, :description)
+    add_index(:notes, :created_at)
   end
 
   def self.down
@@ -24,5 +25,6 @@ class CreateNotes < ActiveRecord::Migration
     remove_index :notes, :column => :note_category_id
     remove_index :notes, :column => :title
     remove_index :notes, :column => :description
+    remove_index :notes, :column => :created_at
   end
 end

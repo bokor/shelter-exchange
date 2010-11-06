@@ -49,7 +49,9 @@
 //  
 // });
 
-
+/* GLOBAL VARIABLES */
+// Note Filter is a param that is set when the filtering changes on the Animal Notes Section
+var note_filter;
 
 
 

@@ -26,6 +26,7 @@ class CreateAnimals < ActiveRecord::Migration
     add_index(:animals, :name)
     add_index(:animals, :description)
     add_index(:animals, [:id, :name, :description, :chip_id, :color, :primary_breed, :secondary_breed])
+    add_index(:animals, :created_at)
   end
 
   def self.down
@@ -35,5 +36,6 @@ class CreateAnimals < ActiveRecord::Migration
     remove_index :animals, :column => :name
     remove_index :animals, :column => :description
     remove_index :animals, :column => [:id, :name, :description, :chip_id, :color, :primary_breed, :secondary_breed]
+    remove_index :animals, :column => :created_at
   end
 end

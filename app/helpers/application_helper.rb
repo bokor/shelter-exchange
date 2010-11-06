@@ -14,6 +14,10 @@ module ApplicationHelper
   
   def format_date(type, date)
     case type
+      when :short_no_year 
+        date.strftime("%b %d")
+      when :short
+        date.strftime("%b %d, %y")
       when :long 
         date.strftime("%B %d, %Y")
       when :default

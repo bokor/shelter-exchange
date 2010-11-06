@@ -3,16 +3,16 @@
 <% content_for :page_content do %>
 
 	<% if !@tasks.blank? %>
-		<div class="page_heading blue_background">
+		<div class="page_heading">
 			<h1>Tasks</h1>
 		</div>
 		
 		<div class="page_content">
 			<%= render :partial => "global/flash_messages" %>
-			
-			<div id="tasks">
+			<h3>Global</h3>
+			<table id="tasks" class="task_list">
 				<%= render @tasks %>
-			</div>
+			</table>
 			
 		</div>
 		
@@ -38,7 +38,7 @@
 
 <% content_for :sidebar do %>
 	<% if !@tasks.blank? %>
-	<div id="create_task" style="background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
+	<div id="create_task" style="background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
 		<h2>Add a task</h2>
 		<div id="task_errors"></div>
 		<%= form_for (Task.new), :remote => true do |f| %>

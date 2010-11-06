@@ -12,9 +12,11 @@ class CreateShelters < ActiveRecord::Migration
       t.string :zip_code
       t.timestamps
     end
+    # add_index(:shelters, :created_at)
   end
 
   def self.down
     drop_table :shelters
+    # remove_index :shelters, :column => :created_at
   end
 end

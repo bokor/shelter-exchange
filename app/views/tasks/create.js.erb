@@ -1,9 +1,10 @@
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
-	$('#tasks').prepend("<%= escape_javascript(render @task) %>"); 
+	$('table#tasks tbody').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
 	$(".task").first().effect("highlight", {}, 1000);
 	$('#new_task').get(0).reset();
+	$('#due_date_field').hide();
 	$('#task_errors').html("");
 <% end %>
 <% flash.discard %>

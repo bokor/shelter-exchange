@@ -1,8 +1,8 @@
 class AddShelterIdToAnimal < ActiveRecord::Migration
   def self.up
     change_table :animals do |t|
-        t.references :shelter
-      end
+      t.references :shelter
+    end
     add_index(:animals, :shelter_id)
   end
 

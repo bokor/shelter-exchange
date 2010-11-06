@@ -13,6 +13,7 @@ class CreateAlerts < ActiveRecord::Migration
     add_index(:alerts, [:alertable_id, :alertable_type])
     add_index(:alerts, :title)
     add_index(:alerts, :description)
+    add_index(:alerts, :created_at)
   end
 
   def self.down
@@ -22,5 +23,6 @@ class CreateAlerts < ActiveRecord::Migration
     remove_index :alerts, :column => [:alertable_id, :alertable_type]
     remove_index :alerts, :column => :title
     remove_index :alerts, :column => :description
+    remove_index :alerts, :column => :created_at
   end
 end

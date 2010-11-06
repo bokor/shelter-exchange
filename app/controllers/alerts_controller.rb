@@ -3,7 +3,12 @@ class AlertsController < ApplicationController
   
   def index
     @alerts = Alert.all
-    respond_with(@alerts)
+    if @alerts.blank?
+      @alert = Alert.new
+      respond_with(@alert)
+    else
+      respond_with(@alerts)
+    end
   end
   
   def show

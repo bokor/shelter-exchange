@@ -2,7 +2,7 @@
 
 <% content_for :page_content do %>
 
-	<% if @alerts.size > 0 %>
+	<% unless @alerts.blank? %>
 		<div class="page_heading">
 			<h1>Alerts</h1>
 		</div>
@@ -10,49 +10,66 @@
 		<div class="page_content">
 			<%= render :partial => "global/flash_messages" %>
 			
-			<% @global_alerts = Alert.scoped_by_alertable_type(nil).find(:all, :order => "created_at DESC") %>
-			<% unless @global_alerts.blank? %>
+			<% @alerts = Alert.scoped_by_alertable_type(nil).find(:all, :order => "created_at DESC") %>
+			<% unless @alerts.blank? %>
 				<h3>Global</h3>
-				<table class="alert_list">
-					<% @global_alerts.each do |alert| %>
-					<tr id="<%= "alert_#{alert.id}" %>">
-						<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
-						<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %></h3></td>
-						<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-					</tr>
-					<% end %>
+				<table id="alerts" class="alert_list">
+					<%= render @alerts %>
 				</table>
 			<% end %>
 				
 
-			<% @animal_alerts = Alert.scoped_by_alertable_type("Animal").find(:all, :order => "created_at DESC") %>
-			<% unless @animal_alerts.blank?%>
-				<h3>Animal</h3>
-				<table class="alert_list">
-					<% @animal_alerts.each do |alert| %>
-					<% animal = Animal.find_by_id(alert.alertable_id) %>
-					<tr id="<%= "alert_#{alert.id}" %>">
-						<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
-						<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>  (<%= link_to animal.name, animal_path(animal)%>)	</h3>
-						
-						
-						</td>
-						<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-					</tr>
-					<% end %>
-				</table>
-			<% end %>
+			<!-- <% @animal_alerts = Alert.scoped_by_alertable_type("Animal").find(:all, :order => "created_at DESC") %>
+						<% unless @animal_alerts.blank?%>
+							<h3>Animal</h3>
+							<table class="alert_list">
+								<% @animal_alerts.each do |alert| %>
+								<% animal = Animal.find_by_id(alert.alertable_id) %>
+								<tr id="<%= "alert_#{alert.id}" %>">
+									<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
+									<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>  (<%= link_to animal.name, animal_path(animal)%>)	</h3>
+									
+									
+									</td>
+									<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
+								</tr>
+								<% end %>
+							</table>
+						<% end %> -->
 		</div>
 		
 	<% else %>
 		<div class="page_heading">
-			<h1>Creating new alerts</h1>
+			<h1>Creating your first alert</h1>
 			<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
 		</div>
+
+		<div class="page_content">
+			<%= render "global/error_messages", :target => @alert %>
+
+			<%= form_for(@alert) do |f| %>
+				<%= render :partial => "form", :locals => { :f => f } %>
+		    	<div class="actions">
+					<%= f.submit "Create Alert", :disable_with => "Submitting...", :class => 'button' %>
+				</div>
+			<% end %>	
+		</div>
+			
 	<% end %>
 
 <% end %>
 
 <% content_for :sidebar do %>
-	<%= link_to "Create new alert", new_alert_path %>
+	<% unless @alerts.blank?  %>
+	<div id="create_alert" style="background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
+		<h2>Add an alert</h2>
+		<div id="alert_errors"></div>
+		<%= form_for (Alert.new), :remote => true do |f| %>
+			<%= render :partial => "form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
 <% end %>

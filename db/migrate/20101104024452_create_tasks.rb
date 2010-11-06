@@ -14,6 +14,7 @@ class CreateTasks < ActiveRecord::Migration
     add_index(:tasks, [:taskable_id, :taskable_type])
     add_index(:tasks, :task_category_id)
     add_index(:tasks, :info)
+    add_index(:tasks, :created_at)
   end
 
   def self.down
@@ -23,6 +24,7 @@ class CreateTasks < ActiveRecord::Migration
     remove_index :tasks, :column => [:taskable_id, :taskable_type]
     remove_index :tasks, :column => :task_category_id
     remove_index :tasks, :column => :info
+    remove_index :tasks, :column => :created_at
   end
 end
   
