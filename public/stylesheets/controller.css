@@ -38,6 +38,35 @@
 .show_animals table.animal_details td.metadata{width:100%;padding: 0 0 0 15px; margin:0 0 0 0; }
 .show_animals table.animal_details .description{clear: both; padding: 15px 0 0 0; }
 
+/* ALERTS ON SHOW ANIMAL PAGE */
+.show_animals table.alert_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
+.show_animals table.alert_list tr{padding: 10px 0 10px 0;}
+.show_animals table.alert_list td{vertical-align:top;padding: 6px 0;}
+.show_animals table.alert_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.show_animals table.alert_list td.details{padding-left: 10px;}
+.show_animals table.alert_list td.details h3 {padding:0; margin:0; border:0;}
+.show_animals table.alert_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px;}
+.show_animals table.alert_list td.description{padding-left: 10px;}
+.show_animals table.alert_list td.links{width:150px; text-align:right;}
+.show_animals table.alert_list td.high{background-color:red;color:#fff;}
+.show_animals table.alert_list td.medium{background-color:orange;color:#fff;}
+.show_animals table.alert_list td.low{background-color:gray;color:#fff;}
+
+/* TASKS ON SHOW ANIMAL PAGE */
+.show_animals table.task_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
+.show_animals table.task_list tr{padding: 10px 0 10px 0;}
+.show_animals table.task_list td{vertical-align:top;padding: 6px 0;}
+.show_animals table.task_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.show_animals table.task_list td.details{padding-left: 10px;}
+.show_animals table.task_list td.details h3 {padding:0; margin:0; border:0;}
+.show_animals table.task_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
+.show_animals table.task_list td.description{padding-left: 10px;}
+.show_animals table.task_list td.links{width:150px; text-align:right;}
+.show_animals table.task_list td.high{background-color:red;color:#fff;}
+.show_animals table.task_list td.medium{background-color:orange;color:#fff;}
+.show_animals table.task_list td.low{background-color:gray;color:#fff;}
+
+/* NOTES ON SHOW ANIMAL PAGE */
 .show_animals .note_filters{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_animals .note_filters h2{float:left;}
 .show_animals .note_filters .links{float:right; text-align: right;padding-top:5px;}
@@ -85,7 +114,7 @@
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
 .tasks ul {list-style:none;}
-
+.index_tasks .page_content h3{border-bottom:1px #999 solid;}
 .index_tasks .page_heading{/*border-bottom:1px solid #ddd; */}
 .index_tasks table.task_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
 .index_tasks table.task_list tr{padding: 10px 0 10px 0;}
