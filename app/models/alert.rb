@@ -13,5 +13,7 @@ class Alert < ActiveRecord::Base
   # Callbacks
   
   # Scopes
+  scope :for_global, :include => [:alert_type], :conditions => { :alertable_type => nil }
+  scope :for_animals, :include => [:alert_type, :alertable], :conditions => { :alertable_type => "Animal" }
   
 end

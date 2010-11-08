@@ -2,12 +2,14 @@ class AlertsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @alerts = Alert.all
-    if @alerts.blank?
+    @alerts = Alert.for_global.all
+    @animal_alerts = Alert.for_animals.all
+
+    if @alerts.blank? and @animal_alerts.blank?
       @alert = Alert.new
       respond_with(@alert)
     else
-      respond_with(@alerts)
+      @alert_validate = true
     end
   end
   

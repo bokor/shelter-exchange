@@ -22,6 +22,9 @@ gem 'jquery-rails'
 # Attachments
 gem 'paperclip'
 
+# Date Validation
+gem 'date_validator'
+
 # Query Searching
 
 # Generators

@@ -2,12 +2,17 @@ class TasksController < ApplicationController
   respond_to :html, :js
   
   def index
-    @tasks = Task.all
-    if @tasks.blank?
+    # @tasks = Task.for_global.all
+    @overdue_tasks = Task.overdue.all
+    @today_tasks = Task.today.all
+    @tomorrow_tasks = Task.tomorrow.all
+    @later_tasks = Task.later.all
+
+    if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       @task = Task.new
       respond_with(@task)
     else
-      respond_with(@tasks)
+      @task_validate = true
     end  
   end
   

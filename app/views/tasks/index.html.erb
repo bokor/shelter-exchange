@@ -1,19 +1,45 @@
 <%= javascripts "tasks/tasks" %>
+<%= javascripts "date" %>
 
 <% content_for :page_content do %>
 
-	<% if !@tasks.blank? %>
+	<% if @task_validate %>
 		<div class="page_heading">
 			<h1>Tasks</h1>
 		</div>
 		
 		<div class="page_content">
-			<%= render :partial => "global/flash_messages" %>
-			<h3>Global</h3>
-			<table id="tasks" class="task_list">
-				<%= render @tasks %>
-			</table>
 			
+			<%= render :partial => "global/flash_messages" %>
+			
+			<% unless @overdue_tasks.blank? %>
+				<h3>Overdue</h3>
+				<table id="overdue_tasks" class="task_list">
+					<%= render :partial => "task", :collection => @overdue_tasks %>
+				</table>
+			<% end %>
+			
+			<% unless @today_tasks.blank? %>
+				<h3>Today</h3>
+				<table id="today_tasks" class="task_list">
+					<%= render :partial => "task", :collection => @today_tasks %>
+				</table>
+			<% end %>
+			
+			<% unless @tomorrow_tasks.blank? %>
+				<h3>Tomorrow</h3>
+				<table id="tomorrow_tasks" class="task_list">
+					<%= render :partial => "task", :collection => @tomorrow_tasks %>
+				</table>
+			<% end %>
+			
+			<% unless @later_tasks.blank? %>
+				<h3>Later</h3>
+				<table id="later_tasks" class="task_list">
+					<%= render :partial => "task", :collection => @later_tasks %>
+				</table>
+			<% end %>
+				
 		</div>
 		
 	<% else %>
@@ -37,7 +63,7 @@
 <% end %>
 
 <% content_for :sidebar do %>
-	<% if !@tasks.blank? %>
+	<% if @task_validate %>
 	<div id="create_task" style="background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
 		<h2>Add a task</h2>
 		<div id="task_errors"></div>

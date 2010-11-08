@@ -1,20 +1,8 @@
-<% if alert.alertable.blank? %>
-	<tr id="<%= "alert_#{alert.id}" %>" class="alert">
-		<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
-		<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %></h3></td>
-		<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-	</tr>
-<% else %>
-	<div class="alert" id="alert_<%=alert.id %>" style="border: 1px #999 solid; background-color: #fce2ec; padding: 15px;">
-	 	<ul>
-			<li><h2><%= alert.alertable_type %> Alert - <%= alert.title %></h2></li>
-			<li><%= alert.description %></li>
-		</ul>
+<tr id="<%= "alert_#{alert.id}" %>" class="alert">
+	<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
+	<td class="details">
+		<h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
+		<% if alert.alertable  %>(<%= link_to alert.alertable.name, animal_path(alert.alertable)%>) <% end %></h3></td>
+	<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
+</tr>
 
-	  <div class="actions right">
-		<%= link_to 'Delete', alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>
-	  </div>
-
-	</div>
-
-<% end %>

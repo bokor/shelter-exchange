@@ -1,9 +1,9 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
 	<ul class="form">
 		<li>
-			<% unless @animal.photo_file_name.blank? %><%= image_tag @animal.photo.url(:small) %><br /><% end %>
+			<%= image_tag @animal.photo.url(:small) %><br />
 			<%= f.label :photo, "Image" %><br />
-			<%= f.file_field :photo %>
+			<%= f.file_field :photo  %>
 		</li>
 		<li>
 			<%= f.label :chip_id , "Chip ID" %><br />

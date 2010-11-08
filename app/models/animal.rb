@@ -2,7 +2,7 @@ class Animal < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
   SEX = [ "Male", "Female" ]
-  PER_PAGE = 2
+  PER_PAGE = 5
   
   # Associations
   belongs_to :animal_type, :readonly => true
@@ -47,6 +47,7 @@ class Animal < ActiveRecord::Base
   scope :live_search, lambda { |q| { :conditions => "LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') 
                                                   OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') 
                                                   OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')" }}
+                                                  
                   
   private
     def primary_breed_exists

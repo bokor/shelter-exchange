@@ -1,0 +1,6 @@
+<tr id="<%= "alert_#{alert.id}" %>" class="alert">
+	<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
+	<td class="details">
+		<h3><span><%= format_date(:short_no_year, alert.created_at) %></span>ANIMAL - <%= alert.title %></h3></td>
+	<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
+</tr>

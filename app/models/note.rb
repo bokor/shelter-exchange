@@ -12,9 +12,6 @@ class Note < ActiveRecord::Base
   # Callbacks
 
   # Scopes
-  # scope :general, lambda {{ :conditions => ['note_category_id = ?', 1] }}
-  #   scope :medical, lambda {{ :conditions => ['note_category_id = ?', 2] }}
-  #   scope :behavior, lambda {{ :conditions => ['note_category_id = ?', 3] }}
   
   # JOINS AND INNER JOINS
   # scope :animal_filter, lambda {|name| joins(:note_category).where('note_categories.name = ?', name) }

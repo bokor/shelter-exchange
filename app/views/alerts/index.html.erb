@@ -2,7 +2,7 @@
 
 <% content_for :page_content do %>
 
-	<% unless @alerts.blank? %>
+	<% if @alert_validate %>
 		<div class="page_heading">
 			<h1>Alerts</h1>
 		</div>
@@ -10,32 +10,20 @@
 		<div class="page_content">
 			<%= render :partial => "global/flash_messages" %>
 			
-			<% @alerts = Alert.scoped_by_alertable_type(nil).find(:all, :order => "created_at DESC") %>
 			<% unless @alerts.blank? %>
 				<h3>Global</h3>
 				<table id="alerts" class="alert_list">
-					<%= render @alerts %>
+					<%= render :partial => "alert", :collection => @alerts %>
+				</table>
+			<% end %>
+			
+			<% unless @animal_alerts.blank? %>
+				<h3>Animal</h3>
+				<table id="animal_alerts" class="alert_list">
+					<%= render :partial => "alert", :collection => @animal_alerts %>
 				</table>
 			<% end %>
 				
-
-			<!-- <% @animal_alerts = Alert.scoped_by_alertable_type("Animal").find(:all, :order => "created_at DESC") %>
-						<% unless @animal_alerts.blank?%>
-							<h3>Animal</h3>
-							<table class="alert_list">
-								<% @animal_alerts.each do |alert| %>
-								<% animal = Animal.find_by_id(alert.alertable_id) %>
-								<tr id="<%= "alert_#{alert.id}" %>">
-									<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
-									<td class="details"><h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>  (<%= link_to animal.name, animal_path(animal)%>)	</h3>
-									
-									
-									</td>
-									<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-								</tr>
-								<% end %>
-							</table>
-						<% end %> -->
 		</div>
 		
 	<% else %>
@@ -60,7 +48,7 @@
 <% end %>
 
 <% content_for :sidebar do %>
-	<% unless @alerts.blank?  %>
+	<% if @alert_validate %>
 	<div id="create_alert" style="background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
 		<h2>Add an alert</h2>
 		<div id="alert_errors"></div>

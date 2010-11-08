@@ -5,13 +5,9 @@
 	<title><% yield(:title) %></title>
   
  	<%= stylesheet_link_tag :all, :media => "screen", :cache => "cache/all" %>
-    <%= stylesheet_link_tag "jquery-ui-1.8.5.custom", "autoSuggest", :media => "screen", :cache => "cache/all" %>
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/humanity/jquery-ui.css" rel="stylesheet" type="text/css"/>
-
 	<%= yield(:stylesheets) %>
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery.ui.autocomplete.selectFirst", "jquery.ui.autocomplete.html", "jquery.autoSuggest.minified", "rails", "application", :cache => "cache/all" %>
-	<!--"jquery.ui.autocomplete.highlight",-->
+	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", "jquery.ui.autocomplete.selectFirst", "jquery.ui.autocomplete.html", "rails", "application", :cache => "cache/all" %>
 	<%= yield(:javascripts) %>
 	
 	<%= csrf_meta_tag %>
@@ -52,7 +48,7 @@
 		
 	</div>
 	<!--//end main -->
-	<%= render :partial => "global/debug" %>
+	<%-#render :partial => "global/debug" %>
 	
 </body>
 

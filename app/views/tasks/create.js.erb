@@ -1,10 +1,29 @@
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
-	$('table#tasks tbody').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
-	$(".task").first().effect("highlight", {}, 1000);
+	<% if @task.taskable_type == "Animal" %>
+		$('#tasks').prepend("<%= escape_javascript(render 'animal_task', :task => @task) %>"); 
+	<% else %>
+		$('#tasks').prepend("<%= escape_javascript(render @task) %>"); 
+	<% end %>
+	//ADD LOGIC FOR SPECIFIC DATE
+	<% due_section = @task.due_category %>
+	<% if @task.due_category == "specific_date" %>
+		<% if @task.due_date < Date.today %>
+			<% due_section = "overdue" %>
+		<% elsif @task.due_date == Date.today %>
+			<% due_section = "today" %>
+		<% elsif @task.due_date == Date.today + 1.day %>
+			<% due_section = "tomorrow" %>
+		<% elsif @task.due_date > Date.today + 1.day %>
+			<% due_section = "later" %>
+		<% end %>
+	<% end %>
+	$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
+	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1000);
 	$('#new_task').get(0).reset();
 	$('#due_date_field').hide();
+	$('#task_due_date').val( Date.today().toString('yyyy-MM-dd') );
 	$('#task_errors').html("");
 <% end %>
 <% flash.discard %>

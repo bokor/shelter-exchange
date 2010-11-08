@@ -2,13 +2,13 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @animals = Animal.all.paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    @animals = Animal.all(:include => [:animal_type, :animal_status]).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     respond_with(@animals)
   end
   
   def show
     begin
-      @animal = Animal.find(params[:id])
+      @animal = Animal.find(params[:id], :include => [:animal_type, :animal_status, {:notes => [:note_category]}, {:alerts => [:alert_type]}, {:tasks => [:task_category]}])
       filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound

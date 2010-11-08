@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.datetime "updated_at"
   end
 
-  add_index "alert_types", ["name"], :name => "index_alert_types_on_name"
-
   create_table "alerts", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -31,27 +29,17 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.boolean  "is_broadcast"
   end
 
-  add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
-  add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
-  add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
-  add_index "alerts", ["description"], :name => "index_alerts_on_description"
-  add_index "alerts", ["title"], :name => "index_alerts_on_title"
-
   create_table "animal_statuses", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "animal_statuses", ["name"], :name => "index_animal_statuses_on_name"
-
   create_table "animal_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "animal_types", ["name"], :name => "index_animal_types_on_name"
 
   create_table "animals", :force => true do |t|
     t.string   "chip_id"
@@ -76,12 +64,6 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.integer  "shelter_id"
   end
 
-  add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
-  add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
-  add_index "animals", ["description"], :name => "index_animals_on_description"
-  add_index "animals", ["name"], :name => "index_animals_on_name"
-  add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
-
   create_table "breeds", :force => true do |t|
     t.string   "name"
     t.integer  "animal_type_id"
@@ -89,16 +71,11 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.datetime "updated_at"
   end
 
-  add_index "breeds", ["animal_type_id"], :name => "index_breeds_on_animal_type_id"
-  add_index "breeds", ["name"], :name => "index_breeds_on_name"
-
   create_table "note_categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "note_categories", ["name"], :name => "index_note_categories_on_name"
 
   create_table "notes", :force => true do |t|
     t.string   "title"
@@ -109,13 +86,6 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "notes", ["description"], :name => "index_notes_on_description"
-  add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
-  add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
-  add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
-  add_index "notes", ["note_category_id"], :name => "index_notes_on_note_category_id"
-  add_index "notes", ["title"], :name => "index_notes_on_title"
 
   create_table "shelters", :force => true do |t|
     t.string   "name"
@@ -137,8 +107,6 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.datetime "updated_at"
   end
 
-  add_index "task_categories", ["name"], :name => "index_task_categories_on_name"
-
   create_table "tasks", :force => true do |t|
     t.string   "info"
     t.string   "due_at"
@@ -150,11 +118,5 @@ ActiveRecord::Schema.define(:version => 20101106054903) do
     t.datetime "updated_at"
     t.string   "due_category"
   end
-
-  add_index "tasks", ["info"], :name => "index_tasks_on_info"
-  add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
-  add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
-  add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"
-  add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"
 
 end

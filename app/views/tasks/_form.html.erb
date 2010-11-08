@@ -1,17 +1,3 @@
-<script>
-$(document).ready(function() {
-	$('#task_due_category').click(function() {showDueDate()});
-	function showDueDate() {
-		var due_category = $('#task_due_category').val();
-		if (due_category != 'specific_date') {
-			$('#due_date_field').hide();
-		} else {
-			$('#due_date_field').show();
-		}
-	}
-});
-</script>
-
 <ul class="form">
 	<li>
 		<%= f.label :info, "Info" %><br />
@@ -27,8 +13,9 @@ $(document).ready(function() {
 	</li>
 	<li>
 		<div id="due_date_field" style="display:none;">
-			<%= f.label :due_date, "Due:" %><br />
-			<%= f.text_field :due_date %>
+			<%= f.label :due_date, "Due:" %><div id="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
+			<div id="date_picker"></div>
 		</div>
 	</li>	
 </ul>
+<%= f.hidden_field :due_date,  :value => "#{Date.today}" %>

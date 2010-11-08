@@ -117,14 +117,14 @@
 	</div>
 	<br />
 	<h2 style="border-bottom: 1px #bbb solid; font-weight: bold;">Alerts</h2>
-	<div id="alerts">
-		<%= render @animal.alerts %>
-	</div>
+	<table id="alerts" class="alert_list">
+		<%= render :partial => 'alerts/animal_alert', :as => :alert, :collection => @animal.alerts %>
+	</table>
 	<br />
 	<h2 style="border-bottom: 1px #bbb solid; font-weight: bold;">Tasks</h2>
-	<div id="tasks">
-		<%= render @animal.tasks %>
-	</div>
+	<table id="tasks" class="task_list">
+		<%= render :partial => 'tasks/animal_task', :as => :task, :collection => @animal.tasks %>
+	</table>
 
 <% end %>
 	
