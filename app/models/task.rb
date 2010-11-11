@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   scope :tomorrow, lambda { { :include => [:task_category, :taskable], :conditions => ["due_date = ?", Date.today + 1.day] } }
   # scope :this_week, lambda { { :include => [:task_category, :taskable], :conditions => ["strftime('%W',due_date) = ? AND NOT due_date <= ?", (Date.today + 1.day).strftime('%W'), Date.today] } }
   # scope :next_week, lambda { { :include => [:task_category, :taskable], :conditions => ["strftime('%W',due_date + '1 week') = ?", (Date.today + 1.day + 1.week).strftime('%W')] } }
-  scope :later, lambda { { :include => [:task_category, :taskable], :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day] } }
+  scope :later, lambda { { :include => [:task_category, :taskable], :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC" } }
   
   
 end
