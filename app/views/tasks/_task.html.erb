@@ -1,5 +1,5 @@
 <div id="<%= "task_#{task.id}" %>" class="task">
-	<div class="type"<%= 'style=color:#fff;background-color:'+ task.task_category.color if task.task_category %>>
+	<div class="type" <%= 'style=color:#fff;background-color:'+ task.task_category.color if task.task_category %>>
 		<%= task.task_category.name if task.task_category %>
 	</div>
 	<div class="details">
@@ -13,4 +13,4 @@
 	<div class="clear"></div>
 </div>
 
-<div class="edit_task" id="edit_task_<%=task.id %>" style="display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:10px; margin-bottom:10px;"></div>
+<div class="edit_task" id="edit_task_<%=task.id %>" style="display:none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom:10px;"></div>

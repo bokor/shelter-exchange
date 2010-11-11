@@ -187,7 +187,7 @@
 
 /* STARTING OF DIV FORMAT */
 
-.index_tasks .task_list{width:100%;margin-bottom:10px; }
+.index_tasks .task_list{width:100%;margin-bottom:10px;}
 .index_tasks .task_list .task{vertical-align:middle;padding: 1px 0 1px 0; margin: 2px 0 2px 0; }
 .index_tasks .task_list .type{float:left;width:100px;padding: 9px 0;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
 .index_tasks .task_list .details{float:left; padding: 6px 0;}
