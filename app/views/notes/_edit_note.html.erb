@@ -3,6 +3,6 @@
     <div class="actions">
 		<%= f.submit "Update Note", :disable_with => "Submitting...", :class => "button" %>
 		&nbsp;&nbsp;or&nbsp;&nbsp;
-		<%= link_to_function "Cancel", "$('#edit_note_#{@note.id}').toggle();" -%>
+		<%= link_to 'Cancel', '#',:onclick => "$('#edit_note_#{@note.id}').toggle();$('#note_#{@note.id}').show();"  %>
 	</div>
 <% end %>

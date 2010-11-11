@@ -9,13 +9,13 @@
 	</li>
 	<li>
 		<%= f.label :due_category, "due?" %><br />
-		<%= select :task, :due_category, Task::DUE_CATEGORY %>
+		<%= select :task, :due_category, Task::DUE_CATEGORY, {},:class => "task_due_category" %>
 	</li>
 	<li>
-		<div id="due_date_field" style="display:none;">
-			<%= f.label :due_date, "Due:" %><div id="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
-			<div id="date_picker"></div>
+		<div class="due_date_field" style="display:none;">
+			<div class="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
+			<div class="date_picker"></div>
 		</div>
 	</li>	
 </ul>
-<%= f.hidden_field :due_date,  :value => "#{Date.today}" %>
+<%= f.hidden_field :due_date, :class=>"hidden_due_date" %>

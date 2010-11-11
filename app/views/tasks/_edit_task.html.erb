@@ -1,0 +1,8 @@
+<%= form_for (@task), :remote => true do |f| %>
+	<%= render :partial => "form", :locals => { :f => f } %>
+    <div class="actions">
+		<%= f.submit "Update Task", :disable_with => "Submitting...", :class => "button" %>
+		&nbsp;&nbsp;or&nbsp;&nbsp;
+		<%= link_to 'Cancel', '#',:onclick => "$('#edit_task_#{@task.id}').toggle();$('#task_#{@task.id}').show();"  %>
+	</div>
+<% end %>

@@ -1,4 +1,40 @@
-$('#note_<%=@note.id%>').hide();
-$('#edit_note_<%=@note.id%>').show();
-$('#edit_note_<%=@note.id%>').html( "<%= escape_javascript(render 'edit_note', :collection => @note) %>" );
+$('#task_<%=@task.id%>').hide();
+$('#edit_task_<%=@task.id%>').show();
+$('#edit_task_<%=@task.id%>').html( "<%= escape_javascript(render 'edit_task', :collection => @task) %>" );
+
+$("#edit_task_<%=@task.id%> .date_picker").datepicker({
+	numberOfMonths: 1,
+	showButtonPanel: false,
+	dateFormat: 'yy-mm-dd',
+	altField: "#edit_task_<%=@task.id%> .due_date_alt",
+	altFormat: "D MM d, yy",
+	onSelect: function(dateText,picker) { 
+		//HIDDEN FIELD
+		$('#edit_task_<%=@task.id%> .hidden_due_date').val( dateText ); 
+			
+		//DIV FIELD
+		var dateFormat = $(this).datepicker( "option", "dateFormat" );
+		var altFormat = $(this).datepicker( "option", "altFormat" );
+		var altField = $(this).datepicker( "option", "altField" );
+		var parseDate = $.datepicker.parseDate(dateFormat, dateText);
+		var formatDate = $.datepicker.formatDate(altFormat, parseDate);
+		$(altField).html(formatDate);
+			
+	}  
+});
+
+var due_category = $('#edit_task_<%=@task.id%> .task_due_category').val();
+var db_date = $('#edit_task_<%=@task.id%> .hidden_due_date').val();
+
+if (due_category == 'specific_date') {
+	$('#edit_task_<%=@task.id%> .date_picker').datepicker("setDate", db_date);
+	var tempDate = $('#edit_task_<%=@task.id%> .date_picker').datepicker("getDate");
+	var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
+	$('#edit_task_<%=@task.id%> .due_date_alt').html(setDate);
+	$('#edit_task_<%=@task.id%> .due_date_field').show();
+} else {
+	$('#edit_task_<%=@task.id%> .due_date_field').hide();
+}
+
+$('#edit_task_<%=@task.id%> .task_due_category').click(function() {dueDate("#edit_task_<%=@task.id%>")});
 <% flash.discard %>

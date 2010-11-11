@@ -1,10 +1,14 @@
+//FIX the Moving or hiding of records when the due_category is changed and we need to move it to another section.
+
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
-	<% if @task.taskable_type == "Animal" %>
-		$('#tasks').prepend("<%= escape_javascript(render 'animal_task', :task => @task) %>"); 
-		$(".task").first().effect("highlight", {}, 1000);
-	<% else %>
+	<% if @changed %>
+		$('#edit_task_<%=@task.id%>').slideToggle(3000);
+		$('#task_<%=@task.id%>').fadeOut(1500);
+		$('#edit_task_<%=@task.id%>').delay(1500).remove();
+		$('#task_<%=@task.id%>').delay(1500).remove();
+		
 		$('#tasks').prepend("<%= escape_javascript(render @task) %>"); 
 		<% due_section = @task.due_category %>
 		<% if @task.due_date.blank? or @task.due_date > Date.today + 1.day or @task.due_category == 'later' %>
@@ -20,10 +24,12 @@
 		$('#<%=due_section %>_tasks_section').fadeIn(1000);
 		$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
 		$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 2000);
+		
+	<% else %>
+		$('#edit_task_<%=@task.id%>').slideToggle();
+		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
+		$('#task_<%=@task.id%>').show().effect("highlight", {}, 2000);
 	<% end %>
-	$('#new_task').get(0).reset();
-	$('#due_date_field').hide();
-	$('#task_due_date').val( Date.today().toString('yyyy-MM-dd') );
 	$('#task_errors').html("");
 <% end %>
 <% flash.discard %>

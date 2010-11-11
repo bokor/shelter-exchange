@@ -2,10 +2,10 @@ class AlertsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @alerts = Alert.for_global.all
+    @global_alerts = Alert.for_global.all
     @animal_alerts = Alert.for_animals.all
 
-    if @alerts.blank? and @animal_alerts.blank?
+    if @global_alerts.blank? and @animal_alerts.blank?
       @alert = Alert.new
       respond_with(@alert)
     else
@@ -13,9 +13,9 @@ class AlertsController < ApplicationController
     end
   end
   
-  def show
-    redirect_to alerts_path and return
-  end
+  # def show
+  #   redirect_to alerts_path and return
+  # end
   
   def edit
     begin
@@ -28,10 +28,10 @@ class AlertsController < ApplicationController
     end
   end
 
-  def new
-    @alert = Alert.new
-    respond_with(@alert)
-  end
+  # def new
+  #   @alert = Alert.new
+  #   respond_with(@alert)
+  # end
   
   def create
     @alertable = find_polymorphic_class
@@ -62,8 +62,17 @@ class AlertsController < ApplicationController
   def destroy
      @alert = Alert.find(params[:id])
      @alert.destroy
+     alert_count_by_scope
      flash[:error] = "#{@alert.title} has been deleted."
      respond_with(@alert)
+  end
+  
+  def alert_count_by_scope
+    if @alert.alertable_type == "Animal"
+      @count = Alert.for_animals.all.count
+    else
+      @count = Alert.for_global.all.count
+    end
   end
 
 end

@@ -63,8 +63,15 @@ AnimalStatus.create([
   { :name => "Available for Adoption" },
   { :name => "Adopted" },
   { :name => "Foster Care" },
+  { :name => "In Transit" },
+  { :name => "New Intake" },
+  { :name => "On Hold - Behavioral" },
+  { :name => "On Hold - Medical" },
+  { :name => "On Hold - Stray Intake" },
   { :name => "Deceased" }
 ])
+ 
+
 
 #######################################################################################################################
 #
@@ -644,7 +651,12 @@ AlertType.create([
 #
 #######################################################################################################################
 TaskCategory.create([
-  { :name => "Test" },
-  { :name => "Test2" },
-  { :name => "Test3" }
+  { :name => "Call", :color => "#cc1d0a" },
+  { :name => "Email", :color => "#0871a5" },
+  { :name => "Follow-up", :color => "#cc610a" },
+  { :name => "Meeting", :color => "#9108a5" },
+  { :name => "To-do", :color => "#08a535" },
+  { :name => "Educational", :color => "#ccaf0a" },
+  { :name => "Behavioral", :color => "#b4094a" },
+  { :name => "Medical", :color => "#0833a6" }
 ])

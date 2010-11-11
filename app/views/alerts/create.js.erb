@@ -3,10 +3,13 @@
 <% else %>
 	<% if @alert.alertable_type == "Animal" %>
 		$('#alerts').prepend("<%= escape_javascript(render 'animal_alert', :alert => @alert) %>"); 
+		$(".alert").first().effect("highlight", {}, 1000);
 	<% else %>
-		$('#alerts').prepend("<%= escape_javascript(render @alert) %>"); 
+		$('#global_alerts_section').removeClass("no_alert");
+		$('#global_alerts_section').fadeIn(1000);
+		$('#global_alerts').prepend("<%= escape_javascript(render @alert) %>"); 
+		$("#global_alerts .alert").first().effect("highlight", {}, 1000);
 	<% end %>
-	$(".alert").first().effect("highlight", {}, 1000);
 	$('#new_alert').get(0).reset();
 	$('#alert_errors').html("");
 <% end %>

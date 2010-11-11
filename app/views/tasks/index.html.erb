@@ -10,35 +10,33 @@
 		
 		<div class="page_content">
 			
-			<%= render :partial => "global/flash_messages" %>
-			
-			<% unless @overdue_tasks.blank? %>
+			<div id="overdue_tasks_section" class="<%= "no_tasks" if @overdue_tasks.blank? %>">
 				<h3>Overdue</h3>
-				<table id="overdue_tasks" class="task_list">
+				<div id="overdue_tasks" class="task_list">
 					<%= render :partial => "task", :collection => @overdue_tasks %>
-				</table>
-			<% end %>
+				</div>
+			</div>
 			
-			<% unless @today_tasks.blank? %>
+			<div id="today_tasks_section" class="<%= "no_tasks" if @today_tasks.blank? %>">
 				<h3>Today</h3>
-				<table id="today_tasks" class="task_list">
+				<div id="today_tasks" class="task_list">
 					<%= render :partial => "task", :collection => @today_tasks %>
-				</table>
-			<% end %>
+				</div>
+			</div>
 			
-			<% unless @tomorrow_tasks.blank? %>
+			<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @tomorrow_tasks.blank? %>">
 				<h3>Tomorrow</h3>
-				<table id="tomorrow_tasks" class="task_list">
+				<div id="tomorrow_tasks" class="task_list">
 					<%= render :partial => "task", :collection => @tomorrow_tasks %>
-				</table>
-			<% end %>
+				</div>
+			</div>
 			
-			<% unless @later_tasks.blank? %>
+			<div id="later_tasks_section" class="<%= "no_tasks" if @later_tasks.blank? %>">
 				<h3>Later</h3>
-				<table id="later_tasks" class="task_list">
+				<div id="later_tasks" class="task_list">
 					<%= render :partial => "task", :collection => @later_tasks %>
-				</table>
-			<% end %>
+				</div>
+			</div>
 				
 		</div>
 		
@@ -64,15 +62,25 @@
 
 <% content_for :sidebar do %>
 	<% if @task_validate %>
-	<div id="create_task" style="background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
-		<h2>Add a task</h2>
-		<div id="task_errors"></div>
-		<%= form_for (Task.new), :remote => true do |f| %>
+		<div id="create_task" style="background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
+			<h2>Add a task</h2>
+			<div id="task_errors"></div>
+			<%= form_for (Task.new), :remote => true do |f| %>
 			<%= render :partial => "form", :locals => { :f => f } %>
-		    <div class="actions">
+			<div class="actions">
 				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
 			</div>
-		<% end %>
-	</div>
+			<% end %>
+		</div>
+	<% else %>
+		<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
 	<% end %>
 <% end %>

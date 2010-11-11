@@ -1,5 +1,6 @@
 <%= javascripts "animals/animals" %>
-<%= javascripts "calendar/calendar" %>
+<%= javascripts "tasks/tasks" %>
+<%= javascripts "date" %>
 
 <% content_for :page_content do %>
 	
@@ -27,8 +28,6 @@
 	</div>
 	
 	<div class="page_content">
-		
-		<%= render :partial => "global/flash_messages" %>
 		 
 		<table class="animal_details">
 			<tr>
@@ -79,7 +78,7 @@
 		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :title => 'Add a new task', :class => "button" -%></li>
 	</ul>
 	
-	<div id="create_alert" style="display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
+	<div id="create_alert">
 		<h2>Add an alert for <%= @animal.name %></h2>
 		<div id="alert_errors"></div>
 		<%= form_for ([@animal, Alert.new]), :remote => true do |f| %>
@@ -90,8 +89,8 @@
 			</div>
 		<% end %>
 	</div>
-	<br /><br />
-	<div id="create_note" style="display: none;border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px;">
+	
+	<div id="create_note">
 		<h2>Add a note for <%= @animal.name %></h2>
 		<div id="note_errors"></div>
 		<%= form_for ([@animal, Note.new]), :remote => true do |f| %>
@@ -101,10 +100,10 @@
 				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" -%>
 			</div>
 		<% end %>
-		<div id="another_note_category" style="display:none;"></div>
+		<div id="another_note_category"></div>
 	</div>
-	<br /><br />
-	<div id="create_task" style="display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
+	
+	<div id="create_task">
 		<h2>Add a task for <%= @animal.name %></h2>
 		<div id="task_errors"></div>
 		<%= form_for ([@animal, Task.new]), :remote => true do |f| %>
@@ -115,7 +114,10 @@
 			</div>
 		<% end %>
 	</div>
+	
 	<br />
+	
+	
 	<h2 style="border-bottom: 1px #bbb solid; font-weight: bold;">Alerts</h2>
 	<table id="alerts" class="alert_list">
 		<%= render :partial => 'alerts/animal_alert', :as => :alert, :collection => @animal.alerts %>

@@ -1,2 +1,10 @@
 $('#alert_<%= @alert.id %>').fadeOut(1000);
+
+<% if @count == 0 %>
+	<% if @alert.alertable_type.blank? %>	
+		$('#global_alerts_section').fadeOut(1000);
+	<% elsif @alert.alertable_type = "Animal" %> 
+		$('#animal_alerts_section').fadeOut(1000);
+	<% end %>
+<% end %>
 <% flash.discard %>

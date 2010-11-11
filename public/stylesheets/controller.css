@@ -3,6 +3,7 @@
 /******************************************************************/
 .active_link {color:#888; text-decoration:none; cursor:default; }
 .actions{padding-top: 20px;}
+.no_tasks, .no_alerts {display:none;}
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
@@ -62,9 +63,6 @@
 .show_animals table.task_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
 .show_animals table.task_list td.description{padding-left: 10px;}
 .show_animals table.task_list td.links{width:150px; text-align:right;}
-.show_animals table.task_list td.high{background-color:red;color:#fff;}
-.show_animals table.task_list td.medium{background-color:orange;color:#fff;}
-.show_animals table.task_list td.low{background-color:gray;color:#fff;}
 
 /* NOTES ON SHOW ANIMAL PAGE */
 .show_animals .note_filters{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
@@ -72,7 +70,29 @@
 .show_animals .note_filters .links{float:right; text-align: right;padding-top:5px;}
 .show_animals .note_filters:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-.show_animals .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
+
+/* SIDEBAR FUNCTIONS SHOW ANIMAL PAGE */
+.show_animals #create_alert {display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
+/*h2, alert_errors, form, .actions, .button, #cancel_alert*/
+.show_animals #create_note {display: none;border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;}
+.show_animals #another_note_category{ display:none; }
+.show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
+/*h2, note_errors, form, .actions, .button, #cancel_note*/
+.show_animals #create_task {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+/*h2, note_errors, form, .actions, .button, #cancel_task */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /******************************************************************/
 /* -------------------------- ALERTS  -------------------------- */
@@ -103,6 +123,20 @@
 .index_alerts table.alert_list td.low{background-color:gray;color:#fff;}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /******************************************************************/
 /* -------------------------- SHELTERS -------------------------- */
 /******************************************************************/
@@ -110,13 +144,38 @@
 
 .show_shelters .page_heading{border-bottom:1px solid #ddd; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /******************************************************************/
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
 .tasks ul {list-style:none;}
 .index_tasks .page_content h3{border-bottom:1px #999 solid;}
 .index_tasks .page_heading{/*border-bottom:1px solid #ddd; */}
-.index_tasks table.task_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
+.index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
+.index_tasks #overdue_tasks{padding-bottom: 15px;}
+.index_tasks #today_tasks{padding-bottom: 15px;}
+.index_tasks #tomorrow_tasks{padding-bottom: 15px;}
+.index_tasks #later_tasks"{padding-bottom: 0px;}
+.index_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
+
+/*.index_tasks table.task_list{width:100%;margin-bottom:10px; }
 .index_tasks table.task_list tr{padding: 10px 0 10px 0;}
 .index_tasks table.task_list td{vertical-align:top;padding: 6px 0;}
 .index_tasks table.task_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
@@ -124,8 +183,14 @@
 .index_tasks table.task_list td.details h3 {padding:0; margin:0; border:0;}
 .index_tasks table.task_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
 .index_tasks table.task_list td.description{padding-left: 10px;}
-.index_tasks table.task_list td.links{width:150px; text-align:right;}
+.index_tasks table.task_list td.links{width:150px; text-align:right;}*/
 
-.index_tasks table.task_list td.high{background-color:red;color:#fff;}
-.index_tasks table.task_list td.medium{background-color:orange;color:#fff;}
-.index_tasks table.task_list td.low{background-color:gray;color:#fff;}
+/* STARTING OF DIV FORMAT */
+
+.index_tasks .task_list{width:100%;margin-bottom:10px; }
+.index_tasks .task_list .task{vertical-align:middle;padding: 1px 0 1px 0; margin: 2px 0 2px 0; }
+.index_tasks .task_list .type{float:left;width:100px;padding: 9px 0;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.index_tasks .task_list .details{float:left; padding: 6px 0;}
+.index_tasks .task_list .details h3 {padding:0 0 0 10px; margin:0; border:0;}
+.index_tasks .task_list .details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
+.index_tasks .task_list .links{float:right;width:150px; text-align:right;padding: 6px 0;}

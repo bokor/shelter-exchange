@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   
   def index
     # @tasks = Task.for_global.all
-    @overdue_tasks = Task.overdue.all
+    @overdue_tasks =  Task.overdue.all
     @today_tasks = Task.today.all
     @tomorrow_tasks = Task.tomorrow.all
     @later_tasks = Task.later.all
@@ -16,9 +16,9 @@ class TasksController < ApplicationController
     end  
   end
   
-  def show
-    redirect_to tasks_path and return
-  end
+  # def show
+  #   redirect_to tasks_path and return
+  # end
   
   def edit
     begin
@@ -31,10 +31,11 @@ class TasksController < ApplicationController
     end
   end
   
-  def new
-    @task = Task.new
-    respond_with(@task)
-  end
+  
+  # def new
+  #   @task = Task.new
+  #   respond_with(@task)
+  # end
   
   def create
     @taskable = find_polymorphic_class
@@ -52,22 +53,42 @@ class TasksController < ApplicationController
   
   def update
     @task = Task.find(params[:id])   
-    respond_with(@task) do |format|
-      if @task.update_attributes(params[:task])  
-        flash[:notice] = "Task has been updated."
-        format.html { redirect_to tasks_path }
-      else
-        format.html { render :action => :edit }
-      end
-    end
+    @task.attributes = params[:task]
+    @changed = @task.due_category_changed?
+    flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])  
+    respond_with(@task)
+    # respond_with(@task) do |format|
+    #   
+    #     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])  
+    #     format.html { redirect_to tasks_path }
+    #   else
+    #     format.html { render :action => :edit }
+    #   end
+    # end
   end
   
   def destroy
-     @task = Task.find(params[:id])
-     @task.destroy
-     flash[:error] = "Task has been deleted."
-     respond_with(@task)
+    @task = Task.find(params[:id])
+    @task.destroy
+    task_count_by_scope
+    flash[:error] = "Task has been deleted."
+    respond_with(@task)
+  end
+  
+  def task_count_by_scope
+    if @task.due_date.blank? or @task.due_date > Date.today + 1.day or @task.due_category == 'later'
+      @count = Task.later.all.count
+    elsif @task.due_date < Date.today
+      @count = Task.overdue.all.count
+    elsif @task.due_date == Date.today
+      @count = Task.today.all.count
+    elsif @task.due_date == Date.today + 1.day
+      @count = Task.tomorrow.all.count
+    end
   end
 
-
 end
+
+# TEMPLATE CODE FOR THIS_WEEK if needed
+#<b><%= task.due_date.strftime('%W') if task.due_date%></b>
+
