@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem 'paperclip'
 
 # Date Validation
-gem 'date_validator'
+# gem 'date_validator'
 
 # Query Searching
 

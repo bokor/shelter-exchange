@@ -1,5 +1,3 @@
-//FIX the Moving or hiding of records when the due_category is changed and we need to move it to another section.
-
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
