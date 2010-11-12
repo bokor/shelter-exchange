@@ -2,7 +2,7 @@
 	$('#alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
 <% else %>
 	<% if @alert.alertable_type == "Animal" %>
-		$('#alerts').prepend("<%= escape_javascript(render 'animal_alert', :alert => @alert) %>"); 
+		$('#alerts').prepend("<%= escape_javascript(render 'alert', :alert => @alert) %>"); 
 		$(".alert").first().effect("highlight", {}, 1000);
 	<% else %>
 		$('#global_alerts_section').removeClass("no_alert");

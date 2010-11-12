@@ -1,5 +1,0 @@
-<tr id="<%= "task_#{task.id}" %>" class="task">
-	<td class="type"<%= 'style=color:#fff;background-color:'+ task.task_category.color if task.task_category %>><%= task.task_category.name if task.task_category %></td>
-	<td class="details"><h3>ANIMAL - <%= task.info %> <span><%= format_date(:short, task.due_date) if task.due_date%></span></h3></td>
-	<td class="links"><%= link_to "Edit", edit_task_path(task) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", task, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-</tr>

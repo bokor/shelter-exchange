@@ -1,10 +1,14 @@
-$('#alert_<%= @alert.id %>').fadeOut(1000);
+$('#alert_<%= @alert.id %>').fadeOut(1000, function() { 
+	$(this).remove(); 
+	removeAlertSection();
+});
 
-<% if @count == 0 %>
-	<% if @alert.alertable_type.blank? %>	
-		$('#global_alerts_section').fadeOut(1000);
-	<% elsif @alert.alertable_type = "Animal" %> 
-		$('#animal_alerts_section').fadeOut(1000);
-	<% end %>
-<% end %>
+function removeAlertSection(){
+	if ($("#global_alerts > div").size() == 0 && $('#global_alerts_section').is(":visible")) {  
+		$('#global_alerts_section').slideToggle();
+	} 
+	if ($("#animal_alerts > div").size() == 0 && $('#animal_alerts_section').is(":visible")) { 
+		$('#animal_alerts_section').slideToggle();
+	}
+}
 <% flash.discard %>

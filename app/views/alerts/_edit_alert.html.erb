@@ -1,0 +1,11 @@
+<div class="edit_alert" id="edit_alert_<%=@alert.id %>">
+	<h2>Update alert</h2>
+	<%= form_for (@alert), :remote => true, :html => { :id => "edit_alert_form", :class => "edit_alert_form"} do |f| %>
+		<%= render :partial => "form", :locals => { :f => f } %>
+	    <div class="actions">
+			<%= f.submit "Update Alert", :disable_with => "Submitting...", :class => "button" %>
+			&nbsp;&nbsp;or&nbsp;&nbsp;
+			<%= link_to 'Cancel', '#', :onclick => "$('#edit_alert_#{@alert.id}').toggle();$('#alert_#{@alert.id}').show();"  %>
+		</div>
+	<% end %>
+</div>

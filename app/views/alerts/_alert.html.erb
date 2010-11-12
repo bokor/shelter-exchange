@@ -1,8 +1,16 @@
-<tr id="<%= "alert_#{alert.id}" %>" class="alert">
-	<td class="type <%= alert.alert_type.name.downcase %>"><%= alert.alert_type.name %></td>
-	<td class="details">
-		<h3><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
-		<% if alert.alertable  %>(<%= link_to alert.alertable.name, animal_path(alert.alertable)%>) <% end %></h3></td>
-	<td class="links"><%= link_to "Edit", edit_alert_path(alert) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %></td>
-</tr>
+<div id="<%= "alert_#{alert.id}" %>" class="alert">
+	<span class="type <%= alert.alert_type.name.downcase %>">
+		<%= alert.alert_type.name %>
+	</span>
+	<span class="details">
+		<p><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
+		<% if alert.alertable  %>(<%= link_to alert.alertable.name, animal_path(alert.alertable)%>) <% end %></p>
+	</span>
+	<span class="links">
+		<%= link_to "Edit", edit_alert_path(alert), :remote => true  %>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>
+	</span>
+	<div class="clear"></div>
+</div>
+
 

@@ -1,0 +1,3 @@
+$('#alert_<%=@alert.id%>').hide();
+$('#alert_<%=@alert.id%>').after( "<%= escape_javascript(render 'edit_alert', :collection => @alert) %>" );
+$('#edit_alert_<%=@alert.id%>').show();

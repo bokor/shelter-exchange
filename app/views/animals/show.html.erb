@@ -115,18 +115,43 @@
 		<% end %>
 	</div>
 	
-	<br />
+	<div id="animal_alerts">
+		<h2>Alerts</h2>
+		<div id="alerts" class="alert_list">
+			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @animal.alerts %>
+		</div>
+	</div>
 	
-	
-	<h2 style="border-bottom: 1px #bbb solid; font-weight: bold;">Alerts</h2>
-	<table id="alerts" class="alert_list">
-		<%= render :partial => 'alerts/animal_alert', :as => :alert, :collection => @animal.alerts %>
-	</table>
-	<br />
-	<h2 style="border-bottom: 1px #bbb solid; font-weight: bold;">Tasks</h2>
-	<table id="tasks" class="task_list">
-		<%= render :partial => 'tasks/animal_task', :as => :task, :collection => @animal.tasks %>
-	</table>
+	<div id="animal_tasks">
+		<h2>Tasks</h2>
+		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.blank? %>">
+			<h3>Overdue</h3>
+			<div id="overdue_tasks" class="task_list">
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.overdue %>
+			</div>
+		</div>
+
+		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.blank? %>">
+			<h3>Today</h3>
+			<div id="today_tasks" class="task_list">
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.today %>
+			</div>
+		</div>
+
+		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.blank? %>">
+			<h3>Tomorrow</h3>
+			<div id="tomorrow_tasks" class="task_list">
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.tomorrow %>
+			</div>
+		</div>
+
+		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.blank? %>">
+			<h3>Later</h3>
+			<div id="later_tasks" class="task_list">
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.later %>
+			</div>
+		</div>
+	</div>
 
 <% end %>
 	

@@ -4,8 +4,8 @@ class RemoteLinkRenderer < WillPaginate::LinkRenderer
     super
   end
 
-protected
-  def page_link(page, text, attributes = {})
-    @template.link_to(text, url_for(page), {:method => :get, :remote => true }.merge(@remote), attributes)
-  end
+  protected
+    def page_link(page, text, attributes = {})
+      @template.link_to(text, url_for(page), {:method => :get, :remote => true }.merge(@remote), attributes)
+    end
 end

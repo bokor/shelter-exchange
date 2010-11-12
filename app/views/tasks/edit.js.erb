@@ -1,6 +1,6 @@
 $('#task_<%=@task.id%>').hide();
+$('#task_<%=@task.id%>').after( "<%= escape_javascript(render 'edit_task', :collection => @task) %>" );
 $('#edit_task_<%=@task.id%>').show();
-$('#edit_task_<%=@task.id%>').html( "<%= escape_javascript(render 'edit_task', :collection => @task) %>" );
 
 $("#edit_task_<%=@task.id%> .date_picker").datepicker({
 	numberOfMonths: 1,

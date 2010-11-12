@@ -4,6 +4,7 @@
 .active_link {color:#888; text-decoration:none; cursor:default; }
 .actions{padding-top: 20px;}
 .no_tasks, .no_alerts {display:none;}
+
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
@@ -53,33 +54,29 @@
 .show_animals table.alert_list td.medium{background-color:orange;color:#fff;}
 .show_animals table.alert_list td.low{background-color:gray;color:#fff;}
 
-/* TASKS ON SHOW ANIMAL PAGE */
-.show_animals table.task_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
-.show_animals table.task_list tr{padding: 10px 0 10px 0;}
-.show_animals table.task_list td{vertical-align:top;padding: 6px 0;}
-.show_animals table.task_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.show_animals table.task_list td.details{padding-left: 10px;}
-.show_animals table.task_list td.details h3 {padding:0; margin:0; border:0;}
-.show_animals table.task_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
-.show_animals table.task_list td.description{padding-left: 10px;}
-.show_animals table.task_list td.links{width:150px; text-align:right;}
+.show_animals #animal_tasks {padding: 15px 0 0 0;}
+.show_animals #animal_alerts {padding: 15px 0 0 0;}
+.show_animals #animal_tasks h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_animals #animal_alerts h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 
-/* NOTES ON SHOW ANIMAL PAGE */
+/* NOTES - SHOW ANIMAL */
 .show_animals .note_filters{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_animals .note_filters h2{float:left;}
 .show_animals .note_filters .links{float:right; text-align: right;padding-top:5px;}
 .show_animals .note_filters:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
-/* SIDEBAR FUNCTIONS SHOW ANIMAL PAGE */
+/* SIDEBAR - SHOW ANIMAL */
 .show_animals #create_alert {display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
-/*h2, alert_errors, form, .actions, .button, #cancel_alert*/
-.show_animals #create_note {display: none;border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;}
+.show_animals #create_task {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.show_animals #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_animals #another_note_category{ display:none; }
 .show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
-/*h2, note_errors, form, .actions, .button, #cancel_note*/
-.show_animals #create_task {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-/*h2, note_errors, form, .actions, .button, #cancel_task */
+
+.show_animals #animal_tasks .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.show_animals #animal_tasks .edit_task h2 {border: 0;}
+.show_animals #animal_alerts .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.show_animals #animal_alerts .edit_alert h2 {border: 0;}
 
 
 
@@ -97,30 +94,36 @@
 /******************************************************************/
 /* -------------------------- ALERTS  -------------------------- */
 /******************************************************************/
+/* -- Global Alert --*/
 .alerts {}/* body class that is specific for an alerts page - Add action as well */
 .index_alerts {}
 
-.alerts ul { list-style:none;}
+.alerts ul { list-style:none ;}
 
-.index_alerts .alert_list li{float: left;}
-.index_alerts .alert_list:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-/* -------------------------- INDEX - ALERTS -------------------------- */
+/* -- Index Alert --*/
 .index_alerts .page_content h3{border-bottom:1px #999 solid;}
-.index_alerts table.alert_list{width:100%;margin-bottom:10px; /*border-top:1px #ccc dotted;*/}
-.index_alerts table.alert_list tr{padding: 10px 0 10px 0;}
-.index_alerts table.alert_list td{vertical-align:top;padding: 6px 0;}
-/*.index_alerts table.alert_list td.border{border-bottom:1px #ccc dotted;}*/
-.index_alerts table.alert_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.index_alerts table.alert_list td.details{padding-left: 10px;}
-.index_alerts table.alert_list td.details h3 {padding:0; margin:0; border:0;}
-.index_alerts table.alert_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px;}
-.index_alerts table.alert_list td.description{padding-left: 10px;}
-.index_alerts table.alert_list td.links{width:150px; text-align:right;}
+.index_alerts #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
+/* -- Alert List :: Form --*/
+.alert_list .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.alert_list .edit_alert h2 {border: 0;}
 
-.index_alerts table.alert_list td.high{background-color:red;color:#fff;}
-.index_alerts table.alert_list td.medium{background-color:orange;color:#fff;}
-.index_alerts table.alert_list td.low{background-color:gray;color:#fff;}
+/* -- Alert List  --*/
+.alert_list h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.alert_list {margin-bottom:10px;}
+.alert_list .alert{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
+.alert_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.alert_list .details{float: left;width: 62%; margin-left: 10px;  }
+.alert_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
+.alert_list .details p span{font-weight: bold; font-size: 13px; letter-spacing: -1px; }
+.alert_list .links{float: right; text-align:right;margin-top:5px;}
+.alert_list .high{background-color:red;color:#fff;}
+.alert_list .medium{background-color:orange;color:#fff;}
+.alert_list .low{background-color:gray;color:#fff;}
+
+/* -- Show Animals :: Alert List --*/
+.show_animals .alert_list .type{min-width: 80px;padding:2px 5px 2px 5px;}
+.show_animals .alert_list .details p {margin-top:3px;}
+.show_animals .alert_list .links{margin-top:3px;}
 
 
 
@@ -164,6 +167,7 @@
 /******************************************************************/
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
+/* -- Global Task --*/
 .tasks ul {list-style:none;}
 .index_tasks .page_content h3{border-bottom:1px #999 solid;}
 .index_tasks .page_heading{/*border-bottom:1px solid #ddd; */}
@@ -174,23 +178,20 @@
 .index_tasks #later_tasks"{padding-bottom: 0px;}
 .index_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 
+/* -- Task List :: Form --*/
+.task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.task_list .edit_task h2 {border: 0;}
 
-/*.index_tasks table.task_list{width:100%;margin-bottom:10px; }
-.index_tasks table.task_list tr{padding: 10px 0 10px 0;}
-.index_tasks table.task_list td{vertical-align:top;padding: 6px 0;}
-.index_tasks table.task_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.index_tasks table.task_list td.details{padding-left: 10px;}
-.index_tasks table.task_list td.details h3 {padding:0; margin:0; border:0;}
-.index_tasks table.task_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
-.index_tasks table.task_list td.description{padding-left: 10px;}
-.index_tasks table.task_list td.links{width:150px; text-align:right;}*/
+/* -- Task List --*/
+.task_list{margin-bottom:10px;}
+.task_list .task{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
+.task_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.task_list .details{float: left;width: 62%; margin-left: 10px;  }
+.task_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
+.task_list .details p span{font-weight: bold; font-size: 13px; letter-spacing: -1px; }
+.task_list .links{float: right; text-align:right;margin-top:5px;}
 
-/* STARTING OF DIV FORMAT */
-
-.index_tasks .task_list{width:100%;margin-bottom:10px;}
-.index_tasks .task_list .task{vertical-align:middle;padding: 1px 0 1px 0; margin: 2px 0 2px 0; }
-.index_tasks .task_list .type{float:left;width:100px;padding: 9px 0;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.index_tasks .task_list .details{float:left; padding: 6px 0;}
-.index_tasks .task_list .details h3 {padding:0 0 0 10px; margin:0; border:0;}
-.index_tasks .task_list .details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px; padding-right: 10px;}
-.index_tasks .task_list .links{float:right;width:150px; text-align:right;padding: 6px 0;}
+/* -- Show Animals :: Task List --*/
+.show_animals .task_list .type{min-width: 80px;padding:2px 5px 2px 5px;}
+.show_animals .task_list .details p {margin-top:3px;}
+.show_animals .task_list .links{margin-top:3px;}

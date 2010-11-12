@@ -3,10 +3,10 @@ class TasksController < ApplicationController
   
   def index
     # @tasks = Task.for_global.all
-    @overdue_tasks =  Task.overdue.all
-    @today_tasks = Task.today.all
-    @tomorrow_tasks = Task.tomorrow.all
-    @later_tasks = Task.later.all
+    @overdue_tasks =  Task.global_includes.overdue.all
+    @today_tasks = Task.global_includes.today.all
+    @tomorrow_tasks = Task.global_includes.tomorrow.all
+    @later_tasks = Task.global_includes.later.all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       @task = Task.new
@@ -57,35 +57,26 @@ class TasksController < ApplicationController
     @changed = @task.due_category_changed?
     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])  
     respond_with(@task)
-    # respond_with(@task) do |format|
-    #   
-    #     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])  
-    #     format.html { redirect_to tasks_path }
-    #   else
-    #     format.html { render :action => :edit }
-    #   end
-    # end
   end
   
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    task_count_by_scope
     flash[:error] = "Task has been deleted."
     respond_with(@task)
   end
   
-  def task_count_by_scope
-    if @task.due_date.blank? or @task.due_date > Date.today + 1.day or @task.due_category == 'later'
-      @count = Task.later.all.count
-    elsif @task.due_date < Date.today
-      @count = Task.overdue.all.count
-    elsif @task.due_date == Date.today
-      @count = Task.today.all.count
-    elsif @task.due_date == Date.today + 1.day
-      @count = Task.tomorrow.all.count
-    end
-  end
+  # def task_count_by_scope
+  #   if @task.due_date.blank? or @task.due_date > Date.today + 1.day or @task.due_category == 'later'
+  #     @count = Task.later.all.count
+  #   elsif @task.due_date < Date.today
+  #     @count = Task.overdue.all.count
+  #   elsif @task.due_date == Date.today
+  #     @count = Task.today.all.count
+  #   elsif @task.due_date == Date.today + 1.day
+  #     @count = Task.tomorrow.all.count
+  #   end
+  # end
 
 end
 

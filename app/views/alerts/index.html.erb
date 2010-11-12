@@ -11,16 +11,16 @@
 			
 			<div id="global_alerts_section" class="<%= "no_alerts" if @global_alerts.blank? %>">
 				<h3>Global</h3>
-				<table id="global_alerts" class="alert_list">
+				<div id="global_alerts" class="alert_list">
 					<%= render :partial => "alert", :collection => @global_alerts %>
-				</table>
+				</div>
 			</div>
 			
 			<div id="animal_alerts_section" class="<%= "no_alerts" if @animal_alerts.blank? %>">
 				<h3>Animal</h3>
-				<table id="animal_alerts" class="alert_list">
+				<div id="animal_alerts" class="alert_list">
 					<%= render :partial => "alert", :collection => @animal_alerts %>
-				</table>
+				</div>
 			</div>
 				
 		</div>
@@ -48,15 +48,15 @@
 
 <% content_for :sidebar do %>
 	<% if @alert_validate %>
-	<div id="create_alert" style="background-color: #fce2ec; border:1px solid #f286b1;padding: 15px;">
-		<h2>Add an alert</h2>
-		<div id="alert_errors"></div>
-		<%= form_for (Alert.new), :remote => true do |f| %>
-			<%= render :partial => "form", :locals => { :f => f } %>
-		    <div class="actions">
-				<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
-			</div>
-		<% end %>
-	</div>
+		<div id="create_alert">
+			<h2>Add an alert</h2>
+			<div id="alert_errors"></div>
+			<%= form_for (Alert.new), :remote => true do |f| %>
+				<%= render :partial => "form", :locals => { :f => f } %>
+			    <div class="actions">
+					<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
+				</div>
+			<% end %>
+		</div>
 	<% end %>
 <% end %>

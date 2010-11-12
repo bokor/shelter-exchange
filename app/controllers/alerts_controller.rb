@@ -62,17 +62,16 @@ class AlertsController < ApplicationController
   def destroy
      @alert = Alert.find(params[:id])
      @alert.destroy
-     alert_count_by_scope
      flash[:error] = "#{@alert.title} has been deleted."
      respond_with(@alert)
   end
   
-  def alert_count_by_scope
-    if @alert.alertable_type == "Animal"
-      @count = Alert.for_animals.all.count
-    else
-      @count = Alert.for_global.all.count
-    end
-  end
+  # def alert_count_by_scope
+  #   if @alert.alertable_type == "Animal"
+  #     @count = Alert.for_animals.all.count
+  #   else
+  #     @count = Alert.for_global.all.count
+  #   end
+  # end
 
 end

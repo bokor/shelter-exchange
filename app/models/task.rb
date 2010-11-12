@@ -20,14 +20,12 @@ class Task < ActiveRecord::Base
   
   # Scopes
   # scope :for_global, :include => [:task_category], :conditions => { :taskable_type => nil }
-  # scope :for_animals, :include => [:task_category, :taskable], :conditions => { :taskable_type => "Animal" }
+  scope :global_includes, :include => [:task_category, :taskable]
 
-  scope :overdue, lambda { { :include => [:task_category, :taskable], :conditions => ["due_date < ?", Date.today] } }
-  scope :today, lambda { { :include => [:task_category, :taskable], :conditions => ["due_date = ?", Date.today] } }
-  scope :tomorrow, lambda { { :include => [:task_category, :taskable], :conditions => ["due_date = ?", Date.today + 1.day] } }
-  # scope :this_week, lambda { { :include => [:task_category, :taskable], :conditions => ["strftime('%W',due_date) = ? AND NOT due_date <= ?", (Date.today + 1.day).strftime('%W'), Date.today] } }
-  # scope :next_week, lambda { { :include => [:task_category, :taskable], :conditions => ["strftime('%W',due_date + '1 week') = ?", (Date.today + 1.day + 1.week).strftime('%W')] } }
-  scope :later, lambda { { :include => [:task_category, :taskable], :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC" } }
+  scope :overdue, lambda { { :conditions => ["due_date < ?", Date.today] } }
+  scope :today, lambda { { :conditions => ["due_date = ?", Date.today] } }
+  scope :tomorrow, lambda { { :conditions => ["due_date = ?", Date.today + 1.day] } }
+  scope :later, lambda { { :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC" } }  
   
   
 end
