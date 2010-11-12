@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101112200331) do
+ActiveRecord::Schema.define(:version => 20101112213138) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "name"
+    t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20101112200331) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.integer  "account_id"
   end
 
 end
