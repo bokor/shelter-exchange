@@ -3,10 +3,10 @@ class TasksController < ApplicationController
   
   def index
     # @tasks = Task.for_global.all
-    @overdue_tasks =  Task.global.overdue.not_completed.all
-    @today_tasks = Task.global.today.not_completed.all
-    @tomorrow_tasks = Task.global.tomorrow.not_completed.all
-    @later_tasks = Task.global.later.not_completed.all
+    @overdue_tasks =  Task.for_all.overdue.not_completed.all
+    @today_tasks = Task.for_all.today.not_completed.all
+    @tomorrow_tasks = Task.for_all.tomorrow.not_completed.all
+    @later_tasks = Task.for_all.later.not_completed.all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       @task = Task.new
@@ -68,23 +68,10 @@ class TasksController < ApplicationController
   
   def completed
     @task = Task.find(params[:id])   
-    @task.attributes = params[:task]
-    @task.is_completed = true
-    flash[:notice] = "Task has been completed." if @task.update_attributes(@task.attributes)  
+    params[:task] = { :is_completed => true }
+    flash[:notice] = "Task has been completed." if @task.update_attributes(params[:task])  
     respond_with(@task)
   end
-  
-  # def task_count_by_scope
-  #   if @task.due_date.blank? or @task.due_date > Date.today + 1.day or @task.due_category == 'later'
-  #     @count = Task.later.all.count
-  #   elsif @task.due_date < Date.today
-  #     @count = Task.overdue.all.count
-  #   elsif @task.due_date == Date.today
-  #     @count = Task.today.all.count
-  #   elsif @task.due_date == Date.today + 1.day
-  #     @count = Task.tomorrow.all.count
-  #   end
-  # end
 
 end
 

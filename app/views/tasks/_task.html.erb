@@ -6,7 +6,7 @@
 		<p><%= display_due_date(task) %><%= task.info %> <%= show_taskable_link(task)%></p>
 	</span>
 	<span class="links">
-		<%= link_to "Complete", "/tasks/#{task.id}/completed", :confirm => "Are you sure?", :remote => true %>&nbsp;|&nbsp;
+		<%= link_to "Complete", completed_task_path(task), :confirm => "Are you sure?", :remote => true %>&nbsp;|&nbsp;
 		<%= link_to "Edit", edit_task_path(task), :remote => true %>&nbsp;|&nbsp;
 		<%= link_to "Delete", task, :confirm => "Are you sure?", :method => :delete, :remote => true %>
 	</span>

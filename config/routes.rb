@@ -2,21 +2,16 @@ Shelterexchange::Application.routes.draw do
   
   resources :notes
   resources :tasks do
-    member do
-      get :completed
-    end
+    get :completed, :on => :member
   end
   resources :alerts
   resources :shelters
+  resources :reports
   
   resources :animals do
     resources :notes
     resources :alerts 
-    resources :tasks do
-      member do
-        get :completed
-      end
-    end
+    resources :tasks 
     collection do
       get :find_by
       get :live_search
@@ -24,11 +19,19 @@ Shelterexchange::Application.routes.draw do
   end
   
   resources :breeds do
-    collection do
-      get :auto_complete
-      # get :auto_suggest
-    end
+    get :auto_complete,  :on => :collection
   end
+  
+  # # map.resource :account, :controller => "users"
+  # resources :users
+  # resource :user_session
+  # 
+  # get    'login(.:format)'  => 'user_session#new',     :as => :login
+  # post   'login(.:format)'  => 'user_session#create',  :as => :login
+  # delete 'logout(.:format)' => 'user_session#destroy', :as => :logout
+  # 
+  # root :to => 'user_session#new' # login page
+  
 
   
   # resources :apis do

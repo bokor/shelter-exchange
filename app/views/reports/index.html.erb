@@ -1,0 +1,44 @@
+<%= javascripts "highcharts" %>
+<%= javascripts "reports/reports" %>
+
+<% content_for :page_content do %>
+	
+	<div class="page_heading">
+		<h1>Reports</h1>
+		<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
+	</div>
+		
+	<div class="page_content">
+		<div id="report_test" style="width: 98%; height: 400px; margin: 0 auto"></div>
+		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+		<div id="report_test_2" style="width: 98%; height: 400px; margin: 0 auto"></div>
+	</div>
+
+<% end %>
+
+<% content_for :sidebar do %>
+	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+		<h2>Animal Reports</h2>
+		<ul style="list-style:none; padding-left: 15px;">
+			<li>Report 1</li>
+			<li>Report 2</li>
+			<li>Report 3</li>
+		</ul>
+	</div>
+	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+		<h2>Shelter Reports</h2>
+		<ul style="list-style:none; padding-left: 15px;">
+			<li>Report 1</li>
+			<li>Report 2</li>
+			<li>Report 3</li>
+		</ul>
+	</div>
+	<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+		<h2>General Reports</h2>
+		<ul style="list-style:none; padding-left: 15px;">
+			<li>Report 1</li>
+			<li>Report 2</li>
+			<li>Report 3</li>
+		</ul>
+	</div>
+<% end %>

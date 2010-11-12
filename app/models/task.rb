@@ -20,7 +20,7 @@ class Task < ActiveRecord::Base
   
   # Scopes
   # scope :for_global, :include => [:task_category], :conditions => { :taskable_type => nil }
-  scope :global, :include => [:task_category, :taskable]
+  scope :for_all, :include => [:task_category, :taskable]
   
   scope :completed, :conditions => {"is_completed" => true }
   scope :not_completed, :conditions => {"is_completed" => false }
