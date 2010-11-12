@@ -2,12 +2,16 @@
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
 	<% if @changed %>
-		$('#edit_task_<%=@task.id%>').slideToggle(3000);
-		$('#task_<%=@task.id%>').fadeOut(1500);
-		$('#edit_task_<%=@task.id%>').delay(500).remove();
-		$('#task_<%=@task.id%>').delay(500).remove();
+		$('#edit_task_<%=@task.id%>').slideToggle(1500, function() { 
+			$(this).remove(); 
+			removeTaskSection();
+		});
+		$('#task_<%= @task.id %>').fadeOut(1000, function() { 
+			$(this).remove(); 
+			removeTaskSection();
+		});
 		// Manipulate Specific Section's Content
-		<% due_section = find_due_section %>
+		<% due_section = find_due_section(@task) %>
 		$('#<%=due_section %>_tasks_section').removeClass("no_task");
 		$('#<%=due_section %>_tasks_section').fadeIn(1500);
 		$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
@@ -21,21 +25,3 @@
 	$('#task_errors').html("");
 <% end %>
 <% flash.discard %>
-
-// Remove any sections where their are no more items in that section
-if ($("#overdue_tasks > div").size() == 0) {  
-	$('#overdue_tasks_section').addClass("no_tasks");
-	$('#overdue_tasks_section').fadeOut(1500);
-} 
-if ($("#today_tasks > div").size() == 0) {  
-	$('#today_tasks_section').addClass("no_tasks");
-	$('#today_tasks_section').fadeOut(1500);
-}
-if ($("#tomorrow_tasks > div").size() == 0) {  
-	$('#tomorrow_tasks_section').addClass("no_tasks");
-	$('#tomorrow_tasks_section').fadeOut(1500);
-}
-if ($("#later_tasks > div").size() == 0) {  
-	$('#later_tasks_section').addClass("no_tasks");
-	$('#later_tasks_section').fadeOut(1500);
-}

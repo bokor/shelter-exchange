@@ -49,4 +49,20 @@ function dueDate(task_div) {
 	$(task_div + ' .hidden_due_date').val(setDate);
 }
 
+function removeTaskSection(){
+
+	if ($("#overdue_tasks > div").size() == 0 && $('#overdue_tasks_section').is(":visible")) {  
+		$('#overdue_tasks_section').slideToggle();
+	} 
+	if ($("#today_tasks > div").size() == 0 && $('#today_tasks_section').is(":visible")) {  
+		$('#today_tasks_section').slideToggle();
+	}
+	if ($("#tomorrow_tasks > div").size() == 0&& $('#tomorrow_tasks_section').is(":visible")) {  
+		$('#tomorrow_tasks_section').slideToggle();
+	}
+	if ($("#later_tasks > div").size() == 0 && $('#later_tasks_section').is(":visible")) {  
+		$('#later_tasks_section').slideToggle();
+	}
+}
+
 

@@ -1,43 +1,13 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
 	<ul class="form">
-		<li>
+		<li style="float:right; width:40%">
 			<%= image_tag @animal.photo.url(:small) %><br />
 			<%= f.label :photo, "Image" %><br />
 			<%= f.file_field :photo  %>
 		</li>
 		<li>
-			<%= f.label :chip_id , "Chip ID" %><br />
-			<%= f.text_field :chip_id %>
-		</li>
-		<li>
 			<%= f.label :name, "Name" %><br />
 			<%= f.text_field :name %>
-		</li>
-		<li>
-			<%= f.label :description, "Description" %><br />
-			<%= f.text_area :description %>
-		</li>
-		<li>
-			<%= f.label :sex, "Sex" %><br />
-			<% Animal::SEX.each do |value| %>
-				<%= f.radio_button "sex", value %>
-				<%= f.label "sex_#{value.downcase}", "#{value}" %>
-			<% end %>
-		</li>
-		<li>
-			<%= f.label :weight, "Weight" %><br />
-			<%= f.text_field :weight %>
-		</li>
-		<li>
-			<%= f.label :age, "Age" %><br />
-			<%= f.text_field :age %>
-		</li>
-		<li>
-			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilization" %>
-		</li>
-		<li>
-			<%= f.label :color, "Color" %><br />
-			<%= f.text_field :color %>
 		</li>
 		<li>
 			<%= f.label :animal_type_id, "Animal Type" %><br />
@@ -59,8 +29,41 @@
 			<%= f.label :animal_status_id, "Animal Status" %><br />
 			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
 		</li>
+		<li>
+			<%= f.label :sex, "Sex" %><br />
+			<% Animal::SEX.each do |value| %>
+				<%= f.radio_button "sex", value %>
+				<%= f.label "sex_#{value.downcase}", "#{value}" %>
+			<% end %>
+		</li>
+		<li>
+			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilization" %>
+		</li>
+		<li>
+			<%= f.label :age, "Age" %><br />
+			<%= f.text_field :age %>
+		</li>
+		<li>
+			<%= f.label :weight, "Weight" %><br />
+			<%= f.text_field :weight %>
+		</li>
+		<li>
+			<%= f.label :color, "Color" %><br />
+			<%= f.text_field :color %>
+		</li>
+		<li>
+			<%= f.label :chip_id , "Chip ID" %><br />
+			<%= f.text_field :chip_id %>
+		</li>
+		<li>
+			<%= f.label :description, "Description" %><br />
+			<%= f.text_area :description %>
+		</li>
+		
 	</ul>
+	<div class="clear"></div>
 	<div class="actions">
 		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 	</div>
+	<div class="clear"></div>
 <% end %>

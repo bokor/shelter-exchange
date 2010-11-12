@@ -3,10 +3,10 @@ class TasksController < ApplicationController
   
   def index
     # @tasks = Task.for_global.all
-    @overdue_tasks =  Task.global_includes.overdue.all
-    @today_tasks = Task.global_includes.today.all
-    @tomorrow_tasks = Task.global_includes.tomorrow.all
-    @later_tasks = Task.global_includes.later.all
+    @overdue_tasks =  Task.global.overdue.not_completed.all
+    @today_tasks = Task.global.today.not_completed.all
+    @tomorrow_tasks = Task.global.tomorrow.not_completed.all
+    @later_tasks = Task.global.later.not_completed.all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       @task = Task.new
@@ -63,6 +63,14 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     flash[:error] = "Task has been deleted."
+    respond_with(@task)
+  end
+  
+  def completed
+    @task = Task.find(params[:id])   
+    @task.attributes = params[:task]
+    @task.is_completed = true
+    flash[:notice] = "Task has been completed." if @task.update_attributes(@task.attributes)  
     respond_with(@task)
   end
   

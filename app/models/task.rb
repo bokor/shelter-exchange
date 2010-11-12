@@ -20,12 +20,15 @@ class Task < ActiveRecord::Base
   
   # Scopes
   # scope :for_global, :include => [:task_category], :conditions => { :taskable_type => nil }
-  scope :global_includes, :include => [:task_category, :taskable]
-
-  scope :overdue, lambda { { :conditions => ["due_date < ?", Date.today] } }
-  scope :today, lambda { { :conditions => ["due_date = ?", Date.today] } }
-  scope :tomorrow, lambda { { :conditions => ["due_date = ?", Date.today + 1.day] } }
-  scope :later, lambda { { :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC" } }  
+  scope :global, :include => [:task_category, :taskable]
+  
+  scope :completed, :conditions => {"is_completed" => true }
+  scope :not_completed, :conditions => {"is_completed" => false }
+  
+  scope :overdue, :conditions => ["due_date < ?", Date.today]
+  scope :today, :conditions => ["due_date = ?", Date.today] 
+  scope :tomorrow, :conditions => ["due_date = ?", Date.today + 1.day] 
+  scope :later, :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC"  
   
   
 end

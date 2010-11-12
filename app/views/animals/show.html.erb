@@ -124,31 +124,31 @@
 	
 	<div id="animal_tasks">
 		<h2>Tasks</h2>
-		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.blank? %>">
+		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.not_completed.blank? %>">
 			<h3>Overdue</h3>
 			<div id="overdue_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.overdue %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.overdue.not_completed %>
 			</div>
 		</div>
 
-		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.blank? %>">
+		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.not_completed.blank? %>">
 			<h3>Today</h3>
 			<div id="today_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.today %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.today.not_completed %>
 			</div>
 		</div>
 
-		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.blank? %>">
+		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.not_completed.blank? %>">
 			<h3>Tomorrow</h3>
 			<div id="tomorrow_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.tomorrow %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.tomorrow.not_completed %>
 			</div>
 		</div>
 
-		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.blank? %>">
+		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.not_completed.blank? %>">
 			<h3>Later</h3>
 			<div id="later_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.later %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.later.not_completed %>
 			</div>
 		</div>
 	</div>

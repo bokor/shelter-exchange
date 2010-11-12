@@ -1,14 +1,22 @@
 Shelterexchange::Application.routes.draw do
   
   resources :notes
-  resources :tasks
+  resources :tasks do
+    member do
+      get :completed
+    end
+  end
   resources :alerts
   resources :shelters
   
   resources :animals do
     resources :notes
     resources :alerts 
-    resources :tasks
+    resources :tasks do
+      member do
+        get :completed
+      end
+    end
     collection do
       get :find_by
       get :live_search

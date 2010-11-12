@@ -3,8 +3,8 @@
 		<%= alert.alert_type.name %>
 	</span>
 	<span class="details">
-		<p><span><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
-		<% if alert.alertable  %>(<%= link_to alert.alertable.name, animal_path(alert.alertable)%>) <% end %></p>
+		<p><span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
+		<%= show_alertable_link(alert)%></p>
 	</span>
 	<span class="links">
 		<%= link_to "Edit", edit_alert_path(alert), :remote => true  %>&nbsp;&nbsp;|&nbsp;&nbsp;

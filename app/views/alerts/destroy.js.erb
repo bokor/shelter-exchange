@@ -3,12 +3,4 @@ $('#alert_<%= @alert.id %>').fadeOut(1000, function() {
 	removeAlertSection();
 });
 
-function removeAlertSection(){
-	if ($("#global_alerts > div").size() == 0 && $('#global_alerts_section').is(":visible")) {  
-		$('#global_alerts_section').slideToggle();
-	} 
-	if ($("#animal_alerts > div").size() == 0 && $('#animal_alerts_section').is(":visible")) { 
-		$('#animal_alerts_section').slideToggle();
-	}
-}
 <% flash.discard %>

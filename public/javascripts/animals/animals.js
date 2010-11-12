@@ -1,54 +1,3 @@
-// $(document).ready(function() {
-// 	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
-// 		minLength: 3,
-// 		// maxLength: 15,
-// 		// autoFill: true,
-// 		fullSearch: true,
-// 		selectFirst: true,
-// 		html: true,
-// 		// delay: 200,
-// 		
-// 		source: function( request, response ) {
-// 			$.ajax({
-// 				url: "/breeds/auto_complete",
-// 				dataType: "json",
-// 				data: {
-// 					q: request.term,
-// 					animal_type_id: $("#animal_animal_type_id").val()
-// 				},
-// 				success: function( data ) {
-// 					response( $.map( data, function( item ) {
-// 						return {
-// 							label: item.label.replace(new RegExp("("+request.term.split(' ').join('|')+")", "gi"),'<b>$1</b>'),
-// 							value: item.value.replace(new RegExp("("+request.term.split(' ').join('|')+")", "gi"),'<b>$1</b>')
-// 						}  
-// 					}));
-// 				}
-// 			});
-// 		}			
-// 	});			
-// });
-
-// $.post("test.php", { name: "John", time: "2pm" },
-//    function(data){
-//      alert("Data Loaded: " + data);
-//    });
-
-
-// jQuery(function( $ ){
-//  
-// // Bind click events to links. This will bind a click
-// // handler to all current links as well as all new
-// // links added to the page.
-// $( "a" ).live(
-// "click",
-// function( event ){
-// alert( "Link clicked!" );
-// }
-// );
-//  
-// });
-
 /* GLOBAL VARIABLES */
 // Note Filter is a param that is set when the filtering changes on the Animal Notes Section
 var note_filter;
@@ -73,21 +22,6 @@ var Animals = {
 	}
 	
 };
-
-// $(document).ready(function() {
-// var data = {items: [
-// {value: "21", name: "Mick Jagger"},
-// {value: "43", name: "Johnny Storm"},
-// {value: "46", name: "Richard Hatch"},
-// {value: "54", name: "Kelly Slater"},
-// {value: "55", name: "Rudy Hamilton"},
-// {value: "79", name: "Michael Jordan"}
-// ]};
-// $("#animal_primary_breed").autoSuggest(data.items, {selectedItemProp: "name", searchObjProps: "name"});
-// 
-// 
-// 	// $("#animal_primary_breed").autoSuggest("/breeds/auto_suggest", {});		
-// });
 
 $(document).ready(function() {
 	$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
