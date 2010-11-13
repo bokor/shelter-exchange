@@ -1,5 +1,7 @@
 Shelterexchange::Application.routes.draw do
   
+  get "user_sessions/new"
+
   resources :notes
   resources :tasks do
     get :completed, :on => :member
@@ -22,15 +24,7 @@ Shelterexchange::Application.routes.draw do
     get :auto_complete,  :on => :collection
   end
   
-  # # map.resource :account, :controller => "users"
-  # resources :users
-  # resource :user_session
-  # 
-  # get    'login(.:format)'  => 'user_session#new',     :as => :login
-  # post   'login(.:format)'  => 'user_session#create',  :as => :login
-  # delete 'logout(.:format)' => 'user_session#destroy', :as => :logout
-  # 
-  # root :to => 'user_session#new' # login page
+
   
 
   
