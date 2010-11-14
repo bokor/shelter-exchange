@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    flash[:error] = "Task has been deleted."
+    flash[:notice] = "Task has been deleted."
     respond_with(@task)
   end
   

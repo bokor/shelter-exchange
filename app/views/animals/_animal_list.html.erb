@@ -1,3 +1,6 @@
+<script type="text/javascript">
+$('a[tooltip=tipsy]').tipsy({gravity: 's',offset: 10, opacity: 0.8});
+</script>
 <table class="list">
 	<% @animals.each do |animal| %>
 	<tr id="<%= "animal_#{animal.id}" %>">
@@ -11,12 +14,12 @@
 		</td>
 		<td class="status">
 			<p><b><%= animal.animal_status.name %></b></p>
-			<p><%= link_to "Edit", edit_animal_path(animal)%>&nbsp;&nbsp;|&nbsp;&nbsp;
-			   <%= link_to "Delete", animal, :confirm => "Are you sure?", :method => :delete %></p>
+			<p><%= link_to image_tag("icon-edit.png"), edit_animal_path(animal), :title => "Edit animal", :tooltip => 'tipsy' %>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			   <%= link_to image_tag("icon-delete.png"), animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal", :tooltip => 'tipsy' %></p>
 		</td>
 	</tr>
 	<% end %>
 </table>
-
 
 <%= will_paginate @animals, :renderer => 'RemoteLinkRenderer' %>

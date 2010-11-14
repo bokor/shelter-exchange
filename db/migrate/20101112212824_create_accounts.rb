@@ -1,7 +1,7 @@
 class CreateAccounts < ActiveRecord::Migration
   def self.up
     create_table :accounts, :force => true do |t|
-      t.string :subdomain
+      t.string :subdomain, :unique => true
 
       t.timestamps
     end

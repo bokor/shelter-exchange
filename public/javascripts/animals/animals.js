@@ -53,6 +53,15 @@ $(document).ready(function() {
 	});			
 });
 
+//  HOVER CODE FOR THE ANIMAL INDEX PAGE TABLE - Doesnt' work with pagination
+// $("table.list tr").live('mouseover mouseout', function(event) {
+//   if (event.type == 'mouseover') {
+//     $(this).addClass("hover");
+//   } else {
+//     $(this).removeClass("hover");
+//   }
+// });
+
 /*
 	FORM
 */

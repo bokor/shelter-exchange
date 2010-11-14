@@ -15,11 +15,28 @@
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
 .index_animals .page_heading {/* COLORS PADDING FONTS */}
+
 .index_animals table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
 .index_animals table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
 .index_animals table.list td.image { width:100px; }
 .index_animals table.list td.details { width:380px;padding-left: 15px;color:#666; }
 .index_animals table.list td.status { width:175px;padding-left: 10px; text-align:right;}
+
+
+/* START OF HOVER CODE - THIS WAS WITH THE HOVER BUT DOESN"T WOKR WITH PAGINATION
+RED  - background-color: #fce2ec; border:1px solid #f286b1;
+BLUE - background-color:#e0f1fa; border:1px solid #89cbeb;
+GREEN - background-color:#f1fce2; border:1px solid #c4f286;
+YELLOW - background-color:#fffbe5; border:1px solid #fff3b2;
+ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
+
+.index_animals .list .hover {background-color:#e0f1fa;}
+.index_animals table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.index_animals table.list tr {border-bottom:1px #ccc dotted; }
+.index_animals table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_animals table.list td.image { width:100px; padding-left:5px; }
+.index_animals table.list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_animals table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}*/
 
 .index_animals table.search {width: 100%;vertical-align:top;}
 .index_animals table.search tr {vertical-align:top;}
@@ -49,21 +66,6 @@
 .show_animals table.animal_details td.image{}
 .show_animals table.animal_details td.metadata{width:100%;padding: 0 0 0 15px; margin:0 0 0 0; }
 .show_animals table.animal_details .description{clear: both; padding: 15px 0 0 0; }
-
-/* ALERTS ON SHOW ANIMAL PAGE */
-/*.show_animals table.alert_list{width:100%;margin-bottom:10px; }
-.show_animals table.alert_list tr{padding: 10px 0 10px 0;}
-.show_animals table.alert_list td{vertical-align:top;padding: 6px 0;}
-.show_animals table.alert_list td.type{width:100px;text-align: center;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.show_animals table.alert_list td.details{padding-left: 10px;}
-.show_animals table.alert_list td.details h3 {padding:0; margin:0; border:0;}
-.show_animals table.alert_list td.details h3 span{font-weight: normal; font-size: 13px; letter-spacing: -1px;}
-.show_animals table.alert_list td.description{padding-left: 10px;}
-.show_animals table.alert_list td.links{width:150px; text-align:right;}
-.show_animals table.alert_list td.high{background-color:red;color:#fff;}
-.show_animals table.alert_list td.medium{background-color:orange;color:#fff;}
-.show_animals table.alert_list td.low{background-color:gray;color:#fff;}*/
-
 
 
 /* NOTES - SHOW ANIMAL */
@@ -124,12 +126,13 @@
 .alert_list {margin-bottom:10px;}
 .alert_list .alert{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
 .alert_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.alert_list .details{float: left;width: 62%; margin-left: 10px;  }
+.alert_list .details{float: left;width: 60%; margin-left: 10px;  }
 .alert_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
 .alert_list .details .alert_created_at_date{font-weight: bold; font-size: 14px; letter-spacing: -2px;padding-right: 10px; }
 .alert_list .details .alert_animal_name{font-weight:bold; font-size: 16px;}
-
 .alert_list .links{float: right; text-align:right;margin-top:5px;}
+.alert_list .links img{margin-left: 5px;}
+
 .alert_list .high{background-color:red;color:#fff;}
 .alert_list .medium{background-color:orange;color:#fff;}
 .alert_list .low{background-color:gray;color:#fff;}
@@ -201,11 +204,12 @@
 .task_list{margin-bottom:10px;}
 .task_list .task{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
 .task_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.task_list .details{float: left;width: 64%; margin-left: 10px;  }
+.task_list .details{float: left;width: 60%; margin-left: 10px;  }
 .task_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
 .task_list .details .task_due_date{font-weight: bold; font-size: 14px; letter-spacing: -2px;padding-right: 10px; }
 .task_list .details .task_animal_name{font-weight:bold; font-size: 16px;}
-.task_list .links{float: right; text-align:right;margin-top:5px;}
+.task_list .links{float: right; text-align:right;font-size: 12px; margin-top: 3px;}
+.task_list .links img{margin-left: 5px;}
 
 /* -- Show Animals :: Task List --*/
 .show_animals .task_list .type{min-width: 80px;padding:2px 5px 2px 5px;}

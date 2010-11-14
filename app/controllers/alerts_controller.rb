@@ -2,8 +2,8 @@ class AlertsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @global_alerts = Alert.for_global.all
-    @animal_alerts = Alert.for_animals.all
+    @global_alerts = Alert.for_global.not_stopped.all
+    @animal_alerts = Alert.for_animals.not_stopped.all
 
     if @global_alerts.blank? and @animal_alerts.blank?
       @alert = Alert.new
@@ -62,8 +62,15 @@ class AlertsController < ApplicationController
   def destroy
      @alert = Alert.find(params[:id])
      @alert.destroy
-     flash[:error] = "#{@alert.title} has been deleted."
+     flash[:notice] = "#{@alert.title} has been deleted."
      respond_with(@alert)
+  end
+  
+  def stopped
+    @alert = Alert.find(params[:id])   
+    params[:alert] = { :is_stopped => true }
+    flash[:notice] = "Alert has been stopped." if @alert.update_attributes(params[:alert])  
+    respond_with(@alert)
   end
   
   # def alert_count_by_scope

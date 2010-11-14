@@ -118,7 +118,7 @@
 	<div id="animal_alerts">
 		<h2>Alerts</h2>
 		<div id="alerts" class="alert_list">
-			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @animal.alerts %>
+			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @animal.alerts.not_stopped %>
 		</div>
 	</div>
 	

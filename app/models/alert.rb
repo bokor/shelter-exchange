@@ -13,6 +13,9 @@ class Alert < ActiveRecord::Base
   # Callbacks
   
   # Scopes
+  scope :stopped, :conditions => {"is_stopped" => true }
+  scope :not_stopped, :conditions => {"is_stopped" => false }
+  
   scope :for_global, :include => [:alert_type], :conditions => { :alertable_type => nil }
   scope :for_animals, :include => [:alert_type, :alertable], :conditions => { :alertable_type => "Animal" }
   

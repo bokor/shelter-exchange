@@ -1,0 +1,74 @@
+<% content_for :page_content do %>
+	<div class="page_heading">
+		<h1>Create a new account for your Animal Shelter</h1>
+	</div>
+	
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @account %>
+		
+		<%= form_for @account do |account_form| %>
+
+		
+			<h2>Step 1 - Shelter Details</h2>
+			<%= account_form.fields_for :shelters do |shelter_fields| %>
+				<ul class="form">
+					<li>
+						<%= shelter_fields.label :name %><br />
+						<%= shelter_fields.text_field :name %>
+					</li>
+					<li>
+						<%= shelter_fields.label :street%><br />
+						<%= shelter_fields.text_field :street %>
+					</li>
+					<li>
+						<%= shelter_fields.label :city%><br />
+						<%= shelter_fields.text_field :city %>
+					</li>
+					<li>
+						<%= shelter_fields.label :state%><br />
+						<%= shelter_fields.text_field :state %>
+					</li>
+					<li>
+						<%= shelter_fields.label :zip_code%><br />
+						<%= shelter_fields.text_field :zip_code%>
+					</li>
+				</ul>
+
+			<% end %>
+			<h2>Step 2 - Admin Login (Super User)</h2>
+			<%= account_form.fields_for :users do |user_fields| %>
+				<ul class="form">
+					<li>
+						<%= user_fields.label :name, "Name" %><br />
+						<%= user_fields.text_field :name %>
+					</li>
+					<li>
+						<%= user_fields.label :email, "Email" %><br />
+						<%= user_fields.text_field :email %>
+					</li>
+					<li>
+						<%= user_fields.label :password, "Password" %><br />
+						<%= user_fields.password_field :password %>
+					</li>
+					<li>
+						<%= user_fields.label :password_confirmation, "Confirm Password" %><br />
+						<%= user_fields.password_field :password_confirmation %>
+					</li>
+				</ul>
+			<% end %>
+		
+			<h2>Step 3 - Account URL</h2>
+			<%= account_form.label :subdomain %><br />
+		  	<%= account_form.text_field :subdomain %>.shelterexchange.org<br /><br />
+		
+		  <%= account_form.submit "Create new account", :disable_with => 'Submiting...' %>
+		
+		<% end %>
+		
+		
+	</div>
+<% end %>
+
+<% content_for :sidebar do %>
+	
+<% end %>

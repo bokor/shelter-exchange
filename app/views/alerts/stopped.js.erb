@@ -1,0 +1,6 @@
+$('#alert_<%= @alert.id %>').fadeOut(1000, function() { 
+	$(this).remove(); 
+	removeAlertSection();
+});
+
+<% flash.discard %>

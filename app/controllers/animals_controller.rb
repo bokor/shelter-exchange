@@ -1,4 +1,5 @@
 class AnimalsController < ApplicationController
+  # before_filter :require_user
   respond_to :html, :js
   
   def index
@@ -43,7 +44,7 @@ class AnimalsController < ApplicationController
   def destroy
      @animal = Animal.find(params[:id])
      @animal.destroy
-     flash[:error] = "#{@animal.name} has been deleted."
+     flash[:notice] = "#{@animal.name} has been deleted."
      respond_with(@animal)
   end
   

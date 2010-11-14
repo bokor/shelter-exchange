@@ -43,7 +43,7 @@ class SheltersController < ApplicationController
   def destroy
      @shelter = Shelter.find(params[:id])
      @shelter.destroy
-     flash[:error] = "#{@shelter.name} has been deleted."
+     flash[:notice] = "#{@shelter.name} has been deleted."
      respond_with(@shelter)
   end
 

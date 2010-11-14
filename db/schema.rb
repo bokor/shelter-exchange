@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101112213138) do
+ActiveRecord::Schema.define(:version => 20101114160119) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
   create_table "alert_types", :force => true do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20101112213138) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_broadcast"
+    t.boolean  "is_stopped",     :default => false
   end
 
   add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
@@ -135,7 +137,10 @@ ActiveRecord::Schema.define(:version => 20101112213138) do
     t.string   "zip_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
+
+  add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
 
   create_table "task_categories", :force => true do |t|
     t.string   "name"
@@ -166,23 +171,26 @@ ActiveRecord::Schema.define(:version => 20101112213138) do
   add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email",               :default => "", :null => false
-    t.string   "crypted_password",    :default => "", :null => false
-    t.string   "password_salt",       :default => "", :null => false
-    t.string   "persistence_token",   :default => "", :null => false
-    t.string   "single_access_token", :default => "", :null => false
-    t.string   "perishable_token",    :default => "", :null => false
-    t.integer  "login_count",         :default => 0,  :null => false
-    t.integer  "failed_login_count",  :default => 0,  :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "single_access_token",                :null => false
+    t.string   "perishable_token",                   :null => false
+    t.integer  "login_count",         :default => 0, :null => false
+    t.integer  "failed_login_count",  :default => 0, :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
     t.integer  "account_id"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token", :unique => true
 
 end

@@ -8,7 +8,6 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :animals, 'Animals', animals_path, :highlights_on => /\/animals/
     primary.item :tasks, 'Tasks', tasks_path, :highlights_on => /\/tasks/
     primary.item :alerts, 'Alerts', alerts_path, :highlights_on => /\/alerts/
-    primary.item :shelters, 'Shelters', shelters_path, :highlights_on => /\/shelters/
     primary.item :reports, 'Reports', reports_path, :highlights_on => /\/reports/
     #primary.item :key_3, 'Admin', url, :class => 'special', :if => Proc.new { current_user.admin? } # USE FOR ADMIN FUNCTIONS 
     #primary.item :key_4, 'Account', url, :unless => Proc.new { logged_in? }                         # AND FOR MOVING OTHER LINKS AROUND

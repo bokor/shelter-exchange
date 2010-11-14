@@ -1,13 +1,12 @@
 Shelterexchange::Application.routes.draw do
   
-  get "user_sessions/new"
-
   resources :notes
   resources :tasks do
     get :completed, :on => :member
   end
-  resources :alerts
-  resources :shelters
+  resources :alerts do
+    get :stopped, :on => :member
+  end
   resources :reports
   
   resources :animals do
@@ -24,7 +23,21 @@ Shelterexchange::Application.routes.draw do
     get :auto_complete,  :on => :collection
   end
   
+  resources :accounts
+  resources :shelters
+  resources :users
+  resources :user_sessions
+  resources :profile, :controller => :users
+  
+  get 'signup' => "Accounts#new", :as => :signup
+  post 'signup' => "Accounts#create", :as => :signup
+  match 'register' => "Users#new", :as => :register
+  get   'login' => 'UserSessions#new', :as => :login
+  post  'login'  => 'UserSessions#create', :as => :login
+  match 'logout' => "UserSessions#destroy", :as => :logout
+  
 
+  root :to => redirect("/animals")
   
 
   

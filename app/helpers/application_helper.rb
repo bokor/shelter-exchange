@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def stylesheets(*files)
-    content_for(:stylesheets) { stylesheet_include_tag(*files) }
+    content_for(:stylesheets) { stylesheet_link_tag(*files) }
   end
   
   def format_date(type, date)
