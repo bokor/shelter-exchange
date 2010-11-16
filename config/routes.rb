@@ -42,6 +42,8 @@ Shelterexchange::Application.routes.draw do
     resources :public
     resources :accounts
     
+    match 'videos' => "Public#videos", :as => :videos
+    
     get 'signup' => "Accounts#new", :as => :signup
     post 'signup' => "Accounts#create", :as => :signup
     

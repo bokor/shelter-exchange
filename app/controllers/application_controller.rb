@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   include SubdomainAccounts
-  include SubdomainUsers
+  # include SubdomainUsers
   
   protect_from_forgery
   before_filter :set_current_account
-  helper_method :current_user_session, :current_user
   helper :all
   layout :current_layout_name
   
@@ -12,7 +11,7 @@ class ApplicationController < ActionController::Base
   
     def set_current_account
       unless account_subdomain == default_account_subdomain
-        redirect_to default_account_url if current_account.nil? 
+        redirect_to default_account_url if current_account.nil?
       end
     end
 
@@ -38,5 +37,21 @@ class ApplicationController < ActionController::Base
       end
       nil
     end
+    
+    # def render_404
+    #   respond_to do |format|
+    #     format.html { render :file => "#{RAILS_ROOT}/public/404.html", :status => '404 Not Found' }
+    #     format.xml  { render :nothing => true, :status => '404 Not Found' }
+    #   end
+    #   true
+    # end
+    # 
+    # def rescue_action_in_public(e)
+    #   case e when ActiveRecord::RecordNotFound
+    #     render_404
+    #   else
+    #     super
+    #   end
+    # end
 
 end
