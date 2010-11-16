@@ -49,13 +49,14 @@
 		<div class="page_content">
 			
 			<%= render "global/error_messages", :target => @task %>
-
-			<%= form_for(@task) do |f| %>
-				<%= render :partial => "form", :locals => { :f => f } %>
-		    	<div class="actions">
-					<%= f.submit "Create Task", :disable_with => "Submitting...", :class => 'button' %>
-				</div>
-			<% end %>	
+			<div id="create_task">
+				<%= form_for(@task) do |f| %>
+					<%= render :partial => "form", :locals => { :f => f } %>
+			    	<div class="actions">
+						<%= f.submit "Create Task", :disable_with => "Submitting...", :class => 'button' %>
+					</div>
+				<% end %>
+			</div>	
 		</div>
 	<% end %>
 
@@ -63,7 +64,7 @@
 
 <% content_for :sidebar do %>
 	<% if @task_validate %>
-		<div id="create_task" style="background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px;">
+		<div id="create_task">
 			<h2>Add a task</h2>
 			<div id="task_errors"></div>
 			<%= form_for (Task.new), :remote => true do |f| %>

@@ -33,13 +33,14 @@
 
 		<div class="page_content">
 			<%= render "global/error_messages", :target => @alert %>
-
-			<%= form_for(@alert) do |f| %>
-				<%= render :partial => "form", :locals => { :f => f } %>
-		    	<div class="actions">
-					<%= f.submit "Create Alert", :disable_with => "Submitting...", :class => 'button' %>
-				</div>
-			<% end %>	
+			<div id="create_alert">
+				<%= form_for(@alert) do |f| %>
+					<%= render :partial => "form", :locals => { :f => f } %>
+			    	<div class="actions">
+						<%= f.submit "Create Alert", :disable_with => "Submitting...", :class => 'button' %>
+					</div>
+				<% end %>
+			</div>	
 		</div>
 			
 	<% end %>

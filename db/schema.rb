@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101114160119) do
+ActiveRecord::Schema.define(:version => 20101116005249) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -37,12 +37,14 @@ ActiveRecord::Schema.define(:version => 20101114160119) do
     t.datetime "updated_at"
     t.boolean  "is_broadcast"
     t.boolean  "is_stopped",     :default => false
+    t.integer  "shelter_id"
   end
 
   add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
   add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
   add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
   add_index "alerts", ["description"], :name => "index_alerts_on_description"
+  add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
   add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
   create_table "animal_statuses", :force => true do |t|
@@ -116,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20101114160119) do
     t.integer  "note_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "shelter_id"
   end
 
   add_index "notes", ["description"], :name => "index_notes_on_description"
@@ -123,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20101114160119) do
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
   add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
   add_index "notes", ["note_category_id"], :name => "index_notes_on_note_category_id"
+  add_index "notes", ["shelter_id"], :name => "index_notes_on_shelter_id"
   add_index "notes", ["title"], :name => "index_notes_on_title"
 
   create_table "shelters", :force => true do |t|
@@ -162,9 +166,11 @@ ActiveRecord::Schema.define(:version => 20101114160119) do
     t.datetime "updated_at"
     t.string   "due_category"
     t.boolean  "is_completed",     :default => false, :null => false
+    t.integer  "shelter_id"
   end
 
   add_index "tasks", ["info"], :name => "index_tasks_on_info"
+  add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
   add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
   add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"

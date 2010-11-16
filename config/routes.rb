@@ -45,7 +45,7 @@ Shelterexchange::Application.routes.draw do
     get 'signup' => "Accounts#new", :as => :signup
     post 'signup' => "Accounts#create", :as => :signup
     
-    root :to => "public#index"
+    root :to => "Public#index"
     # TODO - Handle 404 ERRORS better
     match "*path" => redirect("/404.html") 
   end

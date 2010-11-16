@@ -116,7 +116,7 @@ ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
 
 /* -- Index Alert --*/
 .index_alerts .page_content h3{border-bottom:1px #999 solid;}
-.index_alerts #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
+.index_alerts #sidebar #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
 /* -- Alert List :: Form --*/
 .alert_list .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .alert_list .edit_alert h2 {border: 0;}
@@ -199,6 +199,8 @@ ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
 /* -- Task List :: Form --*/
 .task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .task_list .edit_task h2 {border: 0;}
+
+.index_tasks #right #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 
 /* -- Task List --*/
 .task_list{margin-bottom:10px;}

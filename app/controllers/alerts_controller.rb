@@ -2,11 +2,11 @@ class AlertsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @global_alerts = Alert.for_global.not_stopped.all
-    @animal_alerts = Alert.for_animals.not_stopped.all
+    @global_alerts = @current_shelter.alerts.for_global.not_stopped.all
+    @animal_alerts = @current_shelter.alerts.for_animals.not_stopped.all
 
     if @global_alerts.blank? and @animal_alerts.blank?
-      @alert = Alert.new
+      @alert = @current_shelter.alerts.new
       respond_with(@alert)
     else
       @alert_validate = true
@@ -19,7 +19,7 @@ class AlertsController < ApplicationController
   
   def edit
     begin
-      @alert = Alert.find(params[:id])
+      @alert = @current_shelter.alerts.find(params[:id])
       respond_with(@alert)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid alert => #{params[:id]}")
@@ -35,7 +35,7 @@ class AlertsController < ApplicationController
   
   def create
     @alertable = find_polymorphic_class
-    @alert = Alert.new(params[:alert].merge(:alertable => @alertable))
+    @alert = @current_shelter.alerts.new(params[:alert].merge(:alertable => @alertable))
     
     respond_with(@alert) do |format|
       if @alert.save
@@ -48,7 +48,7 @@ class AlertsController < ApplicationController
   end
   
   def update
-    @alert = Alert.find(params[:id])   
+    @alert = @current_shelter.alerts.find(params[:id])   
     respond_with(@alert) do |format|
       if @alert.update_attributes(params[:alert])  
         flash[:notice] = "#{@alert.title} has been updated."
@@ -60,14 +60,14 @@ class AlertsController < ApplicationController
   end
   
   def destroy
-     @alert = Alert.find(params[:id])
+     @alert = @current_shelter.alerts.find(params[:id])
      @alert.destroy
      flash[:notice] = "#{@alert.title} has been deleted."
      respond_with(@alert)
   end
   
   def stopped
-    @alert = Alert.find(params[:id])   
+    @alert = @current_shelter.alerts.find(params[:id])   
     params[:alert] = { :is_stopped => true }
     flash[:notice] = "Alert has been stopped." if @alert.update_attributes(params[:alert])  
     respond_with(@alert)

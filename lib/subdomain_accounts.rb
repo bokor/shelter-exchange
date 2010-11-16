@@ -35,6 +35,7 @@ module SubdomainAccounts
           
     def current_account
       @current_account = Account.find_by_subdomain!(request.subdomains)
+      @current_shelter = @current_account.shelters.first
       # logger.error(":::Subdomain => #{request.subdomains}")
       # logger.error(":::Current Account => #{Account.find_by_subdomain(request.subdomains)}")
     end

@@ -3,16 +3,15 @@ class ApplicationController < ActionController::Base
   include SubdomainUsers
   
   protect_from_forgery
-  before_filter :check_account_status
+  before_filter :set_current_account
   helper_method :current_user_session, :current_user
   helper :all
   layout :current_layout_name
   
   private
   
-    def check_account_status
+    def set_current_account
       unless account_subdomain == default_account_subdomain
-        set_current_shelter
         redirect_to default_account_url if current_account.nil? 
       end
     end
@@ -23,11 +22,6 @@ class ApplicationController < ActionController::Base
     
     def public_site?
       account_subdomain == default_account_subdomain
-    end
-    
-    def set_current_shelter
-      @current_shelter = current_account.shelters.all
-      logger.error(":::Shelter => #{@current_shelter}")
     end
     
   protected

@@ -7,6 +7,11 @@ class Account < ActiveRecord::Base
   
   has_many :users, :uniq => true
   has_many :shelters, :dependent => :destroy
+  # NOT SURE if I'm going to keep these or not.  SEEMS SLOWER TO ACCESS
+  # has_many :animals, :through => :shelters
+  # has_many :tasks, :through => :shelters
+  # has_many :alerts, :through => :shelters
+  # has_many :notes, :through => :shelters
   
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :shelters

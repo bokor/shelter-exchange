@@ -3,13 +3,14 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @animals = Animal.all(:include => [:animal_type, :animal_status]).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    @animals = @current_shelter.animals.all(:include => [:animal_type, :animal_status]).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     respond_with(@animals)
   end
   
   def show
     begin
-      @animal = Animal.find(params[:id], :include => [:animal_type, :animal_status, {:notes => [:note_category]}, {:alerts => [:alert_type]}, {:tasks => [:task_category]}])
+      # OPTIMZE BECAUSE NOTES NEED TO BE ONLY CALLED ON THE FILTER
+      @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, {:notes => [:note_category]}, {:alerts => [:alert_type]}, {:tasks => [:task_category]}])
       filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
@@ -20,29 +21,29 @@ class AnimalsController < ApplicationController
   end
   
   def edit
-    @animal = Animal.find(params[:id])
+    @animal = @current_shelter.animals.find(params[:id])
     respond_with(@animal)
   end
   
   def new
-    @animal = Animal.new
+    @animal = @current_shelter.animals.new
     respond_with(@animal)
   end
   
   def create
-    @animal = Animal.new(params[:animal])
+    @animal = @current_shelter.animals.new(params[:animal])
     flash[:notice] = "#{@animal.name} has been created." if @animal.save
     respond_with(@animal)
   end
   
   def update
-    @animal = Animal.find(params[:id])
+    @animal = @current_shelter.animals.find(params[:id])
     flash[:notice] = "#{@animal.name} has been updated." if @animal.update_attributes(params[:animal])      
     respond_with(@animal)
   end
   
   def destroy
-     @animal = Animal.find(params[:id])
+     @animal = @current_shelter.animals.find(params[:id])
      @animal.destroy
      flash[:notice] = "#{@animal.name} has been deleted."
      respond_with(@animal)
@@ -58,7 +59,7 @@ class AnimalsController < ApplicationController
   
   def live_search
     q = params[:q].strip
-    @animals = Animal.live_search(q).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    @animals = @current_shelter.animals.live_search(q).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
   end
   
   def find_by
@@ -66,13 +67,13 @@ class AnimalsController < ApplicationController
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
     if type.empty? and status.empty?
-      @animals = Animal.all.paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+      @animals = @current_shelter.animals.all.paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     elsif is_integer(type) and status.empty?
-      @animals = Animal.scoped_by_animal_type_id(type).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+      @animals = @current_shelter.animals.scoped_by_animal_type_id(type).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     elsif type.empty? and is_integer(status)
-      @animals = Animal.scoped_by_animal_status_id(status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+      @animals = @current_shelter.animals.scoped_by_animal_status_id(status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     elsif is_integer(type) and is_integer(status)
-      @animals = Animal.scoped_by_animal_type_id_and_animal_status_id(type,status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+      @animals = @current_shelter.animals.scoped_by_animal_type_id_and_animal_status_id(type,status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
     end
   end
   
