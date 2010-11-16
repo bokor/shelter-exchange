@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   after_save :add_owner
   
   # Associations
-  authenticates_many :user_sessions
+  authenticates_many :user_sessions, :find_options => { :limit => 1 }, :scope_cookies => true 
   
   has_many :users, :uniq => true
   has_many :shelters, :dependent => :destroy

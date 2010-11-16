@@ -1,45 +1,61 @@
 Shelterexchange::Application.routes.draw do
-  
-  resources :notes
-  resources :tasks do
-    get :completed, :on => :member
-  end
-  resources :alerts do
-    get :stopped, :on => :member
-  end
-  resources :reports
-  
-  resources :animals do
+  constraints(ApplicationSubdomain) do
     resources :notes
-    resources :alerts 
-    resources :tasks 
-    collection do
-      get :find_by
-      get :live_search
+    resources :tasks do
+      get :completed, :on => :member
     end
+    resources :alerts do
+      get :stopped, :on => :member
+    end
+    resources :reports
+  
+    resources :animals do
+      resources :notes
+      resources :alerts 
+      resources :tasks 
+      collection do
+        get :find_by
+        get :live_search
+      end
+    end
+  
+    resources :breeds do
+      get :auto_complete,  :on => :collection
+    end
+  
+    resources :shelters
+    resources :users
+    resources :user_sessions
+    resources :profile, :controller => :users
+  
+  
+    match 'register' => "Users#new", :as => :register
+    get   'login' => 'UserSessions#new', :as => :login
+    post  'login'  => 'UserSessions#create', :as => :login
+    match 'logout' => "UserSessions#destroy", :as => :logout
+  
+  
+    root :to => redirect('/animals')
   end
   
-  resources :breeds do
-    get :auto_complete,  :on => :collection
+  constraints(PublicSubdomain) do
+    resources :public
+    resources :accounts
+    
+    get 'signup' => "Accounts#new", :as => :signup
+    post 'signup' => "Accounts#create", :as => :signup
+    
+    root :to => "public#index"
+    # TODO - Handle 404 ERRORS better
+    match "*path" => redirect("/404.html") 
   end
   
-  resources :accounts
-  resources :shelters
-  resources :users
-  resources :user_sessions
-  resources :profile, :controller => :users
   
-  get 'signup' => "Accounts#new", :as => :signup
-  post 'signup' => "Accounts#create", :as => :signup
-  match 'register' => "Users#new", :as => :register
-  get   'login' => 'UserSessions#new', :as => :login
-  post  'login'  => 'UserSessions#create', :as => :login
-  match 'logout' => "UserSessions#destroy", :as => :logout
   
-
-  root :to => redirect("/animals")
   
-
+  
+  
+  # root :to => "public#index"
   
   # resources :apis do
   #     collection do

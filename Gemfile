@@ -7,7 +7,7 @@ gem 'mysql'
 
 
 # Login/Authentication
-gem 'authlogic'
+gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
 # Authorization
 gem 'declarative_authorization'
@@ -15,6 +15,7 @@ gem 'declarative_authorization'
 # Navigation
 gem 'simple-navigation'
 gem 'will_paginate'
+
 # HTML/JS
 gem 'dynamic_form'
 gem 'jquery-rails'

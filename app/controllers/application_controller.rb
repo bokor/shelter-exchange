@@ -1,52 +1,33 @@
 class ApplicationController < ActionController::Base
+  include SubdomainAccounts
+  include SubdomainUsers
+  
   protect_from_forgery
-  # before_filter :set_current_account
+  before_filter :check_account_status
   helper_method :current_user_session, :current_user
+  helper :all
+  layout :current_layout_name
   
   private
-    # def set_current_account
-    #   @current_account = Account.find_by_subdomain!(request.subdomains.first)
-    # end
-        
-    def current_user_session
-      logger.debug "ApplicationController::current_user_session"
-      return @current_user_session if defined?(@current_user_session)
-      @current_user_session = UserSession.find
-    end
   
-    def current_user
-      logger.debug "ApplicationController::current_user"
-      return @current_user if defined?(@current_user)
-      @current_user = current_user_session && current_user_session.user
-    end
-  
-    def require_user
-      logger.debug "ApplicationController::require_user"
-      unless current_user
-        store_location
-        flash[:notice] = "You must be logged in to access this page"
-        redirect_to new_user_session_url
-        return false
+    def check_account_status
+      unless account_subdomain == default_account_subdomain
+        set_current_shelter
+        redirect_to default_account_url if current_account.nil? 
       end
     end
-  
-    def require_no_user
-      logger.debug "ApplicationController::require_no_user"
-      if current_user
-        store_location
-        flash[:notice] = "You must be logged out to access this page"
-        redirect_to root_url
-        return false
-      end
+
+    def current_layout_name
+      public_site? ? 'public' : 'application'
     end
-  
-    def store_location
-      session[:return_to] = request.request_uri
+    
+    def public_site?
+      account_subdomain == default_account_subdomain
     end
-  
-    def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
+    
+    def set_current_shelter
+      @current_shelter = current_account.shelters.all
+      logger.error(":::Shelter => #{@current_shelter}")
     end
     
   protected
