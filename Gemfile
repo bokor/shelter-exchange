@@ -7,7 +7,8 @@ gem 'mysql'
 
 
 # Login/Authentication
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+# gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem 'devise'
 
 # Authorization
 gem 'declarative_authorization'

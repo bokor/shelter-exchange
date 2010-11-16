@@ -1,0 +1,45 @@
+<% content_for :page_content do %>
+
+	<div class="page_heading">
+		<h1>Login</h1>
+	</div>
+		
+	<div class="page_content">
+		
+		<%= render "global/error_messages", :target => resource %>
+		
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		
+		  <%= f.hidden_field :account_id, :value => @current_account.id %>
+		
+		  <p><%= f.label :email %><br />
+		  <%= f.text_field :email %></p>
+
+		  <p><%= f.label :password %><br />
+		  <%= f.password_field :password %></p>
+
+		  <% if devise_mapping.rememberable? -%>
+		    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+		  <% end -%>
+
+		  <p><%= f.submit "Sign in" %></p>
+		<% end %>
+		
+	</div>
+	
+<% end %>
+
+<% content_for :sidebar do %>
+
+	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+<% end %>
+			
+

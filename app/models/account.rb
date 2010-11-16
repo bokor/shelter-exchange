@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
   before_validation :downcase_subdomain
-  # after_save :add_owner
+  after_save :add_owner
   
   # Associations
   # authenticates_many :user_sessions, :find_options => { :limit => 1 }, :scope_cookies => true
@@ -41,10 +41,10 @@ class Account < ActiveRecord::Base
        self.subdomain.downcase! if attribute_present?(:subdomain)
      end
    
-     # def add_owner
-     #   if owner_id.blank?
-     #     self.owner_id = self.users.first.id
-     #     self.save!
-     #   end
-     # end
+     def add_owner
+       if owner_id.blank?
+         self.owner_id = self.users.first.id
+         self.save!
+       end
+     end
 end

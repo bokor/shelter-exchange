@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   include SubdomainAccounts
-  # include SubdomainUsers
   
   protect_from_forgery
+
   before_filter :set_current_account
   helper :all
   layout :current_layout_name

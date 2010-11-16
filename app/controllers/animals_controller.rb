@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  # before_filter :require_user
+  # before_filter :authenticate_user!
   respond_to :html, :js
   
   def index

@@ -1,14 +1,25 @@
 Shelterexchange::Application.routes.draw do
+  
+# Application Website Routes for *subdomain*.domain.com
   constraints(ApplicationSubdomain) do
+
+#   Notes Routes
     resources :notes
+    
+#   Tasks Routes
     resources :tasks do
       get :completed, :on => :member
     end
+
+#   Alerts Routes
     resources :alerts do
       get :stopped, :on => :member
     end
+
+#   Reports Routes    
     resources :reports
-  
+    
+#   Animals Routes
     resources :animals do
       resources :notes
       resources :alerts 
@@ -18,41 +29,47 @@ Shelterexchange::Application.routes.draw do
         get :live_search
       end
     end
-  
+    
+#   Breeds Routes - Used as a look up for the auto_complete on the animal page
     resources :breeds do
       get :auto_complete,  :on => :collection
     end
   
-    resources :shelters
-    resources :users
-    resources :user_sessions
-    resources :profile, :controller => :users
   
-  
-    match 'register' => "Users#new", :as => :register
-    get   'login' => 'UserSessions#new', :as => :login
-    post  'login'  => 'UserSessions#create', :as => :login
-    match 'logout' => "UserSessions#destroy", :as => :logout
-  
-  
-    root :to => redirect('/animals')
+#   Devise Routes
+    devise_for :users 
+     
+    devise_for :users, :as => "", :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" } 
+    match "login" => "devise/sessions#new", :as => :new_user_session 
+    match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
+    match "register" => "devise/registrations#new", :as => :new_user_registration
+    match "confirmation" => "devise/confirmations#new", :as => :user_confirmation
+    
+#   Root Route - will redirect to animals as the first page
+    root :to => redirect("/animals")
   end
   
+
+# Public Website Routes for www.domain.com
   constraints(PublicSubdomain) do
+    
+#   Public Route
     resources :public
+    
+#   Accounts Route
     resources :accounts
+    get "signup" => "Accounts#new", :as => :signup
+    post "signup" => "Accounts#create", :as => :signup
     
-    match 'videos' => "Public#videos", :as => :videos
-    
-    get 'signup' => "Accounts#new", :as => :signup
-    post 'signup' => "Accounts#create", :as => :signup
+#   Public - Pages
+    match "videos" => "Public#videos", :as => :videos
     
     root :to => "Public#index"
-    # TODO - Handle 404 ERRORS better
-    match "*path" => redirect("/404.html") 
   end
-  
-  
+
+
+# 404 Error for URLs not mapped  
+  match "*path" => redirect("/404.html")   
   
   
   
