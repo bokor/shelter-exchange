@@ -1,6 +1,3 @@
-<script type="text/javascript">
-$('a[tooltip=tipsy]').tipsy({gravity: 's',offset: 10, opacity: 0.8});
-</script>
 <table class="list">
 	<% @animals.each do |animal| %>
 	<tr id="<%= "animal_#{animal.id}" %>">
@@ -14,9 +11,9 @@ $('a[tooltip=tipsy]').tipsy({gravity: 's',offset: 10, opacity: 0.8});
 		</td>
 		<td class="status">
 			<p><b><%= animal.animal_status.name %></b></p>
-			<p><%= link_to image_tag("icon-edit.png"), edit_animal_path(animal), :title => "Edit animal", :tooltip => 'tipsy' %>
+			<p><%= link_to image_tag("icon-edit.png"), edit_animal_path(animal), :title => "Edit animal" %>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-			   <%= link_to image_tag("icon-delete.png"), animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal", :tooltip => 'tipsy' %></p>
+			   <%= link_to image_tag("icon-delete.png"), animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal" %></p>
 		</td>
 	</tr>
 	<% end %>
