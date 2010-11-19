@@ -27,6 +27,11 @@ end
 #   Truncate All Database Tables data
 #
 #######################################################################################################################
+truncate_db_table("accounts")
+truncate_db_table("shelters")
+truncate_db_table("user")
+
+
 truncate_db_table("animals")
 truncate_db_table("animal_types")
 truncate_db_table("animal_statuses")
@@ -63,12 +68,13 @@ AnimalStatus.create([
   { :name => "Available for Adoption" },
   { :name => "Adopted" },
   { :name => "Foster Care" },
-  { :name => "In Transit" },
   { :name => "New Intake" },
+  { :name => "In Transit" },
   { :name => "On Hold - Behavioral" },
   { :name => "On Hold - Medical" },
   { :name => "On Hold - Stray Intake" },
-  { :name => "Deceased" }
+  { :name => "Deceased" },
+  { :name => "Euthanized" }
 ])
  
 
@@ -616,7 +622,7 @@ Breed.create([
 NoteCategory.create([
   { :name => "General" },
   { :name => "Medical" },
-  { :name => "Behavior" }
+  { :name => "Behavioral" }
 ])
 
 # general = NoteCategory.find_by_name("General")

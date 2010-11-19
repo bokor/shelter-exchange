@@ -4,8 +4,6 @@ class Breed < ActiveRecord::Base
   belongs_to :animal_type, :readonly => true
 
   # Validations
-  
-  # Callbacks
 
   # Scopes
   

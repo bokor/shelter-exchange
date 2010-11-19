@@ -1,16 +1,16 @@
 class Task < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
   
-  DUE_CATEGORY = { "Today" => :today, 
-                   "Tomorrow" => :tomorrow, 
-                   # "This week" => :this_week,
-                   #"Next week" => :next_week,
-                   "Later" => :later,
-                   "Specific date" => :specific_date }
+  DUE_CATEGORY = { :today => "Today", 
+                   :tomorrow => "Tomorrow", 
+                   # :this_week => "This week",
+                   # :next_week => "Next week",
+                   :later => "Later",
+                   :specific_date => "Specific date" }
   
   
   # Associations
-  belongs_to :shelter
+  belongs_to :shelter   #, :conditions => {:state => 'active'}
   belongs_to :taskable, :polymorphic => true
   belongs_to :task_category, :readonly => true
   

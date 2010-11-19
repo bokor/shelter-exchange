@@ -2,31 +2,31 @@
 	<ul class="form">
 		<li style="float:right; width:40%">
 			<%= image_tag @animal.photo.url(:small) %><br />
-			<%= f.label :photo, "Image" %><br />
+			<%= f.label :photo, "Upload image" %><br />
 			<%= f.file_field :photo  %>
 		</li>
 		<li>
-			<%= f.label :name, "Name" %><br />
+			<%= f.label :name, "Animal name" %><br />
 			<%= f.text_field :name %>
 		</li>
 		<li>
-			<%= f.label :animal_type_id, "Animal Type" %><br />
+			<%= f.label :animal_type_id, "Animal type" %><br />
 			<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, :prompt => "Select Type") %>
 		</li>
 		<li> 
 			<div id="primary_breed_field">
-				<%= f.label :primary_breed, "Breed name" %><br />
+				<%= f.label :primary_breed, "Primary breed" %><br />
 				<%= f.text_field :primary_breed %>
 				
-				<p style="padding: 5px 0px 0px 10px"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Is mix breed?" %></p>
+				<p style="padding: 5px 0px 0px 10px"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Is mixed breed?" %></p>
 			</div>
 			<div id="secondary_breed_field">
-				<%= f.label :secondary_breed, "Secondary breed name" %><br />
+				<%= f.label :secondary_breed, "Secondary breed" %><br />
 				<%= f.text_field :secondary_breed, :autocomplete => :off %>
 			</div>
 		</li>
 		<li>
-			<%= f.label :animal_status_id, "Animal Status" %><br />
+			<%= f.label :animal_status_id, "Animal status" %><br />
 			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
 		</li>
 		<li>
@@ -52,7 +52,7 @@
 			<%= f.text_field :color %>
 		</li>
 		<li>
-			<%= f.label :chip_id , "Chip ID" %><br />
+			<%= f.label :chip_id , "Microchip#" %><br />
 			<%= f.text_field :chip_id %>
 		</li>
 		<li>

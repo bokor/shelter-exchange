@@ -6,8 +6,6 @@ class NoteCategory < ActiveRecord::Base
   # Validations
   
   
-  # Callbacks
-  
   # Scopes
   
 end

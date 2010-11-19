@@ -9,8 +9,6 @@ class Note < ActiveRecord::Base
   # Validations
   validates_presence_of :title
   validates_presence_of :note_category_id
-   
-  # Callbacks
 
   # Scopes
   

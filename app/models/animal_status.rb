@@ -4,8 +4,6 @@ class AnimalStatus < ActiveRecord::Base
   has_many :animals
 
   # Validations
-  
-  # Callbacks
 
   # Scopes
   

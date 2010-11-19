@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101119061114) do
+ActiveRecord::Schema.define(:version => 20101119165056) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -19,25 +19,17 @@ ActiveRecord::Schema.define(:version => 20101119061114) do
     t.integer  "owner_id"
   end
 
-  create_table "alert_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "alert_types", ["name"], :name => "index_alert_types_on_name"
-
   create_table "alerts", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "alertable_id"
     t.string   "alertable_type"
-    t.integer  "alert_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_broadcast"
     t.boolean  "is_stopped",     :default => false
     t.integer  "shelter_id"
+    t.string   "severity"
   end
 
   add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"

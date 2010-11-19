@@ -38,15 +38,16 @@ ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
 .index_animals table.list td.details { width:380px;padding-left: 15px;color:#666; }
 .index_animals table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}*/
 
-.index_animals table.search {width: 100%;vertical-align:top;}
+.index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_animals table.search tr {vertical-align:top;}
 .index_animals table.search td.animal_live_search {width:50%;text-align:left;padding-top:10px;}
-.index_animals table.search td.animal_filters {width:50%;text-align:left;border-left:1px solid #ccc;padding:10px 0 20px 10px;}
+.index_animals table.search td.animal_live_search input {margin-top:5px;}
+.index_animals table.search td.animal_filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
 .index_animals table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_animals table.search td.animal_filters table.filter_table{width: 100%;padding-left: 50px;}
+.index_animals table.search td.animal_filters table.filter_table{width: 100%;padding-left: 20px;}
 .index_animals table.search td.animal_filters table.filter_table tr{vertical-align:top;}
-.index_animals table.search td.animal_filters table.filter_table tr td{width:50%;}
-
+.index_animals table.search td.animal_filters table.filter_table tr td label {width: 25%;text-align:left;}
+.index_animals table.search td.animal_filters table.filter_table tr td select{width: 75%;text-align:left;}
 
 /* -------------------------- SHOW - ANIMALS  -------------------------- */
 .show_animals .page_heading{border-bottom:1px solid #ddd; }

@@ -60,7 +60,7 @@
 			<%= link_to 'All', animal_path, :remote => true, :id => "all_notes_link" %>&nbsp;|&nbsp;
 			<%= link_to 'General', animal_path(:filter => "General"), :remote => true, :id => "general_notes_link" %>&nbsp;|&nbsp;
 			<%= link_to 'Medical', animal_path(:filter => "Medical"),  :remote => true,:id => "medical_notes_link" %>&nbsp;|&nbsp;
-			<%= link_to 'Behavior', animal_path(:filter => "Behavior"), :remote => true,:id => "behavior_notes_link" %>
+			<%= link_to 'Behavioral', animal_path(:filter => "Behavioral"), :remote => true,:id => "behavioral_notes_link" %>
 		</div>
 	</div>
 	
@@ -73,9 +73,9 @@
 <% content_for :sidebar do %>
 
 	<ul>
-		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :title => 'Add a new alert', :class => "button" -%></li>
-		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :title => 'Add a new note', :class => "button" -%></li>
-		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :title => 'Add a new task', :class => "button" -%></li>
+		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" -%></li>
+		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" -%></li>
+		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" -%></li>
 	</ul>
 	
 	<div id="create_alert">

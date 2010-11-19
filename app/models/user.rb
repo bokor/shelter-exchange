@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   # Associations
   belongs_to :account
   
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :recoverable, :rememberable, #:registerable,
          :trackable, :validatable, :token_authenticatable, :confirmable, :invitable # should be in the devise.rb file, :authentication_keys => [:email, :account_id]
          
@@ -21,7 +19,6 @@ class User < ActiveRecord::Base
   #                      :length => {:minimum => 6, :maximum => 25},
   #                      :format => { :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ }
   
-  # Callbacks
 
   # Scopes
   

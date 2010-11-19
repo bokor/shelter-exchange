@@ -4,8 +4,8 @@
 		<%= f.text_field :title %>
 	</li>
 	<li>
-		<%= f.label :alert_type_id, "Alert Type" %><br />
-		<%= collection_select(:alert, :alert_type_id, AlertType.all, :id, :name, :prompt => "Select Type") %>
+		<%= f.label :severity, "Severity" %><br />
+	    <%= select :alert, :severity, Alert::SEVERITY.map {|k,v| [ v, k ] }, {:prompt => "Select one"}  %>
 	</li>
 	<li>
 		<%= f.check_box :is_broadcast %>&nbsp;&nbsp;<%= f.label :is_broadcast, "Broadcast to shelter" %>

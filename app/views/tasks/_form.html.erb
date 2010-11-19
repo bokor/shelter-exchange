@@ -9,7 +9,7 @@
 	</li>
 	<li>
 		<%= f.label :due_category, "due?" %><br />
-		<%= select :task, :due_category, Task::DUE_CATEGORY, {},:class => "task_due_category" %>
+		<%= select :task, :due_category, Task::DUE_CATEGORY.map {|k,v| [ v, k ] }, {},:class => "task_due_category" %>
 	</li>
 	<li>
 		<div class="due_date_field" style="display:none;">

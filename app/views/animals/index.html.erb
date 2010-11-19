@@ -12,28 +12,26 @@
 			<table class="search">
 				<tr>
 					<td class="animal_live_search">
-						<h3>Search for animal</h3>
+						<h3>Search for animal:</h3>
 						<%= form_for :animals, :url => { :action => "live_search"}, :remote => true, :html => { :id => "form_live_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this, 3);"  %>
 							<!--<%= f.submit "Go" %>-->
 						<% end %>
 					</td>
 					<td class="animal_filters">
-						<h3>Filter by an animal type and status</h3>
+						<h3>Filter animal by:</h3>
 
 						<%= form_for :animals, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
 						<table class="filter_table">
 							<tr>
-								<td>
-								<%= f.label :animal_type_id, "Type" %>
-								<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+								<td><%= f.label :animal_type_id, "Animal type" %></td>
+								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
 								       { :name => "animal_type_id", :onchange => "Animals.findByFilter(this);" } ) %><br /><br />
 								</td>
 							</tr>
 							<tr>
-								<td>
-								<%= f.label :animal_status_id, "Status" %>
-								<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, 
+								<td><%= f.label :animal_status_id, "Animal status" %></td>
+								<td><%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, 
 								       { :name => "animal_status_id", :onchange => "Animals.findByFilter(this);" } ) %>
 								</td>
 							</tr>

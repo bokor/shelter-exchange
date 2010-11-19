@@ -98,7 +98,7 @@ function showSecondaryBreed() {
 $(document).ready(function() {
 	// Animal Show - Note Section - Filter Links
 	$('#all_notes_link').addClass('active_link');
-	$('#all_notes_link, #general_notes_link, #behavior_notes_link, #medical_notes_link').click(function(event) {
+	$('#all_notes_link, #general_notes_link, #behavioral_notes_link, #medical_notes_link').click(function(event) {
 		$('.active_link').removeClass('active_link');
 		$(event.target).addClass('active_link');
 	});

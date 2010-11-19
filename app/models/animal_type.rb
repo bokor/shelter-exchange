@@ -6,8 +6,6 @@ class AnimalType < ActiveRecord::Base
 
   # Validations
   
-  # Callbacks
-
   # Scopes
   
 end
