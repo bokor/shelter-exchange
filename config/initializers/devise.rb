@@ -48,6 +48,11 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   config.pepper = "fca9a7b396ffbaa771c82bc258c1b30247bceda7715880172e55db34969b4674ba42746e2153e5d393d5bcde0215ced48034bb1a58011c9dc521dabd56d909a6"
 
+  # ==> Configuration for :invitable
+  # Time interval where the invitation token is valid (default: 0).
+  # If invite_for is 0 or nil, the invitation will never expire.
+  # config.invite_for = 2.weeks
+  
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.
@@ -55,7 +60,7 @@ Devise.setup do |config|
   # You can use this to let your user access some features of your application 
   # without confirming the account, but blocking it after a certain period 
   # (ie 2 days). 
-  # config.confirm_within = 2.days
+  # config.confirm_within = 1.weeks
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
