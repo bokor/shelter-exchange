@@ -1,7 +1,10 @@
 class Alert < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
-  SEVERITY = { :high => "High", :medium => "Medium", :low => "Low" }
+  # Set up so the section value could be translated and the first is stored in the database
+  SEVERITY = { "high" => "High", 
+               "medium" => "Medium", 
+               "low" => "Low" }
   
   # Associations
   belongs_to :shelter

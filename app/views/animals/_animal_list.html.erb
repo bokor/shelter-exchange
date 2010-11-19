@@ -11,9 +11,14 @@
 		</td>
 		<td class="status">
 			<p><b><%= animal.animal_status.name %></b></p>
-			<p><%= link_to image_tag("icon_edit.png"), edit_animal_path(animal), :title => "Edit animal" %>
+			<p class="action_links">
+			    <%= link_to "Edit", edit_animal_path(animal), :title => "Edit animal" %>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-			   <%= link_to image_tag("icon_delete.png"), animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal" %></p>
+			   <%= link_to "Delete", animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal" %>
+				<!-- <%= link_to image_tag("icon_edit.png"), edit_animal_path(animal), :title => "Edit animal" %>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			   <%= link_to image_tag("icon_delete.png"), animal, :confirm => "Are you sure?", :method => :delete, :title => "Delete animal" %> -->
+			</p>
 		</td>
 	</tr>
 	<% end %>

@@ -11,17 +11,17 @@
 // content: string (false by default) - HTML or String to use as the content for TipTip. Will overwrite content from any HTML attribute.
 // enter: callback function - Custom function that is run each time you mouseover an element with TipTip applied to it.
 // exit: callback function - Custom function that is run each time you mouseout of an element with TipTip applied to it.
-$(document).ready(function() {
-	var tipTip = function(selector, options) {
-		var elements = jQuery(selector);
-    	elements.tipTip(options);    // apply tipTips as usual
-    	$('body').ajaxComplete(function() {
-    		elements = jQuery(selector); // reselect elements
-        	elements.tipTip(options);   // and apply again after ajax requests
-    	});
-    	return elements;
-	}
-
-	tipTip("a[title]", {fadeIn:100, fadeOut: 100, delay:200, defaultPosition: "top", edgeOffset: 10});
-});
+// $(document).ready(function() {
+// 	var tipTip = function(selector, options) {
+// 		var elements = jQuery(selector);
+//     	elements.tipTip(options);    // apply tipTips as usual
+//     	$('body').ajaxComplete(function() {
+//     		elements = jQuery(selector); // reselect elements
+//         	elements.tipTip(options);   // and apply again after ajax requests
+//     	});
+//     	return elements;
+// 	}
+// 
+// 	tipTip("a[title]", {fadeIn:100, fadeOut: 100, delay:200, defaultPosition: "top", edgeOffset: 10});
+// });
 

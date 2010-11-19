@@ -2,7 +2,7 @@
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
 	<% if @changed %>
-		$('#edit_task_<%=@task.id%>').slideToggle(1500, function() { 
+		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() { 
 			$(this).remove(); 
 			removeTaskSection();
 		});

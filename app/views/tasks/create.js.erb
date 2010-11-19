@@ -6,7 +6,7 @@
 	$('#<%=due_section %>_tasks_section').removeClass("no_task");
 	$('#<%=due_section %>_tasks_section').fadeIn(1000);
 	$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
-	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1000);
+	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
 	// Clear up final functions
 	$('#new_task').get(0).reset();
 	$('.due_date_field').hide();

@@ -5,10 +5,15 @@
 	<span class="details">
 		<p><%= display_due_date(task) %><%= task.info %> <%= show_taskable_link(task)%></p>
 	</span>
-	<span class="links"> <!-- style="display:none;"> -->
+	<!-- <span class="links">
 		<%= link_to image_tag("icon_completed.png"), completed_task_path(task), :confirm => "Are you sure?", :remote => true, :title => "Complete task" %>
 		<%= link_to image_tag("icon_edit.png"), edit_task_path(task), :remote => true, :title => "Edit task" %>
 		<%= link_to image_tag("icon_delete.png"), task, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete task" %>
+	</span> -->
+	<span class="action_links">
+		<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true, :title => "Complete task" %>&nbsp;&nbsp;
+		<%= link_to "Edit", edit_task_path(task), :remote => true, :title => "Edit task" %>&nbsp;&nbsp;
+		<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete task" %>
 	</span>
 	<div class="clear"></div>
 </div>

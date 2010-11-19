@@ -10,7 +10,7 @@ class AnimalsController < ApplicationController
   def show
     begin
       # OPTIMZE BECAUSE NOTES NEED TO BE ONLY CALLED ON THE FILTER
-      @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, {:notes => [:note_category]}, {:alerts => [:alert_type]}, {:tasks => [:task_category]}])
+      @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, :alerts, {:notes => [:note_category]}, {:tasks => [:task_category]}])
       filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
