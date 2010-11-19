@@ -5,7 +5,6 @@ module SubdomainAccounts
   
   protected
     
-    # TODO: need to handle www as well
     def default_account_subdomain
       account_subdomain if ["www", ""].include?(request.subdomain)
     end

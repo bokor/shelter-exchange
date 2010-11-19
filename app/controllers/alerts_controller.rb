@@ -1,4 +1,5 @@
 class AlertsController < ApplicationController
+  # before_filter :authenticate_user!
   respond_to :html, :js
   
   def index
@@ -68,17 +69,8 @@ class AlertsController < ApplicationController
   
   def stopped
     @alert = @current_shelter.alerts.find(params[:id])   
-    params[:alert] = { :is_stopped => true }
-    flash[:notice] = "Alert has been stopped." if @alert.update_attributes(params[:alert])  
+    flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :is_stopped => true })  
     respond_with(@alert)
   end
-  
-  # def alert_count_by_scope
-  #   if @alert.alertable_type == "Animal"
-  #     @count = Alert.for_animals.all.count
-  #   else
-  #     @count = Alert.for_global.all.count
-  #   end
-  # end
 
 end

@@ -12,4 +12,10 @@ module UrlHelper
     super
   end
   
+  # def with_subdomain_for_mailer(host,subdomain)
+  #   subdomain = (subdomain || "")
+  #   subdomain += "." unless subdomain.empty?
+  #   [subdomain, host].join
+  # end
+  
 end

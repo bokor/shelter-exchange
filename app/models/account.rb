@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
   before_validation :downcase_subdomain
   after_save :add_owner
+  after_create :notify_account_creation
   
   # Associations
   # authenticates_many :user_sessions, :find_options => { :limit => 1 }, :scope_cookies => true
@@ -16,19 +17,16 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :shelters
    
-  # alias_attribute :user_id, :owner_id
   
   # Validations
   validates_presence_of :subdomain
-  # object.errors[attribute] << 'cannot start or end with a hyphen' unless value =~ /^[^-].*[^-]$/i                                                                                                    
-  #     object.errors[attribute] << 'must be alphanumeric; A-Z, 0-9 or hyphen' unless value =~ /^[a-z0-9\-]*$/i
   validates_format_of :subdomain, 
                       :with => /^[A-Za-z0-9-]+$/, 
-                      :message => ' can only contain alphanumeric characters and dashes.', 
+                      :message => 'can only contain alphanumeric characters; A-Z, 0-9 or hyphen', 
                       :allow_blank => true
    
   validates_exclusion_of :subdomain, 
-                         :in => %w( www support blog wiki billing help api authenticate launchpad forum admin user login logout signup register mail ftp pop smtp ssl sftp ), 
+                         :in => %w( www support blog wiki billing help api authenticate launchpad forum admin user login logout signup register mail ftp pop smtp ssl sftp ),
                          :message => " <strong>{{value}}</strong> is reserved and unavailable."
    
   validates_uniqueness_of :subdomain, :case_sensitive => false
@@ -46,5 +44,9 @@ class Account < ActiveRecord::Base
          self.owner_id = self.users.first.id
          self.save!
        end
+     end
+     
+     def notify_account_creation
+       Notifier.new_account_notification(self,self.shelters.first,self.users.first).deliver
      end
 end

@@ -1,7 +1,7 @@
 Shelterexchange::Application.routes.draw do
   
 # Application Website Routes for *subdomain*.domain.com
-  constraints(ApplicationSubdomain) do
+  constraints(AppSubdomain) do
 
 #   Notes Routes
     resources :notes
@@ -38,12 +38,18 @@ Shelterexchange::Application.routes.draw do
   
 #   Devise Routes
     devise_for :users 
+    # Check using for AUTH TOKEN
+    # resources :users  do
+    #   member do
+    #     get :valid
+    #   end
+    # end
      
     devise_for :users, :as => "", :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" } 
     match "login" => "devise/sessions#new", :as => :new_user_session 
     match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
     match "register" => "devise/registrations#new", :as => :new_user_registration
-    match "confirmation" => "devise/confirmations#new", :as => :user_confirmation
+    # match "confirmation" => "devise/confirmations#new", :as => :user_confirmation
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")

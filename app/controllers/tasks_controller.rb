@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  # before_filter :authenticate_user!
   respond_to :html, :js
   
   def index
@@ -68,8 +69,7 @@ class TasksController < ApplicationController
   
   def completed
     @task = @current_shelter.tasks.find(params[:id])   
-    params[:task] = { :is_completed => true }
-    flash[:notice] = "Task has been completed." if @task.update_attributes(params[:task])  
+    flash[:notice] = "Task has been completed." if @task.update_attributes({ :is_completed => true })  
     respond_with(@task)
   end
 

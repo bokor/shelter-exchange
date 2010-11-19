@@ -6,7 +6,7 @@
 	<div class="page_content">
 		
 		Account registered! 
-		Go to <a href='http://<%=@account.subdomain%>.<%=account_domain%>'>http://<%=@account.subdomain%>.<%=account_domain%></a> to log in.
+		Go to <a href='<%=request.protocol%><%=with_subdomain(@account.subdomain)%>'><%=request.protocol%><%=with_subdomain(@account.subdomain)%></a> to log in.
 		
 	</div>
 <% end %>

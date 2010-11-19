@@ -25,5 +25,14 @@ class User < ActiveRecord::Base
 
   # Scopes
   
+  def self.valid?(params)
+    token_user = self.where(:auth_token => params[:id]).first
+    if token_user
+      token_user.auth_token = nil
+      token_user.save
+    end
+    return token_user
+  end
+  
   
 end

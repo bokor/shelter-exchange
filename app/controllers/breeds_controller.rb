@@ -1,4 +1,5 @@
 class BreedsController < ApplicationController
+  # before_filter :authenticate_user!
   respond_to :json
    
   def auto_complete

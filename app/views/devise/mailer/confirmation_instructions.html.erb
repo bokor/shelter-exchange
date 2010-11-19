@@ -1,12 +1,13 @@
+<%
+	subdomain = @resource.account.subdomain
+	subdomain = (subdomain || "")
+	subdomain += "." unless subdomain.empty?
+	host = [subdomain, ActionMailer::Base::default_url_options[:host]].join
+%>
 <p>Welcome <%= @resource.email %>!</p>
 
 <p>You can confirm your account through the link below:</p>
 
 
-<p><%= link_to 'Confirm my account', user_confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, :subdomain => @resource.account.subdomain) %></p>
-confirmation_url(@resource, :confirmation_token => 
-@resource.confirmation_token, :subdomain => @resource.subdomain)
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :host => host, :confirmation_token => @resource.confirmation_token) %></p>
 
-<!-- root_url(:subdomain => blog.subdomain)
-<a href='http://#{@account.subdomain}.#{account_domain}'>Confirm my account</a>
-Go to  to log in. -->

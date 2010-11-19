@@ -11,8 +11,6 @@ class Alert < ActiveRecord::Base
   validates_presence_of :alert_type_id, :message => 'needs to be selected'
   validates_presence_of :description
   
-  # Callbacks
-  
   # Scopes
   scope :stopped, :conditions => {"is_stopped" => true }
   scope :not_stopped, :conditions => {"is_stopped" => false }

@@ -40,9 +40,6 @@ class Animal < ActiveRecord::Base
 
   validate :primary_breed, :presence => true, :if => :primary_breed_exists
   validate :secondary_breed, :presence => true, :if => :secondary_breed_exists
-
-  # Callbacks
-
   # Scopes
   scope :live_search, lambda { |q| { :conditions => "LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') 
                                                   OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') 
