@@ -12,6 +12,10 @@ module ApplicationHelper
     content_for(:stylesheets) { stylesheet_link_tag(*files) }
   end
   
+  def selected_navigation(element)
+    request.fullpath =~ /\/#{element.to_s}/ ? "current" : ""
+  end
+  
   def format_date(type, date)
     case type
       when :short_no_year 
