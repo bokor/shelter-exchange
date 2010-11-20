@@ -1,7 +1,7 @@
 <%= javascripts "tasks/tasks" %>
 <%= javascripts "date" %>
 
-<% content_for :page_content do %>
+<%= content_for :page_content do %>
 
 	<% if @task_validate %>
 		<div class="page_heading">
@@ -62,7 +62,7 @@
 
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
 	<% if @task_validate %>
 		<div id="create_task">
 			<h2>Add a task</h2>

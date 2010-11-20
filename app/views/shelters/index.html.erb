@@ -1,19 +1,53 @@
 <%= javascripts "shelters/shelters" %>
 
-<% content_for :page_content do %>
 
-	<div class="page_heading">
-		<h1>Shelters</h1>
+
+<%= content_for :page_content do %>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAg9xsqgYJxaHo-DnBFgP6xhQZBR8TEZ45tFz_789J8-GbLsU4URRDIGKVV4lSFKfojQ_xqRLlgkZGhg"></script>
+<style>
+#map_canvas { width: 450px; height: 350px; position: relative; background-color: #fff;}
+</style>
+<script>
+$(document).ready(function() {
+	var html = $("#map_content").html();
+	
+	if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(<%=@shelter.lat%>, <%=@shelter.lng%>), 13);
+        map.openInfoWindowHtml(map.getCenter(),html);
+      }
+			
+});
+</script>
+
+	<div class="page_heading blue_background">
+		<h1>Shelter</h1>
 	</div>
 		
 	<div class="page_content">
-		<%= render :partial => "global/flash_messages" %>
-			
+		<div id="map_canvas" style="float: right;"></div>
+		<div id="map_content" style="display:none;">
+			<ul>
+				<li><h2><%=@shelter.name%></h2></li>
+				<li><%=@shelter.address%></li>
+				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%><br /><br /></li>
+			</ul>
+		</div>
 		
+		<ul>
+			<li>Main phone:  <%=@shelter.main_phone%></li>
+			<li>Fax phone:  <%=@shelter.fax_phone%><br /><br /></li>
+			<li>Website:  <%=@shelter.website%></li>
+			<li>Twitter:  <%=@shelter.twitter%></li>
+			<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
+		</ul>
+		<div class="clear"></div>
 	</div>
 	
 <% end %>
 
-<% content_for :sidebar do %>
-	<%= link_to "New Shelter", new_shelter_path %>
+<%= content_for :sidebar do %>
+	<ul>
+		<li><%= link_to "Edit shelter details", edit_shelter_path(@shelter)%></li>
+	</ul>
 <% end %>

@@ -1,0 +1,16 @@
+<%= javascripts "shelters/shelters" %>
+
+<%= content_for :page_content do %>
+	
+	<div class="page_heading blue_background">
+		<h1>Editing Shelter</h1>
+	</div>
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @shelter %>
+		<%= render "form", :button_text => "Update Shelter" %>
+	</div>
+<% end %>
+
+<%= content_for :sidebar do %>
+
+<% end %>

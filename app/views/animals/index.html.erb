@@ -1,6 +1,6 @@
 <%= javascripts "animals/animals" %>
 
-<% content_for :page_content do %>
+<%= content_for :page_content do %>
 
 	<% if @animals.size > 0 %>
 		<!-- <div class="page_heading">
@@ -56,6 +56,6 @@
 
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
 	<%= link_to "Create new animal", new_animal_path %>
 <% end %>

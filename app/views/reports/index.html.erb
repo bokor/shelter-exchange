@@ -1,11 +1,10 @@
 <%= javascripts "highcharts" %>
 <%= javascripts "reports/reports" %>
 
-<% content_for :page_content do %>
+<%= content_for :page_content do %>
 	
-	<div class="page_heading">
+	<div class="page_heading yellow_background">
 		<h1>Reports</h1>
-		<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
 	</div>
 		
 	<div class="page_content">
@@ -16,7 +15,7 @@
 
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
 	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
 		<h2>Animal Reports</h2>
 		<ul style="list-style:none; padding-left: 15px;">

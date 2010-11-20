@@ -1,3 +1,17 @@
 <div id="header">
-	<%= render_navigation %>
+	<div id="primary_nav">
+		<ul>
+			<li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
+			<li class="<%= selected_navigation(:tasks) %>"><%= link_to "Tasks", tasks_path %></li>
+			<li class="<%= selected_navigation(:alerts) %>"><%= link_to "Alerts", alerts_path %></li>
+			<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", reports_path %></li>
+		</ul>
+	</div>
+	<div id="secondary_nav">
+		<ul>
+			<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter details", shelters_path %></li>
+		    <li class="<%= selected_navigation(:users) %>"><%= link_to "My Info", users_path %></li>
+		    <li class="logout"><%= link_to "Logout", "/logout" %></li>
+		</ul>
+	</div>
 </div>

@@ -1,0 +1,48 @@
+<%= form_for (@shelter) do |f| %>
+	<ul class="form">
+		<li>
+			<%= f.label :name, "Name" %><br />
+			<%= f.text_field :name %>
+		</li>
+		<li>
+			<%= f.label :address, "Address" %><br />
+			<%= f.text_field :address %>
+		</li>
+		<li>
+			<%= f.label :city, "City" %><br />
+			<%= f.text_field :city %>
+		</li>
+		<li>
+			<%= f.label :state, "State" %><br />
+			<%= f.text_field :state %>
+		</li>
+		<li>
+			<%= f.label :zip_code, "Zip code" %><br />
+			<%= f.text_field :zip_code %>
+		</li>
+		<li>
+			<%= f.label :main_phone, "Main phone" %><br />
+			<%= f.text_field :main_phone %>
+		</li>
+		<li>
+			<%= f.label :fax_phone, "Fax phone" %><br />
+			<%= f.text_field :fax_phone %>
+		</li>
+		<li>
+			<%= f.label :website, "Website" %><br />
+			<%= f.text_field :website %>
+		</li>
+		<li>
+			<%= f.label :twitter, "Twitter" %><br />
+			<%= f.text_field :twitter %>
+		</li>
+		<li>
+			<%= f.check_box :is_kill_shelter%>&nbsp;&nbsp;
+			<%= f.label :is_kill_shelter%>
+		</li>
+	</ul>
+	<div class="actions">
+		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+	</div>
+	<div class="clear"></div>
+<% end %>

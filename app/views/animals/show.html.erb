@@ -2,7 +2,7 @@
 <%= javascripts "tasks/tasks" %>
 <%= javascripts "date" %>
 
-<% content_for :page_content do %>
+<%= content_for :page_content do %>
 	
 	<div class="page_heading blue_background">
 		<table class="animal">
@@ -70,7 +70,7 @@
 
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
 
 	<ul>
 		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" -%></li>

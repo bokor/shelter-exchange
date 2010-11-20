@@ -1,4 +1,4 @@
-<% content_for :page_content do %>
+<%= content_for :page_content do %>
 	<div class="page_heading">
 		<h1>Create a new account for your Animal Shelter</h1>
 	</div>
@@ -17,8 +17,8 @@
 						<%= shelter_fields.text_field :name %>
 					</li>
 					<li>
-						<%= shelter_fields.label :street%><br />
-						<%= shelter_fields.text_field :street %>
+						<%= shelter_fields.label :address%><br />
+						<%= shelter_fields.text_field :address %>
 					</li>
 					<li>
 						<%= shelter_fields.label :city%><br />
@@ -31,6 +31,10 @@
 					<li>
 						<%= shelter_fields.label :zip_code%><br />
 						<%= shelter_fields.text_field :zip_code%>
+					</li>
+					<li>
+						<%= shelter_fields.check_box :is_kill_shelter%>&nbsp;&nbsp;
+						<%= shelter_fields.label :is_kill_shelter%><br /><br />
 					</li>
 				</ul>
 
@@ -52,14 +56,14 @@
 					</li>
 					<li>
 						<%= user_fields.label :password_confirmation, "Confirm Password" %><br />
-						<%= user_fields.password_field :password_confirmation %>
+						<%= user_fields.password_field :password_confirmation %><br /><br />
 					</li>
 				</ul>
 			<% end %>
 		
 			<h2>Step 3 - Account URL</h2>
 			<%= account_form.label :subdomain %><br />
-		  	<%= account_form.text_field :subdomain %>.shelterexchange.org<br /><br />
+		  	<%= account_form.text_field :subdomain %>.shelterexchange.org<br /><br /><br />
 		
 		  <%= account_form.submit "Create new account", :disable_with => 'Submiting...' %>
 		
@@ -69,6 +73,6 @@
 	</div>
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
 	
 <% end %>
