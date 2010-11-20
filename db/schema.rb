@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101120053642) do
+ActiveRecord::Schema.define(:version => 20101120153319) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20101120053642) do
     t.string   "fax_phone"
     t.string   "website"
     t.string   "twitter"
-    t.text     "address"
+    t.text     "street"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"

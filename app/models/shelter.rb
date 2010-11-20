@@ -11,7 +11,7 @@ class Shelter < ActiveRecord::Base
    
   # Validations
   validates_presence_of :name
-  validates_presence_of :address
+  validates_presence_of :street
   validates_presence_of :city
   validates_presence_of :state
   validates_presence_of :zip_code
@@ -20,8 +20,8 @@ class Shelter < ActiveRecord::Base
   
   private
     def geocode_address
-      geo=Geokit::Geocoders::MultiGeocoder.geocode ([address, city, state, zip_code].join(" "))
-      errors.add(:address, "Could not Geocode address") if !geo.success
+      geo = Geokit::Geocoders::MultiGeocoder.geocode ([street, city, state, zip_code].join(" "))
+      errors.add(:street, "Could not Geocode address") if !geo.success
       self.lat, self.lng = geo.lat,geo.lng if geo.success
     end
   

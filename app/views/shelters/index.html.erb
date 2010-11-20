@@ -1,21 +1,59 @@
 <%= javascripts "shelters/shelters" %>
-
+<%= javascripts "http://maps.google.com/maps/api/js?sensor=false" %>
 
 
 <%= content_for :page_content do %>
-<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAg9xsqgYJxaHo-DnBFgP6xhQZBR8TEZ45tFz_789J8-GbLsU4URRDIGKVV4lSFKfojQ_xqRLlgkZGhg"></script>
 <style>
 #map_canvas { width: 450px; height: 350px; position: relative; background-color: #fff;}
 </style>
 <script>
 $(document).ready(function() {
-	var html = $("#map_content").html();
 	
-	if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(<%=@shelter.lat%>, <%=@shelter.lng%>), 13);
-        map.openInfoWindowHtml(map.getCenter(),html);
-      }
+	var myLatlng = new google.maps.LatLng(<%=@shelter.lat%>, <%=@shelter.lng%>);
+    var myOptions = {
+      zoom: 13,
+      center: myLatlng,
+	  navigationControl: true,
+	  mapTypeControl: false,
+	  streetViewControl:  false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    
+	var infowindow = new google.maps.InfoWindow({
+		position: myLatlng, // Remove this uncomment marker if we want an icon to show up
+        content: $("#map_content").html()
+    });
+
+	var marker = new google.maps.Marker({
+	    position: myLatlng,
+	    map: map,
+	    icon: '/images/logo_small.png',
+		clickable: true
+	});
+    
+    // infowindow.open(map, marker);
+	google.maps.event.addListener(marker, 'click', function() {
+	  infowindow.open(map,marker);
+	});
+
+	// Original Code example
+	
+	// var infowindow = new google.maps.InfoWindow({
+	//     content: contentString
+	// });
+	// 
+	// var marker = new google.maps.Marker({
+	//     position: myLatlng,
+	//     map: map,
+	//     title:"Uluru (Ayers Rock)"
+	// });
+	// 
+	// google.maps.event.addListener(marker, 'click', function() {
+	//   infowindow.open(map,marker);
+	// });
+    
 			
 });
 </script>
@@ -29,7 +67,7 @@ $(document).ready(function() {
 		<div id="map_content" style="display:none;">
 			<ul>
 				<li><h2><%=@shelter.name%></h2></li>
-				<li><%=@shelter.address%></li>
+				<li><%=@shelter.street%></li>
 				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%><br /><br /></li>
 			</ul>
 		</div>

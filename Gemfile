@@ -24,8 +24,7 @@ gem 'jquery-rails'
 # Attachments
 gem 'paperclip'
 
-# Date Validation
-# gem 'date_validator'
+
 
 # Geocoding - requires plugin as well.
 gem 'geokit'
@@ -34,8 +33,8 @@ gem 'geokit'
 gem 'rails3-generators'
 
 
-# gem 'simple-navigation' - not needed anymore
-
+# gem 'date_validator' - not needed anymore
+# gem 'simple-navigation' - not needed anymore\
 #gem 'searchlogic' - Doesn't work with rails 3
 #gem 'css_sprite' - Doesn't work with rails 3, failing on Rake Class Task
 
