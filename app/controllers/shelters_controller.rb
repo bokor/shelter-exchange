@@ -3,50 +3,41 @@ class SheltersController < ApplicationController
   respond_to :html, :js
   
   def index
-    @shelters = Shelter.all
-    respond_with(@shelters)
+    @shelter = @current_shelter
+    respond_with(@shelter)
   end
   
   def show
-    begin
-      session[:scope] = nil
-      @shelter = Shelter.find(params[:id])
-      respond_with(@shelter)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid shelter => #{params[:id]}")
-      flash[:error] = "You have requested an invalid shelter!"
-      redirect_to shelters_path and return
-    end
+    redirect_to shelters_path and return
   end
   
   def edit
-    @shelter = Shelter.find(params[:id])
+    @shelter = @current_shelter
     respond_with(@shelter)
   end
   
   def new
-    @shelter = Shelter.new
-    respond_with(@shelter)
+    redirect_to shelters_path and return
   end
   
   def create
-    @shelter = Shelter.new(params[:shelter])
-    flash[:notice] = "#{@shelter.name} has been created." if @shelter.save
-    respond_with(@shelter)
+    redirect_to shelters_path and return
   end
   
   def update
-    @shelter = Shelter.find(params[:id])
-    flash[:notice] = "#{@shelter.name} has been updated." if @shelter.update_attributes(params[:shelter])      
-    respond_with(@shelter)
+    @shelter = @current_shelter    
+    respond_with(@shelter) do |format|
+      if @shelter.update_attributes(params[:shelter])  
+        flash[:notice] = "#{@shelter.name} has been updated."
+        format.html { redirect_to shelters_path }
+      else
+        format.html { render :action => :edit }
+      end
+    end
   end
   
   def destroy
-     @shelter = Shelter.find(params[:id])
-     @shelter.destroy
-     flash[:notice] = "#{@shelter.name} has been deleted."
-     respond_with(@shelter)
+    redirect_to shelters_path and return
   end
-
-
+  
 end
