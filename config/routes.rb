@@ -34,8 +34,13 @@ Shelterexchange::Application.routes.draw do
     resources :breeds do
       get :auto_complete,  :on => :collection
     end
-  
-  
+
+#   Shelter Routes 
+    resources :shelters
+
+#   Users Routes - Localized updated
+    resources :users
+
 #   Devise Routes
     # devise_for :users 
      
