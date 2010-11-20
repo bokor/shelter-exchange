@@ -54,13 +54,24 @@ a:hover, a:selected { border: none; outline: none; }
 .yellow_background{background-color:#fffbe5; }
 /* COLOR SPECIFICS */
 /******************************************************************/
-#header { height: 80px; background-color: #333; margin: 0; padding: 0 0 0 3em; }
-#header ul { list-style: none; text-align: center; }
-#header ul li { line-height:80px; float:left; width: 120px; color: #fff; }
-#header ul li.current { color: #000; background-color: #fff; }
-#header ul li.current a{ color: #000;font-weight:bold; }
-#header ul li a {color:#fff; text-decoration:none;}
-#header ul li a:active, #header ul li a:hover {color:#000;font-weight:bold;}
+#header { height: 80px; background-color: #333; margin: 0; padding: 0 0 0 3em; position:relative; }
+#header #primary_nav ul { list-style: none; text-align: center; }
+#header #primary_nav ul li { line-height:80px; float:left; width: 120px; color: #fff; }
+#header #primary_nav ul li.current { color: #000; background-color: #fff; }
+#header #primary_nav ul li.current a{ color: #000;font-weight:bold; }
+#header #primary_nav ul li a {color:#fff; text-decoration:none;}
+#header #primary_nav ul li a:active, #header #primary_nav ul li a:hover {color:#000;font-weight:bold;}
+
+#header #secondary_nav { position:absolute;bottom:0px; right:20px;}
+#header #secondary_nav ul { list-style: none; text-align: center;}
+#header #secondary_nav ul li { float:left; width: 110px; height:35px;line-height:35px; color: #fff; background-color:green;margin-left:5px; border-top:1px #666 solid; border-right:1px #666 solid; border-left:1px #666 solid; }
+#header #secondary_nav ul li.current { background-color: #ccc; }
+#header #secondary_nav ul li.current a{ background-color: #ccc; color:#000;font-weight:bold;  }
+#header #secondary_nav ul li a {color:#fff; text-decoration:none;}
+#header #secondary_nav ul li:hover{background-color: #ccc; color:#666;font-weight:bold; }
+/*#header #secondary_nav ul li a:active, #header #secondary_nav ul li a:hover { color:#666;font-weight:bold;}*/
+
+#header:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /******************************************************************/
 #main { margin: 1em 0 0 3em; }

@@ -11,10 +11,10 @@ gem 'devise'
 gem 'devise_invitable'
 
 # Authorization
-gem 'declarative_authorization'
+# gem 'declarative_authorization'
+# gem 'cancan'
 
 # Navigation
-gem 'simple-navigation'
 gem 'will_paginate'
 
 # HTML/JS
@@ -27,10 +27,14 @@ gem 'paperclip'
 # Date Validation
 # gem 'date_validator'
 
-# Query Searching
+# Geocoding - requires plugin as well.
+gem 'geokit'
 
 # Generators
 gem 'rails3-generators'
+
+
+# gem 'simple-navigation' - not needed anymore
 
 #gem 'searchlogic' - Doesn't work with rails 3
 #gem 'css_sprite' - Doesn't work with rails 3, failing on Rake Class Task
@@ -42,7 +46,6 @@ gem 'rails3-generators'
 #gem 'paper_trail'
 #gem 'acts_as_archive'
 #gem 'foreigner'
-#gem 'subdomain-fu'
 
 
 

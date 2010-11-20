@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101119165056) do
+ActiveRecord::Schema.define(:version => 20101120053642) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -127,16 +127,20 @@ ActiveRecord::Schema.define(:version => 20101119165056) do
     t.string   "fax_phone"
     t.string   "website"
     t.string   "twitter"
-    t.text     "street"
+    t.text     "address"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+    t.boolean  "is_kill_shelter", :default => false, :null => false
+    t.decimal  "lat"
+    t.decimal  "lng"
   end
 
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
+  add_index "shelters", ["lat", "lng"], :name => "index_shelters_on_lat_and_lng"
 
   create_table "task_categories", :force => true do |t|
     t.string   "name"
