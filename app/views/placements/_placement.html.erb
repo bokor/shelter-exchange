@@ -1,0 +1,24 @@
+<tr id="<%= "placement_#{placement.id}" %>" class="placement">
+	<td class="image">
+		<%= image_tag placement.animal.photo.url(:thumb) %>
+		<% if placement.shelter.id == @current_shelter.id %>
+			<p class="action_links"><%= link_to "Edit", edit_placement_path(placement), :remote => true, :title => "Edit placement" %></p>
+			<p class="action_links"><%= link_to "Delete", placement, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete placement" %></p>
+		<% end %>
+	</td>
+	<td class="details">
+		<h3><%= placement.animal.name %></h3>
+		<h3><%= Placement::PLACEMENT_TYPE[placement.placement_type]%> (<%= format_date(:long, placement.created_at) %>)</h3>
+		<p><%= format_breed(placement.animal.is_mix_breed, placement.animal.primary_breed, placement.animal.secondary_breed) %></p>
+		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
+		<h4>Comment:</h4>
+		<p><%= placement.comment %></p>
+	</td>
+	<td class="status">
+		<p><%= placement.shelter.name %></p>
+		<p><%= placement.shelter.street %></p>
+		<p><%= placement.shelter.city %>, <%= placement.shelter.state %> <%= placement.shelter.zip_code %></p>
+		<p><%=number_to_phone(placement.shelter.main_phone, :delimiter => "-")%>(Main)</p>
+		<p><a href="mailto:<%= placement.shelter.email %>"><%= placement.shelter.email %></a></p>
+	</td>
+</tr>

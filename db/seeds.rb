@@ -73,6 +73,7 @@ AnimalStatus.create([
   { :name => "On Hold - Behavioral" },
   { :name => "On Hold - Medical" },
   { :name => "On Hold - Stray Intake" },
+  { :name => "Reclaim" },
   { :name => "Deceased" },
   { :name => "Euthanized" }
 ])

@@ -16,10 +16,10 @@ class Alert < ActiveRecord::Base
   validates_presence_of :description
   
   # Scopes
-  scope :stopped, :conditions => {"is_stopped" => true }
-  scope :not_stopped, :conditions => {"is_stopped" => false }
+  scope :stopped, where(:is_stopped => true)
+  scope :not_stopped, where(:is_stopped => false)
   
-  scope :for_global, :conditions => { :alertable_type => nil }
-  scope :for_animals, :include => [:alertable], :conditions => { :alertable_type => "Animal" }
+  scope :for_global, where(:alertable_type => nil)
+  scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
   
 end

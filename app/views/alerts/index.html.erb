@@ -1,4 +1,8 @@
-<%= javascripts "alerts/alerts" %>
+<%= title "Alerts" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "alerts/alerts", :cache => "cache/application/alerts-index" %>
+<% end %>
 
 <%= content_for :page_content do %>
 

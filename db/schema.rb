@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101120153319) do
+ActiveRecord::Schema.define(:version => 20101203013920) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20101120153319) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shelter_id"
+    t.date     "status_change_date"
   end
 
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20101120153319) do
   add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
+  add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
 
   create_table "breeds", :force => true do |t|
     t.string   "name"
@@ -121,6 +123,34 @@ ActiveRecord::Schema.define(:version => 20101120153319) do
   add_index "notes", ["shelter_id"], :name => "index_notes_on_shelter_id"
   add_index "notes", ["title"], :name => "index_notes_on_title"
 
+  create_table "parents", :force => true do |t|
+    t.string   "name"
+    t.text     "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "home_phone"
+    t.string   "mobile_phone"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "placements", :force => true do |t|
+    t.integer  "animal_id"
+    t.integer  "parent_id"
+    t.integer  "shelter_id"
+    t.string   "placement_type"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "placements", ["animal_id"], :name => "index_placements_on_animal_id"
+  add_index "placements", ["parent_id", "placement_type"], :name => "index_placements_on_parent_id_and_placement_type"
+  add_index "placements", ["parent_id"], :name => "index_placements_on_parent_id"
+  add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
+
   create_table "shelters", :force => true do |t|
     t.string   "name"
     t.string   "main_phone"
@@ -137,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20101120153319) do
     t.boolean  "is_kill_shelter", :default => false, :null => false
     t.decimal  "lat"
     t.decimal  "lng"
+    t.string   "email"
   end
 
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"

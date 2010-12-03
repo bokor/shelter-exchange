@@ -11,7 +11,9 @@ class Notifier < ActionMailer::Base
     @shelter = shelter
     @user = user
     attachments["logo_small.png"] = File.read("#{Rails.root}/public/images/logo_small.png")
-    mail(:to => "notifications@shelterexchange.org", :subject => "ShelterExchange - New Account Created (#{shelter.name})")
+    mail(:from => "New Account Signup - Shelter Exchange<signup@application.shelterexchange.org>", 
+         :to => "notifications@shelterexchange.org", 
+         :subject => "ShelterExchange - New Account Created (#{shelter.name})")
   end
 end
 

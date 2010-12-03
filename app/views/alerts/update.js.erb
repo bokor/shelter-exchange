@@ -1,7 +1,9 @@
 <% if @alert.errors.any? %>
 	$('#alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
 <% else %>
-	$('#edit_alert_<%=@alert.id%>').slideToggle();
+	$('#edit_alert_<%=@alert.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
 	$('#alert_<%=@alert.id%>').replaceWith( "<%= escape_javascript(render @alert) %>" );
 	$('#alert_<%=@alert.id%>').show().effect("highlight", {}, 1000);
 	$('#alert_errors').html("");

@@ -1,0 +1,24 @@
+<% if @parents.size > 0 %>
+	<table class="list">
+		<% @parents.each do |parent| %>
+		<tr id="<%= "parent_#{parent.id}" %>">
+			<td class="details">
+				<h2><%= link_to parent.name, parent %></h2>
+				<p><%= parent.street %></p>
+				<p><%= parent.city %>, <%= parent.state %> <%= parent.zip_code %></p>
+			</td>
+			<td class="status">
+				<p><%=number_to_phone(parent.home_phone, :delimiter => ".")%>(h)</p>
+				<p><%=number_to_phone(parent.mobile_phone, :delimiter => ".")%>(m)</p>
+				<p><%= parent.email %></p>
+				
+			</td>
+		</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div class="no_results">
+		<h2>No search results found</h2>
+		<p>Would you like to <%= link_to "create a new parent", new_parent_path %>?</p>
+	</div>
+<% end %>

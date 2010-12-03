@@ -1,0 +1,37 @@
+	<ul class="form">
+		<li>
+			<%= f.label :name, "Parent name" %><br />
+			<%= f.text_field :name %>
+		</li>
+		<li>
+			<%= f.label :street, "Street" %><br />
+			<%= f.text_field :street %>
+		</li>
+		<li>
+			<%= f.label :city, "City" %><br />
+			<%= f.text_field :city %>
+		</li>
+		<li>
+			<%= f.label :state, "State" %><br />
+			<%= f.text_field :state %>
+		</li>
+		<li>
+			<%= f.label :zip_code, "Zip code" %><br />
+			<%= f.text_field :zip_code %>
+		</li>
+		<li>
+			<%= f.label :home_phone, "Phone (h)" %><br />
+			<%= f.text_field :home_phone %>
+		</li>
+		<li>
+			<%= f.label :mobile_phone, "Phone (m)" %><br />
+			<%= f.text_field :mobile_phone %>
+		</li>
+		<li>
+			<%= f.label :email, "Email" %><br />
+			<%= f.text_field :email %>
+		</li>
+	</ul>
+	<div class="actions">
+		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+	</div>

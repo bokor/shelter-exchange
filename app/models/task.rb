@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  default_scope :order => 'updated_at DESC'
+  default_scope :order => 'task.updated_at DESC'
   
   DUE_CATEGORY = { "today" => "Today", 
                    "tomorrow" => "Tomorrow", 
@@ -19,15 +19,15 @@ class Task < ActiveRecord::Base
   
   # Scopes
   # scope :for_global, :include => [:task_category], :conditions => { :taskable_type => nil }
-  scope :for_all, :include => [:task_category, :taskable]
+  scope :for_all, includes([:task_category, :taskable])
   
-  scope :completed, :conditions => {"is_completed" => true }
-  scope :not_completed, :conditions => {"is_completed" => false }
+  scope :completed, where(:is_completed => true )
+  scope :not_completed, where(:is_completed => false )
   
-  scope :overdue, :conditions => ["due_date < ?", Date.today]
-  scope :today, :conditions => ["due_date = ?", Date.today] 
-  scope :tomorrow, :conditions => ["due_date = ?", Date.today + 1.day] 
-  scope :later, :conditions => ["due_category = ? OR due_date > ?", 'later', Date.today + 1.day], :order => "updated_at DESC, due_date DESC"  
+  scope :overdue, where("due_date < ?", Date.today)
+  scope :today, where("due_date = ?", Date.today)
+  scope :tomorrow, where("due_date = ?", Date.today + 1.day)
+  scope :later, where("due_category = ? OR due_date > ?", 'later', Date.today + 1.day).order("updated_at DESC, due_date DESC")
   
   
 end

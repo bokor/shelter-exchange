@@ -1,0 +1,35 @@
+<%= title "Parents" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "parents/parents", :cache => "cache/application/parents-index" %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading green_background">
+		<h1>Parents</h1>
+	</div>
+		
+	<div class="page_content">
+		<div id="parent_search">
+			<h3>Search for parent:</h3>
+			<%= form_for :parents, :url => { :action => "search" }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+				<%= text_field_tag "q", "" %>
+				<%= f.submit "Go" %>
+			<% end %>
+		</div>
+			
+		<div id="parents">
+			<div class="no_results">
+				<p>Please enter search term to search for name, street, home phone, mobile phone or email address.</p>
+			</div>
+		</div>
+
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+
+
+<% end %>

@@ -1,0 +1,85 @@
+<%= title "#{@parent.name}" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "parents/parents", :cache => "cache/application/parents-show" %>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading green_background">
+		<table class="parent">
+			<tr>
+				<td>
+					<h1><%= @parent.name %></h1>
+				</td>
+				<td class="links right">
+					<%= link_to "Edit this parent", edit_parent_path(@parent)%>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Back to search", parents_path %>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		<div class="parent_info_section">
+			<h3>Address:</h3>
+			<p><%= @parent.street %></p>
+			<p><%= @parent.city %>, <%= @parent.state %> <%= @parent.zip_code %></p>
+		</div>
+		<div class="parent_info_section">
+			<h3>Contact details:</h3>
+			<p><%=number_to_phone(@parent.home_phone, :delimiter => "-")%>(h) or <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%>(m)</p>
+			<p><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></p>
+		</div>
+		<div class="clear"></div> <!-- style="border-top: 1px #ccc dotted; margin-bottom: 20px; position: relative; top: 10px;"></div> -->
+	</div>
+	
+	<div class="placement_heading blue_background">
+		<h2>Adoption History</h2>
+	</div>
+	
+	<div id="placement_adopted" class="page_content">
+		<table class="list">
+			<%= render @parent.placements.adopted %>
+		</table>
+	</div>
+		
+	<div class="placement_heading blue_background">
+		<h2>Foster Care History</h2>
+	</div>
+	
+	<div id="placement_foster_care" class="page_content">
+		<table class="list">
+			<%= render @parent.placements.foster_care %>
+		</table>
+	</div>
+
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<div id="create_placement">
+		<h2>Create an Animal Placement</h2>
+		<div id="placement_errors"></div>
+		<div id="animal_selected">
+			<span></span>
+			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 500, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
+		</div>
+		<%= form_for (Placement.new), :remote => true do |f| %>
+			<%= render :partial => "placements/form", :locals => { :f => f, :button_text => "Create Placement" } %>
+		<% end %>
+	</div>	
+	
+	<div id="animal_search_dialog" style="display:none;">
+		<div class="wrapper">
+			<%= form_for :parents, :url => { :action => "search_animal_by_name"}, 
+			             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
+	  			<h2>Search for animal:</h2>
+	  			<input type="text" id="q" name="q" value="" />
+	  			<input type="submit" name="Go" value="Go" />
+	  		<% end %>
+	
+			<div id="animal_search_results"></div>
+		</div>
+	</div>
+<% end %>
+	

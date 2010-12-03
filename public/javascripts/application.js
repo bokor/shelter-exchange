@@ -1,3 +1,9 @@
+/*
+ * Configure TopUp
+ */
+//TopUp.host = "http://www.anotherwebsite.com/";
+TopUp.images_path = "/images/top_up/";
+TopUp.players_path = "/players/";
 
 // activation: string ("hover" by default) - jQuery method TipTip is activated with. Can be set to: "hover", "focus" or "click".
 // keepAlive: true of false (false by default) - When set to true the TipTip will only fadeout when you hover over the actual TipTip and then hover off of it.
@@ -24,4 +30,5 @@
 // 
 // 	tipTip("a[title]", {fadeIn:100, fadeOut: 100, delay:200, defaultPosition: "top", edgeOffset: 10});
 // });
+
 

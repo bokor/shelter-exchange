@@ -1,5 +1,5 @@
 Shelterexchange::Application.routes.draw do
-  
+
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -19,12 +19,24 @@ Shelterexchange::Application.routes.draw do
 #   Reports Routes    
     resources :reports
     
+#   Placements Routes
+    resources :placements
+    
+#   Parents Routes
+    resources :parents do
+      collection do
+        get :search
+        get :search_animal_by_name
+      end
+    end
+    
 #   Animals Routes
     resources :animals do
       resources :notes
       resources :alerts 
       resources :tasks 
       collection do
+        get :auto_complete
         get :find_by
         get :live_search
       end
@@ -44,9 +56,9 @@ Shelterexchange::Application.routes.draw do
 #   Devise Routes
     # devise_for :users 
      
-    devise_for :users, :as => "", :path_names => { :sign_in => "login", :sign_out => "logout" } 
-    match "login" => "devise/sessions#new", :as => :new_user_session 
-    match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
+    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout" } 
+    match "login" => "devise/sessions#new", :path => :new_user_session #used to be :as
+    match "logout" => "devise/sessions#destroy", :path => :destroy_user_session
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")
@@ -61,11 +73,11 @@ Shelterexchange::Application.routes.draw do
     
 #   Accounts Route
     resources :accounts
-    get "signup" => "Accounts#new", :as => :signup
-    post "signup" => "Accounts#create", :as => :signup
+    get "signup" => "Accounts#new", :path => :signup
+    post "signup" => "Accounts#create", :path => :signup
     
 #   Public - Pages
-    match "videos" => "Public#videos", :as => :videos
+    match "videos" => "Public#videos", :path => :videos
     
     root :to => "Public#index"
   end

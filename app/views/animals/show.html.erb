@@ -1,9 +1,10 @@
-<%= javascripts "animals/animals" %>
-<%= javascripts "tasks/tasks" %>
-<%= javascripts "date" %>
+<%= title "#{@animal.name}" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "animals/animals", "tasks/tasks", "date", :cache => "cache/application/animals-show" %>
+<% end %>
 
 <%= content_for :page_content do %>
-	
 	<div class="page_heading blue_background">
 		<table class="animal">
 			<tr>

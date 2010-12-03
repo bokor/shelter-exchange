@@ -18,7 +18,10 @@
 		$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1000);
 		
 	<% else %>
-		$('#edit_task_<%=@task.id%>').slideToggle();
+		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() { 
+			$(this).remove(); 
+			removeTaskSection();
+		});
 		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
 		$('#task_<%=@task.id%>').show().effect("highlight", {}, 1000);
 	<% end %>

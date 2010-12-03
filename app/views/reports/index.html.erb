@@ -1,5 +1,45 @@
-<%= javascripts "highcharts" %>
-<%= javascripts "reports/reports" %>
+<%= title "Reports"  %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
+	<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+	   new Highcharts.Chart({
+	      chart: {
+	         renderTo: 'pie_chart'
+	      },
+	      title: {
+	         text: 'Current Animals by Status - <%= current_year %>'
+	      }	,
+			      plotArea: {
+			         shadow: null,
+			         borderWidth: null,
+			         backgroundColor: null
+			      },
+			      tooltip: {
+			         formatter: function() {
+			            return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+			         }
+			      },
+			      plotOptions: {
+			         pie: {
+			            allowPointSelect: true,
+			            cursor: 'pointer',
+			            dataLabels: {
+			               enabled: false
+			            },
+			            showInLegend: true
+			         }
+			      },
+			       series: [{
+			         type: 'pie',
+			         name: 'Browser share',
+			         data: <%= count_by_status.map{ |count,status| [count.to_i, status.to_i] } %>
+			      }]
+	   });
+	});
+	</script>
+<% end %>
 
 <%= content_for :page_content do %>
 	
@@ -8,6 +48,9 @@
 	</div>
 		
 	<div class="page_content">
+		
+		<div id="pie_chart" style="width: 98%; height: 400px; margin: 0 auto"></div>
+		
 		<div id="report_test" style="width: 98%; height: 400px; margin: 0 auto"></div>
 		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
 		<div id="report_test_2" style="width: 98%; height: 400px; margin: 0 auto"></div>

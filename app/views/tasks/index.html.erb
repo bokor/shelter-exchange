@@ -1,5 +1,8 @@
-<%= javascripts "tasks/tasks" %>
-<%= javascripts "date" %>
+<%= title "Tasks" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "tasks/tasks", "date", :cache => "cache/application/tasks-index" %>
+<% end %>
 
 <%= content_for :page_content do %>
 

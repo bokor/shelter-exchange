@@ -12,7 +12,7 @@ var Animals = {
 		var element = $(element);
     	// element.down(".close").addClassName("busy");
 		if (element.val().length >= letters_before_search) { // Require at least 3 letters before searching
-			$.get("/animals/live_search", element.parent("form").serialize());
+			$.get("/animals/live_search", element.parents("form:first").serialize());
 		}
   	},
 	
@@ -44,7 +44,8 @@ $(document).ready(function() {
 						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 						return {
 							label: item.label.replace(matcher,'<strong>$1</strong>'),
-							value: item.value
+							value: item.value,
+							id: item.id
 						}  
 					}));
 				}

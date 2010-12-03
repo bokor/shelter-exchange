@@ -1,4 +1,8 @@
-<%= javascripts "animals/animals" %>
+<%= title "Animals" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "animals/animals", :cache => "cache/application/animals-index" %>
+<% end %>
 
 <%= content_for :page_content do %>
 

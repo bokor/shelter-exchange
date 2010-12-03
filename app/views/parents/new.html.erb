@@ -1,0 +1,31 @@
+<%= title "Create a new parent" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "parents/parents", :cache => "cache/application/parents-new" %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading green_background">
+		<h1>Create a new parent</h1>
+	</div>
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @parent %>
+		<%= form_for(@parent) do |f| %>
+			<%= render :partial => "form", :locals => { :f => f, :button_text => "Create Parent" } %>
+		<% end %>
+		
+	</div>	
+<% end %>
+
+<%= content_for :sidebar do %>
+	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+<% end %>

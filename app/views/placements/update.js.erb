@@ -1,0 +1,10 @@
+<% if @placement.errors.any? %>
+	$('#placement_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @placement) %>" );
+<% else %>
+	$('#edit_placement_<%=@placement.id%>').slideToggle(1000);
+	$('#placement_<%=@placement.id%>').replaceWith( "<%= escape_javascript(render @placement) %>" );
+	$('#placement_<%=@placement.id%>').show().effect("highlight", {}, 1000);
+	$('#edit_placement_<%=@placement.id%>').remove();
+	$('#placement_errors').html("");
+<% end %>
+<% flash.discard %>

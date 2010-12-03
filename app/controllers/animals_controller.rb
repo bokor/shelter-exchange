@@ -77,6 +77,12 @@ class AnimalsController < ApplicationController
     end
   end
   
+  def auto_complete
+    q = params[:q].strip
+    @animals = q.blank? ? {} : @current_shelter.animals.auto_complete(q)
+    render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
+  end
+  
   
   # def api
   #   @animals = Animal.all

@@ -8,7 +8,7 @@ class BreedsController < ApplicationController
     # q = temp.map {|str| str}.join("%")
     flash[:error] = "Animal Type not specified" and return if params[:animal_type_id].blank?
     @breeds = Breed.auto_complete(params[:animal_type_id], q)
-    render :json => @breeds.collect{ |breed| {:id => "#{breed.id}", :label => "#{breed.name}", :value => "#{breed.name}", :name => "#{breed.name}", } }
+    render :json => @breeds.collect{ |breed| {:id => "#{breed.id}", :label => "#{breed.name}", :value => "#{breed.name}", :name => "#{breed.name}" } }
   end
   
   # def auto_suggest

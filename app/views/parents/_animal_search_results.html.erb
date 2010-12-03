@@ -1,0 +1,30 @@
+<% if @animals.size > 0 %>
+<table>
+	<% @animals.each do |animal| %>
+	<tr id="<%= "animal_#{animal.id}" %>">
+		<td class="image">
+			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+		</td>
+		<td class="details">
+			<h3><%= animal.name %></h3>
+			<p><%= format_breed(animal.is_mix_breed, animal.primary_breed, animal.secondary_breed) %></p>
+			<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex %> <% end %><% if animal.is_sterilized %>(Sterilized)<% end %>
+		</td>
+		<td class="status">
+			<p><b><%= animal.animal_status.name %></b></p>
+			<p class="action_links">
+			    <%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');" %>
+			</p>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<%-# will_paginate @animals, :renderer => 'RemoteLinkRenderer' %>
+
+<% else %>
+	<div class="no_results">
+		<h2>No search results found</h2>
+		<p>Please search again</p>
+	</div>
+<% end %>

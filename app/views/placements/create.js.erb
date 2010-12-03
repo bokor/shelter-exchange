@@ -1,0 +1,13 @@
+<% if @placement.errors.any? %>
+	$('#placement_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @placement) %>" );
+<% else %>
+	$('#placement_<%=@placement.placement_type %> table').prepend("<%= escape_javascript(render @placement) %>"); 
+	$("#placement_<%=@placement.placement_type %> .placement").first().effect("highlight", {}, 1000);
+	// Reset Form
+	$('#new_placement').get(0).reset();
+	$('#animal_selected span').html('');
+	$('#animal_search_link').text("Find animal");
+	// Clear Errors
+	$('#placement_errors').html("");
+<% end %>
+<% flash.discard %>

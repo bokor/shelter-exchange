@@ -1,15 +1,20 @@
-<%= javascripts "animals/animals" %>
+<%= title "Editing animal - #{@animal.name}" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "animals/animals", :cache => "cache/application/animals-edit" %>
+<% end %>
 
 <%= content_for :page_content do %>
 	
-	<div class="page_heading">
+	<div class="page_heading blue_background">
 		<h1>Editing animal: <%= @animal.name %></h1>
-		<p>Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information. Editing the animal below is to provide updated information.</p>
 	</div>
+	
 	<div class="page_content">
 		<%= render "global/error_messages", :target => @animal %>
 		<%= render "form", :button_text => "Update Animal" %>
 	</div>
+	
 <% end %>
 
 <%= content_for :sidebar do %>

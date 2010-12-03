@@ -5,7 +5,7 @@
 	    <div class="actions">
 			<%= f.submit "Update Task", :disable_with => "Submitting...", :class => "button" %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#', :onclick => "$('#edit_task_#{@task.id}').toggle();$('#task_#{@task.id}').show();"  %>
+			<%= link_to 'Cancel', '#', :onclick => "$('#edit_task_#{@task.id}').slideToggle(function() {$(this).remove();});$('#task_#{@task.id}').show();"  %>
 		</div>
 	<% end %>
 </div>

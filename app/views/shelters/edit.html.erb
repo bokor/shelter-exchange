@@ -1,9 +1,13 @@
-<%= javascripts "shelters/shelters" %>
+<%= title "Editing Shelter - #{@shelter.name}" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "shelters/shelters", :cache => "cache/application/shelters-edit" %>
+<% end %>
 
 <%= content_for :page_content do %>
 	
 	<div class="page_heading blue_background">
-		<h1>Editing Shelter</h1>
+		<h1>Editing Shelter: <%=@shelter.name%></h1>
 	</div>
 	<div class="page_content">
 		<%= render "global/error_messages", :target => @shelter %>

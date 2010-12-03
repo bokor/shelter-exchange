@@ -4,6 +4,14 @@
 .active_link {color:#888; text-decoration:none; cursor:default; }
 .actions{padding-top: 20px;}
 .no_tasks, .no_alerts {display:none;}
+.hidden{display:none;}
+
+
+/*
+
+If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
+.show_parents #left { width: 97%;}
+.show_parents #sidebar { width: 0;}*/
 
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
@@ -18,8 +26,8 @@
 
 .index_animals table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
 .index_animals table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.index_animals table.list td.image { width:100px; }
-.index_animals table.list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_animals table.list td.image { width:100px; padding-right: 15px; }
+.index_animals table.list td.details { width:380px;color:#666; }
 .index_animals table.list td.status { width:175px;padding-left: 10px; text-align:right;}
 .index_animals table.list td .action_links{font-size: 10px;font-weight:bold;}
 
@@ -234,3 +242,72 @@ ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
 .show_animals .task_list .details p {margin-top:3px;}
 .show_animals .task_list .links{margin-top:3px;}
 .show_animals .task_list .task_animal_name{display:none;}
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- PARENTS --------------------------- */
+/******************************************************************/
+.parents ul {list-style:none;}
+
+/* -------------------------- INDEX - PARENTS  -------------------------- */
+.index_parents .page_heading{/*border-bottom:1px solid #ddd;*/ }
+.index_parents #parent_search {padding: 0 0 20px 0; border-bottom:1px #ccc dotted;}
+.index_parents #parents {}
+.index_parents #parents .no_results {padding: 20px 0 0 0; }
+.index_parents #parents .no_results p{font-weight: bold; }
+
+.index_parents table.list{width:100%;padding:0 0 5px 0; }
+.index_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.index_parents table.list td.details { width:380px; color:#666; }
+.index_parents table.list td.status { width:175px;padding-left: 10px; text-align:right;}
+.index_parents table.list td .action_links{font-size: 10px;font-weight:bold;}
+
+
+/* -------------------------- SHOW - PARENTS  -------------------------- */
+.show_parents .page_heading{border-bottom:1px solid #ddd; }
+.show_parents table.parent{width:100%;}
+.show_parents table.parent td{vertical-align:top;width:50%;/*color:#666;*/}
+.show_parents table.parent td.links{font-size:12px;line-height:100%;height:100%;padding-top:5px;}
+.show_parents table.parent td h1 {}
+.show_parents table.parent td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
+.show_parents table.parent td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+
+.show_parents .parent_info_section{float:left; width: 50%;}
+
+.show_parents #create_placement {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
+.show_parents #animal_search_dialog {width:100%; height:100%; background-color: #fff;}
+.show_parents #animal_search_dialog .wrapper { padding: 15px; }
+
+.show_parents #animal_selected{padding: 0 0 10px 0;}
+.show_parents #animal_selected span {}
+.show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
+.show_parents #animal_selected #animal_search_link{}
+
+.show_parents #animal_search_results {padding-top: 20px;}
+.show_parents #animal_search_results table{width:98%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.show_parents #animal_search_results table td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.show_parents #animal_search_results table td.image { width:100px; padding-right: 15px;}
+.show_parents #animal_search_results table td.details { width:380px;color:#666; }
+.show_parents #animal_search_results table td.status { width:175px;padding-left: 10px; text-align:right;}
+.show_parents #animal_search_results table td .action_links{font-size: 10px;font-weight:bold;}
+
+.show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; }
+.show_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
+.show_parents table.list td.image { width:100px; padding-right: 15px; }
+.show_parents table.list td.image img { padding-bottom: 10px;}
+.show_parents table.list td .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.list td.details { width:380px;color:#666; }
+.show_parents table.list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
+.show_parents table.list td.status { width:175px;padding-left: 10px; text-align:right;}
+
+.show_parents table.list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
+.show_parents table.list tr.edit_placement h2 {border: 0;}
+
+.show_parents .placement_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_parents .placement_heading h2{float:left;}
+.show_parents .placement_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+

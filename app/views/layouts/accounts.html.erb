@@ -2,14 +2,14 @@
 <html>
 <head>
   
-	<title><% yield(:title) %></title>
+	<title><%= yield(:title) %> - Shelter Exchange</title>
   
  	<%= stylesheet_link_tag :all, :media => "screen", :cache => "cache/all" %>
 	<%= yield(:stylesheets) %>
 	
 	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", 
 							   "jquery.ui.autocomplete.ext", "jquery.tipTip.minified",
-	 						   "rails", "application", :cache => "cache/all" %>
+	 						   "rails", "application", :cache => "cache/accounts/all" %>
 	<%= yield(:javascripts) %>
 	
 	<%= csrf_meta_tag %>
