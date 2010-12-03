@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  default_scope :order => 'task.updated_at DESC'
+  default_scope :order => 'updated_at DESC'
   
   DUE_CATEGORY = { "today" => "Today", 
                    "tomorrow" => "Tomorrow", 

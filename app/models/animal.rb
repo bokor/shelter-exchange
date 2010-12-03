@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  default_scope :order => 'animals.created_at DESC'
+  default_scope :order => 'created_at DESC'
   before_create :update_status_change_date
   before_save :check_status_change
   
@@ -48,7 +48,7 @@ class Animal < ActiveRecord::Base
   private
     def primary_breed_exists
       if self.primary_breed && self.animal_type_id
-        if Breed.find_by_name(primary_breed).blank?
+        if Breed.where(:name => primary_breed).blank?
           errors.add(:primary_breed, "must contain a valid breed from the list")
         end
       end
@@ -56,7 +56,7 @@ class Animal < ActiveRecord::Base
 
     def secondary_breed_exists
       if self.is_mix_breed && !self.secondary_breed.blank?
-        if Breed.find_by_name(secondary_breed).blank?
+        if Breed.where(:name => secondary_breed).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
         end
       end

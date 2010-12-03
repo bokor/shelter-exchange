@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-  default_scope :order => 'note.created_at DESC'
+  default_scope :order => 'created_at DESC'
    
   # Associations
   belongs_to :shelter

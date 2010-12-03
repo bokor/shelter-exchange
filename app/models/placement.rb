@@ -1,5 +1,5 @@
 class Placement < ActiveRecord::Base
-  default_scope :order => 'placement.created_at DESC'
+  default_scope :order => 'created_at DESC'
   
   PLACEMENT_TYPE = { "adopted" => "Adopted", 
                      "foster_care" => "Foster care" }
