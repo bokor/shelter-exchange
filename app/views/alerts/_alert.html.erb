@@ -1,6 +1,6 @@
 <div id="<%= "alert_#{alert.id}" %>" class="alert">
 	<span class="type <%= alert.severity %>">
-		<%= Alert::SEVERITY[alert.severity] %>
+		<%= Alert::SEVERITY[alert.severity.to_sym] %>
 	</span>
 	<span class="details">
 		<p><span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>

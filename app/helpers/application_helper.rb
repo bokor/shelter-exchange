@@ -18,6 +18,8 @@ module ApplicationHelper
   
   def format_date(type, date)
     case type
+      when :month_only
+        date.strftime("%B")
       when :short_no_year 
         date.strftime("%b %d")
       when :short

@@ -3,13 +3,16 @@
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript" charset="utf-8">
+    var status_by_current_year;
+    var status_by_current_month;
+
 	$(document).ready(function() {
-	   new Highcharts.Chart({
+	   status_by_current_year = new Highcharts.Chart({
 	      chart: {
-	         renderTo: 'pie_chart'
+	         renderTo: 'status_by_current_year'
 	      },
 	      title: {
-	         text: 'Current Animals by Status - <%= current_year %>'
+	         text: 'Animals by Status - <%= current_year %>'
 	      }	,
 			      plotArea: {
 			         shadow: null,
@@ -18,7 +21,7 @@
 			      },
 			      tooltip: {
 			         formatter: function() {
-			            return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+			            return '<b>'+ this.point.name +' Total</b>: '+ this.y;
 			         }
 			      },
 			      plotOptions: {
@@ -34,7 +37,40 @@
 			       series: [{
 			         type: 'pie',
 			         name: 'Browser share',
-			         data: <%= count_by_status.map{ |count,status| [count.to_i, status.to_i] } %>
+			         data: <%=  raw status_by_current_year.map{|status, count| [status, count.to_i] }.inspect %>
+			      }]
+	   });
+	status_by_current_month = new Highcharts.Chart({
+	      chart: {
+	         renderTo: 'status_by_current_month'
+	      },
+	      title: {
+	         text: 'Animals by Status - <%=format_date(:month_only, Date.today)%>'
+	      }	,
+			      plotArea: {
+			         shadow: null,
+			         borderWidth: null,
+			         backgroundColor: null
+			      },
+			      tooltip: {
+			         formatter: function() {
+			            return '<b>'+ this.point.name +' Total</b>: '+ this.y;
+			         }
+			      },
+			      plotOptions: {
+			         pie: {
+			            allowPointSelect: true,
+			            cursor: 'pointer',
+			            dataLabels: {
+			               enabled: false
+			            },
+			            showInLegend: true
+			         }
+			      },
+			       series: [{
+			         type: 'pie',
+			         name: 'Browser share',
+			         data: <%=  raw status_by_current_month.map{|status, count| [status, count.to_i] }.inspect %>
 			      }]
 	   });
 	});
@@ -42,14 +78,21 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	
+
 	<div class="page_heading yellow_background">
 		<h1>Reports</h1>
 	</div>
 		
 	<div class="page_content">
-		
-		<div id="pie_chart" style="width: 98%; height: 400px; margin: 0 auto"></div>
+		<div>
+			<div id="status_by_current_year" style="float:left; width: 50%;"></div>
+			<div id="status_by_current_month" style="float:left; width: 50%;"></div>
+		</div>
+		<div class="clear"></div> <br /><br /><br />
+		<!-- <div id="status_by_current_year" style="width: 98%; height: 400px; margin: 0 auto"></div>
+				<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+				<div id="status_by_current_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
+				<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div> -->
 		
 		<div id="report_test" style="width: 98%; height: 400px; margin: 0 auto"></div>
 		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>

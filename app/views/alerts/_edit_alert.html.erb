@@ -5,7 +5,7 @@
 	    <div class="actions">
 			<%= f.submit "Update Alert", :disable_with => "Submitting...", :class => "button" %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#', :onclick => "$('#edit_alert_#{@alert.id}').slideToggle(function() { $(this).remove();});$('#alert_#{@alert.id}').show();"  %>
+			<%= link_to 'Cancel', '#', :onclick => "$('#edit_alert_#{@alert.id}').slideToggle(800,function() { $(this).remove();});$('#alert_#{@alert.id}').fadeIn(1000);"  %>
 		</div>
 	<% end %>
 </div>
