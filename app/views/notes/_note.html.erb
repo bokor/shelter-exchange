@@ -1,4 +1,4 @@
-<div id="<%= "note_#{note.id}" %>" class="note">
+<!-- <div id="<%= "note_#{note.id}" %>" class="note">
 	<span class="action_links">
 		<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
 		<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
@@ -7,4 +7,16 @@
     <div style="clear:both;"></div>
   	<h3><%= note.title %> (<i><%= note.note_category.name if !note.note_category.blank?  %></i>)</h3>
   	<p class="description"><%= note.description %></p> 
+</div> -->
+
+
+<div id="<%= "note_#{note.id}" %>" class="note">
+	<span class="action_links">
+		<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+	</span>
+  	<p class="created_date"><%= format_date(:long, note.created_at) %></p>	 
+    <div style="clear:both;"></div>
+  	<h3><%= note.title %> (<i><%= note.note_category.name if !note.note_category.blank?  %></i>)</h3>
+  	<p class="description" style="display:none;"><%= note.description %></p> 
 </div>

@@ -55,12 +55,24 @@ $(document).ready(function() {
 });
 
 //  HOVER CODE FOR THE ANIMAL INDEX PAGE TABLE - Doesnt' work with pagination
-// $("table.list tr").live('mouseover mouseout', function(event) {
+// $("table.list tr").live('hover', function(event) {
 //   if (event.type == 'mouseover') {
 //     $(this).addClass("hover");
 //   } else {
 //     $(this).removeClass("hover");
 //   }
+// });
+
+//  FIGURE OUT HOW TO USE THIS WITH HOVER - Works better than live
+// $(document).ready(function() {
+// 	var test = function(selector, options) {
+// 		var elements = jQuery(selector);\
+//     	$('body').ajaxComplete(function() {
+//     		elements = jQuery(selector); // reselect elements
+//         	elements.tipTip(options);   // and apply again after ajax requests
+//     	});
+//     	return elements;
+// 	}
 // });
 
 /*

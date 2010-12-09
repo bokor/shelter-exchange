@@ -1,4 +1,4 @@
-<%= title "#{@animal.name}" %>
+<%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "animals/animals", "tasks/tasks", "date", :cache => "cache/application/animals-show" %>
@@ -133,28 +133,28 @@
 	%>
 	<div id="animal_tasks">
 		<h2>Tasks</h2>
-		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.not_completed.blank? %>">
+		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.not_completed.size <= 0 %>">
 			<h3>Overdue</h3>
 			<div id="overdue_tasks" class="task_list">
 				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.overdue.not_completed.all %>
 			</div>
 		</div>
 
-		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.not_completed.blank? %>">
+		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.not_completed.size <= 0 %>">
 			<h3>Today</h3>
 			<div id="today_tasks" class="task_list">
 				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.today.not_completed.all %>
 			</div>
 		</div>
 
-		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.not_completed.blank? %>">
+		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.not_completed.size <= 0 %>">
 			<h3>Tomorrow</h3>
 			<div id="tomorrow_tasks" class="task_list">
 				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.tomorrow.not_completed.all %>
 			</div>
 		</div>
 
-		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.not_completed.blank? %>">
+		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.not_completed.size <= 0 %>">
 			<h3>Later</h3>
 			<div id="later_tasks" class="task_list">
 				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.later.not_completed.all %>
