@@ -1,7 +1,7 @@
 <% if @note.errors.any? %>
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
-	if (note_filter == '<%=@note.note_category.name%>' || note_filter == null) {
+	if (note_filter == '<%=@note.note_category.name%>' || note_filter == null || note_filter == "") {
 		$('#animal_notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {

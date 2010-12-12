@@ -54,7 +54,7 @@ $(document).ready(function() {
 	});			
 });
 
-//  HOVER CODE FOR THE ANIMAL INDEX PAGE TABLE - Doesnt' work with pagination
+// Animal List - Live Hover
 // $("table.list tr").live('hover', function(event) {
 //   if (event.type == 'mouseover') {
 //     $(this).addClass("hover");
@@ -63,17 +63,15 @@ $(document).ready(function() {
 //   }
 // });
 
-//  FIGURE OUT HOW TO USE THIS WITH HOVER - Works better than live
-// $(document).ready(function() {
-// 	var test = function(selector, options) {
-// 		var elements = jQuery(selector);\
-//     	$('body').ajaxComplete(function() {
-//     		elements = jQuery(selector); // reselect elements
-//         	elements.tipTip(options);   // and apply again after ajax requests
-//     	});
-//     	return elements;
-// 	}
-// });
+// Note List - Live Hover (Animal Show Page)
+$(".note").live('hover', function(event) {
+  if (event.type == 'mouseover') {
+    $(this).addClass("hover");
+  } else {
+    $(this).removeClass("hover");
+  }
+});
+
 
 /*
 	FORM

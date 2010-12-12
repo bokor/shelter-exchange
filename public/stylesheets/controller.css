@@ -84,11 +84,15 @@ If we don't use hover remove the padding left and right*/
 /* NOTES - SHOW ANIMAL */
 .show_animals #animal_notes .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
 .show_animals #animal_alerts .edit_note h2 {border: 0;}
-.show_animals #animal_notes .note{ border-radius: 5px; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
-.show_animals #animal_notes .note .created_date {float: left;color:#666;font-weight: bold;}
-.show_animals #animal_notes .note .description {padding: 0;}
-.show_animals #animal_notes .note .action_links {float: right;}
-.show_animals #animal_notes .note .action_links {font-size: 10px;font-weight:bold;}
+.show_animals #animal_notes .hover{background-color:#EFEBE3;}
+.show_animals #animal_notes .note {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+.show_animals #animal_notes .note .note_info {float: left; width: 85%;cursor: pointer;}
+.show_animals #animal_notes .note .created_date {color:#999; font-size: 10px; letter-spacing: -1px; padding-right: 10px;}
+.show_animals #animal_notes .note .title {color:#000; font-weight: bold;font-size: 14px;}
+.show_animals #animal_notes .note .category {color:#999; font-size: 12px; }
+.show_animals #animal_notes .note .description {padding: 0 0 0 20px; line-height: 2em; display:none;}
+.show_animals #animal_notes .note .action_links {float: left; width: 15%; text-align: right;font-size: 10px;}
+.show_animals #animal_notes .note:last-child{border-bottom: 1px dotted #ccc; }
 
 .show_animals .note_filters{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_animals .note_filters h2{float:left;}

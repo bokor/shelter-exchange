@@ -1,22 +1,13 @@
-<!-- <div id="<%= "note_#{note.id}" %>" class="note">
-	<span class="action_links">
-		<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-	</span>
-  	<p class="created_date"><%= format_date(:long, note.created_at) %></p>	 
-    <div style="clear:both;"></div>
-  	<h3><%= note.title %> (<i><%= note.note_category.name if !note.note_category.blank?  %></i>)</h3>
-  	<p class="description"><%= note.description %></p> 
-</div> -->
-
-
 <div id="<%= "note_#{note.id}" %>" class="note">
-	<span class="action_links">
+	<div class="note_info" onclick="$(<%= "description_note_#{note.id}" %>).slideToggle();">
+  		<span class="created_date"><%= format_date(:short, note.created_at) %></span>
+		<span class="title"><%= note.title %></span>
+		<span class="category">(<%= note.note_category.name if !note.note_category.blank?  %>)</span>	
+	</div> 
+	<div class="action_links">
 		<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
 		<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-	</span>
-  	<p class="created_date"><%= format_date(:long, note.created_at) %></p>	 
+	</div>
     <div style="clear:both;"></div>
-  	<h3><%= note.title %> (<i><%= note.note_category.name if !note.note_category.blank?  %></i>)</h3>
-  	<p class="description" style="display:none;"><%= note.description %></p> 
+  	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
 </div>
