@@ -162,8 +162,8 @@ If we don't use hover remove the padding left and right*/
 .alert_list .action_links{float: right; text-align:right;margin-top: 8px;font-size: 10px;font-weight:bold;}
 
 
-.alert_list .high{background-color:red;color:#fff;}
-.alert_list .medium{background-color:orange;color:#fff;}
+.alert_list .high{background-color:#ee3124;color:#fff;}
+.alert_list .medium{background-color:#f39500;color:#fff;}
 .alert_list .low{background-color:gray;color:#fff;}
 
 /* -- Show Animals :: Alert List --*/

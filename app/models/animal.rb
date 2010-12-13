@@ -1,5 +1,6 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
+  before_validation :clear_photo
   before_create :update_status_change_date
   before_save :check_status_change
   
@@ -71,6 +72,26 @@ class Animal < ActiveRecord::Base
         update_status_change_date
       end
     end
+    
+    def clear_photo
+      self.photo = nil if !photo.dirty?
+    end
+    
+    # def delete_photo=(value)
+    #   @delete_photo = !value.to_i.zero?
+    # end
+    # 
+    # def delete_photo
+    #   !!@delete_photo
+    # end
+    # alias_method :delete_photo?, :delete_photo
+    
+    # def test_save
+    #   if @delete_avatar == 1.to_s 
+    #     self.avatar = nil 
+    #     self.avatar.queued_for_write.clear
+    #   end
+    # end
     
 end
 
