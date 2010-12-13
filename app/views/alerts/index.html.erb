@@ -13,10 +13,10 @@
 		
 		<div class="page_content">
 			
-			<div id="global_alerts_section" class="<%= "no_alerts" if @global_alerts.blank? %>">
-				<h3>Global</h3>
-				<div id="global_alerts" class="alert_list">
-					<%= render :partial => "alert", :collection => @global_alerts %>
+			<div id="shelter_alerts_section" class="<%= "no_alerts" if @shelter_alerts.blank? %>">
+				<h3>Shelter</h3>
+				<div id="shelter_alerts" class="alert_list">
+					<%= render :partial => "alert", :collection => @shelter_alerts %>
 				</div>
 			</div>
 			
@@ -31,8 +31,8 @@
 		
 	<% else %>
 		<div class="page_heading">
-			<h1>Creating your first alert</h1>
-			<p>Create a standard Message that will describe what to do next...like empty basecamp project</p>
+			<h1>Create your first alert</h1>
+			<p>Provide details below of the alert and the severity, include a description and choose if you would like this alert broadcast to the entire shelter.</p>
 		</div>
 
 		<div class="page_content">
@@ -62,6 +62,16 @@
 					<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
 				</div>
 			<% end %>
+		</div>
+	<% else %>
+		<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 		</div>
 	<% end %>
 <% end %>

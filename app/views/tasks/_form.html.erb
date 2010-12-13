@@ -1,15 +1,15 @@
 <ul class="form">
 	<li>
-		<%= f.label :info, "Info" %><br />
-		<%= f.text_field :info %>
+		<%= f.label :details, "Details" %><br />
+		<%= f.text_field :details %>
 	</li>
 	<li>
 		<%= f.label :task_category_id, "Category" %><br />
-		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :include_blank =>  "Select Type") %>
+		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :include_blank =>  "Select one") %>
 	</li>
 	<li>
-		<%= f.label :due_category, "due?" %><br />
-		<%= select :task, :due_category, Task::DUE_CATEGORY.map {|k,v| [ v, k ] }, {},:class => "task_due_category" %>
+		<%= f.label :due_category, "When is it due?" %><br />
+		<%= select :task, :due_category, Task::DUE_CATEGORY.map {|k,v| [ v, k ] }, {}, :class => "task_due_category" %>
 	</li>
 	<li>
 		<div class="due_date_field" style="display:none;">
@@ -18,4 +18,4 @@
 		</div>
 	</li>	
 </ul>
-<%= f.hidden_field :due_date, :class=>"hidden_due_date" %>
+<%= f.hidden_field :due_date, :class => "hidden_due_date" %>

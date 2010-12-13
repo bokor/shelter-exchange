@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203013920) do
+ActiveRecord::Schema.define(:version => 20101213191949) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20101203013920) do
   add_index "task_categories", ["name"], :name => "index_task_categories_on_name"
 
   create_table "tasks", :force => true do |t|
-    t.string   "info"
+    t.string   "details"
     t.string   "due_at"
     t.date     "due_date"
     t.integer  "taskable_id"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20101203013920) do
     t.integer  "shelter_id"
   end
 
-  add_index "tasks", ["info"], :name => "index_tasks_on_info"
+  add_index "tasks", ["details"], :name => "index_tasks_on_info"
   add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
   add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"

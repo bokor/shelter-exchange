@@ -5,10 +5,10 @@
 		$('#alerts').prepend("<%= escape_javascript(render 'alert', :alert => @alert) %>"); 
 		$(".alert").first().effect("highlight", {}, 1500);
 	<% else %>
-		$('#global_alerts_section').removeClass("no_alert");
-		$('#global_alerts_section').fadeIn(1000);
-		$('#global_alerts').prepend("<%= escape_javascript(render @alert) %>"); 
-		$("#global_alerts .alert").first().effect("highlight", {}, 1500);
+		$('#shelter_alerts_section').removeClass("no_alert");
+		$('#shelter_alerts_section').fadeIn(1000);
+		$('#shelter_alerts').prepend("<%= escape_javascript(render @alert) %>"); 
+		$("#shelter_alerts .alert").first().effect("highlight", {}, 1500);
 	<% end %>
 	$('#new_alert').get(0).reset();
 	$('#alert_errors').html("");

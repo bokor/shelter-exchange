@@ -1,6 +1,5 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
-  before_validation :clear_photo
   before_create :update_status_change_date
   before_save :check_status_change
   
@@ -20,7 +19,7 @@ class Animal < ActiveRecord::Base
   has_many :alerts, :as => :alertable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
   
-  has_attached_file :photo, :default_url => "/images/default_:style_photo.jpg", 
+  has_attached_file :photo, :whiny => false, :default_url => "/images/default_:style_photo.jpg", 
                             :styles => { :small => ["250x150>", :jpg],
                                          :medium => ["350x250>", :jpg],
                                          :large => ["500x400>", :jpg], 
@@ -73,27 +72,29 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    def clear_photo
-      self.photo = nil if !photo.dirty?
-    end
-    
-    # def delete_photo=(value)
-    #   @delete_photo = !value.to_i.zero?
-    # end
-    # 
-    # def delete_photo
-    #   !!@delete_photo
-    # end
-    # alias_method :delete_photo?, :delete_photo
-    
-    # def test_save
-    #   if @delete_avatar == 1.to_s 
-    #     self.avatar = nil 
-    #     self.avatar.queued_for_write.clear
-    #   end
-    # end
-    
 end
+
+
+# def clear_photo
+#   self.photo.queued_for_write.clear if !photo.dirty?
+#   # self.photo = nil
+# end
+
+# def delete_photo=(value)
+#   @delete_photo = !value.to_i.zero?
+# end
+# 
+# def delete_photo
+#   !!@delete_photo
+# end
+# alias_method :delete_photo?, :delete_photo
+
+# def test_save
+#   if @delete_avatar == 1.to_s 
+#     self.avatar = nil 
+#     self.avatar.queued_for_write.clear
+#   end
+# end
 
 
 #  OR

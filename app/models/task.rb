@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   belongs_to :task_category, :readonly => true
   
   # Validations
-  validates_presence_of :info
+  validates_presence_of :details
    
   # Callbacks
   
