@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213191949) do
+ActiveRecord::Schema.define(:version => 20101214185600) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -95,6 +95,20 @@ ActiveRecord::Schema.define(:version => 20101213191949) do
 
   add_index "breeds", ["animal_type_id"], :name => "index_breeds_on_animal_type_id"
   add_index "breeds", ["name"], :name => "index_breeds_on_name"
+
+  create_table "comments", :force => true do |t|
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shelter_id"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
 
   create_table "note_categories", :force => true do |t|
     t.string   "name"

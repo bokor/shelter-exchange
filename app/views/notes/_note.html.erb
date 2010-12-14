@@ -4,10 +4,12 @@
 		<span class="title"><%= note.title %></span>
 		<span class="category">(<%= note.note_category.name if !note.note_category.blank?  %>)</span>	
 	</div> 
-	<div class="action_links">
-		<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-	</div>
+	<% if note.shelter_id == @current_shelter.id %>
+		<div class="action_links">
+			<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+		</div>
+	<% end %>
     <div style="clear:both;"></div>
   	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
 </div>

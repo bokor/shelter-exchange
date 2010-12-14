@@ -67,7 +67,7 @@
 		</div>
 	</div>
 	
-	<div id="animal_notes" class="page_content">
+	<div id="notes" class="page_content">
 		<%= render @notes %>
 	</div>
 
@@ -75,7 +75,7 @@
 
 <%= content_for :sidebar do %>
 
-	<ul>
+	<ul class="model_actions">
 		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" -%></li>
 		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" -%></li>
 		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" -%></li>

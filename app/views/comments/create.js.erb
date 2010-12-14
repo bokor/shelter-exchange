@@ -1,0 +1,9 @@
+<% if @comment.errors.any? %>
+	$('#comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+<% else %>
+	$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
+	$(".comment").first().effect("highlight", {}, 1000);
+	$('#new_comment').get(0).reset();
+	$('#comment_errors').html("");
+<% end %>
+<% flash.discard %>

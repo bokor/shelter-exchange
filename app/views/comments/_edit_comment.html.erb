@@ -1,0 +1,11 @@
+<div class="edit_comment" id="edit_comment_<%=@comment.id %>">
+	<h2>Update comment</h2>
+	<%= form_for (@comment), :remote => true, :html => { :id => "edit_comment_form", :class => "edit_comment_form"} do |f| %>
+		<%= render :partial => "form", :locals => { :f => f } %>
+	    <div class="actions">
+			<%= f.submit "Update comment", :disable_with => "Submitting...", :class => "button" %>
+			&nbsp;&nbsp;or&nbsp;&nbsp;
+			<%= link_to 'Cancel', '#',:onclick => "$('#edit_comment_#{@comment.id}').toggle();$('#comment_#{@comment.id}').show();"  %>
+		</div>
+	<% end %>
+</div>

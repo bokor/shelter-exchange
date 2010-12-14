@@ -2,7 +2,7 @@
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
 	if (note_filter == '<%=@note.note_category.name%>' || note_filter == null || note_filter == "") {
-		$('#animal_notes').prepend("<%= escape_javascript(render @note) %>"); 
+		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {
 		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.note_category.name%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>').show();

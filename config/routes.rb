@@ -1,5 +1,7 @@
 Shelterexchange::Application.routes.draw do
 
+  resources :comments
+
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -24,6 +26,7 @@ Shelterexchange::Application.routes.draw do
     
 #   Parents Routes
     resources :parents do
+      resources :notes
       collection do
         get :search
         get :search_animal_by_name

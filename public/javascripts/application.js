@@ -1,3 +1,34 @@
+/* GLOBAL VARIABLES */
+var note_filter = ""; // Note Filter is a param that is set when the filtering changes on the Animal Notes Section
+
+// Note List Hover
+$(".note").live('hover', function(event) {
+  if (event.type == 'mouseover') {
+    $(this).addClass("hover");
+  } else {
+    $(this).removeClass("hover");
+  }
+});
+
+
+//Sidebar Functions to Show and Hide them When Button is clicked
+$(document).ready(function() {
+
+	$('#add_alert_link, #cancel_alert').click(function() {
+		$('#create_alert').slideToggle();
+	});
+	$('#add_note_link, #cancel_note').click(function() {
+		$('#create_note').slideToggle();
+	});
+	$('#add_task_link, #cancel_task').click(function() {
+		$('#create_task').slideToggle();
+	});
+	$('#add_placement_link, #cancel_placement').click(function() {
+		$('#create_placement').slideToggle();
+	});
+
+});
+
 /*
  * Configure TopUp
  */

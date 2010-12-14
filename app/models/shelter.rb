@@ -10,6 +10,7 @@ class Shelter < ActiveRecord::Base
   has_many :notes, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :alerts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
    
   # Validations
   validates_presence_of :name

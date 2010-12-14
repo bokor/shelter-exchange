@@ -33,6 +33,14 @@
 		<div class="clear"></div> <!-- style="border-top: 1px #ccc dotted; margin-bottom: 20px; position: relative; top: 10px;"></div> -->
 	</div>
 	
+	<div class="placement_heading yellow_background">
+		<h2>Notes</h2>
+	</div>
+	
+	<div id="notes" class="page_content">
+		<%= render @parent.notes %>
+	</div>
+	
 	<div class="placement_heading blue_background">
 		<h2>Adoption History</h2>
 	</div>
@@ -57,6 +65,24 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+
+	<ul class="model_actions">
+		<li><%= link_to 'Add note to parent', "#", :id => "add_note_link", :class => "button" -%></li>
+		<li><%= link_to 'Create an animal placement', "#", :id => "add_placement_link", :class => "button" -%></li>
+	</ul>
+	
+	<div id="create_note">
+		<h2>Add a note for <%= @parent.name %></h2>
+		<div id="note_errors"></div>
+		<%= form_for ([@parent, Note.new]), :remote => true do |f| %>
+			<%= render :partial => "notes/form", :locals => { :f => f, :default_category => true } %>
+		    <div class="actions">
+				<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" -%>
+			</div>
+		<% end %>
+	</div>
+
 	<div id="create_placement">
 		<h2>Create an Animal Placement</h2>
 		<div id="placement_errors"></div>
@@ -65,7 +91,11 @@
 			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 500, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
 		</div>
 		<%= form_for (Placement.new), :remote => true do |f| %>
-			<%= render :partial => "placements/form", :locals => { :f => f, :button_text => "Create Placement" } %>
+			<%= render :partial => "placements/form", :locals => { :f => f } %>
+			<div class="actions">
+				<%= f.submit "Create Placement", :disable_with => "Submitting...", :id => "create_placement_button", :class => "button"  %>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_placement" -%>
+			</div>
 		<% end %>
 	</div>	
 	

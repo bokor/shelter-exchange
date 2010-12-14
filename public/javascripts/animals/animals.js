@@ -1,9 +1,3 @@
-/* GLOBAL VARIABLES */
-// Note Filter is a param that is set when the filtering changes on the Animal Notes Section
-var note_filter;
-
-
-
 /*
 	INDEX
 */
@@ -63,14 +57,6 @@ $(document).ready(function() {
 //   }
 // });
 
-// Note List - Live Hover (Animal Show Page)
-$(".note").live('hover', function(event) {
-  if (event.type == 'mouseover') {
-    $(this).addClass("hover");
-  } else {
-    $(this).removeClass("hover");
-  }
-});
 
 
 /*
@@ -113,16 +99,7 @@ $(document).ready(function() {
 		$('.active_link').removeClass('active_link');
 		$(event.target).addClass('active_link');
 	});
-	// Animal Show - Sidebar - Form Show/Hide
-	$('#add_alert_link, #cancel_alert').click(function() {
-		$('#create_alert').slideToggle();
-	});
-	$('#add_note_link, #cancel_note').click(function() {
-		$('#create_note').slideToggle();
-	});
-	$('#add_task_link, #cancel_task').click(function() {
-		$('#create_task').slideToggle();
-	});
 
 });
+
 

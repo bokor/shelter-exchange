@@ -1,0 +1,10 @@
+<% if @comment.errors.any? %>
+	$('#comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+<% else %>
+	$('#edit_comment_<%=@comment.id%>').slideToggle();
+	$('#comment_<%=@comment.id%>').replaceWith( "<%= escape_javascript(render @comment) %>" );
+	$('#comment_<%=@comment.id%>').show().effect("highlight", {}, 2000);
+	$('#comment_errors').html("");
+<% end %>
+<% flash.discard %>
+
