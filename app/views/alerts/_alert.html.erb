@@ -3,20 +3,20 @@
 		<%= Alert::SEVERITY[alert.severity.to_sym] %>
 	</span>
 	<span class="details">
-		<p><span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span><%= alert.title %>
-		<%= show_alertable_link(alert)%></p>
+		<p>
+			<span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
+			<%= alert.title %>
+			<%= show_alertable_link(alert)%>
+		</p>
 	</span>
-	<!-- <span class="links">
-		<%= link_to image_tag("icon_stop.png"), stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true, :title => "Stop alert" %>
-		<%= link_to image_tag("icon_edit.png"), edit_alert_path(alert), :remote => true, :title => "Edit alert" %>
-		<%= link_to image_tag("icon_delete.png"), alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete alert" %>
-	</span> -->
 	<span class="action_links">
+		<%= link_to "View", "#", :onclick => "$(#{"description_alert_#{alert.id}"}).slideToggle();" %>&nbsp;|&nbsp;
 		<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true, :title => "Stop alert" %>&nbsp;|&nbsp;
 		<%= link_to "Edit", edit_alert_path(alert), :remote => true, :title => "Edit alert" %>&nbsp;|&nbsp;
 		<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete alert" %>
 	</span>
 	<div class="clear"></div>
+	<p class="description" id="<%= "description_alert_#{alert.id}" %>"><%= alert.description %></p>
 </div>
 
 
