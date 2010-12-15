@@ -1,12 +1,13 @@
 Shelterexchange::Application.routes.draw do
 
-  resources :comments
-
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
 #   Notes Routes
     resources :notes
+
+#   Comments Routes
+    resources :comments
     
 #   Tasks Routes
     resources :tasks do
@@ -22,7 +23,9 @@ Shelterexchange::Application.routes.draw do
     resources :reports
     
 #   Placements Routes
-    resources :placements
+    resources :placements do
+      resources :comments
+    end
     
 #   Parents Routes
     resources :parents do

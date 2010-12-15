@@ -8,14 +8,14 @@ class CommentsController < ApplicationController
   
   def update
     @comment = @current_shelter.comments.find(params[:id])
-    flash[:notice] = "#{@comment.title} has been updated." if @comment.update_attributes(params[:comment])
+    flash[:notice] = "#{@comment.comment} has been updated." if @comment.update_attributes(params[:comment])
   end
   
   def create
     @commentable = find_polymorphic_class
     # @comment = @notable.comments.build(params[:comment])
     @comment = @current_shelter.comments.new(params[:comment].merge(:commentable => @commentable))
-    flash[:notice] = "#{@comment.title} has been created." if  @comment.save
+    flash[:notice] = "#{@comment.comment} has been created." if  @comment.save
   end
   
   def destroy

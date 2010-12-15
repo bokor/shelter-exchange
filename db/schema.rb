@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214185600) do
+ActiveRecord::Schema.define(:version => 20101215144003) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(:version => 20101214185600) do
     t.integer  "parent_id"
     t.integer  "shelter_id"
     t.string   "placement_type"
-    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

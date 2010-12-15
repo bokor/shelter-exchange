@@ -8,6 +8,10 @@ class Placement < ActiveRecord::Base
   belongs_to :shelter
   belongs_to :animal
   belongs_to :parent
+  
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  
+  accepts_nested_attributes_for :comments
 
   # Validations
   validates_presence_of :animal_id, :message => 'needs to be selected'
@@ -16,8 +20,8 @@ class Placement < ActiveRecord::Base
   validates_presence_of :placement_type, :in => PLACEMENT_TYPE, :message => 'needs to be selected'
   
   # Scopes
-  scope :adopted, includes([:animal, :shelter]).where(:placement_type => 'adopted')
-  scope :foster_care, includes([:animal, :shelter]).where(:placement_type => 'foster_care')
+  scope :adopted, includes([:animal, :shelter]).where(:placement_type => :adopted)
+  scope :foster_care, includes([:animal, :shelter]).where(:placement_type => :foster_care)
   
   # scope :red, where(:colour => 'red')
   #     scope :since, lambda {|time| where("created_at > ?", time) }

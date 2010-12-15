@@ -347,3 +347,6 @@ If we don't use hover remove the padding left and right*/
 .show_parents #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 
 
+.show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
+
+

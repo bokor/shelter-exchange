@@ -10,10 +10,13 @@
 			<%= f.label "placement_type_#{value.downcase}", "#{value}" %>
 		<% end %>
 	</li>
+
+	<%= f.fields_for :comments do |comment_fields| %>
 	<li>
-		<%= f.label :comment, "Comment" %><br />
-		<%= f.text_area :comment %>
+		<%= comment_fields.label :comment, "Comment" %><br />
+		<%= comment_fields.text_area :comment %>
 	</li>
+	<% end %>
 </ul>
 <%= f.hidden_field :parent_id, :value => @parent.id %>
 <%= f.hidden_field :animal_id %>

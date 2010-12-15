@@ -2,7 +2,7 @@
 	<td class="image">
 		<%= image_tag placement.animal.photo.url(:thumb) %>
 		<% if placement.shelter.id == @current_shelter.id %>
-			<p class="action_links"><%= link_to "Edit", edit_placement_path(placement), :remote => true, :title => "Edit placement" %></p>
+			<p class="action_links"><a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook">Add comment</a></p>
 			<p class="action_links"><%= link_to "Delete", placement, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete placement" %></p>
 		<% end %>
 	</td>
@@ -12,7 +12,20 @@
 		<p><%= format_breed(placement.animal.is_mix_breed, placement.animal.primary_breed, placement.animal.secondary_breed) %></p>
 		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
 		<h4>Comment:</h4>
-		<p><%= placement.comment %></p>
+		<div id="<%= "create_comment_#{placement.id}" %>" class="create_comment" style="display: none;">
+			<h2>Add an comment for <%= placement.animal.name %></h2>
+			<div id="comment_errors"></div>
+			<%= form_for ([placement, Comment.new]), :remote => true do |f| %>
+				<%= render :partial => "comments/form", :locals => { :f => f } %>
+			    <div class="actions">
+					<%= f.submit "Create comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>
+					&nbsp;or&nbsp;<%= link_to "Cancel", "#create_comment_#{placement.id}", :id => "cancel_comment", :onclick => "TopUp.close();" -%>
+				</div>
+			<% end %>
+		</div>
+		<div id="comments">
+			<%= placement.comments %>
+		</div>
 	</td>
 	<td class="status">
 		<p><%= placement.shelter.name %></p>

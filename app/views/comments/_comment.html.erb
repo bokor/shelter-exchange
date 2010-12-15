@@ -1,6 +1,6 @@
 <div id="<%= "comment_#{comment.id}" %>" class="comment">
   	<span class="created_date"><%= format_date(:short, comment.created_at) %></span>
-	<span class="description"><%= comment.description %></span>	
+	<span class="description"><%= comment.comment %></span>	
 	<% if comment.shelter_id == @current_shelter.id %>
 		<div class="action_links">
 			<%= link_to "Edit", edit_comment_path(comment), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
