@@ -90,7 +90,8 @@
 			<span></span>
 			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 500, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
 		</div>
-		<%= form_for (Placement.new), :remote => true do |f| %>
+		<% @placement = Placement.new %>
+		<%= form_for (@placement), :remote => true do |f| %>
 			<%= render :partial => "placements/form", :locals => { :f => f } %>
 			<div class="actions">
 				<%= f.submit "Create Placement", :disable_with => "Submitting...", :id => "create_placement_button", :class => "button"  %>

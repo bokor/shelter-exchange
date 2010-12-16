@@ -11,7 +11,7 @@
 		<h3><%= Placement::PLACEMENT_TYPE[placement.placement_type]%> (<%= format_date(:long, placement.created_at) %>)</h3>
 		<p><%= format_breed(placement.animal.is_mix_breed, placement.animal.primary_breed, placement.animal.secondary_breed) %></p>
 		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
-		<h4>Comment:</h4>
+		<h4>Comments:</h4>
 		<div id="<%= "create_comment_#{placement.id}" %>" class="create_comment" style="display: none;">
 			<h2>Add an comment for <%= placement.animal.name %></h2>
 			<div id="comment_errors"></div>
@@ -24,7 +24,7 @@
 			<% end %>
 		</div>
 		<div id="comments">
-			<%= placement.comments %>
+			<%= render placement.comments %>
 		</div>
 	</td>
 	<td class="status">

@@ -3,7 +3,7 @@
 	<% @animals.each do |animal| %>
 	<tr id="<%= "animal_#{animal.id}" %>">
 		<td class="image">
-			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+			<%= link_to image_tag(animal.photo.url(:thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');" %>
 		</td>
 		<td class="details">
 			<h3><%= animal.name %></h3>

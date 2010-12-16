@@ -1,8 +1,4 @@
 <ul class="form">
-	<!-- <li>
-		<label for="animal_name_auto_complete">Animal name</label><br />
-		<input type="text" id="animal_name_auto_complete" name="animal_name_auto_complete" value="" autocomplete="off" />
-	</li> -->
 	<li>
 		<%= f.label :placement_type, "Type" %><br />
 		<% Placement::PLACEMENT_TYPE.map do |key, value| %>
@@ -10,12 +6,13 @@
 			<%= f.label "placement_type_#{value.downcase}", "#{value}" %>
 		<% end %>
 	</li>
-
+	<% @placement.comments.build %>
 	<%= f.fields_for :comments do |comment_fields| %>
 	<li>
 		<%= comment_fields.label :comment, "Comment" %><br />
 		<%= comment_fields.text_area :comment %>
 	</li>
+	<%= comment_fields.hidden_field :shelter_id, :value => @current_shelter.id %>
 	<% end %>
 </ul>
 <%= f.hidden_field :parent_id, :value => @parent.id %>

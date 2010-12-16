@@ -11,12 +11,12 @@ class Placement < ActiveRecord::Base
   
   has_many :comments, :as => :commentable, :dependent => :destroy
   
-  accepts_nested_attributes_for :comments
+  accepts_nested_attributes_for :comments, :allow_destroy => true
 
   # Validations
   validates_presence_of :animal_id, :message => 'needs to be selected'
-  validates_presence_of :parent_id, :message => 'needs to be selected'
-  validates_presence_of :shelter_id, :message => 'needs to be selected'
+  # validates_presence_of :parent_id, :message => 'needs to be selected'
+  # validates_presence_of :shelter_id, :message => 'needs to be selected'
   validates_presence_of :placement_type, :in => PLACEMENT_TYPE, :message => 'needs to be selected'
   
   # Scopes
@@ -25,5 +25,10 @@ class Placement < ActiveRecord::Base
   
   # scope :red, where(:colour => 'red')
   #     scope :since, lambda {|time| where("created_at > ?", time) }
+  
+  # def initialize(attributes=nil)
+  #    super
+  #    self.comments.build
+  #  end
   
 end
