@@ -62,106 +62,23 @@
 		</li>
 		<li>
 			<% if @current_shelter.is_kill_shelter %>
-			
-			<script>			
-			$(function() {
-				$("#arrival_date_datepicker").datepicker({
-					showOn: "button",
-					buttonImage: "/images/rails.png",
-					buttonImageOnly: true,
-					numberOfMonths: 1,
-					showButtonPanel: false,
-					dateFormat: 'yy-mm-dd',
-					altField: "#arrival_date_humanize",
-					altFormat: "D MM d, yy",
-					onSelect: function(dateText,picker) { 
-						//HIDDEN FIELD
-						$('#animal_arrival_date').val( dateText ); 
-
-						//DIV FIELD
-						var dateFormat = $(this).datepicker( "option", "dateFormat" );
-						var altFormat = $(this).datepicker( "option", "altFormat" );
-						var altField = $(this).datepicker( "option", "altField" );
-						var parseDate = $.datepicker.parseDate(dateFormat, dateText);
-						var formatDate = $.datepicker.formatDate(altFormat, parseDate);
-						$(altField).html(formatDate);
-
-					}  
-				});
-			});
-			
-			$(function() {
-				$("#euthanasia_scheduled_datepicker").datepicker({
-					showOn: "button",
-					buttonImage: "/images/rails.png",
-					buttonImageOnly: true,
-					numberOfMonths: 1,
-					showButtonPanel: false,
-					dateFormat: 'yy-mm-dd',
-					altField: "#euthanasia_scheduled_humanize",
-					altFormat: "D MM d, yy",
-					onSelect: function(dateText,picker) { 
-						//HIDDEN FIELD
-						$('#animal_euthanasia_scheduled').val( dateText ); 
-
-						//DIV FIELD
-						var dateFormat = $(this).datepicker( "option", "dateFormat" );
-						var altFormat = $(this).datepicker( "option", "altFormat" );
-						var altField = $(this).datepicker( "option", "altField" );
-						var parseDate = $.datepicker.parseDate(dateFormat, dateText);
-						var formatDate = $.datepicker.formatDate(altFormat, parseDate);
-						$(altField).html(formatDate);
-
-					}  
-				});
-			});
-			
-			$(function() {
-			
-			var animal_arrival_date = $('#animal_arrival_date').val();
-			var animal_euthanasia_scheduled = $('#animal_euthanasia_scheduled').val();
-
-			$('#arrival_date_datepicker').datepicker("setDate", animal_arrival_date);
-			$('#euthanasia_scheduled_datepicker').datepicker("setDate", animal_euthanasia_scheduled);
-			
-			var animal_arrival_temp_date = $('#arrival_date_datepicker').datepicker("getDate");
-			var euthanasia_scheduled_temp_date = $('#euthanasia_scheduled_datepicker').datepicker("getDate");
-			
-			var animal_arrival_set_date = new Date(animal_arrival_temp_date).toString('ddd MMMM dd, yyyy'); //DateJS formatting
-			var euthanasia_scheduled_set_date = new Date(euthanasia_scheduled_temp_date).toString('ddd MMMM dd, yyyy'); //DateJS formatting
-			
-			$('#arrival_date_humanize').html(animal_arrival_set_date);
-			$('#euthanasia_scheduled_humanize').html(euthanasia_scheduled_set_date);
-			});
-			
-			$(function() {
-			    $('#arrival_date_trigger').click(function() {
-			        $('#arrival_date_datepicker').slideToggle();
-			    });
-				$('#euthanasia_scheduled_trigger').click(function() {
-			        $('#euthanasia_scheduled_datepicker').slideToggle();
-			    });
-			});
-
-			</script>
-			
 			<div id="euthanasia_info">
 				<fieldset>
 			    	<legend>Euthanasia info:</legend>
 					<%= f.label :arrival_date, "Date of arrival" %><br />
-					<div id="arrival_date_field">
-						<div id="arrival_date_humanize">Select Date</div>
-						<img src="/images/rails.png" width="20" height="30" id="arrival_date_trigger" />
+					<div id="arrival_date_field" class="date_field">
+						<div id="arrival_date_humanize" class="humanize_date">Select Date</div>
+						<%= image_tag "icon_calendar.png", :id => "arrival_date_trigger", :class => "icon_calendar" %>
 					</div>
-					<div id="arrival_date_datepicker"></div>
+					<div id="arrival_date_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :arrival_date %>
 					
 					<%= f.label :euthanasia_scheduled, "Euthanasia scheduled" %><br />
-					<div id="euthanasia_scheduled_field">
-						<div id="euthanasia_scheduled_humanize">Select Date</div>
-						<img src="/images/rails.png" width="20" height="30" id="euthanasia_scheduled_trigger" />
+					<div id="euthanasia_scheduled_field" class="date_field">
+						<div id="euthanasia_scheduled_humanize" class="humanize_date">Select Date</div>
+						<%= image_tag "icon_calendar.png", :id => "euthanasia_scheduled_trigger", :class => "icon_calendar" %>
 					</div>
-					<div id="euthanasia_scheduled_datepicker"></div>
+					<div id="euthanasia_scheduled_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :euthanasia_scheduled %>
 					
 					<%= f.label :hold_time, "Hold time" %><br />

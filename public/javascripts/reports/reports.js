@@ -1,6 +1,6 @@
 
 var chart1;
-$(document).ready(function() {
+$(function() {
 	chart1 = new Highcharts.Chart({
 		chart: {
 			renderTo: 'report_test',
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 
 var chart2;
-			$(document).ready(function() {
+			$(function() {
 				chart2 = new Highcharts.Chart({
 					chart: {
 						renderTo: 'report_test_2'

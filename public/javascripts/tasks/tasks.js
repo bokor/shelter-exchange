@@ -1,7 +1,7 @@
 /*
  * Task Calendar Picker
  */
-$(document).ready(function() {
+$(function() {
 	$("#create_task .date_picker").datepicker({
 		numberOfMonths: 1,
 		showButtonPanel: false,
@@ -24,7 +24,7 @@ $(document).ready(function() {
 	});
 });
 
-$(document).ready(function() {
+$(function() {
 	$('#create_task .hidden_due_date').val(Date.today().toString('yyyy-MM-dd'));
 	$('#create_task .task_due_category').click(function() {dueDate("#create_task")});
 });

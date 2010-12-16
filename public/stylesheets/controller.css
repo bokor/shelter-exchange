@@ -25,21 +25,15 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .animals #euthanasia_info{padding-top: 0px;}
 .animals #euthanasia_info input{margin-bottom: 10px;}
-.animals fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
-.animals fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-#arrival_date_humanize, #euthanasia_scheduled_humanize{font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+.animals #euthanasia_info fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
+.animals #euthanasia_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
-#arrival_date_field{ padding-bottom: 15px;}
-#arrival_date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-#arrival_date_humanize{float:left;}
-#arrival_date_trigger{float:left; padding-left: 10px; cursor: pointer;}
-#arrival_date_datepicker{display:none; padding-bottom: 10px;}
+.animals #euthanasia_info .date_field{ padding-bottom: 15px;}
+.animals #euthanasia_info .date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animals #euthanasia_info .humanize_date{float:left; width: 190px;font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+.animals #euthanasia_info .icon_calendar{float:left; padding-left: 10px; cursor: pointer;}
+.animals #euthanasia_info .datepicker{display:none; padding-bottom: 10px;}
 
-#euthanasia_scheduled_field{padding-bottom: 15px;}
-#euthanasia_scheduled_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-#euthanasia_scheduled_humanize{float:left;}
-#euthanasia_scheduled_trigger{float:left; padding-left: 10px; cursor: pointer;}
-#euthanasia_scheduled_datepicker{display:none; padding-bottom: 10px;}
 
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */

@@ -3,6 +3,7 @@ class Animal < ActiveRecord::Base
   before_create :update_status_change_date
   before_save :check_status_change
   
+  # cattr_accessor :current_shelter
   
   PER_PAGE = 5
   SEX = [ "Male", "Female" ]
@@ -13,8 +14,6 @@ class Animal < ActiveRecord::Base
   belongs_to :shelter
   
   has_many :placements, :dependent => :destroy
-  # has_many :parents, :through => :placements
-  # has_many :breeds, :readonly => true
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :alerts, :as => :alertable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
@@ -29,12 +28,12 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :animal_type_id, :message => 'needs to be selected'
   validates_presence_of :animal_status_id, :message => 'needs to be selected'
+  # Custom Validations
   validate :primary_breed, :presence => true, :if => :primary_breed_exists
   validate :secondary_breed, :presence => true, :if => :secondary_breed_exists
-  
   validate :arrival_date, :presence => true, :if => :arrival_date_required
-  validate :hold_time, :presence => true, :if => :hold_time_required
   validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required
+  validate :hold_time, :presence => true, :if => :hold_time_required
   
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
@@ -48,8 +47,12 @@ class Animal < ActiveRecord::Base
                                                   OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') 
                                                   OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')" }}
   scope :search_by_name, lambda { |q| { :conditions => "LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')", :limit => 4 }}                                              
-                                                
+     
+
+  
+                                                 
   private
+
     def primary_breed_exists
       if self.primary_breed && self.animal_type_id
         if Breed.where(:name => primary_breed).blank?
@@ -66,25 +69,31 @@ class Animal < ActiveRecord::Base
       end
     end
     
+    # def euthanasia_field_required(field)
+    #   if @is_kill_shelter && field.blank?
+    #     errors.add(field, "must be entered")
+    #   end
+    # end
+    
     def is_kill_shelter?
       Shelter.find_by_id(self.shelter_id).is_kill_shelter
     end
     
     def arrival_date_required
       if is_kill_shelter? && self.arrival_date.blank?
-        errors.add(:arrival_date, "must be entered")
+        errors.add(:arrival_date, "must be selected")
       end
     end
-    
+
+    def euthanasia_scheduled_required
+      if is_kill_shelter? && self.euthanasia_scheduled.blank?
+        errors.add(:euthanasia_scheduled, "must be selected")
+      end
+    end
+        
     def hold_time_required
       if is_kill_shelter? && self.hold_time.blank?
         errors.add(:hold_time, "must be entered")
-      end
-    end
-    
-    def euthanasia_scheduled_required
-      if is_kill_shelter? && self.euthanasia_scheduled.blank?
-        errors.add(:euthanasia_scheduled, "must be entered")
       end
     end
 
@@ -99,6 +108,10 @@ class Animal < ActiveRecord::Base
     end
     
 end
+
+
+# has_many :parents, :through => :placements
+# has_many :breeds, :readonly => true
 
 
 # def clear_photo

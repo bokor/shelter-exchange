@@ -12,7 +12,7 @@ $(".note").live('hover', function(event) {
 
 
 //Sidebar Functions to Show and Hide them When Button is clicked
-$(document).ready(function() {
+$(function() {
 
 	$('#add_alert_link, #cancel_alert').click(function() {
 		$('#create_alert').slideToggle();
