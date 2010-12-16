@@ -32,6 +32,10 @@ class Animal < ActiveRecord::Base
   validate :primary_breed, :presence => true, :if => :primary_breed_exists
   validate :secondary_breed, :presence => true, :if => :secondary_breed_exists
   
+  validate :arrival_date, :presence => true, :if => :arrival_date_required
+  validate :hold_time, :presence => true, :if => :hold_time_required
+  validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required
+  
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
 
@@ -59,6 +63,28 @@ class Animal < ActiveRecord::Base
         if Breed.where(:name => secondary_breed).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
         end
+      end
+    end
+    
+    def is_kill_shelter?
+      Shelter.find_by_id(self.shelter_id).is_kill_shelter
+    end
+    
+    def arrival_date_required
+      if is_kill_shelter? && self.arrival_date.blank?
+        errors.add(:arrival_date, "must be entered")
+      end
+    end
+    
+    def hold_time_required
+      if is_kill_shelter? && self.hold_time.blank?
+        errors.add(:hold_time, "must be entered")
+      end
+    end
+    
+    def euthanasia_scheduled_required
+      if is_kill_shelter? && self.euthanasia_scheduled.blank?
+        errors.add(:euthanasia_scheduled, "must be entered")
       end
     end
 

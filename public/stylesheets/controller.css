@@ -23,6 +23,25 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
 
+.animals #euthanasia_info{padding-top: 0px;}
+.animals #euthanasia_info input{margin-bottom: 10px;}
+.animals fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
+.animals fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+#arrival_date_humanize, #euthanasia_scheduled_humanize{font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
+#arrival_date_field{ padding-bottom: 15px;}
+#arrival_date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#arrival_date_humanize{float:left;}
+#arrival_date_trigger{float:left; padding-left: 10px; cursor: pointer;}
+#arrival_date_datepicker{display:none; padding-bottom: 10px;}
+
+#euthanasia_scheduled_field{padding-bottom: 15px;}
+#euthanasia_scheduled_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#euthanasia_scheduled_humanize{float:left;}
+#euthanasia_scheduled_trigger{float:left; padding-left: 10px; cursor: pointer;}
+#euthanasia_scheduled_datepicker{display:none; padding-bottom: 10px;}
+
+
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
 .index_animals .page_heading {/* COLORS PADDING FONTS */}
 
@@ -80,6 +99,9 @@ If we don't use hover remove the padding left and right*/
 .show_animals table.animal_details td{vertical-align:top; }
 .show_animals table.animal_details td.image{}
 .show_animals table.animal_details td.metadata{width:100%;padding: 0 0 0 15px; margin:0 0 0 0; }
+.show_animals table.animal_details td.metadata .full_list{ text-align:left; width: 95%; float: none;}
+.show_animals table.animal_details td.metadata .full_list .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_animals table.animal_details td.metadata .full_list .red_date{color:#ee3124;}
 .show_animals table.animal_details .description{clear: both; padding: 15px 0 0 0; }
 
 

@@ -47,6 +47,15 @@
 						<% unless @animal.color.blank? %><li><p><b>Color:</b> <%= @animal.color %></p></li><% end %>
 						<% unless @animal.sex.blank? %><li><p><b>Sex:</b> <%= @animal.sex %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li><% end %>
 					</ul>
+					<% if @current_shelter.is_kill_shelter %>
+						<div class="clear"></div><br />
+						<h3>Euthanasia Info:</h3>
+						<ul class="full_list">
+							<% unless @animal.arrival_date.blank? %><li><p><b>Arrival Date:</b> <span class="euthanasia_info"><%= format_date(:long, @animal.arrival_date) %></span></li><% end %>
+							<% unless @animal.hold_time.blank? %><li><p><b>Hold time:</b> <span class="euthanasia_info"><%= @animal.hold_time %> days</span></li><% end %>
+							<% unless @animal.euthanasia_scheduled.blank? %><li><p><b>Euthanasia Date:</b> <span class="euthanasia_info red_date"><%= format_date(:long, @animal.euthanasia_scheduled) %></span></li><% end %>
+						</ul>
+					<% end %>
 					<div class="description">
 						<% unless @animal.description.blank? %><h3>Description:</h3><p><%= @animal.description %></p><% end %>
 					</div>
