@@ -5,7 +5,7 @@
 	    <div class="actions">
 			<%= f.submit "Update comment", :disable_with => "Submitting...", :class => "button" %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#',:onclick => "$('#edit_comment_#{@comment.id}').toggle();$('#comment_#{@comment.id}').show();"  %>
+			<%= link_to 'Cancel', '#',:onclick => "$('#comment_#{@comment.id}').show();	$('#edit_comment_#{@comment.id}').hide();$('#edit_comment_#{@comment.id}').remove();"  %>
 		</div>
 	<% end %>
 </div>

@@ -6,3 +6,12 @@ var Parents = {
 		TopUp.close();
   	}
 };
+
+$(function() {
+	$('.description').jTruncate({
+		length: 100,
+		minTrail: 0,
+		moreText: "More",
+		lessText: "Less"
+	});
+});

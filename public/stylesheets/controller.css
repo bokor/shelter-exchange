@@ -229,9 +229,9 @@ If we don't use hover remove the padding left and right*/
 .show_shelters .page_heading{border-bottom:1px solid #ddd; }
 
 
-/******************************************************************/
-/* -------------------------- SHELTERS -------------------------- */
-/******************************************************************/
+/*****************************************************************/
+/* -------------------------- REPORTS -------------------------- */
+/*****************************************************************/
 .reports ul {list-style:none;}
 
 .index_reports .page_heading{border-bottom:1px solid #ddd; }
@@ -291,6 +291,25 @@ If we don't use hover remove the padding left and right*/
 .show_animals .task_list .task_animal_name{display:none;}
 
 
+
+/*******************************************************************/
+/* -------------------------- COMMENTS --------------------------- */
+/*******************************************************************/
+#comments .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
+.comments .hover{background-color:#EFEBE3;}
+.comments .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+/*.comments .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px; display:table-cell;width:45px;}
+.comments .comment .description {clear:both;padding: 0 0 0 10px; line-height: 2em; display:table-cell;}
+.comments .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}*/
+.comments .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px;}
+.comments .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}
+.comments .comment .description p { line-height: 2em;}
+.comments .comment:last-child{border-bottom: 1px dotted #ccc; }
+
+
+/* -- Show Parents :: Notes --*/
+/*.show_parents #notes .note .category{display:none;}
+.show_parents #edit_note_form #note_category{display:none;}*/
 
 
 
@@ -361,8 +380,7 @@ If we don't use hover remove the padding left and right*/
 /* -- Sidebar - Show Parents  --*/
 .show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .show_parents #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
-
-
+.show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
 
 

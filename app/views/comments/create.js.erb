@@ -1,10 +1,16 @@
 <% if @comment.errors.any? %>
 	$('#comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
 <% else %>
-	$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
-	$(".comment").first().effect("highlight", {}, 1000);
-	$('#new_comment').get(0).reset();
+	<% if @comment.commentable_type == "Placement" %>
+		TopUp.close();
+		$('#comments_<%=@comment.commentable_id%>').prepend("<%= escape_javascript(render @comment) %>"); 
+		$("#comments_<%=@comment.commentable_id%> .comment").first().effect("highlight", {}, 1000);
+		$('#new_comment_<%=@comment.commentable_id%>').get(0).reset();
+	<% else %>
+		$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
+		$("#comments .comment").first().effect("highlight", {}, 1000);
+		$('#new_comment').get(0).reset();
+	<% end %>
 	$('#comment_errors').html("");
 <% end %>
-TopUp.close();
 <% flash.discard %>
