@@ -225,6 +225,7 @@ If we don't use hover remove the padding left and right*/
 /* -------------------------- SHELTERS -------------------------- */
 /******************************************************************/
 .shelters ul {list-style:none;}
+.shelters ol li{margin-left: 20px;}
 
 .show_shelters .page_heading{border-bottom:1px solid #ddd; }
 

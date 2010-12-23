@@ -42,9 +42,21 @@
 		</li>
 		<li>
 			<%= f.check_box :is_kill_shelter%>&nbsp;&nbsp;
-			<%= f.label :is_kill_shelter%>
+			<%= f.label :is_kill_shelter, "Is kill shelter" %>
 		</li>
 	</ul>
+	<br />
+	<hr />
+	<br />
+	<h2>Top 5 Items Needed</h2>
+	<ol class="form">
+		<%= f.fields_for :items do |item_fields| %>
+		<li>
+			<%= item_fields.label :name, "Name" %><br />
+			<%= item_fields.text_field :name %>
+		</li>
+		<% end %>
+	</ol>
 	<div class="actions">
 		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 	</div>

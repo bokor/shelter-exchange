@@ -1,5 +1,7 @@
 Shelterexchange::Application.routes.draw do
 
+  resources :items
+
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 

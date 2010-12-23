@@ -88,6 +88,11 @@ $(document).ready(function() {
 			<li>Twitter:  <%=@shelter.twitter%></li>
 			<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
 		</ul>
+		<br />
+		<h3>Top 5 Items Needed</h3>
+		<ol>
+			<%= render @shelter.items %>
+		</ol>
 		<div class="clear"></div>
 	</div>
 	

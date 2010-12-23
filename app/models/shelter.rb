@@ -5,12 +5,15 @@ class Shelter < ActiveRecord::Base
   # Associations
   belongs_to :account
   has_many :placements, :dependent => :destroy
-  has_many :parents, :through => :placements
+  # has_many :parents, :through => :placements
   has_many :animals, :dependent => :destroy
   has_many :notes, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :alerts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :items, :dependent => :destroy
+  
+  accepts_nested_attributes_for :items #, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
    
   # Validations
   validates_presence_of :name

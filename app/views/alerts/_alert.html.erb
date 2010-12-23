@@ -10,13 +10,13 @@
 		</p>
 	</span>
 	<span class="action_links">
-		<%= link_to "View", "#", :onclick => "$(#{"description_alert_#{alert.id}"}).slideToggle();" %>&nbsp;|&nbsp;
+		<%= link_to "View", "#", :onclick => "$('#description_alert_#{alert.id}').slideToggle();" %>&nbsp;|&nbsp;
 		<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true, :title => "Stop alert" %>&nbsp;|&nbsp;
 		<%= link_to "Edit", edit_alert_path(alert), :remote => true, :title => "Edit alert" %>&nbsp;|&nbsp;
 		<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete alert" %>
 	</span>
 	<div class="clear"></div>
-	<p class="description" id="<%= "description_alert_#{alert.id}" %>"><%= alert.description %></p>
+	<p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>
 </div>
 
 
