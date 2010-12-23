@@ -4,7 +4,6 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
     @shelter = @account.shelters.build
-    # 5.times { @shelter.items.build }
     @user = @account.users.build
     respond_with(@account)
   end
