@@ -1,6 +1,5 @@
 class CreatePlacements < ActiveRecord::Migration
   def self.up
-    drop_table :parent_histories
     create_table :placements do |t|
       t.references :animal
       t.references :parent

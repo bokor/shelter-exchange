@@ -1,6 +1,6 @@
 class AddColumnsToAlerts < ActiveRecord::Migration
   def self.up
-    add_column :alerts, :is_broadcast, :boolean
+    add_column :alerts, :is_broadcast, :boolean, :default => false
   end
 
   def self.down

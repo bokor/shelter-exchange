@@ -11,11 +11,11 @@ class CreateParents < ActiveRecord::Migration
       t.string :email
       t.timestamps
     end
-    add_index(:parents, [:name, :street, :home_phone, :mobile_phone, :email])
+    # add_index(:parents, [:name, :street, :home_phone, :mobile_phone, :email])
   end
 
   def self.down
     drop_table :parents
-    remove_index :parents, :column => [:name, :street, :home_phone, :mobile_phone, :email]
+    # remove_index :parents, :column => [:name, :street, :home_phone, :mobile_phone, :email]
   end
 end

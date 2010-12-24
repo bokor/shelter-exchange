@@ -19,6 +19,8 @@ class Alert < ActiveRecord::Base
   scope :stopped, where(:is_stopped => true)
   scope :not_stopped, where(:is_stopped => false)
   
+  scope :is_broadcast, where(:is_broadcast => true)
+  
   scope :for_shelter, where(:alertable_type => nil)
   scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
   

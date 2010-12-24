@@ -1,7 +1,11 @@
 <%= title "Editing animal - #{@animal.name}" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "animals/animals", "date", :cache => "cache/application/animals-edit" %>
+	<% if @current_shelter.is_kill_shelter %>
+		<%= javascript_include_tag "animals/animals", "date", "animals/date_info", :cache => "cache/application/animals-edit" %>
+	<% else %>
+		<%= javascript_include_tag "animals/animals", :cache => "cache/application/animals-edit" %>
+	<% end %>
 <% end %>
 
 <%= content_for :page_content do %>

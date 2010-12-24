@@ -5,11 +5,11 @@ class CreateAccounts < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :accounts, :name
+    add_index :accounts, :subdomain
   end
 
   def self.down
     drop_table :accounts
-    remove_index :accounts, :column =>  :name
+    remove_index :accounts, :column =>  :subdomain
   end
 end

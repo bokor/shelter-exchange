@@ -27,11 +27,6 @@ end
 #   Truncate All Database Tables data
 #
 #######################################################################################################################
-truncate_db_table("accounts")
-truncate_db_table("shelters")
-truncate_db_table("user")
-
-
 truncate_db_table("animals")
 truncate_db_table("animal_types")
 truncate_db_table("animal_statuses")
@@ -39,7 +34,6 @@ truncate_db_table("breeds")
 truncate_db_table("notes")
 truncate_db_table("note_categories")
 truncate_db_table("alerts")
-truncate_db_table("alert_types")
 truncate_db_table("tasks")
 truncate_db_table("task_categories")
 
@@ -638,18 +632,6 @@ NoteCategory.create([
 #   { :name => "Behavior Test A", :parent_id => behavior.id },
 #   { :name => "Behavior Test B", :parent_id => behavior.id }
 # ])
-
-#######################################################################################################################
-#
-#   AlertType Create
-#      Creates the AlertTypes so that we have a standard set of alert types
-#
-#######################################################################################################################
-AlertType.create([
-  { :name => "High" },
-  { :name => "Medium" },
-  { :name => "Low" }
-])
 
 #######################################################################################################################
 #

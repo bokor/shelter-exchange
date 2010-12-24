@@ -1,7 +1,5 @@
 Shelterexchange::Application.routes.draw do
 
-  resources :items
-
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -10,6 +8,12 @@ Shelterexchange::Application.routes.draw do
 
 #   Comments Routes
     resources :comments
+
+#   Items Routes    
+    resources :items
+
+#   Reports Routes    
+    resources :reports
     
 #   Tasks Routes
     resources :tasks do
@@ -20,9 +24,6 @@ Shelterexchange::Application.routes.draw do
     resources :alerts do
       get :stopped, :on => :member
     end
-
-#   Reports Routes    
-    resources :reports
     
 #   Placements Routes
     resources :placements do
