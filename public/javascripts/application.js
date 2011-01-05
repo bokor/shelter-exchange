@@ -10,6 +10,15 @@ $(".note").live('hover', function(event) {
   }
 });
 
+// Note List Hover
+$(".location").live('hover', function(event) {
+  if (event.type == 'mouseover') {
+    $(this).addClass("hover");
+  } else {
+    $(this).removeClass("hover");
+  }
+});
+
 
 //Sidebar Functions to Show and Hide them When Button is clicked
 $(function() {

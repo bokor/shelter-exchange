@@ -43,7 +43,7 @@ class AlertsController < ApplicationController
         flash[:notice] = "#{@alert.title} has been created."
         format.html { redirect_to alerts_path }
       else
-        format.html { render :action => :new }
+        format.html { render :action => :index }
       end
     end
   end

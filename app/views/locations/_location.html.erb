@@ -1,0 +1,29 @@
+<div id="location_<%= location.id %>" class="location <% if location.animals.count == location.max_capacity %>over_capacity<% end %>">
+
+	<h2 onclick="$('#location_details_<%= location.id %>').slideToggle();"><%= location.name %></h2>
+	
+	<span class="animal_count"><%=location.animals.count %> out of <%= location.max_capacity %></span>
+	<div id="location_details_<%= location.id %>" style="display:none;">
+	<span class="type">
+		<%= location.animal_type.name if location.animal_type.name %>
+	</span>
+	<span class="details">
+		<p><%= location.tag_list %></p>
+	</span>
+	<table style="padding-bottom: 15px;">
+	<% location.animals.each do |animal| %>
+		<tr style="vertical-align:middle;">
+			<td style="padding-right: 20px;"><%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %></td>
+			<td><%= link_to animal.name, animal %></td>
+		</tr>
+	<% end %>
+	</table>
+	<span class="action_links">
+		<%= link_to "Edit", edit_location_path(location), :remote => true, :title => "Edit location" %>&nbsp;&nbsp;
+		<%= link_to "Delete", location, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete location" %>
+	</span>
+	</div>
+
+</div>
+
+

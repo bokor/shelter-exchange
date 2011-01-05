@@ -3,14 +3,13 @@ class Animal < ActiveRecord::Base
   before_create :update_status_change_date
   before_save :check_status_change
   
-  # cattr_accessor :current_shelter
-  
   PER_PAGE = 5
   SEX = [ "Male", "Female" ]
   
   # Associations
   belongs_to :animal_type, :readonly => true
   belongs_to :animal_status, :readonly => true
+  belongs_to :location
   belongs_to :shelter
   
   has_many :placements, :dependent => :destroy
@@ -55,7 +54,7 @@ class Animal < ActiveRecord::Base
 
     def primary_breed_exists
       if self.primary_breed && self.animal_type_id
-        if Breed.where(:name => primary_breed).blank?
+        if Breed.valid_for_animal(primary_breed, animal_type_id).blank?
           errors.add(:primary_breed, "must contain a valid breed from the list")
         end
       end
@@ -63,7 +62,7 @@ class Animal < ActiveRecord::Base
 
     def secondary_breed_exists
       if self.is_mix_breed && !self.secondary_breed.blank?
-        if Breed.where(:name => secondary_breed).blank?
+        if Breed.valid_for_animal(secondary_breed, animal_type_id).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
         end
       end

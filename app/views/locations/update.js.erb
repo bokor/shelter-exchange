@@ -1,0 +1,9 @@
+<% if @location.errors.any? %>
+	$('#location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+<% else %>
+	$('#edit_location_<%=@location.id%>').slideToggle();
+	$('#location_<%=@location.id%>').replaceWith( "<%= escape_javascript(render @location) %>" );
+	$('#location_<%=@location.id%>').show().effect("highlight", {}, 2000);
+	$('#location_errors').html("");
+<% end %>
+<% flash.discard %>

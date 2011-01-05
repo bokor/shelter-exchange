@@ -1,9 +1,12 @@
 class Shelter < ActiveRecord::Base
+  acts_as_tagger
   acts_as_mappable
   before_validation :geocode_address
   
   # Associations
   belongs_to :account
+  
+  has_many :locations, :dependent => :destroy
   has_many :placements, :dependent => :destroy
   # has_many :parents, :through => :placements
   has_many :animals, :dependent => :destroy

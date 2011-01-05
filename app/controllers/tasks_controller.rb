@@ -47,7 +47,7 @@ class TasksController < ApplicationController
         flash[:notice] = "Task has been created."
         format.html { redirect_to tasks_path }
       else
-        format.html { render :action => :new }
+        format.html { render :action => :index }
       end
     end
   end

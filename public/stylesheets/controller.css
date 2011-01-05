@@ -243,9 +243,22 @@ If we don't use hover remove the padding left and right*/
 
 
 
+/**********************************************************************/
+/* ---------------------------- LOCATIONS --------------------------- */
+/**********************************************************************/
+.locations ul {list-style:none;}
 
+.location_list{}
+.location_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
+.location_list .location { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+.location_list .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+.location_list .hover{background-color:#EFEBE3;}
+.location_list .location h2{border-bottom: 1px #ddd solid; margin-bottom: 10px;padding-bottom: 10px; cursor: pointer;}
+.location_list .location h2:hover{text-decoration: underline;}
 
+/* -- Index Locations  --*/
+.index_locations #create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 
 
 
@@ -296,16 +309,16 @@ If we don't use hover remove the padding left and right*/
 /*******************************************************************/
 /* -------------------------- COMMENTS --------------------------- */
 /*******************************************************************/
-#comments .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
-.comments .hover{background-color:#EFEBE3;}
-.comments .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+/*#comments .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}*/
+.comment_list .hover{background-color:#EFEBE3;}
+.comment_list .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
 /*.comments .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px; display:table-cell;width:45px;}
 .comments .comment .description {clear:both;padding: 0 0 0 10px; line-height: 2em; display:table-cell;}
 .comments .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}*/
-.comments .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px;}
-.comments .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}
-.comments .comment .description p { line-height: 2em;}
-.comments .comment:last-child{border-bottom: 1px dotted #ccc; }
+.comment_list .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px;}
+.comment_list .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}
+.comment_list .comment .description p { line-height: 2em;}
+.comment_list .comment:last-child{border-bottom: 1px dotted #ccc; }
 
 
 /* -- Show Parents :: Notes --*/
