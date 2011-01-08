@@ -3,7 +3,8 @@ class LocationsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @locations = @current_shelter.locations.all
+    @locations = @current_shelter.locations.all(:include => [:animal_type])
+    @tags = @current_shelter.owned_tags.order("tags.name ASC")
 
     if @locations.blank?
       @location = @current_shelter.locations.new
@@ -36,12 +37,13 @@ class LocationsController < ApplicationController
   
   def create
     @location = @current_shelter.locations.new(params[:location])
-    # @current_shelter.tag(@location, :with => params[:tag_list], :on => :locations)
+    @current_shelter.tag(@location, :with => @location.tag_list, :on => :tags)
     
     respond_with(@location) do |format|
       if @location.save
         flash[:notice] = "#{@location.name} location has been created."
-        format.html { redirect_to locations_path }
+        @tags = @current_shelter.owned_tags.order("tags.name ASC")
+        format.html { render :action => :index }
       else
         format.html { render :action => :index }
       end
@@ -50,7 +52,9 @@ class LocationsController < ApplicationController
   
   def update
     @location = @current_shelter.locations.find(params[:id])   
+    @current_shelter.tag(@location, :with => @location.tag_list, :on => :tags)
     flash[:notice] = "#{@location.name} location has been updated." if @location.update_attributes(params[:location])  
+    @tags = @current_shelter.owned_tags.order("tags.name ASC")
     respond_with(@location)
   end
   
@@ -58,7 +62,18 @@ class LocationsController < ApplicationController
     @location = @current_shelter.locations.find(params[:id])
     @location.destroy
     flash[:notice] = "#{@location.name} location has been deleted."
+    @tags = @current_shelter.owned_tags.order("tags.name ASC")
     respond_with(@location)
+  end
+  
+  def find_by
+    # TODO - look to move this function into the model.
+    type = params[:animal_type_id]
+    if type.empty?
+      @locations = @current_shelter.locations.all
+    else
+      @locations = @current_shelter.locations.scoped_by_animal_type_id(type)
+    end
   end
 
 end

@@ -1,9 +1,12 @@
 <% if @location.errors.any? %>
 	$('#location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
 <% else %>
+	//Update Location
 	$('#edit_location_<%=@location.id%>').slideToggle();
 	$('#location_<%=@location.id%>').replaceWith( "<%= escape_javascript(render @location) %>" );
 	$('#location_<%=@location.id%>').show().effect("highlight", {}, 2000);
 	$('#location_errors').html("");
+	//Refresh Tags
+	$('#tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
 <% end %>
 <% flash.discard %>

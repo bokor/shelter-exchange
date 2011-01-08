@@ -1,5 +1,5 @@
 $('#location_<%= @location.id %>').fadeOut(1000, function() { 
 	$(this).remove(); 
 });
-
+$('#tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
 <% flash.discard %>

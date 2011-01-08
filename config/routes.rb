@@ -16,7 +16,11 @@ Shelterexchange::Application.routes.draw do
     resources :reports
 
 #   Locations Routes        
-    resources :locations
+    resources :locations do
+      collection do
+        get :find_by
+      end
+    end
     
 #   Tasks Routes
     resources :tasks do
@@ -51,6 +55,7 @@ Shelterexchange::Application.routes.draw do
         get :auto_complete
         get :find_by
         get :live_search
+        get :find_locations
       end
     end
     

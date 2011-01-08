@@ -23,7 +23,14 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
 
-.animals #euthanasia_info{padding-top: 0px;}
+/*.animals #location_info{padding-top: 30px; }
+.animals #location_info input{margin-bottom: 10px;}
+.animals #location_info fieldset{border:1px #ddd solid; padding: 20px; width: 80%;}
+.animals #location_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}*/
+
+.animals #location_info{display:none;}
+
+.animals #euthanasia_info{padding-top: 0px; display:none;}
 .animals #euthanasia_info input{margin-bottom: 10px;}
 .animals #euthanasia_info fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
 .animals #euthanasia_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
@@ -34,6 +41,45 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animals #euthanasia_info .icon_calendar{float:left; padding-left: 10px; cursor: pointer;}
 .animals #euthanasia_info .datepicker{display:none; padding-bottom: 10px;}
 
+.animals #location_selected{padding: 0 0 10px 0;}
+.animals #location_selected span {}
+.animals #location_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
+.animals #location_selected #location_search_link{}
+
+
+.animals #location_search_dialog{background-color: #fff;}
+.animals #location_search_dialog {width:100%; height:100%; background-color: #fff;}
+.animals #location_search_dialog .wrapper { padding: 15px; }
+
+
+
+/*updated*/ .animals #locations { width: 645px;height: 450px; overflow:auto;  z-index: 9999999999999;}
+
+
+.animals #locations .location { width: 90%;padding: 15px; border-top:1px #ccc solid; border-collapse: collapse; border-spacing: 0; }
+
+/*updated*/ .animals #locations .over_capacity {background-color: #fce2ec; border-top:1px solid #f286b1;border-bottom:1px solid #f286b1;}
+
+.animals #locations .hover{background-color:#EFEBE3;}
+.animals #locations .location h2{border:none; margin: 0; padding: 0;}
+.animals #locations .location h2{border-bottom: 1px #ddd solid; margin-bottom: 10px;padding-bottom: 10px;}
+.animals #locations .location h2 span {float: right;font-size: 14px;}
+.animals #locations .location h2 .animal_type {display: none;}
+.animals #locations .location h3{ padding: 10px 0 10px 0;}
+.animals #locations .location .tags p {padding: 15px 0 10px 0;}
+.animals #locations .location .animal_count {color: #000;}
+.animals #locations .location .animal_count .view_details {float:right; text-decoration: underline; cursor: pointer;color: #000;font-weight: bold;}
+.animals #locations .location .animal_count:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+/*updated*/ .animals #locations .location .action_links {display:none;}
+
+.animals #locations .location table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.animals #locations .location table.list tr {border-bottom:1px #ccc dotted; }
+.animals #locations .location table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.animals #locations .location table.list td.image { width:100px; padding-left:5px; }
+.animals #locations .location table.list td.details { width:380px;padding-left: 15px;color:#666; }
+.animals #locations .location table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+
+/*updated*/ .animals #locations .location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
@@ -248,17 +294,45 @@ If we don't use hover remove the padding left and right*/
 /**********************************************************************/
 .locations ul {list-style:none;}
 
-.location_list{}
-.location_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+/* -------------------------- INDEX - ANIMALS  -------------------------- */
+.index_locations .page_heading {/* COLORS PADDING FONTS */}
 
-.location_list .location { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-.location_list .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
-.location_list .hover{background-color:#EFEBE3;}
-.location_list .location h2{border-bottom: 1px #ddd solid; margin-bottom: 10px;padding-bottom: 10px; cursor: pointer;}
-.location_list .location h2:hover{text-decoration: underline;}
 
+.index_locations table.search {width: 100%;vertical-align:top; border-bottom:1px dotted #ccc; margin-bottom: 15px;}
+.index_locations table.search tr {vertical-align:top;}
+.index_locations table.search td.location_type_filter {width:50%;text-align:left;padding-top:10px;}
+.index_locations table.search td.location_tag_filter {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_locations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+
+
+.index_locations #locations { }
+.index_locations #locations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+.index_locations #locations .location { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+.index_locations #locations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+.index_locations #locations .hover{background-color:#EFEBE3;}
+.index_locations #locations .location h2{border-bottom: 1px #ddd solid; margin-bottom: 10px;padding-bottom: 10px;}
+.index_locations #locations .location h2 span {float: right;font-size: 14px;}
+.index_locations #locations .location h2 .select_link {display: none;}
+.index_locations #locations .location h3{ padding: 10px 0 10px 0;}
+.index_locations #locations .location .tags p{padding: 15px 0 10px 0;}
+.index_locations #locations .location .animal_count {color: #000;}
+.index_locations #locations .location .animal_count .view_details {float:right; text-decoration: underline; cursor: pointer;color: #000;font-weight: bold;}
+.index_locations #locations .location .animal_count:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_locations #locations .location .action_links{float: right; text-align:right;margin-top: 8px;font-size: 10px;font-weight:bold;}
+.index_locations #locations .location .action_links .select{display:none;}
+
+.index_locations #locations .location table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.index_locations #locations .location table.list tr {border-bottom:1px #ccc dotted; }
+.index_locations #locations .location table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_locations #locations .location table.list td.image { width:100px; padding-left:5px; }
+.index_locations #locations .location table.list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_locations #locations .location table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+
+
+.index_locations #tags li {float:left; padding-right: 10px;}
 /* -- Index Locations  --*/
-.index_locations #create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+.index_locations #create_location, .index_locations .edit_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 
 
 
