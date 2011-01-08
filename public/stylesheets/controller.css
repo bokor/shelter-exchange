@@ -298,7 +298,7 @@ If we don't use hover remove the padding left and right*/
 .index_locations .page_heading {/* COLORS PADDING FONTS */}
 
 /* -- Location Search --*/
-.index_locations .location_type_filter li {float: left; padding: 10px 50px 0 0;}
+.index_locations .location_type_filter li {float: left; padding: 10px 20px 0 0;}
 .index_locations .location_type_filter:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .index_locations .location_tag_filter{border-top:1px solid #ccc; border-bottom:1px solid #ccc; padding: 15px 0 10px 0;margin-bottom: 15px;}
 .index_locations .location_tag_filter:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
