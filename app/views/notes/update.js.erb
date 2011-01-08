@@ -1,7 +1,9 @@
 <% if @note.errors.any? %>
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
-	$('#edit_note_<%=@note.id%>').slideToggle();
+	$('#edit_note_<%=@note.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
 	$('#note_<%=@note.id%>').replaceWith( "<%= escape_javascript(render @note) %>" );
 	$('#note_<%=@note.id%>').show().effect("highlight", {}, 2000);
 	$('#note_errors').html("");
