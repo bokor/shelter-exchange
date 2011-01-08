@@ -294,17 +294,20 @@ If we don't use hover remove the padding left and right*/
 /**********************************************************************/
 .locations ul {list-style:none;}
 
-/* -------------------------- INDEX - ANIMALS  -------------------------- */
+/* -------------------------- INDEX - LOCATIONS  -------------------------- */
 .index_locations .page_heading {/* COLORS PADDING FONTS */}
 
+/* -- Location Search --*/
+.index_locations .location_type_filter li {float: left; padding: 10px 50px 0 0;}
+.index_locations .location_type_filter:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_locations .location_tag_filter{border-top:1px solid #ccc; border-bottom:1px solid #ccc; padding: 15px 0 10px 0;margin-bottom: 15px;}
+.index_locations .location_tag_filter:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_locations h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
 
-.index_locations table.search {width: 100%;vertical-align:top; border-bottom:1px dotted #ccc; margin-bottom: 15px;}
-.index_locations table.search tr {vertical-align:top;}
-.index_locations table.search td.location_type_filter {width:50%;text-align:left;padding-top:10px;}
-.index_locations table.search td.location_tag_filter {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
-.index_locations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+/* -- Location Tags --*/
+.index_locations .location_tag_filter #tags li {float:left; font-size: 11px; font-weight: bold; margin: 0 10px 10px 0; padding:2px 8px 2px 8px; background-color:#e0f1fa; border:1px solid #eee; border-radius: 12px;-moz-border-radius:12px;-webkit-border-radius:12px;}
 
-
+/* -- Location Styles --*/
 .index_locations #locations { }
 .index_locations #locations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
@@ -315,7 +318,7 @@ If we don't use hover remove the padding left and right*/
 .index_locations #locations .location h2 span {float: right;font-size: 14px;}
 .index_locations #locations .location h2 .select_link {display: none;}
 .index_locations #locations .location h3{ padding: 10px 0 10px 0;}
-.index_locations #locations .location .tags p{padding: 15px 0 10px 0;}
+.index_locations #locations .location .tags p{padding: 15px 0 10px 0; color: #000; font-weight: bold;}
 .index_locations #locations .location .animal_count {color: #000;}
 .index_locations #locations .location .animal_count .view_details {float:right; text-decoration: underline; cursor: pointer;color: #000;font-weight: bold;}
 .index_locations #locations .location .animal_count:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -329,8 +332,6 @@ If we don't use hover remove the padding left and right*/
 .index_locations #locations .location table.list td.details { width:380px;padding-left: 15px;color:#666; }
 .index_locations #locations .location table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
-
-.index_locations #tags li {float:left; padding-right: 10px;}
 /* -- Index Locations  --*/
 .index_locations #create_location, .index_locations .edit_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 

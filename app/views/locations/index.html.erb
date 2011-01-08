@@ -12,25 +12,23 @@
 		</div> -->
 		
 		<div class="page_content">
-			<table class="search">
-				<tr>
-					<td class="location_type_filter">
-						<h3>Filter by animal type:</h3>
-						<%= form_for :locations, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
-							<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+			<ul class="location_type_filter">
+				<li><h3>Filter by animal type:</h3></li>
+				<li>
+					<%= form_for :locations, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
+						<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
 								{ :name => "animal_type_id", :onchange => "Locations.findByFilter(this);" } ) %><br /><br />
-						<% end %>
-					</td>
-					<td class="location_tag_filter">
-						<h3>Filter by tags:</h3>
-						<p><%# @current_shelter.owned_taggings %></p>
-						<p><%# @current_shelter.owned_tags %></p>
-						<ul id="tags">
-							<%= render :partial => "tags/tag", :collection => @tags %>
-						</ul>
-					</td>
-				</tr>
-			</table>
+					<% end %>
+				</li>
+			</ul>
+			<div class="location_tag_filter">
+				<h3>Filter by tags:</h3>
+				<p><%# @current_shelter.owned_taggings %></p>
+				<p><%# @current_shelter.owned_tags %></p>
+				<ul id="tags">
+					<%= render :partial => "tags/tag", :collection => @tags %>
+				</ul>
+			</div>
 			
 			<div id="locations">
 				<%= render @locations %>
