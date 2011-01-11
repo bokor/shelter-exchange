@@ -19,6 +19,7 @@ Shelterexchange::Application.routes.draw do
     resources :locations do
       collection do
         get :find_by
+        get :find_tags
       end
     end
     

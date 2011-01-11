@@ -45,6 +45,10 @@ $(function() {
 TopUp.images_path = "/images/top_up/";
 TopUp.players_path = "/players/";
 
+
+/*
+ * Configure TipTip
+ */
 // activation: string ("hover" by default) - jQuery method TipTip is activated with. Can be set to: "hover", "focus" or "click".
 // keepAlive: true of false (false by default) - When set to true the TipTip will only fadeout when you hover over the actual TipTip and then hover off of it.
 // maxWidth: string ("200px" by default) - CSS max-width property for the TipTip element. This is a string so you can apply a percentage rule or 'auto'.
@@ -68,7 +72,38 @@ TopUp.players_path = "/players/";
 //     	return elements;
 // 	}
 // 
-// 	tipTip("a[title]", {fadeIn:100, fadeOut: 100, delay:200, defaultPosition: "top", edgeOffset: 10});
+// 	tipTip("li[title]", {fadeIn:100, fadeOut: 100, delay:200, defaultPosition: "top", edgeOffset: 10});
 // });
 
+$(function(){
+
+	//OnHover Show SubLevel Menus
+	$('#secondary_nav ul li').hover(
+		//OnHover
+		function(){
+			//Hide Other Menus
+			$('#header ul li').not($('ul', this)).stop();
+
+			//Add the Arrow
+			$('ul li:first-child', this).before(
+				'<li class="arrow"></li>'
+			);
+
+			//Remove the Border
+			$('ul li.arrow', this).css('border-bottom', '0');
+
+			// Show Hoved Menu
+			$('ul', this).slideDown();
+		},
+		//OnOut
+		function(){
+			// Hide Other Menus
+			$('ul', this).slideUp();
+
+			//Remove the Arrow
+			$('ul li.arrow', this).remove();
+		}
+	);
+
+});
 

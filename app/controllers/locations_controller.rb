@@ -75,5 +75,12 @@ class LocationsController < ApplicationController
       @locations = @current_shelter.locations.scoped_by_animal_type_id(type)
     end
   end
+  
+  def find_tags
+    q = params[:q].strip
+    @tags = @current_shelter.owned_tags.where("tags.name like '%#{q}%'").order("tags.name ASC")
+    # render :json => @tags.collect{ |tag| {:id => "#{tag.id}", :name => "#{tag.name}" } }
+    render :json => @tags.collect{ |tag| {:id => "#{tag.id}", :label => "#{tag.name}", :value => "#{tag.name}", :name => "#{tag.name}" } }
+  end
 
 end

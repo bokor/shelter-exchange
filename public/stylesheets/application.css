@@ -72,16 +72,18 @@ a:hover, a:selected { border: none; outline: none; }
 #header #primary_nav ul li.current { color: #000; background-color: #fff; }
 #header #primary_nav ul li.current a{ color: #000;font-weight:bold; }
 #header #primary_nav ul li a {color:#fff; text-decoration:none;}
-#header #primary_nav ul li a:active, #header #primary_nav ul li a:hover {color:#000;font-weight:bold;}
+#header #primary_nav ul li a:active, #header #primary_nav ul li a:hover {color:#666;font-weight:bold;}
+/*#header #primary_nav ul li:hover{background-color: #ccc; color:#666;font-weight:bold;}*/
 
-#header #secondary_nav { position:absolute;bottom:0px; right:20px;}
-#header #secondary_nav ul { list-style: none; text-align: center;}
-#header #secondary_nav ul li { float:left; width: 110px; height:35px;line-height:35px; color: #fff; background-color:green;margin-left:5px; border-top:1px #666 solid; border-right:1px #666 solid; border-left:1px #666 solid; }
+#header #secondary_nav { position:absolute;/*bottom:0px; */right:20px; font-size: 11px;}
+#header #secondary_nav ul { list-style: none; text-align: right;}
+#header #secondary_nav ul li { line-height:80px; float:left; width: 85px;}
+/*#header #secondary_nav ul li { float:left; width: 110px; height:35px;line-height:35px; color: #fff; background-color:green;margin-left:5px; border-top:1px #666 solid; border-right:1px #666 solid; border-left:1px #666 solid; }*/
 #header #secondary_nav ul li.current { background-color: #ccc; }
 #header #secondary_nav ul li.current a{ background-color: #ccc; color:#000;font-weight:bold;  }
 #header #secondary_nav ul li a {color:#fff; text-decoration:none;}
-#header #secondary_nav ul li:hover{background-color: #ccc; color:#666;font-weight:bold; }
-/*#header #secondary_nav ul li a:active, #header #secondary_nav ul li a:hover { color:#666;font-weight:bold;}*/
+#header #secondary_nav ul li:hover{/*background-color: #ccc; color:#666;font-weight:bold;*/ }
+#header #secondary_nav ul li a:active, #header #secondary_nav ul li a:hover { color:#666;}
 
 #header:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
@@ -200,3 +202,181 @@ option{height:20px;
 font-size:13px;
 background-color:#fef5e6;border-bottom:1px solid #ebdac0;border-right:1px solid #d6bb86;border-left:1px solid #d6bb86;}
 */
+
+/* Sub Level Nav */
+
+#header #secondary_nav ul li ul {
+	background: #F4F4F4;
+	border: 0px solid #000;
+	border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	margin: -20px 0 0 -25px;
+	padding: 0 10px 0 10px;
+	position: relative;
+	width: 126px;
+	z-index: 9999;
+	display: none;
+}
+
+#header #secondary_nav ul li ul li {
+	display: block;
+	float: none;
+	height: 20px;
+	line-height: 20px;
+	padding: 8px 0;
+	text-align: center;
+	width: 126px;
+	margin: 0;
+}
+
+#header #secondary_nav ul li ul li a {
+	color: #620d20;
+	text-shadow: none;
+}
+
+#header #secondary_nav ul li ul li a:hover {
+	font-weight: bold;
+}
+
+#header #secondary_nav ul li ul li:last-child:not(li.arrow) {
+	border: 0;
+}
+
+#header #secondary_nav ul li ul li.current { background: none; }
+#header #secondary_nav ul li ul li.current a{ background: none; color:red;font-weight:bold;  }
+
+/* Arrow */
+.arrow {
+	z-index: -9999;
+	background: url(/images/arrow.png) no-repeat center top;
+	border: 0;
+	display: none;
+	position: absolute;
+		top: -10px;
+	height: 11px;
+	width: 20px;
+}
+
+
+
+/***************************************************************/
+/* --------------------- Token Input  ------------------------ */
+/***************************************************************/
+ul.token-input-list-facebook {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    width: 400px;
+    border: 1px solid #8496ba;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+ul.token-input-list-facebook {
+    list-style-type: none;
+}
+
+ul.token-input-list-facebook li input {
+    border: 0;
+    width: 100px;
+    padding: 3px 8px;
+    background-color: white;
+    margin: 2px 0;
+}
+
+li.token-input-token-facebook {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    margin: 3px;
+    padding: 1px 3px;
+    background-color: #eff2f7;
+    color: #000;
+    cursor: default;
+    border: 1px solid #ccd5e4;
+    font-size: 11px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float: left;
+}
+
+li.token-input-token-facebook p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token-facebook span {
+    color: #a6b3cf;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li.token-input-selected-token-facebook {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+}
+
+li.token-input-input-token-facebook {
+    float: left;
+}
+
+div.token-input-dropdown-facebook {
+    position: absolute;
+    width: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    z-index: 1;
+}
+
+div.token-input-dropdown-facebook p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown-facebook ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown-facebook ul li {
+    background-color: #fff;
+    padding: 3px;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item2-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li em {
+    font-weight: bold;
+    font-style: none;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
