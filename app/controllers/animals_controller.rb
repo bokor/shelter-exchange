@@ -62,7 +62,7 @@ class AnimalsController < ApplicationController
     @animals = @current_shelter.animals.live_search(q).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
   end
   
-  def find_by
+  def filter_by_type
     # TODO - look to move this function into the model.
     type = params[:animal_type_id]
     status = params[:animal_status_id] 

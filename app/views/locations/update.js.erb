@@ -9,6 +9,6 @@
 	$('#location_<%=@location.id%>').show().effect("highlight", {}, 2000);
 	$('#location_errors').html("");
 	//Refresh Tags
-	$('#tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
+	$('#global_tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
 <% end %>
 <% flash.discard %>

@@ -1,7 +1,7 @@
 <%= title "Locations" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "locations/locations", :cache => "cache/application/locations-index" %>
+	<%= javascript_include_tag "locations/locations", "tags/tags", :cache => "cache/application/locations-index" %>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -15,9 +15,9 @@
 			<ul class="location_type_filter">
 				<li><h3>Filter by animal type:</h3></li>
 				<li>
-					<%= form_for :locations, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
+					<%= form_for :locations, :url => { :action => "filter_by_type"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
 						<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
-								{ :name => "animal_type_id", :onchange => "Locations.findByFilter(this);" } ) %><br /><br />
+								{ :name => "animal_type_id", :onchange => "Locations.filterByType(this);" } ) %><br /><br />
 					<% end %>
 				</li>
 			</ul>
@@ -25,7 +25,7 @@
 				<h3>Filter by tags:</h3>
 				<p><%# @current_shelter.owned_taggings %></p>
 				<p><%# @current_shelter.owned_tags %></p>
-				<ul id="tags">
+				<ul id="global_tags" class="tags">
 					<%= render :partial => "tags/tag", :collection => @tags %>
 				</ul>
 			</div>

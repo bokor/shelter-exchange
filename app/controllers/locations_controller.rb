@@ -66,7 +66,7 @@ class LocationsController < ApplicationController
     respond_with(@location)
   end
   
-  def find_by
+  def filter_by_type
     # TODO - look to move this function into the model.
     type = params[:animal_type_id]
     if type.empty?
@@ -76,11 +76,9 @@ class LocationsController < ApplicationController
     end
   end
   
-  def find_tags
+  def filter_by_tag
     q = params[:q].strip
-    @tags = @current_shelter.owned_tags.where("tags.name like '%#{q}%'").order("tags.name ASC")
-    # render :json => @tags.collect{ |tag| {:id => "#{tag.id}", :name => "#{tag.name}" } }
-    render :json => @tags.collect{ |tag| {:id => "#{tag.id}", :label => "#{tag.name}", :value => "#{tag.name}", :name => "#{tag.name}" } }
+    @locations = @current_shelter.locations.tagged_with("#{q}", :any => true)
   end
 
 end

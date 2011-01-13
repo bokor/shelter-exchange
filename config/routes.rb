@@ -14,12 +14,20 @@ Shelterexchange::Application.routes.draw do
 
 #   Reports Routes    
     resources :reports
+    
+    resources :tags do
+      collection do
+        get :auto_complete
+        get :add_tag
+        get :remove_tag
+      end
+    end
 
 #   Locations Routes        
     resources :locations do
       collection do
-        get :find_by
-        get :find_tags
+        get :filter_by_type
+        get :filter_by_tag
       end
     end
     
@@ -54,7 +62,7 @@ Shelterexchange::Application.routes.draw do
       resources :tasks 
       collection do
         get :auto_complete
-        get :find_by
+        get :filter_by_type
         get :live_search
         get :find_locations
       end

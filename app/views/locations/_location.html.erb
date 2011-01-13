@@ -1,4 +1,4 @@
-<div id="location_<%= location.id %>" class="location <% if location.animals.count == location.max_capacity %>over_capacity<% end %>">
+<div id="location_<%= location.id %>" class="location<% if location.animals.count == location.max_capacity %> over_capacity<% end %>">
 	
 	<h2><%= location.name %>
 		<span class="animal_type"><%= location.animal_type.name if location.animal_type.name %></span>
@@ -6,14 +6,34 @@
 	</h2>
 		
 	<div class="animal_count">
-		Space Available: <%= location.max_capacity - location.animals.count %>
+		<span class="space_available">Space Available: <%= location.max_capacity - location.animals.count %></span>
 		<span class="view_details" onclick="$('#location_details_<%= location.id %>').slideToggle();">View Details</span>
+	</div>
+	
+	<h3>Tags:</h3>
+	
+	<ul id="location_tags_<%= location.id %>" class="tags">
+		<%= render :partial => "tags/tag", :collection => location.tags %>
+	</ul>
+	
+	<span id="tag_link_<%= location.id %>">
+		<a href="#" onclick="$('#tag_form_<%= location.id %>').show();$('#tag_link_<%= location.id %>').hide();return false;">Add Tags</a>
+	</span>
+	
+	<div id="tag_form_<%= location.id %>" style="display:none;">
+		<%= form_for :tags, :url => { :controller => :tags, :action => :add_tag, :id => location.id }, :remote => true, :html => { :id => "form_add_tags", :class => "add_tags", :method => :get } do |f| %>
+	    <!-- :locations, :url => { :action => :find_by, :id => location.id }, :remote => true, :html => { :id => "form_create_tags", :class => "create_tags", :method => :get } -->
+		<p><%= label_tag "add_tag", "Enter one tag at a time" %><br />
+		<%= text_field_tag "add_tag", "", :onkeyup => "Tags.autoComplete(this);"  %></p>
+		<p class="add_tag_links">
+		<%= f.submit "Add Tag", :disable_with => "Submitting...", :class => "button" %>
+		or
+		<%= link_to 'Cancel', '#', :onclick => "$('#tag_link_#{location.id}').show();$('#tag_form_#{location.id}').hide();return false;"  %>
+		</p>
+		<% end %>
 	</div>
 
 	<div id="location_details_<%= location.id %>" style="display:none;">
-		<span class="tags">
-			<p>Tags: <%= location.tag_list %></p>
-		</span>
 		<% if location.animals.size > 0 %>
 		<table class="list">
 			<% location.animals.each do |animal| %>
@@ -39,5 +59,3 @@
 	</div>
 
 </div>
-
-

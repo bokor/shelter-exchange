@@ -22,18 +22,18 @@
 					<td class="animal_filters">
 						<h3>Filter animal by:</h3>
 
-						<%= form_for :animals, :url => { :action => "find_by"}, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
+						<%= form_for :animals, :url => { :action => "filter_by_type" }, :remote => true, :html => { :id => "form_find_by", :method => :get } do |f| %>
 						<table class="filter_table">
 							<tr>
 								<td><%= f.label :animal_type_id, "Animal type" %></td>
 								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
-								       { :name => "animal_type_id", :onchange => "Animals.findByFilter(this);" } ) %><br /><br />
+								       { :name => "animal_type_id", :onchange => "Animals.filterByType(this);" } ) %><br /><br />
 								</td>
 							</tr>
 							<tr>
 								<td><%= f.label :animal_status_id, "Animal status" %></td>
 								<td><%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, 
-								       { :name => "animal_status_id", :onchange => "Animals.findByFilter(this);" } ) %>
+								       { :name => "animal_status_id", :onchange => "Animals.filterByType(this);" } ) %>
 								</td>
 							</tr>
 						</table>

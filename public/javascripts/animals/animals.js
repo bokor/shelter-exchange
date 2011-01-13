@@ -9,10 +9,9 @@ var Animals = {
 			$.get("/animals/live_search", element.parents("form:first").serialize());
 		}
   	},
-	
-	findByFilter: function(element){
+	filterByType: function(element){
 		var element = $(element);
-		$.get("/animals/find_by", element.parents("form:first").serialize());
+		$.get("/animals/filter_by_type", element.parents("form:first").serialize());
 	},
 	selectLocation: function(id, name) {
 		$('#location_selected span').html('<b>' + name + '</b>');
