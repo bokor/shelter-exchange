@@ -8,7 +8,5 @@
 	$('#location_<%=@location.id%>').replaceWith( "<%= escape_javascript(render @location) %>" );
 	$('#location_<%=@location.id%>').show().effect("highlight", {}, 2000);
 	$('#location_errors').html("");
-	//Refresh Tags
-	$('#global_tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
 <% end %>
 <% flash.discard %>

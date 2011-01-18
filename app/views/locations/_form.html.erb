@@ -4,11 +4,16 @@
 		<%= collection_select(:location, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
 	</li>
 	<li>
-		<%= f.label :name, "Name" %><br />
+		<%= f.label :location_category_id, "Category" %><br />
+		<%= collection_select(:location, :location_category_id, @current_shelter.location_categories.all, :id, :name, :include_blank =>  "None") %>
+		<%= link_to "Edit Categories", location_categories_path %>
+	</li>
+	<li>
+		<%= f.label :name, "Name (i.e. Crate 01)" %><br />
 		<%= f.text_field :name %>
 	</li>
 	<li>
-		<%= f.label :max_capacity, "Max Capacity" %><br />
+		<%= f.label :max_capacity, "Max number of animals" %><br />
 		<%= f.text_field :max_capacity %>
-	</li>	
+	</li>
 </ul>

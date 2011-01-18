@@ -275,6 +275,8 @@ If we don't use hover remove the padding left and right*/
 
 .show_shelters .page_heading{border-bottom:1px solid #ddd; }
 
+.index_shelters #map_canvas { width: 450px; height: 350px; position: relative; background-color: #fff;}
+.index_shelters #map_content {display:none;}
 
 /*****************************************************************/
 /* -------------------------- REPORTS -------------------------- */
@@ -329,6 +331,7 @@ If we don't use hover remove the padding left and right*/
 .index_locations #locations .location .action_links .select{display:none;}
 
 /* -- Index Locations :: Animal List Table --*/
+.index_locations #locations .location .location_details{display:none; padding-top: 10px;}
 .index_locations #locations .location table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
 .index_locations #locations .location table.list tr {border-bottom:1px #ccc dotted; }
 .index_locations #locations .location table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
@@ -337,10 +340,10 @@ If we don't use hover remove the padding left and right*/
 .index_locations #locations .location table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
 /* -- Index Locations :: Add Tag Form --*/
-.index_locations #locations .add_tags input[type=text] { width: 98%;}
+/*.index_locations #locations .add_tags input[type=text] { width: 98%;}
 .index_locations #locations .add_tags .add_tag_links{padding-right: 2%; float: right; text-align:right;margin-bottom: 8px;font-size: 10px;font-weight:bold;}
 .index_locations #locations .add_tags:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
+*/
 /* -- Index Locations  --*/
 .index_locations #sidebar #create_location, .index_locations #locations .edit_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 

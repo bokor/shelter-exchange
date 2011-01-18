@@ -1,0 +1,10 @@
+<% if @location_category.errors.any? %>
+	$('#location_category_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location_category) %>" );
+<% else %>
+	// Add Location
+	$('#location_categories').append("<%= escape_javascript(render @location_category) %>"); 
+	$(".location_category").last().effect("highlight", {}, 1000);
+	$('#new_location_category').get(0).reset();
+	$('#location_category_errors').html("");
+<% end %>
+<% flash.discard %>

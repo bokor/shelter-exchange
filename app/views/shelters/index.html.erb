@@ -6,9 +6,7 @@
 
 
 <%= content_for :page_content do %>
-<style>
-#map_canvas { width: 450px; height: 350px; position: relative; background-color: #fff;}
-</style>
+
 <script>
 $(document).ready(function() {
 	
@@ -72,7 +70,7 @@ $(document).ready(function() {
 		
 	<div class="page_content">
 		<div id="map_canvas" style="float: right;"></div>
-		<div id="map_content" style="display:none;">
+		<div id="map_content">
 			<ul>
 				<li><h2><%=@shelter.name%></h2></li>
 				<li><%=@shelter.street%></li>
@@ -80,10 +78,18 @@ $(document).ready(function() {
 			</ul>
 		</div>
 		
+		<h3>Address Info:</h3>
+		<ul>
+			<li><%=@shelter.name%></li>
+			<li><%=@shelter.street%></li>
+			<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+		</ul>
+		<br />
+		<h3>Contact Details:</h3>
 		<ul>
 			<li>Main phone:  <%=@shelter.main_phone%></li>
 			<li>Fax phone:  <%=@shelter.fax_phone%></li>
-			<li>Email:  <%=@shelter.email %><br /><br /></li>
+			<li>Email:  <%=@shelter.email %></li>
 			<li>Website:  <%=@shelter.website%></li>
 			<li>Twitter:  <%=@shelter.twitter%></li>
 			<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>

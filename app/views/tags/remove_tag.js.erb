@@ -1,3 +1,0 @@
-$('#global_tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @global_tags) %>");
-$('#location_tags_<%= @location.id %>').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @location_tags) %>");
-$('#tag_form_<%= @location.id %> form').get(0).reset();

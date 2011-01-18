@@ -1,5 +1,7 @@
 Shelterexchange::Application.routes.draw do
 
+  resources :location_categories
+
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -14,20 +16,12 @@ Shelterexchange::Application.routes.draw do
 
 #   Reports Routes    
     resources :reports
-    
-    resources :tags do
-      collection do
-        get :auto_complete
-        get :add_tag
-        get :remove_tag
-      end
-    end
 
 #   Locations Routes        
     resources :locations do
       collection do
         get :filter_by_type
-        get :filter_by_tag
+        get :filter_by_category
       end
     end
     

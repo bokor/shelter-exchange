@@ -6,7 +6,5 @@
 	$(".location").first().effect("highlight", {}, 1000);
 	$('#new_location').get(0).reset();
 	$('#location_errors').html("");
-	//Refresh Tags
-	$('#global_tags').html("<%= escape_javascript(render :partial => 'tags/tag', :collection => @tags) %>");
 <% end %>
 <% flash.discard %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101226232334) do
+ActiveRecord::Schema.define(:version => 20110117232437) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -132,6 +132,15 @@ ActiveRecord::Schema.define(:version => 20101226232334) do
 
   add_index "items", ["shelter_id"], :name => "index_items_on_shelter_id"
 
+  create_table "location_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "shelter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "location_categories", ["shelter_id"], :name => "index_location_categories_on_shelter_id"
+
   create_table "locations", :force => true do |t|
     t.integer  "shelter_id"
     t.integer  "animal_type_id"
@@ -139,9 +148,11 @@ ActiveRecord::Schema.define(:version => 20101226232334) do
     t.integer  "max_capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_category_id"
   end
 
   add_index "locations", ["animal_type_id"], :name => "index_locations_on_animal_type_id"
+  add_index "locations", ["location_category_id"], :name => "index_locations_on_location_category_id"
   add_index "locations", ["shelter_id"], :name => "index_locations_on_shelter_id"
 
   create_table "note_categories", :force => true do |t|

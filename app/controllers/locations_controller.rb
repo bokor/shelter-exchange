@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
   
   def index
     @locations = @current_shelter.locations.all(:include => [:animal_type])
-    @tags = @current_shelter.owned_tags.order("tags.name ASC")
 
     if @locations.blank?
       @location = @current_shelter.locations.new
@@ -37,13 +36,11 @@ class LocationsController < ApplicationController
   
   def create
     @location = @current_shelter.locations.new(params[:location])
-    @current_shelter.tag(@location, :with => @location.tag_list, :on => :tags)
     
     respond_with(@location) do |format|
       if @location.save
         flash[:notice] = "#{@location.name} location has been created."
-        @tags = @current_shelter.owned_tags.order("tags.name ASC")
-        format.html { render :action => :index }
+        format.html { redirect_to locations_path }
       else
         format.html { render :action => :index }
       end
@@ -52,9 +49,7 @@ class LocationsController < ApplicationController
   
   def update
     @location = @current_shelter.locations.find(params[:id])   
-    @current_shelter.tag(@location, :with => @location.tag_list, :on => :tags)
     flash[:notice] = "#{@location.name} location has been updated." if @location.update_attributes(params[:location])  
-    @tags = @current_shelter.owned_tags.order("tags.name ASC")
     respond_with(@location)
   end
   
@@ -62,7 +57,6 @@ class LocationsController < ApplicationController
     @location = @current_shelter.locations.find(params[:id])
     @location.destroy
     flash[:notice] = "#{@location.name} location has been deleted."
-    @tags = @current_shelter.owned_tags.order("tags.name ASC")
     respond_with(@location)
   end
   
@@ -76,9 +70,13 @@ class LocationsController < ApplicationController
     end
   end
   
-  def filter_by_tag
-    q = params[:q].strip
-    @locations = @current_shelter.locations.tagged_with("#{q}", :any => true)
+  def filter_by_category
+    category = params[:location_category_id]
+    if category.empty?
+      @locations = @current_shelter.locations.all
+    else
+      @locations = @current_shelter.locations.scoped_by_location_category_id(category)
+    end
   end
 
 end

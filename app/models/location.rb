@@ -1,10 +1,10 @@
 class Location < ActiveRecord::Base
-  acts_as_taggable_on :tags
   default_scope :order => 'name ASC'
   
   # Associations
   belongs_to :shelter   #, :conditions => {:state => 'active'}
   belongs_to :animal_type
+  belongs_to :location_category
   
   has_many :animals
   

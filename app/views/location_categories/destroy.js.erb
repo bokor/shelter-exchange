@@ -1,0 +1,4 @@
+$('#location_category_<%= @location.id %>').fadeOut(1000, function() { 
+	$(this).remove(); 
+});
+<% flash.discard %>
