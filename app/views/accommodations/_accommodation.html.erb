@@ -19,7 +19,7 @@
 	</div>
 		
 	<div class="accommodation_count">
-		<span class="space_available">Space Available: <%= accommodation.max_capacity - accommodation.animals.count %></span>
+		<span class="space_available">Space available: <%= accommodation.max_capacity - accommodation.animals.count %></span>
 		<div class="action_links">
 			<span class="view_link">
 				<%= link_to "View", "#", :onclick => "$('#accommodation_details_#{accommodation.id}').slideToggle();return false;" %>

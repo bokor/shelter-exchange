@@ -311,6 +311,7 @@ If we don't use hover remove the padding left and right*/
 .index_accommodations .page_heading {/* COLORS PADDING FONTS */}
 
 /* -- Location Filters --*/
+.index_accommodations #filters {padding-top:10px;}
 .index_accommodations #filters .animal_type_filter { float: left; width: 49%;}
 .index_accommodations #filters .animal_type_filter li {float: left; padding: 10px 20px 0 0;}
 .index_accommodations #filters .location_filter { float: left; width: 49%;}

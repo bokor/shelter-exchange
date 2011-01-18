@@ -1,6 +1,6 @@
 <ul class="form">
 	<li>
-		<%= f.label :animal_type_id, "Animal Type" %><br />
+		<%= f.label :animal_type_id, "Animal type" %><br />
 		<%= collection_select(:accommodation, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
 	</li>
 	<li>
@@ -12,7 +12,7 @@
 		<%= f.text_field :max_capacity %>
 	</li>
 	<li>
-		<%= f.label :location_id, "Location Details" %><br />
+		<%= f.label :location_id, "Location details" %><br />
 		<%= collection_select(:accommodation, :location_id, @current_shelter.locations.all, :id, :name, :include_blank =>  "None") %>
 		<%= link_to "Edit", locations_path %>
 	</li>
