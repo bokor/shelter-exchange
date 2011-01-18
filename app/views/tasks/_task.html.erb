@@ -10,11 +10,17 @@
 		<%= link_to image_tag("icon_edit.png"), edit_task_path(task), :remote => true, :title => "Edit task" %>
 		<%= link_to image_tag("icon_delete.png"), task, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete task" %>
 	</span> -->
-	<span class="action_links">
-		<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true, :title => "Complete task" %>&nbsp;&nbsp;
-		<%= link_to "Edit", edit_task_path(task), :remote => true, :title => "Edit task" %>&nbsp;&nbsp;
-		<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete task" %>
-	</span>
+	<div class="action_links">
+		<span class="completed_link">
+			<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true %>
+		</span>
+		<span class="edit_link">&nbsp;|&nbsp;
+			<%= link_to "Edit", edit_task_path(task), :remote => true %>
+		</span>
+		<span class="delete_link">&nbsp;|&nbsp;
+			<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure?", :remote => true %>
+		</span>
+	</div>
 	<div class="clear"></div>
 </div>
 

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117232437) do
+ActiveRecord::Schema.define(:version => 20110118161556) do
+
+  create_table "accommodations", :force => true do |t|
+    t.integer  "shelter_id"
+    t.integer  "animal_type_id"
+    t.string   "name"
+    t.integer  "max_capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "location_id"
+  end
+
+  add_index "accommodations", ["animal_type_id"], :name => "index_accommodations_on_animal_type_id"
+  add_index "accommodations", ["location_id"], :name => "index_accommodations_on_location_id"
+  add_index "accommodations", ["shelter_id"], :name => "index_accommodations_on_shelter_id"
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -85,15 +99,15 @@ ActiveRecord::Schema.define(:version => 20110117232437) do
     t.date     "arrival_date"
     t.integer  "hold_time"
     t.date     "euthanasia_scheduled"
-    t.integer  "location_id"
+    t.integer  "accommodation_id"
   end
 
+  add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
   add_index "animals", ["created_at"], :name => "index_animals_on_created_at"
   add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["id", "name"], :name => "index_animals_on_id_and_name"
-  add_index "animals", ["location_id"], :name => "index_animals_on_location_id"
   add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
   add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
@@ -132,27 +146,13 @@ ActiveRecord::Schema.define(:version => 20110117232437) do
 
   add_index "items", ["shelter_id"], :name => "index_items_on_shelter_id"
 
-  create_table "location_categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "shelter_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "location_categories", ["shelter_id"], :name => "index_location_categories_on_shelter_id"
-
   create_table "locations", :force => true do |t|
-    t.integer  "shelter_id"
-    t.integer  "animal_type_id"
     t.string   "name"
-    t.integer  "max_capacity"
+    t.integer  "shelter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "location_category_id"
   end
 
-  add_index "locations", ["animal_type_id"], :name => "index_locations_on_animal_type_id"
-  add_index "locations", ["location_category_id"], :name => "index_locations_on_location_category_id"
   add_index "locations", ["shelter_id"], :name => "index_locations_on_shelter_id"
 
   create_table "note_categories", :force => true do |t|
@@ -232,23 +232,6 @@ ActiveRecord::Schema.define(:version => 20110117232437) do
 
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
   add_index "shelters", ["lat", "lng"], :name => "index_shelters_on_lat_and_lng"
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context"
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
-  end
 
   create_table "task_categories", :force => true do |t|
     t.string   "name"

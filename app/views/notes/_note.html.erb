@@ -6,8 +6,12 @@
 	</div> 
 	<% if note.shelter_id == @current_shelter.id %>
 		<div class="action_links">
-			<%= link_to "Edit", edit_note_path(note), :remote => true %>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+			<span class="edit_link">
+				<%= link_to "Edit", edit_note_path(note), :remote => true %>
+			</span>
+			<span class="delete_link">&nbsp;|&nbsp;
+				<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+			</span>
 		</div>
 	<% end %>
     <div style="clear:both;"></div>

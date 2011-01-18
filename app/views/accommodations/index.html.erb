@@ -1,0 +1,80 @@
+<%= title "Accommodations" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "accommodations/accommodations", :cache => "cache/application/accommodations-index" %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<% if @accommodation_validate %>
+
+		<div class="page_content">
+			
+			<div id="filters">
+				<div class="animal_type_filter">
+					<h3>Filter by animal type:</h3>
+					<%= form_for :accommodations, :url => { :action => "filter_by_type"}, :remote => true, :html => { :id => "form_find_by_type", :method => :get } do |f| %>
+						<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+							{ :name => "animal_type_id", :onchange => "Accommodations.filterByType(this);" } ) %><br /><br />
+					<% end %>
+				</div>
+				<div class="location_filter">
+					<h3>Filter by specific location:</h3></li>
+					<%= form_for :accommodations, :url => { :action => "filter_by_location"}, :remote => true, :html => { :id => "form_find_by_location", :method => :get } do |f| %>
+						<%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
+							{ :name => "location_id", :onchange => "Accommodations.filterByLocation(this);" } ) %><br /><br />
+					<% end %>
+				</div>
+			</div>
+			
+			<div id="accommodations">
+				<%= render @accommodations %>
+			</div>
+		</div>
+		
+	<% else %>
+		<div class="page_heading">
+			<h1>Create your first accommodation</h1>
+			<p>BLAH BLAH.</p>
+		</div>
+		
+		<div class="page_content">
+			
+			<%= render "global/error_messages", :target => @accommodation %>
+			<div id="create_accommodation">
+				<%= form_for(@accommodation) do |f| %>
+					<%= render :partial => "form", :locals => { :f => f } %>
+			    	<div class="actions">
+						<%= f.submit "Create Location", :disable_with => "Submitting...", :class => 'button' %>
+					</div>
+				<% end %>
+			</div>	
+		</div>
+	<% end %>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<% if @accommodation_validate %>
+		<div id="create_accommodation">
+			<h2>Create a new accommodation</h2>
+			<div id="accommodation_errors"></div>
+			<%= form_for (Accommodation.new), :remote => true do |f| %>
+			<%= render :partial => "form", :locals => { :f => f } %>
+			<div class="actions">
+				<%= f.submit "Create Accommodation", :disable_with => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
+			</div>
+			<% end %>
+		</div>
+	<% else %>
+		<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	<% end %>
+<% end %>

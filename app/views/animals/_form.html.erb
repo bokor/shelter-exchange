@@ -60,12 +60,12 @@
 			<%= f.text_area :description %>
 		</li>
 		<li>
-			<div id="location_info">
-				<%= f.label :location_id, "Location" %><br />
-				<%= f.hidden_field :location_id %>
-				<div id="location_selected">
-					<span><% if @animal.location_id %><b><%= @animal.location.name %></b><% end %></span>
-					<a href="#location_search_dialog" id="location_search_link" toptions="width = 650, height = 500, type = dom, title = Select Location, layout = quicklook"><% if @animal.location_id %>Change location<% else %>Find location<% end %></a>
+			<div id="accommodation_info">
+				<%= f.label :accommodation_id, "Accommodation" %><br />
+				<%= f.hidden_field :accommodation_id %>
+				<div id="accommodation_selected">
+					<span><% if @animal.accommodation_id %><b><%= @animal.accommodation.name %></b><% end %></span>
+					<a href="#accommodation_search_dialog" id="accommodation_search_link" toptions="width = 650, height = 500, type = dom, title = Select Location, layout = quicklook"><% if @animal.accommodation_id %>Change accommodation<% else %>Find accommodation<% end %></a>
 				</div>
 			</div> 
 		</li>
@@ -104,15 +104,15 @@
 	<div class="clear"></div>
 <% end %>
 
-<div id="location_search_dialog" style="display:none;">
+<div id="accommodation_search_dialog" style="display:none;">
 	<div class="wrapper">
 		<%# form_for :parents, :url => { :action => "search_animal_by_name"}, 
 		             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
-  			<h2>Select a location:</h2>
+  			<h2>Select an accommodation:</h2>
   			<!-- <input type="text" id="q" name="q" value="" />
   			<input type="submit" name="Go" value="Go" /> -->
   		<%# end %>
 
-		<div id="locations"></div>
+		<div id="accommodations"></div>
 	</div>
 </div>

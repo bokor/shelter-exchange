@@ -1,0 +1,11 @@
+<div class="edit_location" id="edit_location_<%=@location.id %>">
+	<h3>Update location</h3>
+	<%= form_for (@location), :remote => true, :html => { :id => "edit_location_form", :class => "edit_location_form"} do |f| %>
+		<%= render :partial => "form", :locals => { :f => f } %>
+	    <div class="actions">
+			<%= f.submit "Update Location", :disable_with => "Submitting...", :class => "button" %>
+			&nbsp;&nbsp;or&nbsp;&nbsp;
+			<%= link_to 'Cancel', '#',:onclick => "$('#edit_location_#{@location.id}').slideToggle(800,function() {$(this).remove();});$('#location_#{@location.id}').fadeIn(1000);return false;"  %>
+		</div>
+	<% end %>
+</div>

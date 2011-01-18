@@ -9,12 +9,20 @@
 			<%= show_alertable_link(alert)%>
 		</p>
 	</span>
-	<span class="action_links">
-		<%= link_to "View", "#", :onclick => "$('#description_alert_#{alert.id}').slideToggle();return false;" %>&nbsp;|&nbsp;
-		<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true, :title => "Stop alert" %>&nbsp;|&nbsp;
-		<%= link_to "Edit", edit_alert_path(alert), :remote => true, :title => "Edit alert" %>&nbsp;|&nbsp;
-		<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete alert" %>
-	</span>
+	<div class="action_links">
+		<span class="view_link">
+			<%= link_to "View", "#", :onclick => "$('#description_alert_#{alert.id}').slideToggle();return false;" %>
+		</span>
+		<span class="stop_link">&nbsp;|&nbsp;
+			<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true %>
+		</span>
+		<span class="edit_link">&nbsp;|&nbsp;
+			<%= link_to "Edit", edit_alert_path(alert), :remote => true %>
+		</span>
+		<span class="delete_link">&nbsp;|&nbsp;
+			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+		</span>
+	</div>
 	<div class="clear"></div>
 	<p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>
 </div>

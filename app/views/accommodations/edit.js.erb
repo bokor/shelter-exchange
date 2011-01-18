@@ -1,0 +1,4 @@
+$('#accommodation_<%=@accommodation.id%>').hide();
+$('#accommodation_<%=@accommodation.id%>').after("<%= escape_javascript(render 'edit_accommodation', :collection => @accommodation) %>");
+$('#edit_accommodation_<%=@accommodation.id%>').show();
+<% flash.discard %>

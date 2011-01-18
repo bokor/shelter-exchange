@@ -1,0 +1,10 @@
+<% if @accommodation.errors.any? %>
+	$('#accommodation_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
+<% else %>
+	// Add Location
+	$('#accommodations').prepend("<%= escape_javascript(render @accommodation) %>"); 
+	$(".accommodation").first().effect("highlight", {}, 1000);
+	$('#new_accommodation').get(0).reset();
+	$('#accommodation_errors').html("");
+<% end %>
+<% flash.discard %>

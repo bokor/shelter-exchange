@@ -9,7 +9,7 @@ class Animal < ActiveRecord::Base
   # Associations
   belongs_to :animal_type, :readonly => true
   belongs_to :animal_status, :readonly => true
-  belongs_to :location
+  belongs_to :accommodation
   belongs_to :shelter
   
   has_many :placements, :dependent => :destroy

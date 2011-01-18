@@ -1,0 +1,12 @@
+<% if @accommodation.errors.any? %>
+	$('#accommodation_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
+<% else %>
+	//Update Location
+	$('#edit_accommodation_<%=@accommodation.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
+	$('#accommodation_<%=@accommodation.id%>').replaceWith( "<%= escape_javascript(render @accommodation) %>" );
+	$('#accommodation_<%=@accommodation.id%>').show().effect("highlight", {}, 2000);
+	$('#accommodation_errors').html("");
+<% end %>
+<% flash.discard %>

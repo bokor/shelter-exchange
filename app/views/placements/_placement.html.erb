@@ -3,7 +3,11 @@
 		<%= image_tag placement.animal.photo.url(:thumb) %>
 		<% if placement.shelter.id == @current_shelter.id %>
 			<p class="action_links"><a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook">Add comment</a></p>
-			<p class="action_links"><%= link_to "Delete", placement, :confirm => "Are you sure?", :method => :delete, :remote => true, :title => "Delete placement" %></p>
+			<div class="action_links">
+				<span class="delete_link">
+					<%= link_to "Delete", placement, :confirm => "Are you sure?", :method => :delete, :remote => true %>
+				</span>
+			</div>
 		<% end %>
 	</td>
 	<td class="details">

@@ -1,0 +1,10 @@
+<% if @location.errors.any? %>
+	$('#location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+<% else %>
+	// Add Location
+	$('#locations').append("<%= escape_javascript(render @location) %>"); 
+	$(".location").last().effect("highlight", {}, 1000);
+	$('#new_location').get(0).reset();
+	$('#location_errors').html("");
+<% end %>
+<% flash.discard %>

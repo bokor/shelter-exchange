@@ -13,10 +13,10 @@ var Animals = {
 		var element = $(element);
 		$.get("/animals/filter_by_type", element.parents("form:first").serialize());
 	},
-	selectLocation: function(id, name) {
-		$('#location_selected span').html('<b>' + name + '</b>');
-		$('#animal_location_id').val(id);
-		$('#location_search_link').text("Change location");
+	selectAccommodation: function(id, name) {
+		$('#accommodation_selected span').html('<b>' + name + '</b>');
+		$('#animal_accommodation_id').val(id);
+		$('#accommodation_search_link').text("Change accommodation");
 		TopUp.close();
   	}
 	
@@ -67,7 +67,7 @@ $(function() {
 	showSecondaryBreed();
 	$('#animal_animal_type_id').bind("change", function(event) {animalTypeSelected()});
 	$('#animal_is_mix_breed').bind("click", function(event) {showSecondaryBreed()});
-	$('#location_search_link').bind("click",function(event) {updateLocationDetails()}); 
+	$('#accommodation_search_link').bind("click",function(event) {updateAccommodationDetails()}); 
 });
 
 function animalTypeSelected() {
@@ -76,10 +76,10 @@ function animalTypeSelected() {
 	if (animal_type_id == '') {
 		$('#primary_breed_field').hide();
 		$('#secondary_breed_field').hide();
-		$('#location_info').hide();
+		$('#accommodation_info').hide();
 	} else {
 		$('#primary_breed_field').show();
-		$('#location_info').show();
+		$('#accommodation_info').show();
 	}
 }
 
@@ -92,8 +92,8 @@ function showSecondaryBreed() {
 	}
 }
 
-function updateLocationDetails(){
-	$.get("/locations/find_by", { animal_type_id: $('#animal_animal_type_id').val() } );
+function updateAccommodationDetails(){
+	$.get("/accommodations/filter_by_type", { animal_type_id: $('#animal_animal_type_id').val() } );
 }
 
 /*

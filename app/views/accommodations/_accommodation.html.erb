@@ -1,0 +1,58 @@
+<div id="accommodation_<%= accommodation.id %>" class="accommodation<% if accommodation.animals.count == accommodation.max_capacity %> over_capacity<% end %>">
+	
+	<div class="accommodation_info">
+		<div class="accommodation_name">
+			<h3><%= accommodation.name %></h3>
+			<span class="location_details"><% if accommodation.location.blank? %>None<% else %><%= accommodation.location.name %><% end %></span>
+		</div>
+		
+		<div class="accommodation_types">
+			<span class="animal_type"><%= accommodation.animal_type.name if accommodation.animal_type.name %></span>
+			<span class="select_link">
+				<% if accommodation.animals.count != accommodation.max_capacity %>
+					<%= link_to "Select", "#", :onclick => "Animals.selectAccommodation('#{accommodation.id}','#{accommodation.name}');" %>
+				<% else %>
+					Accommodation Full
+				<% end %>
+			</span>
+		</div>
+	</div>
+		
+	<div class="accommodation_count">
+		<span class="space_available">Space Available: <%= accommodation.max_capacity - accommodation.animals.count %></span>
+		<div class="action_links">
+			<span class="view_link">
+				<%= link_to "View", "#", :onclick => "$('#accommodation_details_#{accommodation.id}').slideToggle();return false;" %>
+			</span>
+			<span class="edit_link">&nbsp;|&nbsp;
+				<%= link_to "Edit", edit_accommodation_path(accommodation), :remote => true %>
+			</span>
+			<span class="delete_link">&nbsp;|&nbsp;
+				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure?", :remote => true %>
+			</span>
+		</div>
+	</div>
+	
+
+	<div id="accommodation_details_<%= accommodation.id %>" class="accommodation_details">
+		<% if accommodation.animals.size > 0 %>
+		<table class="list">
+			<% accommodation.animals.each do |animal| %>
+			<tr>
+				<td class="image">
+					<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+				</td>
+				<td class="details">
+					<p><%= link_to animal.name, animal %></p>
+					<p><% if animal.sex %><%= animal.sex %><% end %> <% if animal.is_sterilized %>(Sterilized)<% end %></p>
+					<p><b><%= animal.animal_status.name %></b></p>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<% else %>
+			<h3>No animals in this accommodation</h3>
+		<% end %>
+	</div>
+
+</div>

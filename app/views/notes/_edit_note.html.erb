@@ -5,7 +5,7 @@
 	    <div class="actions">
 			<%= f.submit "Update Note", :disable_with => "Submitting...", :class => "button" %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#',:onclick => "$('#edit_note_#{@note.id}').slideToggle(800,function() {$(this).remove();});$('#note_#{@note.id}').fadeIn(1000);"  %>
+			<%= link_to 'Cancel', '#',:onclick => "$('#edit_note_#{@note.id}').slideToggle(800,function() {$(this).remove();});$('#note_#{@note.id}').fadeIn(1000);return false;"  %>
 		</div>
 	<% end %>
 </div>

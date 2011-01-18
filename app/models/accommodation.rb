@@ -1,10 +1,10 @@
-class Location < ActiveRecord::Base
+class Accommodation < ActiveRecord::Base
   default_scope :order => 'name ASC'
   
   # Associations
   belongs_to :shelter   #, :conditions => {:state => 'active'}
   belongs_to :animal_type
-  belongs_to :location_category
+  belongs_to :location
   
   has_many :animals
   
@@ -17,4 +17,5 @@ class Location < ActiveRecord::Base
   
   # Scopes
   
+
 end
