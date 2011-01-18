@@ -24,8 +24,6 @@ gem 'jquery-rails', '0.2.4'
 # Attachments
 gem 'paperclip', '2.3.6'
 
-gem 'acts-as-taggable-on', '2.0.6'
-
 
 # Geocoding - requires plugin as well.
 gem 'geokit', '1.5.0'
