@@ -1,4 +1,0 @@
-$('#location_<%=@location.id%>').hide();
-$('#location_<%=@location.id%>').after("<%= escape_javascript(render 'edit_location', :collection => @location) %>");
-$('#edit_location_<%=@location.id%>').show();
-<% flash.discard %>
