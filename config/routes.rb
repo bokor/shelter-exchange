@@ -76,10 +76,14 @@ Shelterexchange::Application.routes.draw do
 
 #   Devise Routes
     # devise_for :users 
+    devise_for :users do
+      get "login", :to => "devise/sessions#new"
+      get "logout", :to => "devise/sessions#destroy"
+    end
      
-    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout" } 
-    match "login" => "devise/sessions#new", :path => :new_user_session #used to be :as
-    match "logout" => "devise/sessions#destroy", :path => :destroy_user_session
+    # devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout" } 
+    #     match "login" => "users/sessions#new", :path => :new_user_session #used to be :as
+    #     match "logout" => "users/sessions#destroy", :path => :destroy_user_session
     # ADD RESET PASSWORD
     
 #   Root Route - will redirect to animals as the first page
