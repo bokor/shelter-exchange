@@ -6,42 +6,37 @@ gem 'mysql', '2.8.1'
 
 gem 'mail', '2.2.12'
 
-# Login/Authentication
-gem 'devise', '1.1.3'
-gem 'devise_invitable', '0.3.5'
+gem 'devise', '1.1.3'               # Login/Authentication
+gem 'devise_invitable', '0.3.5'     # Login/Authentication
 
-# Authorization
-# gem 'declarative_authorization'
-# gem 'cancan'
+# gem 'declarative_authorization'   # Authorization
+# gem 'cancan'                      # Authorization
 
-# Navigation
-gem 'will_paginate', '2.3.15'
+gem 'will_paginate', '2.3.15'       # Pagination
 
-# HTML/JS
-gem 'dynamic_form', '1.1.3'
-gem 'jquery-rails', '0.2.4'
+gem 'dynamic_form', '1.1.3'         # HTML/JS
+gem 'jquery-rails', '0.2.4'         # HTML/JS
 
-# Attachments
-gem 'paperclip', '2.3.6'
+gem 'paperclip', '2.3.6'            # Attachments
 
+gem 'geokit', '1.5.0'				# Geocoding - requires plugin as well.
 
-# Geocoding - requires plugin as well.
-gem 'geokit', '1.5.0'
-
-# Generators
-gem 'rails3-generators', '0.14.0'
+gem 'rails3-generators', '0.14.0'   # Generators
 
 
-#gem 'searchlogic' - Doesn't work with rails 3
+
+
 #gem 'css_sprite' - Doesn't work with rails 3, failing on Rake Class Task
 
 
 
 ##TESTING THESE GEMS/Plugins
-#gem 'cancan'
 #gem 'paper_trail'
 #gem 'acts_as_archive'
 #gem 'foreigner'
+#gem 'aws-s3'
+#gem 'fog'
+
 
 
 
