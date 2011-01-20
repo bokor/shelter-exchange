@@ -3,7 +3,10 @@ class Animal < ActiveRecord::Base
   before_create :update_status_change_date
   before_save :check_status_change
   
-  PER_PAGE = 5
+  # Development
+  PER_PAGE = 4
+  # Production
+  #PER_PAGE = 25
   SEX = [ "Male", "Female" ]
   
   # Associations
@@ -27,6 +30,7 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :animal_type_id, :message => 'needs to be selected'
   validates_presence_of :animal_status_id, :message => 'needs to be selected'
+  
   # Custom Validations
   validate :primary_breed, :presence => true, :if => :primary_breed_exists
   validate :secondary_breed, :presence => true, :if => :secondary_breed_exists
@@ -41,11 +45,12 @@ class Animal < ActiveRecord::Base
   
   
   # Scopes
-  scope :auto_complete, lambda { |q| {:conditions => "LOWER(name) LIKE LOWER('%#{q}%')" }}
-  scope :live_search, lambda { |q| { :conditions => "LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') 
-                                                  OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') 
-                                                  OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')" }}
-  scope :search_by_name, lambda { |q| { :conditions => "LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')", :limit => 4 }}                                              
+  scope :auto_complete, lambda { |q| where("name LIKE LOWER('%#{q}%')") }
+  scope :live_search, lambda { |q| where("id LIKE LOWER('%#{q}%') OR name LIKE LOWER('%#{q}%') OR description LIKE LOWER('%#{q}%') 
+                                          OR chip_id LIKE LOWER('%#{q}%') OR color LIKE LOWER('%#{q}%') 
+                                          OR age LIKE LOWER('%#{q}%') OR weight LIKE LOWER('%#{q}%') 
+                                          OR primary_breed LIKE LOWER('%#{q}%') OR secondary_breed LIKE LOWER('%#{q}%')") }
+  scope :search_by_name, lambda { |q| where("id LIKE LOWER('%#{q}%') OR name LIKE LOWER('%#{q}%')").limit(4) }                                              
      
 
   

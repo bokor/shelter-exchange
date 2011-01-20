@@ -1,5 +1,9 @@
 class Accommodation < ActiveRecord::Base
   default_scope :order => 'name ASC'
+  # Development
+  PER_PAGE = 4
+  # Production
+  #PER_PAGE = 50
   
   # Associations
   belongs_to :shelter   #, :conditions => {:state => 'active'}
@@ -16,6 +20,7 @@ class Accommodation < ActiveRecord::Base
   # Callbacks
   
   # Scopes
+  scope :live_search, lambda { |q| where("name LIKE LOWER('%#{q}%')") }
   
-
+  
 end

@@ -53,44 +53,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
-.animals #accommodations { width: 645px;height: 450px; overflow:auto;  z-index: 9999999999999;}
-.animals #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals #accommodations .accommodation { width: 90%;padding: 15px; border-top:1px #ccc solid; border-collapse: collapse; border-spacing: 0; }
-.animals #accommodations .accommodation:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-.animals #accommodations .over_capacity {background-color: #fce2ec; border-top:1px solid #f286b1;border-bottom:1px solid #f286b1;}
-.animals #accommodations .hover{background-color:#EFEBE3;}
-
-.animals #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
-.animals #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals #accommodations .accommodation .accommodation_name {float:left; width: 69%;}
-.animals #accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
-.animals #accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
-.animals #accommodations .accommodation .accommodation_types {float:left; width: 29%; text-align:right;}
-.animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
-.animals #accommodations .accommodation .accommodation_types .select_link {font-weight:bold; font-size: 14px; letter-spacing: -1px;}
-.animals #accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
-.animals #accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}
-.animals #accommodations .accommodation .accommodation_count .action_links {float: right; text-align:right;font-size: 10px;font-weight:bold;}
-.animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
-.animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
-
-.animals #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
-.animals #accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-.animals #accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
-.animals #accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
-.animals #accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
-.animals #accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
-.animals #accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-
-
-
-
-
-
-
-
-
 
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
@@ -311,41 +273,88 @@ If we don't use hover remove the padding left and right*/
 .index_accommodations .page_heading {/* COLORS PADDING FONTS */}
 
 /* -- Location Filters --*/
-.index_accommodations #filters {padding-top:10px;}
+.index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
+.index_accommodations table.search tr {vertical-align:top;}
+.index_accommodations table.search td.live_search {width:50%;text-align:left;padding-top:10px;}
+.index_accommodations table.search td.live_search input {margin-top:5px;width:90%;}
+.index_accommodations table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_accommodations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+.index_accommodations table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
+.index_accommodations table.search td.filters table.filter_table tr{vertical-align:top;}
+.index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;}
+.index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+/*.index_accommodations #filters {padding-top:10px;}
 .index_accommodations #filters .animal_type_filter { float: left; width: 49%;}
 .index_accommodations #filters .animal_type_filter li {float: left; padding: 10px 20px 0 0;}
 .index_accommodations #filters .location_filter { float: left; width: 49%;}
 .index_accommodations #filters .location_filter li {float: left; padding: 10px 20px 0 0;}
 .index_accommodations #filters h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_accommodations #filters:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+.index_accommodations #filters:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }*/
 
-.index_accommodations #accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
-.index_accommodations #accommodations .hover{background-color:#EFEBE3;}
+#accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+#accommodations .hover{background-color:#EFEBE3;}
 
-.index_accommodations #accommodations { border-top:1px dotted #ccc; padding-top: 20px;}
-.index_accommodations #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_accommodations #accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+#accommodations { border-top:1px dotted #ccc; padding-top: 20px;}
+#accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 /* -- Index Accommodations :: Accommodation Details --*/
-.index_accommodations #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
-.index_accommodations #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_accommodations #accommodations .accommodation .accommodation_name {float:left; width: 69%;}
-.index_accommodations #accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
-.index_accommodations #accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
-.index_accommodations #accommodations .accommodation .accommodation_types {float:left; width: 29%; text-align:right;}
-.index_accommodations #accommodations .accommodation .accommodation_types .animal_type {font-weight:bold; font-size: 14px; letter-spacing: -1px;}
-.index_accommodations #accommodations .accommodation .accommodation_types .select_link {display: none;}
-.index_accommodations #accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
-.index_accommodations #accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}
-.index_accommodations #accommodations .accommodation .accommodation_count .action_links{float: right; text-align:right;font-size: 10px;font-weight:bold;}
+#accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
+#accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#accommodations .accommodation .accommodation_name {float:left; width: 69%;}
+#accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
+#accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
+#accommodations .accommodation .accommodation_types {float:right; width: 29%; text-align:right;}
+#accommodations .accommodation .accommodation_types .animal_type {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
+#accommodations .accommodation .accommodation_types .select_link {display: none;}
+#accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
+#accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}
+#accommodations .accommodation .accommodation_count .action_links{float: right; text-align:right;font-size: 10px;font-weight:bold;}
 
 /* -- Index Accommodations :: Animal List Table --*/
-.index_accommodations #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
-.index_accommodations #accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-.index_accommodations #accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
-.index_accommodations #accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
-.index_accommodations #accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
-.index_accommodations #accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
-.index_accommodations #accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+#accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
+#accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+#accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
+#accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
+#accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
+#accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
+#accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+
+/* -- Animals :: Accommodations :: Accommodation Details --*/
+
+.animals #accommodations { width: 100%;height: 400px; overflow:auto;  z-index: 9999999999999;}
+/*.animals #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animals #accommodations .accommodation { width: 90%;padding: 15px; border-top:1px #ccc solid; border-collapse: collapse; border-spacing: 0; }
+.animals #accommodations .accommodation:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+.animals #accommodations .over_capacity {background-color: #fce2ec; border-top:1px solid #f286b1;border-bottom:1px solid #f286b1;}
+.animals #accommodations .hover{background-color:#EFEBE3;}*/
+
+/*.animals #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
+.animals #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animals #accommodations .accommodation .accommodation_name {float:left; width: 69%;}
+.animals #accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
+.animals #accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
+.animals #accommodations .accommodation .accommodation_types {float:left; width: 29%; text-align:right;}*/
+.animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
+.animals #accommodations .accommodation .accommodation_types .select_link {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
+/*.animals #accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
+.animals #accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}*/
+/*.animals #accommodations .accommodation .accommodation_count .action_links {float: right; text-align:right;font-size: 10px;font-weight:bold;}*/
+.animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
+.animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
+
+/*.animals #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
+.animals #accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.animals #accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
+.animals #accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.animals #accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
+.animals #accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
+.animals #accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+*/
+
+
+
+
 
 
 /* -- Index Locations  --*/

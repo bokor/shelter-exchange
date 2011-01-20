@@ -3,7 +3,7 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @accommodations = @current_shelter.accommodations.all(:include => [:animal_type, :animals])
+    @accommodations = @current_shelter.accommodations.all(:include => [:animal_type, :animals]).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
 
     if @accommodations.blank?
       @accommodation = @current_shelter.accommodations.new
@@ -60,22 +60,22 @@ class AccommodationsController < ApplicationController
     respond_with(@accommodation)
   end
   
-  def filter_by_type
-    # TODO - look to move this function into the model.
-    type = params[:animal_type_id]
-    if type.empty?
-      @accommodations = @current_shelter.accommodations.all
-    else
-      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id(type)
-    end
+  def live_search
+    q = params[:q].strip
+    @accommodations = @current_shelter.accommodations.live_search(q).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
   end
   
-  def filter_by_location
+  def filter_by_type_location
+    type = params[:animal_type_id]
     location = params[:location_id]
-    if location.empty?
-      @accommodations = @current_shelter.accommodations.all
-    else
-      @accommodations = @current_shelter.accommodations.scoped_by_location_id(location)
+    if type.empty? and location.empty?
+      @accommodations = @current_shelter.accommodations.all.paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+    elsif is_integer(type) and location.empty?
+      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id(type).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+    elsif type.empty? and is_integer(location)
+      @accommodations = @current_shelter.accommodations.scoped_by_location_id(location).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+    elsif is_integer(type) and is_integer(location)
+      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id_and_location_id(type,location).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
     end
   end
 

@@ -10,26 +10,42 @@
 
 		<div class="page_content">
 			
-			<div id="filters">
-				<div class="animal_type_filter">
-					<h3>Filter by animal type:</h3>
-					<%= form_for :accommodations, :url => { :action => "filter_by_type"}, :remote => true, :html => { :id => "form_find_by_type", :method => :get } do |f| %>
-						<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
-							{ :name => "animal_type_id", :onchange => "Accommodations.filterByType(this);" } ) %><br /><br />
-					<% end %>
-				</div>
-				<div class="location_filter">
-					<h3>Filter by specific location:</h3></li>
-					<%= form_for :accommodations, :url => { :action => "filter_by_location"}, :remote => true, :html => { :id => "form_find_by_location", :method => :get } do |f| %>
-						<%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
-							{ :name => "location_id", :onchange => "Accommodations.filterByLocation(this);" } ) %><br /><br />
-					<% end %>
-				</div>
-			</div>
+			<table class="search">
+				<tr>
+					<td class="live_search">
+						<h3>Search for accommodation:</h3>
+						<%= form_for :accommodations, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_live_search", :method => :get } do |f| %>
+							<%= text_field_tag "q", "", :onkeyup => "Accommodations.liveSearch(this, 3);"  %>
+							<!--<%= f.submit "Go" %>-->
+						<% end %>
+					</td>
+					<td class="filters">
+						<h3>Filter accommodation by:</h3>
+
+						<%= form_for :accommodations, :url => { :action => :filter_by_type_location }, :remote => true, :html => { :id => "form_find_by_type_location", :method => :get } do |f| %>
+						<table class="filter_table">
+							<tr>
+								<td><%= f.label :animal_type_id, "Animal type" %></td>
+								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+										{ :name => "animal_type_id", :onchange => "Accommodations.filterByTypeLocation(this);" } ) %><br /><br />
+								</td>
+							</tr>
+							<tr>
+								<td><%= f.label :location_id, "Location details" %></td>
+								<td><%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
+										{ :name => "location_id", :onchange => "Accommodations.filterByTypeLocation(this);" } ) %>
+								</td>
+							</tr>
+						</table>
+						<% end %>
+					</td>
+				</tr>
+			</table>
 			
 			<div id="accommodations">
-				<%= render @accommodations %>
+				<%= render :partial => 'accommodation_list' %>
 			</div>
+			
 		</div>
 		
 	<% else %>

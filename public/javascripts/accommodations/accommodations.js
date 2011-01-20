@@ -1,12 +1,16 @@
 var Accommodations = {
-	filterByType: function(element){
+	liveSearch: function(element,letters_before_search) {
 		var element = $(element);
-		$.get("/accommodations/filter_by_type", element.parents("form:first").serialize());
-		$("#location_location_id").val("");
-	},
-	filterByLocation: function(element) {
+    	// element.down(".close").addClassName("busy");
+		if (element.val().length >= letters_before_search) { // Require at least 3 letters before searching
+			$.get("/accommodations/live_search", element.parents("form:first").serialize());
+		}
+  	},
+	filterByTypeLocation: function(element) {
 		var element = $(element);
-		$.get("/accommodations/filter_by_location", element.parents("form:first").serialize());
-		$("#animal_animal_type_id").val("");
-  	}
+		$.get("/accommodations/filter_by_type_location", element.parents("form:first").serialize());
+		// $.get("/accommodations/filter_by_type_location", { 
+		// 			animal_type_id: $('#animal_animal_type_id').val(), 
+		// 			location_id: $('#location_location_id').val() } );
+	 }
 };

@@ -21,8 +21,8 @@ Shelterexchange::Application.routes.draw do
 #   Accommodations Routes 
     resources :accommodations do
       collection do
-        get :filter_by_type
-        get :filter_by_location
+        get :live_search
+        get :filter_by_type_location
       end
     end
     
@@ -57,7 +57,7 @@ Shelterexchange::Application.routes.draw do
       resources :tasks 
       collection do
         get :auto_complete
-        get :filter_by_type
+        get :filter_by_type_status
         get :live_search
         get :find_locations
       end

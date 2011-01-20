@@ -12,7 +12,7 @@
 				<% if accommodation.animals.count != accommodation.max_capacity %>
 					<%= link_to "Select", "#", :onclick => "Animals.selectAccommodation('#{accommodation.id}','#{accommodation.name}');" %>
 				<% else %>
-					Accommodation Full
+					Full
 				<% end %>
 			</span>
 		</div>

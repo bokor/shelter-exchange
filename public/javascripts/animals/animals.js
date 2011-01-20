@@ -9,9 +9,9 @@ var Animals = {
 			$.get("/animals/live_search", element.parents("form:first").serialize());
 		}
   	},
-	filterByType: function(element){
+	filterByTypeStatus: function(element){
 		var element = $(element);
-		$.get("/animals/filter_by_type", element.parents("form:first").serialize());
+		$.get("/animals/filter_by_type_status", element.parents("form:first").serialize());
 	},
 	selectAccommodation: function(id, name) {
 		$('#accommodation_selected span').html('<b>' + name + '</b>');
@@ -67,7 +67,7 @@ $(function() {
 	showSecondaryBreed();
 	$('#animal_animal_type_id').bind("change", function(event) {animalTypeSelected()});
 	$('#animal_is_mix_breed').bind("click", function(event) {showSecondaryBreed()});
-	$('#accommodation_search_link').bind("click",function(event) {updateAccommodationDetails()}); 
+	$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation()}); 
 });
 
 function animalTypeSelected() {
@@ -90,10 +90,6 @@ function showSecondaryBreed() {
 	} else {
 		$('#secondary_breed_field').hide();
 	}
-}
-
-function updateAccommodationDetails(){
-	$.get("/accommodations/filter_by_type", { animal_type_id: $('#animal_animal_type_id').val() } );
 }
 
 /*

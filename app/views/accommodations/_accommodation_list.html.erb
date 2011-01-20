@@ -1,0 +1,4 @@
+<% @accommodations.each do |accommodation| %>
+	<%= render accommodation %>
+<% end %>
+<%= will_paginate @accommodations, :renderer => 'RemoteLinkRenderer' %>
