@@ -16,7 +16,7 @@ class Shelter < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :items, :dependent => :destroy
   
-  accepts_nested_attributes_for :items #, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
    
   # Validations
   validates_presence_of :name

@@ -71,12 +71,6 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    # def euthanasia_field_required(field)
-    #   if @is_kill_shelter && field.blank?
-    #     errors.add(field, "must be entered")
-    #   end
-    # end
-    
     def is_kill_shelter?
       Shelter.find_by_id(self.shelter_id).is_kill_shelter
     end
