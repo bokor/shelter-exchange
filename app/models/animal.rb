@@ -3,7 +3,7 @@ class Animal < ActiveRecord::Base
   before_create :update_status_change_date
   before_save :check_status_change
   
-  if Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
+  Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE_PARENT_SEARCH_RESULTS = 4
   SEX = [ "Male", "Female" ]
   
