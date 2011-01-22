@@ -4,8 +4,6 @@ class Account < ActiveRecord::Base
   after_create :notify_account_creation
   
   # Associations
-  # authenticates_many :user_sessions, :find_options => { :limit => 1 }, :scope_cookies => true
-  
   has_many :users, :uniq => true, :dependent => :destroy
   has_many :shelters, :dependent => :destroy
   # NOT SURE if I'm going to keep these or not.  SEEMS SLOWER TO ACCESS
