@@ -11,10 +11,6 @@ class Note < ActiveRecord::Base
   validates_presence_of :note_category_id
 
   # Scopes
-  
-  # JOINS AND INNER JOINS
   scope :animal_filter, lambda {|name| joins(:note_category).where('note_categories.name = ?', name) }
-  # TWO LIGHT QUERIES
-  #scope :animal_filter, lambda {|name| where('note_category_id = ?', NoteCategory.find_by_name(name).id) }
   
 end

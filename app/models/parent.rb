@@ -19,9 +19,9 @@ class Parent < ActiveRecord::Base
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
                     
   # Scopes
-  scope :search, lambda { |q| { :conditions => "name LIKE '%#{q}%' OR street LIKE '%#{q}%' 
+  scope :search, lambda { |q| where("name LIKE '%#{q}%' OR street LIKE '%#{q}%' 
                                                 OR home_phone LIKE '%#{q}%' OR mobile_phone LIKE '%#{q}%' 
-                                                OR email LIKE '%#{q}%'" }}
+                                                OR email LIKE '%#{q}%'") }
                                                 
   
 end
