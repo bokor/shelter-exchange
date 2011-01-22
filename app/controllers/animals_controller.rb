@@ -61,7 +61,7 @@ class AnimalsController < ApplicationController
   
   def full_search
     q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
   def filter_by_type_status

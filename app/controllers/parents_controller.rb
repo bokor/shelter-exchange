@@ -56,7 +56,7 @@ class ParentsController < ApplicationController
   
   def search_animal_by_name
     q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q)
+    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).search_by_name(q).paginate(:per_page => Animal::PER_PAGE_PARENT_SEARCH_RESULTS, :page => params[:page])
     respond_with(@animals)
   end
   

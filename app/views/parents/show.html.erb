@@ -88,13 +88,13 @@
 		<div id="placement_errors"></div>
 		<div id="animal_selected">
 			<span></span>
-			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 500, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
+			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 535, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
 		</div>
 		<% @placement = Placement.new %>
 		<%= form_for (@placement), :remote => true do |f| %>
 			<%= render :partial => "placements/form", :locals => { :f => f } %>
 			<div class="actions">
-				<%= f.submit "Create Placement", :disable_with => "Submitting...", :id => "create_placement_button", :class => "button"  %>
+				<%= f.submit "Create Placement", :disable_with => "...", :id => "create_placement_button", :class => "button"  %>
 				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_placement" -%>
 			</div>
 		<% end %>
@@ -102,11 +102,11 @@
 	
 	<div id="animal_search_dialog" style="display:none;">
 		<div class="wrapper">
-			<%= form_for :parents, :url => { :action => "search_animal_by_name"}, 
+			<%= form_for :parents, :url => { :action => :search_animal_by_name }, 
 			             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
 	  			<h2>Search for animal:</h2>
-	  			<input type="text" id="q" name="q" value="" />
-	  			<input type="submit" name="Go" value="Go" />
+	  			<%= text_field_tag "q", ""  %>
+				<%= f.submit "Go", :disable_with => "...", :class => "button" %>
 	  		<% end %>
 	
 			<div id="animal_search_results"></div>

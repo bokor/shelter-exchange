@@ -16,7 +16,7 @@
 						<h3>Search for animal:</h3>
 						<%= form_for :animals, :url => { :action => :full_search }, :remote => true, :html => { :id => "form_full_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go" %>
+							<%= f.submit "Go", :disable_with => "...", :class => "button" %>
 						<% end %>
 					</td>
 					<td class="filters">

@@ -489,8 +489,8 @@ If we don't use hover remove the padding left and right*/
 .show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .show_parents #animal_selected #animal_search_link{}
 
-.show_parents #animal_search_results {padding-top: 20px;}
-.show_parents #animal_search_results table{width:98%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.show_parents #animal_search_results {margin-top: 20px; width: 100%; height: 400px; z-index: 9999999999999;}
+.show_parents #animal_search_results table{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
 .show_parents #animal_search_results table td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
 .show_parents #animal_search_results table td.image { width:100px; padding-right: 15px;}
 .show_parents #animal_search_results table td.details { width:380px;color:#666; }

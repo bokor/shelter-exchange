@@ -2,15 +2,6 @@
 	INDEX
 */
 var Animals = {
-	// fullSearch: function() {
-	// 	// var element = $(element);
-	//     	// element.down(".close").addClassName("busy");
-	// 	//if (element.val().length >= letters_before_search) { // Require at least 3 letters before searching
-	// 		$.get("/animals/full_search", { q: $('#q').val() });
-	// 	//} //else {
-	// 	//	$.get("/animals/live_search", { q: "" });
-	// 	//}
-	//   	},
 	filterByTypeStatus: function(){
 		// var element = $(element);
 		$.get("/animals/filter_by_type_status", { 
