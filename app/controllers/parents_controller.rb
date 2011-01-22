@@ -3,13 +3,14 @@ class ParentsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @parents = Parent.all #(:include => [:parent_type, :parent_status])
-    respond_with(@parents)
+    # No Loading because Index page is a search
+    # @parents = Parent.all
+    # respond_with(@parents)
   end
   
   def show
     begin
-      @parent = Parent.find(params[:id])
+      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal =>[:animal_type]]).find(params[:id])
       respond_with(@parent)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid parent => #{params[:id]}")
@@ -56,6 +57,7 @@ class ParentsController < ApplicationController
   def search_animal_by_name
     q = params[:q].strip
     @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q)
+    respond_with(@animals)
   end
   
 end

@@ -13,8 +13,8 @@ class SheltersController < ApplicationController
   
   def edit
     @shelter = @current_shelter
-    #5.times { @shelter.items.build } if @shelter.items.blank?
-    (5 - @shelter.items.size).times { |i| @shelter.items.build }
+    5.times { @shelter.items.build } if @shelter.items.blank?
+    # (5 - @shelter.items.size).times { |i| @shelter.items.build }
     respond_with(@shelter)
   end
   

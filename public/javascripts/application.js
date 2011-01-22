@@ -19,6 +19,12 @@ $(".location").live('hover', function(event) {
   }
 });
 
+// Pagination Links -> AJAX Searches
+$('.pagination a').live('click',function (){  
+	$.getScript(this.href);  
+    return false;  
+});
+
 
 //Sidebar Functions to Show and Hide them When Button is clicked
 $(function() {

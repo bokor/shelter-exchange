@@ -3,14 +3,16 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @animals = @current_shelter.animals.all(:include => [:animal_type, :animal_status]).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    # @animals = @current_shelter.animals.all(:include => [:animal_type, :animal_status]).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     respond_with(@animals)
   end
   
   def show
     begin
       # OPTIMZE BECAUSE NOTES NEED TO BE ONLY CALLED ON THE FILTER
-      @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, :alerts, {:notes => [:note_category]}, {:tasks => [:task_category]}])
+      # @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, :alerts, {:notes => [:note_category]}, {:tasks => [:task_category]}])
+      @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :alerts, :notes => [:note_category], :tasks => [:task_category]).find(params[:id])
       filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
@@ -57,22 +59,23 @@ class AnimalsController < ApplicationController
     end
   end
   
-  def live_search
+  def full_search
     q = params[:q].strip
-    @animals = @current_shelter.animals.live_search(q).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    @animals = q.blank? ? {} : @current_shelter.animals.full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
   def filter_by_type_status
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
-    if type.empty? and status.empty?
-      @animals = @current_shelter.animals.all.paginate :per_page => Animal::PER_PAGE, :page => params[:page]
-    elsif is_integer(type) and status.empty?
-      @animals = @current_shelter.animals.scoped_by_animal_type_id(type).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
-    elsif type.empty? and is_integer(status)
-      @animals = @current_shelter.animals.scoped_by_animal_status_id(status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+    if type.blank? and status.blank?
+      # @animals = @current_shelter.animals.all.paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    elsif is_integer(type) and status.blank?
+      @animals = @current_shelter.animals.scoped_by_animal_type_id(type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    elsif type.blank? and is_integer(status)
+      @animals = @current_shelter.animals.scoped_by_animal_status_id(status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and is_integer(status)
-      @animals = @current_shelter.animals.scoped_by_animal_type_id_and_animal_status_id(type,status).paginate :per_page => Animal::PER_PAGE, :page => params[:page]
+      @animals = @current_shelter.animals.scoped_by_animal_type_id_and_animal_status_id(type,status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     end
   end
   

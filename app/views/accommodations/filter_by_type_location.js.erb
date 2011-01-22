@@ -1,1 +1,5 @@
-$('#accommodations').html( "<%= escape_javascript( render :partial => 'accommodation_list' ) %>" );
+<% unless @accommodations.blank? %>
+	$('#accommodations').html( "<%= escape_javascript( render :partial => 'accommodation_list' ) %>" );
+<% else %>
+	$('#accommodations').html( "<div class='no_results'><h2>No Accommodations found</h2></div>" );
+<% end %>

@@ -20,7 +20,7 @@ class Accommodation < ActiveRecord::Base
   # Callbacks
   
   # Scopes
-  scope :live_search, lambda { |q| where("name LIKE LOWER('%#{q}%')") }
+  scope :full_search, lambda { |q| where("name LIKE '%#{q}%'") }
   
   
 end

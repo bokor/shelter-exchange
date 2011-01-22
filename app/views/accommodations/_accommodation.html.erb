@@ -33,9 +33,8 @@
 		</div>
 	</div>
 	
-
 	<div id="accommodation_details_<%= accommodation.id %>" class="accommodation_details">
-		<% if accommodation.animals.size > 0 %>
+		<% if accommodation.animals.count > 0 %>
 		<table class="list">
 			<% accommodation.animals.each do |animal| %>
 			<tr>

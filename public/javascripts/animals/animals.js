@@ -2,16 +2,20 @@
 	INDEX
 */
 var Animals = {
-	liveSearch: function(element,letters_before_search) {
-		var element = $(element);
-    	// element.down(".close").addClassName("busy");
-		if (element.val().length >= letters_before_search) { // Require at least 3 letters before searching
-			$.get("/animals/live_search", element.parents("form:first").serialize());
-		}
-  	},
-	filterByTypeStatus: function(element){
-		var element = $(element);
-		$.get("/animals/filter_by_type_status", element.parents("form:first").serialize());
+	// fullSearch: function() {
+	// 	// var element = $(element);
+	//     	// element.down(".close").addClassName("busy");
+	// 	//if (element.val().length >= letters_before_search) { // Require at least 3 letters before searching
+	// 		$.get("/animals/full_search", { q: $('#q').val() });
+	// 	//} //else {
+	// 	//	$.get("/animals/live_search", { q: "" });
+	// 	//}
+	//   	},
+	filterByTypeStatus: function(){
+		// var element = $(element);
+		$.get("/animals/filter_by_type_status", { 
+					animal_type_id: $('#animal_animal_type_id').val(), 
+					animal_status_id: $('#animal_animal_status_id').val() } );
 	},
 	selectAccommodation: function(id, name) {
 		$('#accommodation_selected span').html('<b>' + name + '</b>');

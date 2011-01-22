@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper :all
-  helper_method :check_my_subdomain
-  before_filter :current_subdomain, :current_shelter
+  # helper_method :check_my_subdomain
+  before_filter :current_subdomain, :current_shelter #, :set_timezone
   layout :current_layout_name
   
   private
@@ -33,11 +33,15 @@ class ApplicationController < ActionController::Base
       @current_account.blank? ? 'public' : 'application'
     end
     
-    def check_my_subdomain(subdomain)
-      if subdomain != @current_account.subdomain
-        redirect_to "/404.html" , :alert => "Sorry, resource is not part of your subdomain"
-      end
+    def set_timezone
+      # Time.zone = @current_shelter.time_zone
     end
+    
+    # def check_my_subdomain(subdomain)
+    #   if subdomain != @current_account.subdomain
+    #     redirect_to "/404.html" , :alert => "Sorry, resource is not part of your subdomain"
+    #   end
+    # end
 
     
   protected

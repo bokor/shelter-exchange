@@ -3,8 +3,9 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @accommodations = @current_shelter.accommodations.all(:include => [:animal_type, :animals]).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
-
+    # @accommodations = @current_shelter.accommodations.all(:include => [:animal_type, :animals, :location]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+  
     if @accommodations.blank?
       @accommodation = @current_shelter.accommodations.new
       respond_with(@accommodation)
@@ -60,22 +61,23 @@ class AccommodationsController < ApplicationController
     respond_with(@accommodation)
   end
   
-  def live_search
+  def full_search
     q = params[:q].strip
-    @accommodations = @current_shelter.accommodations.live_search(q).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+    @accommodations = q.blank? ? {} : @current_shelter.accommodations.full_search(q).includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   end
   
   def filter_by_type_location
     type = params[:animal_type_id]
     location = params[:location_id]
     if type.empty? and location.empty?
-      @accommodations = @current_shelter.accommodations.all.paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+      # @accommodations = @current_shelter.accommodations.all.paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+      @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and location.empty?
-      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id(type).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id(type).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif type.empty? and is_integer(location)
-      @accommodations = @current_shelter.accommodations.scoped_by_location_id(location).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+      @accommodations = @current_shelter.accommodations.scoped_by_location_id(location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and is_integer(location)
-      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id_and_location_id(type,location).paginate :per_page => Accommodation::PER_PAGE, :page => params[:page]
+      @accommodations = @current_shelter.accommodations.scoped_by_animal_type_id_and_location_id(type,location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     end
   end
 

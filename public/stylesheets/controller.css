@@ -86,14 +86,17 @@ If we don't use hover remove the padding left and right*/
 
 .index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_animals table.search tr {vertical-align:top;}
-.index_animals table.search td.animal_live_search {width:50%;text-align:left;padding-top:10px;}
-.index_animals table.search td.animal_live_search input {margin-top:5px;width:90%;}
-.index_animals table.search td.animal_filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_animals table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
+.index_animals table.search td.full_search input[type=text] {margin-top:5px;width:80%;}
+.index_animals table.search td.full_search input[type=submit] {margin-left: 5px;}
+.index_animals table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
 .index_animals table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_animals table.search td.animal_filters table.filter_table{width: 100%;padding-left: 20px;}
-.index_animals table.search td.animal_filters table.filter_table tr{vertical-align:top;}
-.index_animals table.search td.animal_filters table.filter_table tr td label {width: 25%;text-align:left;}
-.index_animals table.search td.animal_filters table.filter_table tr td select{width: 75%;text-align:left;}
+.index_animals table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
+.index_animals table.search td.filters table.filter_table tr{vertical-align:top;}
+.index_animals table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;}
+.index_animals table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+
+.index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
 /* -------------------------- SHOW - ANIMALS  -------------------------- */
 .show_animals .page_heading{border-bottom:1px solid #ddd; }
@@ -275,21 +278,15 @@ If we don't use hover remove the padding left and right*/
 /* -- Location Filters --*/
 .index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_accommodations table.search tr {vertical-align:top;}
-.index_accommodations table.search td.live_search {width:50%;text-align:left;padding-top:10px;}
-.index_accommodations table.search td.live_search input {margin-top:5px;width:90%;}
+.index_accommodations table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
+.index_accommodations table.search td.full_search input[type=text] {margin-top:5px;width:80%;}
+.index_accommodations table.search td.full_search input[type=submit] {margin-left: 5px;}
 .index_accommodations table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
 .index_accommodations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
 .index_accommodations table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
 .index_accommodations table.search td.filters table.filter_table tr{vertical-align:top;}
 .index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;}
 .index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
-/*.index_accommodations #filters {padding-top:10px;}
-.index_accommodations #filters .animal_type_filter { float: left; width: 49%;}
-.index_accommodations #filters .animal_type_filter li {float: left; padding: 10px 20px 0 0;}
-.index_accommodations #filters .location_filter { float: left; width: 49%;}
-.index_accommodations #filters .location_filter li {float: left; padding: 10px 20px 0 0;}
-.index_accommodations #filters h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_accommodations #filters:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }*/
 
 #accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
 #accommodations .hover{background-color:#EFEBE3;}
@@ -460,12 +457,12 @@ If we don't use hover remove the padding left and right*/
 
 /* -------------------------- INDEX - PARENTS  -------------------------- */
 .index_parents .page_heading{border-bottom:1px solid #ddd; }
-.index_parents #parent_search {padding: 0 0 20px 0; border-bottom:1px #ccc dotted;}
+.index_parents #parent_search {padding: 0 0 20px 0; }
 .index_parents #parents {}
-.index_parents #parents .no_results {padding: 20px 0 0 0; }
+.index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
 .index_parents #parents .no_results p{font-weight: bold; }
 
-.index_parents table.list{width:100%;padding:0 0 5px 0; }
+.index_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
 .index_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
 .index_parents table.list td.details { width:380px; color:#666; }
 .index_parents table.list td.status { width:175px;padding-left: 10px; text-align:right;}

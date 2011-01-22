@@ -45,12 +45,12 @@ class Animal < ActiveRecord::Base
   
   
   # Scopes
-  scope :auto_complete, lambda { |q| where("name LIKE LOWER('%#{q}%')") }
-  scope :live_search, lambda { |q| where("id LIKE LOWER('%#{q}%') OR name LIKE LOWER('%#{q}%') OR description LIKE LOWER('%#{q}%') 
-                                          OR chip_id LIKE LOWER('%#{q}%') OR color LIKE LOWER('%#{q}%') 
-                                          OR age LIKE LOWER('%#{q}%') OR weight LIKE LOWER('%#{q}%') 
-                                          OR primary_breed LIKE LOWER('%#{q}%') OR secondary_breed LIKE LOWER('%#{q}%')") }
-  scope :search_by_name, lambda { |q| where("id LIKE LOWER('%#{q}%') OR name LIKE LOWER('%#{q}%')").limit(4) }                                              
+  scope :auto_complete, lambda { |q| where("name LIKE '%#{q}%'") }
+  scope :full_search, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%' OR description LIKE '%#{q}%'
+                                          OR chip_id LIKE '%#{q}%' OR color LIKE '%#{q}%'
+                                          OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
+                                          OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
+  scope :search_by_name, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'").limit(4) }                                              
      
 
   

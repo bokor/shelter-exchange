@@ -71,10 +71,10 @@
 			<h2>Add a task</h2>
 			<div id="task_errors"></div>
 			<%= form_for (Task.new), :remote => true do |f| %>
-			<%= render :partial => "form", :locals => { :f => f } %>
-			<div class="actions">
-				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
-			</div>
+				<%= render :partial => "form", :locals => { :f => f } %>
+				<div class="actions">
+					<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+				</div>
 			<% end %>
 		</div>
 	<% else %>
