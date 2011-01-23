@@ -48,6 +48,11 @@ class AnimalsController < ApplicationController
      respond_with(@animal)
   end
   
+  def full_search
+    q = params[:q].strip
+    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+  end
+  
   def filter_notes
     filter = params[:filter]
     @animal = @current_shelter.animals.find(params[:id])
@@ -58,16 +63,10 @@ class AnimalsController < ApplicationController
     end
   end
   
-  def full_search
-    q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-  end
-  
   def filter_by_type_status
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
     if type.blank? and status.blank?
-      # @animals = @current_shelter.animals.all.paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
       @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and status.blank?
       @animals = @current_shelter.animals.scoped_by_animal_type_id(type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
