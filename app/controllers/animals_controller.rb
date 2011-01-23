@@ -10,10 +10,7 @@ class AnimalsController < ApplicationController
   
   def show
     begin
-      # OPTIMZE BECAUSE NOTES NEED TO BE ONLY CALLED ON THE FILTER
-      # @animal = @current_shelter.animals.find(params[:id], :include => [:animal_type, :animal_status, :alerts, {:notes => [:note_category]}, {:tasks => [:task_category]}])
       @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :alerts, :notes => [:note_category], :tasks => [:task_category]).find(params[:id])
-      filter_notes(params[:filter], @animal) # Find Notes per Filter
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid animal => #{params[:id]}")
@@ -51,11 +48,13 @@ class AnimalsController < ApplicationController
      respond_with(@animal)
   end
   
-  def filter_notes(filter, animal)
+  def filter_notes
+    filter = params[:filter]
+    @animal = @current_shelter.animals.find(params[:id])
     if filter.blank?
-      @notes = animal.notes
+      @notes = @animal.notes
     else
-      @notes = animal.notes.animal_filter(filter)
+      @notes = @animal.notes.animal_filter(filter)
     end
   end
   

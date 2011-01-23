@@ -1,0 +1,2 @@
+note_filter = '<%= params[:filter] %>'; // Used so we know what note filter param we are on.
+$('#notes').html( "<%= escape_javascript(render @notes) %>" );

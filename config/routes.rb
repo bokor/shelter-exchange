@@ -57,6 +57,7 @@ Shelterexchange::Application.routes.draw do
       resources :tasks 
       collection do
         get :auto_complete
+        get :filter_notes
         get :filter_by_type_status
         get :full_search
         get :find_locations
