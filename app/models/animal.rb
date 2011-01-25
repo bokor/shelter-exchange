@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'created_at DESC', :limit => 250
   before_create :update_status_change_date
   before_save :check_status_change
   
