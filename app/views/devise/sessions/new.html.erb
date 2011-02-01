@@ -1,3 +1,5 @@
+<%= title "Login" %>
+
 <% content_for :page_content do %>
 
 	<div class="page_heading">
@@ -10,7 +12,7 @@
 		
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 		
-		  <%= f.hidden_field :account_id, :value => @current_account.id %>
+		  <%= f.hidden_field :subdomain, :value => @current_account.subdomain %>
 		
 		  <p><%= f.label :email %><br />
 		  <%= f.text_field :email %></p>
@@ -24,6 +26,10 @@
 
 		  <p><%= f.submit "Sign in", :disable_with => 'Submiting...' %></p>
 		<% end %>
+		
+		<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+		  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br /><br />
+		<% end -%>
 		
 	</div>
 	

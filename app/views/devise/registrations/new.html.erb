@@ -1,3 +1,5 @@
+<%= title "Register new user" %>
+
 <% content_for :page_content do %>
 
 	<div class="page_heading">
@@ -10,7 +12,7 @@
 		
 		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 		  <!-- <%= devise_error_messages! %> -->
-		 <%= f.hidden_field :account_id, :value => @current_account.id %>
+		 <%= f.hidden_field :subdomain, :value => @current_account.subdomain %>
 		
 		 <p><%= f.label :name %><br />
 		  <%= f.text_field :name %></p>
