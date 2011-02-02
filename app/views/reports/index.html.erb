@@ -84,7 +84,24 @@
 	</div>
 		
 	<div class="page_content">
-		<div>
+		
+		<div><br />
+			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+				<h2 style="padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_available_for_adoption.count%></h2>
+				<p style="color:black;font-size: 12px; letter-spacing: -1px;">Available for Adoption</p>
+			</div>
+			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+				<h2 style="padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_adoptions.count%></h2>
+				<p style="color:black;font-size: 12px; letter-spacing: -1px;">Adoptions</p>
+			</div>
+			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+			<h2 style="color:red;padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_euthanized.count%></h2>
+			<p style="color:black;font-size: 12px; letter-spacing: -1px;">Euthanized</p>
+			</div>
+		</div>
+		<div class="clear"></div><br />
+			
+		<div style="padding-top: 20px;">
 			<div id="status_by_current_year" style="float:left; width: 50%;"></div>
 			<div id="status_by_current_month" style="float:left; width: 50%;"></div>
 		</div>

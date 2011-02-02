@@ -11,7 +11,7 @@
 				<td>
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
-				<td class="links right">
+				<td class="action_links">
 					<%= link_to "Create new animal", new_animal_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Edit", edit_animal_path(@animal)%>&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete %>

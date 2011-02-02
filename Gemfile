@@ -9,7 +9,6 @@ gem 'mail', '2.2.12'
 gem 'devise', '1.1.3'               # Login/Authentication
 gem 'devise_invitable', '0.3.5'     # Login/Authentication
 
-# gem 'declarative_authorization'   # Authorization
 # gem 'cancan'                      # Authorization
 
 gem 'will_paginate', '2.3.15'       # Pagination
@@ -22,6 +21,8 @@ gem 'paperclip', '2.3.6'            # Attachments
 gem 'geokit', '1.5.0'				# Geocoding - requires plugin as well.
 
 gem 'rails3-generators', '0.14.0'   # Generators
+
+#gem 'statistics'                    # Report Statistics
 
 
 

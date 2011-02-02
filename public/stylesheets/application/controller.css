@@ -56,26 +56,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
-.index_animals .page_heading {/* COLORS PADDING FONTS */}
+.index_animals .page_heading { display:none; }
 
-/*
-Original Code without hover border collapse
-.index_animals table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;  }
-.index_animals table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.index_animals table.list td.image { width:100px; padding-right: 15px; }
-.index_animals table.list td.details { width:380px;color:#666; }
-.index_animals table.list td.status { width:175px;padding-left: 10px; text-align:right;}
-.index_animals table.list td .action_links{font-size: 10px;font-weight:bold;}*/
-
-
-/* START OF HOVER CODE - THIS WAS WITH THE HOVER BUT DOESN"T WOKR WITH PAGINATION
-RED  - background-color: #fce2ec; border:1px solid #f286b1;
-BLUE - background-color:#e0f1fa; border:1px solid #89cbeb;
-GREEN - background-color:#f1fce2; border:1px solid #c4f286;
-YELLOW - background-color:#fffbe5; border:1px solid #fff3b2;
-ORANGE - background-color:#fff6e5; border:1px solid #ffd27f;
-
-If we don't use hover remove the padding left and right*/
 .index_animals .list .hover {background-color:#EFEBE3;/*#e0f1fa*/}
 .index_animals table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
 .index_animals table.list tr {border-bottom:1px #ccc dotted; }
@@ -102,7 +84,7 @@ If we don't use hover remove the padding left and right*/
 .show_animals .page_heading{border-bottom:1px solid #ddd; }
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
-.show_animals table.animal td.links{font-size:12px;line-height:100%;height:100%;padding-top:5px;}
+.show_animals table.animal td.action_links{text-align:right;font-size:12px;line-height:100%;height:100%;padding-top:5px;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
@@ -273,7 +255,7 @@ If we don't use hover remove the padding left and right*/
 .accommodations ul {list-style:none;}
 
 /* -------------------------- INDEX - LOCATIONS  -------------------------- */
-.index_accommodations .page_heading {/* COLORS PADDING FONTS */}
+.index_accommodations .page_heading {display:none;}
 
 /* -- Location Filters --*/
 .index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
@@ -473,7 +455,7 @@ If we don't use hover remove the padding left and right*/
 .show_parents .page_heading{border-bottom:1px solid #ddd; }
 .show_parents table.parent{width:100%;}
 .show_parents table.parent td{vertical-align:top;width:50%;/*color:#666;*/}
-.show_parents table.parent td.links{font-size:12px;line-height:100%;height:100%;padding-top:5px;}
+.show_parents table.parent td.action_links{text-align:right;font-size:12px;line-height:100%;height:100%;padding-top:5px;}
 .show_parents table.parent td h1 {}
 .show_parents table.parent td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_parents table.parent td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
@@ -497,7 +479,7 @@ If we don't use hover remove the padding left and right*/
 .show_parents #animal_search_results table td.status { width:175px;padding-left: 10px; text-align:right;}
 .show_parents #animal_search_results table td .action_links{font-size: 10px;font-weight:bold;}
 
-.show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; }
+.show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
 .show_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
 .show_parents table.list td.image { width:100px; padding-right: 15px; }
 .show_parents table.list td.image img { padding-bottom: 10px;}

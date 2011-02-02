@@ -49,9 +49,17 @@ class Animal < ActiveRecord::Base
                                           OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
                                           OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
   scope :search_by_name, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'") }                                              
-     
 
-  
+
+  # Scopes - Reporting
+  # scope :total_available_for_adoption, joins(:animal_status).where("animal_statuses.name = 'Available for Adoption'") #id-1
+  # scope :total_adoptions, joins(:animal_status).where("animal_statuses.name = 'Adopted'") #id-2
+  # scope :total_euthanized, joins(:animal_status).where("animal_statuses.name = 'Euthanized'")#id-11
+  scope :total_available_for_adoption, where(:animal_status_id => 1) 
+  scope :total_adoptions, where(:animal_status_id => 2) 
+  scope :total_euthanized, where(:animal_status_id => 11)
+
+
                                                  
   private
 
