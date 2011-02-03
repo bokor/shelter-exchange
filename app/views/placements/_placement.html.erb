@@ -15,19 +15,21 @@
 		<h3><%= Placement::PLACEMENT_TYPE[placement.placement_type]%> (<%= format_date(:long, placement.created_at) %>)</h3>
 		<p><%= format_breed(placement.animal.is_mix_breed, placement.animal.primary_breed, placement.animal.secondary_breed) %></p>
 		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
-		<h4>Comments:</h4>
-		<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
-			<h2>Add an comment for <%= placement.animal.name %></h2>
-			<div id="comment_errors"></div>
-			<%= form_for ([placement, Comment.new]), :remote => true, :html => { :id => "new_comment_#{placement.id}" } do |f| %>
-				<%= render :partial => "comments/form", :locals => { :f => f } %>
-			    <div class="actions">
-					<%= f.submit "Create comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", "#create_comment_#{placement.id}", :id => "cancel_comment", :onclick => "TopUp.close();" -%>
-				</div>
-			<% end %>
-		</div>
-		<div id="comments_<%=placement.id%>" class="comment_list">
-			<%= render placement.comments %>
+		<div id="comments">
+			<h4>Comments:</h4>
+			<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
+				<h2>Add an comment for <%= placement.animal.name %></h2>
+				<div id="comment_errors"></div>
+				<%= form_for ([placement, Comment.new]), :remote => true, :html => { :id => "new_comment_#{placement.id}" } do |f| %>
+					<%= render :partial => "comments/form", :locals => { :f => f } %>
+				    <div class="actions">
+						<%= f.submit "Create comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", "#create_comment_#{placement.id}", :id => "cancel_comment", :onclick => "TopUp.close();" -%>
+					</div>
+				<% end %>
+			</div>
+			<div id="comments_<%=placement.id%>" class="comment_list">
+				<%= render placement.comments %>
+			</div>
 		</div>
 	</td>
 	<td class="status">

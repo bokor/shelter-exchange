@@ -79,8 +79,11 @@ body { background-color: #fff; color:#000; }
 .index_parents .green_background{background-color: #fff; }
 
 /* -- SHOW --*/
-.show_parents .page_heading{border-bottom:0px; }
-.show_parents .green_background{background-color: #fff; }
+.show_parents .page_heading{ border-bottom:0px; }
+.show_parents .green_background{ background-color: #fff; }
+.show_parents #notes_heading{ display: none; }
+.show_parents #notes{ display: none; }
+.show_parents #comments{ display: none; }
 /*.show_parents .page_heading{border-bottom:1px solid #ddd; }
 .show_parents table.parent{width:100%;}
 .show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; }*/

@@ -49,7 +49,9 @@ class ParentsController < ApplicationController
   end
   
   def search
-    q = params[:q].strip
+    # q = params[:q].strip
+    temp = params[:q].strip.split
+    q = temp.map {|str| str}.join("%")
     @parents = q.blank? ? {} : Parent.search(q)
     respond_with(@parents)
   end
