@@ -89,8 +89,13 @@ body { background-color: #fff; color:#000; }
 .show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; }*/
 
 /******************************************************************/
-/* -------------------------- PARENTS --------------------------- */
+/* -------------------------- REPORTS --------------------------- */
 /******************************************************************/
+/* -- INDEX --*/
+.index_reports .page_heading{border-bottom:0px; }
+.index_reports .yellow_background{background-color: #fff; }
+
+/* -- SHOW --*/
 
 
 

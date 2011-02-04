@@ -3,7 +3,6 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
-    # @animals = @current_shelter.animals.all(:include => [:animal_type, :animal_status]).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     respond_with(@animals)
   end

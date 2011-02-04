@@ -1,5 +1,14 @@
-<%= form_for (@shelter) do |f| %>
+<%= form_for (@shelter), :html => { :multipart => true } do |f| %>
 	<ul class="form">
+		<li style="float:right; width:40%">
+			<% if @shelter.logo.file? %>
+				<%= image_tag @shelter.logo.url(:medium) %><br />
+				<%= f.check_box :logo_delete %><%= f.label :logo_delete, "Remove Logo" %><br />
+			<% else %>
+				<%= f.label :logo, "Upload image" %><br />
+				<%= f.file_field :logo  %>
+			<% end %>
+		</li>
 		<li>
 			<%= f.label :name, "Name" %><br />
 			<%= f.text_field :name %>
@@ -45,20 +54,7 @@
 			<%= f.label :is_kill_shelter, "Is kill shelter" %>
 		</li>
 	</ul>
-	<br />
-	<hr />
-	<br />
-	<h2>Top 5 Items Needed</h2>
-	<ol class="form">
-		<%= f.fields_for :items do |item_fields| %>
-		<li>
-			<%= item_fields.label :name, "Name" %><br />
-			<%= item_fields.text_field :name %>
-		</li>
-		<% end %>
-	</ol>
 	<div class="actions">
 		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 	</div>
-	<div class="clear"></div>
 <% end %>

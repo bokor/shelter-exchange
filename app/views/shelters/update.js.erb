@@ -1,0 +1,5 @@
+$('#items').html( "<%= escape_javascript( render @shelter.items ) %>" );
+$('#item_list').fadeIn(1000);
+$('#edit_items').slideToggle(1500);
+
+<% flash.discard %>

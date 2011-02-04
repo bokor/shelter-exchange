@@ -1,0 +1,2 @@
+$('#item_list').hide();
+$('#item_list').after( "<%= escape_javascript(render 'items/edit_items', :collection => @shelter) %>" );

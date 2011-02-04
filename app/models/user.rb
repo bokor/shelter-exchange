@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+    
   # Associations
   belongs_to :account
   
@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
          :trackable, :validatable, :token_authenticatable, :confirmable, :invitable
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token, :subdomain 
-  attr_accessor :subdomain
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token #, :subdomain 
+  #attr_accessor :subdomain
   
   # Validations
   validates :name, :presence => true
@@ -24,11 +24,15 @@ class User < ActiveRecord::Base
   # Scopes
   
   
-  def self.find_for_authentication(conditions={})
-    conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-    find(:first, :conditions => conditions, :joins => :account, :readonly => false)
-  end
-  
+  # def self.find_for_authentication(conditions={})
+  #   unless conditions[:subdomain].blank?
+  #     conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
+  #     find(:first, :conditions => conditions, :joins => :account, :readonly => false)
+  #   else
+  #     conditions.delete(:subdomain)
+  #     find(:first, :conditions => conditions)
+  #   end
+  # end
   
 end
 

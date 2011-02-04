@@ -69,7 +69,27 @@ $(document).ready(function() {
 	</div>
 		
 	<div class="page_content">
-		<div id="map_canvas" style="float: right;"></div>
+		<div id="address_info" style="float:left; width: 49%;">
+			<h3>Address Info:</h3>
+			<ul>
+				<li><%=@shelter.name%></li>
+				<li><%=@shelter.street%></li>
+				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+			</ul>
+		</div>
+		<div id="contact_details" style="float:left; width: 49%;padding-bottom: 20px;">
+			<h3>Contact Details:</h3>
+			<ul>
+				<li>Main phone:  <%=@shelter.main_phone%></li>
+				<li>Fax phone:  <%=@shelter.fax_phone%></li>
+				<li>Email:  <%=@shelter.email %></li>
+				<li>Website:  <%=@shelter.website%></li>
+				<li>Twitter:  <%=@shelter.twitter%></li>
+				<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+		<div id="map_canvas" style="margin: 0 auto; width: 100%;"></div>
 		<div id="map_content">
 			<ul>
 				<li><h2><%=@shelter.name%></h2></li>
@@ -77,29 +97,6 @@ $(document).ready(function() {
 				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%><br /><br /></li>
 			</ul>
 		</div>
-		
-		<h3>Address Info:</h3>
-		<ul>
-			<li><%=@shelter.name%></li>
-			<li><%=@shelter.street%></li>
-			<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
-		</ul>
-		<br />
-		<h3>Contact Details:</h3>
-		<ul>
-			<li>Main phone:  <%=@shelter.main_phone%></li>
-			<li>Fax phone:  <%=@shelter.fax_phone%></li>
-			<li>Email:  <%=@shelter.email %></li>
-			<li>Website:  <%=@shelter.website%></li>
-			<li>Twitter:  <%=@shelter.twitter%></li>
-			<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
-		</ul>
-		<br />
-		<h3>Top 5 Items Needed</h3>
-		<ol>
-			<%= render @shelter.items %>
-		</ol>
-		<div class="clear"></div>
 	</div>
 	
 <% end %>
@@ -108,4 +105,21 @@ $(document).ready(function() {
 	<ul>
 		<li><%= link_to "Edit shelter details", edit_shelter_path(@shelter)%></li>
 	</ul>
+	<br />
+	<div id="item_list">
+		<h2>Top 5 Items Needed <span style="padding-left:10px; font-size: 13px; font-weight:normal;">
+			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
+		<ol id="items">
+			<%= render @shelter.items %>
+		</ol>
+	</div>
+	<div id="shelter_logo" style="padding-top: 30px;">
+		<h2>Logo</h2>
+		<% if @shelter.logo.file? %>
+		  	<%= image_tag @shelter.logo.url(:small) %>
+		<% else %>
+			<p>No Logo Uploaded</p>
+		<% end %>
+	</div>
+	
 <% end %>

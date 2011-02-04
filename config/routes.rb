@@ -13,7 +13,14 @@ Shelterexchange::Application.routes.draw do
     resources :items
 
 #   Reports Routes    
-    resources :reports
+    resources :reports do
+      collection do
+        get :status_by_current_year
+        get :status_by_current_month
+        get :type_by_current_year
+        get :type_by_current_month
+      end
+    end
     
 #   Locations Routes 
     resources :locations

@@ -2,14 +2,16 @@
 <html>
 <head>
   
-	<title><%= yield(:title) %> - Shelter Exchange Accounts</title>
+	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag :all, :media => "screen", :cache => "cache/all" %>
+ 	<%= stylesheet_link_tag "public/application", :media => "all", :cache => "cache/public/all" %>
+    <%= stylesheet_link_tag "public/print", :media => "print", :cache => "cache/public/print" %>
 	<%= yield(:stylesheets) %>
 	
+	<!-- MOVE TO THE BOTTOM -->
 	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", 
-							   "jquery.ui.autocomplete.ext", "jquery.tipTip.minified",
-	 						   "rails", "application", :cache => "cache/accounts/all" %>
+							   "jquery.ui.autocomplete.ext", "jquery.jtruncate","jquery.tokeninput", "top_up-min",
+							   "rails", "application", :cache => "cache/public/all" %> <!-- jquery.tipTip.minified -->
 	<%= yield(:javascripts) %>
 	
 	<%= csrf_meta_tag %>
@@ -19,8 +21,6 @@
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 	
 	<div id="main">
-		
-		<%= render :partial => "global/flash_messages" %>
 		
 		<div id="left">
 			

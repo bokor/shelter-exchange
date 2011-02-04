@@ -12,7 +12,8 @@
 		
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 		
-		  <%= f.hidden_field :subdomain, :value => @current_account.subdomain %>
+		  <%# f.hidden_field :subdomain, :value => @current_account.subdomain %>
+		  <%= f.hidden_field :account_id, :value => @current_account.id %>
 		
 		  <p><%= f.label :email %><br />
 		  <%= f.text_field :email %></p>

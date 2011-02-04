@@ -2,81 +2,18 @@
 
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
-	<script type="text/javascript" charset="utf-8">
-    var status_by_current_year;
-    var status_by_current_month;
-	var adopted_by_month;
+	
+	<script type="text/javascript">
+		Reports.statusByCurrentYear("<%=current_year%>", "status_by_current_year");
+		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
+		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
+		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
+	</script>
+	
+<script type="text/javascript">
+var adopted_by_month;
 
-	$(document).ready(function() {
-	   status_by_current_year = new Highcharts.Chart({
-	      chart: {
-	         renderTo: 'status_by_current_year'
-	      },
-	      title: {
-	         text: 'Animals by Status - <%= current_year %>'
-	      }	,
-			      plotArea: {
-			         shadow: null,
-			         borderWidth: null,
-			         backgroundColor: null
-			      },
-			      tooltip: {
-			         formatter: function() {
-			            return '<b>'+ this.point.name +' Total</b>: '+ this.y;
-			         }
-			      },
-			      plotOptions: {
-			         pie: {
-			            allowPointSelect: true,
-			            cursor: 'pointer',
-			            dataLabels: {
-			               enabled: false
-			            },
-			            showInLegend: true
-			         }
-			      },
-			       series: [{
-			         type: 'pie',
-			         name: 'Browser share',
-			         data: <%=  raw status_by_current_year.map{|status, count| [status, count.to_i] }.inspect %>
-			      }]
-	   });
-	status_by_current_month = new Highcharts.Chart({
-	      chart: {
-	         renderTo: 'status_by_current_month'
-	      },
-	      title: {
-	         text: 'Animals by Status - <%=format_date(:month_only, Date.today)%>'
-	      }	,
-			      plotArea: {
-			         shadow: null,
-			         borderWidth: null,
-			         backgroundColor: null
-			      },
-			      tooltip: {
-			         formatter: function() {
-			            return '<b>'+ this.point.name +' Total</b>: '+ this.y;
-			         }
-			      },
-			      plotOptions: {
-			         pie: {
-			            allowPointSelect: true,
-			            cursor: 'pointer',
-			            dataLabels: {
-			               enabled: false
-			            },
-			            showInLegend: true
-			         }
-			      },
-			       series: [{
-			         type: 'pie',
-			         name: 'Browser share',
-			         data: <%=  raw status_by_current_month.map{|status, count| [status, count.to_i] }.inspect %>
-			      }]
-	   });
-	
-	
-	
+$(document).ready(function() {
 	
 				
 		adopted_by_month = new Highcharts.Chart({
@@ -126,28 +63,73 @@
 	<div class="page_heading yellow_background">
 		<h1>Reports</h1>
 	</div>
-		
 	<div class="page_content">
-		
-		<div><br />
-			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
-				<h2 style="padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_available_for_adoption.count%></h2>
-				<p style="color:black;font-size: 12px; letter-spacing: -1px;">Available for Adoption</p>
-			</div>
-			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
-				<h2 style="padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_adoptions.count%></h2>
-				<p style="color:black;font-size: 12px; letter-spacing: -1px;">Adoptions</p>
-			</div>
-			<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
-			<h2 style="color:red;padding-bottom: 5px; margin:0;"><%=@current_shelter.animals.total_euthanized.count%></h2>
-			<p style="color:black;font-size: 12px; letter-spacing: -1px;">Euthanized</p>
+		<div id="current_month">
+			<h2>Current Month</h2>
+			<div>
+				<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+					<h2 style="padding-bottom: 5px; margin:0;"><%= @active_count %></h2>
+					<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total Active</p>
+				</div>
+				<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+					<h2 style="padding-bottom: 5px; margin:0;"><%= @total_adoptions_month %></h2>
+					<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total Adoptions</p>
+				</div>
+				<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+					<h2 style="color:red;padding-bottom: 5px; margin:0;"><%= @total_euthanized_month %></h2>
+					<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total Euthanized</p>
+				</div>
 			</div>
 		</div>
 		<div class="clear"></div><br />
+		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+		
+		<div id="year_to_date">
+			<h2>Year to Date</h2>
+			<div>
+				<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+					<h2 style="padding-bottom: 5px; margin:0;"><%= @total_adoptions_ytd %></h2>
+					<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total Adoptions</p>
+				</div>
+				<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+					<h2 style="color:red;padding-bottom: 5px; margin:0;"><%= @total_euthanized_ytd %></h2>
+					<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total Euthanized</p>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div><br />
+		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+		
+		<!-- <div id="total_per_animal_type">
+					<h2>Total per Animal Type</h2>
+					<div>
+						<% @current_shelter.animals.group_by_type.each do |type| %>
+						<div style="float:left;margin-right:5%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;">
+							<h2 style="padding-bottom: 5px; margin:0;"><%= type.count %></h2>
+							<p style="color:black;font-size: 12px; letter-spacing: -1px;">Total <%= type.name.pluralize %></p>
+						</div>
+						<% end %>
+					</div>
+				</div>
+				<div class="clear"></div><br /> -->
+		
+		
+		
 			
-		<div style="padding-top: 20px;">
-			<div id="status_by_current_year" style="float:left; width: 50%;"></div>
-			<div id="status_by_current_month" style="float:left; width: 50%;"></div>
+		<div style="width: 100%;margin: 0 auto;">
+			<div id="by_animal_status">
+				<h2>By Animal Status</h2>
+				<div id="status_by_current_year" style="float: left; width: 50%;"></div>
+				<div id="status_by_current_month" style="float: left; width: 50%;"></div>
+			</div>
+			<div class="clear"></div><br />
+			<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+			<div id="by_animal_type">
+				<h2>By Animal Type</h2>
+				<div id="type_by_current_year" style="float: left; width: 50%;"></div>
+				<div id="type_by_current_month" style="float: left; width: 50%;"></div>
+			</div>
+			<div class="clear"></div><br />
 		</div>
 		<div class="clear"></div> <br /><br /><br />
 		<!-- <div id="status_by_current_year" style="width: 98%; height: 400px; margin: 0 auto"></div>
@@ -155,8 +137,8 @@
 				<div id="status_by_current_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
 				<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div> -->
 		
-		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
-		<div id="adopted_by_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
+		<!-- <div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+				<div id="adopted_by_month" style="width: 98%; height: 400px; margin: 0 auto"></div> -->
 	</div>
 
 <% end %>

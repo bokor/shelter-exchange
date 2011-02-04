@@ -56,7 +56,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
-.index_animals .page_heading { display:none; }
+.index_animals .print_heading { display:none; }
 
 .index_animals .list .hover {background-color:#EFEBE3;/*#e0f1fa*/}
 .index_animals table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
@@ -255,7 +255,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .accommodations ul {list-style:none;}
 
 /* -------------------------- INDEX - LOCATIONS  -------------------------- */
-.index_accommodations .page_heading {display:none;}
+.index_accommodations .print_heading {display:none;}
 
 /* -- Location Filters --*/
 .index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118161556) do
+ActiveRecord::Schema.define(:version => 20110203145727) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -224,10 +224,14 @@ ActiveRecord::Schema.define(:version => 20110118161556) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter", :default => false, :null => false
+    t.boolean  "is_kill_shelter",   :default => false, :null => false
     t.decimal  "lat"
     t.decimal  "lng"
     t.string   "email"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"

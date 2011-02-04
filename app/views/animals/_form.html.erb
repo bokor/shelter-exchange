@@ -2,8 +2,12 @@
 	<ul class="form">
 		<li style="float:right; width:40%">
 			<%= image_tag @animal.photo.url(:small) %><br />
-			<%= f.label :photo, "Upload image" %><br />
-			<%= f.file_field :photo  %>
+			<% if @animal.photo.file? %>
+				<%= f.check_box :photo_delete %><%= f.label :photo_delete, "Remove Photo" %><br />
+			<% else %>
+				<%= f.label :photo, "Upload image" %><br />
+				<%= f.file_field :photo  %>
+			<% end %>
 		</li>
 		<li>
 			<%= f.label :name, "Animal name" %><br />
