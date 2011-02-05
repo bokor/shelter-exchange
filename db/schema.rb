@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110203145727) do
+ActiveRecord::Schema.define(:version => 20110204232734) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20110203145727) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "facebook"
   end
 
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"

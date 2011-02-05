@@ -1,8 +1,8 @@
 <%= form_for (@shelter), :html => { :multipart => true } do |f| %>
 	<ul class="form">
-		<li style="float:right; width:40%">
+		<li style="float:right; width:42%">
 			<% if @shelter.logo.file? %>
-				<%= image_tag @shelter.logo.url(:medium) %><br />
+				<%= image_tag @shelter.logo.url(:small) %><br />
 				<%= f.check_box :logo_delete %><%= f.label :logo_delete, "Remove Logo" %><br />
 			<% else %>
 				<%= f.label :logo, "Upload image" %><br />
@@ -48,6 +48,10 @@
 		<li>
 			<%= f.label :twitter, "Twitter" %><br />
 			<%= f.text_field :twitter %>
+		</li>
+		<li>
+			<%= f.label :facebook, "Facebook Page" %><br />
+			<%= f.text_field :facebook %>
 		</li>
 		<li>
 			<%= f.check_box :is_kill_shelter%>&nbsp;&nbsp;

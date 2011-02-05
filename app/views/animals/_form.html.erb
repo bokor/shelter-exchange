@@ -1,6 +1,6 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
 	<ul class="form">
-		<li style="float:right; width:40%">
+		<li style="float:right; width:42%">
 			<%= image_tag @animal.photo.url(:small) %><br />
 			<% if @animal.photo.file? %>
 				<%= f.check_box :photo_delete %><%= f.label :photo_delete, "Remove Photo" %><br />

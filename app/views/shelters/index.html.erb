@@ -85,6 +85,7 @@ $(document).ready(function() {
 				<li>Email:  <%=@shelter.email %></li>
 				<li>Website:  <%=@shelter.website%></li>
 				<li>Twitter:  <%=@shelter.twitter%></li>
+				<li>Facebook Page:  <%=@shelter.facebook %></li>
 				<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
 			</ul>
 		</div>
@@ -110,7 +111,11 @@ $(document).ready(function() {
 		<h2>Top 5 Items Needed <span style="padding-left:10px; font-size: 13px; font-weight:normal;">
 			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
 		<ol id="items">
-			<%= render @shelter.items %>
+			<% unless @shelter.items.blank? %>
+				<%= render @shelter.items %>
+			<% else %>
+				<p>Please enter the items you need the most</p>
+			<% end %>
 		</ol>
 	</div>
 	<div id="shelter_logo" style="padding-top: 30px;">
