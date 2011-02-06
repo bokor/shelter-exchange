@@ -51,20 +51,64 @@ class Animal < ActiveRecord::Base
                                           OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
                                           OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
   scope :search_by_name, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'") }                                              
+  
   scope :active, where(:animal_status_id => [1,4,5,6,7,8])
   scope :non_active, where(:animal_status_id => [2,3,9,10,11])
+  scope :available_for_adoption, where(:animal_status_id => 1)
+  scope :adoptions, where(:animal_status_id => 2)
+  scope :euthanized, where(:animal_status_id => 11)
 
   # Scopes - Reporting
   # scope :total_available_for_adoption, joins(:animal_status).where("animal_statuses.name = 'Available for Adoption'") #id-1
   # scope :total_adoptions, joins(:animal_status).where("animal_statuses.name = 'Adopted'") #id-2
   # scope :total_euthanized, joins(:animal_status).where("animal_statuses.name = 'Euthanized'")#id-11
-  scope :group_by_type, select('count(*) count, animal_types.name').joins(:animal_type).group(:animal_type_id) 
-  scope :group_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
+  scope :count_by_type, select('count(*) count, animal_types.name').joins(:animal_type).group(:animal_type_id) 
+  scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
-  scope :total_available_for_adoption, where(:animal_status_id => 1)
-  scope :total_adoptions, where(:animal_status_id => 2)
-  scope :total_euthanized, where(:animal_status_id => 11)
+
+  
+  # Date.today.beginning_of_year %><br />
+  # Date.today.beginning_of_year.next_month %>
+  
+  # scope :terms, lambda { 
+  #     date = Date.today.beginning_of_year
+  #     composed_scope = self.scoped
+  #     
+  #     composed_scope.select("animal_types.name as type")
+  # 
+  #     (1..12).each do |month|
+  #       composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '?' AND '?' THEN 1 END) AS jan", date )
+  #     end
+  # 
+  #     composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
+  #   }
+
+  scope :total_adoptions_type_month, select("animal_types.name as type").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-01-01' AND '2011-01-31' THEN 1 END) AS jan").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-02-01' AND '2011-02-28' THEN 1 END) AS feb").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-03-01' AND '2011-03-31' THEN 1 END) AS mar").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-04-01' AND '2011-04-30' THEN 1 END) AS apr").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-05-01' AND '2011-05-31' THEN 1 END) AS may").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-06-01' AND '2011-06-30' THEN 1 END) AS jun").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-07-01' AND '2011-07-31' THEN 1 END) AS jul").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-08-01' AND '2011-08-31' THEN 1 END) AS aug").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-09-01' AND '2011-09-30' THEN 1 END) AS sept").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-10-01' AND '2011-10-31' THEN 1 END) AS oct").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-11-01' AND '2011-11-30' THEN 1 END) AS nov").
+                                     select("COUNT(CASE WHEN status_change_date BETWEEN '2011-12-01' AND '2011-12-31' THEN 1 END) AS dec").
+                                     where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
+  # Original Query
+  #
+  # SELECT animal_types.name as Type,
+  #        COUNT(CASE WHEN status_change_date BETWEEN '2011-01-01' AND '2011-01-31' THEN 1 END) AS jan,       
+  #          COUNT(CASE WHEN status_change_date BETWEEN '2011-02-01' AND '2011-02-28' THEN 1 END) AS feb
+  #     FROM animals
+  #   INNER JOIN "animal_types" ON "animal_types"."id" = "animals"."animal_type_id" 
+  #     WHERE ("animals".shelter_id = 3) 
+  #       AND "animals"."animal_status_id" = 2
+  #   GROUP BY animal_types.name
+  
 
      
 
