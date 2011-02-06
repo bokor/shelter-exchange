@@ -9,6 +9,7 @@
 		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
 		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
 		Reports.totalAdoptionsByTypeAndMonth("<%=current_year%>", "total_adoptions_by_type_and_month");
+		Reports.totalAdoptionsByMonth("<%=current_year%>", "total_adoptions_by_month");
 	</script>
 <% end %>
 
@@ -18,6 +19,7 @@
 		<h1>Reports</h1>
 	</div>
 	<div class="page_content">
+
 		<div id="current_month">
 			<h2>Current Month</h2>
 			<div>
@@ -74,6 +76,8 @@
 		
 		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
 		<div id="total_adoptions_by_type_and_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
+		<div style="margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;"></div>
+		<div id="total_adoptions_by_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
 	</div>
 
 <% end %>

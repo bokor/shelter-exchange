@@ -20,6 +20,7 @@ Shelterexchange::Application.routes.draw do
         get :type_by_current_year
         get :type_by_current_month
         get :total_adoptions_by_type_and_month
+        get :total_adoptions_by_month
       end
     end
     
