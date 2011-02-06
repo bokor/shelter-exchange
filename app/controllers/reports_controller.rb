@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
   end
   
   def total_adoptions_by_type_and_month
-    @results = @current_shelter.animals.total_adoptions_type_month
+    @results = @current_shelter.animals.total_adoptions_by_type_and_month
     render :json => @results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sept => result.sept, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
   end
 

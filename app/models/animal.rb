@@ -84,7 +84,7 @@ class Animal < ActiveRecord::Base
   #     composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
   #   }
 
-  scope :total_adoptions_type_month, select("animal_types.name as type").
+  scope :total_adoptions_by_type_and_month, select("animal_types.name as type").
                                      select("COUNT(CASE WHEN status_change_date BETWEEN '2011-01-01' AND '2011-01-31' THEN 1 END) AS jan").
                                      select("COUNT(CASE WHEN status_change_date BETWEEN '2011-02-01' AND '2011-02-28' THEN 1 END) AS feb").
                                      select("COUNT(CASE WHEN status_change_date BETWEEN '2011-03-01' AND '2011-03-31' THEN 1 END) AS mar").
