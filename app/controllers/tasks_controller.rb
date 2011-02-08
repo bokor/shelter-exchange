@@ -16,9 +16,9 @@ class TasksController < ApplicationController
     end  
   end
   
-  # def show
-  #   redirect_to tasks_path and return
-  # end
+  def show
+    redirect_to tasks_path
+  end
   
   def edit
     begin
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid task => #{params[:id]}")
       flash[:error] = "You have requested an invalid task!"
-      redirect_to tasks_path and return
+      redirect_to tasks_path
     end
   end
   

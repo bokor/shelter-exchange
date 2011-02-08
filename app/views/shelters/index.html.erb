@@ -69,7 +69,11 @@ $(document).ready(function() {
 		<table class="shelter">
 			<tr>
 				<td>
-					<h1>Shelter</h1>
+					<% if @shelter.logo.file? %>
+					  	<%= image_tag @shelter.logo.url(:small) %>
+					<% else %>
+						<h1>Shelter</h1>
+					<% end %>
 				</td>
 				<td class="action_links">
 					<%= link_to "Edit", edit_shelter_path(@shelter)%>
@@ -82,8 +86,8 @@ $(document).ready(function() {
 	<div class="page_content">
 		
 		<div class="shelter_details">
-			<div id="address_info">
-				<h3>Address Info:</h3>
+			<div id="address">
+				<h3>Address:</h3>
 				<ul>
 					<li><%=@shelter.name%></li>
 					<li><%=@shelter.street%></li>
@@ -117,15 +121,6 @@ $(document).ready(function() {
 <% end %>
 
 <%= content_for :sidebar do %>
-	
-	<div id="shelter_logo">
-		<h2>Logo</h2>
-		<% if @shelter.logo.file? %>
-		  	<%= image_tag @shelter.logo.url(:small) %>
-		<% else %>
-			<p>No Logo Uploaded</p>
-		<% end %>
-	</div>
 	
 	<div id="item_list">
 		<h2>Top 5 Items Needed <span class="action_links">

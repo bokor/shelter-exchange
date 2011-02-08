@@ -93,16 +93,22 @@ class Animal < ActiveRecord::Base
     composed_scope
   end
   
-  # def self.totals_by_month(type, year) #type = adoptions, euthanized, or month #year is from dropdown
-  #   start_date = Date.today.beginning_of_year
-  #   end_date = Date.today.end_of_year
+  # def self.totals_by_month(year, type, total) #type = adoptions, euthanized, or total
+  #   start_date = Date.parse("#{year}0101").beginning_of_year
+  #   end_date = Date.parse("#{year}0101").end_of_year
   #   composed_scope = self.scoped
-  #   composed_scope = composed_scope.select("animal_types.name as type")
+  #   unless total ? composed_scope = composed_scope.select("animal_types.name as type")
   #   start_date.month.upto(end_date.month) do |month|
   #     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
   #     start_date = start_date.next_month
   #   end
-  #   composed_scope = composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
+  #   case type
+  #     when :adoptions
+  #       composed_scope = composed_scope.adoptions
+  #     when :euthanized
+  #       composed_scope = composed_scope.euthanized
+  #   end
+  #   composed_scope = composed_scope.joins(:animal_type).group(:animal_type_id) 
   #   composed_scope
   # end
   

@@ -3,8 +3,7 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
   
   def index
-    # @accommodations = @current_shelter.accommodations.all(:include => [:animal_type, :animals, :location]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-    @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   
     if @accommodations.blank?
       @accommodation = @current_shelter.accommodations.new

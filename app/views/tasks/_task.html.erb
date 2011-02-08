@@ -3,7 +3,7 @@
 		<%= task.task_category.name if task.task_category %>
 	</span>
 	<span class="details">
-		<p><%= display_due_date(task) %><%= task.details %> <%= show_taskable_link(task)%></p>
+		<p><%= display_due_date(task) %><%= task.details %> <%= show_taskable_link(task) unless defined?(animal_link)%></p>
 	</span>
 	<!-- <span class="links">
 		<%= link_to image_tag("icon_completed.png"), completed_task_path(task), :confirm => "Are you sure?", :remote => true, :title => "Complete task" %>

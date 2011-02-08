@@ -156,28 +156,28 @@
 		<div id="overdue_tasks_section" class="<%= "no_tasks" if @overdue_tasks.blank? %>">
 			<h3>Overdue</h3>
 			<div id="overdue_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @overdue_tasks %>
+				<%= render :partial => 'tasks/task', :collection => @overdue_tasks, :locals => { :animal_link => false } %>
 			</div>
 		</div>
 
 		<div id="today_tasks_section" class="<%= "no_tasks" if @today_tasks.blank? %>">
 			<h3>Today</h3>
 			<div id="today_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @today_tasks %>
+				<%= render :partial => 'tasks/task', :collection => @today_tasks, :locals => { :animal_link => false } %>
 			</div>
 		</div>
 
 		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @tomorrow_tasks.blank? %>">
 			<h3>Tomorrow</h3>
 			<div id="tomorrow_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @tomorrow_tasks %>
+				<%= render :partial => 'tasks/task', :collection => @tomorrow_tasks, :locals => { :animal_link => false } %>
 			</div>
 		</div>
 
 		<div id="later_tasks_section" class="<%= "no_tasks" if @later_tasks.blank? %>">
 			<h3>Later</h3>
 			<div id="later_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @later_tasks %>
+				<%= render :partial => 'tasks/task', :collection => @later_tasks, :locals => { :animal_link => false } %>
 			</div>
 		</div>
 	</div>

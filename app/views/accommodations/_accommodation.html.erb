@@ -1,5 +1,5 @@
 <% 
-	animal_count = accommodation.animals.count 
+	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count 
 %>
 
 <div id="accommodation_<%= accommodation.id %>" class="accommodation<% if animal_count == accommodation.max_capacity %> over_capacity<% end %>">

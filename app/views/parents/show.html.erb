@@ -20,17 +20,24 @@
 	</div>
 	
 	<div class="page_content">
-		<div class="parent_info_section">
-			<h3>Address:</h3>
-			<p><%= @parent.street %></p>
-			<p><%= @parent.city %>, <%= @parent.state %> <%= @parent.zip_code %></p>
+		
+		<div class="parent_details">
+			<div id="address">
+				<h3>Address:</h3>
+				<ul>
+					<li><%= @parent.street %></li>
+					<li><%= @parent.city %>, <%= @parent.state %> <%= @parent.zip_code %></li>
+				</ul>
+			</div>
+			<div id="contact_details">
+				<h3>Contact details:</h3>
+				<ul>
+					<li><%=number_to_phone(@parent.home_phone, :delimiter => "-")%>(h) or <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%>(m)</li>
+					<li><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="parent_info_section">
-			<h3>Contact details:</h3>
-			<p><%=number_to_phone(@parent.home_phone, :delimiter => "-")%>(h) or <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%>(m)</p>
-			<p><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></p>
-		</div>
-		<div class="clear"></div> <!-- style="border-top: 1px #ccc dotted; margin-bottom: 20px; position: relative; top: 10px;"></div> -->
+		
 	</div>
 	
 	<div id="notes_heading" class="placement_heading yellow_background">

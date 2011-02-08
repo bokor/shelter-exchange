@@ -30,5 +30,9 @@ class Placement < ActiveRecord::Base
   #    super
   #    self.comments.build
   #  end
+  # def initialize(attributes=nil)
+  #     super
+  #     self.comments.build unless self.comments
+  #   end
   
 end

@@ -159,6 +159,10 @@ input[type=submit] {}
 textarea{height:100px;width:400px;font-size:14px; }
 .actions input[type=submit]{cursor: pointer;}
 
+/****************************************************************/
+/* -------------------------- AJAX  --------------------------- */
+/****************************************************************/
+
 
 /*
 	Need Button Default style, different colors and different sizes....Change the BUtton class to something else.
@@ -200,8 +204,8 @@ textarea{height:100px;width:400px;font-size:14px; }
 	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
 	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
-}
-*/
+}*/
+
 #right #sidebar input[type=text]{height:20px;width:98%;font-size:14px; }
 #right #sidebar input[type=checkbox]{}
 #right #sidebar input[type=submit] {}
