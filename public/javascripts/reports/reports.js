@@ -196,3 +196,5 @@ var Reports = {
 		 	});
 	}
 };
+
+// $.get('/reports/total_adoptions_by_month',  { animal_type_id: $('#animal_animal_type_id').val(), animal_status_id: $('#animal_animal_status_id').val() }

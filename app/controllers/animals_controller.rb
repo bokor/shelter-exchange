@@ -9,7 +9,12 @@ class AnimalsController < ApplicationController
   
   def show
     begin
-      @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :alerts, :notes => [:note_category], :tasks => [:task_category]).find(params[:id])
+      @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :alerts, :accommodation => [:location], :notes => [:note_category], :tasks => [:task_category]).find(params[:id])
+      @alerts = @animal.alerts.not_stopped.all
+      @overdue_tasks = @animal.tasks.overdue.not_completed.all
+  		@today_tasks = @animal.tasks.today.not_completed.all 
+  		@tomorrow_tasks = @animal.tasks.tomorrow.not_completed.all
+  		@later_tasks = @animal.tasks.later.not_completed.all
       respond_with(@animal)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid animal => #{params[:id]}")

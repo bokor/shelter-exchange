@@ -6,6 +6,11 @@
 	<% else %>
 		<%= javascript_include_tag "animals/animals", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
 	<% end %>
+	<script type="text/javascript">
+		$(function() {
+			Animals.formInitialize();
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>

@@ -19,9 +19,7 @@ $(function() {
 
 		}  
 	});
-});
 
-$(function() {
 	$("#euthanasia_scheduled_datepicker").datepicker({
 		numberOfMonths: 1,
 		showButtonPanel: false,

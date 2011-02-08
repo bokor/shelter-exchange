@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   respond_to :html, :js
   
   def index
-    # @tasks = Task.for_global.all
     @overdue_tasks =  @current_shelter.tasks.for_all.overdue.not_completed.all
     @today_tasks = @current_shelter.tasks.for_all.today.not_completed.all
     @tomorrow_tasks = @current_shelter.tasks.for_all.tomorrow.not_completed.all

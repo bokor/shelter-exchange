@@ -32,36 +32,53 @@
 		 
 		<table class="animal_details">
 			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
+						<li><p><b>Age:</b> <%= @animal.age %></p></li>
+						<li><p><b>MChip:</b> <%= @animal.chip_id %></p></li>
+						<li><p><b>Color:</b> <%= @animal.color %></p></li>
+						<li><p><b>Sex:</b> <%= @animal.sex %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+					</ul>
+					
+					<h3>Accommodation:</h3>
+					<ul>
+						<li><p><b>Name:</b> <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
+						<li><p><b>Location:</b> <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
+					</ul>
+					
+					
+				</td>
 				<td class="image">
 			    	<a href="<%= @animal.photo.url(:original) %>" toptions="noGroup = 1, title = Picture of <%= @animal.name %>, layout = quicklook" tu_group="null"><%= image_tag @animal.photo.url(:medium) %></a>
 			    </td>
-				<td class="metadata">
-					<h3>Details:</h3>
-					<ul class="first">
-						<% unless @animal.weight.blank? %><li><p><b>Weight:</b> <%= @animal.weight %></li><% end %>
-						<% unless @animal.age.blank? %><li><p><b>Age:</b> <%= @animal.age %></li><% end %>
-						<% unless @animal.chip_id.blank? %><li><p><b>MChip:</b> <%= @animal.chip_id %></p></li><% end %>
-						
-					</ul>
-					<ul>
-						<% unless @animal.color.blank? %><li><p><b>Color:</b> <%= @animal.color %></p></li><% end %>
-						<% unless @animal.sex.blank? %><li><p><b>Sex:</b> <%= @animal.sex %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li><% end %>
-					</ul>
-					<% if @current_shelter.is_kill_shelter %>
-						<div class="clear"></div><br />
-						<h3>Euthanasia Info:</h3>
-						<ul class="full_list">
-							<% unless @animal.arrival_date.blank? %><li><p><b>Arrival Date:</b> <span class="euthanasia_info"><%= format_date(:long, @animal.arrival_date) %></span></li><% end %>
-							<% unless @animal.hold_time.blank? %><li><p><b>Hold time:</b> <span class="euthanasia_info"><%= @animal.hold_time %> days</span></li><% end %>
-							<% unless @animal.euthanasia_scheduled.blank? %><li><p><b>Euthanasia Date:</b> <span class="euthanasia_info red_date"><%= format_date(:long, @animal.euthanasia_scheduled) %></span></li><% end %>
-						</ul>
-					<% end %>
-					<div class="description">
-						<% unless @animal.description.blank? %><h3>Description:</h3><p><%= @animal.description %></p><% end %>
-					</div>
+			</tr>
+		</table>
+		
+		<table class="description">
+			<tr>
+				<td>
+					<h3>Description:</h3>
+					<p><%= @animal.description %></p>
 				</td>
 			</tr>
 		</table>
+		
+		<% if @current_shelter.is_kill_shelter %>
+		<table class="euthanasia_info">
+			<tr>
+				<td>
+					<h3>Euthanasia Info:</h3>
+					<ul>
+						<li><p><b>Arrival Date:</b> <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
+						<li><p><b>Hold time:</b> <span class="date"><%= @animal.hold_time %> days</span></p></li>
+						<li><p><b>Euthanasia Date:</b> <span class="red_date"><%= format_date(:default, @animal.euthanasia_scheduled) %></span></p></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<% end %>
 
 		
 	</div>
@@ -130,43 +147,37 @@
 	<div id="animal_alerts">
 		<h2>Alerts</h2>
 		<div id="alerts" class="alert_list">
-			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @animal.alerts.not_stopped.all %>
+			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @alerts %>
 		</div>
 	</div>
-	<%
-		#  MAY ADD LATER
-		# overdue = @animal.tasks.overdue.not_completed.all
-		# today = @animal.tasks.today.not_completed.all 
-		# tomorrow = @animal.tasks.tomorrow.not_completed.all
-		# later = @animal.tasks.later.not_completed.all
-	%>
+
 	<div id="animal_tasks">
 		<h2>Tasks</h2>
-		<div id="overdue_tasks_section" class="<%= "no_tasks" if @animal.tasks.overdue.not_completed.size <= 0 %>">
+		<div id="overdue_tasks_section" class="<%= "no_tasks" if @overdue_tasks.blank? %>">
 			<h3>Overdue</h3>
 			<div id="overdue_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.overdue.not_completed.all %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @overdue_tasks %>
 			</div>
 		</div>
 
-		<div id="today_tasks_section" class="<%= "no_tasks" if @animal.tasks.today.not_completed.size <= 0 %>">
+		<div id="today_tasks_section" class="<%= "no_tasks" if @today_tasks.blank? %>">
 			<h3>Today</h3>
 			<div id="today_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.today.not_completed.all %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @today_tasks %>
 			</div>
 		</div>
 
-		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @animal.tasks.tomorrow.not_completed.size <= 0 %>">
+		<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @tomorrow_tasks.blank? %>">
 			<h3>Tomorrow</h3>
 			<div id="tomorrow_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.tomorrow.not_completed.all %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @tomorrow_tasks %>
 			</div>
 		</div>
 
-		<div id="later_tasks_section" class="<%= "no_tasks" if @animal.tasks.later.not_completed.size <= 0 %>">
+		<div id="later_tasks_section" class="<%= "no_tasks" if @later_tasks.blank? %>">
 			<h3>Later</h3>
 			<div id="later_tasks" class="task_list">
-				<%= render :partial => 'tasks/task', :as => :task, :collection => @animal.tasks.later.not_completed.all %>
+				<%= render :partial => 'tasks/task', :as => :task, :collection => @later_tasks %>
 			</div>
 		</div>
 	</div>

@@ -29,7 +29,7 @@ module ApplicationHelper
       when :long_day_of_week
         date.strftime("%a %B %d, %Y") #Sun February 06, 2011
       when :default
-        date.strftime("%m.%d.%Y") #02.06.2011
+        date.strftime("%m/%d/%Y") #02/06/2011
     end
   end
   

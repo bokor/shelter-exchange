@@ -1,15 +1,19 @@
-<div id="accommodation_<%= accommodation.id %>" class="accommodation<% if accommodation.animals.count == accommodation.max_capacity %> over_capacity<% end %>">
+<% 
+	animal_count = accommodation.animals.count 
+%>
+
+<div id="accommodation_<%= accommodation.id %>" class="accommodation<% if animal_count == accommodation.max_capacity %> over_capacity<% end %>">
 	
 	<div class="accommodation_info">
 		<div class="accommodation_name">
 			<h3><%= accommodation.name %></h3>
-			<span class="location_details"><% if accommodation.location.blank? %>None<% else %><%= accommodation.location.name %><% end %></span>
+			<span class="location_details"><%= accommodation.location ? accommodation.location.name : "None" %></span>
 		</div>
 		
 		<div class="accommodation_types">
-			<span class="animal_type"><%= accommodation.animal_type.name if accommodation.animal_type.name %></span>
+			<span class="animal_type"><%= accommodation.animal_type.name %></span>
 			<span class="select_link">
-				<% if accommodation.animals.count != accommodation.max_capacity %>
+				<% if animal_count != accommodation.max_capacity %>
 					<%= link_to "Select", "#", :onclick => "Animals.selectAccommodation('#{accommodation.id}','#{accommodation.name}');" %>
 				<% else %>
 					Full
@@ -19,7 +23,7 @@
 	</div>
 		
 	<div class="accommodation_count">
-		<span class="space_available">Space available: <%= accommodation.max_capacity - accommodation.animals.count %></span>
+		<span class="space_available">Space available: <%= accommodation.max_capacity - animal_count %></span>
 		<div class="action_links">
 			<span class="view_link">
 				<%= link_to "View", "#", :onclick => "$('#accommodation_details_#{accommodation.id}').slideToggle();return false;" %>
@@ -34,7 +38,7 @@
 	</div>
 	
 	<div id="accommodation_details_<%= accommodation.id %>" class="accommodation_details">
-		<% if accommodation.animals.count > 0 %>
+		<% if animal_count > 0 %>
 		<table class="list">
 			<% accommodation.animals.each do |animal| %>
 			<tr>

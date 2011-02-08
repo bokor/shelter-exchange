@@ -65,32 +65,46 @@ $(document).ready(function() {
 </script>
 
 	<div class="page_heading blue_background">
-		<h1>Shelter</h1>
+		
+		<table class="shelter">
+			<tr>
+				<td>
+					<h1>Shelter</h1>
+				</td>
+				<td class="action_links">
+					<%= link_to "Edit", edit_shelter_path(@shelter)%>
+				</td>
+			</tr>
+		</table>
+		
 	</div>
 		
 	<div class="page_content">
-		<div id="address_info" style="float:left; width: 49%;">
-			<h3>Address Info:</h3>
-			<ul>
-				<li><%=@shelter.name%></li>
-				<li><%=@shelter.street%></li>
-				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
-			</ul>
+		
+		<div class="shelter_details">
+			<div id="address_info">
+				<h3>Address Info:</h3>
+				<ul>
+					<li><%=@shelter.name%></li>
+					<li><%=@shelter.street%></li>
+					<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+				</ul>
+			</div>
+			<div id="contact_details" class="shelter_details">
+				<h3>Contact Details:</h3>
+				<ul>
+					<li>Main phone:  <%=@shelter.main_phone%></li>
+					<li>Fax phone:  <%=@shelter.fax_phone%></li>
+					<li>Email:  <%=@shelter.email %></li>
+					<li>Website:  <%=@shelter.website%></li>
+					<li>Twitter:  <%=@shelter.twitter%></li>
+					<li>Facebook Page:  <%=@shelter.facebook %></li>
+					<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
+				</ul>
+			</div>
 		</div>
-		<div id="contact_details" style="float:left; width: 49%;padding-bottom: 20px;">
-			<h3>Contact Details:</h3>
-			<ul>
-				<li>Main phone:  <%=@shelter.main_phone%></li>
-				<li>Fax phone:  <%=@shelter.fax_phone%></li>
-				<li>Email:  <%=@shelter.email %></li>
-				<li>Website:  <%=@shelter.website%></li>
-				<li>Twitter:  <%=@shelter.twitter%></li>
-				<li>Facebook Page:  <%=@shelter.facebook %></li>
-				<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
-			</ul>
-		</div>
-		<div class="clear"></div>
-		<div id="map_canvas" style="margin: 0 auto; width: 100%;"></div>
+		
+		<div id="map_canvas"></div>
 		<div id="map_content">
 			<ul>
 				<li><h2><%=@shelter.name%></h2></li>
@@ -103,12 +117,18 @@ $(document).ready(function() {
 <% end %>
 
 <%= content_for :sidebar do %>
-	<ul>
-		<li><%= link_to "Edit shelter details", edit_shelter_path(@shelter)%></li>
-	</ul>
-	<br />
+	
+	<div id="shelter_logo">
+		<h2>Logo</h2>
+		<% if @shelter.logo.file? %>
+		  	<%= image_tag @shelter.logo.url(:small) %>
+		<% else %>
+			<p>No Logo Uploaded</p>
+		<% end %>
+	</div>
+	
 	<div id="item_list">
-		<h2>Top 5 Items Needed <span style="padding-left:10px; font-size: 13px; font-weight:normal;">
+		<h2>Top 5 Items Needed <span class="action_links">
 			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
@@ -117,14 +137,6 @@ $(document).ready(function() {
 				<p>Please enter the items you need the most</p>
 			<% end %>
 		</ol>
-	</div>
-	<div id="shelter_logo" style="padding-top: 30px;">
-		<h2>Logo</h2>
-		<% if @shelter.logo.file? %>
-		  	<%= image_tag @shelter.logo.url(:small) %>
-		<% else %>
-			<p>No Logo Uploaded</p>
-		<% end %>
 	</div>
 	
 <% end %>

@@ -12,7 +12,7 @@
 		<%= f.text_field :max_capacity %>
 	</li>
 	<li>
-		<%= f.label :location_id, "Location details" %><br />
+		<%= f.label :location_id, "Location" %><br />
 		<%= collection_select(:accommodation, :location_id, @current_shelter.locations.all, :id, :name, :include_blank =>  "None") %>
 		<%= link_to "Edit", locations_path %>
 	</li>
