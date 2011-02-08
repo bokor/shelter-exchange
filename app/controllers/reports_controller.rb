@@ -1,11 +1,12 @@
 class ReportsController < ApplicationController
   # before_filter :authenticate_user!
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def index
-    @active_count = @current_shelter.animals.active.count
+    @active_count_month = @current_shelter.animals.current_month.active.count
     @total_adoptions_month = @current_shelter.animals.current_month.adoptions.count
     @total_euthanized_month = @current_shelter.animals.current_month.euthanized.count
+    @active_count_ytd = @current_shelter.animals.year_to_date.active.count
     @total_adoptions_ytd = @current_shelter.animals.year_to_date.adoptions.count
     @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
   end
@@ -40,14 +41,44 @@ class ReportsController < ApplicationController
   #   composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
   #   start_date = start_date.next_month
   # end
-  def total_adoptions_by_type_and_month
-    @results = @current_shelter.animals.total_adoptions_by_type_and_month
-    render :json => @results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+  def adoption_monthly_total_by_type
+    respond_to do |format|
+      format.html
+      format.json {
+        @results = @current_shelter.animals.totals_by_month(params[:selected_year]).with_type.adoptions
+        render :json => @results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+      }
+    end
   end
   
-  def total_adoptions_by_month
-    @results = @current_shelter.animals.total_adoptions_by_month
-    render :json => @results.collect{ |result| { :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+  def adoption_monthly_total
+    respond_to do |format|
+      format.html
+      format.json {
+        @results = @current_shelter.animals.totals_by_month(params[:selected_year]).adoptions
+        render :json => @results.collect{ |result| { :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+      }
+    end
+  end
+  
+  def euthanasia_monthly_total_by_type
+    respond_to do |format|
+      format.html
+      format.json {
+        @results = @current_shelter.animals.totals_by_month(params[:selected_year]).with_type.euthanized
+        render :json => @results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+      }
+    end
+  end
+  
+  def euthanasia_monthly_total
+    respond_to do |format|
+      format.html
+      format.json {
+        @results = @current_shelter.animals.totals_by_month(params[:selected_year]).euthanized
+        render :json => @results.collect{ |result| { :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+      }
+    end
   end
   
 end

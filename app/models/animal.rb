@@ -66,51 +66,20 @@ class Animal < ActiveRecord::Base
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
+  scope :with_type, select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
+  
+  def self.totals_by_month(year)
+    start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
+    end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
+    composed_scope = self.scoped
+    
+    start_date.month.upto(end_date.month) do |month|
+      composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
+      start_date = start_date.next_month
+    end
 
-  
-  def self.total_adoptions_by_type_and_month
-    start_date = Date.today.beginning_of_year
-    end_date = Date.today.end_of_year
-    composed_scope = self.scoped
-    composed_scope = composed_scope.select("animal_types.name as type")
-    start_date.month.upto(end_date.month) do |month|
-      composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
-      start_date = start_date.next_month
-    end
-    composed_scope = composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
     composed_scope
   end
-  
-  def self.total_adoptions_by_month
-    start_date = Date.today.beginning_of_year
-    end_date = Date.today.end_of_year
-    composed_scope = self.scoped
-    start_date.month.upto(end_date.month) do |month|
-      composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
-      start_date = start_date.next_month
-    end
-    composed_scope = composed_scope.where(:animal_status_id => 2)
-    composed_scope
-  end
-  
-  # def self.totals_by_month(year, type, total) #type = adoptions, euthanized, or total
-  #   start_date = Date.parse("#{year}0101").beginning_of_year
-  #   end_date = Date.parse("#{year}0101").end_of_year
-  #   composed_scope = self.scoped
-  #   unless total ? composed_scope = composed_scope.select("animal_types.name as type")
-  #   start_date.month.upto(end_date.month) do |month|
-  #     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
-  #     start_date = start_date.next_month
-  #   end
-  #   case type
-  #     when :adoptions
-  #       composed_scope = composed_scope.adoptions
-  #     when :euthanized
-  #       composed_scope = composed_scope.euthanized
-  #   end
-  #   composed_scope = composed_scope.joins(:animal_type).group(:animal_type_id) 
-  #   composed_scope
-  # end
   
   def photo_delete
     @photo_delete ||= "0"
@@ -270,5 +239,28 @@ end
 #       AND "animals"."animal_status_id" = 2
 #   GROUP BY animal_types.name
 
-
+# def self.total_adoptions_by_type_and_month
+#   start_date = Date.today.beginning_of_year
+#   end_date = Date.today.end_of_year
+#   composed_scope = self.scoped
+#   composed_scope = composed_scope.select("animal_types.name as type")
+#   start_date.month.upto(end_date.month) do |month|
+#     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
+#     start_date = start_date.next_month
+#   end
+#   composed_scope = composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
+#   composed_scope
+# end
+# 
+# def self.total_adoptions_by_month
+#   start_date = Date.today.beginning_of_year
+#   end_date = Date.today.end_of_year
+#   composed_scope = self.scoped
+#   start_date.month.upto(end_date.month) do |month|
+#     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
+#     start_date = start_date.next_month
+#   end
+#   composed_scope = composed_scope.where(:animal_status_id => 2)
+#   composed_scope
+# end
    

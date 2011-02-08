@@ -18,13 +18,14 @@
 	<div class="page_heading yellow_background">
 		<h1>Reports</h1>
 	</div>
+	
 	<div class="page_content">
 		
 		<div class="stats">
-			<h2>Current Month</h2>
+			<h2>Current Month Stats</h2>
 			<div class="count_sections">
 				<div>
-					<h2><%= @active_count %></h2>
+					<h2><%= @active_count_month %></h2>
 					<p>Total Active</p>
 				</div>
 				<div>
@@ -41,8 +42,12 @@
 		<div class="separator"></div>
 		
 		<div class="stats">
-			<h2>Year to Date</h2>
+			<h2>Year to Date Stats</h2>
 			<div class="count_sections">
+				<div>
+					<h2><%= @active_count_ytd %></h2>
+					<p>Total Active</p>
+				</div>
 				<div>
 					<h2><%= @total_adoptions_ytd %></h2>
 					<p>Total Adoptions</p>
@@ -83,9 +88,10 @@
 	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
 		<h2>Animal Reports</h2>
 		<ul style="list-style:none; padding-left: 15px;">
-			<li>Report 1</li>
-			<li>Report 2</li>
-			<li>Report 3</li>
+			<li><%= link_to "Adoption Monthly Total", adoption_monthly_total_reports_path %></li>
+			<li><%= link_to "Adoption Monthly Total by Animal Type", adoption_monthly_total_by_type_reports_path %></li>
+			<li><%= link_to "Euthanasia Monthly Total", euthanasia_monthly_total_reports_path %></li>
+			<li><%= link_to "Euthanasia Monthly Total by Animal Type", euthanasia_monthly_total_by_type_reports_path %></li>
 		</ul>
 	</div>
 	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">

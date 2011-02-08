@@ -6,17 +6,11 @@
 
 <%= content_for :page_content do %>
 	<div class="page_heading green_background">
-		<table class="parent">
-			<tr>
-				<td>
-					<h1><%= @parent.name %></h1>
-				</td>
-				<td class="action_links">
-					<%= link_to "Edit this parent", edit_parent_path(@parent)%>&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Back to search", parents_path %>
-				</td>
-			</tr>
-		</table>
+		<h1><%= @parent.name %></h1>
+		<div class="action_links">
+			<%= link_to "Edit this parent", edit_parent_path(@parent)%>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<%= link_to "Back to search", parents_path %>
+		</div>
 	</div>
 	
 	<div class="page_content">

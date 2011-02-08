@@ -9,6 +9,7 @@
 #sidebar ul.model_actions { padding: 0 0 10px 0; }
 
 
+
 /*
 
 If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
@@ -82,7 +83,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
 /* -------------------------- SHOW - ANIMALS  -------------------------- */
-.show_animals .page_heading{border-bottom:1px solid #ddd; }
+.show_animals .page_heading{border-bottom:1px solid #eee; }
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
 .show_animals table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
@@ -246,12 +247,11 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .shelters ul {list-style:none;}
 .shelters ol li{margin-left: 20px;}
 
-.index_shelters .page_heading{border-bottom:1px solid #ddd; }
-
-.index_shelters table.shelter{width:100%;}
-.index_shelters table.shelter td{vertical-align:top;width:50%;}
-.index_shelters table.shelter td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
-.index_shelters table.shelter td h1 {}
+.shelters .page_heading{border-bottom:1px solid #eee; }
+.shelters .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.shelters .page_heading h1, .index_shelters .page_heading .logo{width:50%; float:left; }
+.shelters .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.edit_shelters .page_heading h1{width:100%;}
 
 .index_shelters .shelter_details {padding-bottom: 20px;}
 .index_shelters .shelter_details #address {float:left; width: 48%; padding-right: 20px; }
@@ -268,8 +268,15 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -------------------------- REPORTS -------------------------- */
 /*****************************************************************/
 .reports ul {list-style:none;}
+.reports .page_heading{border-bottom:1px solid #eee; }
+.reports .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.reports .page_heading h1{width:50%; float:left; }
+.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 
-.index_reports .page_heading{border-bottom:1px solid #ddd; }
+
+.reports .report_container {width: 100%; height: 100%; margin: 0 auto; padding: 20px 0 20px 0;}
+
+
 
 .index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .index_reports .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
@@ -281,6 +288,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_reports .pie_charts {width:100%; margin: 0 auto;}
 .index_reports .pie_charts:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .index_reports .pie_charts div {float: left; width: 50%;}
+
+
 
 
 /*
@@ -391,7 +400,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 .locations ul {list-style:none;}
 
-.locations .page_heading{border-bottom:1px solid #ddd; }
+.locations .page_heading{border-bottom:1px solid #eee; }
 
 /*.index_locations p { padding-bottom: 15px;}*/
 
@@ -480,8 +489,16 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 .parents ul {list-style:none;}
 
+.parents .page_heading{border-bottom:1px solid #eee; }
+.parents .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.parents .page_heading h1{width:50%; float:left; }
+.parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.show_parents .page_heading h1{width:60%;}
+.show_parents .page_heading .action_links{width:40%;}
+
+.edit_parents .page_heading h1{width:100%;}
+
 /* -------------------------- INDEX - PARENTS  -------------------------- */
-.index_parents .page_heading{border-bottom:1px solid #ddd; }
 .index_parents #parent_search {padding: 0 0 20px 0; }
 .index_parents #parents {}
 .index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
@@ -495,17 +512,17 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 /* -------------------------- SHOW - PARENTS  -------------------------- */
-.show_parents .page_heading{border-bottom:1px solid #ddd; }
-.show_parents table.parent{width:100%;}
-.show_parents table.parent td{vertical-align:top;width:50%;/*color:#666;*/}
+/*.show_parents .page_heading{border-bottom:1px solid #eee; }*/
+/*.show_parents table.parent{width:100%;}
+.show_parents table.parent td{vertical-align:top;width:50%;/*color:#666;*//*}
 .show_parents table.parent td.action_links{text-align:right;font-size:12px;line-height:100%;height:100%;padding-top:5px;}
 .show_parents table.parent td h1 {}
 .show_parents table.parent td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
-.show_parents table.parent td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+.show_parents table.parent td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}*/
 
 .show_parents .parent_details {padding-bottom: 20px;}
-.show_parents .parent_details #address {float:left; width: 48%; padding-right: 20px; }
-.show_parents .parent_details #contact_details {float:left; width: 49%;}
+.show_parents .parent_details #address {float:left; width: 45%; padding-right: 5%; }
+.show_parents .parent_details #contact_details {float:left; width: 50%;}
 .show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
