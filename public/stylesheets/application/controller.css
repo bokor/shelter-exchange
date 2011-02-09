@@ -60,13 +60,14 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -------------------------- INDEX - ANIMALS  -------------------------- */
 .index_animals .print_heading { display:none; }
 
-.index_animals .list .hover {background-color:#EFEBE3;/*#e0f1fa*/}
-.index_animals table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-.index_animals table.list tr {border-bottom:1px #ccc dotted; }
-.index_animals table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
-.index_animals table.list td.image { width:100px; padding-left:5px; }
-.index_animals table.list td.details { width:380px;padding-left: 15px;color:#666; }
-.index_animals table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_animals .animal_list .hover {background-color:#EFEBE3;/*#e0f1fa*/}
+.index_animals table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.index_animals table.animal_list tr {border-bottom:1px #ccc dotted; }
+.index_animals table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_animals table.animal_list td.image { width:100px; padding-left:5px; }
+.index_animals table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_animals table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_animals table.animal_list .action_links .select_link {display:none;}
 
 .index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_animals table.search tr {vertical-align:top;}
@@ -336,12 +337,12 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -- Index Accommodations :: Animal List Table --*/
 #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
-#accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-#accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
-#accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
-#accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
-#accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
-#accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+#accommodations .accommodation table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+#accommodations .accommodation table.animal_list tr {border-bottom:1px #ccc dotted; }
+#accommodations .accommodation table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+#accommodations .accommodation table.animal_list td.image { width:100px; padding-left:5px; }
+#accommodations .accommodation table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+#accommodations .accommodation table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
 /* -- Animals :: Accommodations :: Accommodation Details --*/
 .animals #accommodations { width: 100%;height: 400px; overflow:auto;  z-index: 9999999999999;}
@@ -466,11 +467,11 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
 .index_parents #parents .no_results p{font-weight: bold; }
 
-.index_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
-.index_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.index_parents table.list td.details { width:380px; color:#666; }
-.index_parents table.list td.status { width:175px;padding-left: 10px; text-align:right;}
-.index_parents table.list td .action_links{font-size: 10px;font-weight:bold;}
+.index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
+.index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.index_parents table.parent_list td.details { width:380px; color:#666; }
+.index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
+.index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;}
 
 
 /* -------------------------- SHOW - PARENTS  -------------------------- */
@@ -497,25 +498,26 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .show_parents #animal_selected #animal_search_link{}
 
-.show_parents #animal_search_results {margin-top: 20px; width: 100%;height: 450px; overflow:auto; z-index: 9999999999999;}
-.show_parents #animal_search_results table{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
-.show_parents #animal_search_results table td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.show_parents #animal_search_results table td.image { width:100px; padding-right: 15px;}
-.show_parents #animal_search_results table td.details { width:380px;color:#666; }
-.show_parents #animal_search_results table td.status { width:175px;padding-left: 10px; text-align:right;}
-.show_parents #animal_search_results table td .action_links{font-size: 10px;font-weight:bold;}
+.show_parents #animals {margin-top: 20px; width: 100%;height: 450px; overflow:auto; z-index: 9999999999999;}
+.show_parents #animals table.animal_list{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.show_parents #animals table.animal_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
+.show_parents #animals table.animal_list td.details { width:380px;color:#666; }
+.show_parents #animals table.animal_list td.status { width:175px;padding-left: 10px; text-align:right;}
+.show_parents #animals table.animal_list td .action_links{font-size: 10px;font-weight:bold;}
+.show_parents #animals .action_links .edit_link, .show_parents #animals .action_links .delete_link {display:none;}
 
-.show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
-.show_parents table.list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
-.show_parents table.list td.image { width:100px; padding-right: 15px; }
-.show_parents table.list td.image img { padding-bottom: 10px;}
-.show_parents table.list td .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
-.show_parents table.list td.details { width:380px;color:#666; }
-.show_parents table.list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
-.show_parents table.list td.status { width:175px;padding-left: 10px; text-align:right;}
+.show_parents table.placement_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
+.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
+.show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
+.show_parents table.placement_list td.image img { padding-bottom: 10px;}
+.show_parents table.placement_list td .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.placement_list td.details { width:380px;color:#666; }
+.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
+.show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
 
-.show_parents table.list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
-.show_parents table.list tr.edit_placement h2 {border: 0;}
+.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
+.show_parents table.placement_list tr.edit_placement h2 {border: 0;}
 
 .show_parents .placement_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_parents .placement_heading h2{float:left;}
@@ -526,5 +528,28 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
+
+
+/*****************************************************************/
+/* -------------------------- DEVISE --------------------------- */
+/*****************************************************************/
+/*#page {	width: 100%; min-height: 100%; height:auto !important; height: 100%; margin: 0 auto; position: relative; background-color: #fff; }
+.content { width:960px; margin: 0 auto; display:block; position: relative; }
+.content:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+*/
+/*.sessions #header { display:none;}
+.sessions #main { margin: 0 0 0 0; }
+.sessions #left {width: 100%; min-height: 100%; height:auto !important; height: 100%; margin: 0 auto; position: relative; background-color: #fff; }
+.sessions #left #content {width:960px; margin: 0 auto; display:block; position: relative; }
+.sessions #left #content { margin: 0 auto;padding:20px; }
+.sessions #sidebar { display:none;}*/
+.sessions #header { display:none;}
+.sessions #main { margin: 1em 0 0 3em; }
+.sessions #left {width: 60%; background-color: #fff; margin: 0 auto; padding: 0; position: relative; text-align:center; }
+.sessions #left #content {box-shadow: 0; -moz-box-shadow: 0; -webkit-box-shadow: 0; text-align: left; }
+.sessions #left #content { margin: 0 auto;padding:20px; }
+.sessions #sidebar { display:none;}
+
+/******************************************************************/
 
 

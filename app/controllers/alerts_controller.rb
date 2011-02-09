@@ -1,5 +1,4 @@
 class AlertsController < ApplicationController
-  # before_filter :authenticate_user!
   respond_to :html, :js
   
   def index

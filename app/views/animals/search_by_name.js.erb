@@ -1,1 +1,5 @@
-$('#animal_search_results').html( "<%= escape_javascript( render :partial => 'parents/animal_search_results') %>" );
+<% unless @animals.blank? %>
+	$('#animals').html( "<%= escape_javascript( render :partial => 'animal_list') %>" );
+<% else %>
+	$('#animals').html( "<div class='no_results'><h2>No Animals found</h2></div>" );
+<% end %>

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
-  before_filter :current_subdomain, :current_shelter #, :set_timezone
+  before_filter :authenticate_user!, :current_subdomain, :current_shelter #, :set_timezone
   layout :current_layout_name
   
   private
@@ -36,16 +36,6 @@ class ApplicationController < ActionController::Base
       # Time.zone = @current_shelter.time_zone
     end
     
-    # rescue_from CanCan::AccessDenied do |exception|
-    #   flash[:error] = exception.message
-    #   redirect_to root_url
-    # end
-    # 
-    # rescue ActiveRecord::RecordNotFound
-    #   respond_to_not_found(:js, :xml, :html)
-    # end
-
-    
   protected
   
     def is_integer(test)
@@ -61,8 +51,19 @@ class ApplicationController < ActionController::Base
       nil
     end
     
+    rescue_from CanCan::AccessDenied do |exception|
+      render :template => 'errors/unauthorized'
+    end
+    
+    
 
-  
+    
+
+    
+    # 
+    # rescue ActiveRecord::RecordNotFound
+    #   respond_to_not_found(:js, :xml, :html)
+    # end
     #
     #   OLD WAY
     # include SubdomainAccounts

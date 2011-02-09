@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  ROLES = %w[admin user] #ROLES => Owner(only created on account creation), Admin, User 
+  ROLES = %w[user admin] #ROLES => Owner(only created on account creation), Admin, User 
     
   # Associations
   belongs_to :account

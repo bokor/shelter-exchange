@@ -5,8 +5,8 @@
 	
 	<script type="text/javascript">
 		Reports.statusByCurrentYear("<%=current_year%>", "status_by_current_year");
-		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
 		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
+		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
 		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
 	</script>
 <% end %>

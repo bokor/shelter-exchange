@@ -1,15 +1,26 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+		<% if @search_from == "parents" %>
+			<%= link_to image_tag(animal.photo.url(:thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
+		<% else %>
+			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+		<% end %>
 	</td>
 	<td class="details">
-		<h3><%= link_to animal.name, animal %></h3>
+		<% if @search_from == "parents" %>
+			<h3><%= link_to animal.name, "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %></h3>
+		<% else %>
+			<h3><%= link_to animal.name, animal %></h3>		
+		<% end %>
 		<p><%= format_breed(animal.is_mix_breed, animal.primary_breed, animal.secondary_breed) %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex %> <% end %><% if animal.is_sterilized %>(Sterilized)<% end %>
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
 		<div class="action_links">
+			<span class="select_link">
+		    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;" %>
+			</span>
 			<span class="edit_link">
 		    	<%= link_to "Edit", edit_animal_path(animal) %>
 			</span>
@@ -21,3 +32,4 @@
 		</div>
 	</td>
 </tr>
+

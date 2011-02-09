@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209052232) do
+ActiveRecord::Schema.define(:version => 20110209194307) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20110209052232) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain"

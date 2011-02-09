@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  # before_filter :authenticate_user!
+  # load_and_authorize_resource
   respond_to :html, :js
   
   def index
@@ -10,7 +10,6 @@ class AnimalsController < ApplicationController
   def show
     begin
       @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :notes => [:note_category], :accommodation => [:location]).find(params[:id])
-      # @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :alerts, :accommodation => [:location], :notes => [:note_category], :tasks => [:task_category]).find(params[:id])
       @alerts = @animal.alerts.not_stopped.all
       @overdue_tasks = @animal.tasks.overdue.not_completed.includes(:task_category).all
   		@today_tasks = @animal.tasks.today.not_completed.includes(:task_category).all 
@@ -60,6 +59,7 @@ class AnimalsController < ApplicationController
   
   def search_by_name
     q = params[:q].strip
+    @search_from = params[:search_from]
     @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
@@ -79,11 +79,11 @@ class AnimalsController < ApplicationController
     if type.blank? and status.blank?
       @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and status.blank?
-      @animals = @current_shelter.animals.where(:animal_type_id => type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_type_id => type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     elsif type.blank? and is_integer(status)
-      @animals = @current_shelter.animals.where(:animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and is_integer(status)
-      @animals = @current_shelter.animals.where(:animal_type_id => type, :animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_type_id => type, :animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     end
   end
   

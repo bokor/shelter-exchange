@@ -1,5 +1,5 @@
 class AccommodationsController < ApplicationController
-  # before_filter :authenticate_user!
+  # load_and_authorize_resource
   respond_to :html, :js
   
   def index
@@ -71,11 +71,11 @@ class AccommodationsController < ApplicationController
     if type.empty? and location.empty?
       @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and location.empty?
-      @accommodations = @current_shelter.accommodations.where(:animal_type_id => type).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+      @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).where(:animal_type_id => type).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif type.empty? and is_integer(location)
-      @accommodations = @current_shelter.accommodations.where(:location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+      @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).where(:location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and is_integer(location)
-      @accommodations = @current_shelter.accommodations.where(:animal_type_id => type, :location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+      @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).where(:animal_type_id => type, :location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     end
   end
 

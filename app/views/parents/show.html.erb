@@ -47,7 +47,7 @@
 	</div>
 	
 	<div id="placement_adopted" class="page_content">
-		<table class="list">
+		<table class="placement_list">
 			<%= render @parent.placements.adopted %>
 		</table>
 	</div>
@@ -57,7 +57,7 @@
 	</div>
 	
 	<div id="placement_foster_care" class="page_content">
-		<table class="list">
+		<table class="placement_list">
 			<%= render @parent.placements.foster_care %>
 		</table>
 	</div>
@@ -107,10 +107,11 @@
 			             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
 	  			<h2>Search for animal:</h2>
 	  			<%= text_field_tag "q", ""  %>
+				<%= hidden_field_tag "search_from", controller_name.downcase %>
 				<%= f.submit "Go", :disable_with => "...", :class => "button" %>
 	  		<% end %>
 	
-			<div id="animal_search_results"></div>
+			<div id="animals"></div>
 		</div>
 	</div>
 	
