@@ -248,8 +248,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .edit_shelters .page_heading h1{width:100%;}
 
 .index_shelters .shelter_details {padding-bottom: 20px;}
-.index_shelters .shelter_details #address {float:left; width: 48%; padding-right: 20px; }
-.index_shelters .shelter_details #contact_details {float:left; width: 49%;}
+.index_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
+.index_shelters .shelter_details #contact_details {float:left; width: 50%;}
 .index_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .index_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
@@ -488,6 +488,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents .parent_details #contact_details {float:left; width: 50%;}
 .show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
 
 .show_parents #create_placement {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
 .show_parents #animal_search_dialog {width:100%; height:100%; background-color: #fff;}

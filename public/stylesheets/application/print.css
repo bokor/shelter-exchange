@@ -30,7 +30,7 @@ body { background-color: #fff; color:#000; }
 /******************************************************************/
 
 /* -- INDEX --*/
-.index_animals .page_heading {display:block;}
+.index_animals .print_heading {display:block;}
 .index_animals table.search {display:none;}
 
 /* -- SHOW --*/
@@ -53,7 +53,7 @@ body { background-color: #fff; color:#000; }
 /* -------------------------- ACCOMMODATIONS  -------------------------- */
 /*************************************************************************/
 /* -- INDEX --*/
-.index_accommodations .page_heading {display:block;}
+.index_accommodations .print_heading {display:block;}
 .index_accommodations table.search {display:none;}
 .index_accommodations .accommodation_details {clear:both; display:block; padding-top: 20px;}
 
