@@ -10,7 +10,7 @@ class ParentsController < ApplicationController
   
   def show
     begin
-      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animals => [:animal_type]]).find(params[:id])
+      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
       respond_with(@parent)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid parent => #{params[:id]}")
