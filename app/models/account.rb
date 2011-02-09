@@ -1,20 +1,15 @@
 class Account < ActiveRecord::Base
   before_validation :downcase_subdomain
+  # before_save :add_owner_role
   after_save :add_owner
   after_create :notify_account_creation
   
   # Associations
   has_many :users, :uniq => true, :dependent => :destroy
   has_many :shelters, :dependent => :destroy
-  # NOT SURE if I'm going to keep these or not.  SEEMS SLOWER TO ACCESS
-  # has_many :animals, :through => :shelters
-  # has_many :tasks, :through => :shelters
-  # has_many :alerts, :through => :shelters
-  # has_many :notes, :through => :shelters
   
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :shelters
-   
   
   # Validations
   validates_presence_of :subdomain
@@ -28,18 +23,21 @@ class Account < ActiveRecord::Base
                          :message => " <strong>{{value}}</strong> is reserved and unavailable."
    
   validates_uniqueness_of :subdomain, :case_sensitive => false
-  
-  # Scopes
    
   private
    
      def downcase_subdomain
        self.subdomain.downcase! if attribute_present?(:subdomain)
      end
+     
+     # def add_owner_role
+     #   self.users.first.role = "owner"
+     # end
    
      def add_owner
        if owner_id.blank?
          self.owner_id = self.users.first.id
+         self.users.first.role = "owner"
          self.save!
        end
      end
@@ -48,3 +46,9 @@ class Account < ActiveRecord::Base
        Notifier.new_account_notification(self,self.shelters.first,self.users.first).deliver
      end
 end
+
+# NOT SURE if I'm going to keep these or not.  SEEMS SLOWER TO ACCESS
+# has_many :animals, :through => :shelters
+# has_many :tasks, :through => :shelters
+# has_many :alerts, :through => :shelters
+# has_many :notes, :through => :shelters

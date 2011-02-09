@@ -9,7 +9,7 @@ gem 'mail', '2.2.12'
 gem 'devise', '1.1.3'               # Login/Authentication
 gem 'devise_invitable', '0.3.5'     # Login/Authentication
 
-# gem 'cancan'                      # Authorization
+gem 'cancan', '1.5.1'               # Authorization
 
 gem 'will_paginate', '2.3.15'       # Pagination
 

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  
+  ROLES = %w[admin user] #ROLES => Owner(only created on account creation), Admin, User 
     
   # Associations
   belongs_to :account
@@ -7,7 +9,7 @@ class User < ActiveRecord::Base
          :trackable, :validatable, :token_authenticatable, :confirmable, :invitable
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token #, :subdomain 
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token, :role, :account_id#, :subdomain 
   #attr_accessor :subdomain
   
   # Validations

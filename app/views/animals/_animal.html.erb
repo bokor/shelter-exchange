@@ -13,9 +13,11 @@
 			<span class="edit_link">
 		    	<%= link_to "Edit", edit_animal_path(animal) %>
 			</span>
+			<%# if can? :destroy, animal %>
 			<span class="delete_link">&nbsp;|&nbsp;
 		   		<%= link_to "Delete", animal, :confirm => "Are you sure?", :method => :delete %>
 			</span>
+			<%# end %>
 		</div>
 	</td>
 </tr>
