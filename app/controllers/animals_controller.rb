@@ -55,19 +55,24 @@ class AnimalsController < ApplicationController
   
   def full_search
     q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = q.blank? ? {} : @current_shelter.animals.full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+  end
+  
+  def search_by_name
+    q = params[:q].strip
+    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
   def filter_notes
-    filter = params[:filter]
+    filter_param = params[:filter]
     @animal = @current_shelter.animals.find(params[:id])
-    if filter.blank?
+    if filter_param.blank?
       @notes = @animal.notes
     else
-      @notes = @animal.notes.animal_filter(filter)
+      @notes = @animal.notes.animal_filter(filter_param)
     end
   end
-  
+  # move to the model where(:animal_type_id => type)
   def filter_by_type_status
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
@@ -88,6 +93,9 @@ class AnimalsController < ApplicationController
     render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
   end
   
+end
+
+  
   
   # def api
   #   @animals = Animal.all
@@ -105,5 +113,4 @@ class AnimalsController < ApplicationController
   # q = temp.map {|str| str}.join("%")
   # @animals = Animal.where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')").paginate :per_page => Animal::PER_PAGE, :page => params[:page]
   
-  
-end
+

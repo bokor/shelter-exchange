@@ -1,11 +1,11 @@
 <div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
-	<h2>Monthly</h2>
+	<h2>Monthly Totals</h2>
 	<ul style="list-style:none; padding-left: 15px;">
-		<li><%= link_to "Adoption Monthly Total", adoption_monthly_total_reports_path %></li>
-		<li><%= link_to "Adoption Monthly Total by Animal Type", adoption_monthly_total_by_type_reports_path %></li><br />
-		<li><%= link_to "Intake Monthly Total", intake_monthly_total_reports_path %></li>
-		<li><%= link_to "Intake Monthly Total by Animal Type", intake_monthly_total_by_type_reports_path %></li><br />
-		<li><%= link_to "Euthanasia Monthly Total", euthanasia_monthly_total_reports_path %></li>
-		<li><%= link_to "Euthanasia Monthly Total by Animal Type", euthanasia_monthly_total_by_type_reports_path %></li>
+		<li><%= link_to_unless_current "Adoption", adoption_monthly_total_reports_path %></li>
+		<li><%= link_to_unless_current "Adoption by Animal Type", adoption_monthly_total_by_type_reports_path %></li><br />
+		<li><%= link_to_unless_current "Intake", intake_monthly_total_reports_path %></li>
+		<li><%= link_to_unless_current "Intake by Animal Type", intake_monthly_total_by_type_reports_path %></li><br />
+		<li><%= link_to_unless_current "Euthanasia", euthanasia_monthly_total_reports_path %></li>
+		<li><%= link_to_unless_current "Euthanasia by Animal Type", euthanasia_monthly_total_by_type_reports_path %></li>
 	</ul>
 </div>

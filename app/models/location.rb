@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
   default_scope :order => 'name ASC'
   
   # Associations
-  belongs_to :shelter   #, :conditions => {:state => 'active'}
+  belongs_to :shelter
   
   has_many :accommodations
   

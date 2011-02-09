@@ -4,7 +4,6 @@ class Animal < ActiveRecord::Base
   before_save :check_status_change, :destroy_photo?
   
   Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
-  PER_PAGE_PARENT_SEARCH_RESULTS = 4
   SEX = [ "Male", "Female" ]
   
   # Associations
@@ -45,12 +44,12 @@ class Animal < ActiveRecord::Base
   
   
   # Scopes
-  scope :auto_complete, lambda { |q| where("name LIKE '%#{q}%'") }
-  scope :full_search, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%' OR description LIKE '%#{q}%'
-                                          OR chip_id LIKE '%#{q}%' OR color LIKE '%#{q}%'
-                                          OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
-                                          OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
-  scope :search_by_name, lambda { |q| where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'") }                                              
+  scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE '%#{q}%'") }
+  scope :full_search, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE '%#{q}%' OR name LIKE '%#{q}%' OR description LIKE '%#{q}%'
+                                                                                OR chip_id LIKE '%#{q}%' OR color LIKE '%#{q}%'
+                                                                                OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
+                                                                                OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
+  scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'") }                                              
   
   scope :active, where(:animal_status_id => [1,4,5,6,7,8])
   scope :non_active, where(:animal_status_id => [2,3,9,10,11])
@@ -59,9 +58,6 @@ class Animal < ActiveRecord::Base
   scope :euthanized, where(:animal_status_id => 11)
 
   # Scopes - Reporting
-  # scope :total_available_for_adoption, joins(:animal_status).where("animal_statuses.name = 'Available for Adoption'") #id-1
-  # scope :total_adoptions, joins(:animal_status).where("animal_statuses.name = 'Adopted'") #id-2
-  # scope :total_euthanized, joins(:animal_status).where("animal_statuses.name = 'Euthanized'")#id-11
   scope :count_by_type, select('count(*) count, animal_types.name').joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
@@ -149,6 +145,9 @@ end
 # has_many :parents, :through => :placements
 # has_many :breeds, :readonly => true
 
+# scope :total_available_for_adoption, joins(:animal_status).where("animal_statuses.name = 'Available for Adoption'") #id-1
+# scope :total_adoptions, joins(:animal_status).where("animal_statuses.name = 'Adopted'") #id-2
+# scope :total_euthanized, joins(:animal_status).where("animal_statuses.name = 'Euthanized'")#id-11
 
 # def clear_photo
 #   self.photo.queued_for_write.clear if !photo.dirty?

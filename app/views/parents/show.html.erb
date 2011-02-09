@@ -89,7 +89,7 @@
 		<div id="placement_errors"></div>
 		<div id="animal_selected">
 			<span></span>
-			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 650, height = 535, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
+			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = 550, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
 		</div>
 		<% @placement = Placement.new %>
 		<%= form_for (@placement), :remote => true do |f| %>
@@ -103,7 +103,7 @@
 	
 	<div id="animal_search_dialog" style="display:none;">
 		<div class="wrapper">
-			<%= form_for :parents, :url => { :action => :search_animal_by_name }, 
+			<%= form_for :animals, :url => { :action => :search_by_name, :controller => :animals }, 
 			             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
 	  			<h2>Search for animal:</h2>
 	  			<%= text_field_tag "q", ""  %>

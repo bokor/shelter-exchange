@@ -10,7 +10,7 @@ class ParentsController < ApplicationController
   
   def show
     begin
-      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal =>[:animal_type]]).find(params[:id])
+      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animals => [:animal_type]]).find(params[:id])
       respond_with(@parent)
     rescue ActiveRecord::RecordNotFound
       logger.error(":::Attempt to access invalid parent => #{params[:id]}")
@@ -54,12 +54,6 @@ class ParentsController < ApplicationController
     q = temp.map {|str| str}.join("%")
     @parents = q.blank? ? {} : Parent.search(q)
     respond_with(@parents)
-  end
-  
-  def search_animal_by_name
-    q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.includes(:animal_type, :animal_status).search_by_name(q).paginate(:per_page => Animal::PER_PAGE_PARENT_SEARCH_RESULTS, :page => params[:page])
-    respond_with(@animals)
   end
   
 end

@@ -5,24 +5,6 @@ var Animals = {
 				animal_status_id: $('#animal_animal_status_id').val() 
 		});
 	},
-	selectAccommodation: function(id, name) {
-		$('#accommodation_selected span').html('<b>' + name + '</b>');
-		$('#animal_accommodation_id').val(id);
-		$('#accommodation_search_link').html("Change");
-		$("#accommodation_remove_link").show();
-		TopUp.close();
-  	},
-	removeAccommodation: function() {
-		$('#accommodation_selected span').html('');
-		$('#animal_accommodation_id').val('');
-		$('#accommodation_search_link').html('Find');
-		$('#accommodation_remove_link').hide();
-	},
-	formInitialize: function() {
-		Animals.animalTypeSelected();
-		Animals.showSecondaryBreed();
-		Animals.showAccommodationRemoveLink();
-	},
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();
 
@@ -42,6 +24,24 @@ var Animals = {
 		} else {
 			$('#secondary_breed_field').hide();
 		}
+	},
+	formInitialize: function() {
+		Animals.animalTypeSelected();
+		Animals.showSecondaryBreed();
+		Animals.showAccommodationRemoveLink();
+	},
+	selectAccommodation: function(id, name) {
+		$('#accommodation_selected span').html('<b>' + name + '</b>');
+		$('#animal_accommodation_id').val(id);
+		$('#accommodation_search_link').html("Change");
+		$("#accommodation_remove_link").show();
+		TopUp.close();
+  	},
+	removeAccommodation: function() {
+		$('#accommodation_selected span').html('');
+		$('#animal_accommodation_id').val('');
+		$('#accommodation_search_link').html('Find');
+		$('#accommodation_remove_link').hide();
 	},
 	showAccommodationRemoveLink: function() {
 		var animal_accommodation_id = $('#animal_accommodation_id').val();

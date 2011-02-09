@@ -62,14 +62,13 @@ class AccommodationsController < ApplicationController
   
   def full_search
     q = params[:q].strip
-    @accommodations = q.blank? ? {} : @current_shelter.accommodations.full_search(q).includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = q.blank? ? {} : @current_shelter.accommodations.full_search(q).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   end
   
   def filter_by_type_location
     type = params[:animal_type_id]
     location = params[:location_id]
     if type.empty? and location.empty?
-      # @accommodations = @current_shelter.accommodations.all.paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
       @accommodations = @current_shelter.accommodations.includes(:animal_type, :animals, :location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
     elsif is_integer(type) and location.empty?
       @accommodations = @current_shelter.accommodations.where(:animal_type_id => type).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])

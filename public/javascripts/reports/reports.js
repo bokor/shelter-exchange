@@ -2,9 +2,9 @@ var Reports = {
 	statusByCurrentYear: function(titleDate, renderLocation){
 		$.get('/reports/status_by_current_year.json', 
 			function(data) {
-				new Highcharts.Chart({
+				var options = {
 			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Animals by Status - ' + titleDate },
+			      	title: { text: 'Year to Date - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -20,23 +20,30 @@ var Reports = {
 							allowPointSelect: true,
 					  		cursor: 'pointer',
 					     	dataLabels: { enabled: true },
-					  			showInLegend: true
-							}
-						},
-						series: [{
-							type: 'pie',
-							name: 'Browser share',
-							data: data
-						}]
-			   		});
-		 	});
+					  		showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: 'Status by Current Year',
+						data: []
+					}]
+			   	};
+			
+				$.each(data, function(i, item) {
+					var data = [item.name, item.count];
+					options.series[0].data.push(data);
+				});
+					
+				new Highcharts.Chart(options);
+		 });
 	},
 	statusByCurrentMonth: function(titleDate, renderLocation){
 		$.get('/reports/status_by_current_month.json', 
 			function(data) {
-				new Highcharts.Chart({
+				var options = {
 			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Animals by Status - ' + titleDate },
+			      	title: { text: 'Monthly total - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -52,23 +59,31 @@ var Reports = {
 							allowPointSelect: true,
 					  		cursor: 'pointer',
 					     	dataLabels: { enabled: true },
-					  			showInLegend: true
-							}
-						},
-						series: [{
-							type: 'pie',
-							name: 'Browser share',
-							data: data
-						}]
-			   		});
-		 	});
+					  		showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: 'Status by Current Month',
+						data: []
+					}]
+			   	};
+			
+				$.each(data, function(i, item) {
+					var data = [item.name, item.count];
+					options.series[0].data.push(data);
+				});
+					
+				new Highcharts.Chart(options);
+		 });
+		
 	},
 	typeByCurrentYear: function(titleDate, renderLocation){
 		$.get('/reports/type_by_current_year.json', 
 			function(data) {
-				status_by_current_year = new Highcharts.Chart({
-			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Animals by Type - ' + titleDate },
+				var options = {
+			    	chart: { renderTo: renderLocation },
+			      	title: { text: 'Year to Date - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -84,23 +99,30 @@ var Reports = {
 							allowPointSelect: true,
 					  		cursor: 'pointer',
 					     	dataLabels: { enabled: true },
-					  			showInLegend: true
-							}
-						},
-						series: [{
-							type: 'pie',
-							name: 'Browser share',
-							data: data
-						}]
-			   		});
-		 	});
+					  		showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: 'Type by Current Year',
+						data: []
+					}]
+			   	};
+			
+				$.each(data, function(i, item) {
+					var data = [item.name, item.count];
+					options.series[0].data.push(data);
+				});
+					
+				new Highcharts.Chart(options);
+		 });
 	},
 	typeByCurrentMonth: function(titleDate, renderLocation){
 		$.get('/reports/type_by_current_month.json', 
 			function(data) {
-				new Highcharts.Chart({
-			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Animals by Type - ' + titleDate },
+				var options = {
+			    	chart: { renderTo: renderLocation },
+			      	title: { text: 'Monthly total - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -116,16 +138,23 @@ var Reports = {
 							allowPointSelect: true,
 					  		cursor: 'pointer',
 					     	dataLabels: { enabled: true },
-					  			showInLegend: true
-							}
-						},
-						series: [{
-							type: 'pie',
-							name: 'Browser share',
-							data: data
-						}]
-			   		});
-		 	});
+					  		showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: 'Type by Current Month',
+						data: []
+					}]
+			   	};
+			
+				$.each(data, function(i, item) {
+					var data = [item.name, item.count];
+					options.series[0].data.push(data);
+				});
+					
+				new Highcharts.Chart(options);
+		 });
 	},
 	adoptionMonthlyTotalByType: function(element, renderLocation){
 		$.get('/reports/adoption_monthly_total_by_type.json', { selected_year: $(element).val() },
@@ -151,10 +180,12 @@ var Reports = {
 				   	},
 				    series: []
 				};
+				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = item.type;
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: item.type,
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				
@@ -187,9 +218,10 @@ var Reports = {
 				};
 				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = "Total";
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: "Total",
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				
@@ -207,7 +239,7 @@ var Reports = {
 				    },
 				    yAxis: {
 				    	min: 0,
-				        title: { text: 'Euthanized' }
+				        title: { text: 'Euthanasia' }
 				    },
 				    legend: { floating: false, shadow: false },
 				    tooltip: {
@@ -220,10 +252,12 @@ var Reports = {
 				   	},
 				    series: []
 				};
+				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = item.type;
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: item.type,
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				
@@ -241,7 +275,7 @@ var Reports = {
 				    },
 				    yAxis: {
 				    	min: 0,
-				        title: { text: 'Euthanized' }
+				        title: { text: 'Euthanasia' }
 				    },
 				    legend: { floating: false, shadow: false },
 				    tooltip: {
@@ -256,9 +290,10 @@ var Reports = {
 				};
 				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = "Total";
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: "Total",
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				
@@ -289,10 +324,12 @@ var Reports = {
 				   	},
 				    series: []
 				};
+				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = item.type;
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: item.type,
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				
@@ -325,9 +362,10 @@ var Reports = {
 				};
 				
 				$.each(data, function(i, item) {
-					var series = {};
-					series.name = "Total";
-					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					var series = {
+						name: "Total",
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
 					options.series.push(series);
 				});
 				

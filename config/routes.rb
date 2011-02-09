@@ -69,11 +69,11 @@ Shelterexchange::Application.routes.draw do
       resources :alerts 
       resources :tasks 
       collection do
-        get :auto_complete
+        get :full_search
+        get :search_by_name
         get :filter_notes
         get :filter_by_type_status
-        get :full_search
-        get :find_locations
+        get :auto_complete
       end
     end
     

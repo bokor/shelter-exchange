@@ -13,22 +13,22 @@ class ReportsController < ApplicationController
   
   def status_by_current_year
     @statuses = @current_shelter.animals.count_by_status.year_to_date
-    render :json => @statuses.collect{ |status| [status.name, status.count ] }
+    render :json => @statuses.collect{ |status| { :name => status.name, :count => status.count } }
   end
   
   def status_by_current_month
     @statuses = @current_shelter.animals.count_by_status.current_month
-    render :json => @statuses.collect{ |status| [status.name, status.count ] }
+    render :json => @statuses.collect{ |status| { :name => status.name, :count => status.count } }
   end
   
   def type_by_current_year
     @types = @current_shelter.animals.active.count_by_type.year_to_date
-    render :json => @types.collect{ |status| [status.name, status.count ] }
+    render :json => @types.collect{ |status| { :name => status.name, :count => status.count } }
   end
   
   def type_by_current_month
     @types = @current_shelter.animals.active.count_by_type.current_month
-    render :json => @types.collect{ |status| [status.name, status.count ] }
+    render :json => @types.collect{ |status| { :name => status.name, :count => status.count } }
   end
   
   def adoption_monthly_total_by_type
@@ -90,5 +90,22 @@ class ReportsController < ApplicationController
       }
     end
   end
-  
+
 end
+
+# def monthly_totals
+#   with_scope = params[:with_scope].downcase
+#   with_scope == "intake" ? date_type = :created_at : date_type = :status_change_date
+# 
+#   respond_to do |format|
+#     format.html
+#     format.json {
+#       @results = @current_shelter.animals.totals_by_month(params[:selected_year], date_type)
+#       # if params[:with_type]
+#       #   render :json => @results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+#       # else
+#         render :json => @results.collect{ |result| { :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+#       # end
+#     }
+#   end
+# end

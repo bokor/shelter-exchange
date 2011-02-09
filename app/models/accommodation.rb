@@ -4,7 +4,7 @@ class Accommodation < ActiveRecord::Base
   Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 50
   
   # Associations
-  belongs_to :shelter   #, :conditions => {:state => 'active'}
+  belongs_to :shelter
   belongs_to :animal_type
   belongs_to :location
   
@@ -13,12 +13,15 @@ class Accommodation < ActiveRecord::Base
   # Validations
   validates_presence_of :animal_type_id, :message => 'needs to be selected'
   validates_presence_of :name
-  validates_numericality_of :max_capacity #, :on => :create, :message => "is not a number"
+  validates_numericality_of :max_capacity
    
   # Callbacks
   
   # Scopes
-  scope :full_search, lambda { |q| where("name LIKE '%#{q}%'") }
+  scope :full_search, lambda { |q| includes(:animal_type, :animals, :location).where("name LIKE '%#{q}%'") }
   
   
 end
+
+#belongs_to :shelter   #, :conditions => {:state => 'active'}
+#validates_numericality_of :max_capacity #, :on => :create, :message => "is not a number"

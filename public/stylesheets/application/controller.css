@@ -101,13 +101,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
 
-/*.show_animals .photo{float:right; }
-.show_animals .details{width: auto; padding: 0 15px 0 0; margin:0;}
-.show_animals .details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_animals .details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_animals .details ul {text-align:left;padding-bottom: 10px;}
-.show_animals .details ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_animals .details ul .red_date{color:#ee3124;}*/
 
 .show_animals .description{width:100%; padding: 0 0 0 0; }
 .show_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
@@ -351,42 +344,11 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
 /* -- Animals :: Accommodations :: Accommodation Details --*/
-
 .animals #accommodations { width: 100%;height: 400px; overflow:auto;  z-index: 9999999999999;}
-/*.animals #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals #accommodations .accommodation { width: 90%;padding: 15px; border-top:1px #ccc solid; border-collapse: collapse; border-spacing: 0; }
-.animals #accommodations .accommodation:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-.animals #accommodations .over_capacity {background-color: #fce2ec; border-top:1px solid #f286b1;border-bottom:1px solid #f286b1;}
-.animals #accommodations .hover{background-color:#EFEBE3;}*/
-
-/*.animals #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
-.animals #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals #accommodations .accommodation .accommodation_name {float:left; width: 69%;}
-.animals #accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
-.animals #accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
-.animals #accommodations .accommodation .accommodation_types {float:left; width: 29%; text-align:right;}*/
 .animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
 .animals #accommodations .accommodation .accommodation_types .select_link {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
-/*.animals #accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
-.animals #accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}*/
-/*.animals #accommodations .accommodation .accommodation_count .action_links {float: right; text-align:right;font-size: 10px;font-weight:bold;}*/
 .animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
 .animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
-
-/*.animals #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
-.animals #accommodations .accommodation table.list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-.animals #accommodations .accommodation table.list tr {border-bottom:1px #ccc dotted; }
-.animals #accommodations .accommodation table.list td{vertical-align:top;font-size:12px;padding:9px 0;}
-.animals #accommodations .accommodation table.list td.image { width:100px; padding-left:5px; }
-.animals #accommodations .accommodation table.list td.details { width:380px;padding-left: 15px;color:#666; }
-.animals #accommodations .accommodation table.list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-*/
-
-
-
-
-
 
 /* -- Index Locations  --*/
 .index_accommodations #sidebar #create_accommodation, .index_accommodations #accommodations .edit_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
@@ -535,7 +497,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .show_parents #animal_selected #animal_search_link{}
 
-.show_parents #animal_search_results {margin-top: 20px; width: 100%; height: 400px; z-index: 9999999999999;}
+.show_parents #animal_search_results {margin-top: 20px; width: 100%;height: 450px; overflow:auto; z-index: 9999999999999;}
 .show_parents #animal_search_results table{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
 .show_parents #animal_search_results table td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
 .show_parents #animal_search_results table td.image { width:100px; padding-right: 15px;}
