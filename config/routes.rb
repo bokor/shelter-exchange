@@ -23,6 +23,8 @@ Shelterexchange::Application.routes.draw do
         get :adoption_monthly_total_by_type
         get :euthanasia_monthly_total
         get :euthanasia_monthly_total_by_type
+        get :intake_monthly_total
+        get :intake_monthly_total_by_type
       end
     end
     

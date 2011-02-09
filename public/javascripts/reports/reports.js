@@ -264,5 +264,74 @@ var Reports = {
 				
 				new Highcharts.Chart(options);
 		 	});
+	},
+	intakeMonthlyTotalByType: function(element, renderLocation){
+		$.get('/reports/intake_monthly_total_by_type.json', { selected_year: $(element).val() },
+			function(data) {
+				var options = {
+					chart: { renderTo: renderLocation, defaultSeriesType: 'column' },
+				    title: { text: 'Intake Monthly Total by Animal Type - ' + $(element).val() },
+				    xAxis: {
+				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				    },
+				    yAxis: {
+				    	min: 0,
+				        title: { text: 'Intake' }
+				    },
+				    legend: { floating: false, shadow: false },
+				    tooltip: {
+				    	formatter: function() {
+				        	return this.series.name + ': '+ this.y;
+				        }
+				   	},
+				  	plotOptions: {
+				   		column: { pointPadding: 0.2, borderWidth: 0 }
+				   	},
+				    series: []
+				};
+				$.each(data, function(i, item) {
+					var series = {};
+					series.name = item.type;
+					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					options.series.push(series);
+				});
+				
+				new Highcharts.Chart(options);
+		 	});
+	},
+	intakeMonthlyTotal: function(element, renderLocation){
+		$.get('/reports/intake_monthly_total.json', { selected_year: $(element).val() },
+			function(data) {
+				var options = {
+					chart: { renderTo: renderLocation, defaultSeriesType: 'column' },
+				    title: { text: 'Intake Monthly Total - ' + $(element).val() },
+				    xAxis: {
+				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				    },
+				    yAxis: {
+				    	min: 0,
+				        title: { text: 'Intake' }
+				    },
+				    legend: { floating: false, shadow: false },
+				    tooltip: {
+				    	formatter: function() {
+				        	return this.series.name + ': '+ this.y;
+				        }
+				   	},
+				  	plotOptions: {
+				   		column: { pointPadding: 0.2, borderWidth: 0 }
+				   	},
+				    series: []
+				};
+				
+				$.each(data, function(i, item) {
+					var series = {};
+					series.name = "Total";
+					series.data = [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec];
+					options.series.push(series);
+				});
+				
+				new Highcharts.Chart(options);
+		 	});
 	}
 };

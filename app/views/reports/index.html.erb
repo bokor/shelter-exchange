@@ -8,8 +8,6 @@
 		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
 		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
 		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
-		Reports.totalAdoptionsByTypeAndMonth("<%=current_year%>", "total_adoptions_by_type_and_month");
-		Reports.totalAdoptionsByMonth("<%=current_year%>", "total_adoptions_by_month");
 	</script>
 <% end %>
 
@@ -22,7 +20,7 @@
 	<div class="page_content">
 		
 		<div class="stats">
-			<h2>Current Month Stats</h2>
+			<h2>Current Month</h2>
 			<div class="count_sections">
 				<div>
 					<h2><%= @active_count_month %></h2>
@@ -42,7 +40,7 @@
 		<div class="separator"></div>
 		
 		<div class="stats">
-			<h2>Year to Date Stats</h2>
+			<h2>Year to Date</h2>
 			<div class="count_sections">
 				<div>
 					<h2><%= @active_count_ytd %></h2>
@@ -75,39 +73,10 @@
 			<div id="type_by_current_month"></div>
 		</div>
 
-		<div class="separator"></div>
-
-		<div id="total_adoptions_by_type_and_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
-		<div class="separator"></div>
-		<div id="total_adoptions_by_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
 	</div>
 
 <% end %>
 
 <%= content_for :sidebar do %>
-	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
-		<h2>Animal Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li><%= link_to "Adoption Monthly Total", adoption_monthly_total_reports_path %></li>
-			<li><%= link_to "Adoption Monthly Total by Animal Type", adoption_monthly_total_by_type_reports_path %></li>
-			<li><%= link_to "Euthanasia Monthly Total", euthanasia_monthly_total_reports_path %></li>
-			<li><%= link_to "Euthanasia Monthly Total by Animal Type", euthanasia_monthly_total_by_type_reports_path %></li>
-		</ul>
-	</div>
-	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
-		<h2>Shelter Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li>Report 1</li>
-			<li>Report 2</li>
-			<li>Report 3</li>
-		</ul>
-	</div>
-	<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
-		<h2>General Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li>Report 1</li>
-			<li>Report 2</li>
-			<li>Report 3</li>
-		</ul>
-	</div>
+	<%= render "sidebar" %>
 <% end %>

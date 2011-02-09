@@ -3,9 +3,7 @@
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
-		$(function() {
-			Reports.euthanasiaMonthlyTotal('#date_report_selected_year', 'euthanasia_monthly_total');
-		});
+		Reports.euthanasiaMonthlyTotal('#date_report_selected_year', 'euthanasia_monthly_total');
 	</script>
 <% end %>
 
@@ -21,53 +19,9 @@
 	<div class="page_content">
 		<div id="euthanasia_monthly_total" class="report_container"></div>
 	</div>
-	
-	<!-- # Generates a select field for years that defaults to the current year that
-  # has ascending year values
-  select_year(Date.today, :start_year => 1992, :end_year => 2007)
-
-  # Generates a select field for years that defaults to the current year that
-  # is named 'birth' rather than 'year'
-  select_year(Date.today, :field_name => 'birth')
-
-  # Generates a select field for years that defaults to the current year that
-  # has descending year values
-  select_year(Date.today, :start_year => 2005, :end_year => 1900)
-
-  # Generates a select field for years that defaults to the year 2006 that
-  # has ascending year values
-  select_year(2006, :start_year => 2000, :end_year => 2010)
-
-  # Generates a select field for years with a custom prompt.  Use :prompt => true for a
-  # generic prompt.
-  select_year(14, :prompt => 'Choose year') -->
 
 <% end %>
 
 <%= content_for :sidebar do %>
-	<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
-		<h2>Animal Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li><%= link_to "Adoption Monthly Total", adoption_monthly_total_reports_path %></li>
-			<li><%= link_to "Adoption Monthly Total by Animal Type", adoption_monthly_total_by_type_reports_path %></li>
-			<li><%= link_to "Euthanasia Monthly Total", euthanasia_monthly_total_reports_path %></li>
-			<li><%= link_to "Euthanasia Monthly Total by Animal Type", euthanasia_monthly_total_by_type_reports_path %></li>
-		</ul>
-	</div>
-	<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
-		<h2>Shelter Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li>Report 1</li>
-			<li>Report 2</li>
-			<li>Report 3</li>
-		</ul>
-	</div>
-	<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
-		<h2>General Reports</h2>
-		<ul style="list-style:none; padding-left: 15px;">
-			<li>Report 1</li>
-			<li>Report 2</li>
-			<li>Report 3</li>
-		</ul>
-	</div>
+	<%= render "sidebar" %>
 <% end %>

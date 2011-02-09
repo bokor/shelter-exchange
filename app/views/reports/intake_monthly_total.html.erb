@@ -1,9 +1,9 @@
-<%= title "Adoption Monthly Total - Reports"  %>
+<%= title "Intake Monthly Total - Reports"  %>
 
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
-		Reports.adoptionMonthlyTotal('#date_report_selected_year', 'adoption_monthly_total');
+		Reports.intakeMonthlyTotal('#date_report_selected_year', 'intake_monthly_total');
 	</script>
 <% end %>
 
@@ -13,12 +13,12 @@
 		<h1>Reports</h1>
 		<div class="action_links">
 			<%= label_tag :report_selected_year, "Select year" %>
-			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.adoptionMonthlyTotal(this, 'adoption_monthly_total');"})%>
+			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.intakeMonthlyTotal(this, 'intake_monthly_total');"})%>
 		</div>
 	</div>
 	
 	<div class="page_content">
-		<div id="adoption_monthly_total" class="report_container"></div>
+		<div id="intake_monthly_total" class="report_container"></div>
 	</div>
 
 <% end %>

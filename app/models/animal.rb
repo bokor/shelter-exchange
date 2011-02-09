@@ -68,13 +68,13 @@ class Animal < ActiveRecord::Base
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
   scope :with_type, select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
   
-  def self.totals_by_month(year)
+  def self.totals_by_month(year, date_type)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
     composed_scope = self.scoped
     
     start_date.month.upto(end_date.month) do |month|
-      composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
+      composed_scope = composed_scope.select("COUNT(CASE WHEN animals.#{date_type.to_s} BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
       start_date = start_date.next_month
     end
 
