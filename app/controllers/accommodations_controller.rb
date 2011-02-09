@@ -13,26 +13,18 @@ class AccommodationsController < ApplicationController
     end  
   end
   
-  # def show
-  #   redirect_to accommodations_path and return
-  # end
-  
-  def edit
-    begin
-      @accommodation = @current_shelter.accommodations.find(params[:id])
-      respond_with(@accommodation)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid accommodation => #{params[:id]}")
-      flash[:error] = "You have requested an invalid accommodation!"
-      redirect_to accommodations_path and return
-    end
+  def show
+    redirect_to accommodations_path and return
   end
   
+  def new
+    redirect_to accommodations_path and return
+  end
   
-  # def new
-  #   @accommodation = Task.new
-  #   respond_with(@accommodation)
-  # end
+  def edit
+    @accommodation = @current_shelter.accommodations.find(params[:id])
+    respond_with(@accommodation)
+  end
   
   def create
     @accommodation = @current_shelter.accommodations.new(params[:accommodation])
@@ -79,5 +71,10 @@ class AccommodationsController < ApplicationController
     end
   end
 
-
 end
+
+# rescue_from ActiveRecord::RecordNotFound do |exception|
+#   logger.error(":::Attempt to access invalid accommodation => #{params[:id]}")
+#   flash[:error] = "You have requested an invalid accommodation!"
+#   redirect_to accommodations_path and return
+# end

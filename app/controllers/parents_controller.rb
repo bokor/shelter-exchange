@@ -4,19 +4,11 @@ class ParentsController < ApplicationController
   
   def index
     # No Loading because Index page is a search
-    # @parents = Parent.all
-    # respond_with(@parents)
   end
   
   def show
-    begin
-      @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
-      respond_with(@parent)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid parent => #{params[:id]}")
-      flash[:error] = "You have requested an invalid parent!"
-      redirect_to parents_path and return
-    end
+    @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
+    respond_with(@parent)
   end
   
   def edit
@@ -49,11 +41,15 @@ class ParentsController < ApplicationController
   end
   
   def search
-    # q = params[:q].strip
     temp = params[:q].strip.split
     q = temp.map {|str| str}.join("%")
     @parents = q.blank? ? {} : Parent.search(q)
-    respond_with(@parents)
+  end
+  
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    logger.error(":::Attempt to access invalid parent => #{params[:id]}")
+    flash[:error] = "You have requested an invalid parent!"
+    redirect_to parents_path and return
   end
   
 end

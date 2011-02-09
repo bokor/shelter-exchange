@@ -7,21 +7,9 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
   
-  def show
-    redirect_to users_path and return
-  end
-  
   def edit
     @user = current_user
     respond_with(@user)
-  end
-  
-  def new
-    redirect_to users_path and return
-  end
-  
-  def create
-    redirect_to users_path and return
   end
   
   def update
@@ -36,20 +24,32 @@ class UsersController < ApplicationController
     end
   end
   
+  def show
+    redirect_to users_path and return
+  end
+  
+  def new
+    redirect_to users_path and return
+  end
+  
+  def create
+    redirect_to users_path and return
+  end
+  
   def destroy
     redirect_to users_path and return
   end
   
-  # def valid
-  #   token_user = User.valid?(params)
-  #   if token_user
-  #     sign_in(:user, token_user)
-  #     flash[:notice] = "You have been logged in"
-  #   else
-  #     flash[:alert] = "Login could not be validated"
-  #   end
-  #   redirect_to :root
-  # end
-  # 
-  
 end
+
+# def valid
+#   token_user = User.valid?(params)
+#   if token_user
+#     sign_in(:user, token_user)
+#     flash[:notice] = "You have been logged in"
+#   else
+#     flash[:alert] = "Login could not be validated"
+#   end
+#   redirect_to :root
+# end
+#

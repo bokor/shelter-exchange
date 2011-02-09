@@ -20,22 +20,14 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
   
-  def edit
-    begin
-      @task = @current_shelter.tasks.find(params[:id])
-      respond_with(@task)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid task => #{params[:id]}")
-      flash[:error] = "You have requested an invalid task!"
-      redirect_to tasks_path
-    end
+  def new
+    redirect_to tasks_path
   end
   
-  
-  # def new
-  #   @task = Task.new
-  #   respond_with(@task)
-  # end
+  def edit
+    @task = @current_shelter.tasks.find(params[:id])
+    respond_with(@task)
+  end
   
   def create
     @taskable = find_polymorphic_class
@@ -69,10 +61,15 @@ class TasksController < ApplicationController
   def completed
     @task = @current_shelter.tasks.find(params[:id])   
     flash[:notice] = "Task has been completed." if @task.update_attributes({ :is_completed => true })  
-    respond_with(@task)
   end
 
 end
+
+# rescue_from ActiveRecord::RecordNotFound do |exception|
+#   logger.error(":::Attempt to access invalid task => #{params[:id]}")
+#   flash[:error] = "You have requested an invalid task!"
+#   redirect_to tasks_path and return
+# end
 
 # TEMPLATE CODE FOR THIS_WEEK if needed
 #<b><%= task.due_date.strftime('%W') if task.due_date%></b>

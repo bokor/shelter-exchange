@@ -13,7 +13,6 @@ class NotesController < ApplicationController
   
   def create
     @notable = find_polymorphic_class
-    # @note = @notable.notes.build(params[:note])
     @note = @current_shelter.notes.new(params[:note].merge(:notable => @notable))
     flash[:notice] = "#{@note.title} has been created." if  @note.save
   end

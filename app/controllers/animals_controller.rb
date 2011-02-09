@@ -8,19 +8,13 @@ class AnimalsController < ApplicationController
   end
   
   def show
-    begin
-      @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :notes => [:note_category], :accommodation => [:location]).find(params[:id])
-      @alerts = @animal.alerts.not_stopped.all
-      @overdue_tasks = @animal.tasks.overdue.not_completed.includes(:task_category).all
-  		@today_tasks = @animal.tasks.today.not_completed.includes(:task_category).all 
-  		@tomorrow_tasks = @animal.tasks.tomorrow.not_completed.includes(:task_category).all
-  		@later_tasks = @animal.tasks.later.not_completed.includes(:task_category).all
-      respond_with(@animal)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid animal => #{params[:id]}")
-      flash[:error] = "You have requested an invalid animal!"
-      redirect_to animals_path and return
-    end
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :notes => [:note_category], :accommodation => [:location]).find(params[:id])
+    @alerts = @animal.alerts.not_stopped.all
+    @overdue_tasks = @animal.tasks.overdue.not_completed.includes(:task_category).all
+  	@today_tasks = @animal.tasks.today.not_completed.includes(:task_category).all 
+  	@tomorrow_tasks = @animal.tasks.tomorrow.not_completed.includes(:task_category).all
+  	@later_tasks = @animal.tasks.later.not_completed.includes(:task_category).all
+    respond_with(@animal)
   end
   
   def edit
@@ -91,6 +85,12 @@ class AnimalsController < ApplicationController
     q = params[:q].strip
     @animals = q.blank? ? {} : @current_shelter.animals.auto_complete(q)
     render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
+  end
+  
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    logger.error(":::Attempt to access invalid animal => #{params[:id]}")
+    flash[:error] = "You have requested an invalid animal!"
+    redirect_to animals_path and return
   end
   
 end

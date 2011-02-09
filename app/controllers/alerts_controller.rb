@@ -13,25 +13,18 @@ class AlertsController < ApplicationController
     end
   end
   
-  # def show
-  #   redirect_to alerts_path and return
-  # end
+  def show
+    redirect_to alerts_path and return
+  end
+  
+  def new
+    redirect_to alerts_path and return
+  end
   
   def edit
-    begin
-      @alert = @current_shelter.alerts.find(params[:id])
-      respond_with(@alert)
-    rescue ActiveRecord::RecordNotFound
-      logger.error(":::Attempt to access invalid alert => #{params[:id]}")
-      flash[:error] = "You have requested an invalid alert!"
-      redirect_to alerts_path and return
-    end
+    @alert = @current_shelter.alerts.find(params[:id])
+    respond_with(@alert)
   end
-
-  # def new
-  #   @alert = Alert.new
-  #   respond_with(@alert)
-  # end
   
   def create
     @alertable = find_polymorphic_class
@@ -69,7 +62,12 @@ class AlertsController < ApplicationController
   def stopped
     @alert = @current_shelter.alerts.find(params[:id])   
     flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :is_stopped => true })  
-    respond_with(@alert)
   end
+  
+  # rescue_from ActiveRecord::RecordNotFound do |exception|
+  #   logger.error(":::Attempt to access invalid alert => #{params[:id]}")
+  #   flash[:error] = "You have requested an invalid alert!"
+  #   redirect_to alerts_path and return
+  # end
 
 end
