@@ -258,41 +258,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_shelters #map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff;}
 .index_shelters #map_content {display:none;}
 
-/*****************************************************************/
-/* -------------------------- REPORTS -------------------------- */
-/*****************************************************************/
-.reports ul {list-style:none;}
-.reports .page_heading{border-bottom:1px solid #eee; }
-.reports .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.reports .page_heading h1{width:50%; float:left; }
-.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-
-
-.reports .report_container {width: 100%; height: 100%; margin: 0 auto; padding: 20px 0 20px 0;}
-
-
-
-.index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_reports .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
-.index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;}
-.index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
-.index_reports .count_sections h2.euthanized_color {color:red;}
-.index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
-
-.index_reports .pie_charts {width:100%; margin: 0 auto;}
-.index_reports .pie_charts:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_reports .pie_charts div {float: left; width: 50%;}
-
-
-
-
-/*
-<div class="separator"></div>
-<div id="total_adoptions_by_type_and_month" style="width: 98%; height: 400px; margin: 0 auto"></div>
-<div class="separator"></div>
-<div id="total_adoptions_by_month" style="width: 98%; height: 400px; margin: 0 auto"></div>*/
-
-
 
 
 /***************************************************************************/
@@ -551,6 +516,30 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .sessions #left #content { margin: 0 auto;padding:20px; }
 .sessions #sidebar { display:none;}
 
-/******************************************************************/
+
+
+/*****************************************************************/
+/* -------------------------- REPORTS -------------------------- */
+/*****************************************************************/
+/* -- Reports :: Common Styles --*/
+.reports ul {list-style:none;}
+.reports .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
+
+/* -- Reports :: Page Heading and Titles --*/
+.reports .page_heading{border-bottom:1px solid #eee; }
+.reports .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.reports .page_heading h1{width:50%; float:left; }
+.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+
+/* -- Reports :: Each Report's layout --*/
+.reports .report {width: 100%; height: 100%; min-height:400px; margin: 20px auto 20px auto;}
+
+/* -- Index Reports :: Stats and Count Sections --*/
+.index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;}
+.index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
+.index_reports .count_sections h2.euthanized_color {color:red;}
+.index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
+
 
 

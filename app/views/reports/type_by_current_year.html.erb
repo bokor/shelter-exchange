@@ -1,0 +1,25 @@
+<%= title "Animals by Type Year-to-Date - Reports"  %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
+	
+	<script type="text/javascript">
+		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading yellow_background">
+		<h1>Reports</h1>
+	</div>
+	
+	<div class="page_content">
+		<div id="type_by_current_year" class="report"></div>
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<%= render "sidebar" %>
+<% end %>

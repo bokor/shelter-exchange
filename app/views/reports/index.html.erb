@@ -4,8 +4,6 @@
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	
 	<script type="text/javascript">
-		Reports.statusByCurrentYear("<%=current_year%>", "status_by_current_year");
-		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
 		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
 		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
 	</script>
@@ -58,21 +56,10 @@
 		</div>
 		
 		<div class="separator"></div>
-			
-		<div class="pie_charts">
-			<h2>Animals by Status</h2>
-			<div id="status_by_current_year"></div>
-			<div id="status_by_current_month"></div>
-		</div>
+		<div id="status_by_current_month" class="report"></div>
 		
 		<div class="separator"></div>
-		
-		<div class="pie_charts">
-			<h2>Animals by Type</h2>
-			<div id="type_by_current_year"></div>
-			<div id="type_by_current_month"></div>
-		</div>
-
+		<div id="type_by_current_month"class="report"></div>
 	</div>
 
 <% end %>

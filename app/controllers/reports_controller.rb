@@ -12,8 +12,13 @@ class ReportsController < ApplicationController
   end
   
   def status_by_current_year
-    @statuses = @current_shelter.animals.count_by_status.year_to_date
-    render :json => @statuses.collect{ |status| { :name => status.name, :count => status.count } }
+    respond_to do |format|
+      format.html
+      format.json {
+        @statuses = @current_shelter.animals.count_by_status.year_to_date
+        render :json => @statuses.collect{ |status| { :name => status.name, :count => status.count } }
+      }
+    end
   end
   
   def status_by_current_month
@@ -22,13 +27,18 @@ class ReportsController < ApplicationController
   end
   
   def type_by_current_year
-    @types = @current_shelter.animals.active.count_by_type.year_to_date
-    render :json => @types.collect{ |status| { :name => status.name, :count => status.count } }
+    respond_to do |format|
+      format.html
+      format.json {
+        @types = @current_shelter.animals.active.count_by_type.year_to_date
+        render :json => @types.collect{ |type| { :name => type.name, :count => type.count } }
+      }
+    end
   end
   
   def type_by_current_month
     @types = @current_shelter.animals.active.count_by_type.current_month
-    render :json => @types.collect{ |status| { :name => status.name, :count => status.count } }
+    render :json => @types.collect{ |type| { :name => type.name, :count => type.count } }
   end
   
   def adoption_monthly_total_by_type

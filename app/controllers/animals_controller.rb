@@ -105,12 +105,3 @@ end
   #             }
   #           end
   # end
-  
-  # LIVE SEARCH OTHER CODE
-  # TODO - Figure out a way if a shelter were to type text that each string might add an AND statement and another set of ORs
-  # ALSO - look to move this function into the model.
-  # temp = params[:q].strip.split
-  # q = temp.map {|str| str}.join("%")
-  # @animals = Animal.where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%') OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')").paginate :per_page => Animal::PER_PAGE, :page => params[:page]
-  
-

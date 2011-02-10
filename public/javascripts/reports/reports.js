@@ -4,7 +4,7 @@ var Reports = {
 			function(data) {
 				var options = {
 			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Year to Date - ' + titleDate },
+			      	title: { text: 'Animals by Status Year-to-Date - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -43,7 +43,7 @@ var Reports = {
 			function(data) {
 				var options = {
 			      	chart: { renderTo: renderLocation },
-			      	title: { text: 'Monthly total - ' + titleDate },
+			      	title: { text: 'Animals by Status Monthly Total - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -83,7 +83,7 @@ var Reports = {
 			function(data) {
 				var options = {
 			    	chart: { renderTo: renderLocation },
-			      	title: { text: 'Year to Date - ' + titleDate },
+			      	title: { text: 'Animals by Type Year-to-Date - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
@@ -122,7 +122,7 @@ var Reports = {
 			function(data) {
 				var options = {
 			    	chart: { renderTo: renderLocation },
-			      	title: { text: 'Monthly total - ' + titleDate },
+			      	title: { text: 'Animals by Type Monthly Total - ' + titleDate },
 				  	plotArea: {
 				  		shadow: null,
 						borderWidth: null,
