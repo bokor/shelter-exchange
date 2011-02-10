@@ -41,6 +41,9 @@ $(function() {
 	$('#add_placement_link, #cancel_placement').click(function() {
 		$('#create_placement').slideToggle();
 	});
+	$('#add_capacity_link, #cancel_capacity').click(function() {
+		$('#create_capacity').slideToggle();
+	});
 
 });
 

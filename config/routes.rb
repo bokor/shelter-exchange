@@ -1,5 +1,6 @@
 Shelterexchange::Application.routes.draw do
 
+
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -83,7 +84,10 @@ Shelterexchange::Application.routes.draw do
     end
 
 #   Shelter Routes 
-    resources :shelters
+    resources :shelters 
+    
+#   Capacity Routes    
+    resources :capacities
 
 #   Users Routes - Localized updated
     resources :users
@@ -109,16 +113,22 @@ Shelterexchange::Application.routes.draw do
     
 #   Public Route
     resources :public
+    # , :path => "" do
+    #   collection do
+    #     get :videos
+    #   end
+    # end
+    
+#   Public - Pages
+    get "videos" => "public#videos", :path => :videos
     
 #   Accounts Route
     resources :accounts
-    get "signup" => "Accounts#new", :path => :signup
-    post "signup" => "Accounts#create", :path => :signup
+    get "signup" => "accounts#new", :path => :signup
+    post "signup" => "accounts#create", :path => :signup
     
-#   Public - Pages
-    match "videos" => "Public#videos", :path => :videos
     
-    root :to => "Public#index"
+    root :to => "public#index"
   end
 
 

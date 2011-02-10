@@ -1,0 +1,3 @@
+$('#capacity_<%=@capacity.id%>').hide();
+$('#capacity_<%=@capacity.id%>').after( "<%= escape_javascript(render 'edit_capacity', :collection => @capacity) %>" );
+$('#edit_capacity_<%=@capacity.id%>').show();

@@ -1,0 +1,10 @@
+<% if @capacity.errors.any? %>
+	$('#capacity_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @capacity) %>" );
+<% else %>
+    $('#capacity_help').hide();
+	$('#capacities').prepend("<%= escape_javascript(render 'capacity', :capacity => @capacity) %>"); 
+	$(".capacity").first().effect("highlight", {}, 1500);
+	$('#new_capacity').get(0).reset();
+	$('#capacity_errors').html("");
+<% end %>
+<% flash.discard %>

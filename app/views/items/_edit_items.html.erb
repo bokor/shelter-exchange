@@ -1,5 +1,5 @@
-<div id="edit_items" style="background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;">
-	<%= form_for (@shelter), :remote => true do |f| %>
+<div id="edit_items">
+	<%= form_for setup_items(@shelter), :remote => true do |f| %>
 		<h2>Top 5 Items Needed</h2>
 		<ol class="form">
 			<%= f.fields_for :items do |item_fields| %>
@@ -12,7 +12,7 @@
 		<div class="actions">
 			<%= f.submit "Update list", :disable_with => "Submitting...", :class => 'button' %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#',:onclick => "$('#item_list').show();$('#edit_items').hide();return false;"  %>
+			<%= link_to 'Cancel', '#',:onclick => "$('#edit_items').hide();$('#items_section').show();return false;"  %>
 		</div>
 	<% end %>
 </div>

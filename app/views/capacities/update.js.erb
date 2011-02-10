@@ -1,0 +1,11 @@
+<% if @capacity.errors.any? %>
+	$('#capacity_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @capacity) %>" );
+<% else %>
+	$('#edit_capacity_<%=@capacity.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
+	$('#capacity_<%=@capacity.id%>').replaceWith( "<%= escape_javascript(render @capacity) %>" );
+	$('#capacity_<%=@capacity.id%>').show().effect("highlight", {}, 1000);
+	$('#capacity_errors').html("");
+<% end %>
+<% flash.discard %>

@@ -20,8 +20,8 @@ class Parent < ActiveRecord::Base
                     
   # Scopes
   scope :search, lambda { |q| where("name LIKE '%#{q}%' OR street LIKE '%#{q}%' 
-                                                OR home_phone LIKE '%#{q}%' OR mobile_phone LIKE '%#{q}%' 
-                                                OR email LIKE '%#{q}%'") }
+                                     OR home_phone LIKE '%#{q}%' OR mobile_phone LIKE '%#{q}%' 
+                                     OR email LIKE '%#{q}%'") }
                                                 
   
 end

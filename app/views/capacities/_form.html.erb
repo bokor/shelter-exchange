@@ -1,0 +1,10 @@
+<ul class="form">
+	<li>
+		<%= f.label :animal_type_id, "Animal type" %><br />
+		<%= collection_select(:capacity, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
+	</li>
+	<li>
+		<%= f.label :max_capacity, "Max number of animals per type" %><br />
+		<%= f.text_field :max_capacity %>
+	</li>
+</ul>

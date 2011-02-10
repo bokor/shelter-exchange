@@ -20,7 +20,7 @@
 			<h1>Shelter</h1>
 		<% end %>
 		<div class="action_links">
-			<%= link_to "Edit", edit_shelter_path(@shelter)%>
+			<%= link_to "Edit this shelter", edit_shelter_path(@shelter)%>
 		</div>
 	</div>
 		
@@ -57,14 +57,15 @@
 				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%><br /><br /></li>
 			</ul>
 		</div>
+		
 	</div>
 	
 <% end %>
 
 <%= content_for :sidebar do %>
 	
-	<div id="item_list">
-		<h2>Top 5 Items Needed <span class="action_links">
+	<div id="items_section">
+		<h2>Top 5 Items Needed <span class="actions">
 			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
@@ -74,5 +75,30 @@
 			<% end %>
 		</ol>
 	</div>
+	
+	<div class="separator"></div>
+	
+	<div id="capacities_section">
+		<h2>Shelter capacity <span class="actions"><%= link_to "Add", "#", :id => "add_capacity_link", :class => "button" %></span></h2>
+		<div id="create_capacity">
+			<h2>Add a shelter capacity</h2>
+			<div id="capacity_errors"></div>
+			<%= form_for (Capacity.new), :remote => true do |f| %>
+				<%= render :partial => "capacities/form", :locals => { :f => f } %>
+			    <div class="actions">
+					<%= f.submit "Create Capacity", :disable_with => "Submitting...", :id => "create_capacity_button", :class => "button"  %>
+					&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_capacity" %>
+				</div>
+			<% end %>
+		</div>
+		<div id="capacities" class="capacity_list">
+			<% unless @shelter.capacities.blank? %>
+				<%= render @shelter.capacities%>
+			<% else %>
+				<p id="capacity_help">Please enter the shelter capacity</p>
+			<% end %>
+		</div>
+	</div>
+	
 	
 <% end %>

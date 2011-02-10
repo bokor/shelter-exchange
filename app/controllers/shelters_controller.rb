@@ -3,20 +3,15 @@ class SheltersController < ApplicationController
   respond_to :html, :js
   
   def index
-    @shelter = @current_shelter
-    respond_with(@shelter)
+    respond_with(@shelter = @current_shelter)
   end
   
   def edit
-    @shelter = @current_shelter
-    5.times { @shelter.items.build } if @shelter.items.blank?
-    # (5 - @shelter.items.size).times { |i| @shelter.items.build }
-    respond_with(@shelter)
+    respond_with(@shelter = @current_shelter)
   end
   
   def update
-    @shelter = @current_shelter    
-    respond_with(@shelter) do |format|
+    respond_with(@shelter  = @current_shelter) do |format|
       if @shelter.update_attributes(params[:shelter])  
         flash[:notice] = "#{@shelter.name} has been updated."
         format.html { redirect_to shelters_path }

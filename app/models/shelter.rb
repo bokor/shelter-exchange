@@ -16,6 +16,7 @@ class Shelter < ActiveRecord::Base
   has_many :alerts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :items, :dependent => :destroy
+  has_many :capacities, :dependent => :destroy
   
   has_attached_file :logo, :whiny => false , #:default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
