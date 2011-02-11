@@ -27,7 +27,7 @@
 					</li>
 					<li>
 						<%= shelter_fields.label :state, "State" %><br />
-						<%= shelter_fields.text_field :state %>
+						<%= shelter_fields.select :state, US_STATES.map {|k,v| [ v, k ] }, :prompt => "Select State" %>
 					</li>
 					<li>
 						<%= shelter_fields.label :zip_code, "Zip code" %><br />
@@ -43,7 +43,11 @@
 					</li>
 					<li>
 						<%= shelter_fields.check_box :is_kill_shelter%>&nbsp;&nbsp;
-						<%= shelter_fields.label :is_kill_shelter, "Is Kill Shelter" %><br /><br />
+						<%= shelter_fields.label :is_kill_shelter, "Is Kill Shelter" %><br />
+					</li>
+					<li>
+						<%= shelter_fields.label :time_zone, "Time Zone" %><br />
+						<%= shelter_fields.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :prompt => "Select Timezone" %>
 					</li>
 				</ul>
 
@@ -65,14 +69,18 @@
 					</li>
 					<li>
 						<%= user_fields.label :password_confirmation, "Confirm Password" %><br />
-						<%= user_fields.password_field :password_confirmation %><br /><br />
+						<%= user_fields.password_field :password_confirmation %>
 					</li>
 				</ul>
 			<% end %>
 		
 			<h2>Step 3 - Account URL</h2>
-			<%= account_form.label :subdomain, "Subdomain" %><br />
-		  	<%= account_form.text_field :subdomain %>.shelterexchange.org<br /><br /><br />
+			<ul class="form">
+				<li>
+				<%= account_form.label :subdomain, "Subdomain" %><br />
+		  		<%= account_form.text_field :subdomain %>.shelterexchange.org
+				</li>
+			</ul>
 		
 		  <%= account_form.submit "Create new account", :disable_with => 'Submiting...' %>
 		

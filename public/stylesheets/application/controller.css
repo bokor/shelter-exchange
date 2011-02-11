@@ -2,7 +2,7 @@
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
 .active_link {color:#888; text-decoration:none; cursor:default; }
-.actions{padding-top: 15px;}
+/*.actions{padding-top: 15px;}*/
 .no_tasks, .no_alerts {display:none;}
 .hidden{display:none;}
 .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}

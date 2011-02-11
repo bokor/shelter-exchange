@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
-  before_filter :authenticate_user!, :current_subdomain, :current_shelter #, :set_timezone
+  before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
   layout :current_layout_name
   
   private
@@ -32,9 +32,10 @@ class ApplicationController < ActionController::Base
       @current_account.blank? ? 'public' : 'application'
     end
     
-    def set_timezone
-      # Time.zone = @current_shelter.time_zone
+    def set_shelter_timezone
+      Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
     end
+
     
   protected
   
@@ -54,50 +55,31 @@ class ApplicationController < ActionController::Base
     rescue_from CanCan::AccessDenied do |exception|
       render :template => 'errors/unauthorized'
     end
-    
-    
-
-    
-
-    
-    # 
-    # rescue ActiveRecord::RecordNotFound
-    #   respond_to_not_found(:js, :xml, :html)
-    # end
-    #
-    #   OLD WAY
-    # include SubdomainAccounts
-    #
-    # def set_current_subdomain
-    #   unless account_subdomain == default_account_subdomain
-    #     redirect_to default_account_url if current_account.nil?
-    #   end
-    # end
-    
-    
-    # Devise Addition
-    # 
-    # def after_sign_in_path_for(resource_or_scope)
-    #   scope = Devise::Mapping.find_scope!(resource_or_scope)
-    #   subdomain_name = current_user.subdomain.name
-    #   if current_subdomain.nil? 
-    #     # logout of root domain and login by token to subdomain
-    #     token =  Devise.friendly_token
-    #     current_user.loginable_token = token
-    #     current_user.save
-    #     sign_out(current_user)
-    #     flash[:notice] = nil
-    #     home_path = valid_user_url(token, :subdomain => subdomain_name)
-    #     return home_path 
-    #   else
-    #     if subdomain_name != current_subdomain.name 
-    #       # user not part of current_subdomain
-    #       sign_out(current_user)
-    #       flash[:notice] = nil
-    #       flash[:alert] = "Sorry, invalid user or password for subdomain"
-    #     end
-    #   end
-    #   super
-    # end
 
 end
+
+
+# Devise Addition
+# 
+# def after_sign_in_path_for(resource_or_scope)
+#   scope = Devise::Mapping.find_scope!(resource_or_scope)
+#   subdomain_name = current_user.subdomain.name
+#   if current_subdomain.nil? 
+#     # logout of root domain and login by token to subdomain
+#     token =  Devise.friendly_token
+#     current_user.loginable_token = token
+#     current_user.save
+#     sign_out(current_user)
+#     flash[:notice] = nil
+#     home_path = valid_user_url(token, :subdomain => subdomain_name)
+#     return home_path 
+#   else
+#     if subdomain_name != current_subdomain.name 
+#       # user not part of current_subdomain
+#       sign_out(current_user)
+#       flash[:notice] = nil
+#       flash[:alert] = "Sorry, invalid user or password for subdomain"
+#     end
+#   end
+#   super
+# end

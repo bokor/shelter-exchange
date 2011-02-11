@@ -122,7 +122,7 @@ div.auto_complete ul strong.highlight{color:#800;margin:0;padding:0;}
 /******************************************************************/
 /* -------------------------- FORMS  --------------------------- */
 /******************************************************************/
-ul.form  { list-style: none;}
+ul.form  { list-style: none; padding-bottom: 20px;}
 ul.form li, div.actions {margin-bottom: 10px;}
 label { font-weight: bold; font-size: 13px; letter-spacing: -1px;}
 input[type=text]{height:20px;width:300px;font-size:14px; }

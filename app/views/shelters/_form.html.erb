@@ -23,7 +23,7 @@
 		</li>
 		<li>
 			<%= f.label :state, "State" %><br />
-			<%= f.text_field :state %>
+			<%= select :shelter, :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "Select State"} %>
 		</li>
 		<li>
 			<%= f.label :zip_code, "Zip code" %><br />
@@ -55,7 +55,11 @@
 		</li>
 		<li>
 			<%= f.check_box :is_kill_shelter%>&nbsp;&nbsp;
-			<%= f.label :is_kill_shelter, "Is kill shelter" %>
+			<%= f.label :is_kill_shelter, "Is kill shelter" %><br />
+		</li>
+		<li>
+			<%= f.label :time_zone, "Time Zone" %><br />
+			<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :prompt => "Select Timezone" %>
 		</li>
 	</ul>
 	<div class="actions">

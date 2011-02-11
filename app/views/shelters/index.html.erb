@@ -15,7 +15,9 @@
 	<div class="page_heading blue_background">
 		
 		<% if @shelter.logo.file? %>
-			<%= image_tag @shelter.logo.url(:small), :class => "logo" %>
+			<div class="logo">
+				<%= image_tag @shelter.logo.url(:small) %>
+			</div>
 		<% else %>
 			<h1>Shelter</h1>
 		<% end %>
@@ -65,8 +67,9 @@
 <%= content_for :sidebar do %>
 	
 	<div id="items_section">
-		<h2>Top 5 Items Needed <span class="actions">
+		<h2>Wish List <span class="actions">
 			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
+		<p>BLAH BLAH</p>
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
 				<%= render @shelter.items %>
@@ -91,6 +94,7 @@
 				</div>
 			<% end %>
 		</div>
+		<p>BLAH BLAH</p>
 		<div id="capacities" class="capacity_list">
 			<% unless @shelter.capacities.blank? %>
 				<%= render @shelter.capacities%>
