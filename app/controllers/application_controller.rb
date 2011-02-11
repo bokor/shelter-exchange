@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
   before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
-  layout :current_layout_name
+  # layout :current_layout_name
   
   private
   
@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def current_layout_name
-      @current_account.blank? ? 'public' : 'application'
-    end
+    # def current_layout_name
+    #   @current_account.blank? ? 'public' : 'application'
+    # end
     
     def set_shelter_timezone
       Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
