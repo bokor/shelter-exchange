@@ -245,8 +245,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .shelters .page_heading{border-bottom:1px solid #eee; }
 .shelters .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.shelters .page_heading h1, .index_shelters .page_heading .logo{width:50%; float:left; }
-.shelters .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
+.shelters .page_heading .action_links{width:30%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 .edit_shelters .page_heading h1, .update_shelters .page_heading h1{width:100%;}
 
 .index_shelters .shelter_details {padding-bottom: 20px;}

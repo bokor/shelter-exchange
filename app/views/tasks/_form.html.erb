@@ -9,7 +9,7 @@
 	</li>
 	<li>
 		<%= f.label :due_category, "When is it due?" %><br />
-		<%= select :task, :due_category, Task::DUE_CATEGORY.map {|k,v| [ v, k ] }, {}, :class => "task_due_category" %>
+		<%= f.collection_select :due_category, Task::DUE_CATEGORY, :to_s, :humanize, {:prompt => "Select one"}, {:class => "task_due_category"} %>
 	</li>
 	<li>
 		<div class="due_date_field" style="display:none;">

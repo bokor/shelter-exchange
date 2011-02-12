@@ -19,7 +19,7 @@
 				<%= image_tag @shelter.logo.url(:small) %>
 			</div>
 		<% else %>
-			<h1>Shelter</h1>
+			<h1>Shelter <%= Time.zone %></h1>
 		<% end %>
 		<div class="action_links">
 			<%= link_to "Edit this shelter", edit_shelter_path(@shelter)%>

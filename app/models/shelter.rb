@@ -17,6 +17,8 @@ class Shelter < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   has_many :capacities, :dependent => :destroy
   
+ # has_one :address, :as => :addressable, :dependent => :destroy
+  
   has_attached_file :logo, :whiny => false , #:default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
                             :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",

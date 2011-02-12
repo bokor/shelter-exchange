@@ -2,9 +2,7 @@ class Alert < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
   # Set up so the section value could be translated and the first is stored in the database
-  SEVERITY = { :high => "High", 
-               :medium => "Medium", 
-               :low => "Low" }
+  SEVERITY = %w[high medium low]
   
   # Associations
   belongs_to :shelter
@@ -22,6 +20,6 @@ class Alert < ActiveRecord::Base
   scope :is_broadcast, where(:is_broadcast => true)
   
   scope :for_shelter, where(:alertable_type => nil)
-  scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
+  scope :for_animals, includes(:alertable).where(:alertable_type => :animal)
   
 end

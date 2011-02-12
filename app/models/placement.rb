@@ -1,8 +1,7 @@
 class Placement < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
-  PLACEMENT_TYPE = { :adopted => "Adopted", 
-                     :foster_care => "Foster care" }
+  PLACEMENT_TYPE = %w[adopted foster_care]
   
   # Associations
   belongs_to :shelter

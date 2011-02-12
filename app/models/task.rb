@@ -1,11 +1,7 @@
 class Task < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
   
-  DUE_CATEGORY = { :today => "Today", 
-                   :tomorrow => "Tomorrow", 
-                   :later => "Later",
-                   :specific_date => "Specific date" }  #:this_week => "This week", :next_week => "Next week",
-  
+  DUE_CATEGORY = %w[today tomorrow later specific_date]  #:this_week => "This week", :next_week => "Next week",
   
   # Associations
   belongs_to :shelter   #, :conditions => {:state => 'active'}

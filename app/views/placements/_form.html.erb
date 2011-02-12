@@ -1,9 +1,9 @@
 <ul class="form">
 	<li>
 		<%= f.label :placement_type, "Type" %><br />
-		<% Placement::PLACEMENT_TYPE.map do |key, value| %>
-			<%= f.radio_button :placement_type, key %>
-			<%= f.label "placement_type_#{value.downcase}", "#{value}" %>
+		<% Placement::PLACEMENT_TYPE.each do |type| %>
+			<%= f.radio_button :placement_type, type %>
+			<%= f.label "placement_type_#{type}", type.humanize %>
 		<% end %>
 	</li>
 	<% @placement.comments.build %>
