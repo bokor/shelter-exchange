@@ -3,18 +3,15 @@ class UsersController < ApplicationController
   respond_to :html, :js
   
   def index
-    @user = current_user
-    respond_with(@user)
+    respond_with(@user = current_user)
   end
   
   def edit
-    @user = current_user
-    respond_with(@user)
+    respond_with(@user = current_user)
   end
   
   def update
-    @user = current_user
-    respond_with(@user) do |format|
+    respond_with(@user = current_user) do |format|
       if @user.update_attributes(params[:user])  
         flash[:notice] = "#{@user.name} has been updated."
         format.html { redirect_to users_path }
@@ -40,16 +37,19 @@ class UsersController < ApplicationController
     redirect_to users_path and return
   end
   
-end
+  def generate_token
+    # @user = User.find(params[:id])   
+    @user = current_user
+    @user.reset_authentication_token!
+    redirect_to users_path
+  end
 
-# def valid
-#   token_user = User.valid?(params)
-#   if token_user
-#     sign_in(:user, token_user)
-#     flash[:notice] = "You have been logged in"
-#   else
-#     flash[:alert] = "Login could not be validated"
-#   end
-#   redirect_to :root
-# end
-#
+  def delete_token
+    # @user = User.find(params[:id])   
+    @user = current_user
+    @user.authentication_token = nil
+    @user.save
+    redirect_to users_path
+  end
+
+end

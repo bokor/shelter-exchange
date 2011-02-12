@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   # Associations
   belongs_to :account
   
-  devise :database_authenticatable, :recoverable, :rememberable, 
-         :trackable, :validatable, :token_authenticatable, :confirmable, :invitable
+  devise :database_authenticatable, :recoverable, :rememberable,
+         :trackable, :validatable, :token_authenticatable, :confirmable, :invitable, :lockable
          
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token, :role, :account_id#, :subdomain 
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT}
   # validates :password, :presence => true,
   #                      :length => {:minimum => 6, :maximum => 25},
-  #                      :format => { :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ }
+  #                      :format => { :with => PASSWORD_FORMAT}
   
 
   # Scopes

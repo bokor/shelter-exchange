@@ -58,6 +58,12 @@ class ApplicationController < ActionController::Base
 
 end
 
+# if current_subdomain == 'admin'
+# authenticate_admin!
+# else
+# authenticate_user!
+# end
+
 
 # Devise Addition
 # 

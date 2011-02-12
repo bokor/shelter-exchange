@@ -9,6 +9,23 @@
 			<li><%=@user.name%></li>
 			<li><%=@user.email%></li>
 		</ul>
+		<br /><br />
+		<%= form_for(@user) do |f| %>
+		<p><%= f.label :authentication_token %><br />
+		<% if @user.authentication_token.blank? %>
+			Token Empty
+		<% else %>
+		<%= f.text_field :authentication_token, :value => @user.authentication_token, :readonly => true %>
+		<% end %></p>
+
+		<p><%= link_to "Generate Token", generate_token_user_path(@user), :method => :post, :confirm => "Are you sure?"  %>
+		<%= link_to "Delete Token", delete_token_user_path(@user), :method => :post, :confirm => "Are you sure?"  %></p>
+
+
+		<% end %>
+		
+		
+		
 	</div>
 	
 <% end %>

@@ -92,10 +92,17 @@ Shelterexchange::Application.routes.draw do
     resources :capacities
 
 #   Users Routes - Localized updated
-    resources :users
+    resources :users do
+      member do
+        post :generate_token
+        post :delete_token
+      end
+    end
+
+    resources :token_authentications, :only => [:create, :destroy]
 
 #   Devise Routes
-    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invite" } 
+    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation" } 
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")

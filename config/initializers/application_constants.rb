@@ -9,7 +9,11 @@ US_STATES = { :AK => "Alaska", :AL => "Alabama", :AR => "Arkansas", :AZ => "Ariz
               :VT => "Vermont", :WA => "Washington", :WI => "Wisconsin", :WV => "West Virginia", :WY => "Wyoming" }
 
 SEX = %w[Male Female]
-EMAIL_FORMAT = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i #devises /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i              
+
+EMAIL_FORMAT = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i  #old one - /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i             
+
+PASSWORD_FORMAT = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 
+
 SUBDOMAIN_FORMAT = /^[A-Za-z0-9-]+$/
 RESERVED_SUBDOMAINS = %w( www support blog wiki billing help api authenticate launchpad forum admin user login logout signup register mail ftp pop smtp ssl sftp )
 

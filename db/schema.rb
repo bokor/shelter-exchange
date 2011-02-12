@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211233506) do
+ActiveRecord::Schema.define(:version => 20110212181609) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -317,6 +317,9 @@ ActiveRecord::Schema.define(:version => 20110211233506) do
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
     t.string   "role"
+    t.integer  "failed_attempts",                     :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

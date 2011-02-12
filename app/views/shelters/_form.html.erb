@@ -58,9 +58,8 @@
 			<%= f.label :is_kill_shelter, "Is kill shelter" %><br />
 		</li>
 		<li>
-			<%# ActiveSupport::TimeZone.us_zones %>
 			<%= f.label :time_zone, "Time Zone" %><br />
-			<%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
+			<%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, :prompt => "Select Timezone" %>
 		</li>
 	</ul>
 	<div class="actions">
