@@ -11,17 +11,10 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :shelters
   
   # Validations
-  validates_presence_of :subdomain
-  validates_format_of :subdomain, 
-                      :with => /^[A-Za-z0-9-]+$/, 
-                      :message => 'can only contain alphanumeric characters; A-Z, 0-9 or hyphen', 
-                      :allow_blank => true
-   
-  validates_exclusion_of :subdomain, 
-                         :in => %w( www support blog wiki billing help api authenticate launchpad forum admin user login logout signup register mail ftp pop smtp ssl sftp ),
-                         :message => " <strong>{{value}}</strong> is reserved and unavailable."
-   
-  validates_uniqueness_of :subdomain, :case_sensitive => false
+  validates :subdomain, :presence => true,
+                        :format => { :with => SUBDOMAIN_FORMAT, :message => 'can only contain alphanumeric characters; A-Z, 0-9 or hyphen' },
+                        :exclusion => { :in => RESERVED_SUBDOMAINS, :message => 'is reserved and unavailable.'},
+                        :uniqueness => true
    
   private
    
@@ -37,6 +30,19 @@ class Account < ActiveRecord::Base
        Notifier.new_account_notification(self,self.shelters.first,self.users.first).deliver
      end
 end
+
+
+# Moved into 1 statement
+# validates_presence_of :subdomain
+# validates_format_of :subdomain, 
+#                     :with => SUBDOMAIN_FORMAT, 
+#                     :message => 'can only contain alphanumeric characters; A-Z, 0-9 or hyphen'
+ 
+# validates_exclusion_of :subdomain, 
+#                        :in => RESERVED_SUBDOMAINS,
+#                        :message => '<strong>#{self.subdomain}</strong> is reserved and unavailable.'
+ 
+# validates_uniqueness_of :subdomain, :case_sensitive => false
 
   # after_save :add_owner
 #    OLD WAY WITH OWNER_ID

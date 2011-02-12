@@ -17,6 +17,7 @@ module ApplicationHelper
   end
   
   def format_date(type, date)
+    return nil if date.blank?
     case type
       when :month_only
         date.strftime("%B") #February

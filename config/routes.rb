@@ -100,8 +100,11 @@ Shelterexchange::Application.routes.draw do
   end
   
   constraints(AdminSubdomain) do
+    # NEED TO TRY MIGHT NOT WORK
     namespace :admin do
-      
+      scope "admin", :as => "" do
+        
+      end
     end
   end 
   

@@ -15,24 +15,24 @@ class Placement < ActiveRecord::Base
 
   # Validations
   validates_presence_of :animal_id, :message => 'needs to be selected'
-  # validates_presence_of :parent_id, :message => 'needs to be selected'
-  # validates_presence_of :shelter_id, :message => 'needs to be selected'
   validates_presence_of :placement_type, :in => PLACEMENT_TYPE, :message => 'needs to be selected'
   
   # Scopes
   scope :adopted, includes([:animal, :shelter]).where(:placement_type => :adopted)
   scope :foster_care, includes([:animal, :shelter]).where(:placement_type => :foster_care)
   
-  # scope :red, where(:colour => 'red')
-  #     scope :since, lambda {|time| where("created_at > ?", time) }
-  
-  # def initialize(attributes=nil)
-  #    super
-  #    self.comments.build
-  #  end
-  # def initialize(attributes=nil)
-  #     super
-  #     self.comments.build unless self.comments
-  #   end
-  
 end
+
+# validates_presence_of :parent_id, :message => 'needs to be selected'
+# validates_presence_of :shelter_id, :message => 'needs to be selected'  
+# scope :red, where(:colour => 'red')
+#     scope :since, lambda {|time| where("created_at > ?", time) }
+
+# def initialize(attributes=nil)
+#    super
+#    self.comments.build
+#  end
+# def initialize(attributes=nil)
+#     super
+#     self.comments.build unless self.comments
+#   end

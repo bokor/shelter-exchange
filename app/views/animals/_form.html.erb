@@ -21,8 +21,7 @@
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed" %><br />
 				<%= f.text_field :primary_breed, :autocomplete => :off %>
-				
-				<p style="padding: 5px 0px 0px 10px"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Mixed Breed?" %></p>
+				<div id="is_mixed_breed_field"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Mixed Breed?" %></div>
 			</div>
 			<div id="secondary_breed_field">
 				<%= f.label :secondary_breed, "Secondary breed" %><br />
@@ -35,9 +34,9 @@
 		</li>
 		<li>
 			<%= f.label :sex, "Sex" %><br />
-			<% Animal::SEX.each do |value| %>
-				<%= f.radio_button "sex", value %>
-				<%= f.label "sex_#{value.downcase}", "#{value}" %>
+			<% SEX.each do |value| %>
+				<%= f.radio_button :sex, value %>
+				<%= f.label "sex_#{value.downcase}", value %>
 			<% end %>
 		</li>
 		<li>
@@ -89,6 +88,9 @@
 					<div id="arrival_date_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :arrival_date %>
 					
+					<%= f.label :hold_time, "Hold time" %><br />
+					<%= f.text_field :hold_time %> days<br /><br />
+					
 					<%= f.label :euthanasia_scheduled, "Euthanasia scheduled" %><br />
 					<div id="euthanasia_scheduled_field" class="date_field">
 						<div id="euthanasia_scheduled_humanize" class="humanize_date">Select Date</div>
@@ -97,8 +99,6 @@
 					<div id="euthanasia_scheduled_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :euthanasia_scheduled %>
 					
-					<%= f.label :hold_time, "Hold time" %><br />
-					<%= f.text_field :hold_time %> days 
 				</fieldset>
 			</div>
 			<% end %>

@@ -24,6 +24,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
+.animals #is_mixed_breed_field {padding: 5px 0px 0px 10px;}
 
 /*.animals #accommodation_info{padding-top: 30px; }
 .animals #accommodation_info input{margin-bottom: 10px;}
@@ -246,7 +247,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .shelters .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .shelters .page_heading h1, .index_shelters .page_heading .logo{width:50%; float:left; }
 .shelters .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-.edit_shelters .page_heading h1{width:100%;}
+.edit_shelters .page_heading h1, .update_shelters .page_heading h1{width:100%;}
 
 .index_shelters .shelter_details {padding-bottom: 20px;}
 .index_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }

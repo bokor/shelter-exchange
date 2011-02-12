@@ -219,7 +219,7 @@ var Reports = {
 				
 				$.each(data, function(i, item) {
 					var series = {
-						name: "Total",
+						name: item.type,
 						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
 					};
 					options.series.push(series);
@@ -291,7 +291,7 @@ var Reports = {
 				
 				$.each(data, function(i, item) {
 					var series = {
-						name: "Total",
+						name: item.type,
 						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
 					};
 					options.series.push(series);
@@ -363,7 +363,7 @@ var Reports = {
 				
 				$.each(data, function(i, item) {
 					var series = {
-						name: "Total",
+						name: item.type,
 						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
 					};
 					options.series.push(series);

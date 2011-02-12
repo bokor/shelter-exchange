@@ -1,10 +1,9 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
   before_create :update_status_change_date
-  before_save :check_status_change, :destroy_photo?
+  before_save :check_status_change?, :destroy_photo?
   
   Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
-  SEX = [ "Male", "Female" ]
   
   # Associations
   belongs_to :animal_type, :readonly => true
@@ -31,11 +30,11 @@ class Animal < ActiveRecord::Base
   validates_presence_of :animal_status_id, :message => 'needs to be selected'
   
   # Custom Validations
-  validate :primary_breed, :presence => true, :if => :primary_breed_exists
-  validate :secondary_breed, :presence => true, :if => :secondary_breed_exists
-  validate :arrival_date, :presence => true, :if => :arrival_date_required
-  validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required
-  validate :hold_time, :presence => true, :if => :hold_time_required
+  validate :primary_breed, :presence => true, :if => :primary_breed_exists?
+  validate :secondary_breed, :presence => true, :if => :secondary_breed_exists?
+  validate :arrival_date, :presence => true, :if => :arrival_date_required?
+  validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required?
+  validate :hold_time, :presence => true, :if => :hold_time_required?
   
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
@@ -64,6 +63,9 @@ class Animal < ActiveRecord::Base
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
   scope :with_type, select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
   
+  # FOR REFACTORING
+  # scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
+  
   def self.totals_by_month(year, date_type)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
@@ -87,7 +89,7 @@ class Animal < ActiveRecord::Base
                                                  
   private
 
-    def primary_breed_exists
+    def primary_breed_exists?
       if self.primary_breed && self.animal_type_id
         if Breed.valid_for_animal(primary_breed, animal_type_id).blank?
           errors.add(:primary_breed, "must contain a valid breed from the list")
@@ -95,7 +97,7 @@ class Animal < ActiveRecord::Base
       end
     end
 
-    def secondary_breed_exists
+    def secondary_breed_exists?
       if self.is_mix_breed && !self.secondary_breed.blank?
         if Breed.valid_for_animal(secondary_breed, animal_type_id).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
@@ -107,19 +109,19 @@ class Animal < ActiveRecord::Base
       Shelter.find_by_id(self.shelter_id).is_kill_shelter
     end
     
-    def arrival_date_required
+    def arrival_date_required?
       if is_kill_shelter? && self.arrival_date.blank?
         errors.add(:arrival_date, "must be selected")
       end
     end
 
-    def euthanasia_scheduled_required
+    def euthanasia_scheduled_required?
       if is_kill_shelter? && self.euthanasia_scheduled.blank?
         errors.add(:euthanasia_scheduled, "must be selected")
       end
     end
         
-    def hold_time_required
+    def hold_time_required?
       if is_kill_shelter? && self.hold_time.blank?
         errors.add(:hold_time, "must be entered")
       end
@@ -129,7 +131,7 @@ class Animal < ActiveRecord::Base
       self.status_change_date = Date.today
     end
     
-    def check_status_change
+    def check_status_change?
       if self.animal_status_id_changed?
         update_status_change_date
       end

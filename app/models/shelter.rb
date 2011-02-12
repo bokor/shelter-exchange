@@ -1,7 +1,6 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  before_validation :geocode_address
-  before_save :destroy_logo?
+  before_save :destroy_logo?, :geocode_address 
   
   # Associations
   belongs_to :account
@@ -36,10 +35,14 @@ class Shelter < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :zip_code
   validates_presence_of :main_phone
+  # validates :name, :street, :city, :state, :zip_code, :main_phone, :presence => true
   validates :email, :presence => true, 
                     :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
-                    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+                    :format => {:with => EMAIL_FORMAT}
+  validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
+                                        :message => "is not a valid US Time Zone" }
+                        
                     
   validates_attachment_size :logo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
@@ -69,3 +72,9 @@ class Shelter < ActiveRecord::Base
     end
   
 end
+
+# validates_presence_of :street
+# validates_presence_of :city
+# validates_presence_of :state
+# validates_presence_of :zip_code
+# validates_presence_of :main_phone
