@@ -1,0 +1,49 @@
+<%= title "Login" %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading">
+		<h1>Login</h1>
+	</div>
+		
+	<div class="page_content">
+		
+		<%= render "global/error_messages", :target => resource %>
+		
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+			<ul class="form">
+		  		<li>
+		  			<%= f.label :email %><br />
+		  			<%= f.text_field :email %>
+				</li>
+				<li>
+					<%= f.label :password %><br />
+					<%= f.password_field :password %>
+				</li>
+				<li>
+					<% if devise_mapping.rememberable? -%>
+						<%= f.check_box :remember_me %>  <%= f.label :remember_me %></p>
+					<% end -%>
+				</li>
+			</ul>
+			<div class="actions">
+		  		<%= f.submit "Sign in", :disable_with => 'Submiting...' %>
+				<% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+					&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= link_to "Forgot your password?", new_password_path(resource_name) %><br /><br />
+				<% end %>
+			</div>
+			
+			<%# f.hidden_field :subdomain, :value => @current_account.subdomain %>
+		  	<%= f.hidden_field :account_id, :value => @current_account.id %>
+		
+		<% end %>
+		
+	</div>
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>
+			
+

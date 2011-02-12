@@ -1,0 +1,33 @@
+<%= title "Forgot your password" %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading">
+		<h1>Forgot your password?</h1>
+	</div>
+		
+	<div class="page_content">
+		
+		<%= render "global/error_messages", :target => resource %>
+		
+		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+			<%= devise_error_messages! %>
+		 	<ul class="form">
+		  		<li>
+					<%= f.label :email %><br />
+		  			<%= f.text_field :email %>
+				</li>
+			</ul>
+			<div class="actions">
+				<%= f.submit "Send me reset password instructions", :disable_with => 'Submiting...' %>
+			</div>
+		<% end %>
+		
+	</div>
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>
+			
+
