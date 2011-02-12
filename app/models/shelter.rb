@@ -8,7 +8,6 @@ class Shelter < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
   has_many :accommodations, :dependent => :destroy
   has_many :placements, :dependent => :destroy
-  # has_many :parents, :through => :placements
   has_many :animals, :dependent => :destroy
   has_many :notes, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
@@ -31,13 +30,7 @@ class Shelter < ActiveRecord::Base
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
-  validates_presence_of :name
-  validates_presence_of :street
-  validates_presence_of :city
-  validates_presence_of :state
-  validates_presence_of :zip_code
-  validates_presence_of :main_phone
-  # validates :name, :street, :city, :state, :zip_code, :main_phone, :presence => true
+  validates :name, :street, :city, :state, :zip_code, :main_phone, :presence => true
   validates :email, :presence => true, 
                     :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
@@ -74,7 +67,7 @@ class Shelter < ActiveRecord::Base
     end
   
 end
-
+# validates_presence_of :name
 # validates_presence_of :street
 # validates_presence_of :city
 # validates_presence_of :state

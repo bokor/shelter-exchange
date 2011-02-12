@@ -23,7 +23,7 @@
 		</li>
 		<li>
 			<%= f.label :state, "State" %><br />
-			<%= select :shelter, :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "Select State"} %>
+			<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "Select State"} %>
 		</li>
 		<li>
 			<%= f.label :zip_code, "Zip code" %><br />
