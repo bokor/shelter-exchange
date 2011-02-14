@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
 
   # Scopes
   
-  # protected 
-  #   def password_required? 
-  #     false 
-  #   end
   
   # def self.find_for_authentication(conditions={})
   #   unless conditions[:subdomain].blank?
@@ -41,34 +37,3 @@ class User < ActiveRecord::Base
   # end
   
 end
-
-#  Another Alternative
-#
-# def self.find_for_authentication(conditions={})
-#   conditions[:account_id] = Account.find_by_subdomain(conditions.delete(:subdomain)).id
-#   find(:first, :conditions => conditions)
-# end
-
-# Reference for other conditions
-#
-# def self.find_for_authentication(conditions={})
-#     # unless conditions[:subdomain] == "dashboard" 
-#     logger::error("::::: SUBDOMAIN #{conditions.delete(:subdomain)}")
-#       conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-#       find(:first, :conditions => conditions, :joins => :account)
-#     # else #if the user access the dashboard subdomain he can log in any of his accounts, so I remove the subdomain from the conditions, then it won't be used in the authentication process
-#       # conditions.delete(:subdomain)
-#       # find(:first, :conditions => conditions)
-#     # end
-#   end
-
-# Token Login Reference
-#
-# def self.valid?(params)
-#   token_user = self.where(:auth_token => params[:id]).first
-#   if token_user
-#     token_user.auth_token = nil
-#     token_user.save
-#   end
-#   return token_user
-# end
