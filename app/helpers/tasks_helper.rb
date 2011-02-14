@@ -20,7 +20,7 @@ module TasksHelper
   
   def find_due_section(task)
     due_section = task.due_category
-    if task.due_date.blank? or task.due_date > Date.today + 1.day or task.due_category == 'later'
+    if task.due_date.blank? or task.due_date > Date.today + 1.day or task.due_category == "later"
       due_section = "later"
     elsif task.due_date < Date.today
       due_section = "overdue"

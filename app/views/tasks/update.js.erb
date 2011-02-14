@@ -1,26 +1,25 @@
 <% if @task.errors.any? %>
 	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 <% else %>
+	<% due_section = find_due_section(@task) %>
 	<% if @changed %>
 		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() { 
 			$(this).remove(); 
-			removeTaskSection();
+			Tasks.removeTaskSection();
 		});
 		$('#task_<%= @task.id %>').fadeOut(1000, function() { 
 			$(this).remove(); 
-			removeTaskSection();
+			Tasks.removeTaskSection();
 		});
 		// Manipulate Specific Section's Content
-		<% due_section = find_due_section(@task) %>
 		$('#<%=due_section %>_tasks_section').removeClass("no_task");
 		$('#<%=due_section %>_tasks_section').fadeIn(1500);
 		$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
 		$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1000);
-		
 	<% else %>
 		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() { 
 			$(this).remove(); 
-			removeTaskSection();
+			Tasks.removeTaskSection();
 		});
 		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
 		$('#task_<%=@task.id%>').show().effect("highlight", {}, 1000);

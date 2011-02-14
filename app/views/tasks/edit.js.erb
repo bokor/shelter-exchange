@@ -2,41 +2,25 @@ $('#task_<%=@task.id%>').hide();
 $('#task_<%=@task.id%>').after( "<%= escape_javascript(render 'edit_task', :collection => @task) %>" );
 $('#edit_task_<%=@task.id%>').show();
 
+Tasks.datePicker("#edit_task_<%=@task.id%>");
+$('#edit_task_<%=@task.id%> .task_due_category').bind("change", function() {Tasks.dueDate("#edit_task_<%=@task.id%>");});
 
-// Date Picker Functions for the Edit Form
-$("#edit_task_<%=@task.id%> .date_picker").datepicker({
-	numberOfMonths: 1,
-	showButtonPanel: false,
-	dateFormat: 'yy-mm-dd',
-	altField: "#edit_task_<%=@task.id%> .due_date_alt",
-	altFormat: "D MM d, yy",
-	onSelect: function(dateText,picker) { 
-		//HIDDEN FIELD
-		$('#edit_task_<%=@task.id%> .hidden_due_date').val( dateText ); 
-			
-		//DIV FIELD
-		var dateFormat = $(this).datepicker( "option", "dateFormat" );
-		var altFormat = $(this).datepicker( "option", "altFormat" );
-		var altField = $(this).datepicker( "option", "altField" );
-		var parseDate = $.datepicker.parseDate(dateFormat, dateText);
-		var formatDate = $.datepicker.formatDate(altFormat, parseDate);
-		$(altField).html(formatDate);
-			
-	}  
-});
+<% due_section = find_due_section(@task) %>
 
-var due_category = $('#edit_task_<%=@task.id%> .task_due_category').val();
-var db_date = $('#edit_task_<%=@task.id%> .hidden_due_date').val();
-
-if (due_category == 'specific_date') {
+<% if due_section == "overdue" or @task.due_category == "specific_date" %>
+	var db_date = $('#edit_task_<%=@task.id%> .hidden_due_date').val();
+	$('#edit_task_<%=@task.id%> .task_due_category').val('specific_date');
 	$('#edit_task_<%=@task.id%> .date_picker').datepicker("setDate", db_date);
 	var tempDate = $('#edit_task_<%=@task.id%> .date_picker').datepicker("getDate");
 	var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
 	$('#edit_task_<%=@task.id%> .due_date_alt').html(setDate);
 	$('#edit_task_<%=@task.id%> .due_date_field').show();
-} else {
+<% else %>
+	$('#edit_task_<%=@task.id%> .task_due_category').val('<%=due_section%>');
 	$('#edit_task_<%=@task.id%> .due_date_field').hide();
-}
+<% end %>
 
-$('#edit_task_<%=@task.id%> .task_due_category').click(function() {dueDate("#edit_task_<%=@task.id%>")});
+// Not sure this is needed
+//Tasks.dueDate("#edit_task_<%=@task.id%>");
+
 <% flash.discard %>

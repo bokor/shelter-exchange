@@ -9,6 +9,7 @@
 	<div class="page_content">
 		
 		<%= render "global/error_messages", :target => resource %>
+		<%# devise_error_messages! %>
 		
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<ul class="form">

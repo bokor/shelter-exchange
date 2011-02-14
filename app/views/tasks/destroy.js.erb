@@ -1,6 +1,6 @@
 $('#task_<%= @task.id %>').fadeOut(1000, function() { 
 	$(this).remove(); 
-	removeTaskSection();
+	Tasks.removeTaskSection();
 });
 
 <% flash.discard %>
