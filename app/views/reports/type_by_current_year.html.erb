@@ -4,7 +4,9 @@
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	
 	<script type="text/javascript">
-		Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
+		$(function() {
+			Reports.typeByCurrentYear("<%=current_year%>", "type_by_current_year");
+		});
 	</script>
 <% end %>
 

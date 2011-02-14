@@ -3,7 +3,9 @@
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
-		Reports.intakeMonthlyTotalByType('#date_report_selected_year', 'intake_monthly_total_by_type');
+		$(function() {
+			Reports.intakeMonthlyTotalByType('#date_report_selected_year', 'intake_monthly_total_by_type');
+		});
 	</script>
 <% end %>
 

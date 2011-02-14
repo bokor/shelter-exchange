@@ -3,7 +3,9 @@
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
-		Reports.euthanasiaMonthlyTotal('#date_report_selected_year', 'euthanasia_monthly_total');
+		$(function() {
+			Reports.euthanasiaMonthlyTotal('#date_report_selected_year', 'euthanasia_monthly_total');
+		});
 	</script>
 <% end %>
 

@@ -60,10 +60,6 @@ var Tasks = {
 	}
 };
 
-$(function(){
-	Tasks.initialize();
-});
-
 
 
 

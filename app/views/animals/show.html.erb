@@ -2,6 +2,12 @@
 
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "animals/animals", "tasks/tasks", "date", :cache => "cache/application/animals-show" %>
+	<script type="text/javascript">
+		$(function() {
+			Animals.showInitialize();
+			Tasks.initialize();
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>

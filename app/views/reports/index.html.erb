@@ -4,8 +4,10 @@
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	
 	<script type="text/javascript">
-		Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
-		Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
+		$(function() {
+			Reports.statusByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "status_by_current_month");
+			Reports.typeByCurrentMonth("<%=format_date(:month_only, Date.today)%>", "type_by_current_month");
+		});
 	</script>
 <% end %>
 
