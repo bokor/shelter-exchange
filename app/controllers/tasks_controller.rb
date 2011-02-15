@@ -3,10 +3,10 @@ class TasksController < ApplicationController
   respond_to :html, :js
   
   def index
-    @overdue_tasks =  @current_shelter.tasks.for_all.overdue.not_completed.all
-    @today_tasks = @current_shelter.tasks.for_all.today.not_completed.all
-    @tomorrow_tasks = @current_shelter.tasks.for_all.tomorrow.not_completed.all
-    @later_tasks = @current_shelter.tasks.for_all.later.not_completed.all
+    @overdue_tasks =  @current_shelter.tasks.for_all.overdue.active.all
+    @today_tasks = @current_shelter.tasks.for_all.today.active.all
+    @tomorrow_tasks = @current_shelter.tasks.for_all.tomorrow.active.all
+    @later_tasks = @current_shelter.tasks.for_all.later.active.all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       @task = @current_shelter.tasks.new

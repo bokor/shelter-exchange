@@ -1,17 +1,13 @@
-/* GLOBAL VARIABLES */
-var note_filter = ""; // Note Filter is a param that is set when the filtering changes on the Animal Notes Section
+/*
+ * Configure TopUp
+ */
+//TopUp.host = "http://www.anotherwebsite.com/";
+TopUp.images_path = "/images/top_up/";
+TopUp.players_path = "/players/";
 
-// Note List Hover
-$(".note").live('hover', function(event) {
-  if (event.type == 'mouseover') {
-    $(this).addClass("hover");
-  } else {
-    $(this).removeClass("hover");
-  }
-});
 
-// Note List Hover
-$(".location").live('hover', function(event) {
+// Live List Hover
+$(".note, .location").live('hover', function(event) {
   if (event.type == 'mouseover') {
     $(this).addClass("hover");
   } else {
@@ -47,12 +43,7 @@ $(function() {
 
 });
 
-/*
- * Configure TopUp
- */
-//TopUp.host = "http://www.anotherwebsite.com/";
-TopUp.images_path = "/images/top_up/";
-TopUp.players_path = "/players/";
+
 
 
 /*

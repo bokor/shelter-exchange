@@ -3,8 +3,8 @@ class AlertsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @shelter_alerts = @current_shelter.alerts.for_shelter.not_stopped.all
-    @animal_alerts = @current_shelter.alerts.for_animals.not_stopped.all
+    @shelter_alerts = @current_shelter.alerts.for_shelter.active.all
+    @animal_alerts = @current_shelter.alerts.for_animals.active.all
 
     if @shelter_alerts.blank? and @animal_alerts.blank?
       @alert = @current_shelter.alerts.new

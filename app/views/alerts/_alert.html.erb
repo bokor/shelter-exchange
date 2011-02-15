@@ -6,7 +6,7 @@
 		<p>
 			<span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
 			<%= alert.title %>
-			<%= show_alertable_link(alert)%>
+			<%= show_alertable_link(alert) if controller_name == "alerts" %>
 		</p>
 	</span>
 	<div class="action_links">

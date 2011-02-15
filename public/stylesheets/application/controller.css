@@ -132,7 +132,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .show_animals #create_alert {display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
 .show_animals #create_task {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.show_animals #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
+.show_animals #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 .show_animals #another_note_category{ display:none; }
 .show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
 
@@ -368,8 +368,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*.index_locations p { padding-bottom: 15px;}*/
 
 .index_locations #create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-.index_locations #create_location .form {float:left;}
-.index_locations #create_location .actions {float: left; margin: -12px 0 0 10px;}
+.index_locations #create_location .form {float:left; padding-bottom: 0;}
+.index_locations #create_location .actions {float: left; margin: 2px 0 0 10px;}
 .index_locations #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 .index_locations #locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
@@ -526,7 +526,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -- Sidebar - Show Parents  --*/
 .show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.show_parents #create_note {display: none;background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
+.show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 .show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
 

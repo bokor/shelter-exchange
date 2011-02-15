@@ -9,11 +9,11 @@ class AnimalsController < ApplicationController
   
   def show
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :notes => [:note_category], :accommodation => [:location]).find(params[:id])
-    @alerts = @animal.alerts.not_stopped.all
-    @overdue_tasks = @animal.tasks.overdue.not_completed.includes(:task_category).all
-  	@today_tasks = @animal.tasks.today.not_completed.includes(:task_category).all 
-  	@tomorrow_tasks = @animal.tasks.tomorrow.not_completed.includes(:task_category).all
-  	@later_tasks = @animal.tasks.later.not_completed.includes(:task_category).all
+    @alerts = @animal.alerts.active.all
+    @overdue_tasks = @animal.tasks.overdue.active.includes(:task_category).all
+  	@today_tasks = @animal.tasks.today.active.includes(:task_category).all 
+  	@tomorrow_tasks = @animal.tasks.tomorrow.active.includes(:task_category).all
+  	@later_tasks = @animal.tasks.later.active.includes(:task_category).all
     respond_with(@animal)
   end
   
