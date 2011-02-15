@@ -4,7 +4,7 @@
 	<%= javascript_include_tag "animals/animals", "tasks/tasks", "date", :cache => "cache/application/animals-show" %>
 	<script type="text/javascript">
 		$(function() {
-			Animals.showInitialize();
+			Animals.noteFilters();
 			Tasks.initialize();
 		});
 	</script>
@@ -108,9 +108,9 @@
 <%= content_for :sidebar do %>
 
 	<ul class="model_actions">
-		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" -%></li>
-		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" -%></li>
-		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" -%></li>
+		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" %></li>
+		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
+		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
 	</ul>
 	
 	<div id="create_alert">
@@ -120,7 +120,7 @@
 			<%= render :partial => "alerts/form", :locals => { :f => f } %>
 		    <div class="actions">
 				<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_alert" -%>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_alert" %>
 			</div>
 		<% end %>
 	</div>
@@ -132,7 +132,7 @@
 			<%= render :partial => "notes/form", :locals => { :f => f } %>
 		    <div class="actions">
 				<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" -%>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" %>
 			</div>
 		<% end %>
 		<div id="another_note_category"></div>
@@ -145,7 +145,7 @@
 			<%= render :partial => "tasks/form", :locals => { :f => f } %>
 		    <div class="actions">
 				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_task" -%>
+				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_task" %>
 			</div>
 		<% end %>
 	</div>
@@ -153,7 +153,7 @@
 	<div id="animal_alerts">
 		<h2>Alerts</h2>
 		<div id="alerts" class="alert_list">
-			<%= render :partial => 'alerts/alert', :as => :alert, :collection => @alerts %>
+			<%= render :partial => 'alerts/alert', :collection => @alerts %>
 		</div>
 	</div>
 

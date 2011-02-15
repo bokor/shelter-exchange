@@ -5,7 +5,7 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			Reports.statusByCurrentYear("<%=current_year%>", "status_by_current_year");
+			Reports.pieChart('Animals by Status Year-to-Date - <%=current_year%>', 'status_by_current_year');
 		});
 	</script>
 <% end %>

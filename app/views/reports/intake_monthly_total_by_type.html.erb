@@ -4,7 +4,7 @@
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
 		$(function() {
-			Reports.intakeMonthlyTotalByType('#date_report_selected_year', 'intake_monthly_total_by_type');
+			Reports.barChart('Intake Monthly Total By Type', 'intake_monthly_total_by_type', 'Intake');
 		});
 	</script>
 <% end %>
@@ -15,7 +15,7 @@
 		<h1>Reports</h1>
 		<div class="action_links">
 			<%= label_tag :report_selected_year, "Select year" %>
-			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.intakeMonthlyTotalByType(this, 'intake_monthly_total_by_type');"})%>
+			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.barChart('Intake Monthly Total By Type', 'intake_monthly_total_by_type', 'Intake');"})%>
 		</div>
 	</div>
 	

@@ -4,7 +4,7 @@
 	<%= javascript_include_tag "highcharts", "reports/reports", :cache => "cache/application/reports-index" %>
 	<script type="text/javascript">
 		$(function() {
-			Reports.euthanasiaMonthlyTotal('#date_report_selected_year', 'euthanasia_monthly_total');
+			Reports.barChart('Euthanasia Monthly Total', 'euthanasia_monthly_total', 'Euthanized');
 		});
 	</script>
 <% end %>
@@ -15,7 +15,7 @@
 		<h1>Reports</h1>
 		<div class="action_links">
 			<%= label_tag :report_selected_year, "Select year" %>
-			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.euthanasiaMonthlyTotal(this, 'euthanasia_monthly_total');"})%>
+			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.barChart('Euthanasia Monthly Total', 'euthanasia_monthly_total', 'Euthanized');"})%>
 		</div>
 	</div>
 	<div class="page_content">

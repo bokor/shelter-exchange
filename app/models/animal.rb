@@ -60,16 +60,21 @@ class Animal < ActiveRecord::Base
   scope :count_by_type, select('count(*) count, animal_types.name').joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
-  scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
-  scope :with_type, select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
+  scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
   
   # FOR REFACTORING
   # scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
   
-  def self.totals_by_month(year, date_type)
+  def self.totals_by_month(year, date_type, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
     composed_scope = self.scoped
+    
+    if with_type
+      composed_scope = composed_scope.select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
+    else
+      composed_scope = composed_scope.select("'Total' as type")
+    end
     
     start_date.month.upto(end_date.month) do |month|
       composed_scope = composed_scope.select("COUNT(CASE WHEN animals.#{date_type.to_s} BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")

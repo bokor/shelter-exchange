@@ -11,15 +11,6 @@ class ReportsController < ApplicationController
     @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
   end
   
-  #  Might be a way to do this dynamically
-  #  /reports/:type/:year/:name/     :type = pie_chart or :bar_chart  :name = status_by_current_year (move into model)
-  #  /reports/:type/:name/?selected_year=
-  #
-  
-  #
-  #   send("pie_chart",@current_shelter.animals.send("count_by_status"))
-  #
-  
   def status_by_current_year
     pie_chart(@current_shelter.animals.count_by_status.year_to_date)
   end
@@ -37,7 +28,7 @@ class ReportsController < ApplicationController
   end
     
   def adoption_monthly_total_by_type
-    bar_chart_with_type(@current_shelter.animals.with_type.totals_by_month(params[:selected_year], :status_change_date).adoptions)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).adoptions)
   end
   
   def adoption_monthly_total
@@ -45,7 +36,7 @@ class ReportsController < ApplicationController
   end
   
   def euthanasia_monthly_total_by_type
-    bar_chart_with_type(@current_shelter.animals.with_type.totals_by_month(params[:selected_year], :status_change_date).euthanized)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).euthanized)
   end
   
   def euthanasia_monthly_total
@@ -53,7 +44,7 @@ class ReportsController < ApplicationController
   end
   
   def intake_monthly_total_by_type
-    bar_chart_with_type(@current_shelter.animals.with_type.totals_by_month(params[:selected_year], :created_at).active)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :created_at, true).active)
   end
   
   def intake_monthly_total
@@ -73,18 +64,19 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => results.collect{ |result| { :type => "Total", :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
-      }
-    end
-  end
-  
-  def bar_chart_with_type(results)
-    respond_to do |format|
-      format.html
-      format.json {
         render :json => results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
       }
     end
   end
 
 end
+
+#  Might be a way to do this dynamically
+#  /reports/:type/:year/:name/     :type = pie_chart or :bar_chart  :name = status_by_current_year (move into model)
+#  /reports/:type/:name/?selected_year=
+#
+
+#
+#   send("pie_chart",@current_shelter.animals.send("count_by_status"))
+#
+
