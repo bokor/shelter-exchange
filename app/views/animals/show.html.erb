@@ -45,7 +45,7 @@
 						<li><p><b>Age:</b> <%= @animal.age %></p></li>
 						<li><p><b>MChip:</b> <%= @animal.chip_id %></p></li>
 						<li><p><b>Color:</b> <%= @animal.color %></p></li>
-						<li><p><b>Sex:</b> <%= @animal.sex %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+						<li><p><b>Sex:</b> <%= @animal.sex.humanize %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 					</ul>
 					
 					<h3>Accommodation:</h3>

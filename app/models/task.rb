@@ -1,8 +1,8 @@
 class Task < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
   
-  DUE_CATEGORY = %w[today tomorrow later specific_date]  #:this_week => "This week", :next_week => "Next week",
-  HUMANIZED_ATTRIBUTES = { :due_category => "When is it due?" }
+  DUE_CATEGORY = %w[today tomorrow later specific_date]
+  # HUMANIZED_ATTRIBUTES = { :due_category => "When is it due?" }
 
   
   # Associations
@@ -27,9 +27,9 @@ class Task < ActiveRecord::Base
   scope :tomorrow, where("due_date = ?", Date.today + 1.day)
   scope :later, where("due_category = ? OR due_date > ?", 'later', Date.today + 1.day).order("updated_at DESC, due_date DESC")
   
-  private
-    def self.human_attribute_name(attr, options = {})
-      HUMANIZED_ATTRIBUTES[attr.to_sym] || super
-    end
+  # private
+  #   def self.human_attribute_name(attr, options = {})
+  #     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  #   end
   
 end

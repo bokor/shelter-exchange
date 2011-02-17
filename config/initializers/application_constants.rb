@@ -8,7 +8,7 @@ US_STATES = { :AK => "Alaska", :AL => "Alabama", :AR => "Arkansas", :AZ => "Ariz
               :SC => "South Carolina", :SD => "South Dakota", :TN => "Tennessee", :TX => "Texas", :UT => "Utah", :VA => "Virginia", 
               :VT => "Vermont", :WA => "Washington", :WI => "Wisconsin", :WV => "West Virginia", :WY => "Wyoming" }
 
-SEX = %w[Male Female]
+SEX = %w[male female]
 
 EMAIL_FORMAT = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i  #old one - /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i             
 
