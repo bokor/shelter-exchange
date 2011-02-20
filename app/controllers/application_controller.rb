@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include UrlHelper
   protect_from_forgery
   
   before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
@@ -47,19 +48,6 @@ class ApplicationController < ActionController::Base
 
     
   protected
-    
-    def with_subdomain(subdomain)
-      subdomain = (subdomain || "")
-      subdomain += "." unless subdomain.empty?
-      [subdomain, request.domain, request.port_string].join
-    end
-
-    def url_for(options = nil)
-      if options.kind_of?(Hash) && options.has_key?(:subdomain)
-        options[:host] = with_subdomain(options.delete(:subdomain))
-      end
-      super
-    end
   
     def is_integer(test)
       test =~ /\A-?\d+\Z/
