@@ -3,11 +3,13 @@ class UsersController < ApplicationController
   respond_to :html, :js
   
   def index
-    respond_with(@user = current_user)
+    @users = @current_account.users.all
+    respond_with(@users)
   end
   
   def edit
-    respond_with(@user = current_user)
+    @user = @current_account.users.find(params[:id])
+    respond_with(@user)
   end
   
   def update

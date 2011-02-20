@@ -218,7 +218,7 @@ textarea{height:100px;width:400px;font-size:14px; }
 /******************************************************************/
 /* --------------------- LiveValidation  ------------------------ */
 /******************************************************************/
-./*LV_valid{color:#00CC00;}
+/*.LV_valid{color:#00CC00;}
 .LV_invalid{color:#CC0000;}
 .LV_validation_message{font-weight:bold;margin:0 0 0 5px;}
 .LV_valid_field,
@@ -234,8 +234,8 @@ input.LV_invalid_field:active,
 textarea.LV_invalid_field:hover,
 textarea.LV_invalid_field:active,
 .fieldWithErrors input.LV_invalid_field,
-.fieldWithErrors textarea.LV_invalid_field{border:1px solid #CC0000;}
-*/
+.fieldWithErrors textarea.LV_invalid_field{border:1px solid #CC0000;}*/
+
 
 /* From http://workingwithrails.com/railsplugin/4765-will-paginate */
 .pagination:before { content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }

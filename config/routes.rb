@@ -1,8 +1,6 @@
 Shelterexchange::Application.routes.draw do
 
 
-  resources :addresses
-
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -91,6 +89,7 @@ Shelterexchange::Application.routes.draw do
 #   Capacity Routes    
     resources :capacities
 
+
 #   Users Routes - Localized updated
     resources :users do
       member do
@@ -99,10 +98,10 @@ Shelterexchange::Application.routes.draw do
       end
     end
 
-    resources :token_authentications, :only => [:create, :destroy]
+# resources :token_authentications, :only => [:create, :destroy]
 
 #   Devise Routes
-    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation" } 
+    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :invitation => "invitation" } 
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")

@@ -8,6 +8,7 @@ gem 'mail', '2.2.12'
 
 gem 'devise', '1.1.3'               # Login/Authentication
 gem 'devise_invitable', '0.3.5'     # Login/Authentication
+#gem 'devise_invitable', :git => 'git://github.com/rymai/devise_invitable.git'
 
 gem 'cancan', '1.5.1'               # Authorization
 

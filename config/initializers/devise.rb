@@ -54,6 +54,10 @@ Devise.setup do |config|
   # If invite_for is 0 or nil, the invitation will never expire.
   config.invite_for = 2.weeks
   
+  # Flag that force a record to be valid before being actually invited.
+  # Default: false
+  #config.validate_on_invite = true
+  
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.
@@ -130,7 +134,7 @@ Devise.setup do |config|
   # access, but formats like :xml or :json, should return 401.
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists. Default is [:html]
-  # config.navigational_formats = [:html, :iphone]
+  # config.navigational_formats = [:html, :js, :iphone]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,

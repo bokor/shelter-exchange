@@ -14,8 +14,9 @@
 /*
 
 If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
-.show_parents #left { width: 97%;}
-.show_parents #sidebar { width: 0;}*/
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { width: 0;}*/
 
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
@@ -581,6 +582,47 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
 .index_reports .count_sections h2.euthanized_color {color:red;}
 .index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
+
+
+/***************************************************************/
+/* -------------------------- USERS -------------------------- */
+/***************************************************************/
+/* -- Users :: Common Styles --*/
+.users ul {list-style:none;}
+
+/* -- Users :: Page Heading and Titles --*/
+.users .page_heading{border-bottom:1px solid #eee; }
+.users .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.users .page_heading h1{width:100%; }
+
+/* -- Index Users :: Page Layout --*/
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { width: 0;}
+
+/* -- Index Users :: Manage Users --*/
+.index_users .manage_users{width: 100%; padding-bottom: 20px;}
+.index_users .manage_users:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* -- Index Users :: User List --*/
+.index_users .manage_users #users_section {width: 235px; float: left; height: 100%;  }
+.index_users .manage_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
+.index_users .manage_users #users_section table.user_list {border-collapse: collapse; border-spacing: 0;}
+.index_users .manage_users #users_section table.user_list tr {border-bottom: 1px solid #ddd;cursor:pointer;}
+.index_users .manage_users #users_section table.user_list td {vertical-align:top; padding: 10px;}
+.index_users .manage_users #users_section table.user_list tr.hover {background-color:#EFEBE3;/*#e0f1fa*/}
+.index_users .manage_users #users_section table.user_list tr.current {background-color:#EFEBE3;}
+.index_users .manage_users #users_section table.user_list span.owner {color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
+
+/* -- Index Users :: User Details --*/
+.index_users .manage_users #user {margin-left: 235px; padding-left: 20px; min-height: 100%;}
+.index_users .manage_users #user h2 { border-bottom: 1px #bbb solid; }
+
+/* -- Index Users :: Invite New User form --*/
+.index_users #new_user_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+
+
+
 
 
 

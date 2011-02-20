@@ -1,14 +1,26 @@
 <%
-	subdomain = @resource.account.subdomain
-	subdomain = (subdomain || "")
-	subdomain += "." unless subdomain.empty?
-	host = [subdomain, ActionMailer::Base::default_url_options[:host]].join
+	attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
 %>
+<style type="text/css" media="screen">
+	#email_logo { width: 100%; text-align:center; margin:0 auto;}
+	#email_logo img{text-align:center; margin:0 auto;}
+	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+</style>
 
-<p>Hello <%= @resource.email %>!</p>
+<div id="email_logo">
+	<%= image_tag attachments['logo_email.jpg'].url %>
+</div>
 
-<p>Your account has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
+<p>You have been temporarily locked out of your Shelter Exchange account due to multiple failed attempts to log in. </p>
+<p>To unlock the account please click this link below and reset your password.</p> 
+<p><strong><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></strong></p>
 
-<p>Click the link below to unlock your account:</p>
+<p>Many thanks,</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, :host => host, :unlock_token => @resource.unlock_token) %></p>
+<h3>Shelter Exchange</h3>
+<a href="mailto:info@shelterexchange.org">info@shelterexchange.org</a><br />
+<a href="http://www.shelterexchange.org">www.shelterexchange.org</a>
+
+
+
+

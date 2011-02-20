@@ -1,0 +1,22 @@
+<%= form_for(:user, :url => user_invitation_path, :remote => true) do |f| %>
+	<ul class="form">
+		<li>
+			<%= f.label :email, "Email" %><br />
+			<%= f.text_field :email %>
+		</li>
+		<li>
+			<%= f.label :role, "Role" %><br />
+			<% User::ROLES.each do |value| %>
+				<%= f.radio_button :role, value, :checked => value == "user" %>
+				<%= f.label "role_#{value.downcase}", value.humanize %>
+			<% end %>
+		</li>
+	</ul>
+	<div class="actions">
+		<%= f.submit "Send an invitation", :disable_with => 'Submiting...', :class => "button"  %>
+		&nbsp;or&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_user_invitation').slideToggle(1000);" %>
+	</div>
+
+	<%# f.hidden_field :subdomain, :value => @current_account.subdomain %>
+	<%= f.hidden_field :account_id, :value => @current_account.id %>
+<% end %>

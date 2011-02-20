@@ -2,14 +2,12 @@
 
 <%= content_for :page_content do %>
 	<div class="page_heading">
-		<h1>Thank you!</h1>
+		<h1>Welcome <%= @account.shelters.first.name %></h1>
 	</div>
-	
+
 	<div class="page_content">
-		
-		Account registered! 
-		Go to <a href='<%=request.protocol%><%=with_subdomain(@account.subdomain)%>'><%=request.protocol%><%=with_subdomain(@account.subdomain)%></a> to log in.
-		
+		<p>Thank you for registering and joining the Shelter Exchange community!</p><br />
+		<p>Please check your email to confirm your account and to invite other staff members to join Shelter Exchange.</p>
 	</div>
 <% end %>
 

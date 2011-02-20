@@ -7,7 +7,7 @@ en:
 
   devise:
     failure:
-      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unauthenticated: 'You need to sign in before continuing.'
       unconfirmed: 'You have to confirm your account before continuing.'
       locked: 'Your account is locked.'
       invalid: 'Invalid email or password.'
@@ -32,8 +32,8 @@ en:
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: 'Shelter Exchange - Account Confirmation'
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Shelter Exchange - Please reset your password'
       unlock_instructions:
-        subject: 'Unlock Instructions'
+        subject: 'Shelter Exchange - Please unlock your account'

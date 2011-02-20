@@ -1,0 +1,3 @@
+$('#user').html( "<%= escape_javascript( render @user ) %>" );
+$('table.user_list .current').removeClass('current');
+$('#user_<%=@user.id%>').addClass('current');

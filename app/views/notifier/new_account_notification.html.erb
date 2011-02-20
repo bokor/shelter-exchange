@@ -1,6 +1,27 @@
-<p>Welcome <%= @user.name %>!</p>
+<style type="text/css" media="screen">
+	h2{font-weight:bold; letter-spacing: -1px; padding:0 10px 0 0; margin:0 0 10px 0; border-bottom: 1px #ddd solid;}
+	#message{width: 200px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+	.kill{background-color: #fce2ec; border:1px solid #f286b1;}
+	.no_kill{background-color:#e0f1fa; border:1px solid #89cbeb;}
+</style>
+<p>A new account has been created at Shelter Exchange.</p>
 
-<p>You will love our super awesome tool and we are happy to have your shelter embrace the future of animal shelter management.</p>
+<% if @shelter.is_kill_shelter %>
+	<div id="message" class="kill">KILL</div>
+<% else %>
+	<div id="message" class="no_kill">NO KILL</div>
+<% end %>
+<br />
+
+<h2>Shelter</h2>
+<%= @shelter.name %><br />
+<%= @shelter.street %><br />
+<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
+<%= @shelter.main_phone %><br />
+<%= @shelter.email %><br />
+<%= @shelter.website %><br />
 
 
-<p><%=@shelter.name%></p>
+<h2>Owner</h2>
+<%= @user.name %><br />
+<%= @user.email %><br />

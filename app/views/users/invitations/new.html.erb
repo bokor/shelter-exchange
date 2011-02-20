@@ -1,4 +1,4 @@
-<%= title "Invite new user" %>
+<!-- <%= title "Invite new user" %>
 
 <%= content_for :page_content do %>
 	
@@ -7,34 +7,32 @@
 	</div>
 	
 	<div class="page_content">
-		
 		<%= render "global/error_messages", :target => resource %>
-		<%# devise_error_messages! %>
-			
-		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
-  			<!-- <%= devise_error_messages! %> -->
+		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :remote => true do |f| %>
 			<ul class="form">
 				<li>
-					<%= f.label :name, "Name" %><br />
-  					<%= f.text_field :name %>
+					<%= f.label :name, "First and Last name" %><br />
+					<%= f.text_field :name %>
 				</li>
 				<li>
 					<%= f.label :email, "Email" %><br />
-  					<%= f.text_field :email %>
+					<%= f.text_field :email %>
 				</li>
 				<li>
 					<%= f.label :role, "Role" %><br />
-					<%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+					<% User::ROLES.each do |value| %>
+						<%= f.radio_button :role, value %>
+						<%= f.label "role_#{value.downcase}", value.humanize %>
+					<% end %>
 				</li>
 			</ul>
-  			<div class="actions">
+			<div class="actions">
 				<%= f.submit "Send an invitation", :disable_with => 'Submiting...' %>
 			</div>
 
 			<%# f.hidden_field :subdomain, :value => @current_account.subdomain %>
 			<%= f.hidden_field :account_id, :value => @current_account.id %>
 		<% end %>
-
 	</div>
 	
 <% end %>
@@ -53,4 +51,4 @@
 <% end %>
 			
 
-
+ -->

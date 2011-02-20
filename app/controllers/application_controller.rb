@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
-  helper :all
-  before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
-  # layout :current_layout_name
   
+  before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
+  before_filter :store_location, :set_mailer_url_options
+  
+  helper :all
+
   private
   
     def current_subdomain
@@ -27,17 +28,38 @@ class ApplicationController < ActionController::Base
         @current_shelter = nil
       end
     end
-
-    # def current_layout_name
-    #   @current_account.blank? ? 'public' : 'application'
-    # end
     
     def set_shelter_timezone
       Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
     end
+    
+    def store_location
+      session[:"user.return_to"] = request.referrer
+    end
+        
+    def after_sign_in_path_for(resource_or_scope)
+      (session[:"user.return_to"].nil?) ? "/" : session[:"user.return_to"].to_s
+    end
+    
+    def set_mailer_url_options
+      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomains.first)
+    end
 
     
   protected
+    
+    def with_subdomain(subdomain)
+      subdomain = (subdomain || "")
+      subdomain += "." unless subdomain.empty?
+      [subdomain, request.domain, request.port_string].join
+    end
+
+    def url_for(options = nil)
+      if options.kind_of?(Hash) && options.has_key?(:subdomain)
+        options[:host] = with_subdomain(options.delete(:subdomain))
+      end
+      super
+    end
   
     def is_integer(test)
       test =~ /\A-?\d+\Z/
@@ -57,6 +79,18 @@ class ApplicationController < ActionController::Base
     end
 
 end
+
+  
+  # layout :current_layout_name
+
+# def current_layout_name
+#   @current_account.blank? ? 'public' : 'application'
+# end
+
+
+# Rails.cache.write(:current_account, Account.find_by_subdomain!(request.subdomains.first)) if Rails.cache.read(:current_account).blank?
+# @current_account = Rails.cache.read(:current_account)
+
 
 # if current_subdomain == 'admin'
 # authenticate_admin!

@@ -11,7 +11,9 @@
 	<!-- MOVE TO THE BOTTOM -->
 	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", 
 							   "jquery.ui.autocomplete.ext", "jquery.jtruncate","jquery.tokeninput", "top_up-min",
-							   "rails", "application", :cache => "cache/public/all" %> <!-- jquery.tipTip.minified -->
+							   # "livevalidation.min", 
+							   "rails", "application", 
+							   :cache => "cache/public/all" %> <!-- jquery.tipTip.minified -->
 	<%= yield(:javascripts) %>
 	
 	<%= csrf_meta_tag %>

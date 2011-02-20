@@ -1,8 +1,8 @@
-<%= title "Set your password" %>
+<%= title "Accept invitation" %>
 
 <%= content_for :page_content do %>
 	<div class="page_heading">
-		<h2>Set your password</h2>Ad
+		<h2>Accept invitation</h2>
 	</div>
 	<div class="page_content">
 		
@@ -11,18 +11,22 @@
 		
 		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
 			<ul class="form">
-		  		<li>
-					<%= f.label :password %><br />
+				<li>
+					<%= f.label :name, "First and Last name" %><br />
+		  			<%= f.text_field :name %>
+				</li>
+				<li>
+					<%= f.label :password, "Password" %><br />
 		  			<%= f.password_field :password %>
 				</li>
 				<li>
-					<%= f.label :password_confirmation %><br />
+					<%= f.label :password_confirmation, "Password confirmation" %><br />
 		  			<%= f.password_field :password_confirmation %>
 				</li>
 			</ul>
 
 		 	<div class="actions">
-				<%= f.submit "Set my password", :disable_with => 'Submiting...' %>
+				<%= f.submit "Submit", :disable_with => 'Submiting...' %>
 			</div>
 			
 			<%= f.hidden_field :invitation_token %>

@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
   # Associations
   belongs_to :account
   
-  devise :database_authenticatable, :recoverable, :rememberable,
-         :trackable, :token_authenticatable, :confirmable, :invitable, :lockable #, :validatable NOT SURE ABOUT THIS
+  devise :database_authenticatable, :confirmable, :lockable, :recoverable, :rememberable, :trackable,
+         :token_authenticatable, :lockable, :invitable #, :validatable
+
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :auth_token, :role, :account_id#, :subdomain 
+  attr_accessible :name, :email, :password, :password_confirmation, 
+                  :remember_me, :auth_token, :role, :account_id#, :subdomain 
   #attr_accessor :subdomain
   
   # Validations
@@ -18,12 +20,19 @@ class User < ActiveRecord::Base
                     :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
                     :format => {:with => EMAIL_FORMAT}
+  validates :role, :presence => true
   # validates :password, :presence => true, #{ :message => "something" },
   #                        :length => {:minimum => 6, :maximum => 25 }, #:message => "something" },
   #                        :format => { :with => PASSWORD_FORMAT } #, :message => "something" }
   
 
   # Scopes
+  
+  
+  def first_name
+    self.name.split(' ').first
+  end
+
   
   
   # def self.find_for_authentication(conditions={})

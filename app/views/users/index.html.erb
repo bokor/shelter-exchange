@@ -1,31 +1,37 @@
+<%= title "Manage Users" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "users/users", :cache => "cache/application/users-index" %>
+<% end %>
+
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue_background">
-		<h1>My info</h1>
+		<h1>Manage Users</h1>
 	</div>
 		
 	<div class="page_content">
-		<ul>
-			<li><%=@user.name%></li>
-			<li><%=@user.email%></li>
-		</ul>
-		<br /><br />
-		<%= form_for(@user) do |f| %>
-		<p><%= f.label :authentication_token %><br />
-		<% if @user.authentication_token.blank? %>
-			Token Empty
-		<% else %>
-		<%= f.text_field :authentication_token, :value => @user.authentication_token, :readonly => true %>
-		<% end %></p>
-
-		<p><%= link_to "Generate Token", generate_token_user_path(@user), :method => :post, :confirm => "Are you sure?"  %>
-		<%= link_to "Delete Token", delete_token_user_path(@user), :method => :post, :confirm => "Are you sure?"  %></p>
-
-
-		<% end %>
 		
+		<div class="manage_users">
+			<div class="action_links">
+				<%= link_to "Invite new user", "#", :onclick => "$('#new_user_invitation').slideToggle(1000);" %><br /><br />
+				<div id="new_user_invitation" style="display:none;">
+					<div id="user_errors"></div>
+					<%= render "form_invitation" %>
+				</div>
+			</div>
+			<div id="users_section">
+				<div class="count">Users(<%= @users.count %>)</div>
+				<div id="users">
+					<%= render "user_list" %>
+				</div>
+			</div>
+			<div id="user">
+				<%= render :partial => "user", :locals => { :user => current_user } %>
+			</div>
+		</div>
 		
-		
+		<!-- <div style="clear:left;"></div> -->
 	</div>
 	
 <% end %>
