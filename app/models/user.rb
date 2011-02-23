@@ -29,23 +29,27 @@ class User < ActiveRecord::Base
   #     find(:first, :conditions => conditions, :joins => :account, :readonly => false)
   #   end
   
-
-
-  # protected
-  #   def password_required?
-  #    false
-  #  end
-   
-   
-  
-  # def self.find_for_authentication(conditions={})
-  #   unless conditions[:subdomain].blank?
-  #     conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-  #     find(:first, :conditions => conditions, :joins => :account, :readonly => false)
-  #   else
-  #     conditions.delete(:subdomain)
-  #     find(:first, :conditions => conditions)
-  #   end
-  # end
-  
 end
+
+
+
+
+
+
+
+# protected
+#   def password_required?
+#    false
+#  end
+ 
+ 
+
+# def self.find_for_authentication(conditions={})
+#   unless conditions[:subdomain].blank?
+#     conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
+#     find(:first, :conditions => conditions, :joins => :account, :readonly => false)
+#   else
+#     conditions.delete(:subdomain)
+#     find(:first, :conditions => conditions)
+#   end
+# end
