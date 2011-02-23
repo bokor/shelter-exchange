@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :account
   
   devise :database_authenticatable, :confirmable, :lockable, :recoverable, :rememberable, :trackable,
-         :token_authenticatable, :lockable, :invitable, :validatable
+         :token_authenticatable, :lockable, :invitable, :validatable, :authentication_keys => [ :email, :account_id ]
 
          
   # Setup accessible (or protected) attributes for your model
