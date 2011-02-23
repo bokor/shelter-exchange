@@ -1,8 +1,7 @@
-<h2>User Info</h2>
-<p><%= user.name %></p>
-<p><%= user.email %></p>
-<p><%= user.role.humanize %></p>
-<h2>Delete User</h2>
-<p><%= user.name %></p>
-<p><%= user.email %></p>
-<p><%= user.role.humanize %></p>
+<li id="user_<%=user.id%>" class="user <%= "current" if current_user == user %>" onclick="Users.selectUser(<%=user.id%>);">
+	<div class="username">
+		<%= user.name %>
+		<% if user.role == "owner" %><span class="owner"><%= user.role.humanize %></span><% end %>
+	</div>
+	<span class="email"><%= user.email %></span>
+</li>

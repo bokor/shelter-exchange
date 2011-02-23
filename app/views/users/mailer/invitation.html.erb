@@ -11,7 +11,7 @@
 	<%= image_tag attachments['logo_email.jpg'].url %>
 </div>
 
-<p>Hello <%= @resource.name %></p>
+<!-- <p>Hello <%# @resource.name %></p> -->
 
 <p>Congratulations! You have been invited by the <%= @resource.account.shelters.first.name %> to join Shelter Exchange. </p>
 <p>You can accept this invitation by clicking this link <strong><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></strong></p>

@@ -1,4 +1,4 @@
 // Only Implemented the User error part as it will forward the request to the users/index.js file when it is successful
 <% if @user.errors.any? %>
-	$('#user_errors').html("<%= escape_javascript(render 'global/error_messages', :target => @user) %>" );
+	$('#new_invitation_errors').html("<%= escape_javascript(render 'global/error_messages', :target => @user) %>" );
 <% end %>

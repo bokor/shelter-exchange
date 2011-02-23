@@ -43,12 +43,12 @@ class Animal < ActiveRecord::Base
   
   
   # Scopes
-  scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE '%#{q}%'") }
-  scope :full_search, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE '%#{q}%' OR name LIKE '%#{q}%' OR description LIKE '%#{q}%'
-                                                                                OR chip_id LIKE '%#{q}%' OR color LIKE '%#{q}%'
-                                                                                OR age LIKE '%#{q}%' OR weight LIKE '%#{q}%'
-                                                                                OR primary_breed LIKE '%#{q}%' OR secondary_breed LIKE '%#{q}%'") }
-  scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE '%#{q}%' OR name LIKE '%#{q}%'") }                                              
+  scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }
+  scope :full_search, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%')
+                                                                                OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%')
+                                                                                OR LOWER(age) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
+                                                                                OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
+  scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
   
   scope :active, where(:animal_status_id => [1,4,5,6,7,8])
   scope :non_active, where(:animal_status_id => [2,3,9,10,11])

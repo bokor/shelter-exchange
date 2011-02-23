@@ -20,9 +20,9 @@ class Parent < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT}
                     
   # Scopes
-  scope :search, lambda { |q| where("name LIKE '%#{q}%' OR street LIKE '%#{q}%' 
-                                     OR home_phone LIKE '%#{q}%' OR mobile_phone LIKE '%#{q}%' 
-                                     OR email LIKE '%#{q}%'") }
+  scope :search, lambda { |q| where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(street) LIKE LOWER('%#{q}%') 
+                                     OR LOWER(home_phone) LIKE LOWER('%#{q}%') OR LOWER(mobile_phone) LIKE LOWER('%#{q}%') 
+                                     OR LOWER(email) LIKE LOWER('%#{q}%')") }
                                                 
   
 end

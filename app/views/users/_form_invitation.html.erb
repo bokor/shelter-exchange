@@ -14,7 +14,7 @@
 	</ul>
 	<div class="actions">
 		<%= f.submit "Send an invitation", :disable_with => 'Submiting...', :class => "button"  %>
-		&nbsp;or&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_user_invitation').slideToggle(1000);" %>
+		&nbsp;or&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %>
 	</div>
 
 	<%# f.hidden_field :subdomain, :value => @current_account.subdomain %>

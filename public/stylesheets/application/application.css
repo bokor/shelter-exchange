@@ -63,6 +63,12 @@ a:hover, a:selected { border: none; outline: none; }
 .yellow_background{background-color:#fffbe5; }
 .orange_background{background-color:#fff6e5;}
 .purple_background{background-color:#e6e0fa;}
+
+/* ClearFix */
+/******************************************************************/
+.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+* html .clearfix{height:1%;}
+
   
 /* COLOR SPECIFICS */
 /******************************************************************/
@@ -150,9 +156,7 @@ div.auto_complete ul strong.highlight{color:#800;margin:0;padding:0;}
 /* -------------------------- FORMS  --------------------------- */
 /******************************************************************/
 ul.form  { list-style: none; padding-bottom: 20px;}
-ul.form:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 ul.form li, div.actions {margin-bottom: 10px;}
-div.actions:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 ol.form li {margin-left: 20px;margin-bottom: 10px;}
 label { font-weight: bold; font-size: 13px; letter-spacing: -1px;}

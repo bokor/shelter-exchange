@@ -18,7 +18,7 @@ class Accommodation < ActiveRecord::Base
   # Callbacks
   
   # Scopes
-  scope :full_search, lambda { |q| includes(:animal_type, :animals, :location).where("name LIKE '%#{q}%'") }
+  scope :full_search, lambda { |q| includes(:animal_type, :animals, :location).where("LOWER(name) LIKE LOWER('%#{q}%')") }
   
   
 end

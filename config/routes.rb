@@ -95,6 +95,7 @@ Shelterexchange::Application.routes.draw do
       member do
         post :generate_token
         post :delete_token
+        post :change_password
       end
     end
 
@@ -105,6 +106,7 @@ Shelterexchange::Application.routes.draw do
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")
+    # root :to => "animals#index", :as => :animals
   end
   
   constraints(AdminSubdomain) do

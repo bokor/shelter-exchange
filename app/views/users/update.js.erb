@@ -1,0 +1,10 @@
+<% if @user.errors.any? %>
+	$('#update_user_errors').html("<%= escape_javascript(render 'global/error_messages', :target => @user) %>" );
+<% else %>
+	$('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages', :target => flash) %>" );
+	// Refresh User Details
+	$('#user_<%=@user.id%>').replaceWith( "<%= escape_javascript( render @user ) %>" );
+	$('#user_details').html( "<%= escape_javascript( render 'user_details', :user => @user ) %>" );
+<% end %>
+
+<% flash.discard %>

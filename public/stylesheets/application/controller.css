@@ -2,7 +2,7 @@
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
 .active_link {color:#888; text-decoration:none; cursor:default; }
-/*.actions{padding-top: 15px;}*/
+.page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .no_tasks, .no_alerts {display:none;}
 .hidden{display:none;}
 .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
@@ -245,7 +245,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .shelters ol li{margin-left: 20px;}
 
 .shelters .page_heading{border-bottom:1px solid #eee; }
-.shelters .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
 .shelters .page_heading .action_links{width:30%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 .edit_shelters .page_heading h1, .update_shelters .page_heading h1{width:100%;}
@@ -454,7 +453,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .parents ul {list-style:none;}
 
 .parents .page_heading{border-bottom:1px solid #eee; }
-.parents .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .parents .page_heading h1{width:50%; float:left; }
 .parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 .show_parents .page_heading h1{width:60%;}
@@ -569,7 +567,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -- Reports :: Page Heading and Titles --*/
 .reports .page_heading{border-bottom:1px solid #eee; }
-.reports .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .reports .page_heading h1{width:50%; float:left; }
 .reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 
@@ -592,7 +589,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -- Users :: Page Heading and Titles --*/
 .users .page_heading{border-bottom:1px solid #eee; }
-.users .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .users .page_heading h1{width:100%; }
 
 /* -- Index Users :: Page Layout --*/
@@ -601,28 +597,23 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_users #sidebar { width: 0;}
 
 /* -- Index Users :: Manage Users --*/
-.index_users .manage_users{width: 100%; padding-bottom: 20px;}
+.index_users .manage_users{padding-bottom: 20px;}
 .index_users .manage_users:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* -- Index Users :: User List --*/
-.index_users .manage_users #users_section {width: 235px; float: left; height: 100%;  }
-.index_users .manage_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
-.index_users .manage_users #users_section table.user_list {border-collapse: collapse; border-spacing: 0;}
-.index_users .manage_users #users_section table.user_list tr {border-bottom: 1px solid #ddd;cursor:pointer;}
-.index_users .manage_users #users_section table.user_list td {vertical-align:top; padding: 10px;}
-.index_users .manage_users #users_section table.user_list tr.hover {background-color:#EFEBE3;/*#e0f1fa*/}
-.index_users .manage_users #users_section table.user_list tr.current {background-color:#EFEBE3;}
-.index_users .manage_users #users_section table.user_list span.owner {color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
-
+.index_users #users_section {float:left;width:235px;}
+.index_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
+.index_users #users_section .user_list {list-style:none;}
+.index_users #users_section .user_list .user {border-bottom: 1px solid #ddd; cursor:pointer; padding: 10px;display: block;}
+.index_users #users_section .user_list .hover {background-color:#EFEBE3;}
+.index_users #users_section .user_list .current {background-color:#EFEBE3;}
+.index_users #users_section .user_list .username {color: #000;margin-bottom: 5px;line-height: 1;font-size: 16px; font-weight: bold; letter-spacing:-1px;}
+.index_users #users_section .user_list .owner { color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
 /* -- Index Users :: User Details --*/
-.index_users .manage_users #user {margin-left: 235px; padding-left: 20px; min-height: 100%;}
-.index_users .manage_users #user h2 { border-bottom: 1px #bbb solid; }
+.index_users #user_details {margin-left: 255px;}
+.index_users #user_details h2 { border-bottom: 1px #bbb solid; }
+.index_users #user_details .section { padding-bottom: 15px;}
+
 
 /* -- Index Users :: Invite New User form --*/
-.index_users #new_user_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-
-
-
-
-
-
+.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}

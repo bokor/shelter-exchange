@@ -35,11 +35,12 @@ class ApplicationController < ActionController::Base
     end
     
     def store_location
-      session[:"user.return_to"] = request.referrer
+      session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller? 
     end
         
     def after_sign_in_path_for(resource_or_scope)
-      (session[:"user.return_to"].nil?) ? "/" : session[:"user.return_to"].to_s
+      # session[:"user_return_to"].blank? ? root_path : session[:"user_return_to"].to_s
+      session[:"user_return_to"].to_s unless session[:"user_return_to"].blank?
     end
     
     def set_mailer_url_options
@@ -68,6 +69,7 @@ class ApplicationController < ActionController::Base
 
 end
 
+
   
   # layout :current_layout_name
 
@@ -84,30 +86,4 @@ end
 # authenticate_admin!
 # else
 # authenticate_user!
-# end
-
-
-# Devise Addition
-# 
-# def after_sign_in_path_for(resource_or_scope)
-#   scope = Devise::Mapping.find_scope!(resource_or_scope)
-#   subdomain_name = current_user.subdomain.name
-#   if current_subdomain.nil? 
-#     # logout of root domain and login by token to subdomain
-#     token =  Devise.friendly_token
-#     current_user.loginable_token = token
-#     current_user.save
-#     sign_out(current_user)
-#     flash[:notice] = nil
-#     home_path = valid_user_url(token, :subdomain => subdomain_name)
-#     return home_path 
-#   else
-#     if subdomain_name != current_subdomain.name 
-#       # user not part of current_subdomain
-#       sign_out(current_user)
-#       flash[:notice] = nil
-#       flash[:alert] = "Sorry, invalid user or password for subdomain"
-#     end
-#   end
-#   super
 # end

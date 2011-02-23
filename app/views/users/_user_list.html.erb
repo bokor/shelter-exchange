@@ -1,11 +1,5 @@
-<table class="user_list">
+<ul class="user_list">
 	<% @users.each do |user| %>
-		<tr id="user_<%=user.id%>" class="<%= "current" if current_user == user %>" onclick="Users.selectUser(<%=user.id%>);"> 
-			<td>
-				<!-- <%= link_to user.name, edit_user_path(user), :remote => true %> -->
-			<h3><%= user.name %><% if user.role == "owner" %><span class="owner"><%= user.role.humanize %></span><% end %></h3>
-			<p><%= user.email %></p>
-			</td>
-		</tr>
+		<%= render user %>
 	<% end %>
-</table>
+</ul>

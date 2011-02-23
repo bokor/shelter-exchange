@@ -1,0 +1,23 @@
+<%= form_for (user), :remote => true do |f| %>
+	<ul class="form">
+		<li>
+			<%= f.label :name, "First and Last name" %><br />
+  			<%= f.text_field :name, :value => user.name %>
+		</li>
+		<li>
+			<%= f.label :email, "Email" %><br />
+			<%= f.text_field :email, :value => user.email %>
+		</li>
+		<!-- ONLY ADMINS and OWNERS CAN DO THIS -->
+		<li>
+			<%= f.label :role, "Role" %><br />
+			<% User::ROLES.each do |value| %>
+				<%= f.radio_button :role, value %>
+				<%= f.label "role_#{value.downcase}", value.humanize %>
+			<% end %>
+		</li>
+	</ul>
+	<div class="actions">
+		<%= f.submit "Update user", :disable_with => 'Submiting...', :class => "button"  %>
+	</div>
+<% end %>

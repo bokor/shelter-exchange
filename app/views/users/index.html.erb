@@ -14,9 +14,9 @@
 		
 		<div class="manage_users">
 			<div class="action_links">
-				<%= link_to "Invite new user", "#", :onclick => "$('#new_user_invitation').slideToggle(1000);" %><br /><br />
-				<div id="new_user_invitation" style="display:none;">
-					<div id="user_errors"></div>
+				<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %><br /><br />
+				<div id="new_invitation" style="display:none;">
+					<div id="new_invitation_errors"></div>
 					<%= render "form_invitation" %>
 				</div>
 			</div>
@@ -26,12 +26,11 @@
 					<%= render "user_list" %>
 				</div>
 			</div>
-			<div id="user">
-				<%= render :partial => "user", :locals => { :user => current_user } %>
+			<div id="user_details">
+				<%= render :partial => "user_details", :locals => { :user => current_user } %>
 			</div>
 		</div>
 		
-		<!-- <div style="clear:left;"></div> -->
 	</div>
 	
 <% end %>

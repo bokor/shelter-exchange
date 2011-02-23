@@ -13,12 +13,14 @@ class UsersController < ApplicationController
   end
   
   def update
-    respond_with(@user = current_user) do |format|
+    @user = @current_account.users.find(params[:id])
+    respond_with(@user) do |format|
       if @user.update_attributes(params[:user])  
         flash[:notice] = "#{@user.name} has been updated."
         format.html { redirect_to users_path }
       else
-        format.html { render :action => :edit }
+        flash[:error] = "Error in updating #{@user.name}.  Please try again!"
+        format.html { render :action => :index }
       end
     end
   end
@@ -36,7 +38,22 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    redirect_to users_path and return
+    @user = @current_account.users.find(params[:id])
+    @user.destroy
+    flash[:notice] = "#{@user.name} has been deleted."
+  end
+    
+  def change_password
+    @user = @current_account.users.find(params[:id])
+    respond_with(@user) do |format|
+      if @user.update_attributes(params[:user])  
+        flash[:notice] = "#{@user.name} has been updated."
+        format.html { redirect_to users_path }
+      else
+        flash[:error] = "Error in updating password.  Please try again!"
+        format.html { render :action => :index }
+      end
+    end
   end
   
   def generate_token
@@ -55,3 +72,4 @@ class UsersController < ApplicationController
   end
 
 end
+
