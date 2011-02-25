@@ -94,14 +94,3 @@ class AnimalsController < ApplicationController
   end
   
 end
-
-  
-  
-  # def api
-  #   @animals = Animal.all
-  #   respond_to do |format|  
-  #             format.json {
-  #               render :json => @animals.to_json(:include => [:animal_type,:animal_status], :except =>[:id,:animal_type_id, :animal_status_id])
-  #             }
-  #           end
-  # end

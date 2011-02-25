@@ -56,19 +56,18 @@ class UsersController < ApplicationController
     end
   end
   
-  def generate_token
-    # @user = User.find(params[:id])   
-    @user = current_user
-    @user.reset_authentication_token!
-    redirect_to users_path
-  end
-
-  def delete_token
-    # @user = User.find(params[:id])   
-    @user = current_user
-    @user.authentication_token = nil
-    @user.save
-    redirect_to users_path
+  def change_owner
+    @current_owner = @current_account.users.find(params[:id])
+    @new_owner = @current_account.users.find(params[:new_owner_id])
+    
+    if params[:id] != params[:new_owner_id]
+      @new_owner.update_attributes({ :role => :owner })
+      @current_owner.update_attributes({ :role => :admin })
+      flash[:notice] = "Owner has been changed to #{@new_owner.name}."
+    else 
+      flash[:warning] = "Owner did not change because the same user was selected"
+    end
+    redirect_to settings_path
   end
 
 end

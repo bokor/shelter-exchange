@@ -18,7 +18,7 @@ class Animal < ActiveRecord::Base
   
   has_attached_file :photo, :whiny => false, :default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
-                            # :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
+                            :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
                                          :medium => ["350x250>", :jpg],
                                          :large => ["500x400>", :jpg], 
@@ -91,6 +91,10 @@ class Animal < ActiveRecord::Base
   def photo_delete=(value)
     @photo_delete = value
   end
+  
+  # def photo_url
+  #   self.photo.url(:original)
+  # end
                                                  
   private
 

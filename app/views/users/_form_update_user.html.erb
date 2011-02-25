@@ -11,10 +11,14 @@
 		<!-- ONLY ADMINS and OWNERS CAN DO THIS -->
 		<li>
 			<%= f.label :role, "Role" %><br />
-			<% User::ROLES.each do |value| %>
-				<%= f.radio_button :role, value %>
-				<%= f.label "role_#{value.downcase}", value.humanize %>
-			<% end %>
+			<% if user.role == "owner" %>
+				<h3>Owner</h3>
+			<% else %>
+				<% User::ROLES.each do |value| %>
+					<%= f.radio_button :role, value %>
+					<%= f.label "role_#{value.downcase}", value.humanize %>
+				<% end %>
+			<% end %>	
 		</li>
 	</ul>
 	<div class="actions">

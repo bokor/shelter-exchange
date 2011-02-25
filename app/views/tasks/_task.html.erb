@@ -1,15 +1,10 @@
 <div id="<%= "task_#{task.id}" %>" class="task">
-	<span class="type" <%= 'style=color:#fff;background-color:'+ task.task_category.color if task.task_category %>>
+	<span class="type" style="background-color:<%= task.task_category.color if task.task_category %>">
 		<%= task.task_category.name if task.task_category %>
 	</span>
 	<span class="details">
 		<p><%= display_due_date(task) %><%= task.details %> <%= show_taskable_link(task) if controller_name == "tasks" %></p>
 	</span>
-	<!-- <span class="links">
-		<%= link_to image_tag("icon_completed.png"), completed_task_path(task), :confirm => "Are you sure?", :remote => true, :title => "Complete task" %>
-		<%= link_to image_tag("icon_edit.png"), edit_task_path(task), :remote => true, :title => "Edit task" %>
-		<%= link_to image_tag("icon_delete.png"), task, :method => :delete, :confirm => "Are you sure?", :remote => true, :title => "Delete task" %>
-	</span> -->
 	<div class="action_links">
 		<span class="completed_link">
 			<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true %>

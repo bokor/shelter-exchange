@@ -15,8 +15,8 @@
 		<%# devise_error_messages! %>
 		
 		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-		  	<%# f.hidden_field :subdomain, :value => @current_account.subdomain %>
-		  	<%= f.hidden_field :account_id, :value => @current_account.id %>
+		  	<%= f.hidden_field :subdomain, :value => @current_account.subdomain %>
+		  	<%# f.hidden_field :account_id, :value => @current_account.id %>
 		
 		 <p><%= f.label :name, "First and Last name" %><br />
 		  <%= f.text_field :name %></p>

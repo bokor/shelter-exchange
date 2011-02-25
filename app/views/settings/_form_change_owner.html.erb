@@ -1,0 +1,4 @@
+<%=form_for(:user, :url => change_owner_user_path(user), :html => {:method => :post, :id => "change_owner_user" }) do |f| %>
+	<%= collection_select(:user, :id, @users, :id, :name, {:selected => user} ) %>
+	<%= f.submit "Change", :disable_with => '...' %>
+<% end %>

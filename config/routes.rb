@@ -89,24 +89,30 @@ Shelterexchange::Application.routes.draw do
 #   Capacity Routes    
     resources :capacities
 
-
+#   Accounts Routes    
+    # resources :accounts
+#   API Routes   
+    resources :api, :only => [:animals]
+    match '/api/:version/animals' => 'api#animals'
+        
+#   Account Settings Routes    
+    resources :settings 
+    resources :token_authentications, :only => [:create, :destroy]
+    
 #   Users Routes - Localized updated
     resources :users do
       member do
-        post :generate_token
-        post :delete_token
         post :change_password
+        post :change_owner
       end
     end
 
-# resources :token_authentications, :only => [:create, :destroy]
-
 #   Devise Routes
-    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :invitation => "invitation" } 
+    devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invitation" } 
     
 #   Root Route - will redirect to animals as the first page
     root :to => redirect("/animals")
-    # root :to => "animals#index", :as => :animals
+    
   end
   
   constraints(AdminSubdomain) do

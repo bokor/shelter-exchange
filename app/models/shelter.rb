@@ -18,7 +18,7 @@ class Shelter < ActiveRecord::Base
   
  # has_one :address, :as => :addressable, :dependent => :destroy
   
-  has_attached_file :logo, :whiny => false , #:default_url => "/images/default_:style_photo.jpg", 
+  has_attached_file :logo, :whiny => false, #:default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
                             :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
@@ -37,12 +37,13 @@ class Shelter < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
                                         :message => "is not a valid US Time Zone" }
-                        
+  validates :access_token, :uniqueness => true, :on => :generate_access_token!                 
                     
   validates_attachment_size :logo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
   
   # Scopes  
+  scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
 
   def logo_delete
     @logo_delete ||= "0"
@@ -51,7 +52,13 @@ class Shelter < ActiveRecord::Base
   def logo_delete=(value)
     @logo_delete = value
   end
-
+  
+  def generate_access_token!
+    # self.access_token = ActiveSupport::SecureRandom.base64(15)
+    self.access_token = ActiveSupport::SecureRandom.hex(15)
+    self.save
+  end
+  
   
   private
     def geocode_address

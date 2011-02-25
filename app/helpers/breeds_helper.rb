@@ -1,11 +1,9 @@
 module BreedsHelper
 
   def format_breed(is_mix_breed, primary_breed, secondary_breed)
-    breeds_text = ""
+    breeds_text = primary_breed
     if is_mix_breed
-		  breeds_text = primary_breed.to_s + " & " + secondary_breed.to_s + " Mix"
-		else 
-		  breeds_text = primary_breed.to_s
+      breeds_text = secondary_breed.blank? ? primary_breed << " Mix" : primary_breed << " & " << secondary_breed << " Mix"
 		end
   end
 

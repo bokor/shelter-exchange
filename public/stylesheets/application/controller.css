@@ -406,7 +406,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -- Task List --*/
 .task_list{margin-bottom:10px;}
 .task_list .task{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
-.task_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.task_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle; color: #fff; padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
 /*.task_list .details{float: left;width: 60%; margin-left: 10px;  } ORIGINAL WITH IMAGES*/
 .task_list .details{float: left;width: 56%; margin-left: 10px;  }
 .task_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
@@ -617,3 +617,23 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -- Index Users :: Invite New User form --*/
 .index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+
+
+/******************************************************************/
+/* -------------------------- SETTINGS -------------------------- */
+/******************************************************************/
+/* -- Settings :: Common Styles --*/
+.settings ul {list-style:none;}
+
+/* -- Settings :: Page Heading and Titles --*/
+.settings .page_heading{border-bottom:1px solid #eee; }
+.settings .page_heading h1{width:100%; }
+
+/* -- Index Settings :: Page Layout --*/
+.index_settings #main { margin: 1em 3em 0 3em; }
+.index_settings #left { width: 100%;}
+.index_settings #sidebar { width: 0;}
+
+/* -- Index Users :: Sections --*/
+.index_settings  h2 { border-bottom: 1px #bbb solid; }
+.index_settings .section { padding-bottom: 25px;}

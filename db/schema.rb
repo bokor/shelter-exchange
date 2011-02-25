@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110219171027) do
+ActiveRecord::Schema.define(:version => 20110224230631) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -255,8 +255,10 @@ ActiveRecord::Schema.define(:version => 20110219171027) do
     t.datetime "logo_updated_at"
     t.string   "facebook"
     t.string   "time_zone"
+    t.string   "access_token"
   end
 
+  add_index "shelters", ["access_token"], :name => "index_shelters_on_access_token", :unique => true
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
   add_index "shelters", ["lat", "lng"], :name => "index_shelters_on_lat_and_lng"
 
@@ -323,6 +325,7 @@ ActiveRecord::Schema.define(:version => 20110219171027) do
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"

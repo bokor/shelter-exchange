@@ -38,9 +38,8 @@ class ApplicationController < ActionController::Base
       session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller? 
     end
         
-    def after_sign_in_path_for(resource_or_scope)
-      # session[:"user_return_to"].blank? ? root_path : session[:"user_return_to"].to_s
-      session[:"user_return_to"].to_s unless session[:"user_return_to"].blank?
+    def after_sign_in_path_for(resource)
+       session[:"user_return_to"].blank? ? "/" : session[:"user_return_to"].to_s 
     end
     
     def set_mailer_url_options
