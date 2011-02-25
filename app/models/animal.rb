@@ -91,10 +91,6 @@ class Animal < ActiveRecord::Base
   def photo_delete=(value)
     @photo_delete = value
   end
-  
-  # def photo_url
-  #   self.photo.url(:original)
-  # end
                                                  
   private
 
