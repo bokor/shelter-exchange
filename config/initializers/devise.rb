@@ -20,8 +20,7 @@ Devise.setup do |config|
   # authenticating an user, both parameters are required. Remember that those
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
-  config.authentication_keys = [ :email, :subdomain ]
-  #config.authentication_keys = [ :email, :account_id ]
+  # config.authentication_keys = [ :email, :subdomain ] # Enabling this will cause an error on :subdomain, enable in the model for now
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -112,7 +111,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
-  config.token_authentication_key = :auth_token
+  # config.token_authentication_key = :auth_token
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for

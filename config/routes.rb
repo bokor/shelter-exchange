@@ -97,7 +97,7 @@ Shelterexchange::Application.routes.draw do
         
 #   Account Settings Routes    
     resources :settings 
-    resources :token_authentications, :only => [:create, :destroy]
+    resources :web_access_tokens, :only => [:create, :destroy]
     
 #   Users Routes - Localized updated
     resources :users do
