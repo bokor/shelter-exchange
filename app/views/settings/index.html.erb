@@ -37,8 +37,8 @@
 				<p><%= @current_shelter.access_token %></p>
 			<% end %>
 			</p>
-			<p><%= link_to "Generate Token", web_access_tokens_path, :method => :post, :confirm => "Are you sure?"  %>
-			<%= link_to "Delete Token", web_access_token_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></p>
+			<p><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %>
+			<%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></p>
 		</div>
 	</div>
 

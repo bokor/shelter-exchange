@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110224230631) do
+ActiveRecord::Schema.define(:version => 20110226220751) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20110224230631) do
   add_index "animals", ["animal_type_id", "animal_status_id", "id", "name"], :name => "search_by_name"
   add_index "animals", ["animal_type_id", "animal_status_id", "name"], :name => "auto_complete"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
+  add_index "animals", ["created_at", "shelter_id"], :name => "index_animals_on_created_at_and_shelter_id"
   add_index "animals", ["created_at"], :name => "index_animals_on_created_at"
   add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["id", "name"], :name => "index_animals_on_id_and_name"
