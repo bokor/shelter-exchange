@@ -10,6 +10,3 @@ class BreedsController < ApplicationController
   end
 
 end
-
-# temp = params[:q].strip.split
-# q = temp.map {|str| str}.join("%")

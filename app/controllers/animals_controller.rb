@@ -66,7 +66,7 @@ class AnimalsController < ApplicationController
       @notes = @animal.notes.animal_filter(filter_param)
     end
   end
-  # move to the model where(:animal_type_id => type)
+
   def filter_by_type_status
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
