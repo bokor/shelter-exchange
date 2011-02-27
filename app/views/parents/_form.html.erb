@@ -1,3 +1,4 @@
+<%= form_for(@parent) do |f| %>
 	<ul class="form">
 		<li>
 			<%= f.label :name, "Parent name" %><br />
@@ -35,3 +36,4 @@
 	<div class="actions">
 		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 	</div>
+<% end %>

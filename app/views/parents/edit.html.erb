@@ -11,9 +11,7 @@
 	</div>
 	<div class="page_content">
 		<%= render "global/error_messages", :target => @parent %>
-		<%= form_for(@parent) do |f| %>
-			<%= render :partial => "form", :locals => { :f => f, :button_text => "Update Parent" } %>
-		<% end %>
+		<%= render "form", :button_text => "Update Parent"  %>
 	</div>	
 <% end %>
 
