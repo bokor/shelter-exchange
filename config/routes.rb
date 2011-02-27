@@ -85,6 +85,7 @@ Shelterexchange::Application.routes.draw do
 
 #   Shelter Routes 
     resources :shelters 
+    resources :wish_lists, :only => [:edit, :update]
     
 #   Capacity Routes    
     resources :capacities

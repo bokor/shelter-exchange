@@ -4,6 +4,9 @@ $('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages',
 // Reset Form
 $('#new_invitation form').get(0).reset();
 $('#new_invitation_errors').html("");
+
+// Render User List
 $('#users').html( "<%= escape_javascript( render 'user_list' ) %>" );
 
+// Discard Flash
 <% flash.discard %>

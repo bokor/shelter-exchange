@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = @current_account.users.find(params[:id])
     respond_with(@user) do |format|
       if @user.update_attributes(params[:user])  
-        flash[:notice] = "#{@user.name} has been updated."
+        flash[:notice] = "Your password has been changed.  Please login with your new password."
         format.html { redirect_to users_path }
       else
         flash[:error] = "Error in updating password.  Please try again!"

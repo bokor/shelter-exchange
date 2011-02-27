@@ -107,3 +107,22 @@ $(function(){
 
 });
 
+
+// var Application = {
+// 	modalDialogMessage: function(){
+// 		$('#modal_dialog').dialog({
+// 			width: 350,
+// 			height: 250,
+// 			modal: true,
+// 			resizable:false,
+// 			draggable: false,
+// 			buttons: {
+// 				Ok: function() { }
+// 				Cancel: function() { $( this ).dialog( "close" );}
+// 			}
+// 		});
+// 		$('.ui-dialog :button').blur();
+// 	}
+// };
+
+

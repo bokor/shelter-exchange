@@ -1,5 +1,5 @@
 class Parent < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'created_at DESC', :limit => 25
   
   # Associations
   has_many :placements, :dependent => :destroy
