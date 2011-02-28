@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   # load_and_authorize_resource
+  caches_action :index
+  cache_sweeper :user_sweeper
+  
   respond_to :html, :js
   
   def index
@@ -25,21 +28,10 @@ class UsersController < ApplicationController
     end
   end
   
-  def show
-    redirect_to users_path and return
-  end
-  
-  def new
-    redirect_to users_path and return
-  end
-  
-  def create
-    redirect_to users_path and return
-  end
-  
   def destroy
     @user = @current_account.users.find(params[:id])
-    flash[:notice] = "#{@user.name} has been deleted." if @user.destroy
+    @user.destroy
+    flash[:notice] = "#{@user.name} has been deleted."
   end
     
   def change_password
@@ -70,4 +62,17 @@ class UsersController < ApplicationController
   end
 
 end
+
+
+# def show
+#   redirect_to users_path and return
+# end
+# 
+# def new
+#   redirect_to users_path and return
+# end
+# 
+# def create
+#   redirect_to users_path and return
+# end
 

@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
   private
   
     def current_subdomain
-      if request.subdomains.first.present? && request.subdomains.first != "www"
+      if request.subdomains.first.present? and request.subdomains.first != "www"
         begin
-          @current_account = Account.find_by_subdomain!(request.subdomains.first) 
+          @current_account = Account.find_by_subdomain!(request.subdomains.first)
         rescue ActiveRecord::RecordNotFound
           logger.error("::: INVALID SUBDOMAIN => #{request.subdomains.first}")
           redirect_to "/404.html"
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
     
     def current_shelter
-      if @current_account.present?
+      if @current_account.present? and user_signed_in?
         @current_shelter = @current_account.shelters.first
       else
         @current_shelter = nil
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
       if @current_account.blank?
         'public'
       else
-        devise_controller? ? 'login' : 'application'
+        user_signed_in? ? 'application' : 'login'
       end
     end
     
@@ -76,14 +76,3 @@ class ApplicationController < ActionController::Base
     end
 
 end
-
-
-# Rails.cache.write(:current_account, Account.find_by_subdomain!(request.subdomains.first)) if Rails.cache.read(:current_account).blank?
-# @current_account = Rails.cache.read(:current_account)
-
-
-# if current_subdomain == 'admin'
-# authenticate_admin!
-# else
-# authenticate_user!
-# end

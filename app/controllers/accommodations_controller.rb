@@ -1,5 +1,8 @@
 class AccommodationsController < ApplicationController
   # load_and_authorize_resource
+  caches_action :index
+  cache_sweeper :accommodation_sweeper
+  
   respond_to :html, :js
   
   def index
@@ -11,14 +14,6 @@ class AccommodationsController < ApplicationController
     else
       @accommodation_validate = true
     end  
-  end
-  
-  def show
-    redirect_to accommodations_path and return
-  end
-  
-  def new
-    redirect_to accommodations_path and return
   end
   
   def edit
@@ -72,6 +67,14 @@ class AccommodationsController < ApplicationController
   end
 
 end
+
+# def show
+#   redirect_to accommodations_path and return
+# end
+# 
+# def new
+#   redirect_to accommodations_path and return
+# end
 
 # rescue_from ActiveRecord::RecordNotFound do |exception|
 #   logger.error(":::Attempt to access invalid accommodation => #{params[:id]}")

@@ -1,5 +1,8 @@
 class CapacitiesController < ApplicationController
   # load_and_authorize_resource
+  caches_action :index
+  cache_sweeper :capacity_sweeper
+  
   respond_to :html, :js
   
   def index
@@ -11,14 +14,6 @@ class CapacitiesController < ApplicationController
     else
       @capacity_validate = true
     end
-  end
-  
-  def show
-    redirect_to capacities_path and return
-  end
-  
-  def new
-    redirect_to capacities_path and return
   end
   
   def edit
@@ -57,12 +52,18 @@ class CapacitiesController < ApplicationController
      flash[:notice] = "Shelter Capacity has been deleted."
      respond_with(@capacity)
   end
-  
-  # rescue_from ActiveRecord::RecordNotFound do |exception|
-  #   logger.error(":::Attempt to access invalid alert => #{params[:id]}")
-  #   flash[:error] = "You have requested an invalid alert!"
-  #   redirect_to capacities_path and return
-  # end
-
-
 end
+
+# def show
+#   redirect_to capacities_path and return
+# end
+# 
+# def new
+#   redirect_to capacities_path and return
+# end
+
+# rescue_from ActiveRecord::RecordNotFound do |exception|
+#   logger.error(":::Attempt to access invalid alert => #{params[:id]}")
+#   flash[:error] = "You have requested an invalid alert!"
+#   redirect_to capacities_path and return
+# end

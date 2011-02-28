@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
   # load_and_authorize_resource
+  caches_action :index
+  cache_sweeper :task_sweeper
+  
   respond_to :html, :js
   
   def index
@@ -11,10 +14,6 @@ class TasksController < ApplicationController
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       redirect_to new_task_path
     end  
-  end
-  
-  def show
-    redirect_to tasks_path
   end
   
   def new
@@ -62,6 +61,12 @@ class TasksController < ApplicationController
   end
 
 end
+
+
+# def show
+#   redirect_to tasks_path
+# end
+
 
 # rescue_from ActiveRecord::RecordNotFound do |exception|
 #   logger.error(":::Attempt to access invalid task => #{params[:id]}")
