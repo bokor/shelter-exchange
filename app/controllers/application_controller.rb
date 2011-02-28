@@ -58,8 +58,8 @@ class ApplicationController < ActionController::Base
     
   protected
   
-    def is_integer(test)
-      test =~ /\A-?\d+\Z/
+    def is_integer?(value)
+      value =~ /\A-?\d+\Z/
     end
     
     def find_polymorphic_class
