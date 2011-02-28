@@ -31,11 +31,11 @@
 		</li>
 		<li>
 			<%= f.label :main_phone, "Main phone" %><br />
-			<%= f.text_field :main_phone %>
+			<%= f.text_field :main_phone, :value => number_to_phone(@shelter.main_phone, :delimiter => "-") %>
 		</li>
 		<li>
 			<%= f.label :fax_phone, "Fax phone" %><br />
-			<%= f.text_field :fax_phone %>
+			<%= f.text_field :fax_phone, :value => number_to_phone(@shelter.fax_phone, :delimiter => "-") %>
 		</li>
 		<li>
 			<%= f.label :email, "Email" %><br />

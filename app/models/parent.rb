@@ -1,4 +1,5 @@
 class Parent < ActiveRecord::Base
+  before_save :format_phone_numbers
   default_scope :order => 'created_at DESC', :limit => 25
   
   # Associations
@@ -25,4 +26,11 @@ class Parent < ActiveRecord::Base
                                      OR LOWER(email) LIKE LOWER('%#{q}%')") }
                                                 
   
+  
+  private 
+    def format_phone_numbers
+      self.home_phone = self.home_phone.gsub(/[^0-9]/, "")
+      self.mobile_phone = self.mobile_phone.gsub(/[^0-9]/, "")
+    end
+    
 end

@@ -7,8 +7,7 @@ class AlertsController < ApplicationController
     @animal_alerts = @current_shelter.alerts.for_animals.active.all
 
     if @shelter_alerts.blank? and @animal_alerts.blank?
-      @alert = @current_shelter.alerts.new
-      respond_with(@alert)
+      redirect_to new_alert_path
     else
       @alert_validate = true
     end
@@ -19,7 +18,8 @@ class AlertsController < ApplicationController
   end
   
   def new
-    redirect_to alerts_path and return
+    @alert = @current_shelter.alerts.new
+    respond_with(@alert)
   end
   
   def edit
@@ -36,7 +36,7 @@ class AlertsController < ApplicationController
         flash[:notice] = "#{@alert.title} has been created."
         format.html { redirect_to alerts_path }
       else
-        format.html { render :action => :index }
+        format.html { render :action => :new }
       end
     end
   end
@@ -55,14 +55,14 @@ class AlertsController < ApplicationController
   
   def destroy
      @alert = @current_shelter.alerts.find(params[:id])
-     @alert.destroy
-     flash[:notice] = "#{@alert.title} has been deleted."
+     flash[:notice] = "#{@alert.title} has been deleted." if @alert.destroy
      respond_with(@alert)
   end
   
   def stopped
     @alert = @current_shelter.alerts.find(params[:id])   
     flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :is_stopped => true })  
+    respond_with(@alert)
   end
   
   # rescue_from ActiveRecord::RecordNotFound do |exception|

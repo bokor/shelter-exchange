@@ -89,9 +89,7 @@ Shelterexchange::Application.routes.draw do
     
 #   Capacity Routes    
     resources :capacities
-
-#   Accounts Routes    
-    # resources :accounts
+    
 #   API Routes   
     resources :api, :only => [:animals]
     match '/api/:version/animals' => 'api#animals'

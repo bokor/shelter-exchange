@@ -40,8 +40,8 @@
 			<div id="contact_details">
 				<h3>Contact Details:</h3>
 				<ul>
-					<li>Main phone:  <%=@shelter.main_phone%></li>
-					<li>Fax phone:  <%=@shelter.fax_phone%></li>
+					<li>Main phone:  <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
+					<li>Fax phone:  <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li>
 					<li>Email:  <%=@shelter.email %></li>
 					<li>Website:  <%=@shelter.website%></li>
 					<li>Twitter:  <%=@shelter.twitter%></li>
@@ -68,7 +68,7 @@
 	
 	<div id="items_section">
 		<h2>Wish List <span class="actions">
-			<%= link_to "Edit", edit_wish_list_path(@shelter), :remote => true %></span></h2>
+			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
 		<p>BLAH BLAH</p>
 		<ol id="items">
 			<% unless @shelter.items.blank? %>

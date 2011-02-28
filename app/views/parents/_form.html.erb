@@ -22,11 +22,11 @@
 		</li>
 		<li>
 			<%= f.label :home_phone, "Phone (h)" %><br />
-			<%= f.text_field :home_phone %>
+			<%= f.text_field :home_phone, :value => number_to_phone(@parent.home_phone, :delimiter => "-") %>
 		</li>
 		<li>
 			<%= f.label :mobile_phone, "Phone (m)" %><br />
-			<%= f.text_field :mobile_phone %>
+			<%= f.text_field :mobile_phone, :value => number_to_phone(@parent.mobile_phone, :delimiter => "-") %>
 		</li>
 		<li>
 			<%= f.label :email, "Email" %><br />

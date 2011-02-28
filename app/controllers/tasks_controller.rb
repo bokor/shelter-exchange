@@ -9,10 +9,7 @@ class TasksController < ApplicationController
     @later_tasks = @current_shelter.tasks.for_all.later.active.all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
-      @task = @current_shelter.tasks.new
-      respond_with(@task)
-    else
-      @task_validate = true
+      redirect_to new_task_path
     end  
   end
   
@@ -21,7 +18,8 @@ class TasksController < ApplicationController
   end
   
   def new
-    redirect_to tasks_path
+    @task = @current_shelter.tasks.new
+    respond_with(@task)
   end
   
   def edit
@@ -38,7 +36,7 @@ class TasksController < ApplicationController
         flash[:notice] = "Task has been created."
         format.html { redirect_to tasks_path }
       else
-        format.html { render :action => :index }
+        format.html { render :action => :new }
       end
     end
   end
@@ -53,14 +51,14 @@ class TasksController < ApplicationController
   
   def destroy
     @task = @current_shelter.tasks.find(params[:id])
-    @task.destroy
-    flash[:notice] = "Task has been deleted."
+    flash[:notice] = "Task has been deleted." if @task.destroy
     respond_with(@task)
   end
   
   def completed
     @task = @current_shelter.tasks.find(params[:id])   
     flash[:notice] = "Task has been completed." if @task.update_attributes({ :is_completed => true })  
+    respond_with(@task)
   end
 
 end

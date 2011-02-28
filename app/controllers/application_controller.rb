@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
   before_filter :store_location, :set_mailer_url_options
   
+  layout :current_layout
   helper :all
 
   private
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
       else
         @current_shelter = nil
       end
+    end
+    
+    def current_layout
+      @current_account.blank? ? 'public' : 'application'
     end
     
     def set_shelter_timezone
@@ -67,14 +72,6 @@ class ApplicationController < ActionController::Base
     end
 
 end
-
-
-  
-  # layout :current_layout_name
-
-# def current_layout_name
-#   @current_account.blank? ? 'public' : 'application'
-# end
 
 
 # Rails.cache.write(:current_account, Account.find_by_subdomain!(request.subdomains.first)) if Rails.cache.read(:current_account).blank?

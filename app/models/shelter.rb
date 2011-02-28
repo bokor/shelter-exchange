@@ -1,6 +1,6 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  before_save :destroy_logo?, :geocode_address 
+  before_save :destroy_logo?, :format_phone_numbers, :geocode_address 
   
   # Associations
   belongs_to :account
@@ -71,6 +71,11 @@ class Shelter < ActiveRecord::Base
     
     def destroy_logo?
       self.logo.clear if @logo_delete == "1"
+    end
+    
+    def format_phone_numbers
+      self.main_phone = self.main_phone.gsub(/[^0-9]/, "")
+      self.fax_phone = self.fax_phone.gsub(/[^0-9]/, "")
     end
   
 end

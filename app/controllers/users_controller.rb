@@ -39,8 +39,7 @@ class UsersController < ApplicationController
   
   def destroy
     @user = @current_account.users.find(params[:id])
-    @user.destroy
-    flash[:notice] = "#{@user.name} has been deleted."
+    flash[:notice] = "#{@user.name} has been deleted." if @user.destroy
   end
     
   def change_password
