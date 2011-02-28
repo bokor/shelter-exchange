@@ -1,7 +1,7 @@
 class CapacitiesController < ApplicationController
   # load_and_authorize_resource
-  caches_action :index
-  cache_sweeper :capacity_sweeper
+  # caches_action :index
+  # cache_sweeper :capacity_sweeper
   
   respond_to :html, :js
   

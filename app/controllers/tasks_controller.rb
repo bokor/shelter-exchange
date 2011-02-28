@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   # load_and_authorize_resource
-  caches_action :index
-  cache_sweeper :task_sweeper
+  # caches_action :index
+  # cache_sweeper :task_sweeper
   
   respond_to :html, :js
   

@@ -1,7 +1,7 @@
 class SheltersController < ApplicationController
   # load_and_authorize_resource
-  caches_action :index
-  cache_sweeper :shelter_sweeper
+  # caches_action :index
+  # cache_sweeper :shelter_sweeper
   
   respond_to :html, :js
   
