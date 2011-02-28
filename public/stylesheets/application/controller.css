@@ -531,35 +531,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 /*****************************************************************/
-/* -------------------------- DEVISE --------------------------- */
-/*****************************************************************/
-/*#page {	width: 100%; min-height: 100%; height:auto !important; height: 100%; margin: 0 auto; position: relative; background-color: #fff; }
-.content { width:960px; margin: 0 auto; display:block; position: relative; }
-.content:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-*/
-/*.sessions #header { display:none;}
-.sessions #main { margin: 0 0 0 0; }
-.sessions #left {width: 100%; min-height: 100%; height:auto !important; height: 100%; margin: 0 auto; position: relative; background-color: #fff; }
-.sessions #left #content {width:960px; margin: 0 auto; display:block; position: relative; }
-.sessions #left #content { margin: 0 auto;padding:20px; }
-.sessions #sidebar { display:none;}*/
-.sessions #header { display:none;}
-.sessions #main { margin: 1em 0 0 3em; }
-.sessions #left {width: 60%; background-color: #fff; margin: 0 auto; padding: 0; position: relative; text-align:center; }
-.sessions #left #content {box-shadow: 0; -moz-box-shadow: 0; -webkit-box-shadow: 0; text-align: left; }
-.sessions #left #content { margin: 0 auto;padding:20px; }
-.sessions #sidebar { display:none;}
-
-.passwords #header { display:none;}
-.passwords #main { margin: 1em 0 0 3em; }
-.passwords #left {width: 60%; background-color: #fff; margin: 0 auto; padding: 0; position: relative; text-align:center; }
-.passwords #left #content {box-shadow: 0; -moz-box-shadow: 0; -webkit-box-shadow: 0; text-align: left; }
-.passwords #left #content { margin: 0 auto;padding:20px; }
-.passwords #sidebar { display:none;}
-
-
-
-/*****************************************************************/
 /* -------------------------- REPORTS -------------------------- */
 /*****************************************************************/
 /* -- Reports :: Common Styles --*/
@@ -634,6 +605,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_settings #left { width: 100%;}
 .index_settings #sidebar { width: 0;}
 
-/* -- Index Users :: Sections --*/
+/* Index Users :: Sections
+-----------------------------------------------------------------------------*/
 .index_settings  h2 { border-bottom: 1px #bbb solid; }
 .index_settings .section { padding-bottom: 25px;}
+
+
+

@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
     end
     
     def current_layout
-      @current_account.blank? ? 'public' : 'application'
+      if @current_account.blank?
+        'public'
+      else
+        devise_controller? ? 'login' : 'application'
+      end
     end
     
     def set_shelter_timezone
