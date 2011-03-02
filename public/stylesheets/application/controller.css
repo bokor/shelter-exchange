@@ -25,7 +25,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
-.animals #is_mixed_breed_field {padding: 5px 0px 0px 10px;}
+.animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
 
 /*.animals #accommodation_info{padding-top: 30px; }
 .animals #accommodation_info input{margin-bottom: 10px;}

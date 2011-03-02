@@ -11,4 +11,8 @@ module UrlHelper
     end
     super
   end
+  
+  def full_url
+    request.port != 80 ? [request.protocol, request.host, ":", request.port].join : [request.protocol, request.host].join
+  end
 end

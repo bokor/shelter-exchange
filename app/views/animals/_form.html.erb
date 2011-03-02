@@ -36,7 +36,7 @@
 			<%= f.label :sex, "Sex" %><br />
 			<% SEX.each do |value| %>
 				<%= f.radio_button :sex, value %>
-				<%= f.label "sex_#{value.downcase}", value.humanize %>
+				<%= f.label "sex_#{value}", value.humanize %>
 			<% end %>
 		</li>
 		<li>

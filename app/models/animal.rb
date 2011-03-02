@@ -1,6 +1,5 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
-  before_create :update_status_change_date
   before_save :check_status_change?, :destroy_photo?
   
   Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
@@ -91,6 +90,25 @@ class Animal < ActiveRecord::Base
   def photo_delete=(value)
     @photo_delete = value
   end
+  
+  def full_breed
+    if self.is_mix_breed
+      self.secondary_breed.blank? ? self.primary_breed << " Mix" : self.primary_breed << " & " << self.secondary_breed << " Mix"
+	  else
+	    self.primary_breed
+	  end
+  end
+  
+  def as_json(options = {})
+    json_format(version = options[:version])
+  end
+
+  def to_xml(options = {})
+    xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => 2, :dasherize => false, :skip_types => true)
+    xml.instruct!
+    xml_format(xml, version = options[:version])
+  end
+
                                                  
   private
 
@@ -137,7 +155,7 @@ class Animal < ActiveRecord::Base
     end
     
     def check_status_change?
-      if self.animal_status_id_changed?
+      if self.new_record? or self.animal_status_id_changed?
         update_status_change_date
       end
     end
@@ -146,127 +164,50 @@ class Animal < ActiveRecord::Base
       self.photo.clear if @photo_delete == "1"
     end
     
+    def json_format(version)
+      if version == :v1
+        { :animal => {
+            :id => id,
+            :name => name,
+            :type => animal_type.name,
+            :status => animal_status.name,
+            :breed => full_breed,
+            :age => age,
+            :color => color,
+            :description => description,
+            :is_sterilized => is_sterilized,
+            :weight => weight,
+            :sex => sex.to_s.humanize,
+            :photo => {
+              :thumbnail => photo.url(:thumbnail),
+              :small => photo.url(:small),
+              :large => photo.url(:large)
+            }
+          }
+        }
+      end
+    end
+    
+    def xml_format(xml, version)
+      if version == :v1
+        xml.animal do
+          xml.id   id
+          xml.name   name
+          xml.type   animal_type.name
+          xml.status   animal_status.name
+          xml.breed   full_breed
+          xml.age   age
+          xml.color   color
+          xml.description   description
+          xml.is_sterilized   is_sterilized
+          xml.weight   weight
+          xml.sex   sex.to_s.humanize
+          xml.photo do 
+            xml.thumbnail   photo.url(:thumbnail)
+            xml.small   photo.url(:small)
+            xml.large   photo.url(:large)
+          end
+        end
+      end
+    end
 end
-
-
-# has_many :parents, :through => :placements
-# has_many :breeds, :readonly => true
-
-# scope :total_available_for_adoption, joins(:animal_status).where("animal_statuses.name = 'Available for Adoption'") #id-1
-# scope :total_adoptions, joins(:animal_status).where("animal_statuses.name = 'Adopted'") #id-2
-# scope :total_euthanized, joins(:animal_status).where("animal_statuses.name = 'Euthanized'")#id-11
-
-# def clear_photo
-#   self.photo.queued_for_write.clear if !photo.dirty?
-#   # self.photo = nil
-# end
-
-# def delete_photo=(value)
-#   @delete_photo = !value.to_i.zero?
-# end
-# 
-# def delete_photo
-#   !!@delete_photo
-# end
-# alias_method :delete_photo?, :delete_photo
-
-# def test_save
-#   if @delete_avatar == 1.to_s 
-#     self.avatar = nil 
-#     self.avatar.queued_for_write.clear
-#   end
-# end
-
-
-#  OR
-# validates_presence_of :animal_type, :message => 'needs to be selected'
-# validates_presence_of :animal_status, :message => 'needs to be selected'
-
-# validates_attachment_presence :photo
-
-# has_attached_file :photo, :styles => { :small => "150x150>" },
-#                   :url  => "/assets/products/:id/:style/:basename.:extension",
-#                   :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
-
-
-
-# STATUS = { "available_for_adoption" => "Available for Adoption", 
-#            "adopted" => "Adopted", 
-#            "foster_care" => "Foster Care",
-#            "new_intake" => "New Intake", 
-#            "in_transit" => "In Transit",
-#            "on_hold_behavioral" => "On Hold - Behavioral",
-#            "on_hold_medical" => "On Hold - Medical",
-#            "on_hold_stray_intake" => "On Hold - Stray Intake",
-#            "deceased" => "Deceased",
-#            "euthanized" => "Euthanized" }
-
-
-# d1 = Date.parse("20070617") # => Sun, 17 Jun 2007
-# d2 = Date.parse("20090529") #=> Fri, 29 May 2009
-# eom = d1.end_of_month #=> Sat, 30 Jun 2007
-# mth_ends = [eom] #=> [Sat, 30 Jun 2007]
-# while eom < d2
-#   eom = eom.advance(:days => 1).end_of_month
-#   mth_ends << eom
-# end
-# yrs = mth_ends.group_by{|me| me.year}
-# 
-# d1.year.upto(d2.year) do |yr|
-#   puts "#{yrs[yr].min}, #{yrs[yr].max}"
-# end
-# 2007-06-30, 2007-12-31
-# 2008-01-31, 2008-12-31
-# 2009-01-31, 2009-05-31
-
-
-# scope :total_adoptions_by_type_and_month, select("animal_types.name as type").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-01-01' AND '2011-01-31' THEN 1 END) AS jan").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-02-01' AND '2011-02-28' THEN 1 END) AS feb").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-03-01' AND '2011-03-31' THEN 1 END) AS mar").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-04-01' AND '2011-04-30' THEN 1 END) AS apr").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-05-01' AND '2011-05-31' THEN 1 END) AS may").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-06-01' AND '2011-06-30' THEN 1 END) AS jun").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-07-01' AND '2011-07-31' THEN 1 END) AS jul").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-08-01' AND '2011-08-31' THEN 1 END) AS aug").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-09-01' AND '2011-09-30' THEN 1 END) AS sept").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-10-01' AND '2011-10-31' THEN 1 END) AS oct").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-11-01' AND '2011-11-30' THEN 1 END) AS nov").
-#                                    select("COUNT(CASE WHEN status_change_date BETWEEN '2011-12-01' AND '2011-12-31' THEN 1 END) AS dec").
-#                                    where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
-# Original Query
-#
-# SELECT animal_types.name as Type,
-#        COUNT(CASE WHEN status_change_date BETWEEN '2011-01-01' AND '2011-01-31' THEN 1 END) AS jan,       
-#          COUNT(CASE WHEN status_change_date BETWEEN '2011-02-01' AND '2011-02-28' THEN 1 END) AS feb
-#     FROM animals
-#   INNER JOIN "animal_types" ON "animal_types"."id" = "animals"."animal_type_id" 
-#     WHERE ("animals".shelter_id = 3) 
-#       AND "animals"."animal_status_id" = 2
-#   GROUP BY animal_types.name
-
-# def self.total_adoptions_by_type_and_month
-#   start_date = Date.today.beginning_of_year
-#   end_date = Date.today.end_of_year
-#   composed_scope = self.scoped
-#   composed_scope = composed_scope.select("animal_types.name as type")
-#   start_date.month.upto(end_date.month) do |month|
-#     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
-#     start_date = start_date.next_month
-#   end
-#   composed_scope = composed_scope.where(:animal_status_id => 2).joins(:animal_type).group(:animal_type_id) 
-#   composed_scope
-# end
-# 
-# def self.total_adoptions_by_month
-#   start_date = Date.today.beginning_of_year
-#   end_date = Date.today.end_of_year
-#   composed_scope = self.scoped
-#   start_date.month.upto(end_date.month) do |month|
-#     composed_scope = composed_scope.select("COUNT(CASE WHEN status_change_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::ABBR_MONTHNAMES[month].downcase}")
-#     start_date = start_date.next_month
-#   end
-#   composed_scope = composed_scope.where(:animal_status_id => 2)
-#   composed_scope
-# end
-   

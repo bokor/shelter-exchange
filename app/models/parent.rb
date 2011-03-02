@@ -1,5 +1,5 @@
 class Parent < ActiveRecord::Base
-  before_save :format_phone_numbers
+  before_validation :format_phone_numbers
   default_scope :order => 'created_at DESC', :limit => 25
   
   # Associations
@@ -21,16 +21,16 @@ class Parent < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT}
                     
   # Scopes
-  scope :search, lambda { |q| where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(street) LIKE LOWER('%#{q}%') 
-                                     OR LOWER(home_phone) LIKE LOWER('%#{q}%') OR LOWER(mobile_phone) LIKE LOWER('%#{q}%') 
+  scope :search, lambda { |q| phone = q.gsub(/[^0-9]/, "") 
+                              phone = q if phone.blank?
+                              where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(street) LIKE LOWER('%#{q}%') 
+                                     OR LOWER(home_phone) LIKE LOWER('%#{phone}%') OR LOWER(mobile_phone) LIKE LOWER('%#{phone}%') 
                                      OR LOWER(email) LIKE LOWER('%#{q}%')") }
-                                                
-  
   
   private 
     def format_phone_numbers
-      self.home_phone = self.home_phone.gsub(/[^0-9]/, "")
-      self.mobile_phone = self.mobile_phone.gsub(/[^0-9]/, "")
+      self.home_phone = self.home_phone.gsub(/[^0-9]/, "") unless self.home_phone.blank?
+      self.mobile_phone = self.mobile_phone.gsub(/[^0-9]/, "")  unless self.mobile_phone.blank?
     end
     
 end

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_subdomain, :current_shelter, :set_shelter_timezone
+  before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone
   before_filter :store_location, :set_mailer_url_options
   
   layout :current_layout
@@ -10,25 +10,12 @@ class ApplicationController < ActionController::Base
 
   private
   
-    def current_subdomain
-      if request.subdomains.first.present? and request.subdomains.first != "www"
-        begin
-          @current_account = Account.find_by_subdomain!(request.subdomains.first)
-        rescue ActiveRecord::RecordNotFound
-          logger.error("::: INVALID SUBDOMAIN => #{request.subdomains.first}")
-          redirect_to "/404.html"
-        end
-      else 
-        @current_account = nil
-      end
+    def current_account
+      @current_account ||= Account.find_by_subdomain!(request.subdomains.first)
     end
     
     def current_shelter
-      if @current_account.present? and user_signed_in?
-        @current_shelter = @current_account.shelters.first
-      else
-        @current_shelter = nil
-      end
+      @current_shelter ||= @current_account.shelters.first if user_signed_in?
     end
     
     def current_layout
@@ -73,6 +60,10 @@ class ApplicationController < ActionController::Base
     
     rescue_from CanCan::AccessDenied do |exception|
       render :template => 'errors/unauthorized'
+    end
+    
+    rescue_from ActiveRecord::RecordNotFound do |exception|
+      redirect_to "/404.html"
     end
 
 end

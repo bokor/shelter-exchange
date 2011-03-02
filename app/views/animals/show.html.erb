@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>
-					<p><%= @animal.animal_type.name %>:  <%= format_breed(@animal.is_mix_breed, @animal.primary_breed, @animal.secondary_breed) %></p>
+					<p><%= @animal.animal_type.name %>:  <%= @animal.full_breed %></p>
 				</td>
 				<td class="right">
 					<p><%= @animal.animal_status.name %></p>

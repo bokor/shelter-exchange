@@ -1,6 +1,7 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  before_save :destroy_logo?, :format_phone_numbers, :geocode_address 
+  before_validation :format_phone_numbers
+  before_save :destroy_logo?, :geocode_address 
   
   # Associations
   belongs_to :account
@@ -74,14 +75,9 @@ class Shelter < ActiveRecord::Base
     end
     
     def format_phone_numbers
-      self.main_phone = self.main_phone.gsub(/[^0-9]/, "")
-      self.fax_phone = self.fax_phone.gsub(/[^0-9]/, "")
+      self.main_phone = self.main_phone.gsub(/[^0-9]/, "") unless self.main_phone.blank?
+      self.fax_phone = self.fax_phone.gsub(/[^0-9]/, "") unless self.fax_phone.blank?
     end
   
 end
-# validates_presence_of :name
-# validates_presence_of :street
-# validates_presence_of :city
-# validates_presence_of :state
-# validates_presence_of :zip_code
-# validates_presence_of :main_phone
+
