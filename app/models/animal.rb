@@ -1,4 +1,5 @@
 class Animal < ActiveRecord::Base
+  include ActionController::UrlWriter
   default_scope :order => 'animals.created_at DESC', :limit => 250
   before_save :check_status_change?, :destroy_photo?
   
@@ -105,7 +106,7 @@ class Animal < ActiveRecord::Base
 
   def to_xml(options = {})
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => 2, :dasherize => false, :skip_types => true)
-    xml.instruct!
+    xml.instruct! unless options[:skip_instruct]
     xml_format(xml, version = options[:version])
   end
 
@@ -114,7 +115,7 @@ class Animal < ActiveRecord::Base
 
     def primary_breed_exists?
       if self.primary_breed && self.animal_type_id
-        if Breed.valid_for_animal(primary_breed, animal_type_id).blank?
+        if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
           errors.add(:primary_breed, "must contain a valid breed from the list")
         end
       end
@@ -122,7 +123,7 @@ class Animal < ActiveRecord::Base
 
     def secondary_breed_exists?
       if self.is_mix_breed && !self.secondary_breed.blank?
-        if Breed.valid_for_animal(secondary_breed, animal_type_id).blank?
+        if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
         end
       end
@@ -167,21 +168,21 @@ class Animal < ActiveRecord::Base
     def json_format(version)
       if version == :v1
         { :animal => {
-            :id => id,
-            :name => name,
-            :type => animal_type.name,
-            :status => animal_status.name,
-            :breed => full_breed,
-            :age => age,
-            :color => color,
-            :description => description,
-            :is_sterilized => is_sterilized,
-            :weight => weight,
-            :sex => sex.to_s.humanize,
+            :id => self.id,
+            :name => self.name,
+            :type => self.animal_type.name,
+            :status => self.animal_status.name,
+            :breed => self.full_breed,
+            :age => self.age,
+            :color => self.color,
+            :description => self.description,
+            :is_sterilized => self.is_sterilized,
+            :weight => self.weight,
+            :sex => self.sex.to_s.humanize,
             :photo => {
-              :thumbnail => photo.url(:thumbnail),
-              :small => photo.url(:small),
-              :large => photo.url(:large)
+              :thumbnail => self.photo.url(:thumbnail),
+              :small => self.photo.url(:small),
+              :large => self.photo.url(:large)
             }
           }
         }
@@ -191,21 +192,21 @@ class Animal < ActiveRecord::Base
     def xml_format(xml, version)
       if version == :v1
         xml.animal do
-          xml.id   id
-          xml.name   name
-          xml.type   animal_type.name
-          xml.status   animal_status.name
-          xml.breed   full_breed
-          xml.age   age
-          xml.color   color
-          xml.description   description
-          xml.is_sterilized   is_sterilized
-          xml.weight   weight
-          xml.sex   sex.to_s.humanize
+          xml.id(self.id)
+          xml.name(self.name)
+          xml.type(self.animal_type.name)
+          xml.status(self.animal_status.name)
+          xml.breed(self.full_breed)
+          xml.age(self.age)
+          xml.color(self.color)
+          xml.description(self.description)
+          xml.is_sterilized(self.is_sterilized)
+          xml.weight(self.weight)
+          xml.sex(self.sex.to_s.humanize)
           xml.photo do 
-            xml.thumbnail   photo.url(:thumbnail)
-            xml.small   photo.url(:small)
-            xml.large   photo.url(:large)
+            xml.thumbnail(self.photo.url(:thumbnail))
+            xml.small(self.photo.url(:small))
+            xml.large(self.photo.url(:large))
           end
         end
       end

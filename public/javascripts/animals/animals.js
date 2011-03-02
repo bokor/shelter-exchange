@@ -1,6 +1,6 @@
 var Animals = {
 	filterByTypeStatus: function(){
-		$.get("/animals/filter_by_type_status", { 
+		$.get("/animals/filter_by_type_status.js", { 
 				animal_type_id: $('#animal_animal_type_id').val(), 
 				animal_status_id: $('#animal_animal_status_id').val() 
 		});
@@ -83,7 +83,7 @@ var Animals = {
 			// highlight: true, MAKE EXT LATER
 			source: function( request, response ) {
 				$.ajax({
-					url: "/breeds/auto_complete",
+					url: "/breeds/auto_complete.js",
 					dataType: "json",
 					data: {
 						q: request.term,

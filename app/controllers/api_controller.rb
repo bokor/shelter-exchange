@@ -7,7 +7,7 @@ class ApiController < ApplicationController
   
   def animals
     if API_VERSION.include?(api_version)
-      @animals = @shelter.animals.includes(:animal_type, :animal_status).active
+      @animals = @shelter.animals.includes(:animal_type, :animal_status).available_for_adoption
       options = { :version => api_version.to_sym }
       respond_with(@animals) do |format|  
         format.json { render :json => @animals.to_json(options), :callback => params[:callback] }

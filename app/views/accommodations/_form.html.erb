@@ -1,19 +1,22 @@
 <ul class="form">
 	<li>
+		<%= f.label :location_id, "Location" %><br />
+		<%= collection_select(:accommodation, :location_id, @current_shelter.locations.all, :id, :name, :include_blank =>  "None") %>
+		<%= link_to "Edit", locations_path %>
+	</li>
+	<li>
+		<div class="separator"></div>
+	</li>
+	<li>
 		<%= f.label :animal_type_id, "Animal type" %><br />
 		<%= collection_select(:accommodation, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
 	</li>
 	<li>
-		<%= f.label :name, "Name (i.e. Crate 01)" %><br />
+		<%= f.label :name, "Name (i.e. Crate 1)" %><br />
 		<%= f.text_field :name %>
 	</li>
 	<li>
 		<%= f.label :max_capacity, "Max number of animals" %><br />
 		<%= f.text_field :max_capacity %>
-	</li>
-	<li>
-		<%= f.label :location_id, "Location" %><br />
-		<%= collection_select(:accommodation, :location_id, @current_shelter.locations.all, :id, :name, :include_blank =>  "None") %>
-		<%= link_to "Edit", locations_path %>
 	</li>
 </ul>
