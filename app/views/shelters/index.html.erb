@@ -69,7 +69,7 @@
 	<div id="items_section">
 		<h2>Wish List <span class="actions">
 			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
-		<p>BLAH BLAH</p>
+		<!-- <p>BLAH BLAH</p> -->
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
 				<%= render @shelter.items %>
@@ -94,7 +94,7 @@
 				</div>
 			<% end %>
 		</div>
-		<p>BLAH BLAH</p>
+		<!-- <p>BLAH BLAH</p> -->
 		<div id="capacities" class="capacity_list">
 			<% unless @shelter.capacities.blank? %>
 				<%= render @shelter.capacities%>
