@@ -14,7 +14,7 @@
 			<span class="animal_type"><%= accommodation.animal_type.name %></span>
 			<span class="select_link">
 				<% if animal_count != accommodation.max_capacity %>
-					<%= link_to "Select", "#", :onclick => "Animals.selectAccommodation('#{accommodation.id}','#{accommodation.name}');" %>
+					<%= link_to "Select", "#", :onclick => "Animals.selectAccommodation('#{accommodation.id}','#{accommodation.name}');return false;" %>
 				<% else %>
 					Full
 				<% end %>

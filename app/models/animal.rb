@@ -1,5 +1,4 @@
 class Animal < ActiveRecord::Base
-  include ActionController::UrlWriter
   default_scope :order => 'animals.created_at DESC', :limit => 250
   before_save :check_status_change?, :destroy_photo?
   

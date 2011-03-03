@@ -9,15 +9,17 @@ class AccommodationsController < ApplicationController
     @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   
     if @accommodations.blank?
-      @accommodation = @current_shelter.accommodations.new
-      respond_with(@accommodation)
-    else
-      @accommodation_validate = true
+      redirect_to new_task_path
     end  
   end
   
   def edit
     @accommodation = @current_shelter.accommodations.find(params[:id])
+    respond_with(@accommodation)
+  end
+  
+  def new
+    @accommodation = @current_shelter.accommodations.new
     respond_with(@accommodation)
   end
   

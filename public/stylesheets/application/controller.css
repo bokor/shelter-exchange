@@ -361,25 +361,25 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 /* -------------------------- LOCATIONS -------------------------- */
 /*******************************************************************/
-.locations ul {list-style:none;}
+#edit_location_dialog {width:100%; height:100%; background-color: #fff; }
+#edit_location_dialog .wrapper { padding: 15px; }
+#edit_location_dialog .done_editing{padding: 20px 0 0 0; font-weight:bold;font-size:16px;}
 
-.locations .page_heading{border-bottom:1px solid #eee; }
+#create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+#create_location .form {float:left; padding-bottom: 0;}
+#create_location .actions {float: left; margin: 2px 0 0 10px;}
+#create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/*.index_locations p { padding-bottom: 15px;}*/
+#locations {margin-top: 20px; width: 100%; height:380px; overflow:auto; z-index: 9999999999999; }
+#locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
+#locations .hover{background-color:#EFEBE3;}
+#locations .location {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+#locations .location .location_info {float: left; width: 85%;cursor: pointer;}
+#locations .location .name {color:#000; font-weight: bold;font-size: 14px; padding-left: 10px;}
+#locations .location .action_links {float: left; width: 15%; text-align: right;font-size: 10px;}
+#locations .location:last-child{border-bottom: 1px dotted #ccc; }
 
-.index_locations #create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-.index_locations #create_location .form {float:left; padding-bottom: 0;}
-.index_locations #create_location .actions {float: left; margin: 2px 0 0 10px;}
-.index_locations #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-.index_locations #locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
-.index_locations #locations .hover{background-color:#EFEBE3;}
-.index_locations #locations .location {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
-.index_locations #locations .location .location_info {float: left; width: 85%;cursor: pointer;}
-.index_locations #locations .location .name {color:#000; font-weight: bold;font-size: 14px; padding-left: 10px;}
-.index_locations #locations .location .action_links {float: left; width: 15%; text-align: right;font-size: 10px;}
-.index_locations #locations .location:last-child{border-bottom: 1px dotted #ccc; }
-.index_locations .done_editing{padding: 20px 20px 20px 0; font-weight:bold;font-size:16px;}
 
 
 

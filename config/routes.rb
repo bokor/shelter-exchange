@@ -30,7 +30,11 @@ Shelterexchange::Application.routes.draw do
     end
     
 #   Locations Routes 
-    resources :locations
+    resources :locations do
+      collection do
+        get :find_all
+      end
+    end
 
 #   Accommodations Routes 
     resources :accommodations do

@@ -1,97 +1,87 @@
 <%= title "Accommodations" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "accommodations/accommodations", :cache => "cache/application/accommodations-index" %>
+	<%= javascript_include_tag "accommodations/accommodations", "locations/locations", 
+	                           :cache => "cache/application/accommodations-index" %>
 <% end %>
 
 <%= content_for :page_content do %>
 
-	<% if @accommodation_validate %>
-	
-		<div class="print_heading">
-			<h1>Accommodations</h1>
-		</div>
+	<div class="print_heading">
+		<h1>Accommodations</h1>
+	</div>
 
-		<div class="page_content">
+	<div class="page_content">
 			
-			<table class="search">
-				<tr>
-					<td class="full_search">
-						<h3>Search for accommodation:</h3>
-						<%= form_for :accommodations, :url => { :action => :full_search }, :remote => true, :html => { :id => "form_full_search", :method => :get } do |f| %>
-							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go", :disable_with => "...", :class => "button" %>
-						<% end %>
-					</td>
-					<td class="filters">
-						<h3>Filter accommodation by:</h3>
-						<table class="filter_table">
-							<tr>
-								<td><%= label_tag :animal_type_id, "Animal type" %></td>
-								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
-										{ :name => "animal_type_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %><br /><br />
-								</td>
-							</tr>
-							<tr>
-								<td><%= label_tag :location_id, "Location details" %></td>
-								<td><%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
-										{ :name => "location_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+		<table class="search">
+			<tr>
+				<td class="full_search">
+					<h3>Search for accommodation:</h3>
+					<%= form_for :accommodations, :url => { :action => :full_search }, :remote => true, :html => { :id => "form_full_search", :method => :get } do |f| %>
+						<%= text_field_tag "q", ""  %>
+						<%= f.submit "Go", :disable_with => "...", :class => "button" %>
+					<% end %>
+				</td>
+				<td class="filters">
+					<h3>Filter accommodation by:</h3>
+					<table class="filter_table">
+						<tr>
+							<td><%= label_tag :animal_type_id, "Animal type" %></td>
+							<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+								{ :name => "animal_type_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %><br /><br />
+							</td>
+						</tr>
+						<tr>
+							<td><%= label_tag :location_id, "Location details" %></td>
+							<td><%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
+									{ :name => "location_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
 			
-			<div id="accommodations">
-				<%= render :partial => 'accommodation_list' %>
-			</div>
-			
+		<div id="accommodations">
+			<%= render :partial => 'accommodation_list' %>
 		</div>
-		
-	<% else %>
-		<div class="page_heading">
-			<h1>Create your first accommodation</h1>
-			<p>BLAH BLAH.</p>
-		</div>
-		
-		<div class="page_content">
 			
-			<%= render "global/error_messages", :target => @accommodation %>
-			<div id="create_accommodation">
-				<%= form_for(@accommodation) do |f| %>
-					<%= render :partial => "form", :locals => { :f => f } %>
-			    	<div class="actions">
-						<%= f.submit "Create Location", :disable_with => "Submitting...", :class => 'button' %>
-					</div>
-				<% end %>
-			</div>	
-		</div>
-	<% end %>
+	</div>
 
 <% end %>
 
 <%= content_for :sidebar do %>
-	<% if @accommodation_validate %>
-		<div id="create_accommodation">
-			<h2>Create a new accommodation</h2>
-			<div id="accommodation_errors"></div>
-			<%= form_for (Accommodation.new), :remote => true do |f| %>
+	
+	<div id="create_accommodation">
+		<h2>Create a new accommodation</h2>
+		<div id="accommodation_errors"></div>
+		<%= form_for (Accommodation.new), :remote => true do |f| %>
 			<%= render :partial => "form", :locals => { :f => f } %>
 			<div class="actions">
 				<%= f.submit "Create Accommodation", :disable_with => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
 			</div>
-			<% end %>
+		<% end %>
+	</div>
+		
+	<div id="edit_location_dialog" style="display:none;">
+		<div class="wrapper">
+			<h2>Edit locations</h2>
+			<div id="create_location">
+				<h3>Add a new location</h3>
+				<div id="location_errors"></div>
+				<%= form_for (Location.new), :remote => true do |f| %>
+					<%= render :partial => "locations/form", :locals => { :f => f } %>
+					<div class="actions">
+						<%= f.submit "Create Location", :disable_with => "Submitting...", :id => "create_location_button", :class => "button"  %>
+					</div>
+				<% end %>
+			</div>
+
+			<div id="locations">
+				<%= render @current_shelter.locations.all %>
+			</div>
+			<div class="done_editing"><%= link_to "I'm done editing", "#", :onclick => "Locations.closeEditLocationDialog(); return false;" %></div>
 		</div>
-	<% else %>
-		<div style="border: 1px #999 solid; background-color: #e0f1fa; padding: 15px;margin-bottom: 15px;">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-		<div style="border: 1px #c4f286 solid; background-color: #f1fce2; padding: 15px; margin-bottom: 15px;">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-		<div style="border: 1px #fff3b2 solid; background-color: #fffbe5; padding: 15px;margin-bottom: 15px;">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-	<% end %>
+	</div>
+	
 <% end %>

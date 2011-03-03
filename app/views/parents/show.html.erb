@@ -90,7 +90,7 @@
 		<div id="placement_errors"></div>
 		<div id="animal_selected">
 			<span></span>
-			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = 550, type = dom, title = Select Animal, layout = quicklook">Find animal</a>
+			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = 550, type = dom, title = Select Animal, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Find animal</a>
 		</div>
 		<% @placement = Placement.new %>
 		<%= form_for (@placement), :remote => true do |f| %>
