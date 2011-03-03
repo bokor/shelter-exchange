@@ -30,7 +30,7 @@ Shelterexchange::Application.routes.draw do
     end
     
 #   Locations Routes 
-    resources :locations do
+    resources :locations, :only => [:create, :edit, :update, :destroy] do
       collection do
         get :find_all
       end
