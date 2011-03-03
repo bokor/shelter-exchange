@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   # load_and_authorize_resource
-  # caches_action :index
+  # caches_action :find_all
   # cache_sweeper :location_sweeper
   
   respond_to :js

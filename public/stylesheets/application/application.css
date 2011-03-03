@@ -242,7 +242,7 @@ textarea.LV_invalid_field:active,
 
 
 /* From http://workingwithrails.com/railsplugin/4765-will-paginate */
-.pagination:before { content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+/*.pagination:before { content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }*/
 .pagination { margin: 2px; padding: 10px 2px 10px 2px; } 
 .pagination a { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #bbb; text-decoration: none; color: #666; } 
 .pagination a:hover, 

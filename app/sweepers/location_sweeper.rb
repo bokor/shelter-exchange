@@ -15,8 +15,7 @@ class LocationSweeper < ActionController::Caching::Sweeper
   
   private
     def expire_cache_for(location)
-      expire_action(:controller => :locations, :action => :show, :id => location.id)
-      expire_action(:controller => :locations, :action => :index)
+      expire_action(:controller => :locations, :action => :find_all)
     end
 end
 

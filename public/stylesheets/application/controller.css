@@ -52,8 +52,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animals #accommodation_selected #accommodation_search_link{}
 
 
-.animals #accommodation_search_dialog{background-color: #fff;}
-.animals #accommodation_search_dialog {width:100%; height:100%; background-color: #fff;}
+.animals #accommodation_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto;  z-index: 9999999999999;}
 .animals #accommodation_search_dialog .wrapper { padding: 15px; }
 
 
@@ -347,7 +346,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #accommodations .accommodation table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
 /* -- Animals :: Accommodations :: Accommodation Details --*/
-.animals #accommodations { width: 100%;height: 400px; overflow:auto;  z-index: 9999999999999;}
+.animals #accommodations { width: 100%;height: 400px; }
 .animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
 .animals #accommodations .accommodation .accommodation_types .select_link {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
 .animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
@@ -363,11 +362,9 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 /* -------------------------- LOCATIONS -------------------------- */
 /*******************************************************************/
-/*
-Scroll Bar Whole Screen
 #edit_location_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
 #edit_location_dialog .wrapper { padding: 15px; }
-#edit_location_dialog .done_editing{padding: 20px 0 0 0;font-weight:bold;font-size:16px;}
+/*#edit_location_dialog .done_editing{padding: 20px 0 0 0; font-weight:bold;font-size:16px;}*/
 
 #create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 #create_location .form {float:left; padding-bottom: 0;}
@@ -375,26 +372,6 @@ Scroll Bar Whole Screen
 #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 #locations {margin-top: 20px; width: 100%; height:auto; }
-#locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
-#locations .hover{background-color:#EFEBE3;}
-#locations .location {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
-#locations .location .location_info {float: left; width: 85%;cursor: pointer;}
-#locations .location .name {color:#000; font-weight: bold;font-size: 14px; padding-left: 10px;}
-#locations .location .action_links {float: left; width: 15%; text-align: right;font-size: 10px;}
-#locations .location:last-child{border-bottom: 1px dotted #ccc; }*/
-
-
-/* Scroll Bar Middle */
-#edit_location_dialog {width:100%; height:100%; background-color: #fff; }
-#edit_location_dialog .wrapper { padding: 15px; }
-#edit_location_dialog .done_editing{padding: 20px 0 0 0; font-weight:bold;font-size:16px;}
-
-#create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-#create_location .form {float:left; padding-bottom: 0;}
-#create_location .actions {float: left; margin: 2px 0 0 10px;}
-#create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-#locations {margin-top: 20px; width: 100%; height:380px; overflow:auto; z-index: 9999999999999; }
 #locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
 #locations .hover{background-color:#EFEBE3;}
 #locations .location {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
@@ -524,7 +501,7 @@ Scroll Bar Whole Screen
 
 
 .show_parents #create_placement {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
-.show_parents #animal_search_dialog {width:100%; height:100%; background-color: #fff;}
+.show_parents #animal_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
 .show_parents #animal_search_dialog .wrapper { padding: 15px; }
 
 .show_parents #animal_selected{padding: 0 0 10px 0;}
@@ -532,7 +509,7 @@ Scroll Bar Whole Screen
 .show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .show_parents #animal_selected #animal_search_link{}
 
-.show_parents #animals {margin-top: 20px; width: 100%;height: 450px; overflow:auto; z-index: 9999999999999;}
+.show_parents #animals {margin-top: 20px; width: 99%;height: 400px; }
 .show_parents #animals table.animal_list{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
 .show_parents #animals table.animal_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
 .show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
