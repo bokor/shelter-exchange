@@ -5,10 +5,10 @@ Shelterexchange::Application.routes.draw do
   constraints(AppSubdomain) do
 
 #   Notes Routes
-    resources :notes
+    resources :notes, :only => [:create, :edit, :update, :destroy]
 
 #   Comments Routes
-    resources :comments
+    resources :comments, :only => [:create, :edit, :update, :destroy]
 
 #   Items Routes    
     resources :items
@@ -37,7 +37,7 @@ Shelterexchange::Application.routes.draw do
     end
 
 #   Accommodations Routes 
-    resources :accommodations do
+    resources :accommodations, :except => [:show] do
       collection do
         get :full_search
         get :filter_by_type_location
@@ -45,17 +45,17 @@ Shelterexchange::Application.routes.draw do
     end
     
 #   Tasks Routes
-    resources :tasks do
+    resources :tasks, :except => [:show] do
       get :completed, :on => :member
     end
 
 #   Alerts Routes
-    resources :alerts do
+    resources :alerts, :except => [:show] do
       get :stopped, :on => :member
     end
     
 #   Placements Routes
-    resources :placements do
+    resources :placements, :only => [:create, :edit, :update, :destroy] do
       resources :comments
     end
     
@@ -83,12 +83,12 @@ Shelterexchange::Application.routes.draw do
     end
     
 #   Breeds Routes - Used as a look up for the auto_complete on the animal page
-    resources :breeds do
-      get :auto_complete,  :on => :collection
+    resources :breeds, :only => [:auto_complete] do
+      get :auto_complete, :on => :collection
     end
 
 #   Shelter Routes 
-    resources :shelters 
+    resources :shelters, :only => [:index, :edit, :update]
     resources :wish_lists, :only => [:edit, :update]
     
 #   Capacity Routes    
@@ -99,11 +99,11 @@ Shelterexchange::Application.routes.draw do
     match '/api/:version/animals' => 'api#animals'
         
 #   Account Settings Routes    
-    resources :settings 
+    resources :settings, :only => [:index] 
     resources :token_authentications, :only => [:create, :destroy]
     
 #   Users Routes - Localized updated
-    resources :users do
+    resources :users, :except => [:show, :new, :create] do
       member do
         post :change_password
         post :change_owner

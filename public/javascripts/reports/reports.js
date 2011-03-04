@@ -19,7 +19,7 @@ var Reports = {
 						pie: {
 							allowPointSelect: true,
 					  		cursor: 'pointer',
-					     	dataLabels: { enabled: true },
+					     	dataLabels: { enabled: false },
 					  		showInLegend: true
 						}
 					},

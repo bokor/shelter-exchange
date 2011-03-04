@@ -49,8 +49,8 @@ class Animal < ActiveRecord::Base
                                                                                 OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
   
-  scope :active, where(:animal_status_id => [1,4,5,6,7,8])
-  scope :non_active, where(:animal_status_id => [2,3,9,10,11])
+  scope :active, where(:animal_status_id => [1,3,4,5,6,7,8])
+  scope :non_active, where(:animal_status_id => [2,9,10,11])
   scope :available_for_adoption, where(:animal_status_id => 1)
   scope :adoptions, where(:animal_status_id => 2)
   scope :euthanized, where(:animal_status_id => 11)
@@ -60,10 +60,7 @@ class Animal < ActiveRecord::Base
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
-  
-  # FOR REFACTORING
-  # scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
-  
+    
   def self.totals_by_month(year, date_type, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
@@ -169,8 +166,14 @@ class Animal < ActiveRecord::Base
         { :animal => {
             :id => self.id,
             :name => self.name,
-            :type => self.animal_type.name,
-            :status => self.animal_status.name,
+            :type => {
+              :id => self.animal_type_id,
+              :name => self.animal_type.name
+            },
+            :status => {
+              :id => self.animal_status_id,
+              :name => self.animal_status.name
+            },
             :breed => self.full_breed,
             :age => self.age,
             :color => self.color,
@@ -193,8 +196,14 @@ class Animal < ActiveRecord::Base
         xml.animal do
           xml.id(self.id)
           xml.name(self.name)
-          xml.type(self.animal_type.name)
-          xml.status(self.animal_status.name)
+          xml.type do 
+            xml.id(self.animal_type_id)
+            xml.name(self.animal_type.name)
+          end
+          xml.status do 
+            xml.id(self.animal_status_id)
+            xml.name(self.animal_status.name)
+          end
           xml.breed(self.full_breed)
           xml.age(self.age)
           xml.color(self.color)
@@ -211,3 +220,6 @@ class Animal < ActiveRecord::Base
       end
     end
 end
+
+# FOR REFACTORING REPORTS
+# scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
