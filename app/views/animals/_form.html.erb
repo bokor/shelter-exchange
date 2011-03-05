@@ -1,13 +1,9 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
 	<ul class="form">
 		<li style="float:right; width:42%">
-			<%= image_tag @animal.photo.url(:small) %><br />
-			<% if @animal.photo.file? %>
-				<%= f.check_box :photo_delete %><%= f.label :photo_delete, "Remove Photo" %><br />
-			<% else %>
-				<%= f.label :photo, "Upload image" %><br />
-				<%= f.file_field :photo  %>
-			<% end %>
+			<div id="photo">
+				<%= render "photos/photo" %>
+			</div>
 		</li>
 		<li>
 			<%= f.label :name, "Animal name" %><br />
@@ -32,8 +28,9 @@
 			<%= f.label :animal_status_id, "Animal status" %><br />
 			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
 			<div id="reason_field">
-				<%= label_tag "note_description", "Reason for the status change" %><br />
-				<%= text_field_tag "note_description" %>
+				<%= f.label :audit_description, "Reason for the status change" %><br />
+				<%= f.text_field :audit_description %>
+				<%= f.hidden_field :audit_title %>
 			</div>
 		</li>
 		<li>

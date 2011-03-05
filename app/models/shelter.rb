@@ -1,7 +1,7 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
   before_validation :format_phone_numbers
-  before_save :destroy_logo?, :geocode_address 
+  before_save :geocode_address 
   
   # Associations
   belongs_to :account
@@ -19,7 +19,7 @@ class Shelter < ActiveRecord::Base
   
  # has_one :address, :as => :addressable, :dependent => :destroy
   
-  has_attached_file :logo, :whiny => false, #:default_url => "/images/default_:style_photo.jpg", 
+  has_attached_file :logo, :whiny => false, :default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
                             :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
@@ -45,21 +45,12 @@ class Shelter < ActiveRecord::Base
   
   # Scopes  
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
-
-  def logo_delete
-    @logo_delete ||= "0"
-  end
-
-  def logo_delete=(value)
-    @logo_delete = value
-  end
   
   def generate_access_token!
     # self.access_token = ActiveSupport::SecureRandom.base64(15)
     self.access_token = ActiveSupport::SecureRandom.hex(15)
     self.save
   end
-  
   
   private
     def geocode_address
@@ -69,11 +60,7 @@ class Shelter < ActiveRecord::Base
         self.lat, self.lng = geo.lat,geo.lng if geo.success
       end
     end
-    
-    def destroy_logo?
-      self.logo.clear if @logo_delete == "1"
-    end
-    
+
     def format_phone_numbers
       self.main_phone = self.main_phone.gsub(/[^0-9]/, "") unless self.main_phone.blank?
       self.fax_phone = self.fax_phone.gsub(/[^0-9]/, "") unless self.fax_phone.blank?

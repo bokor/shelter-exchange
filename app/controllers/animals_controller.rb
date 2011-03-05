@@ -90,14 +90,11 @@ class AnimalsController < ApplicationController
     render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
   end
   
-  # private 
-  #   def status_audit_trail(animal)
-  #     logger.debug("STATUS CHANGED in audit trail :::::: #{animal.changed?}")
-  #     if animal.status_changed?
-  #       @note = @current_shelter.notes.new(:notable => @animal, :title => "Status: #{@animal.animal_status.name}", :description => params[:note_description], :note_category_id => 1)
-  #       @note.save
-  #     end
-  #   end
+  def delete_photo
+    @animal = @current_shelter.animals.find(params[:id])
+    @animal.photo.clear 
+    @animal.save
+  end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")

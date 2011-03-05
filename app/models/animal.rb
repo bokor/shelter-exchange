@@ -1,13 +1,13 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
-  before_save :check_status_change?, :destroy_photo?
+  before_save :check_status_change?
   
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE = 25
   
   # Associations
-  belongs_to :animal_type #, :readonly => true
-  belongs_to :animal_status #, :readonly => true
+  belongs_to :animal_type, :readonly => true
+  belongs_to :animal_status, :readonly => true
   belongs_to :accommodation
   belongs_to :shelter
   
@@ -28,7 +28,7 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :animal_type_id, :message => 'needs to be selected'
   validates_presence_of :animal_status_id, :message => 'needs to be selected'
-  validates_uniqueness_of :microchip, :if => Proc.new { |animal| animal.microchip.present? }
+  validates_uniqueness_of :microchip, :if => :microchip_present?
   
   # Custom Validations
   validate :primary_breed, :presence => true, :if => :primary_breed_exists?
@@ -82,12 +82,20 @@ class Animal < ActiveRecord::Base
     composed_scope
   end
   
-  def photo_delete
-    @photo_delete ||= "0"
+  def audit_title
+    @audit_title ||= ""
   end
 
-  def photo_delete=(value)
-    @photo_delete = value
+  def audit_title=(value)
+    @audit_title = value
+  end
+  
+  def audit_description
+    @audit_description ||= ""
+  end
+
+  def audit_description=(value)
+    @audit_description = value
   end
   
   def full_breed
@@ -110,6 +118,10 @@ class Animal < ActiveRecord::Base
 
                                                  
   private
+  
+    def microchip_present?
+      self.microchip.present?
+    end
 
     def primary_breed_exists?
       if self.primary_breed && self.animal_type_id
@@ -152,11 +164,11 @@ class Animal < ActiveRecord::Base
     def check_status_change?
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
+        unless @audit_description.blank? or @audit_title.blank?
+          note = Note.new(:notable => self, :shelter_id => self.shelter_id, :title => @audit_title, :description => @audit_description, :note_category_id => 1)
+          note.save
+        end
       end
-    end
-    
-    def destroy_photo?
-      self.photo.clear if @photo_delete == "1"
     end
     
     def json_format(version)
@@ -221,3 +233,13 @@ end
 
 # FOR REFACTORING REPORTS
 # scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
+# def photo_delete
+#   @photo_delete ||= "0"
+# end
+# 
+# def photo_delete=(value)
+#   @photo_delete = value
+# end
+# def destroy_photo?
+#   self.photo.clear if @photo_delete == "1"
+# end

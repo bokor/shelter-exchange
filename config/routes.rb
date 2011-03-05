@@ -82,13 +82,16 @@ Shelterexchange::Application.routes.draw do
       end
     end
     
+    resources :photos, :only => [:destroy]
+    resources :logos, :only => [:destroy]
+    
 #   Breeds Routes - Used as a look up for the auto_complete on the animal page
     resources :breeds, :only => [:auto_complete] do
       get :auto_complete, :on => :collection
     end
 
 #   Shelter Routes 
-    resources :shelters, :only => [:index, :edit, :update]
+    resources :shelters, :only => [:index, :edit, :update] 
     resources :wish_lists, :only => [:edit, :update]
     
 #   Capacity Routes    

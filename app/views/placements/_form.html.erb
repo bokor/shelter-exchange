@@ -6,8 +6,7 @@
 			<%= f.label "placement_type_#{type}", type.humanize %>
 		<% end %>
 	</li>
-	<% @placement.comments.build %>
-	<%= f.fields_for :comments do |comment_fields| %>
+	<%= f.fields_for :comments, @placement.comments.build do |comment_fields| %>
 	<li>
 		<%= comment_fields.label :comment, "Comment" %><br />
 		<%= comment_fields.text_area :comment %>

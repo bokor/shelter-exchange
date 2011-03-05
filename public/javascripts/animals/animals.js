@@ -1,12 +1,6 @@
 var Animals = {
 	original_animal_status_id: "",
 	
-	filterByTypeStatus: function(){
-		$.get("/animals/filter_by_type_status.js", { 
-				animal_type_id: $('#animal_animal_type_id').val(), 
-				animal_status_id: $('#animal_animal_status_id').val() 
-		});
-	},
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();
 
@@ -21,11 +15,15 @@ var Animals = {
 	},
 	animalStatusSelected: function() {
 		var animal_status_id = $('#animal_animal_status_id').val();
+		var animal_status_text = $("#animal_animal_status_id option:selected").text();
 
 		if (animal_status_id != this.original_animal_status_id) {
 			$('#reason_field').show();
+			$('#animal_audit_title').val("Status: " + animal_status_text);
 		} else {
 			$('#reason_field').hide();
+			$('#animal_audit_title').val("");
+			$('#animal_audit_description').val("");
 		}
 	},
 	showSecondaryBreed: function() {
@@ -43,19 +41,19 @@ var Animals = {
 		Animals.animalStatusSelected();
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
-		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected()});
-		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected()});
-		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed()});
-		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation()});
+		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
+		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected();});
+		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
+		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
 		if(is_kill_shelter) {
 			Animals.arrivalDatePicker();
 			Animals.euthanasiaScheduledDatePicker();
 			Animals.setHumanizeDate('#arrival_date', $('#animal_arrival_date').val());
 			Animals.setHumanizeDate('#euthanasia_scheduled', $('#animal_euthanasia_scheduled').val());
-			$('#arrival_date_trigger').click(function() {
+			$('#arrival_date_trigger').bind("click", function(event) {
 		        $('#arrival_date_datepicker').slideToggle();
 		    });
-			$('#euthanasia_scheduled_trigger').click(function() {
+			$('#euthanasia_scheduled_trigger').bind("click", function(event) {
 		        $('#euthanasia_scheduled_datepicker').slideToggle();
 		    });
 		}
@@ -88,6 +86,15 @@ var Animals = {
 			$('#accommodation_remove_link').show();
 		}
 	},
+	filterByTypeStatus: function(){
+		$.get("/animals/filter_by_type_status.js", { 
+				animal_type_id: $('#animal_animal_type_id').val(), 
+				animal_status_id: $('#animal_animal_status_id').val() 
+		});
+	},
+	// deletePhoto: function(id) {
+	// 	$.get("/animals/" + id + "/delete_photo.js");
+	// },
 	autoComplete: function(){
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,

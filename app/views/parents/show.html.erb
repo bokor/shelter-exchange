@@ -92,7 +92,6 @@
 			<span></span>
 			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = auto, type = dom, title = Select Animal, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Find animal</a>
 		</div>
-		<% @placement = Placement.new %>
 		<%= form_for (@placement), :remote => true do |f| %>
 			<%= render :partial => "placements/form", :locals => { :f => f } %>
 			<div class="actions">
