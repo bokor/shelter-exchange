@@ -62,17 +62,3 @@ class UsersController < ApplicationController
   end
 
 end
-
-
-# def show
-#   redirect_to users_path and return
-# end
-# 
-# def new
-#   redirect_to users_path and return
-# end
-# 
-# def create
-#   redirect_to users_path and return
-# end
-

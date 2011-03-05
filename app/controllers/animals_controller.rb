@@ -90,12 +90,6 @@ class AnimalsController < ApplicationController
     render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
   end
   
-  def delete_photo
-    @animal = @current_shelter.animals.find(params[:id])
-    @animal.photo.clear 
-    @animal.save
-  end
-  
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
     flash[:error] = "You have requested an invalid animal!"

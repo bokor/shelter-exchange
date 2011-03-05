@@ -64,15 +64,4 @@ class AlertsController < ApplicationController
     respond_with(@alert)
   end
 
-
 end
-
-# def show
-#   redirect_to alerts_path and return
-# end
-  
-  # rescue_from ActiveRecord::RecordNotFound do |exception|
-  #   logger.error(":::Attempt to access invalid alert => #{params[:id]}")
-  #   flash[:error] = "You have requested an invalid alert!"
-  #   redirect_to alerts_path and return
-  # end

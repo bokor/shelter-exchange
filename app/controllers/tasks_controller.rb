@@ -61,19 +61,3 @@ class TasksController < ApplicationController
   end
 
 end
-
-
-# def show
-#   redirect_to tasks_path
-# end
-
-
-# rescue_from ActiveRecord::RecordNotFound do |exception|
-#   logger.error(":::Attempt to access invalid task => #{params[:id]}")
-#   flash[:error] = "You have requested an invalid task!"
-#   redirect_to tasks_path and return
-# end
-
-# TEMPLATE CODE FOR THIS_WEEK if needed
-#<b><%= task.due_date.strftime('%W') if task.due_date%></b>
-
