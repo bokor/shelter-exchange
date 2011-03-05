@@ -13,7 +13,7 @@
 		<h2>Account URL</h2>
 		<p>Your shelter's main access URL.</p>
 		<div class="section">
-			<b><%= full_url %></b>
+			<p><code><%= full_url %></code></p>
 		</div>
 		
 		<h2>Change Owner</h2>
@@ -31,6 +31,7 @@
 		<div class="section">
 			<p><%= label_tag :access_token, "Access Token" %></p>
 			<p><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %>
+			&nbsp;|&nbsp;
 			<%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></p>
 			<p>
 			<% if @current_shelter.access_token.blank? %>
@@ -38,10 +39,10 @@
 			<% else %>
 				<h3>JSON</h3>
 				<h5>Version 1</h5>
-				<p><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %></p>
+				<p><code><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
 				<h3>XML</h3>
 				<h5>Version 1</h5>
-				<p><%= full_url %>/api/v1/animals.xml?access_token=<%= @current_shelter.access_token %></p>
+				<p><code><%= full_url %>/api/v1/animals.xml?access_token=<%= @current_shelter.access_token %></code></p>
 			<% end %>
 			</p>
 			

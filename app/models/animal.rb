@@ -2,11 +2,12 @@ class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
   before_save :check_status_change?, :destroy_photo?
   
-  Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
+  # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
+  PER_PAGE = 25
   
   # Associations
-  belongs_to :animal_type, :readonly => true
-  belongs_to :animal_status, :readonly => true
+  belongs_to :animal_type #, :readonly => true
+  belongs_to :animal_status #, :readonly => true
   belongs_to :accommodation
   belongs_to :shelter
   
@@ -27,6 +28,7 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :animal_type_id, :message => 'needs to be selected'
   validates_presence_of :animal_status_id, :message => 'needs to be selected'
+  validates_uniqueness_of :microchip, :if => Proc.new { |animal| animal.microchip.present? }
   
   # Custom Validations
   validate :primary_breed, :presence => true, :if => :primary_breed_exists?
@@ -44,7 +46,7 @@ class Animal < ActiveRecord::Base
   # Scopes
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }
   scope :full_search, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%')
-                                                                                OR LOWER(chip_id) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%')
+                                                                                OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%')
                                                                                 OR LOWER(age) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
                                                                                 OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
@@ -146,14 +148,10 @@ class Animal < ActiveRecord::Base
         errors.add(:hold_time, "must be entered")
       end
     end
-
-    def update_status_change_date
-      self.status_change_date = Date.today
-    end
     
     def check_status_change?
       if self.new_record? or self.animal_status_id_changed?
-        update_status_change_date
+        self.status_change_date = Date.today
       end
     end
     

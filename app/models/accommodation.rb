@@ -1,7 +1,8 @@
 class Accommodation < ActiveRecord::Base
   default_scope :order => 'name ASC', :limit => 250
   
-  Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 50
+  # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 50
+  PER_PAGE = 50
   
   # Associations
   belongs_to :shelter

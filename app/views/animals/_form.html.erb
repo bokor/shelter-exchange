@@ -31,6 +31,10 @@
 		<li>
 			<%= f.label :animal_status_id, "Animal status" %><br />
 			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
+			<div id="reason_field">
+				<%= label_tag "note_description", "Reason for the status change" %><br />
+				<%= text_field_tag "note_description" %>
+			</div>
 		</li>
 		<li>
 			<%= f.label :sex, "Sex" %><br />
@@ -55,8 +59,8 @@
 			<%= f.text_field :color %>
 		</li>
 		<li>
-			<%= f.label :chip_id , "Microchip#" %><br />
-			<%= f.text_field :chip_id %>
+			<%= f.label :microchip, "Microchip#" %><br />
+			<%= f.text_field :microchip %>
 		</li>
 		<li>
 			<%= f.label :description, "Description" %><br />

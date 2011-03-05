@@ -43,7 +43,7 @@
 					<ul>
 						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
 						<li><p><b>Age:</b> <%= @animal.age %></p></li>
-						<li><p><b>MChip:</b> <%= @animal.chip_id %></p></li>
+						<li><p><b>MicroChip:</b> <%= @animal.microchip %></p></li>
 						<li><p><b>Color:</b> <%= @animal.color %></p></li>
 						<li><p><b>Sex:</b> <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 					</ul>
@@ -95,7 +95,8 @@
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id), :remote => true, :id => "all_notes_link" %>&nbsp;|&nbsp;
 			<%= link_to 'General', filter_notes_animals_path(:filter => "General", :id => @animal.id), :remote => true, :id => "general_notes_link" %>&nbsp;|&nbsp;
 			<%= link_to 'Medical', filter_notes_animals_path(:filter => "Medical", :id => @animal.id),  :remote => true,:id => "medical_notes_link" %>&nbsp;|&nbsp;
-			<%= link_to 'Behavioral', filter_notes_animals_path(:filter => "Behavioral", :id => @animal.id), :remote => true,:id => "behavioral_notes_link" %>
+			<%= link_to 'Behavioral', filter_notes_animals_path(:filter => "Behavioral", :id => @animal.id), :remote => true,:id => "behavioral_notes_link" %>&nbsp;|&nbsp;
+			<%= link_to 'Intake', filter_notes_animals_path(:filter => "Intake", :id => @animal.id), :remote => true,:id => "intake_notes_link" %>
 		</div>
 	</div>
 	

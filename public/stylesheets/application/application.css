@@ -28,6 +28,10 @@ h5 {  }
 
 p{ margin-bottom: 10px; }
 img { border: none; outline: none; }
+
+code,code pre,kbd {font: normal 12px Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;}
+/*code.source {display: block;margin: 1em 0 1.5em;padding: 1em 1.4em;border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px;-khtml-border-radius: 3px;background-color: #F5F5FC;color: #556;font-size: 11px;}*/
+
 .center { margin: 0 auto; text-align: center; }
 .left{text-align:left;}
 .right{text-align:right;}
@@ -172,10 +176,10 @@ textarea{height:100px;width:400px;font-size:14px; }
 /****************************************************************/
 
 
-/*
-	Need Button Default style, different colors and different sizes....Change the BUtton class to something else.
 
-.button {
+/*	Need Button Default style, different colors and different sizes....Change the BUtton class to something else.*/
+
+/*.button {
 	display: inline-block;
 	outline: none;
 	cursor: pointer;
@@ -183,6 +187,7 @@ textarea{height:100px;width:400px;font-size:14px; }
 	text-decoration: none;
 	font: 14px/100% Arial, Helvetica, sans-serif;
 	padding: .5em 2em .55em;
+	margin-bottom: 5px;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em;
 	-moz-border-radius: .5em;

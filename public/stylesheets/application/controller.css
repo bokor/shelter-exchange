@@ -25,6 +25,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
+.animals #reason_field{ padding-top:10px; }
 .animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
 
 /*.animals #accommodation_info{padding-top: 30px; }
@@ -371,7 +372,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #create_location .actions {float: left; margin: 2px 0 0 10px;}
 #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-#locations {margin-top: 20px; width: 100%; height:auto; }
+#locations {margin-top: 20px; width: 100%; min-height:300px; }
 #locations .edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
 #locations .hover{background-color:#EFEBE3;}
 #locations .location {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }

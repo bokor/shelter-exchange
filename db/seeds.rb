@@ -617,7 +617,8 @@ Breed.create([
 NoteCategory.create([
   { :name => "General" },
   { :name => "Medical" },
-  { :name => "Behavioral" }
+  { :name => "Behavioral" },
+  { :name => "Intake" }
 ])
 
 # general = NoteCategory.find_by_name("General")

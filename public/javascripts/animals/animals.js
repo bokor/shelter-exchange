@@ -1,4 +1,6 @@
 var Animals = {
+	original_animal_status_id: "",
+	
 	filterByTypeStatus: function(){
 		$.get("/animals/filter_by_type_status.js", { 
 				animal_type_id: $('#animal_animal_type_id').val(), 
@@ -17,6 +19,15 @@ var Animals = {
 			$('#accommodation_info').show();
 		}
 	},
+	animalStatusSelected: function() {
+		var animal_status_id = $('#animal_animal_status_id').val();
+
+		if (animal_status_id != this.original_animal_status_id) {
+			$('#reason_field').show();
+		} else {
+			$('#reason_field').hide();
+		}
+	},
 	showSecondaryBreed: function() {
 		var is_checked = $('#animal_is_mix_breed').is(':checked');
 		if (is_checked) {
@@ -26,11 +37,14 @@ var Animals = {
 		}
 	},
 	formInitialize: function(is_kill_shelter) {
+		this.original_animal_status_id = $('#animal_animal_status_id').val();
 		Animals.autoComplete();
 		Animals.animalTypeSelected();
+		Animals.animalStatusSelected();
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected()});
+		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected()});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed()});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation()});
 		if(is_kill_shelter) {
@@ -48,7 +62,7 @@ var Animals = {
 	},
 	noteFilters: function(){
 		$('#all_notes_link').addClass('active_link');
-		$('#all_notes_link, #general_notes_link, #behavioral_notes_link, #medical_notes_link').bind("click", function(event) {
+		$('#all_notes_link, #general_notes_link, #behavioral_notes_link, #medical_notes_link, #intake_notes_link').bind("click", function(event) {
 			$('.active_link').removeClass('active_link');
 			$(event.target).addClass('active_link');
 		});

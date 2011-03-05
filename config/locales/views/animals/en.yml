@@ -21,7 +21,7 @@ en:
       new_form_description:  "To create a new animal fill out form and hit create animals.To create a new animal fill out form and hit create animals.To create a new animal fill out form and hit create animals"
       form_submit:           "Create animal"
     form:
-        chip_id:               "Chip ID"
+        microchip:             "Chip ID"
         id_number:             "ID Number"
         name:                  "Name"
         description:           "Description"
