@@ -1,5 +1,4 @@
 var Animals = {
-	original_animal_status_id: "",
 	
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();
@@ -13,17 +12,15 @@ var Animals = {
 			$('#accommodation_info').show();
 		}
 	},
-	animalStatusSelected: function() {
+	animalStatusSelected: function(changed, animal_status_was) {
 		var animal_status_id = $('#animal_animal_status_id').val();
-		var animal_status_text = $("#animal_animal_status_id option:selected").text();
-
-		if (animal_status_id != this.original_animal_status_id) {
+		var has_value = $('#animal_status_history_reason').val() != "";
+ 
+		if ((changed || has_value) && (animal_status_id != animal_status_was)) {
 			$('#reason_field').show();
-			$('#animal_audit_title').val("Status: " + animal_status_text);
 		} else {
 			$('#reason_field').hide();
-			$('#animal_audit_title').val("");
-			$('#animal_audit_description').val("");
+			$('#animal_status_history_reason').val("");
 		}
 	},
 	showSecondaryBreed: function() {
@@ -32,17 +29,17 @@ var Animals = {
 			$('#secondary_breed_field').show();
 		} else {
 			$('#secondary_breed_field').hide();
+			$('#secondary_breed_field').val("");
 		}
 	},
-	formInitialize: function(is_kill_shelter) {
-		this.original_animal_status_id = $('#animal_animal_status_id').val();
+	formInitialize: function(is_kill_shelter, has_status_history_reason_error, animal_status_was) {
 		Animals.autoComplete();
 		Animals.animalTypeSelected();
-		Animals.animalStatusSelected();
+		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
-		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected();});
+		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
 		if(is_kill_shelter) {
@@ -104,7 +101,7 @@ var Animals = {
 			// highlight: true, MAKE EXT LATER
 			source: function( request, response ) {
 				$.ajax({
-					url: "/breeds/auto_complete.js",
+					url: "/breeds/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term,

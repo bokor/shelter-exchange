@@ -11,7 +11,9 @@ class AnimalsController < ApplicationController
   end
   
   def show
-    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :notes => [:note_category], :accommodation => [:location]).find(params[:id])
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
+    @notes = @animal.notes.includes(:note_category).all
+    @status_histories = @animal.status_histories.all
     @alerts = @animal.alerts.active.all
     @overdue_tasks = @animal.tasks.overdue.active.includes(:task_category).all
   	@today_tasks = @animal.tasks.today.active.includes(:task_category).all 

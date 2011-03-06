@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
   before_validation :downcase_subdomain, :assign_owner_role
-  after_create :new_account_notification
+  # after_create :new_account_notification
+  after_save :new_account_notification
   
   # Associations
   has_many :users, :uniq => true, :dependent => :destroy

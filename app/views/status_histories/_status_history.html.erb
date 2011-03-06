@@ -1,0 +1,6 @@
+<div id="<%= "status_history_#{status_history.id}" %>" class="status_history">
+	<div class="status_history_info">
+  		<span class="created_date"><%= format_date(:short, status_history.created_at) %></span>
+		<span class="title"><%= status_history.animal_status.name %> - Reason: <%= status_history.reason %></span>
+	</div> 
+</div>

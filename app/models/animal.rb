@@ -1,6 +1,7 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
-  before_save :check_status_change?
+  before_save :update_status_change_date
+  after_save :create_status_history
   
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE = 25
@@ -15,6 +16,7 @@ class Animal < ActiveRecord::Base
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :alerts, :as => :alertable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
+  has_many :status_histories, :dependent => :destroy
   
   has_attached_file :photo, :whiny => false, :default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
@@ -36,6 +38,7 @@ class Animal < ActiveRecord::Base
   validate :arrival_date, :presence => true, :if => :arrival_date_required?
   validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required?
   validate :hold_time, :presence => true, :if => :hold_time_required?
+  validate :status_history_reason, :presence => true, :if => :status_history_reason_required?
   
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
@@ -82,20 +85,12 @@ class Animal < ActiveRecord::Base
     composed_scope
   end
   
-  def audit_title
-    @audit_title ||= ""
+  def status_history_reason
+    @status_history_reason ||= ""
   end
 
-  def audit_title=(value)
-    @audit_title = value
-  end
-  
-  def audit_description
-    @audit_description ||= ""
-  end
-
-  def audit_description=(value)
-    @audit_description = value
+  def status_history_reason=(value)
+    @status_history_reason = value
   end
   
   def full_breed
@@ -161,13 +156,24 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    def check_status_change?
+    def status_history_reason_required?
+      if self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
+        if @status_history_reason.blank?
+          errors.add(:status_history_reason, "must be entered")
+        end
+      end
+    end
+    
+    def update_status_change_date
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
-        unless @audit_description.blank? or @audit_title.blank?
-          note = Note.new(:notable => self, :shelter_id => self.shelter_id, :title => @audit_title, :description => @audit_description, :note_category_id => 1)
-          note.save
-        end
+      end
+    end
+    
+    def create_status_history
+      if self.new_record? or self.animal_status_id_changed?
+        status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
+        status_history.save
       end
     end
     
@@ -230,16 +236,3 @@ class Animal < ActiveRecord::Base
       end
     end
 end
-
-# FOR REFACTORING REPORTS
-# scope :adoption_monthly_total_by_type, lambda { |year| totals_by_month(year, :status_change_date).adoptions }
-# def photo_delete
-#   @photo_delete ||= "0"
-# end
-# 
-# def photo_delete=(value)
-#   @photo_delete = value
-# end
-# def destroy_photo?
-#   self.photo.clear if @photo_delete == "1"
-# end

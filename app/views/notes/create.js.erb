@@ -6,8 +6,10 @@
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {
-		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.note_category.name%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>').show();
-		$("#another_note_category").fadeOut(2500);
+		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.note_category.name%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>');
+		$("#another_note_category").slideToggle(1500,function() {
+			$(this).fadeOut(2000); 
+		});
 	}
 	$('#new_note').get(0).reset();
 	$('#note_errors').html("");

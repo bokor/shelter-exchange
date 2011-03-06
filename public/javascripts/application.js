@@ -7,7 +7,7 @@ TopUp.players_path = "/players/";
 
 
 // Live List Hover
-$(".note, .location, .user").live('hover', function(event) {
+$(".note, .status_history, .location, .user").live('hover', function(event) {
   if (event.type == 'mouseover') {
     $(this).addClass("hover");
   } else {

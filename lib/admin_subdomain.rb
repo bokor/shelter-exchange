@@ -1,5 +1,5 @@
 class AdminSubdomain
   def self.matches?(request)
-    request.subdomain.blank? or request.subdomain == "admin"
+    request.subdomains.blank? or request.subdomains.first == "admin"
   end
 end

@@ -23,6 +23,3 @@ class Accommodation < ActiveRecord::Base
   
   
 end
-
-#belongs_to :shelter   #, :conditions => {:state => 'active'}
-#validates_numericality_of :max_capacity #, :on => :create, :message => "is not a number"
