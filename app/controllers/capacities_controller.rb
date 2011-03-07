@@ -3,53 +3,25 @@ class CapacitiesController < ApplicationController
   # caches_action :index
   # cache_sweeper :capacity_sweeper
   
-  respond_to :html, :js
+  respond_to :js
   
-  def index
-    @capacities = @current_shelter.capacities.includes(:animal_type).all
-
-    if @capacities.blank?
-      @capacity = @current_shelter.capacities.new
-      respond_with(@capacity)
-    else
-      @capacity_validate = true
-    end
+  def create
+    @capacity = @current_shelter.capacities.new(params[:capacity])
+    flash[:notice] = "Shelter Capacity has been created." if @capacity.save
   end
   
   def edit
     @capacity = @current_shelter.capacities.find(params[:id])
-    respond_with(@capacity)
-  end
-  
-  def create
-    @capacity = @current_shelter.capacities.new(params[:capacity])
-    
-    respond_with(@capacity) do |format|
-      if @capacity.save
-        flash[:notice] = "Shelter Capacity has been created."
-        format.html { redirect_to capacities_path }
-      else
-        format.html { render :action => :index }
-      end
-    end
   end
   
   def update
     @capacity = @current_shelter.capacities.find(params[:id])   
-    respond_with(@capacity) do |format|
-      if @capacity.update_attributes(params[:capacity])  
-        flash[:notice] = "Shelter Capacity has been updated."
-        format.html { redirect_to capacities_path }
-      else
-        format.html { render :action => :edit }
-      end
-    end
+    flash[:notice] = "Shelter Capacity has been updated." if @capacity.update_attributes(params[:capacity])  
   end
   
   def destroy
      @capacity = @current_shelter.capacities.find(params[:id])
      @capacity.destroy
      flash[:notice] = "Shelter Capacity has been deleted."
-     respond_with(@capacity)
   end
 end

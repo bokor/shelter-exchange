@@ -3,6 +3,7 @@ class Animal < ActiveRecord::Base
   before_save :check_status_changed?
   after_save :create_status_history!
   
+  # Pagination - Per Page
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE = 25
   
@@ -11,7 +12,7 @@ class Animal < ActiveRecord::Base
   belongs_to :animal_status, :readonly => true
   belongs_to :accommodation
   belongs_to :shelter
-  
+
   has_many :placements, :dependent => :destroy
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :alerts, :as => :alertable, :dependent => :destroy
@@ -35,21 +36,21 @@ class Animal < ActiveRecord::Base
   # Custom Validations
   validates :primary_breed, :presence => true, :if => :primary_breed_exists?
   validates :secondary_breed, :presence => true, :if => :secondary_breed_exists?
-  validates :status_history_reason, :presence => true, :if => :status_history_reason_required?
+  validates :status_history_reason, :presence => true, :if => :status_history_reason_required? 
   
-  # Custom Validations => If Kill Shelter
+  # Custom Validations - If Kill Shelter
   validates :arrival_date, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
   validates :hold_time, :presence => true, :if => :is_kill_shelter?
   validates :euthanasia_scheduled, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
   
-  # Custom Validations => Photo
+  # Custom Validations - Photo
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
 
 
   
   
-  # Scopes
+  # Scopes - Searches
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }
   scope :full_search, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%')
                                                                                 OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%')
@@ -57,6 +58,7 @@ class Animal < ActiveRecord::Base
                                                                                 OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
   
+  # Scopes - Statuses
   scope :active, where(:animal_status_id => [1,3,4,5,6,7,8])
   scope :non_active, where(:animal_status_id => [2,9,10,11])
   scope :available_for_adoption, where(:animal_status_id => 1)
@@ -68,7 +70,7 @@ class Animal < ActiveRecord::Base
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
-    
+  
   def self.totals_by_month(year, date_type, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
@@ -88,6 +90,7 @@ class Animal < ActiveRecord::Base
     composed_scope
   end
   
+  # Virtual Attributes
   def status_history_reason
     @status_history_reason ||= ""
   end
@@ -96,6 +99,7 @@ class Animal < ActiveRecord::Base
     @status_history_reason = value
   end
   
+  # Helper Methods
   def full_breed
     if self.is_mix_breed
       self.secondary_breed.blank? ? self.primary_breed << " Mix" : self.primary_breed << " & " << self.secondary_breed << " Mix"
@@ -104,6 +108,7 @@ class Animal < ActiveRecord::Base
 	  end
   end
   
+  # API Methods Overrides
   def as_json(options = {})
     json_format(version = options[:version])
   end
@@ -118,23 +123,27 @@ class Animal < ActiveRecord::Base
   private
 
     def primary_breed_exists?
-      if self.primary_breed and self.animal_type_id
-        if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
-          errors.add(:primary_breed, "must contain a valid breed from the list")
+      unless self.animal_type_id == 7  # Bypass Type = Other
+        if self.primary_breed and self.animal_type_id
+          if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
+            errors.add(:primary_breed, "must contain a valid breed from the list")
+          end
         end
       end
     end
 
     def secondary_breed_exists?
-      if self.is_mix_breed and !self.secondary_breed.blank?
-        if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
-          errors.add(:secondary_breed, "must contain a valid breed from the list")
+      unless self.animal_type_id == 7 # Bypass Type = Other
+        if self.is_mix_breed and self.secondary_breed.present?
+          if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
+            errors.add(:secondary_breed, "must contain a valid breed from the list")
+          end
         end
       end
     end
     
     def is_kill_shelter?
-      Shelter.find_by_id(self.shelter_id).is_kill_shelter
+      @shelter ||= Shelter.find_by_id(self.shelter_id).is_kill_shelter
     end
         
     def status_history_reason_required?

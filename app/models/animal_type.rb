@@ -5,9 +5,5 @@ class AnimalType < ActiveRecord::Base
   has_many :breeds, :readonly => true
   has_many :accommodations
   has_many :capacities
-
-  # Validations
-  
-  # Scopes
   
 end

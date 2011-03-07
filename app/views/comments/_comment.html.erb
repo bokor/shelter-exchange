@@ -2,12 +2,16 @@
 	<span class="created_date"><%= format_date(:short, comment.created_at) %></span>
 	<% if comment.shelter_id == @current_shelter.id %>
 	<div class="action_links">
+		<% if can?(:update, Comment) %>
 		<span class="edit_link">
 			<%= link_to "Edit", edit_comment_path(comment), :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:destroy, Comment) %>
 		<span class="delete_link">&nbsp;|&nbsp;
 			<%= link_to 'Delete', comment, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 		</span>
+		<% end %>
 	</div>
 	<% end %>
 	<div class="clear"></div>

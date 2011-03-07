@@ -1,6 +1,7 @@
 class Accommodation < ActiveRecord::Base
   default_scope :order => 'name ASC', :limit => 250
   
+  # Pagination - Per Page
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 50
   PER_PAGE = 50
   
@@ -8,15 +9,13 @@ class Accommodation < ActiveRecord::Base
   belongs_to :shelter
   belongs_to :animal_type
   belongs_to :location
-  
+
   has_many :animals
   
   # Validations
-  validates_presence_of :animal_type_id, :message => 'needs to be selected'
-  validates_presence_of :name
-  validates_numericality_of :max_capacity
-   
-  # Callbacks
+  validates :animal_type_id, :presence => {:message => "needs to be selected"}
+  validates :name, :presence => true
+  validates :max_capacity, :numericality => true
   
   # Scopes
   scope :full_search, lambda { |q| includes(:animal_type, :animals, :location).where("LOWER(name) LIKE LOWER('%#{q}%')") }

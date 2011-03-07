@@ -6,8 +6,6 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
    
   # Validations
-  validates_presence_of :comment
-
-  # Scopes
+  validates :comment, :presence => true
    
 end

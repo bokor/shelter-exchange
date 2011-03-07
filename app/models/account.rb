@@ -12,8 +12,8 @@ class Account < ActiveRecord::Base
   
   # Validations
   validates :subdomain, :presence => true,
-                        :format => { :with => SUBDOMAIN_FORMAT, :message => 'can only contain alphanumeric characters; A-Z, 0-9 or hyphen' },
-                        :exclusion => { :in => RESERVED_SUBDOMAINS, :message => 'is reserved and unavailable.'},
+                        :format => { :with => SUBDOMAIN_FORMAT, :message => "can only contain alphanumeric characters; A-Z, 0-9 or hyphen" },
+                        :exclusion => { :in => RESERVED_SUBDOMAINS, :message => "is reserved and unavailable."},
                         :uniqueness => true
    
   private
@@ -23,7 +23,7 @@ class Account < ActiveRecord::Base
     end
      
     def assign_owner_role
-      self.users.first.role = "owner"
+      self.users.first.role = User::OWNER
     end
      
     def new_account_notification

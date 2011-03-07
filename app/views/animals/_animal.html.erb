@@ -21,14 +21,16 @@
 			<span class="select_link">
 		    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;" %>
 			</span>
+			<% if can?(:update, Animal) %>
 			<span class="edit_link">
 		    	<%= link_to "Edit", edit_animal_path(animal) %>
 			</span>
-			<%# if can? :destroy, animal %>
+			<% end %>
+			<% if can?(:destroy, Animal) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 		   		<%= link_to "Delete", animal, :confirm => "Are you sure?", :method => :delete %>
 			</span>
-			<%# end %>
+			<% end %>
 		</div>
 	</td>
 </tr>

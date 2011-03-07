@@ -9,12 +9,16 @@
 			<span class="view_link">
 				<%= link_to "View", "#", :onclick => "$('#description_note_#{note.id}').slideToggle();return false;" %>
 			</span>
+			<% if can?(:update, Note) %>
 			<span class="edit_link">&nbsp;|&nbsp;
 				<%= link_to "Edit", edit_note_path(note), :remote => true %>
 			</span>
+			<% end %>
+			<% if can?(:destroy, Note) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 				<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 			</span>
+			<% end %>
 		</div>
 	<% end %>
     <div style="clear:both;"></div>

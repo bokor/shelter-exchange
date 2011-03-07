@@ -7,9 +7,6 @@
 		<%= f.label :severity, "Severity" %><br />
 	    <%= f.collection_select :severity, Alert::SEVERITY, :to_s, :humanize, :prompt => "Select one" %>
 	</li>
-	<!-- <li>
-		<%= f.check_box :is_broadcast %>&nbsp;&nbsp;<%= f.label :is_broadcast, "Broadcast to shelter" %>
-	</li> -->
 	<li>
 		<%= f.label :description, "Description" %><br />
 		<%= f.text_area :description %>

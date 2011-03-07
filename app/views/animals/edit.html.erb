@@ -27,9 +27,10 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+    <% if can?(:destroy, Animal) %>
 	<ul>
 		<li><%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete, :class => "button" %></li>
-		<!--><li><%= link_to "All Animals", animals_path %></li>-->
 	</ul>
+	<% end %>
 
 <% end %>

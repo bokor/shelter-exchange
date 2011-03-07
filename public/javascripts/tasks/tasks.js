@@ -1,7 +1,8 @@
 var Tasks = {
 	initialize: function(){
 		Tasks.datePicker("#create_task");
-		$('#create_task .task_due_category').bind("change", function() {Tasks.dueDate("#create_task")});
+		Tasks.dueDate("#create_task");
+		$('#create_task .task_due_category').bind("change", function() {Tasks.dueDate("#create_task");});
 	},
 	removeTaskSection: function() {
 		if ($("#overdue_tasks > div").size() == 0 && $('#overdue_tasks_section').is(":visible")) {  

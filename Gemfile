@@ -24,11 +24,6 @@ gem 'rails3-generators', '0.14.0'   # Generators
 
 
 
-
-#gem 'css_sprite' - Doesn't work with rails 3, failing on Rake Class Task
-
-
-
 ##TESTING THESE GEMS/Plugins
 #gem 'paper_trail'
 #gem 'acts_as_archive'

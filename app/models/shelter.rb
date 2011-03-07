@@ -5,7 +5,7 @@ class Shelter < ActiveRecord::Base
   
   # Associations
   belongs_to :account
-  
+
   has_many :locations, :dependent => :destroy
   has_many :accommodations, :dependent => :destroy
   has_many :placements, :dependent => :destroy

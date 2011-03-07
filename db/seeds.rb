@@ -621,18 +621,6 @@ NoteCategory.create([
   { :name => "Intake" }
 ])
 
-# general = NoteCategory.find_by_name("General")
-# medical = NoteCategory.find_by_name("Medical")
-# behavior = NoteCategory.find_by_name("Behavior")
-# 
-# NoteCategory.create([
-#   { :name => "General Test A", :parent_id => general.id },
-#   { :name => "General Test B", :parent_id => general.id },
-#   { :name => "Medical Test A", :parent_id => medical.id },
-#   { :name => "Medical Test B", :parent_id => medical.id },
-#   { :name => "Behavior Test A", :parent_id => behavior.id },
-#   { :name => "Behavior Test B", :parent_id => behavior.id }
-# ])
 
 #######################################################################################################################
 #

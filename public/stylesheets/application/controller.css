@@ -286,10 +286,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /********************************************************************/
 .capacities ul {list-style:none;}
 
-/* -- Index capacity --*/
-.index_capacities .page_heading{/*border-bottom:1px solid #ddd;*/ }
-.index_capacities #sidebar #create_capacity {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-
 /* -- Capacity List :: Edit Form --*/
 .capacity_list .edit_capacity {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .capacity_list .edit_capacity h2 {border: 0;}
@@ -300,8 +296,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .capacity_list .capacity{padding: 1px 0 1px 0; margin: 2px 0 2px 0;text-align:left;display: block; }
 .capacity_list .capacity:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .capacity_list .type{float:left;min-width: 100px; font-size: 16px; letter-spacing: -1px; font-weight:bold;text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.capacity_list .details{float: left;width: 55%;  margin-left: 10px;  }
-.capacity_list .details p {font-size: 16px; color: #000;margin-top:5px;}
+.capacity_list .max_capacity{float: left;width: 30%;  margin-left: 10px;  }
+.capacity_list .max_capacity p {font-size: 16px; color: #000;margin-top:5px;}
+.capacity_list .warning_level{float: left;width: 30%;  margin-left: 10px;  }
+.capacity_list .warning_level p {font-size: 16px; color: #000;margin-top:5px;}
 .capacity_list .action_links{float: right; text-align:right;margin-top: 2px;padding-left:0;font-size: 10px;font-weight:bold;}
 
 

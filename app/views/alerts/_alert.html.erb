@@ -13,15 +13,21 @@
 		<span class="view_link">
 			<%= link_to "View", "#", :onclick => "$('#description_alert_#{alert.id}').slideToggle();return false;" %>
 		</span>
+		<% if can?(:update, Alert) %>
 		<span class="stop_link">&nbsp;|&nbsp;
 			<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:update, Alert) %>
 		<span class="edit_link">&nbsp;|&nbsp;
 			<%= link_to "Edit", edit_alert_path(alert), :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:destroy, Alert) %>
 		<span class="delete_link">&nbsp;|&nbsp;
 			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 		</span>
+		<% end %>
 	</div>
 	<div class="clear"></div>
 	<p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>

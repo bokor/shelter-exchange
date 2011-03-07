@@ -1,12 +1,17 @@
 <div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
 	<span class="type"><%= capacity.animal_type.name %></span>
-	<span class="details"><p><%= capacity.max_capacity %></p></span>
+	<span class="max_capacity"><p><%= capacity.max_capacity %></p></span>
+	<span class="warning_level"><p><%= capacity.warning_level %></p></span>
 	<div class="action_links">
+		<% if can?(:update, Capacity) %>
 		<span class="edit_link">
 			<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:destroy, Capacity) %>
 		<span class="delete_link">&nbsp;|&nbsp;
 			<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 		</span>
+		<% end %>
 	</div>
 </div>

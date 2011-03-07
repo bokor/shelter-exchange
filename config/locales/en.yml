@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    errors:
+      messages:    
+        blank: "cannot be blank"
+        not_a_number: "requires a number"

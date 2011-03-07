@@ -1,5 +1,4 @@
 class AccommodationsController < ApplicationController
-  # load_and_authorize_resource
   # caches_action :index
   # cache_sweeper :accommodation_sweeper
   

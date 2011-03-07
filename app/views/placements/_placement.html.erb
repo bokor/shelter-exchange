@@ -4,9 +4,11 @@
 		<% if placement.shelter.id == @current_shelter.id %>
 			<p class="action_links"><a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Add comment</a></p>
 			<div class="action_links">
+				<% if can?(:destroy, Placement) %>
 				<span class="delete_link">
 					<%= link_to "Delete", placement, :confirm => "Are you sure?", :method => :delete, :remote => true %>
 				</span>
+				<% end %>
 			</div>
 		<% end %>
 	</td>
@@ -36,7 +38,7 @@
 		<p><%= placement.shelter.name %></p>
 		<p><%= placement.shelter.street %></p>
 		<p><%= placement.shelter.city %>, <%= placement.shelter.state %> <%= placement.shelter.zip_code %></p>
-		<p><%=number_to_phone(placement.shelter.main_phone, :delimiter => "-")%>(Main)</p>
+		<p><%= number_to_phone(placement.shelter.main_phone, :delimiter => "-") %>(Main)</p>
 		<p><a href="mailto:<%= placement.shelter.email %>"><%= placement.shelter.email %></a></p>
 	</td>
 </tr>

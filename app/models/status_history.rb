@@ -4,7 +4,5 @@ class StatusHistory < ActiveRecord::Base
   belongs_to :shelter
   belongs_to :animal
   belongs_to :animal_status
-  
-  # Validations
 
 end

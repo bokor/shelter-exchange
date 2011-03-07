@@ -1,7 +1,6 @@
 <% 
 	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count 
 %>
-
 <div id="accommodation_<%= accommodation.id %>" class="accommodation<% if animal_count == accommodation.max_capacity %> over_capacity<% end %>">
 	
 	<div class="accommodation_info">
@@ -28,12 +27,16 @@
 			<span class="view_link">
 				<%= link_to "View", "#", :onclick => "$('#accommodation_details_#{accommodation.id}').slideToggle();return false;" %>
 			</span>
+			<% if can?(:update, Accommodation) %>
 			<span class="edit_link">&nbsp;|&nbsp;
 				<%= link_to "Edit", edit_accommodation_path(accommodation), :remote => true %>
 			</span>
+			<% end %>
+			<% if can?(:destroy, Accommodation) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure?", :remote => true %>
 			</span>
+			<% end %>
 		</div>
 	</div>
 	

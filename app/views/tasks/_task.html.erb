@@ -6,15 +6,21 @@
 		<p><%= display_due_date(task) %><%= task.details %> <%= show_taskable_link(task) if controller_name == "tasks" %></p>
 	</span>
 	<div class="action_links">
+		<% if can?(:update, Task) %>
 		<span class="completed_link">
 			<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:update, Task) %>
 		<span class="edit_link">&nbsp;|&nbsp;
 			<%= link_to "Edit", edit_task_path(task), :remote => true %>
 		</span>
+		<% end %>
+		<% if can?(:destroy, Task) %>
 		<span class="delete_link">&nbsp;|&nbsp;
 			<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure?", :remote => true %>
 		</span>
+		<% end %>
 	</div>
 	<div class="clear"></div>
 </div>

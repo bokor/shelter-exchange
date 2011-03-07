@@ -1,7 +1,7 @@
 class Alert < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
-  # Set up so the section value could be translated and the first is stored in the database
+  # Constants
   SEVERITY = %w[high medium low]
   
   # Associations
@@ -9,9 +9,8 @@ class Alert < ActiveRecord::Base
   belongs_to :alertable, :polymorphic => true
   
   # Validations
-  validates_presence_of :title
-  validates_presence_of :severity, :message => 'needs to be selected'
-  validates_presence_of :description
+  validates :title, :presence => true
+  validates :severity, :presence => {:message => 'needs to be selected'}
   
   # Scopes
   scope :active, where(:is_stopped => false)
@@ -21,5 +20,3 @@ class Alert < ActiveRecord::Base
   scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
   
 end
-
-# scope :is_broadcast, where(:is_broadcast => true)
