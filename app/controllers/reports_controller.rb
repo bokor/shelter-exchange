@@ -10,17 +10,9 @@ class ReportsController < ApplicationController
     @total_adoptions_ytd = @current_shelter.animals.year_to_date.adoptions.count
     @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
   end
-  
-  def status_by_current_year
-    pie_chart(@current_shelter.animals.count_by_status.year_to_date)
-  end
-  
+
   def status_by_current_month
     pie_chart(@current_shelter.animals.count_by_status.current_month)
-  end
-  
-  def type_by_current_year
-    pie_chart(@current_shelter.animals.active.count_by_type.year_to_date)
   end
   
   def type_by_current_month

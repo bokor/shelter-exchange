@@ -1,7 +1,7 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.created_at DESC', :limit => 250
-  before_save :update_status_change_date
-  after_save :create_status_history
+  before_save :check_status_changed?
+  after_save :create_status_history!
   
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE = 25
@@ -27,19 +27,22 @@ class Animal < ActiveRecord::Base
                                          :thumb => ["100x75#", :jpg] } 
 
   # Validations
-  validates_presence_of :name
-  validates_presence_of :animal_type_id, :message => 'needs to be selected'
-  validates_presence_of :animal_status_id, :message => 'needs to be selected'
-  validates_uniqueness_of :microchip, :if => :microchip_present?
+  validates :name, :presence => true
+  validates :animal_type_id, :presence => { :message => 'needs to be selected' }
+  validates :animal_status_id, :presence => { :message => 'needs to be selected' }
+  validates :microchip, :uniqueness => { :allow_blank => true, :case_sensitive => false }
   
   # Custom Validations
-  validate :primary_breed, :presence => true, :if => :primary_breed_exists?
-  validate :secondary_breed, :presence => true, :if => :secondary_breed_exists?
-  validate :arrival_date, :presence => true, :if => :arrival_date_required?
-  validate :euthanasia_scheduled, :presence => true, :if => :euthanasia_scheduled_required?
-  validate :hold_time, :presence => true, :if => :hold_time_required?
-  validate :status_history_reason, :presence => true, :if => :status_history_reason_required?
+  validates :primary_breed, :presence => true, :if => :primary_breed_exists?
+  validates :secondary_breed, :presence => true, :if => :secondary_breed_exists?
+  validates :status_history_reason, :presence => true, :if => :status_history_reason_required?
   
+  # Custom Validations => If Kill Shelter
+  validates :arrival_date, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
+  validates :hold_time, :presence => true, :if => :is_kill_shelter?
+  validates :euthanasia_scheduled, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
+  
+  # Custom Validations => Photo
   validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
 
@@ -113,13 +116,9 @@ class Animal < ActiveRecord::Base
 
                                                  
   private
-  
-    def microchip_present?
-      self.microchip.present?
-    end
 
     def primary_breed_exists?
-      if self.primary_breed && self.animal_type_id
+      if self.primary_breed and self.animal_type_id
         if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
           errors.add(:primary_breed, "must contain a valid breed from the list")
         end
@@ -127,7 +126,7 @@ class Animal < ActiveRecord::Base
     end
 
     def secondary_breed_exists?
-      if self.is_mix_breed && !self.secondary_breed.blank?
+      if self.is_mix_breed and !self.secondary_breed.blank?
         if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
           errors.add(:secondary_breed, "must contain a valid breed from the list")
         end
@@ -137,40 +136,18 @@ class Animal < ActiveRecord::Base
     def is_kill_shelter?
       Shelter.find_by_id(self.shelter_id).is_kill_shelter
     end
-    
-    def arrival_date_required?
-      if is_kill_shelter? && self.arrival_date.blank?
-        errors.add(:arrival_date, "must be selected")
-      end
-    end
-
-    def euthanasia_scheduled_required?
-      if is_kill_shelter? && self.euthanasia_scheduled.blank?
-        errors.add(:euthanasia_scheduled, "must be selected")
-      end
-    end
         
-    def hold_time_required?
-      if is_kill_shelter? && self.hold_time.blank?
-        errors.add(:hold_time, "must be entered")
-      end
-    end
-    
     def status_history_reason_required?
-      if self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
-        if @status_history_reason.blank?
-          errors.add(:status_history_reason, "must be entered")
-        end
-      end
+      self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
     end
     
-    def update_status_change_date
+    def check_status_changed?
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
       end
     end
     
-    def create_status_history
+    def create_status_history!
       if self.new_record? or self.animal_status_id_changed?
         status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
         status_history.save
