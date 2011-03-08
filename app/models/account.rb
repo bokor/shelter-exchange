@@ -12,9 +12,10 @@ class Account < ActiveRecord::Base
   
   # Validations
   validates :subdomain, :presence => true,
+                        :uniqueness => true,
                         :format => { :with => SUBDOMAIN_FORMAT, :message => "can only contain alphanumeric characters; A-Z, 0-9 or hyphen" },
-                        :exclusion => { :in => RESERVED_SUBDOMAINS, :message => "is reserved and unavailable."},
-                        :uniqueness => true
+                        :exclusion => { :in => RESERVED_SUBDOMAINS, :message => "is reserved and unavailable."}
+                        
    
   private
    

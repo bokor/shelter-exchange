@@ -1,5 +1,4 @@
 class AlertsController < ApplicationController
-  load_and_authorize_resource :only => [:new]
   # caches_action :index
   # cache_sweeper :alert_sweeper
   

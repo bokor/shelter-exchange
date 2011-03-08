@@ -1,5 +1,4 @@
 class ParentsController < ApplicationController
-  # load_and_authorize_resource
   # caches_action :show
   # cache_sweeper :parent_sweeper
   

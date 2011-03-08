@@ -1,5 +1,5 @@
 class SheltersController < ApplicationController
-  # load_and_authorize_resource
+  load_and_authorize_resource :only => [:edit]
   # caches_action :index
   # cache_sweeper :shelter_sweeper
   

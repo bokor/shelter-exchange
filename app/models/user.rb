@@ -18,7 +18,10 @@ class User < ActiveRecord::Base
                   
   # Validations - Extra beyond devise's validations
   validates :name, :presence => true
-  validates :role, :presence => true
+  validates :role, :presence => { :message => "needs to be selected" }
+  # validates :email, :uniqueness => true, :allow_blank => true,
+  #                   :length => {:minimum => 3, :maximum => 254}, 
+  #                   :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   
   # Scopes
   scope :owner, where(:role => :owner)

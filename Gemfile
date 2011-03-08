@@ -16,7 +16,8 @@ gem 'will_paginate', '2.3.15'       # Pagination
 gem 'dynamic_form', '1.1.3'         # HTML/JS
 gem 'jquery-rails', '0.2.4'         # HTML/JS
 
-gem 'paperclip', '2.3.6'            # Attachments
+gem 'paperclip', '2.3.8'            # Attachments
+gem 'rmagick', '2.13.1'
 
 gem 'geokit', '1.5.0'				# Geocoding - requires plugin as well.
 

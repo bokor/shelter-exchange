@@ -8,11 +8,10 @@ class Placement < ActiveRecord::Base
   belongs_to :shelter
   belongs_to :animal
   belongs_to :parent
-  
-  # Associations - Has Many
+
   has_many :comments, :as => :commentable, :dependent => :destroy
   
-  accepts_nested_attributes_for :comments, :allow_destroy => true
+  accepts_nested_attributes_for :comments, :allow_destroy => true, :reject_if => proc { |attributes| attributes['comment'].blank? }
 
   # Validations
   validates :animal_id, :presence => {:message => 'needs to be selected'}

@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-  # load_and_authorize_resource
   respond_to :html, :js
   
   def destroy

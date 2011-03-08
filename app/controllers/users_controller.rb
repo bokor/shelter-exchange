@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # load_and_authorize_resource
   # caches_action :index
   # cache_sweeper :user_sweeper
   

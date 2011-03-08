@@ -1,5 +1,4 @@
 class ApiController < ApplicationController
-  # load_and_authorize_resource
   skip_before_filter :authenticate_user!, :current_shelter, :set_shelter_timezone
   before_filter :find_shelter
   

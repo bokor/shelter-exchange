@@ -9,6 +9,10 @@
 
 #sidebar ul.model_actions { padding: 0 0 10px 0; }
 
+.errors_heading{border-bottom:1px solid #eee; }
+.errors_heading h1{width:100%;}
+.errors_content {}
+
 
 
 /*

@@ -9,11 +9,12 @@ class Parent < ActiveRecord::Base
   # Validations
   validates :name, :street, :city, :state, :zip_code, :presence => true
   validates :home_phone, :presence => true, :uniqueness => true
-  validates :mobile_phone, :uniqueness => true
-  validates :email, :presence => true, 
-                    :length => {:minimum => 3, :maximum => 254},
-                    :uniqueness => true,
-                    :format => {:with => EMAIL_FORMAT}
+  validates :mobile_phone, :uniqueness => true, :allow_blank => true
+  validates :email, :uniqueness => true, :allow_blank => true,
+                    :length => {:minimum => 3, :maximum => 254}, 
+                    :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+                    
+                    
                     
   # Scopes
   scope :search, lambda { |q| phone = q.gsub(/[^0-9]/, "") 

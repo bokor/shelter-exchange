@@ -19,7 +19,8 @@ class Animal < ActiveRecord::Base
   has_many :tasks, :as => :taskable, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
   
-  has_attached_file :photo, :whiny => false, :default_url => "/images/default_:style_photo.jpg", 
+  has_attached_file :photo, :whiny => false, 
+                            :default_url => "/images/default_:style_photo.jpg", 
                             :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
                             :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
@@ -31,21 +32,21 @@ class Animal < ActiveRecord::Base
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
-  validates :microchip, :uniqueness => { :allow_blank => true, :case_sensitive => false }
+  validates :microchip, :uniqueness => { :allow_blank => true }
   
   # Custom Validations
-  validates :primary_breed, :presence => true, :if => :primary_breed_exists?
-  validates :secondary_breed, :presence => true, :if => :secondary_breed_exists?
-  validates :status_history_reason, :presence => true, :if => :status_history_reason_required? 
+  validates :primary_breed, :presence => { :if => :primary_breed_exists? }
+  validates :secondary_breed, :presence => { :if => :secondary_breed_exists? }
+  validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
   
   # Custom Validations - If Kill Shelter
   validates :arrival_date, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
-  validates :hold_time, :presence => true, :if => :is_kill_shelter?
+  validates :hold_time, :presence => { :if => :is_kill_shelter? }
   validates :euthanasia_scheduled, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
   
   # Custom Validations - Photo
-  validates_attachment_size :photo, :less_than => 1.megabytes, :message => 'needs to be 1 MB or smaller'
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => 'needs to be a JPG, PNG, or GIF file'
+  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less"
+  validates_attachment_content_type :photo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
 
 
   
@@ -66,7 +67,7 @@ class Animal < ActiveRecord::Base
   scope :euthanized, where(:animal_status_id => 11)
 
   # Scopes - Reporting
-  scope :count_by_type, select('count(*) count, animal_types.name').joins(:animal_type).group(:animal_type_id) 
+  scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
@@ -123,8 +124,10 @@ class Animal < ActiveRecord::Base
   private
 
     def primary_breed_exists?
-      unless self.animal_type_id == 7  # Bypass Type = Other
-        if self.primary_breed and self.animal_type_id
+      if self.primary_breed.blank?
+        true
+      else
+        unless self.animal_type_id == 7  # Bypass Type = Other
           if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
             errors.add(:primary_breed, "must contain a valid breed from the list")
           end

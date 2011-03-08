@@ -22,7 +22,9 @@
 			<h1>Shelter</h1>
 		<% end %>
 		<div class="action_links">
+			<% if can?(:update, Shelter) %>
 			<%= link_to "Edit this shelter", edit_shelter_path(@shelter)%>
+			<% end %>
 		</div>
 	</div>
 		
@@ -67,8 +69,12 @@
 <%= content_for :sidebar do %>
 	
 	<div id="items_section">
-		<h2>Wish List <span class="actions">
-			<%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span></h2>
+		<h2>Wish List 
+			<% if can?(:update, Shelter) %>
+			<span class="actions"><%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span>
+			<% end %>
+		</h2>
+			
 		<!-- <p>BLAH BLAH</p> -->
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
