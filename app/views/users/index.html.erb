@@ -14,11 +14,13 @@
 		
 		<div class="manage_users">
 			<div class="action_links">
-				<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %><br /><br />
-				<div id="new_invitation" style="display:none;">
-					<div id="new_invitation_errors"></div>
-					<%= render "form_invitation" %>
-				</div>
+				<% if can?(:invite, User) %>
+					<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %><br /><br />
+					<div id="new_invitation" style="display:none;">
+						<div id="new_invitation_errors"></div>
+						<%= render "form_invitation" %>
+					</div>
+				<% end %>
 			</div>
 			<div id="users_section">
 				<div class="count">Users(<%= @users.count %>)</div>

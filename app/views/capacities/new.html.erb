@@ -1,0 +1,30 @@
+<%= title "Create your first capacity" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "capacities/capacities", :cache => "cache/application/capacities-new" %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading">
+		<h1>Create your first capacity</h1>
+		<p>BLAH BLAH BLAH</p>
+	</div>
+
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @capacity %>
+		<div id="create_capacity">
+			<%= form_for(@capacity) do |f| %>
+				<%= render :partial => "form", :locals => { :f => f } %>
+		    	<div class="actions">
+					<%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => 'button' %>
+				</div>
+			<% end %>
+		</div>	
+		
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>

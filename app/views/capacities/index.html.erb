@@ -1,0 +1,37 @@
+<%= title "Capacities" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "capacities/capacities", :cache => "cache/application/capacities-index" %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue_background">
+		<h1>Shelter capacity</h1>
+	</div>
+		
+	<div class="page_content">
+			
+		<div id="capacities" class="capacity_list">
+			<%= render :partial => "capacity", :collection => @capacities %>
+		</div>
+				
+	</div>
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+	
+	<div id="create_capacity">
+		<h2>Add a capacity</h2>
+		<div id="capacity_errors"></div>
+		<%= form_for (Capacity.new), :remote => true do |f| %>
+			<%= render :partial => "form", :locals => { :f => f } %>
+		    <div class="actions">
+				<%= f.submit "Create Capacity", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
+			</div>
+		<% end %>
+	</div>
+	
+		
+<% end %>

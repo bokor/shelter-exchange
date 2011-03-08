@@ -16,9 +16,7 @@ Shelterexchange::Application.routes.draw do
 #   Reports Routes    
     resources :reports do
       collection do
-        get :status_by_current_year
         get :status_by_current_month
-        get :type_by_current_year
         get :type_by_current_month
         get :adoption_monthly_total
         get :adoption_monthly_total_by_type

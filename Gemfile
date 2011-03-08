@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql', '2.8.1'
 
-gem 'mail', '2.2.12'
+gem 'mail', '2.2.15'
 
-gem 'devise', '1.1.3'               # Login/Authentication
+gem 'devise', '1.1.7'               # Login/Authentication
 gem 'devise_invitable', '0.3.5'     # Login/Authentication
 
 gem 'cancan', '1.5.1'               # Authorization
@@ -14,7 +14,7 @@ gem 'cancan', '1.5.1'               # Authorization
 gem 'will_paginate', '2.3.15'       # Pagination
 
 gem 'dynamic_form', '1.1.3'         # HTML/JS
-gem 'jquery-rails', '0.2.4'         # HTML/JS
+gem 'jquery-rails', '0.2.7'         # HTML/JS
 
 gem 'paperclip', '2.3.8'            # Attachments
 gem 'rmagick', '2.13.1'

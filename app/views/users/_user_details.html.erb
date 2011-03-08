@@ -11,14 +11,16 @@
 		<%= render "form_change_password", :user => user %>
 	</div>
 <% end %>
-	
-<h2>Delete User</h2>
-<div class="section">
-	<% if user.role == "owner" %>
-		<p>Owner can not be deleted</p>
-	<% elsif user == current_user %>
-		<p>Can not delete your own User</p>
-	<% else %>
-		<%= link_to "Delete User", user, :method => :delete, :confirm => "Are you sure?", :remote => true %>
-	<% end %>
-</div>
+
+<% if can?(:destroy, User) %>
+	<h2>Delete User</h2>
+	<div class="section">
+		<% if user.role == "owner" %>
+			<p>Owner can not be deleted</p>
+		<% elsif user == current_user %>
+			<p>Can not delete your own User</p>
+		<% else %>
+			<%= link_to "Delete User", user, :method => :delete, :confirm => "Are you sure?", :remote => true %>
+		<% end %>
+	</div>
+<% end %>

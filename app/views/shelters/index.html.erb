@@ -85,30 +85,7 @@
 		</ol>
 	</div>
 	
-	<div class="separator"></div>
-	
-	<div id="capacities_section">
-		<h2>Shelter Capacity <span class="actions"><%= link_to "Add", "#", :id => "add_capacity_link", :class => "button" %></span></h2>
-		<div id="create_capacity">
-			<h2>Add a shelter capacity</h2>
-			<div id="capacity_errors"></div>
-			<%= form_for (Capacity.new), :remote => true do |f| %>
-				<%= render :partial => "capacities/form", :locals => { :f => f } %>
-			    <div class="actions">
-					<%= f.submit "Create Capacity", :disable_with => "Submitting...", :id => "create_capacity_button", :class => "button"  %>
-					&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_capacity" %>
-				</div>
-			<% end %>
-		</div>
-		<!-- <p>BLAH BLAH</p> -->
-		<div id="capacities" class="capacity_list">
-			<% unless @shelter.capacities.blank? %>
-				<%= render @shelter.capacities%>
-			<% else %>
-				<p id="capacity_help">Please enter the shelter capacity</p>
-			<% end %>
-		</div>
-	</div>
+	<!-- <div class="separator"></div> -->
 	
 	
 <% end %>

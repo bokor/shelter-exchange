@@ -8,14 +8,11 @@
     <%= stylesheet_link_tag "public/print", :media => "print", :cache => "cache/public/print" %>
 	<%= yield(:stylesheets) %>
 	
-	<!-- MOVE TO THE BOTTOM -->
-	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", 
-							   "rails", "application", 
-							   :cache => "cache/public/all" %> <!-- livevalidation.min, jquery.tipTip.minified -->
-	<%= yield(:javascripts) %>
+	
+	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "rails", "application", :cache => "cache/public/all" %> 
+	<%= yield(:javascripts) %><!-- livevalidation.min, jquery.tipTip.minified -->
 	
 	<%= csrf_meta_tag %>
-	
 
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">

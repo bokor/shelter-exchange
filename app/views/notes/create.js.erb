@@ -1,7 +1,12 @@
 <% if @note.errors.any? %>
 	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
 <% else %>
-    var note_filter_active = $('.active_link').html();
+	// Check Active Link and set to All if doesn't exist so it will work for other implementations of note (i.e. Parent)
+	var note_filter_active = "All";
+    if ($('.active_link').html()){
+		note_filter_active = $('.active_link').html();
+	} 
+     
 	if (note_filter_active == '<%=@note.note_category.name%>' || note_filter_active == "All") {
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);

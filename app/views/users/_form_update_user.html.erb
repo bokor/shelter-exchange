@@ -1,27 +1,42 @@
+<% show_update_button = false %>
 <%= form_for (user), :remote => true do |f| %>
 	<ul class="form">
+	<% if user == current_user %>
 		<li>
 			<%= f.label :name, "First and Last name" %><br />
-  			<%= f.text_field :name, :value => user.name %>
+	  		<%= f.text_field :name, :value => user.name %>
 		</li>
 		<li>
 			<%= f.label :email, "Email" %><br />
 			<%= f.text_field :email, :value => user.email %>
 		</li>
-		<!-- ONLY ADMINS and OWNERS CAN DO THIS -->
+		<% show_update_button = true %>
+	<% else %>
+		<li>
+			<%= label_tag :name, "First and Last name" %><br />
+	  		<h3><%= user.name %></h3>
+		</li>
+		<li>
+			<%= label_tag :email, "Email" %><br />
+			<h3><%= user.email %></h3>
+		</li>
+	<% end %>
 		<li>
 			<%= f.label :role, "Role" %><br />
-			<% if user.role == "owner" %>
-				<h3>Owner</h3>
-			<% else %>
+			<% if can?(:change_role, User) and user.role != User::OWNER and user != current_user  %>
 				<% User::ROLES.each do |value| %>
 					<%= f.radio_button :role, value %>
 					<%= f.label "role_#{value.downcase}", value.humanize %>
 				<% end %>
-			<% end %>	
+				<% show_update_button = true %>
+			<% else %>
+				<h3><%= user.role.humanize %></h3>
+			<% end %>
 		</li>
 	</ul>
+	<% if show_update_button %>
 	<div class="actions">
 		<%= f.submit "Update user", :disable_with => 'Submiting...', :confirm => "Are you sure?", :class => "button"  %>
 	</div>
+	<% end %>
 <% end %>

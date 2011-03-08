@@ -7,9 +7,13 @@ class Ability
     elsif user.is?(:admin)
       can :manage, :all
     elsif user.is?(:user)
-      can [:read, :update], :all
+      can [:read, :create, :update], :all
       cannot :update, Shelter
+      cannot :generate_access_token, Shelter
+      cannot :invite, User
+      cannot :change_role, User
     end
+    
   end
   
 end

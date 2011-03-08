@@ -290,6 +290,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /********************************************************************/
 .capacities ul {list-style:none;}
 
+/* -- Index Capacities --*/
+.index_capacities .page_heading{border-bottom:1px solid #eee; }
+.index_capacities #sidebar #create_capacity {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+
 /* -- Capacity List :: Edit Form --*/
 .capacity_list .edit_capacity {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .capacity_list .edit_capacity h2 {border: 0;}
@@ -448,27 +452,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
-/*******************************************************************/
-/* -------------------------- COMMENTS --------------------------- */
-/*******************************************************************/
-/*#comments .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}*/
-.comment_list .hover{background-color:#EFEBE3;}
-.comment_list .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
-/*.comments .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px; display:table-cell;width:45px;}
-.comments .comment .description {clear:both;padding: 0 0 0 10px; line-height: 2em; display:table-cell;}
-.comments .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}*/
-.comment_list .comment .created_date {float: left; width: 50%;color:#999; font-size: 10px; letter-spacing: -1px;}
-.comment_list .comment .action_links {float: right; width: 50%; text-align: right;font-size: 10px;}
-.comment_list .comment .description p { line-height: 2em;}
-.comment_list .comment:last-child{border-bottom: 1px dotted #ccc; }
-
-
-/* -- Show Parents :: Notes --*/
-/*.show_parents #notes .note .category{display:none;}*/
-.show_parents .edit_comment textarea{width: 98%;}
-
-
-
 
 /******************************************************************/
 /* -------------------------- PARENTS --------------------------- */
@@ -538,7 +521,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
 .show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
 .show_parents table.placement_list td.image img { padding-bottom: 10px;}
-.show_parents table.placement_list td .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
 .show_parents table.placement_list td.details { width:380px;color:#666; }
 .show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
 .show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
@@ -555,6 +538,23 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 .show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
+
+
+/*******************************************************************/
+/* -------------------------- COMMENTS --------------------------- */
+/*******************************************************************/
+.comment_list .hover{background-color:#EFEBE3;}
+.comment_list .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+.comment_list .comment .created_date {float: left; width: 50%; color:#999; font-size: 10px; letter-spacing: -1px;}
+.comment_list .comment .action_links {float: left; width: 50%; text-align: right;font-size: 10px; font-weight:bold;}
+.comment_list .comment .description p { line-height: 2em;}
+.comment_list .comment:last-child{border-bottom: 1px dotted #ccc; }
+
+
+/* -- Show Parents :: Notes --*/
+.show_parents .edit_comment textarea{width: 98%;}
+
+
 
 
 /*****************************************************************/
