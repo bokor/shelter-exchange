@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = @current_account.users.find(params[:id])
     respond_with(@user) do |format|
       if @user.update_attributes(params[:user])  
+        @current_ability = nil
         flash[:notice] = "#{@user.name} has been updated."
         format.html { redirect_to users_path }
       else
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
     @user = @current_account.users.find(params[:id])
     respond_with(@user) do |format|
       if @user.update_attributes(params[:user])  
+        @current_ability = nil
         flash[:notice] = "Your password has been changed.  Please login with your new password."
         format.html { redirect_to users_path }
       else
@@ -53,6 +55,7 @@ class UsersController < ApplicationController
     if params[:id] != params[:new_owner_id]
       @new_owner.update_attributes({ :role => :owner })
       @current_owner.update_attributes({ :role => :admin })
+      @current_ability = nil
       flash[:notice] = "Owner has been changed to #{@new_owner.name}."
     else 
       flash[:warning] = "Owner did not change because the same user was selected"
