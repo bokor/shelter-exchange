@@ -15,7 +15,7 @@
 		<div class="section">
 			<p><code><%= full_url %></code></p>
 		</div>
-		
+		<% if can?(:change_owner, User) %>
 		<h2>Change Owner</h2>
 		<p>The owner is a record so we know who the main contact is for the shelter.</p>
 		<div class="section">
@@ -24,6 +24,7 @@
 				<%= f.submit "Change", :disable_with => '...', :confirm => "Are you sure?" %>
 			<% end %>
 		</div>
+		<% end %>
 		
 		<h2>Web Access</h2>
 		<!-- Admins are  ALLOWED TO GENERATE -->

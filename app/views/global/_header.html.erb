@@ -16,11 +16,13 @@
 					<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
 					<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
 					<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
+					<% if can?(:update_settings, User)%>
 					<li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
+					<% end %>
 				</ul>
 		    </li>
 			
-		    <li class="logout"><%= link_to "Logout", "/logout" %></li>
+		    <li class="logout"><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></li>
 			<!-- <li class="help"><%= link_to "Help", "/help" %></li> -->
 		</ul>
 	</div>

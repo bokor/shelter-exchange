@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307212726) do
+ActiveRecord::Schema.define(:version => 20110309013620) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20110307212726) do
     t.integer  "max_capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "warning_level"
+    t.integer  "warning_level",  :limit => 255
   end
 
   add_index "capacities", ["animal_type_id"], :name => "index_capacities_on_animal_type_id"

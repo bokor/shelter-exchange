@@ -5,7 +5,7 @@
 	    <div class="actions">
 			<%= f.submit "Update Capacity", :disable_with => "Submitting...", :class => "button" %>
 			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#', :onclick => "$('#edit_capacity_#{@capacity.id}').slideToggle(800,function() { $(this).remove();});$('#capacity_#{@capacity.id}').fadeIn(1000);return false;"  %>
+			<%= link_to 'Cancel', '#', :onclick => "$('#edit_capacity_#{@capacity.id}').slideToggle(800,function() { $('#capacity_#{@capacity.id}').fadeIn(1000);$(this).remove();});return false;"  %>
 		</div>
 	<% end %>
 </div>

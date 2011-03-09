@@ -295,11 +295,12 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_capacities #sidebar #create_capacity {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 
 /* -- Capacity List :: Edit Form --*/
-.capacity_list .edit_capacity {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.capacity_list .edit_capacity { width: 42%; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 .capacity_list .edit_capacity h2 {border: 0;}
+.capacity_list .edit_capacity input[type=text]{width: 98%;}
 
 /* -- Capacity List  --*/
-.capacity_list h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+/*.capacity_list h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .capacity_list {margin-bottom:10px;}
 .capacity_list .capacity{padding: 1px 0 1px 0; margin: 2px 0 2px 0;text-align:left;display: block; }
 .capacity_list .capacity:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -308,7 +309,27 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .capacity_list .max_capacity p {font-size: 16px; color: #000;margin-top:5px;}
 .capacity_list .warning_level{float: left;width: 30%;  margin-left: 10px;  }
 .capacity_list .warning_level p {font-size: 16px; color: #000;margin-top:5px;}
-.capacity_list .action_links{float: right; text-align:right;margin-top: 2px;padding-left:0;font-size: 10px;font-weight:bold;}
+.capacity_list .action_links{float: right; text-align:right;margin-top: 2px;padding-left:0;font-size: 10px;font-weight:bold;}*/
+
+.capacity_list { padding-top: 0px;}
+.capacity_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.capacity_list .capacity { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+.capacity_list .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+.capacity_list .warning_level {background-color:#fffbe5; border:1px solid #ffd27f;}
+
+/* -- Index Capacities  --*/
+.capacity_list .capacity .title {border-bottom:1px #ddd solid; padding-bottom:10px; line-height: 1.2em;}
+.capacity_list .capacity .title:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.capacity_list .capacity .animal_type {float:left; width: 59%;}
+.capacity_list .capacity .animal_type h3 {padding:0; margin:0;}
+.capacity_list .capacity .links {float:right; width: 39%; }
+.capacity_list .capacity .links .action_links {display: block;text-align:right;font-size: 10px;font-weight:bold; }
+.capacity_list .capacity .details {clear:both;padding-top: 20px;}
+.capacity_list .capacity .details span {font-size: 14px; color: #000;}
+
+
+
+
 
 
 /***************************************************************************/
@@ -337,12 +358,12 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .new_accommodations #left { width: 100%;}
 .new_accommodations #sidebar { display: none;width: 0;}
 
-#accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
-#accommodations .hover{background-color:#EFEBE3;}
-
 #accommodations { border-top:1px dotted #ccc; padding-top: 20px;}
 #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 #accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+#accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+#accommodations .hover{background-color:#EFEBE3;}
+
 /* -- Index Accommodations :: Accommodation Details --*/
 #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
 #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -373,8 +394,9 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
 
 /* -- Index Locations  --*/
-.index_accommodations #sidebar #create_accommodation, .index_accommodations #accommodations .edit_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-
+.index_accommodations #sidebar #create_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+#accommodations .edit_accommodation { width: 42%; background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+#accommodations .edit_accommodation input[type=text]{width: 98%;}
 
 
 

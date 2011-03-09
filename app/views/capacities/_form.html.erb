@@ -4,7 +4,7 @@
 		<%= collection_select(:capacity, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
 	</li>
 	<li>
-		<%= f.label :max_capacity, "Max number of animals per type" %><br />
+		<%= f.label :max_capacity, "Max capacity of animals per type" %><br />
 		<%= f.text_field :max_capacity %>
 	</li>
 	<li>

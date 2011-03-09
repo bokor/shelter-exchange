@@ -1,17 +1,39 @@
-<div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
-	<span class="type"><%= capacity.animal_type.name %></span>
-	<span class="max_capacity"><p><%= capacity.max_capacity %></p></span>
-	<span class="warning_level"><p><%= capacity.warning_level %></p></span>
-	<div class="action_links">
-		<% if can?(:update, Capacity) %>
-		<span class="edit_link">
-			<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
-		</span>
-		<% end %>
-		<% if can?(:destroy, Capacity) %>
-		<span class="delete_link">&nbsp;|&nbsp;
-			<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-		</span>
-		<% end %>
+<% 
+	animal_count = capacity.animal_type.animals.active.count
+	html_class = ""
+	html_class = "warning_level" if animal_count >= capacity.warning_level and animal_count <= capacity.max_capacity
+	html_class = "over_capacity" if animal_count >= capacity.max_capacity
+%>
+
+<div id="<%= "capacity_#{capacity.id}" %>" class="capacity <%=html_class%>">
+	
+	<div class="title">
+		<div class="animal_type">
+			<h3><%= capacity.animal_type.name %></h3>
+		</div>
+		
+		<div class="links">
+			<div class="action_links">
+					<% if can?(:update, Capacity) %>
+					<span class="edit_link">
+						<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
+					</span>
+					<% end %>
+					<% if can?(:destroy, Capacity) %>
+					<span class="delete_link">&nbsp;|&nbsp;
+						<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+					</span>
+					<% end %>
+			</div>
+		</div>
 	</div>
+		
+	<div class="details">
+		<p><label>Max capacity:</label> <span><%= capacity.max_capacity %></span></p>
+		<p><label>Warning level:</label> <span><%= capacity.warning_level %></span></p>
+		<p><label>Total active animals:</label> <span><%= animal_count %></span></p>
+		<p><label>Space available for <%= capacity.animal_type.name.pluralize %>:</label> <span><%= capacity.max_capacity - animal_count %></span></p>
+	</div>
+
+
 </div>
