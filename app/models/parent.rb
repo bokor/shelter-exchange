@@ -17,16 +17,17 @@ class Parent < ActiveRecord::Base
                     
                     
   # Scopes
-  scope :search, lambda { |q| phone = q.gsub(/[^0-9]/, "") 
+  scope :search, lambda { |q| phone = q.gsub(/\D/, "")
                               phone = q if phone.blank?
-                              where("LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(street) LIKE LOWER('%#{q}%') 
-                                     OR LOWER(home_phone) LIKE LOWER('%#{phone}%') OR LOWER(mobile_phone) LIKE LOWER('%#{phone}%') 
-                                     OR LOWER(email) LIKE LOWER('%#{q}%')") }
+                              where("home_phone = '#{phone}' OR 
+                                     mobile_phone = '#{phone}' OR 
+                                     email = '#{q}'").limit(10) }
+
   
   private 
     def format_phone_numbers
-      self.home_phone = self.home_phone.gsub(/[^0-9]/, "") unless self.home_phone.blank?
-      self.mobile_phone = self.mobile_phone.gsub(/[^0-9]/, "")  unless self.mobile_phone.blank?
+      self.home_phone.gsub!(/\D/, "") unless self.home_phone.blank?
+      self.mobile_phone.gsub!(/\D/, "") unless self.mobile_phone.blank?
     end
-    
+        
 end

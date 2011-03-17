@@ -16,9 +16,26 @@ $(".note, .status_history, .location, .user").live('hover', function(event) {
 });
 
 // Pagination Links -> AJAX Searches
-$('.pagination a').live('click',function (){  
-	$.getScript(this.href);  
-    return false;  
+// $('.pagination a').live('click',function (){  
+// 	$.getScript(this.href);  
+//     return false;  
+// });
+
+$(function() {
+  $(".pagination a").live("click", function() {
+    $.setFragment({ "page" : $.queryString(this.href).page })
+    $(".pagination").html("Page is loading...");
+    return false;
+  });
+  
+  $.fragmentChange(true);
+  $(document).bind("fragmentChange.page", function() {
+    $.getScript($.queryString(document.location.href, { "page" : $.fragment().page }));
+  });
+  
+  if ($.fragment().page) {
+    $(document).trigger("fragmentChange.page");
+  }
 });
 
 
