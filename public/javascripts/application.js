@@ -20,22 +20,6 @@ $('.pagination a').live('click',function (){
     return false;  
 });
 
-// $(function() {
-//   $(".pagination a").live("click", function() {
-//     $.setFragment({ "page" : $.queryString(this.href).page })
-//     $(".pagination").html("Page is loading...");
-//     return false;
-//   });
-//   
-//   $.fragmentChange(true);
-//   $(document).bind("fragmentChange.page", function() {
-//     $.getScript($.queryString(document.location.href, { "page" : $.fragment().page }));
-//   });
-//   
-//   if ($.fragment().page) {
-//     $(document).trigger("fragmentChange.page");
-//   }
-// });
 
 
 //Sidebar Functions to Show and Hide them When Button is clicked
@@ -64,33 +48,14 @@ $(function() {
 
 
 $(function(){
-
-	//OnHover Show SubLevel Menus
-	$('#secondary_nav ul li').hover(
-		//OnHover
-		function(){
-			//Hide Other Menus
-			$('#header ul li').not($('ul', this)).stop();
-
-			//Add the Arrow
-			$('ul li:first-child', this).before(
-				'<li class="arrow"></li>'
-			);
-
-			//Remove the Border
-			$('ul li.arrow', this).css('border-bottom', '0');
-
-			// Show Hoved Menu
-			$('ul', this).slideDown();
-		},
-		//OnOut
-		function(){
-			// Hide Other Menus
-			$('ul', this).slideUp();
-
-			//Remove the Arrow
-			$('ul li.arrow', this).remove();
-		}
-	);
-
+	$('#secondary_nav ul li').bind("click", function(){
+		//Add the Arrow
+		$('ul li:first-child', this).before(
+			'<li class="arrow"></li>'
+		);
+		//Remove the Border
+		$('ul li.arrow', this).css('border-bottom', '0');
+		// Show or Hide Hoved Menu
+		$('ul', this).slideToggle();
+	});
 });

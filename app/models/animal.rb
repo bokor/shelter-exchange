@@ -5,7 +5,7 @@ class Animal < ActiveRecord::Base
   
   # Pagination - Per Page
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
-  PER_PAGE = 25
+  PER_PAGE = 5
   
   # Associations
   belongs_to :animal_type, :readonly => true

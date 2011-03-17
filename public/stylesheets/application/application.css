@@ -122,28 +122,28 @@ a:hover, a:selected { border: none; outline: none; }
 /*************************************************************************/
 /* -------------------------- AUTO COMPLETE  --------------------------- */
 /*************************************************************************/
-div.auto_complete { width: 350px; background: #fff; z-index:999; }
+/*div.auto_complete { width: 350px; background: #fff; z-index:999; }
 div.auto_complete ul{border:1px solid #888;margin:0;padding:0;width:100%;list-style-type:none;}
 div.auto_complete ul li{margin:0;padding:3px;border-bottom:1px solid #eee;line-height:25px;height:25px;}
 div.auto_complete ul li.selected{background-color:#ffb;}
 div.auto_complete ul strong.highlight{color:#800;margin:0;padding:0;}
-
+*/
 
 /******************************************************************/
 /* ----------------------- ERROR MESSAGES ----------------------- */
 /******************************************************************/
-.notice{color:green;width:450px;border:2px solid green;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
+/*.notice{color:green;width:450px;border:2px solid green;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
 .notice h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:green;}
-/******************************************************************/
-.warning{color:yellow;width:450px;border:2px solid yellow;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
+*//******************************************************************/
+/*.warning{color:yellow;width:450px;border:2px solid yellow;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
 .warning h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:yellow;}
-/******************************************************************/
-.info{color:blue;width:450px;border:2px solid blue;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
+*//******************************************************************/
+/*.info{color:blue;width:450px;border:2px solid blue;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
 .info h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:blue;}
-/******************************************************************/
-.error{color:red;width:450px;border:2px solid red;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
+*//******************************************************************/
+/*.error{color:red;width:450px;border:2px solid red;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
 .error h2{text-align:left;font-weight:red;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:red;}
-/******************************************************************/
+*//******************************************************************/
 .field_with_errors{padding:1px;background-color:red;display:table;}
 #error_explanation{width:96%;border:1px solid red;padding:7px 7px 0px 7px;margin:10px 0px 10px 0px;background-color:#f0f0f0;}
 #error_explanation h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:10px;background-color:#c00;color:#fff;}
@@ -153,9 +153,9 @@ div.auto_complete ul strong.highlight{color:#800;margin:0;padding:0;}
 /******************************************************************/
 /* -------------------------- DEBUG ----------------------------- */
 /******************************************************************/
-#debug{border-top:1px dashed #000; width: 100%; background: #eee; font-size:16px;}
+/*#debug{border-top:1px dashed #000; width: 100%; background: #eee; font-size:16px;}
 #debug .params{padding: 1em;}
-#debug .session, #debug .env, #debug .request {padding: 1em; border-top:1px dashed #000;}
+#debug .session, #debug .env, #debug .request {padding: 1em; border-top:1px dashed #000;}*/
 
 /******************************************************************/
 /* -------------------------- FORMS  --------------------------- */
@@ -261,6 +261,89 @@ textarea.LV_invalid_field:active,
 .pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
 /* From http://workingwithrails.com/railsplugin/4765-will-paginate */
 
+/* TYPE KIT STYLE 
+.pagination{margin:0 0 1em;font-size:14px;font-family:arial,sans-serif;text-decoration:none;color:#b7b7b7}
+.pagination ul{float:left;margin:0 8px;padding:0}
+.pagination ul li{float:left;margin:0;padding:0;list-style:none}
+.pagination a,.pagination li.current_page,.pagination span{float:left;display:block;margin:0 2px;border:1px solid #e1e1e1;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;padding:.25em .37em;white-space:nowrap;text-decoration:none;color:#b7b7b7}
+.pagination a:hover,.pagination a:hover span{border-color:#bbb;color:#888}
+.pagination li.more_marker{margin:1px 0;padding:.25em .1em}
+.pagination li.current_page{border-color:#9c3;color:#fff;background:#9c3}
+.pagination span{border-color:#efefef;color:#ddd}
+.pagination a span{margin:0;border:0;padding:0;color:#b7b7b7}
+.prev-next-navigation{border-top:1px solid #e4ded1;padding-top:15px;text-align:right}*/
+
+
+
+
+
+
+/* Sub Level Nav */
+#header #secondary_nav ul li ul {
+	background: #F4F4F4;
+	border: 0px solid #000;
+	border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	margin: -20px 0 0 -25px;
+	padding: 0 10px 0 10px;
+	position: relative;
+	width: 126px;
+	z-index: 9999;
+	display: none;
+}
+
+#header #secondary_nav ul li ul li {
+	display: block;
+	float: none;
+	height: 20px;
+	line-height: 20px;
+	padding: 8px 0;
+	text-align: center;
+	width: 126px;
+	margin: 0;
+}
+
+#header #secondary_nav ul li ul li a {
+	color: #620d20;
+	text-shadow: none;
+}
+
+#header #secondary_nav ul li ul li a:hover {
+	font-weight: bold;
+}
+
+#header #secondary_nav ul li ul li:last-child:not(li.arrow) {
+	border: 0;
+}
+
+#header #secondary_nav ul li ul li.current { background: none; }
+#header #secondary_nav ul li ul li.current a{ background: none; color:red;font-weight:bold;  }
+
+/* Arrow */
+.arrow {
+	z-index: -9999;
+	background: url(/images/arrow.png) no-repeat center top;
+	border: 0;
+	display: none;
+	position: absolute;
+		top: -10px;
+	height: 11px;
+	width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*select{height:20px;
 font-size:13px;
 -moz-border-radius:4px;-moz-box-shadow:1px 1px 5px #cfcfcf inset;border:1px solid #cfcfcf;vertical-align:middle;background-color:transparent;}
@@ -269,8 +352,6 @@ font-size:13px;
 background-color:#fef5e6;border-bottom:1px solid #ebdac0;border-right:1px solid #d6bb86;border-left:1px solid #d6bb86;}
 */
 
-
-/* Sub Level Nav */
 
 /*	a {
 	  text-decoration: none;
@@ -290,7 +371,10 @@ background-color:#fef5e6;border-bottom:1px solid #ebdac0;border-right:1px solid 
 	    a h3:hover, a h4:hover, a h5:hover, a h6:hover {
 	      text-decoration: underline; }
 
-
+		/*
+		 * Engine Yard Header
+		 */
+		/*
 header nav ul {
     margin: 8px 0 0 3em;
     padding: 10px 0 20px 0; }
@@ -385,59 +469,42 @@ header nav ul {
         display: block; }*/
 
 
-	
 
+/*
+ * Engine Yard Buttons
+ */
 
-#header #secondary_nav ul li ul {
-	background: #F4F4F4;
-	border: 0px solid #000;
-	border-radius: 5px;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-	-webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
-	margin: -20px 0 0 -25px;
-	padding: 0 10px 0 10px;
-	position: relative;
-	width: 126px;
-	z-index: 9999;
-	display: none;
-}
-
-#header #secondary_nav ul li ul li {
-	display: block;
-	float: none;
-	height: 20px;
-	line-height: 20px;
-	padding: 8px 0;
-	text-align: center;
-	width: 126px;
-	margin: 0;
-}
-
-#header #secondary_nav ul li ul li a {
-	color: #620d20;
-	text-shadow: none;
-}
-
-#header #secondary_nav ul li ul li a:hover {
-	font-weight: bold;
-}
-
-#header #secondary_nav ul li ul li:last-child:not(li.arrow) {
-	border: 0;
-}
-
-#header #secondary_nav ul li ul li.current { background: none; }
-#header #secondary_nav ul li ul li.current a{ background: none; color:red;font-weight:bold;  }
-
-/* Arrow */
-.arrow {
-	z-index: -9999;
-	background: url(/images/arrow.png) no-repeat center top;
-	border: 0;
-	display: none;
-	position: absolute;
-		top: -10px;
-	height: 11px;
-	width: 20px;
-}*
+/*.controls button, .controls a.button {
+  border: 1px solid #9fb7d1;
+    border-bottom-color: #8aa7c7;
+  background: #e0e8f0;
+  background: -moz-linear-gradient(top, #f8fafc, #9bb4cf);
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8fafc), to(#9bb4cf));
+  -moz-box-shadow: 0 1px 2px #999999;
+  -webkit-box-shadow: 0 1px 2px #999999;
+  box-shadow: 0 1px 2px #999999;
+  text-shadow: 0 1px 2px #cfdbe8;
+  padding: 6px 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  line-height: 1.25; }
+  .controls button, .controls button span, .controls a.button, .controls a.button span {
+    color: #1a517c; }
+  .controls button:hover, .controls button:focus, .controls a.button:hover, .controls a.button:focus {
+    border: 1px solid #8aa7c7;
+      border-bottom-color: #688db6;
+    background: #becee0;
+    background: -moz-linear-gradient(top, #e0e8f0, #799abf);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e0e8f0), to(#799abf)); }
+    .controls button:hover, .controls button:hover span, .controls button:focus, .controls button:focus span, .controls a.button:hover, .controls a.button:hover span, .controls a.button:focus, .controls a.button:focus span {
+      color: #164467; }
+  .controls button:active, .controls a.button:active {
+    border: 1px solid #93aecb;
+      border-bottom-color: #7094bb;
+    background: #c6d5e4;
+    background: -moz-linear-gradient(top, #d8e1ec, #81a1c3);
+    background: -webkit-gradient(linear, left top, left bottom, from(#d8e1ec), to(#81a1c3)); }
+    .controls button:active, .controls button:active span, .controls a.button:active, .controls a.button:active span {
+      color: #184a71; }*/
