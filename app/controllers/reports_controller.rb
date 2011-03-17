@@ -26,12 +26,28 @@ class ReportsController < ApplicationController
     bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).adoptions)
   end
   
-  def euthanasia_monthly_total_by_type
+  def euthanized_monthly_total_by_type
     bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).euthanized)
   end
   
-  def euthanasia_monthly_total
+  def euthanized_monthly_total
     bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).euthanized)
+  end
+  
+  def foster_care_monthly_total_by_type
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).foster_care)
+  end
+  
+  def foster_care_monthly_total
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).foster_care)
+  end
+  
+  def reclaimed_monthly_total_by_type
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).reclaimed)
+  end
+  
+  def reclaimed_monthly_total
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).reclaimed)
   end
   
   def intake_monthly_total_by_type

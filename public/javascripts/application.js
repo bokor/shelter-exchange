@@ -5,7 +5,6 @@ TopUp.images_path = "/images/top_up/";
 TopUp.players_path = "/players/";
 
 
-
 // Live List Hover
 $(".note, .status_history, .location, .user").live('hover', function(event) {
   if (event.type == 'mouseover') {
@@ -16,27 +15,27 @@ $(".note, .status_history, .location, .user").live('hover', function(event) {
 });
 
 // Pagination Links -> AJAX Searches
-// $('.pagination a').live('click',function (){  
-// 	$.getScript(this.href);  
-//     return false;  
-// });
-
-$(function() {
-  $(".pagination a").live("click", function() {
-    $.setFragment({ "page" : $.queryString(this.href).page })
-    $(".pagination").html("Page is loading...");
-    return false;
-  });
-  
-  $.fragmentChange(true);
-  $(document).bind("fragmentChange.page", function() {
-    $.getScript($.queryString(document.location.href, { "page" : $.fragment().page }));
-  });
-  
-  if ($.fragment().page) {
-    $(document).trigger("fragmentChange.page");
-  }
+$('.pagination a').live('click',function (){  
+	$.getScript(this.href);  
+    return false;  
 });
+
+// $(function() {
+//   $(".pagination a").live("click", function() {
+//     $.setFragment({ "page" : $.queryString(this.href).page })
+//     $(".pagination").html("Page is loading...");
+//     return false;
+//   });
+//   
+//   $.fragmentChange(true);
+//   $(document).bind("fragmentChange.page", function() {
+//     $.getScript($.queryString(document.location.href, { "page" : $.fragment().page }));
+//   });
+//   
+//   if ($.fragment().page) {
+//     $(document).trigger("fragmentChange.page");
+//   }
+// });
 
 
 //Sidebar Functions to Show and Hide them When Button is clicked

@@ -65,6 +65,8 @@ class Animal < ActiveRecord::Base
   scope :available_for_adoption, where(:animal_status_id => 1)
   scope :adoptions, where(:animal_status_id => 2)
   scope :euthanized, where(:animal_status_id => 11)
+  scope :foster_care, where(:animal_status_id => 3)
+  scope :reclaimed, where(:animal_status_id => 9)
 
   # Scopes - Reporting
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 

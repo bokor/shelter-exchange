@@ -1,6 +1,7 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
 body { background-color: #ccc; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
+/* text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;}*/
 /*
 	green - #0aa509 or #08a026 or #1c9727 or #156333
 	brown
@@ -271,6 +272,122 @@ background-color:#fef5e6;border-bottom:1px solid #ebdac0;border-right:1px solid 
 
 /* Sub Level Nav */
 
+/*	a {
+	  text-decoration: none;
+	  color: #336699; }
+	  a img {
+	    border: none; }
+	  a:visited {
+	    color: #596772; }
+	  a:hover, a:active {
+	    text-decoration: underline; }
+	    a:hover img, a:active img {
+	      text-deocration: none; }
+	  a:focus {
+	    outline: none; }
+	  a h3, a h4, a h5, a h6 {
+	    color: #336699; }
+	    a h3:hover, a h4:hover, a h5:hover, a h6:hover {
+	      text-decoration: underline; }
+
+
+header nav ul {
+    margin: 8px 0 0 3em;
+    padding: 10px 0 20px 0; }
+    header nav ul li {
+      float: left;
+      display: block;
+      margin: 0 0 0 6px;
+      padding: 0;
+      list-style-type: none; }
+      header nav ul li span {
+        padding: 6px 10px 6px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+        font-size: 14px;
+        font-weight: normal;
+        margin: 1px; }
+      header nav ul li.selected span, header nav ul li:hover span, header nav ul li:hover span.single {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        margin: 0;
+        text-decoration: none; }
+      header nav ul li.selected span, header nav ul li:hover span.single {
+        color: white;
+        background: #83020a;
+        border: 1px solid #73090b; }
+      header nav ul li:hover span {
+        background: white;
+        border: 1px solid #cccccc;
+        border-bottom: none;
+        color: #83020a;
+        -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
+      header nav ul li:hover span.single {
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none; }
+      header nav ul li ul {
+        float: none;
+        display: none;
+        font-size: 13px;
+        z-index: 100;
+        position: absolute;
+        background: white;
+        background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f6f6f6));
+        background: -moz-linear-gradient(top, white, #f6f6f6);
+        border: 1px solid #cccccc;
+        border-top: none;
+        -moz-border-radius-topright: 6px;
+        -moz-border-radius-bottomright: 6px;
+        -moz-border-radius-bottomleft: 6px;
+        -webkit-border-top-right-radius: 6px;
+        -webkit-border-bottom-left-radius: 6px;
+        -webkit-border-bottom-right-radius: 6px;
+        min-width: 90px;
+        padding: 0px 15px 10px;
+        margin: 1px 0 0;
+        -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
+        header nav ul li ul li {
+          float: none;
+          margin: 10px 0 0;
+          clear: both; }
+          header nav ul li ul li a {
+            clear: both;
+            display: block; }
+        header nav ul li ul ul {
+          display: block;
+          position: static;
+          border: None;
+          background: none;
+          padding: 0;
+          margin: 0;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none; }
+          header nav ul li ul ul li {
+            margin-top: 0; }
+            header nav ul li ul ul li a:link, header nav ul li ul ul li a:visited {
+              font-size: 12px;
+              color: #999999; }
+        header nav ul li ul a:link, header nav ul li ul a:visited, header nav ul li ul a:hover {
+          font-size: 1em;
+          color: #666666;
+          background: none;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none;
+          text-shadow: none;
+          border: none;
+          padding: 0;
+          margin: 0; }
+          header nav ul li ul a:link:hover, header nav ul li ul a:visited:hover, header nav ul li ul a:hover:hover {
+            color: black; }
+      header nav ul li:hover ul {
+        display: block; }*/
+
+
+	
+
+
 #header #secondary_nav ul li ul {
 	background: #F4F4F4;
 	border: 0px solid #000;
@@ -323,4 +440,4 @@ background-color:#fef5e6;border-bottom:1px solid #ebdac0;border-right:1px solid 
 		top: -10px;
 	height: 11px;
 	width: 20px;
-}
+}*
