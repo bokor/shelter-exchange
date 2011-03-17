@@ -48,9 +48,9 @@ class AccommodationsController < ApplicationController
     respond_with(@accommodation)
   end
   
-  def full_search
+  def search
     q = params[:q].strip
-    @accommodations = q.blank? ? {} : @current_shelter.accommodations.full_search(q).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = q.blank? ? {} : @current_shelter.accommodations.search(q).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   end
   
   def filter_by_type_location

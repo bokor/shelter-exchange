@@ -13,14 +13,15 @@
 		</div>
 		
 		<div class="page_content">
-			
+		
 			<table class="search">
 				<tr>
 					<td class="full_search">
 						<h3>Search for animal:</h3>
-						<%= form_for :animals, :url => { :action => :full_search }, :remote => true, :html => { :id => "form_full_search", :method => :get } do |f| %>
+						<%= form_for :animals, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go", :disable_with => "..." %> <!-- , :class => "button" %> -->
+							<%# text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this);"  %>
+							<%= f.submit "Go", :disable_with => "..." %> 
 						<% end %>
 					</td>
 					<td class="filters">

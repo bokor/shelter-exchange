@@ -50,9 +50,9 @@ class AnimalsController < ApplicationController
      respond_with(@animal)
   end
   
-  def full_search
+  def search
     q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.full_search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = q.blank? ? {} : @current_shelter.animals.search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
   def search_by_name

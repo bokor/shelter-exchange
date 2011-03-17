@@ -4,16 +4,16 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "application/application", "application/controller", "global/jquery-ui-1.8.6.custom", 
+ 	<%= stylesheet_link_tag "application/application", "application/controller", "global/jquery-ui-1.8.6.custom",
                             :media => "all", :cache => "cache/application/all" %>
 
     <%= stylesheet_link_tag "application/print", :media => "print", :cache => "cache/application/print" %>
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery.ui.autocomplete.ext", "jquery.jtruncate",
+	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", "jquery.ui.autocomplete.ext", "jquery.jtruncate",
 	                           "jquery.tokeninput", "top_up-min","rails", "application", 
-							   :cache => "cache/application/all" %> <!-- jquery.tipTip.minified -->
+							   :cache => "cache/application/all" %>
 	<%= yield(:javascripts) %>
 		
 	<%= csrf_meta_tag %>

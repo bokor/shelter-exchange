@@ -18,7 +18,7 @@ class Accommodation < ActiveRecord::Base
   validates :max_capacity, :numericality => true
   
   # Scopes
-  scope :full_search, lambda { |q| includes(:animal_type, :animals, :location).where("LOWER(name) LIKE LOWER('%#{q}%')") }
+  scope :search, lambda { |q| includes(:animal_type, :animals, :location).where("LOWER(name) LIKE LOWER('%#{q}%')") }
   
   
 end

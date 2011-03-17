@@ -17,9 +17,10 @@
 			<tr>
 				<td class="full_search">
 					<h3>Search for accommodation:</h3>
-					<%= form_for :accommodations, :url => { :action => :full_search }, :remote => true, :html => { :id => "form_full_search", :method => :get } do |f| %>
+					<%= form_for :accommodations, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 						<%= text_field_tag "q", ""  %>
-						<%= f.submit "Go", :disable_with => "...", :class => "button" %>
+						<%# text_field_tag "q", "", :onkeyup =>"Accommodations.liveSearch(this);"  %>
+						<%= f.submit "Go", :disable_with => "..." %>
 					<% end %>
 				</td>
 				<td class="filters">

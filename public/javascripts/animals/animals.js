@@ -1,5 +1,4 @@
-var Animals = {
-	
+var Animals = { 
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();
 
@@ -89,9 +88,17 @@ var Animals = {
 				animal_status_id: $('#animal_animal_status_id').val() 
 		});
 	},
-	// deletePhoto: function(id) {
-	// 	$.get("/animals/" + id + "/delete_photo.js");
-	// },
+	// liveSearch: function(element){
+	// 		var q = $(element);
+	// 		if (q.val().length >= 3) {
+	// 			clearTimeout($.data(element, "search_timer"));
+	// 			var wait = setTimeout(function() { 
+	// 				$.get("/animals/live_search.js", { q: q.val() });
+	// 				clearTimeout($.data(element, "search_timer"));  
+	// 			}, 500);
+	// 			$.data(element, "search_timer", wait);
+	// 		}
+	// 	},
 	autoComplete: function(){
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,

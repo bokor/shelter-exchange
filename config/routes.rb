@@ -37,7 +37,7 @@ Shelterexchange::Application.routes.draw do
 #   Accommodations Routes 
     resources :accommodations, :except => [:show] do
       collection do
-        get :full_search
+        get :search
         get :filter_by_type_location
       end
     end
@@ -72,7 +72,7 @@ Shelterexchange::Application.routes.draw do
       resources :alerts 
       resources :tasks 
       collection do
-        get :full_search
+        get :search
         get :search_by_name
         get :filter_notes
         get :filter_by_type_status

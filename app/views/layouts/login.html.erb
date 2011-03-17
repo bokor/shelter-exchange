@@ -4,11 +4,13 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "login/application", "global/jquery-ui-1.8.6.custom", :media => "all", :cache => "cache/login/all" %>
+ 	<%= stylesheet_link_tag "login/application", "global/jquery-ui-1.8.6.custom", 
+					        :media => "all", :cache => "cache/login/all" %>
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "rails", "application", :cache => "cache/login/all" %> 
+	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", 
+	                           "rails", "application", :cache => "cache/login/all" %> 
 	<%= yield(:javascripts) %>
 		
 	<%= csrf_meta_tag %>

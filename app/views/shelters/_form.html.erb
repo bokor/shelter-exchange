@@ -50,8 +50,9 @@
 			<%= f.text_field :facebook %>
 		</li>
 		<li>
-			<%= f.check_box :is_kill_shelter%>&nbsp;&nbsp;
-			<%= f.label :is_kill_shelter, "Is kill shelter" %><br />
+			<%= label_tag "Are you a kill shelter?" %><br />
+			<%= f.radio_button :is_kill_shelter, true %>&nbsp;<%= f.label :is_kill_shelter, "Yes" %>&nbsp;&nbsp;
+			<%= f.radio_button :is_kill_shelter, false %>&nbsp;<%= f.label :is_kill_shelter, "No" %>
 		</li>
 		<li>
 			<%= f.label :time_zone, "Time Zone" %><br />

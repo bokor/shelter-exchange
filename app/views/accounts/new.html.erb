@@ -42,8 +42,12 @@
 						<%= shelter_fields.text_field :email %>
 					</li>
 					<li>
-						<%= shelter_fields.check_box :is_kill_shelter%>&nbsp;&nbsp;
-						<%= shelter_fields.label :is_kill_shelter, "Is Kill Shelter" %><br />
+						<%= label_tag "Are you a kill shelter?" %><br />
+						<%= shelter_fields.radio_button :is_kill_shelter, true %>&nbsp;
+						<%= shelter_fields.label :is_kill_shelter, "Yes" %>
+						&nbsp;&nbsp;
+						<%= shelter_fields.radio_button :is_kill_shelter, false %>&nbsp;
+						<%= shelter_fields.label :is_kill_shelter, "No" %>
 					</li>
 					<li>
 						<%= shelter_fields.label :time_zone, "Time Zone" %><br />

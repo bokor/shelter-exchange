@@ -171,6 +171,11 @@ input[type=submit] {}
 textarea{height:100px;width:400px;font-size:14px; }
 .actions input[type=submit]{cursor: pointer;}
 
+#right #sidebar input[type=text]{height:20px;width:98%;font-size:14px; }
+#right #sidebar input[type=checkbox]{}
+#right #sidebar input[type=submit] {}
+#right #sidebar textarea{height:100px;width:98%;font-size:14px; }
+
 /****************************************************************/
 /* -------------------------- AJAX  --------------------------- */
 /****************************************************************/
@@ -219,10 +224,9 @@ textarea{height:100px;width:400px;font-size:14px; }
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
 }*/
 
-#right #sidebar input[type=text]{height:20px;width:98%;font-size:14px; }
-#right #sidebar input[type=checkbox]{}
-#right #sidebar input[type=submit] {}
-#right #sidebar textarea{height:100px;width:98%;font-size:14px; }
+
+
+
 
 /******************************************************************/
 /* --------------------- LiveValidation  ------------------------ */
