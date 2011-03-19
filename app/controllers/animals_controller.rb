@@ -34,12 +34,14 @@ class AnimalsController < ApplicationController
   def create
     @animal = @current_shelter.animals.new(params[:animal])
     flash[:notice] = "#{@animal.name} has been created." if @animal.save
+    @animal.photo.clear if @animal.photo.errors
     respond_with(@animal)
   end
   
   def update
     @animal = @current_shelter.animals.find(params[:id])
     flash[:notice] = "#{@animal.name} has been updated." if @animal.update_attributes(params[:animal]) 
+    @animal.photo.clear if @animal.photo.errors
     respond_with(@animal)
   end
   

@@ -45,11 +45,9 @@ class Animal < ActiveRecord::Base
   validates :euthanasia_scheduled, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
   
   # Custom Validations - Photo
-  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less"
+  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less", :if => Proc.new { |imports| !imports.photo.file? }
   validates_attachment_content_type :photo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
 
-
-  
   
   # Scopes - Searches
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }

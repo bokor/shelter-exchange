@@ -18,8 +18,8 @@ Shelterexchange::Application.routes.draw do
       collection do
         get :status_by_current_month
         get :type_by_current_month
-        get :adoption_monthly_total
-        get :adoption_monthly_total_by_type
+        get :adoptions_monthly_total
+        get :adoptions_monthly_total_by_type
         get :euthanized_monthly_total
         get :euthanized_monthly_total_by_type
         get :intake_monthly_total
