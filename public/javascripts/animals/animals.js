@@ -37,27 +37,25 @@ var Animals = {
 		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
-		//Date of Birth DatePicker
+		// Date of Birth DatePicker
 		Animals.datePicker("#date_of_birth_datepicker", "#date_of_birth_humanize", '#animal_date_of_birth', true);
 		Animals.setHumanizeDate('#date_of_birth', $('#animal_date_of_birth').val());
 		$('#date_of_birth_trigger').bind("click", function(event) { $('#date_of_birth_datepicker').slideToggle();});
-		//Bind Events
+		// Bind Form Events
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
 		//Check if a kill shelter
 		if(is_kill_shelter) {
+			// Arrival Date initialize
 			Animals.datePicker("#arrival_date_datepicker", "#arrival_date_humanize", '#animal_arrival_date', false);
 			Animals.setHumanizeDate('#arrival_date', $('#animal_arrival_date').val());
-			$('#arrival_date_trigger').bind("click", function(event) {
-		        $('#arrival_date_datepicker').slideToggle();
-		    });
+			$('#arrival_date_trigger').bind("click", function(event) { $('#arrival_date_datepicker').slideToggle(); });
+			// Euthanasia Date initialize
 			Animals.datePicker("#euthanasia_scheduled_datepicker", "#euthanasia_scheduled_humanize", '#animal_euthanasia_scheduled', false);
 			Animals.setHumanizeDate('#euthanasia_scheduled', $('#animal_euthanasia_scheduled').val());
-			$('#euthanasia_scheduled_trigger').bind("click", function(event) {
-		        $('#euthanasia_scheduled_datepicker').slideToggle();
-		    });
+			$('#euthanasia_scheduled_trigger').bind("click", function(event) { $('#euthanasia_scheduled_datepicker').slideToggle();});
 		}
 	},
 	noteFilters: function(){

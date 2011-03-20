@@ -3,8 +3,7 @@ module TasksHelper
   def show_taskable_link(task)
 	  if task.taskable
 	    link = link_to task.taskable.name, polymorphic_path(task.taskable)
-	    display_string = '<span class="task_animal_name">(' + link + ')</span>'
-	    display_string.html_safe
+	    return ('<span class="task_animal_name">(' + link + ')</span>').html_safe
     end
   end
   
@@ -12,8 +11,7 @@ module TasksHelper
     due_section = find_due_section(task)
     if !task.due_date.blank?
       unless due_section == "today" or due_section == "tomorrow"
-        display_string = '<span class="task_due_date">' + format_date(:short_no_year, task.due_date) + '</span>'
-        display_string.html_safe
+        return ('<span class="task_due_date">' + format_date(:short_no_year, task.due_date) + '</span>').html_safe
       end
     end
   end

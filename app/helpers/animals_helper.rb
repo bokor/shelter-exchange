@@ -9,17 +9,10 @@ module AnimalsHelper
   end
   
   def humanize_dob(dob)
-    age = ""
     unless dob.blank?
-      days_old = Date.today.day - dob.day
-      months_old = Date.today.month - dob.month - (days_old < 0 ? 1 : 0)
-      years_old = Date.today.year - dob.year - (months_old < 0 ? 1 : 0)
-      age << "#{years_old.to_s}" << (years_old == 1 ? " year" : " years") if years_old > 0
-      age << " and " if years_old > 0 and months_old > 0
-      age << "#{months_old.to_s}" << (months_old == 1 ? " month" : " months") if months_old > 0
-      age << "Less than a month" if years_old <= 0 and months_old <= 0
+      return time_diff_in_natural_language(dob, current_time)
     end
-    return age
+    ""
   end
 
 end
