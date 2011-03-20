@@ -43,8 +43,13 @@
 			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilization" %>
 		</li>
 		<li>
-			<%= f.label :age, "Age" %><br />
-			<%= f.text_field :age %>
+			<%= f.label :date_of_birth, "Estimated Date of birth" %><br />
+			<div id="date_of_birth_field" class="date_field">
+				<div id="date_of_birth_humanize" class="humanize_date">Select Date</div>
+				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
+			</div>
+			<div id="date_of_birth_datepicker" class="datepicker"></div>
+			<%= f.hidden_field :date_of_birth %>
 		</li>
 		<li>
 			<%= f.label :weight, "Weight" %><br />

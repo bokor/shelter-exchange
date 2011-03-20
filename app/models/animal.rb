@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  default_scope :order => 'animals.created_at DESC', :limit => 250
+  default_scope :order => 'animals.status_change_date DESC', :limit => 250
   before_save :check_status_changed?
   after_save :create_status_history!
   
@@ -32,7 +32,7 @@ class Animal < ActiveRecord::Base
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
-  validates :microchip, :uniqueness => { :allow_blank => true }
+  validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id }
   
   # Custom Validations
   validates :primary_breed, :presence => { :if => :primary_breed_exists? }
@@ -100,14 +100,30 @@ class Animal < ActiveRecord::Base
     @status_history_reason = value
   end
   
-  # Helper Methods
+  # Helper format Methods because of JSON and XML ## move to helper methods when to_json and to_xml fixed with templates
   def full_breed
     if self.is_mix_breed
       self.secondary_breed.blank? ? self.primary_breed << " Mix" : self.primary_breed << " & " << self.secondary_breed << " Mix"
-	  else
-	    self.primary_breed
-	  end
+    else
+      self.primary_breed
+    end
   end
+  
+  def estimated_age
+    age = ""
+    unless self.date_of_birth.blank?
+      days_old = Date.today.day - date_of_birth.day
+      months_old = Date.today.month - date_of_birth.month - (days_old < 0 ? 1 : 0)
+      years_old = Date.today.year - date_of_birth.year - (months_old < 0 ? 1 : 0)
+      age << "#{years_old.to_s}" << (years_old == 1 ? " year" : " years") if years_old > 0
+      age << " and " if years_old > 0 and months_old > 0
+      age << "#{months_old.to_s}" << (months_old == 1 ? " month" : " months") if months_old > 0
+      age << "Less than a month" if years_old <= 0 and months_old <= 0
+    end
+    return age
+  end
+  ## move to helper methods when to_json and to_xml fixed with templates
+  
   
   # API Methods Overrides
   def as_json(options = {})
@@ -180,7 +196,8 @@ class Animal < ActiveRecord::Base
               :name => self.animal_status.name
             },
             :breed => self.full_breed,
-            :age => self.age,
+            :date_of_birth => self.date_of_birth,
+            :age => self.estimated_age,
             :color => self.color,
             :description => self.description,
             :is_sterilized => self.is_sterilized,
@@ -210,7 +227,8 @@ class Animal < ActiveRecord::Base
             xml.name(self.animal_status.name)
           end
           xml.breed(self.full_breed)
-          xml.age(self.age)
+          xml.date_of_birth(self.date_of_birth)
+          xml.age(self.estimated_age)
           xml.color(self.color)
           xml.description(self.description)
           xml.is_sterilized(self.is_sterilized)
@@ -224,4 +242,5 @@ class Animal < ActiveRecord::Base
         end
       end
     end
+
 end

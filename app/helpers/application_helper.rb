@@ -38,6 +38,10 @@ module ApplicationHelper
     Time.zone.now.year
   end
   
+  def current_time
+    Time.zone.now
+  end
+  
 end
 
 

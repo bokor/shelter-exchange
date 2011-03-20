@@ -43,11 +43,11 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animals #euthanasia_info fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
 .animals #euthanasia_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
-.animals #euthanasia_info .date_field{ padding-bottom: 15px;}
-.animals #euthanasia_info .date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals #euthanasia_info .humanize_date{float:left; width: 190px;font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
-.animals #euthanasia_info .icon_calendar{float:left; padding-left: 10px; cursor: pointer;}
-.animals #euthanasia_info .datepicker{display:none; padding-bottom: 10px;}
+.animals .date_field{ padding-bottom: 15px;}
+.animals .date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animals .humanize_date{float:left; width: 190px;font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+.animals .icon_calendar{float:left; padding-left: 10px; cursor: pointer;}
+.animals .datepicker{display:none; padding-bottom: 10px;}
 
 .animals #accommodation_info{display:none;}
 .animals #accommodation_remove_link{display:none;padding-left: 5px;}

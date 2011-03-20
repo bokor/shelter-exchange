@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309013620) do
+ActiveRecord::Schema.define(:version => 20110320025839) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20110309013620) do
     t.text     "description"
     t.string   "sex"
     t.string   "weight"
-    t.string   "age"
+    t.date     "date_of_birth",        :limit => 255
     t.boolean  "is_sterilized"
     t.string   "color"
     t.boolean  "is_mix_breed"

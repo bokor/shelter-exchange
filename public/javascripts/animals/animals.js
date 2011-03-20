@@ -37,18 +37,24 @@ var Animals = {
 		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
+		//Date of Birth DatePicker
+		Animals.datePicker("#date_of_birth_datepicker", "#date_of_birth_humanize", '#animal_date_of_birth', true);
+		Animals.setHumanizeDate('#date_of_birth', $('#animal_date_of_birth').val());
+		$('#date_of_birth_trigger').bind("click", function(event) { $('#date_of_birth_datepicker').slideToggle();});
+		//Bind Events
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
+		//Check if a kill shelter
 		if(is_kill_shelter) {
-			Animals.arrivalDatePicker();
-			Animals.euthanasiaScheduledDatePicker();
+			Animals.datePicker("#arrival_date_datepicker", "#arrival_date_humanize", '#animal_arrival_date', false);
 			Animals.setHumanizeDate('#arrival_date', $('#animal_arrival_date').val());
-			Animals.setHumanizeDate('#euthanasia_scheduled', $('#animal_euthanasia_scheduled').val());
 			$('#arrival_date_trigger').bind("click", function(event) {
 		        $('#arrival_date_datepicker').slideToggle();
 		    });
+			Animals.datePicker("#euthanasia_scheduled_datepicker", "#euthanasia_scheduled_humanize", '#animal_euthanasia_scheduled', false);
+			Animals.setHumanizeDate('#euthanasia_scheduled', $('#animal_euthanasia_scheduled').val());
 			$('#euthanasia_scheduled_trigger').bind("click", function(event) {
 		        $('#euthanasia_scheduled_datepicker').slideToggle();
 		    });
@@ -129,38 +135,20 @@ var Animals = {
 			}			
 		});
 	},
-	arrivalDatePicker: function(){
-		$("#arrival_date_datepicker").datepicker({
+	datePicker: function(datepickerId, altField, hiddenField, changeMonthYear){
+		var changeYear = changeMonthYear;
+		var changeMonth = changeMonthYear;
+		$(datepickerId).datepicker({
 			numberOfMonths: 1,
 			showButtonPanel: false,
+			changeMonth: changeMonth,
+			changeYear: changeYear,
 			dateFormat: 'yy-mm-dd',
-			altField: "#arrival_date_humanize",
+			altField: altField,
 			altFormat: "D MM d, yy",
 			onSelect: function(dateText,picker) { 
 				//HIDDEN FIELD
-				$('#animal_arrival_date').val( dateText ); 
-
-				//DIV FIELD
-				var dateFormat = $(this).datepicker( "option", "dateFormat" );
-				var altFormat = $(this).datepicker( "option", "altFormat" );
-				var altField = $(this).datepicker( "option", "altField" );
-				var parseDate = $.datepicker.parseDate(dateFormat, dateText);
-				var formatDate = $.datepicker.formatDate(altFormat, parseDate);
-				$(altField).html(formatDate);
-
-			}  
-		});
-	},
-	euthanasiaScheduledDatePicker: function(){
-		$("#euthanasia_scheduled_datepicker").datepicker({
-			numberOfMonths: 1,
-			showButtonPanel: false,
-			dateFormat: 'yy-mm-dd',
-			altField: "#euthanasia_scheduled_humanize",
-			altFormat: "D MM d, yy",
-			onSelect: function(dateText,picker) { 
-				//HIDDEN FIELD
-				$('#animal_euthanasia_scheduled').val( dateText ); 
+				$(hiddenField).val( dateText ); 
 
 				//DIV FIELD
 				var dateFormat = $(this).datepicker( "option", "dateFormat" );

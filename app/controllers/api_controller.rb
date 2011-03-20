@@ -10,6 +10,7 @@ class ApiController < ApplicationController
       options = { :version => api_version.to_sym }
       respond_with(@animals) do |format|  
         format.json { render :json => @animals.to_json(options), :callback => params[:callback] }
+        # format.json 
         format.xml { render :xml => @animals.to_xml(options), :callback => params[:callback] }
       end
     else
