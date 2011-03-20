@@ -99,43 +99,6 @@ class Animal < ActiveRecord::Base
   def status_history_reason=(value)
     @status_history_reason = value
   end
-  
-  # Helper format Methods because of JSON and XML ## move to helper methods when to_json and to_xml fixed with templates
-  def full_breed
-    if self.is_mix_breed
-      self.secondary_breed.blank? ? self.primary_breed << " Mix" : self.primary_breed << " & " << self.secondary_breed << " Mix"
-    else
-      self.primary_breed
-    end
-  end
-  
-  def estimated_age
-    age = ""
-    unless self.date_of_birth.blank?
-      days_old = Date.today.day - date_of_birth.day
-      months_old = Date.today.month - date_of_birth.month - (days_old < 0 ? 1 : 0)
-      years_old = Date.today.year - date_of_birth.year - (months_old < 0 ? 1 : 0)
-      age << "#{years_old.to_s}" << (years_old == 1 ? " year" : " years") if years_old > 0
-      age << " and " if years_old > 0 and months_old > 0
-      age << "#{months_old.to_s}" << (months_old == 1 ? " month" : " months") if months_old > 0
-      age << "Less than a month" if years_old <= 0 and months_old <= 0
-    end
-    return age
-  end
-  ## move to helper methods when to_json and to_xml fixed with templates
-  
-  
-  # API Methods Overrides
-  def as_json(options = {})
-    json_format(version = options[:version])
-  end
-
-  def to_xml(options = {})
-    xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => 2, :dasherize => false, :skip_types => true)
-    xml.instruct! unless options[:skip_instruct]
-    xml_format(xml, version = options[:version])
-  end
-
                                                  
   private
 
@@ -179,67 +142,6 @@ class Animal < ActiveRecord::Base
       if self.new_record? or self.animal_status_id_changed?
         status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
         status_history.save
-      end
-    end
-    
-    def json_format(version)
-      if version == :v1
-        { :animal => {
-            :id => self.id,
-            :name => self.name,
-            :type => {
-              :id => self.animal_type_id,
-              :name => self.animal_type.name
-            },
-            :status => {
-              :id => self.animal_status_id,
-              :name => self.animal_status.name
-            },
-            :breed => self.full_breed,
-            :date_of_birth => self.date_of_birth,
-            :age => self.estimated_age,
-            :color => self.color,
-            :description => self.description,
-            :is_sterilized => self.is_sterilized,
-            :weight => self.weight,
-            :sex => self.sex.to_s.humanize,
-            :photo => {
-              :thumbnail => self.photo.url(:thumbnail),
-              :small => self.photo.url(:small),
-              :large => self.photo.url(:large)
-            }
-          }
-        }
-      end
-    end
-    
-    def xml_format(xml, version)
-      if version == :v1
-        xml.animal do
-          xml.id(self.id)
-          xml.name(self.name)
-          xml.type do 
-            xml.id(self.animal_type_id)
-            xml.name(self.animal_type.name)
-          end
-          xml.status do 
-            xml.id(self.animal_status_id)
-            xml.name(self.animal_status.name)
-          end
-          xml.breed(self.full_breed)
-          xml.date_of_birth(self.date_of_birth)
-          xml.age(self.estimated_age)
-          xml.color(self.color)
-          xml.description(self.description)
-          xml.is_sterilized(self.is_sterilized)
-          xml.weight(self.weight)
-          xml.sex(self.sex.to_s.humanize)
-          xml.photo do 
-            xml.thumbnail(self.photo.url(:thumbnail))
-            xml.small(self.photo.url(:small))
-            xml.large(self.photo.url(:large))
-          end
-        end
       end
     end
 

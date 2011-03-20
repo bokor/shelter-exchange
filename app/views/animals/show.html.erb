@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>
-					<p><%= @animal.animal_type.name %>:  <%= @animal.full_breed %></p>
+					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
 				</td>
 				<td class="right">
 					<p><%= @animal.animal_status.name %></p>
@@ -48,7 +48,7 @@
 					<h3>Details:</h3>
 					<ul>
 						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
-						<li><p><b>Age (Est.):</b> <%= @animal.estimated_age %></p></li>
+						<li><p><b>Age (Est.):</b> <%= humanize_dob(@animal.date_of_birth) %></p></li>
 						<li><p><b>MicroChip:</b> <%= @animal.microchip %></p></li>
 						<li><p><b>Color:</b> <%= @animal.color %></p></li>
 						<li><p><b>Sex:</b> <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>

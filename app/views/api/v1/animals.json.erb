@@ -1,0 +1,34 @@
+<% json = @animals.collect do |animal|
+{ :animal => {
+	:id => animal.id,
+    :name => animal.name,
+    :type => {
+    	:id => animal.animal_type_id,
+       	:name => animal.animal_type.name
+   	},
+	:status => {
+       	:id => animal.animal_status_id,
+        :name => animal.animal_status.name
+   	},
+   	:breed => full_breed(animal),
+    :estimated_age => humanize_dob(animal.date_of_birth),
+	:microchip => animal.microchip,
+    :color => animal.color,
+    :description => animal.description,
+    :is_sterilized => animal.is_sterilized,
+    :weight => animal.weight,
+    :sex => animal.sex.to_s.humanize,
+    :photo => {
+    	:thumbnail => animal.photo.url(:thumbnail),
+    	:small => animal.photo.url(:small),
+        :large => animal.photo.url(:large)
+    }
+  }
+}
+end
+%>
+<% if params[:callback] %>
+<%= (params[:callback] << "(" << json.to_json << ")").html_safe %>
+<% else %>
+<%= json.to_json.html_safe %>
+<% end %>
