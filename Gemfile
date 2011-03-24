@@ -19,13 +19,13 @@ gem 'jquery-rails', '0.2.7'         # HTML/JS
 gem 'paperclip', '2.3.8'            # Attachments
 gem 'rmagick', '2.13.1'
 
-gem 'geokit', '1.5.0'				# Geocoding - requires plugin as well.
-
+gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
 
 
 ##TESTING THESE GEMS/Plugins
+# gem 'geokit-rails3', '0.1.3'        # Geocoding
 #gem 'paper_trail'
 #gem 'acts_as_archive'
 #gem 'foreigner'

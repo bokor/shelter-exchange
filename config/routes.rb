@@ -1,6 +1,5 @@
 Shelterexchange::Application.routes.draw do
 
-
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
 
@@ -60,6 +59,8 @@ Shelterexchange::Application.routes.draw do
     resources :placements, :only => [:create, :edit, :update, :destroy] do
       resources :comments
     end
+    
+    resources :communities
     
 #   Parents Routes
     resources :parents do

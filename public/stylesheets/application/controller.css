@@ -578,6 +578,22 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
+/**********************************************************************/
+/* -------------------------- COMMUNITIES --------------------------- */
+/**********************************************************************/
+/* -- Communities :: Common Styles --*/
+.communities ul {list-style:none;}
+
+/* -- Communities :: Page Heading and Titles --*/
+.communities .page_heading{border-bottom:1px solid #eee; }
+.communities .page_heading h1{width:100%;/* float:left;*/ }
+/*.communities .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}*/
+
+.index_communities #main { margin: 1em 3em 0 3em; }
+.index_communities #left { width: 100%;}
+.index_communities #sidebar { display: none;width: 0; }
+
+
 
 /*****************************************************************/
 /* -------------------------- REPORTS -------------------------- */

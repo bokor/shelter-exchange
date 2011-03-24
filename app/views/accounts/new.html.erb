@@ -35,7 +35,7 @@
 					</li>
 					<li>
 						<%= shelter_fields.label :main_phone, "Main phone" %><br />
-						<%= shelter_fields.text_field :main_phone %>
+						<%= shelter_fields.text_field :main_phone, :value => number_to_phone(@account.shelters.first.main_phone, :delimiter => "-") %>
 					</li>
 					<li>
 						<%= shelter_fields.label :email, "Email" %><br />

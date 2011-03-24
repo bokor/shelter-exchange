@@ -88,8 +88,8 @@ var Animals = {
 	},
 	filterByTypeStatus: function(){
 		$.get("/animals/filter_by_type_status.js", { 
-				animal_type_id: $('#animal_animal_type_id').val(), 
-				animal_status_id: $('#animal_animal_status_id').val() 
+			animal_type_id: $('#animal_animal_type_id').val(), 
+			animal_status_id: $('#animal_animal_status_id').val() 
 		});
 	},
 	// liveSearch: function(element){

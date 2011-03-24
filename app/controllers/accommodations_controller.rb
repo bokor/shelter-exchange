@@ -8,7 +8,7 @@ class AccommodationsController < ApplicationController
     @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   
     if @accommodations.blank?
-      redirect_to new_task_path
+      redirect_to new_accommodation_path
     end  
   end
   

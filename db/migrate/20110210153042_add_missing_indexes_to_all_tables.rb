@@ -4,7 +4,7 @@ class AddMissingIndexesToAllTables < ActiveRecord::Migration
     add_index(:comments, :created_at)
     add_index(:locations, :name)
     add_index(:parents, :created_at)
-    add_index(:parents, [:name, :street, :home_phone, :mobile_phone, :email], :name => :full_search)
+    add_index(:parents, [:home_phone, :mobile_phone, :email], :name => :full_search)
     add_index(:placements, [:parent_id, :shelter_id, :animal_id])
     add_index(:tasks, :updated_at)
     add_index(:tasks, [:updated_at, :due_date])
@@ -19,7 +19,7 @@ class AddMissingIndexesToAllTables < ActiveRecord::Migration
     remove_index :comments, :created_at
     remove_index :locations, :name
     remove_index :parents, :created_at
-    remove_index :parents, [:name, :street, :home_phone, :mobile_phone, :email], :name => :full_search
+    remove_index :parents, [:home_phone, :mobile_phone, :email], :name => :full_search
     remove_index :placements, [:parent_id, :shelter_id, :animal_id]
     remove_index :tasks, :updated_at
     remove_index :tasks, [:updated_at, :due_date]

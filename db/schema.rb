@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
   add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
   add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
   add_index "alerts", ["created_at"], :name => "index_alerts_on_created_at"
-  add_index "alerts", ["description"], :name => "index_alerts_on_description"
   add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
   add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
@@ -109,9 +108,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
   add_index "animals", ["created_at", "shelter_id"], :name => "index_animals_on_created_at_and_shelter_id"
   add_index "animals", ["created_at"], :name => "index_animals_on_created_at"
-  add_index "animals", ["description"], :name => "index_animals_on_description"
   add_index "animals", ["id", "name"], :name => "index_animals_on_id_and_name"
-  add_index "animals", ["id"], :name => "index_animals_on_id"
   add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
   add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
@@ -134,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
     t.integer  "max_capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "warning_level",  :limit => 255
+    t.integer  "warning_level"
   end
 
   add_index "capacities", ["animal_type_id"], :name => "index_capacities_on_animal_type_id"
@@ -196,7 +193,6 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
   end
 
   add_index "notes", ["created_at"], :name => "index_notes_on_created_at"
-  add_index "notes", ["description"], :name => "index_notes_on_description"
   add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
   add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
@@ -218,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
   end
 
   add_index "parents", ["created_at"], :name => "index_parents_on_created_at"
-  add_index "parents", ["name", "street", "home_phone", "mobile_phone", "email"], :name => "full_search"
+  add_index "parents", ["home_phone", "mobile_phone", "email"], :name => "full_search"
 
   create_table "placements", :force => true do |t|
     t.integer  "animal_id"
@@ -248,9 +244,9 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter",   :default => false, :null => false
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.boolean  "is_kill_shelter",                                   :default => false, :null => false
+    t.decimal  "lat",               :precision => 15, :scale => 10
+    t.decimal  "lng",               :precision => 15, :scale => 10
     t.string   "email"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
@@ -313,13 +309,13 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
   add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => ""
-    t.string   "password_salt",                       :default => ""
+    t.string   "email",                              :default => "", :null => false
+    t.string   "encrypted_password",                 :default => ""
+    t.string   "password_salt",                      :default => ""
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                      :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -335,7 +331,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
     t.string   "role"
-    t.integer  "failed_attempts",                     :default => 0
+    t.integer  "failed_attempts",                    :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
   end
