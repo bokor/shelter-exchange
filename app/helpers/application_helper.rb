@@ -48,7 +48,7 @@ module ApplicationHelper
     distance_in_seconds = ((to_time - from_time).abs).round
     components = []
 
-    %w(year month).each do |interval| # add day if needed
+    %w(year month).each do |interval|
       # For each interval type, if the amount of time remaining is greater than
       # one unit, calculate how many units fit into the remaining time.
       if distance_in_seconds >= 1.send(interval)
@@ -57,8 +57,21 @@ module ApplicationHelper
         components << pluralize(delta, interval)
       end
     end
+    
+    if components.blank?
+      %w(week).each do |interval|
+        # For each interval type, if the amount of time remaining is greater than
+        # one unit, calculate how many units fit into the remaining time.
+        if distance_in_seconds >= 1.send(interval)
+          delta = (distance_in_seconds / 1.send(interval)).floor
+          distance_in_seconds -= delta.send(interval)
+          components << pluralize(delta, interval)
+        end
+      end
+    end
 
     components.join(" and ")
+    
   end
   
 end

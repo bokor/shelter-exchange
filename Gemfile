@@ -16,21 +16,24 @@ gem 'will_paginate', '2.3.15'       # Pagination
 gem 'dynamic_form', '1.1.3'         # HTML/JS
 gem 'jquery-rails', '0.2.7'         # HTML/JS
 
+gem 'aws-s3', '0.6.2'               # Amazon S3 API
 gem 'paperclip', '2.3.8'            # Attachments
 gem 'rmagick', '2.13.1'
 
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
+gem 'whenever', '0.6.7'             # Cron Jobs
+
+
+
+
 
 
 ##TESTING THESE GEMS/Plugins
 # gem 'geokit-rails3', '0.1.3'        # Geocoding
-#gem 'paper_trail'
+#gem 'paper_trail', '2.0.2'
 #gem 'acts_as_archive'
-#gem 'foreigner'
-#gem 'aws-s3'
-#gem 'fog'
 
 
 

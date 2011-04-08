@@ -3,7 +3,7 @@ class SheltersController < ApplicationController
   # caches_action :index
   # cache_sweeper :shelter_sweeper
   
-  respond_to :html, :js
+  respond_to :html, :js, :json
   
   def index
     respond_with(@shelter = @current_shelter)
@@ -23,6 +23,12 @@ class SheltersController < ApplicationController
         format.html { render :action => :edit }
       end
     end
+  end
+   
+  def auto_complete
+    q = params[:q].strip
+    @shelters = Shelter.auto_complete(q)
+    render :json => @shelters.collect{ |shelter| {:id => "#{shelter.id}", :label => "#{shelter.name}", :value => "#{shelter.name}", :name => "#{shelter.name}" } }.to_json
   end
   
 end

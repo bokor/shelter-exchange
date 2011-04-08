@@ -60,7 +60,12 @@ Shelterexchange::Application.routes.draw do
       resources :comments
     end
     
-    resources :communities
+    resources :communities do
+      collection do
+        get :search
+      end
+    end
+    resources :maps, :only => [:index]
     
 #   Parents Routes
     resources :parents do
@@ -94,7 +99,10 @@ Shelterexchange::Application.routes.draw do
     end
 
 #   Shelter Routes 
-    resources :shelters, :only => [:index, :edit, :update] 
+    resources :shelters, :only => [:index, :edit, :update, :auto_complete] do
+      get :auto_complete, :on => :collection
+    end 
+    
     resources :wish_lists, :only => [:edit, :update]
     
 #   Capacity Routes    

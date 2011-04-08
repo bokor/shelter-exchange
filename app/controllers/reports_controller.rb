@@ -62,7 +62,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => results.collect{ |result| { :name => result.name, :count => result.count } }
+        render :json => results.collect{ |result| { :name => result.name, :count => result.count.to_i } }.to_json
       }
     end
   end
@@ -71,7 +71,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => results.collect{ |result| { :type => result.type, :jan => result.jan, :feb => result.feb, :mar => result.mar, :apr => result.apr, :may => result.may, :jun => result.jun, :jul => result.jul, :aug => result.aug, :sep => result.sep, :oct => result.oct, :nov => result.nov, :dec => result.dec } }
+        render :json => results.collect{ |result| { :type => result.type, :jan => result.january.to_i, :feb => result.february.to_i, :mar => result.march.to_i, :apr => result.april.to_i, :may => result.may.to_i, :jun => result.june.to_i, :jul => result.july.to_i, :aug => result.august.to_i, :sep => result.september.to_i, :oct => result.october.to_i, :nov => result.november.to_i, :dec => result.december.to_i } }.to_json
       }
     end
   end

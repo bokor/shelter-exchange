@@ -46,6 +46,7 @@ class Shelter < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
   
   # Scopes  
+  scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
   
   def generate_access_token!
