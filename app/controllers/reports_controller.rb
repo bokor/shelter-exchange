@@ -3,10 +3,10 @@ class ReportsController < ApplicationController
 
   def index
     @active_count_month = @current_shelter.animals.current_month.active.count
-    @total_adoptions_month = @current_shelter.animals.current_month.adoptions.count
+    @total_adoptions_month = @current_shelter.animals.current_month.adopted.count
     @total_euthanized_month = @current_shelter.animals.current_month.euthanized.count
     @active_count_ytd = @current_shelter.animals.year_to_date.active.count
-    @total_adoptions_ytd = @current_shelter.animals.year_to_date.adoptions.count
+    @total_adoptions_ytd = @current_shelter.animals.year_to_date.adopted.count
     @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
   end
 
@@ -19,11 +19,11 @@ class ReportsController < ApplicationController
   end
     
   def adoptions_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).adoptions)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).adopted)
   end
   
   def adoptions_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).adoptions)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).adopted)
   end
   
   def euthanized_monthly_total_by_type
