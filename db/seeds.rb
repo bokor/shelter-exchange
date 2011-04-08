@@ -64,14 +64,16 @@ AnimalStatus.create([
   { :name => "Foster Care" },
   { :name => "New Intake" },
   { :name => "In Transit" },
+  { :name => "Rescue Candidate" },
+  { :name => "Stray Intake" },
   { :name => "On Hold - Behavioral" },
   { :name => "On Hold - Medical" },
-  { :name => "On Hold - Stray Intake" },
+  { :name => "On Hold - Bite" },
+  { :name => "On Hold - Custody" },
   { :name => "Reclaim" },
   { :name => "Deceased" },
   { :name => "Euthanized" }
 ])
- 
 
 
 #######################################################################################################################
