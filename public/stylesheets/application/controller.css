@@ -668,3 +668,19 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 -----------------------------------------------------------------------------*/
 .index_settings  h2 { border-bottom: 1px #bbb solid; }
 .index_settings .section { padding-bottom: 25px;}
+
+
+/*******************************************************************/
+/* -------------------------- DASHBOARD -------------------------- */
+/*******************************************************************/
+/* -- Dashboard :: Common Styles --*/
+.dashboard ul {list-style:none;}
+
+/* -- Dashboard :: Page Heading and Titles --*/
+.dashboard .page_heading{border-bottom:1px solid #eee; }
+.dashboard .page_heading h1{width:100%; }
+
+/* -- Dashboard :: Page Layout --*/
+.dashboard #main { margin: 1em 3em 0 3em; }
+.dashboard #left { width: 100%;}
+.dashboard #sidebar { display: none;width: 0; }

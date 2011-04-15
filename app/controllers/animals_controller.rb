@@ -59,7 +59,6 @@ class AnimalsController < ApplicationController
   
   def search_by_name
     q = params[:q].strip
-    @search_from = params[:search_from]
     @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
@@ -90,7 +89,7 @@ class AnimalsController < ApplicationController
   def auto_complete
     q = params[:q].strip
     @animals = q.blank? ? {} : @current_shelter.animals.auto_complete(q)
-    render :json => @animals.collect{ |animal| {:id => "#{animal.id}", :label => "#{animal.name}", :value => "#{animal.name}", :name => "#{animal.name}" } }
+    render :json => @animals.collect{ |animal| {:id => animal.id, :name => "#{animal.name}" } }.to_json
   end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|

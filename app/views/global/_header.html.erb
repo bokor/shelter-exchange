@@ -1,6 +1,7 @@
 <div id="header">
-	<div id="primary_nav">
-		<ul>
+	<!-- <div id="tabs"> -->
+		<ul id="tabs">
+			<li class="<%= selected_navigation(:dashboard) %>"><%= link_to "Dashboard", dashboard_path %></li>
 			<li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
 			<li class="<%= selected_navigation(:tasks) %>"><%= link_to "Tasks", tasks_path %></li>
 			<li class="<%= selected_navigation(:alerts) %>"><%= link_to "Alerts", alerts_path %></li>
@@ -9,7 +10,7 @@
 			<li class="<%= selected_navigation(:communities) %>"><%= link_to "Community", communities_path %></li>
 			<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", reports_path %></li>
 		</ul>
-	</div>
+	<!-- </div> -->
 	<div id="secondary_nav">
 		<ul>
 			<li class=""><%= link_to "Settings", "#" %>
@@ -22,90 +23,8 @@
 					<% end %>
 				</ul>
 		    </li>
-			
+			<li class="help"><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></li>
 		    <li class="logout"><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></li>
 		</ul>
 	</div>
 </div>
-
-<!-- <header>
-<nav>
-  <ul class="navigation">
-    <li >
-      <a href="/products/appcloud"><span>Cloud Products</span></a>
-      <ul>
-        <li>
-          <a href="/products/appcloud">Engine Yard AppCloud</a>
-          <ul>
-            <li><a href="/products/appcloud/features">Features</a></li>
-            <li><a href="/products/appcloud/pricing">Pricing</a></li>
-            <li><a href="/video/17825326">Video Tour</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="/products/xcloud">Engine Yard xCloud</a>
-          <ul>
-            <li><a href="/products/xcloud/features">Features</a></li>
-            <li><a href="/products/xcloud/pricing">Pricing</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="/products/technology">Engine Yard Platform</a>
-          <ul>
-            <li><a href="/products/technology/stack">Technology Stack</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    
-    <li>
-      <a href="/support-plans"><span>Support</span></a>
-      <ul>
-        <li><a href="/support-plans">Support Plans</a></li>
-        <li><a href="/services">Professional Services</a></li>
-      </ul>
-    </li>
-  
-    <li>
-      <a href="/university"><span>EY University</span></a>
-    </li>
-    
-    <li>
-      <a href="/videos"><span>Resources</span></a>
-      <ul>
-        <li><a href="/videos">Videos</a></li>
-        <li><a href="/podcasts">Podcasts</a></li>
-        <li><a href="/developer/events">Events</a></li>
-        <li><a href="/partners">Development Partners</a></li>
-        <li><a href="/developer/groups">User Groups</a></li> 
-        <li><a href="http://jobs.engineyard.com">Jobs Board</a></li>
-      </ul>
-    </li>
-    
-    <li>
-      <a href="/open-source"><span>Open Source</span></a>
-      <ul>
-        <li><a href="/open-source">Projects</a></li>
-        <li><a href="/open-source/people">Contributors</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="/company/"><span>About</span></a>
-      <ul>
-        <li><a href="/company/">Overview</a></li>
-        <li><a href="/company/customers">Customers</a></li>
-        <li><a href="/company/team">Leadership Team</a></li>
-        <li><a href="/company/partners">Technology Partners</a></li>
-        <li><a href="/company/careers">Careers</a></li>
-        <li><a href="/company/news">News &amp; Press</a></li>
-        <li><a href="/company/contact">Contact Us</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="/blog"><span>Blog</span></a>
-    </li>
-  </ul>
-</nav>
-      </header> -->

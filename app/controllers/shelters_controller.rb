@@ -28,7 +28,7 @@ class SheltersController < ApplicationController
   def auto_complete
     q = params[:q].strip
     @shelters = Shelter.auto_complete(q)
-    render :json => @shelters.collect{ |shelter| {:id => "#{shelter.id}", :label => "#{shelter.name}", :value => "#{shelter.name}", :name => "#{shelter.name}" } }.to_json
+    render :json => @shelters.collect{ |shelter| {:id => shelter.id, :name => "#{shelter.name}" } }.to_json
   end
   
 end

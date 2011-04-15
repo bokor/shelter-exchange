@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110320211807) do
+ActiveRecord::Schema.define(:version => 20110409062833) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
 
   create_table "parents", :force => true do |t|
     t.string   "name"
-    t.text     "street"
+    t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(:version => 20110320211807) do
     t.string   "fax_phone"
     t.string   "website"
     t.string   "twitter"
-    t.text     "street"
+    t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"

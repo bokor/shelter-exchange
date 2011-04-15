@@ -1,1 +1,1 @@
-$('#accommodations').html( "<%= escape_javascript( render :partial => 'accommodation_list' ) %>" );
+$('#accommodations').html( "<%= escape_javascript( render 'accommodation_list', :accommodations => @accommodations ) %>" );

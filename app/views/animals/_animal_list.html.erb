@@ -1,6 +1,4 @@
 <table class="animal_list">
-	<% @animals.each do |animal| %>
-		<%= render animal %>
-	<% end %>
+	<%= render animals %>
 </table>
-<%= will_paginate @animals %><%#, :renderer => 'RemoteLinkRenderer' %>
+<%= will_paginate animals %><%#, :renderer => 'RemoteLinkRenderer' %>

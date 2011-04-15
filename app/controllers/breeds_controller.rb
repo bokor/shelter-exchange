@@ -5,7 +5,11 @@ class BreedsController < ApplicationController
     q = params[:q].strip
     flash[:error] = "Animal Type not specified" and return if params[:animal_type_id].blank?
     @breeds = Breed.auto_complete(params[:animal_type_id], q)
-    render :json => @breeds.collect{ |breed| {:id => "#{breed.id}", :label => "#{breed.name}", :value => "#{breed.name}", :name => "#{breed.name}" } }.to_json
+    render :json => @breeds.collect{ |breed| {:id => breed.id, :name => "#{breed.name}" }}.to_json 
   end
 
 end
+
+
+
+#, :value => "#{breed.name}", :name => "#{breed.name}" } }.to_json

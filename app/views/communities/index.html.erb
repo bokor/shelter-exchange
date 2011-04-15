@@ -6,42 +6,89 @@
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "shelters/shelters", :cache => "cache/application/communities-index" %>
 	<script type="text/javascript">
 		$(function() {
-			$("#form_search").find(":radio").bind("change", function(){
-				$("#form_search").find(":text").val("");
-				$("#form_search").find(":text").attr("disabled","disabled");
-				$(this).siblings(":text").attr("disabled","");
-			});
-			
-			
-		
 			var geocoder = new google.maps.Geocoder();
 			var myLatlng = new google.maps.LatLng(<%=@current_shelter.lat%>,<%=@current_shelter.lng%>);
 			var myOptions = {
-		      zoom: 8,
+		      zoom: 10,
 		      center: myLatlng,
 		      mapTypeId: google.maps.MapTypeId.ROADMAP
 		    }
 		    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-			$("#map_search").bind("click", function(e){
-				geocoder.geocode( { 'address': $("#address").val() }, function(results, status) {
+		
+			var fileUrl = 'http://www.designwaves.com/shelters.kml?<%=Time.new.to_i%>';
+			var kmlLayer = new google.maps.KmlLayer(fileUrl, { preserveViewport: true });
+			kmlLayer.setMap(map);
+			
+			google.maps.event.addListener(map, 'idle', function(){
+				searchForAnimals(map);
+			});
+			
+			function searchForAnimals(map){
+				var zoomLevel = map.getZoom();
+				if (zoomLevel < 10) {
+					$('#all_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+					$('#urgent_needs_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+				} else {
+					var bounds = map.getBounds();
+					var sw = bounds.getSouthWest().toUrlValue();
+					var ne = bounds.getNorthEast().toUrlValue();
+					$.get("/communities/find_animals_in_bounds.js", { sw: sw, ne: ne });
+				}
+			}
+			
+			function geocodeAddress(e){
+				geocoder.geocode( { 'address': $("#q").val() }, function(results, status) {
 			     	if (status == google.maps.GeocoderStatus.OK) {
 			        	map.setCenter(results[0].geometry.location);
-			        	var marker = new google.maps.Marker({
-			            	map: map, 
-			            	position: results[0].geometry.location
-			        	});
+			        	searchForAnimals(map);
 			      	} else {
 			        	alert("Geocode was not successful for the following reason: " + status);
 			      	}
 			    });
-				
+			}
+			
+			$("#map_search").bind("click", function(e){
+				geocodeAddress(e);
 			});
 			
-			var fileUrl = 'http://www.designwaves.com/shelters.kml?<%=Time.new.to_i%>';
-			var kmlLayer = new google.maps.KmlLayer(fileUrl, { preserveViewport: true });
-			kmlLayer.setMap(map);
+			$("#q").bind("keypress", function(e){
+				if (e.keyCode == 13){
+					geocodeAddress(e);
+				}
+			});
+		
 
-			  
+			$("#breed_search").click(function(){
+				$("#breed_search").autocomplete( "search", "" );
+			});
+			
+			$("#breed_search").autocomplete({
+				minLength: 0,
+				selectFirst: true,
+				html: true,
+				delay: 500,
+				source: function( request, response ) {
+					$.ajax({
+						url: "/breeds/auto_complete.json",
+						dataType: "json",
+						data: {
+							q: request.term,
+							animal_type_id: 1
+						},
+						success: function( data ) {
+							response( $.map( data, function( item ) {
+								var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+								var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+								return {
+									label: item.name.replace(matcher,'<strong>$1</strong>'),
+									value: item.name,
+									id: item.id
+								}  
+							}));
+						}
+					});
+				}			
+			});
 			
 		});
 	</script>
@@ -49,115 +96,57 @@
 
 <%= content_for :page_content do %>
 
-	<div class="page_heading green_background">
+	<!-- <div class="page_heading green_background">
 		<h1>Community</h1>
-	</div>
+	</div> -->
 		
-	<div class="page_content clearfix">
+	<div class="page_content">
 		
-		<div style="float:left; width: 25%" class="search_filters">
+		<div style="float:left; width: 25%;" class="search_filters">
 			<h2>Search by:</h2>
 			<%# form_for :communities, :url => { :action => :search }, :html => { :id => "form_search", :method => :get } do |f| %>
 				<ul class="form">
 					<li>
-						<%= radio_button_tag :search_by, :address, (params[:search_by] == "address") %> 
-						<%= label_tag :address, "Address Info" %><br />
-						<%= text_field_tag :address, @address_search  %> 
-						<%# text_field_tag :address, @address_search, :disabled => params[:address].blank?  %> 
+						<%= radio_button_tag :search_by, :city_zipcode, (params[:search_by] == "city_zipcode") %> <%= label_tag :address, "City/Zipcode" %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= radio_button_tag :search_by, :shelter, (params[:search_by] == "shelter") %> <%= label_tag :shelter, "Shelter name" %><br />
+						<%= text_field_tag :q, @q, :autocomplete => :off  %>
 					</li>
-					<!-- <li>
-											<%= radio_button_tag :search_by, :shelter, (params[:search_by] == "shelter") %> 
-											<%= label_tag :shelter, "Shelter name" %><br />
-											<%= text_field_tag :shelter, @shelter_search, :disabled => @shelter.blank?, :autocomplete => :off %>
-										</li> -->
 					<li><%= submit_tag "Go", :disable_with => "...", :id => "map_search"  %></li>
 				</ul>
 				
 			<h2>Filter by:</h2>
 			
-			<%# end %>
+			<%= label_tag :animal_animal_type_id, "Animal type" %><br />
+			<%= collection_select :type, :type, AnimalType.all, :id, :name, :prompt => "Select Type" %><br /><br />
+			<%= label_tag :breed_search, "Breed" %><br />
+			<%= text_field_tag :breed_search, "",:autocomplete => :off %><br /><br />
+			<%= label_tag :sex, "Sex" %><br />
+			<%= collection_select :sex, :sex, SEX, :to_s, :humanize, :prompt => "Select one" %><br /><br />
+			<%= label_tag :status, "Status" %><br />
+			<%= collection_select :status, :status, AnimalStatus.active.all, :id, :name, :prompt => "Select one" %><br /><br />
+			<%= label_tag :microchip, "Microchip" %><br />
+			<%= text_field_tag :microchip, "",:autocomplete => :off %><br /><br />
 		</div>
 		
 		<div style="float:left; width: 75%" class="results">
-
-		
-		<script type="text/javascript">
-			$(function() {
-				
-				// var map;
-				// 			var geocoder;
-				// 			var latlng;
-				// 			
-				// 			if(navigator.geolocation) {
-				// 				navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-				// 			}
-				// 			
-				// 			function geolocationSuccess(position){
-				// 				latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-				// 				map.setCenter(latlng);
-				// 			}
-				// 			
-				// 			function geolocationFailure(position){
-				// 				geocoder = new google.maps.Geocoder();
-				// 				
-				// 			}
-				
-
-				
-				// Try W3C Geolocation (Preferred) -> Public Only
-				// if(navigator.geolocation) {
-				// 	navigator.geolocation.getCurrentPosition(success, failure);
-				// }
-				
-				// var myLatlng = new google.maps.LatLng(<%=@bounds.center.lat%>,<%=@bounds.center.lng%>);
-				// var myOptions = {
-				// 	zoom: 10,
-				//    	center: myLatlng,
-				// 	mapTypeId: google.maps.MapTypeId.ROADMAP
-				// }
-				// 
-				// var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-				// 	
-				// var fileUrl = 'http://www.designwaves.com/shelters.kml?<%=Time.new.to_i%>';
-				// var kmlLayer = new google.maps.KmlLayer(fileUrl, { preserveViewport: true });
-				// kmlLayer.setMap(map);
-				
-				
-				
-				// google.maps.event.addListener(map, 'bounds_changed', function() {
-				//          alert(map.getBounds());
-				//       });
-				
-				// google.maps.event.addListenerOnce(map, 'idle', function(){
-				//         alert(this.getBounds());
-				//     });
-				
-				// google.maps.event.addListener(map, 'zoom_changed', function() {
-				// 				    alert(this.getBounds();
-				// 				  });
-				
-				// google.maps.event.addListener(map, 'zoom_changed', function() {
-				//     zoomLevel = map.getZoom();
-				//     infowindow.setContent("Zoom: " + zoomLevel);
-				//     if (zoomLevel == 0) {
-				//       map.setZoom(10);
-				//     }      
-				//   });
-
-				
-			});
-		</script>
-		
-		<div id="map_canvas" style="width:100%; height: 450px;"></div>
-		<br /><br />
-		<div style="float:left; width:45%">
-			<h2>Animals</h2>
-		</div>
-		<div style="float:left; width:45%padding-left: 5%;">
-			<h2>Urgent Needs</h2>
-		</div>
+			<div id="map_canvas" style="width:100%; height: 450px;"></div>
 		
 		</div>
+		<div class="clear"></div>
+		
+		<div class="separator"></div>
+		<span>Refine your results by: <a href="#">Type</a> <a href="#">Breed</a> <a href="#">Sex</a></span>
+		<div class="separator"></div>
+		<div style="width: 100%;">
+			<div style="float:left; width:45%; padding-right: 2%; border-right: 1px dotted #ccc;">
+				<h2>Animals</h2>
+				<div id="all_animals"></div>
+			</div>
+			<div style="float:left; width:50%;padding-left: 3%;">
+				<h2>Urgent Needs</h2>
+				<div id="urgent_needs_animals"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
 		
 	</div>
 		

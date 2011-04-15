@@ -123,8 +123,8 @@ var Animals = {
 							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
 							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 							return {
-								label: item.label.replace(matcher,'<strong>$1</strong>'),
-								value: item.value,
+								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								value: item.name,
 								id: item.id
 							}  
 						}));

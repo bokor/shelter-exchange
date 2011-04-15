@@ -63,6 +63,7 @@ Shelterexchange::Application.routes.draw do
     resources :communities do
       collection do
         get :search
+        get :find_animals_in_bounds
       end
     end
     resources :maps, :only => [:index]
@@ -126,9 +127,14 @@ Shelterexchange::Application.routes.draw do
 
 #   Devise Routes
     devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invitation" } 
+
+#   Dashboard Routes   
+    # resources :dashboard, :only => [:index] 
+    match "/dashboard", :to => 'dashboard#index'
     
 #   Root Route - will redirect to animals as the first page
-    root :to => redirect("/animals")
+    # root :to => redirect("/animals")
+    root :to => 'dashboard#index'
     
   end
   

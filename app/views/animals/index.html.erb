@@ -45,7 +45,7 @@
 			</table>
 			
 			<div id="animals">
-				<%= render :partial => "animal_list" %>
+				<%= render "animal_list", :animals => @animals %>
 			</div>
 
 		</div>
@@ -60,5 +60,5 @@
 <% end %>
 
 <%= content_for :sidebar do %>
-	<%= link_to "Create new animal", new_animal_path, :class => "button" %>
+	<%= link_to "Create new animal", new_animal_path, :class => "button red" %>
 <% end %>

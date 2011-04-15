@@ -1,13 +1,15 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<% if @search_from == "parents" %>
+		<% if controller_name == "parents" %>
 			<%= link_to image_tag(animal.photo.url(:thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
+		<% elsif controller_name == "communities" %>
+			<a href="<%= animal.photo.url(:original) %>" toptions="noGroup = 1, title = Picture of <%= animal.name %>, layout = quicklook, resizable = 1, shaded = 1, modal = 1" tu_group="null"><%= image_tag animal.photo.url(:thumb) %></a>
 		<% else %>
 			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
 		<% end %>
 	</td>
 	<td class="details">
-		<% if @search_from == "parents" %>
+		<% if controller_name == "parents" %>
 			<h3><%= link_to animal.name, "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %></h3>
 		<% else %>
 			<h3><%= link_to animal.name, animal %></h3>		

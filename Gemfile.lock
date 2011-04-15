@@ -96,6 +96,7 @@ GEM
       activesupport (>= 2.3.4)
     will_paginate (2.3.15)
     xml-simple (1.0.15)
+    yaml_db (0.2.0)
 
 PLATFORMS
   ruby
@@ -117,3 +118,4 @@ DEPENDENCIES
   sqlite3-ruby
   whenever (= 0.6.7)
   will_paginate (= 2.3.15)
+  yaml_db

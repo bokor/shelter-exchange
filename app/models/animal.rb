@@ -57,16 +57,18 @@ class Animal < ActiveRecord::Base
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
   
   # Scopes - Statuses
-  scope :active, where(:animal_status_id => [1,3,4,5,6,7,8,9,10,11])
-  scope :non_active, where(:animal_status_id => [2,12,13,14])
-  scope :available_for_adoption, where(:animal_status_id => 1)
-  scope :adopted, where(:animal_status_id => 2)
-  scope :foster_care, where(:animal_status_id => 3)
-  scope :reclaimed, where(:animal_status_id => 12)
-  scope :euthanized, where(:animal_status_id => 14)
+  scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
+  scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
+  scope :available_for_adoption, where(:animal_status_id => AnimalStatus::AVAILABLE_FOR_ADOPTION)
+  scope :adopted, where(:animal_status_id => AnimalStatus::ADOPTED)
+  scope :foster_care, where(:animal_status_id => AnimalStatus::FOSTER_CARE)
+  scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
+  scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
-
-
+  # Scopes - Communities/Maps
+  scope :community_all_animals, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids) }
+  scope :community_urgent_animals, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:euthanasia_scheduled => Date.today..Date.today + 2.weeks, :shelter_id => shelter_ids) }
+  
   # Scopes - Reporting
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
