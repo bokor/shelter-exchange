@@ -56,11 +56,11 @@ var Shelters = {
 };
 
 $(function() {
-	$("#shelter_search").autocomplete({
+	$("#shelter_name").autocomplete({
 		minLength: 3,
 		selectFirst: true,
 		html: true,
-		delay: 300, //maybe 400
+		delay: 500, //maybe 400
 		// highlight: true, MAKE EXT LATER
 		source: function( request, response ) {
 			$.ajax({

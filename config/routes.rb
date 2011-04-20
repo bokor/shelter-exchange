@@ -63,17 +63,23 @@ Shelterexchange::Application.routes.draw do
     resources :communities do
       collection do
         get :search
-        get :find_animals_in_bounds
       end
     end
-    resources :maps, :only => [:index]
+    resources :maps do
+      collection do
+        get :overlay
+        get :animals
+        get :find_animals_in_bounds
+        get :find_animals_for_shelter
+      end
+    end
     
 #   Parents Routes
     resources :parents do
       resources :notes
       collection do
         get :search
-        get :search_animal_by_name
+        get :find_animals_by_name
       end
     end
     
@@ -84,7 +90,6 @@ Shelterexchange::Application.routes.draw do
       resources :tasks 
       collection do
         get :search
-        get :search_by_name
         get :filter_notes
         get :filter_by_type_status
         get :auto_complete

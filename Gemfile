@@ -28,9 +28,6 @@ gem 'whenever', '0.6.7'             # Cron Jobs
 
 
 
-
-
-
 ##TESTING THESE GEMS/Plugins
 # gem 'geokit-rails3', '0.1.3'        # Geocoding
 #gem 'paper_trail', '2.0.2'

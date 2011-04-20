@@ -12,8 +12,14 @@
 	
 	
 	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", "jquery.ui.autocomplete.ext", 		
-							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "top_up-min", "rails", "application", 
+							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "jquery.blockUI.min", "top_up-min", 
+							   "modernizr-1.7.min", 
+							   "rails", "application", 
 							   :cache => "cache/application/all" %>
+							
+	<!--[if lt IE 9]>
+		<%= javascript_include_tag "html5" %>
+	<![endif]-->
 	<!-- <script type="text/javascript" src="http://use.typekit.com/kuo4gkn.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script> -->
 
@@ -25,7 +31,7 @@
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 	
 	<%= render :partial => "global/header" %>
-	
+
 	<div id="main">
 		
 		<div id="flash_messages"><%= render :partial => "global/flash_messages" %></div>

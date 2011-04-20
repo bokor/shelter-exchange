@@ -26,16 +26,6 @@ class CommunitiesController < ApplicationController
   #   render :action => :index
   # end
   
-  def find_animals_in_bounds
-    @shelters = Shelter.find(:all, :bounds => [params[:sw],params[:ne]])
-    @all_animals = {}
-    @urgent_needs_animals = {}
-    unless @shelters.blank?
-      shelter_ids = @shelters.map { |shelter| shelter.id }.flatten.uniq
-      @all_animals = Animal.community_all_animals(shelter_ids).active.all.paginate(:per_page => 10, :page => params[:page])
-      @urgent_needs_animals = Animal.community_urgent_animals(shelter_ids).active.all.paginate(:per_page => 10, :page => params[:page])
-    end
-  end
 
 end
 
