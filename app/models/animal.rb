@@ -72,9 +72,9 @@ class Animal < ActiveRecord::Base
     composed_scope = composed_scope.includes(:animal_type, :animal_status)
     composed_scope = composed_scope.where(:shelter_id => shelter_ids)
     composed_scope = composed_scope.where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks)
-    unless filters.blank?
-      composed_scope = composed_scope.where(:animal_type_id => filters[:type]) if filters[:type]
-    end
+    # unless filters.blank?
+    #   composed_scope = composed_scope.where(:animal_type_id => filters[:animal_type_id]) if filters[:animal_type_id]
+    # end
     composed_scope
   end
   # scope :map_euthanasia_list, lambda { |shelter_ids, filters| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks) }

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>db/migrate/20110409061026_remove_indexes_not_mysql_compliant.rb</string>
+	<string>app/views/tasks/_task_list.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -1968,9 +1968,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>34</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -5916,6 +5916,13 @@
 									<key>subItems</key>
 									<dict/>
 								</dict>
+								<key>tasks</key>
+								<dict>
+									<key>isExpanded</key>
+									<true/>
+									<key>subItems</key>
+									<dict/>
+								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -5976,6 +5983,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{129, 18}, {1021, 823}}</string>
+	<string>{{10, 46}, {1021, 823}}</string>
 </dict>
 </plist>

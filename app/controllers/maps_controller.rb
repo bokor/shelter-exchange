@@ -20,7 +20,7 @@ class MapsController < ApplicationController
   end
   
   def find_animals_in_bounds
-    @shelters = Shelter.find(:all, :bounds => [params[:sw],params[:ne]])
+    @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]])
     @all_animals = {}
     @urgent_needs_animals = {}
     unless @shelters.blank?
@@ -32,7 +32,7 @@ class MapsController < ApplicationController
   end
   
   def find_animals_for_shelter
-    @shelter = Shelter.where(:name => params[:shelter_name]).first
+    @shelter = Shelter.where(:name => params[:filters][:shelter_name]).first
     @all_animals = {}
     @urgent_needs_animals = {}
     unless @shelter.blank?
