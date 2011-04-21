@@ -65,9 +65,24 @@ class Animal < ActiveRecord::Base
   scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
-  # Scopes - Communities/Maps
-  scope :community_all_animals, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids) }
-  scope :community_urgent_animals, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:euthanasia_scheduled => Date.today..Date.today + 2.weeks, :shelter_id => shelter_ids) }
+  # Scopes - Maps
+  # scope :map_animals_list, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids).where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks) }
+  def self.map_animals_list(shelter_ids, filters={})
+    composed_scope = self.scoped
+    composed_scope = composed_scope.includes(:animal_type, :animal_status)
+    composed_scope = composed_scope.where(:shelter_id => shelter_ids)
+    composed_scope = composed_scope.where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks)
+    unless filters.blank?
+      composed_scope = composed_scope.where(:animal_type_id => filters[:type]) if filters[:type]
+    end
+    composed_scope
+  end
+  # scope :map_euthanasia_list, lambda { |shelter_ids, filters| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks) }
+  def self.map_euthanasia_list(shelter_ids, filters={})
+    includes(:animal_type, :animal_status).
+    where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+  end
+
   
   # Scopes - Reporting
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 

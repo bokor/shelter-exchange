@@ -38,8 +38,8 @@
 			function findAnimalsInBounds(map){
 				var zoomLevel = map.getZoom();
 				if (zoomLevel < 10) {
-					$('#all_animals').html( "<h2>Please zoom in to search for animals</h2>" );
-					$('#urgent_needs_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+					$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+					$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
 				} else {
 					var bounds = map.getBounds();
 					var sw = bounds.getSouthWest().toUrlValue();
@@ -52,8 +52,8 @@
 			function findAnimalsForShelter(map){
 				var zoomLevel = map.getZoom();
 				if (zoomLevel < 10) {
-					$('#all_animals').html( "<h2>Please zoom in to search for animals</h2>" );
-					$('#urgent_needs_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+					$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+					$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
 				} else {
 					var shelterName = $('#shelter_name').val();
 					$.get("/maps/find_animals_for_shelter.js", { shelter_name: shelterName });
@@ -155,17 +155,18 @@
 		<a href="#" onclick="$('#filters').slideToggle();return false;">Narrow your search results</a>
 		<div id="filters" style="display:none;padding-top: 10px;">
 			<h2>Filter by:</h2>
-			
-			<%= label_tag :animal_animal_type_id, "Animal type" %><br />
-			<%= collection_select :type, :type, AnimalType.all, :id, :name, :prompt => "Select Type" %><br /><br />
-			<%= label_tag :breed_search, "Breed" %><br />
-			<%= text_field_tag :breed_search, "",:autocomplete => :off %><br /><br />
-			<%= label_tag :sex, "Sex" %><br />
-			<%= collection_select :sex, :sex, SEX, :to_s, :humanize, :prompt => "Select one" %><br /><br />
-			<%= label_tag :status, "Status" %><br />
-			<%= collection_select :status, :status, AnimalStatus.active.all, :id, :name, :prompt => "Select one" %><br /><br />
-			<%= label_tag :microchip, "Microchip" %><br />
-			<%= text_field_tag :microchip, "",:autocomplete => :off %><br /><br />
+			<form action="#" id="form_filters">
+			<%= label_tag :filters_animal_type_id, "Animal type" %><br />
+			<%= collection_select :filters, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select Type"}, {:onchange => "findAnimalsInBounds();return false;"} %><br /><br />
+			<%= label_tag :filters_breed, "Breed" %><br />
+			<%= text_field_tag "filters[breed]", "",:autocomplete => :off %><br /><br />
+			<%= label_tag :filters_sex, "Sex" %><br />
+			<%= collection_select :filters, :sex, SEX, :to_s, :humanize, :prompt => "Select one" %><br /><br />
+			<%= label_tag :filters_status, "Status" %><br />
+			<%= collection_select :filters, :status, AnimalStatus.active.all, :id, :name, :prompt => "Select one" %><br /><br />
+			<%= label_tag :filters_microchip, "Microchip" %><br />
+			<%= text_field_tag "filters[microchip]", "", :autocomplete => :off %><br /><br />
+			</form>
 		</div>
 		<div class="separator"></div>
 		<div style="width: 100%;">

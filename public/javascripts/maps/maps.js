@@ -19,8 +19,8 @@ var Maps = {
 	findAnimalsForShelter: function(map){
 		var zoomLevel = map.getZoom();
 		if (zoomLevel < 10) {
-			$('#all_animals').html( "<h2>Please zoom in to search for animals</h2>" );
-			$('#urgent_needs_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
 		} else {
 			var shelterName = $('#shelter_name').val();
 			$.get("/maps/find_animals_for_shelter.js", { shelter_name: shelterName });
@@ -29,13 +29,14 @@ var Maps = {
 	findAnimalsInBounds: function(map){
 		var zoomLevel = map.getZoom();
 		if (zoomLevel < 10) {
-			$('#all_animals').html( "<h2>Please zoom in to search for animals</h2>" );
-			$('#urgent_needs_animals').html( "<h2>Please zoom in to search for animals</h2>" );
+			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
 		} else {
 			var bounds = map.getBounds();
-			var sw = bounds.getSouthWest().toUrlValue();
-			var ne = bounds.getNorthEast().toUrlValue();
-			$.get("/maps/find_animals_in_bounds.js", { sw: sw, ne: ne });
+			var data = $("#form_filters").serialize();
+			data['sw'] = bounds.getSouthWest().toUrlValue();
+			data['ne'] = bounds.getNorthEast().toUrlValue();
+			$.get("/maps/find_animals_in_bounds.js", data);
 		}
 	},
 	addMarker: function(myLatlng, map){

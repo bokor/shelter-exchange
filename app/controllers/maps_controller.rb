@@ -24,9 +24,10 @@ class MapsController < ApplicationController
     @all_animals = {}
     @urgent_needs_animals = {}
     unless @shelters.blank?
-      shelter_ids = @shelters.map { |shelter| shelter.id }.flatten.uniq
-      @all_animals = Animal.community_all_animals(shelter_ids).active.all.paginate(:per_page => 10, :page => params[:page])
-      @urgent_needs_animals = Animal.community_urgent_animals(shelter_ids).active.all.paginate(:per_page => 10, :page => params[:page])
+      # shelter_ids = @shelters.map { |shelter| shelter.id }.flatten.uniq
+      shelter_ids = @shelters.collect(&:id)
+      @all_animals = Animal.map_animals_list(shelter_ids, params[:filters]).active.all.paginate(:per_page => 10, :page => params[:page])
+      @urgent_needs_animals = Animal.map_euthanasia_list(shelter_ids, params[:filters]).active.all.paginate(:per_page => 10, :page => params[:page])
     end
   end
   
@@ -35,8 +36,8 @@ class MapsController < ApplicationController
     @all_animals = {}
     @urgent_needs_animals = {}
     unless @shelter.blank?
-      @all_animals = Animal.community_all_animals(@shelter.id).active.all.paginate(:per_page => 10, :page => params[:page])
-      @urgent_needs_animals = Animal.community_urgent_animals(@shelter.id).active.all.paginate(:per_page => 10, :page => params[:page])
+      @all_animals = Animal.map_animals_list(@shelter.id, params[:filters]).active.all.paginate(:per_page => 10, :page => params[:page])
+      @urgent_needs_animals = Animal.map_euthanasia_list(@shelter.id, params[:filters]).active.all.paginate(:per_page => 10, :page => params[:page])
     end
   end
   
