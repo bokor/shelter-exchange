@@ -1,0 +1,136 @@
+<%= title "#{@animal.name} (#{@animal.id})" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "animals/animals", :cache => "cache/application/animals-show" %>
+	<script type="text/javascript">
+		$(function() {
+			Animals.noteFilters();
+			Tasks.initialize();
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading blue_background">
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="action_links">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
+				</td>
+				<td class="right">
+					<p><%= @animal.animal_status.name %></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		 
+		<table class="animal_details">
+			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
+						<li><p><b>Age (Est.):</b> <%= humanize_dob(@animal.date_of_birth) %></p></li>
+						<li><p><b>MicroChip:</b> <%= @animal.microchip %></p></li>
+						<li><p><b>Color:</b> <%= @animal.color %></p></li>
+						<li><p><b>Sex:</b> <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+					</ul>
+					
+					<h3>Accommodation:</h3>
+					<ul>
+						<li><p><b>Name:</b> <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
+						<li><p><b>Location:</b> <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
+					</ul>
+					
+					
+				</td>
+				<td class="image">
+			    	<a href="<%= @animal.photo.url(:original) %>" toptions="noGroup = 1, title = Picture of <%= @animal.name %>, layout = quicklook, resizable = 1, shaded = 1, modal = 1" tu_group="null"><%= image_tag @animal.photo.url(:medium) %></a>
+			    </td>
+			</tr>
+		</table>
+		
+		<table class="description">
+			<tr>
+				<td>
+					<h3>Description:</h3>
+					<p><%= @animal.description %></p>
+				</td>
+			</tr>
+		</table>
+		
+		<% if @shelter.is_kill_shelter %>
+		<table class="euthanasia_info">
+			<tr>
+				<td>
+					<h3>Euthanasia Info:</h3>
+					<ul>
+						<li><p><b>Arrival Date:</b> <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
+						<li><p><b>Hold time:</b> <span class="date"><%= @animal.hold_time %> days</span></p></li>
+						<li><p><b>Euthanasia Date:</b> <span class="red_date"><%= format_date(:default, @animal.euthanasia_scheduled) %></span></p></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+	</div>
+	
+	<div class="notes_heading yellow_background">
+		<h2>Notes</h2>
+		<div class="links">
+			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
+			<% NoteCategory.all.each do |category|%>
+				&nbsp;|&nbsp;
+				<%= link_to category.name, filter_notes_communities_path(:filter => category.name, :animal_id => @animal.id), 
+				                          :remote => true, :id => "#{category.name.downcase}_notes_link" %>
+			<% end %>
+		</div>
+	</div>
+	
+	<div id="notes" class="page_content">
+		<%= render @notes %>
+	</div>
+
+
+<% end %>
+
+<%= content_for :sidebar do %>
+
+	<ul class="model_actions">
+		<li><%= link_to 'Request Transfer', "#", :id => "add_request_transfer_link", :class => "button" %></li>
+	</ul>
+	
+	<div id="animal_shelter">
+		<h2>Shelter Information</h2>
+		<div id="shelter" class="shelter_details">
+			<% if @shelter.logo.file? %>
+				<div class="logo">
+					<%= image_tag @shelter.logo.url(:thumb) %> 
+				</div>
+			<% end %>
+
+			<h2><%=@shelter.name%></h2>
+			<ul>
+				<li><%=@shelter.street%></li>
+				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+			</ul>
+			<br />
+			<ul>
+				<li>Tel: <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
+				<% unless @shelter.fax_phone.blank? %><li>Fax: <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li><% end %>
+				<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
+				<% unless @shelter.website.blank? %><li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li><% end %>
+			</ul>
+		</div>
+	</div>
+
+<% end %>
+	

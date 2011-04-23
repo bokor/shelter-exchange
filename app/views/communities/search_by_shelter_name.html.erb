@@ -1,0 +1,252 @@
+<%= title "Community" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "shelters/shelters", :cache => "cache/application/communities-index" %>
+	<!-- "jquery.googlemaps.min" --> <!-- , "maps/maps" -->
+	<script type="text/javascript">
+		var defaultZoom = 11;
+		var geocoder = new google.maps.Geocoder();
+		var myLatlng = new google.maps.LatLng(<%=@current_shelter.lat%>,<%=@current_shelter.lng%>);
+		var myOptions = {
+			scrollwheel: false,
+	    	zoom: defaultZoom,
+		    center: myLatlng,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+
+		var map;
+		var markersArray = [];
+		
+
+		$(function() {
+			
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			
+			
+			$("#form_shelter_name_search").bind("submit", function(e){
+				e.preventDefault();
+			});
+			
+			$("#filters_animal_type").bind("change", function(e){
+				if($(this).val() == ""){
+					$("#breed_field").hide();
+				} else {
+					$("#breed_field").show();
+				}
+				$("#filters_breed").val("");
+				findAnimalsForShelter();
+				e.preventDefault();
+			});
+			
+			$("#filters_sex").bind("change", function(e){
+				findAnimalsForShelter();
+				e.preventDefault();
+			});
+			
+			$("#filters_animal_status").bind("change", function(e){
+				findAnimalsForShelter();
+				e.preventDefault();
+			});
+			
+			$("#form_filters").bind("keypress", function(e){
+				return !(window.event && window.event.keyCode == 13); 
+			});
+	
+
+			// $("#filters_breed").click(function(){
+			// 				$("#filters_breed").autocomplete( "search", "" );
+			// 			});
+			
+			$("#filters_breed").autocomplete({
+				minLength: 0,
+				selectFirst: true,
+				html: true,
+				delay: 500,
+				source: function( request, response ) {
+					$.ajax({
+						url: "/breeds/auto_complete.json",
+						dataType: "json",
+						data: {
+							q: request.term,
+							animal_type_id: $("#filters_animal_type").val()
+						},
+						success: function( data ) {
+							response( $.map( data, function( item ) {
+								var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+								var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+								return {
+									label: item.name.replace(matcher,'<strong>$1</strong>'),
+									value: item.name,
+									id: item.id
+								}  
+							}));
+						}
+					});
+				},
+				close: function(event, ui) { 
+					findAnimalsForShelter();
+					event.preventDefault();
+				}			
+			});
+			
+			$("#shelter_name").autocomplete({
+				minLength: 3,
+				selectFirst: true,
+				html: true,
+				delay: 500, //maybe 400
+				// highlight: true, MAKE EXT LATER
+				source: function( request, response ) {
+					$.ajax({
+						url: "/shelters/auto_complete.json",
+						dataType: "json",
+						data: {
+							q: request.term
+						},
+						success: function( data ) {
+							response( $.map( data, function( item ) {
+								var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+								var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+								return {
+									lat: item.lat,
+									lng: item.lng,
+									label: item.name.replace(matcher,'<strong>$1</strong>'),
+									value: item.name,
+									id: item.id
+								}  
+							}));
+						}
+					});
+				},
+				select: function(event, ui){
+					$('#filters_shelter_id').val(ui.item.id);
+					addMarker(ui.item.lat, ui.item.lng)
+					findAnimalsForShelter();
+				}		
+			});
+			
+		});
+		
+		
+		function addMarker(lat, lng){
+			clearOverlays();
+			var shelterLatLng = new google.maps.LatLng(lat, lng);
+			map.setCenter(shelterLatLng);
+			var marker = new google.maps.Marker({
+			    position: shelterLatLng,
+				map: map,
+				animation: google.maps.Animation.DROP,
+			    icon: '/images/logo_small.png'
+			});
+			markersArray.push(marker);
+			
+		}
+		
+		function clearOverlays() {
+		  if (markersArray) {
+		    for (i in markersArray) {
+		      markersArray[i].setMap(null);
+		    }
+		  }
+		}
+		
+
+		function findAnimalsForShelter(){
+			var zoomLevel = map.getZoom();
+			if (zoomLevel < 10) {
+				$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+				$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
+			} else {
+				$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
+			}
+		}
+		
+		
+		
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<!-- <div class="page_heading green_background">
+		<h1>Community</h1>
+	</div> -->
+		
+	<div class="page_content">
+		
+		<div style="padding-top: 5px;">
+			<h2>Search By Shelter Name:</h2>
+			<div style="float: left; width: 50%;">
+				<form action="#" id="form_shelter_name_search">
+			    	<ul class="form">
+						<li>
+							<%= text_field_tag :shelter_name, "", :style => "width: 90%;"  %>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div style="float: left; width: 50%; text-align:right;">
+				<%= link_to "Search by City/Zipcode instead", search_by_city_zipcode_communities_path %>
+			</div>
+		</div>
+		<div class="clear separator"></div>
+		<div style="width: 100%;" class="results">
+			<div id="map_canvas" style="float:left;width:57%; min-height: 400px; text-align:left;padding-right: 2%;"></div>
+			<div id="shelter_details" style="float:left; width:38%; min-height: 400px;padding-left: 2%;">
+				<h1 style="color: #ccc;line-height: 400px; margin: 0 auto; text-align: center;">Shelter Details</h1>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+		<div class="separator"></div>
+		<div style="float: left; padding-right: 50px; height: 30px; line-height: 30px;">
+			<h3>Filter Animals by:</h3>
+		</div>
+		<div id="filters" style="float: left; height: 30px; line-height: 30px;">
+			<style type="text/css" media="screen">
+				#filters .form li{float: left; padding-right: 30px;height: 1; line-height: 1;}
+				#filters .form:after{clear:both;}
+			</style>
+			<form action="#" id="form_filters">
+				<ul class="form">
+					<li>
+						<%= label_tag :filters_animal_type, "Animal type" %><br />
+						<%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, :prompt => "All" %>
+					</li>
+					<li>
+						<div id="breed_field" style="display:none;width: 300px;">
+							<%= label_tag :filters_breed, "Breed" %><br />
+							<%= text_field_tag "filters[breed]", "",:autocomplete => :off %>
+						</div>
+					</li>
+					<li>
+						<%= label_tag :filters_sex, "Sex" %><br />
+						<%= collection_select :filters, :sex, SEX, :to_s, :humanize, :prompt => "All" %>
+					</li>
+					<li>
+						<%= label_tag :filters_animal_status, "Status" %><br />
+						<%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, :prompt => "All" %>
+					</li>
+				</ul>
+				<%= hidden_field_tag "filters[shelter_id]" %>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<div class="separator"></div>
+		<div style="width: 100%;">
+			<div style="float:left; width:47%; padding-right: 2%; border-right: 1px dotted #ccc;">
+				<h2>Animals</h2>
+				<div id="all_animals"></div>
+			</div>
+			<div style="float:left; width:47%;padding-left: 2%;">
+				<h2>Urgent Needs</h2>
+				<div id="urgent_needs_animals"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>

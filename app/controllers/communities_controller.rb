@@ -5,40 +5,51 @@ class CommunitiesController < ApplicationController
   respond_to :html, :js
   
   def index
-    # @bounds = GeoKit::Bounds.from_point_and_radius([@current_shelter.lat,@current_shelter.lng], 2)
-    # @bounds = GeoKit::Bounds.from_point_and_radius([@current_shelter.city,@current_shelter.state].join(","), 2)
-    # @shelters = Shelter.find(:all, :bounds => @bounds)
+    redirect_to search_by_city_zipcode_communities_path
   end
   
-  # def search
-  #   @search_by = params[:search_by]
-  #   case @search_by.to_sym
-  #     when :address
-  #       @address_search =  params[:address]
-  #       @bounds = Geokit::Geocoders::MultiGeocoder.geocode(@address_search).suggested_bounds
-  #       # @bounds = GeoKit::Bounds.from_point_and_radius(@zipcode, 5)
-  #       @shelters = Shelter.find(:all, :bounds => @bounds)
-  #     when :shelter
-  #       @shelter_search = params[:shelter]
-  #       @shelter = Shelter.where(:name => @shelter_search).first.uniq
-  #       @bounds = GeoKit::Bounds.from_point_and_radius([@shelter.lat,@shelter.lng].join(","), 5)
-  #   end
-  #   render :action => :index
-  # end
+  def search_by_city_zipcode
+  end
   
-
+  def search_by_shelter_name
+  end
+  
+  def animal
+    @animal = Animal.includes(:animal_type, :animal_status).find(params[:animal_id])
+    @notes = @animal.notes.includes(:note_category).all
+    @shelter = @animal.shelter
+    respond_with(@animal)
+  end
+  
+  def filter_notes
+    filter_param = params[:filter]
+    @animal = Animal.find(params[:animal_id])
+    if filter_param.blank?
+      @notes = @animal.notes
+    else
+      @notes = @animal.notes.animal_filter(filter_param)
+    end
+  end
+  
+  def find_animals_in_bounds
+    @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]])
+    @all_animals = {}
+    @urgent_needs_animals = {}
+    unless @shelters.blank?
+      shelter_ids = @shelters.collect(&:id)
+      @all_animals = Animal.map_animals_list(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      @urgent_needs_animals = Animal.map_euthanasia_list(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+    end
+  end
+  
+  def find_animals_for_shelter
+    @shelter = Shelter.find(params[:filters][:shelter_id])
+    @capacities = @shelter.capacities
+    @all_animals = {}
+    @urgent_needs_animals = {}
+    unless @shelter.blank?
+      @all_animals = Animal.map_animals_list(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      @urgent_needs_animals = Animal.map_euthanasia_list(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+    end
+  end
 end
-
-# @shelters = Shelter.select('DISTINCT id').find(:all, :bounds => [params[:sw],params[:ne]])
-
-# Error.select('DISTINCT type')
-
-# sw_point = params[:sw].split(",")
-# ne_point = params[:ne].split(",")
-# sw = GeoKit::LatLng.new(sw_point[0], sw_point[1])
-# ne = GeoKit::LatLng.new(ne_point[0], ne_point[1])
-# bounds = GeoKit::Bounds.new(sw,ne)
-# @shelters = Shelter.find(:all, :bounds => bounds)
-# # Error.select('DISTINCT type')
-# @animals = Animal.includes(:animal_type, :animal_status).where(:shelter_id => @shelters.map { |shelter| shelter.id }.flatten.uniq).all.paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-

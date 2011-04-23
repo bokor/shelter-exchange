@@ -1,0 +1,97 @@
+
+<style type="text/css" media="screen">
+	.logo{float:right;}
+	.shelter_capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
+	.shelter_capacities h2{padding-bottom: 5px; /*border-bottom: 1px solid #ddd;*/}
+	table.capacity_details { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+	table.capacity_details tr {border-bottom:1px #ccc dotted; }
+	table.capacity_details tr:last-child {border-bottom:1px #ccc dotted; }
+	table.capacity_details td{vertical-align:top;font-size:12px;padding:5px 0;}
+	table.capacity_details td .circle{padding: 0; margin:0;}
+	td.over_capacity .circle{background-color: #fce2ec; height: 15px; width: 15px;
+	 -moz-border-radius:75px;
+	 -webkit-border-radius: 75px;
+	border-radius: 75px;
+	border:1px solid #f286b1;
+	}
+	td.warning_level .circle{background-color:#fffbe5; height: 15px; width: 15px;
+	 -moz-border-radius:75px;
+	 -webkit-border-radius: 75px;
+	border-radius: 75px;
+	border:1px solid #ffd27f;
+	}
+	td.normal .circle{background-color:#f1fce2; height: 15px; width: 15px;
+	 -moz-border-radius:75px;
+	 -webkit-border-radius: 75px;
+	border-radius: 75px;
+	border:1px solid #c4f286;
+	}
+	
+	table.legend { width: 100%; padding: 5px 0 0 0; }
+	table.legend td{width: 30%;}
+	table.legend td.over_capacity span, table.legend td.warning_level span, table.legend td.normal span{ margin-left: 20px; white-space: nowrap; }
+	table.legend td.over_capacity{width: 22%;}
+	table.legend td.warning_level{width: 34%;} 
+	table.legend td.normal { width: auto; }
+	
+</style>
+
+<% if @shelter.logo.file? %>
+	<div class="logo">
+		<%= image_tag @shelter.logo.url(:thumb) %> 
+	</div>
+<% end %>
+
+<h2><%=@shelter.name%></h2>
+<ul>
+	<li><%=@shelter.street%></li>
+	<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+</ul>
+<br />
+<ul>
+	<li>Tel: <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
+	<% unless @shelter.fax_phone.blank? %><li>Fax: <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li><% end %>
+	<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
+	<% unless @shelter.website.blank? %><li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li><% end %>
+</ul>
+
+<% if @shelter.is_kill_shelter %>
+	<div id="shelter_message" class="kill">KILL</div>
+<% else %>
+	<div id="shelter_message" class="no_kill">NO KILL</div>
+<% end %>
+
+<% unless @capacities.blank? %>
+<div class="shelter_capacities">
+	<h2>Does this shelter have room?</h2>
+	<table class="capacity_details">
+		<tr>
+			<th>Animal</th>
+			<th>Status</th>
+		</tr>
+		<% @capacities.each do |capacity| %>
+			<% animal_count = capacity.animal_type.animals.active.count %>
+			<%  status_class = ""
+				if animal_count >= capacity.warning_level and animal_count <= capacity.max_capacity
+					status_class = "warning_level"  
+				elsif animal_count >= capacity.max_capacity
+					status_class = "over_capacity"
+				else 
+					status_class = "normal"
+				end
+			%>
+			<tr class="row">
+				<td><%= capacity.animal_type.name %></td>
+				<td class="<%=status_class%>"><div class="circle"></div></td>
+			</tr>
+		<% end %>
+	</table>
+	<table class="legend">
+		<tr>
+			<td class="over_capacity"><div class="circle"><span>Full</span></div></td>
+			<td class="warning_level"><div class="circle"><span>Almost full</span></div></td>
+			<td class="normal"><div class="circle"><span>Good</span></div></td>
+		</tr>
+	</table>
+</div>
+<% end %>

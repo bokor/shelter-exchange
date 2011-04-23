@@ -6,18 +6,20 @@
 	</div> 
 	<% if note.shelter_id == @current_shelter.id %>
 		<div class="action_links">
-			<span class="view_link">
-				<%= link_to "View", "#", :onclick => "$('#description_note_#{note.id}').slideToggle();return false;" %>
-			</span>
-			<% if can?(:update, Note) %>
-			<span class="edit_link">&nbsp;|&nbsp;
-				<%= link_to "Edit", edit_note_path(note), :remote => true %>
-			</span>
-			<% end %>
-			<% if can?(:destroy, Note) %>
-			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-			</span>
+			<% if controller_name != "communities" %>
+				<span class="view_link">
+					<%= link_to "View", "#", :onclick => "$('#description_note_#{note.id}').slideToggle();return false;" %>
+				</span>
+				<% if can?(:update, Note) %>
+				<span class="edit_link">&nbsp;|&nbsp;
+					<%= link_to "Edit", edit_note_path(note), :remote => true %>
+				</span>
+				<% end %>
+				<% if can?(:destroy, Note) %>
+				<span class="delete_link">&nbsp;|&nbsp;
+					<%= link_to 'Delete', note, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+				</span>
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>

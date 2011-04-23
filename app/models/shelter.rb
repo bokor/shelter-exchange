@@ -27,7 +27,7 @@ class Shelter < ActiveRecord::Base
                            :styles => { :small => ["250x150>", :jpg],
                                         :medium => ["350x250>", :jpg],
                                         :large => ["500x400>", :jpg], 
-                                        :thumb => ["100x75>", :jpg] } 
+                                        :thumb => ["150x75>", :jpg] } 
 
     
   accepts_nested_attributes_for :items, :allow_destroy => true
@@ -50,7 +50,7 @@ class Shelter < ActiveRecord::Base
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
   
   def generate_access_token!
-    # self.access_token = ActiveSupport::SecureRandom.base64(15)
+    # self.access_token = ActiveSupport::SecureRandom.base64(10)
     self.access_token = ActiveSupport::SecureRandom.hex(15)
     self.save
   end

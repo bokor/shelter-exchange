@@ -66,21 +66,48 @@ class Animal < ActiveRecord::Base
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
   # Scopes - Maps
-  # scope :map_animals_list, lambda { |shelter_ids| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids).where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks) }
   def self.map_animals_list(shelter_ids, filters={})
-    composed_scope = self.scoped
-    composed_scope = composed_scope.includes(:animal_type, :animal_status)
-    composed_scope = composed_scope.where(:shelter_id => shelter_ids)
-    composed_scope = composed_scope.where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks)
-    # unless filters.blank?
-    #   composed_scope = composed_scope.where(:animal_type_id => filters[:animal_type_id]) if filters[:animal_type_id]
-    # end
-    composed_scope
+    scope = scoped{}
+    scope = scope.includes(:animal_type, :animal_status)
+    scope = scope.where(:shelter_id => shelter_ids)
+    scope = scope.where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks)
+    scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
+    scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
+    scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
+    scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
+    scope = scope.active unless filters[:animal_status].present?
+    
+    scope
   end
-  # scope :map_euthanasia_list, lambda { |shelter_ids, filters| includes(:animal_type, :animal_status).where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks) }
+
   def self.map_euthanasia_list(shelter_ids, filters={})
-    includes(:animal_type, :animal_status).
-    where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+    scope = scoped{}
+    scope = scope.includes(:animal_type, :animal_status)
+    scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+    scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
+    scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
+    scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
+    scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
+    scope = scope.active unless filters[:animal_status].present?
+    
+    scope
+  end
+  
+  def self.filter_animal_type(animal_type)
+    where(:animal_type_id => animal_type)
+  end
+  
+  def self.filter_breed(breed)
+    where("animals.primary_breed = ? OR animals.secondary_breed = ?", breed, breed)
+    # where(self.arel_table[:primary_breed].eq(breed).or(self.arel_table[:secondary_breed].eq(breed)))
+  end
+  
+  def self.filter_sex(sex)
+    where(:sex => sex.downcase)
+  end
+  
+  def self.filter_animal_status(animal_status)
+    where(:animal_status_id => animal_status)
   end
 
   
@@ -93,20 +120,20 @@ class Animal < ActiveRecord::Base
   def self.totals_by_month(year, date_type, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
-    composed_scope = self.scoped
+    scope = scoped{}
     
     if with_type
-      composed_scope = composed_scope.select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
+      scope = scope.select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
     else
-      composed_scope = composed_scope.select("'Total' as type")
+      scope = scope.select("'Total' as type")
     end
     
     start_date.month.upto(end_date.month) do |month|
-      composed_scope = composed_scope.select("COUNT(CASE WHEN animals.#{date_type.to_s} BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
+      scope = scope.select("COUNT(CASE WHEN animals.#{date_type.to_s} BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
       start_date = start_date.next_month
     end
 
-    composed_scope
+    scope
   end
   
   # Virtual Attributes
