@@ -66,32 +66,33 @@ class Animal < ActiveRecord::Base
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
   # Scopes - Maps
-  def self.map_animals_list(shelter_ids, filters={})
+  def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
     scope = scope.includes(:animal_type, :animal_status)
     scope = scope.where(:shelter_id => shelter_ids)
-    scope = scope.where("animals.euthanasia_scheduled IS NULL OR animals.euthanasia_scheduled NOT BETWEEN ? AND ?", Date.today, Date.today + 2.weeks)
+    scope = scope.where(:euthanasia_scheduled => Date.today..Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
     scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
     scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
     scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
+    
     scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
     scope = scope.active unless filters[:animal_status].present?
     
     scope
   end
 
-  def self.map_euthanasia_list(shelter_ids, filters={})
-    scope = scoped{}
-    scope = scope.includes(:animal_type, :animal_status)
-    scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
-    scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
-    scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
-    scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
-    scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
-    scope = scope.active unless filters[:animal_status].present?
-    
-    scope
-  end
+  # def self.map_euthanasia_list(shelter_ids, filters={})
+  #   scope = scoped{}
+  #   scope = scope.includes(:animal_type, :animal_status)
+  #   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+  #   scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
+  #   scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
+  #   scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
+  #   scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
+  #   scope = scope.active unless filters[:animal_status].present?
+  #   
+  #   scope
+  # end
   
   def self.filter_animal_type(animal_type)
     where(:animal_type_id => animal_type)

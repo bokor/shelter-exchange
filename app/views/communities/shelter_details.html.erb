@@ -35,13 +35,12 @@
 	table.legend td.normal { width: auto; }
 	
 </style>
-
+<div class="logo_map">
 <% if @shelter.logo.file? %>
-	<div class="logo">
-		<%= image_tag @shelter.logo.url(:thumb) %> 
-	</div>
+	<%= image_tag @shelter.logo.url(:thumb) %> 
 <% end %>
-
+	<div id="map_canvas" style="width: 150px;height: 150px;"></div>
+</div>
 <h2><%=@shelter.name%></h2>
 <ul>
 	<li><%=@shelter.street%></li>

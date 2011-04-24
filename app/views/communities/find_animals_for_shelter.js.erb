@@ -1,14 +1,14 @@
-<% unless @all_animals.blank? %>
-	$('#all_animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @all_animals) %>" );
+<% unless @animals.blank? %>
+	$('#animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @animals) %>" );
 <% else %>
-	$('#all_animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
+	$('#animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
 <% end %>
 
-<% unless @urgent_needs_animals.blank? %>
-	$('#urgent_needs_animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @urgent_needs_animals) %>" );
-<% else %>
-	$('#urgent_needs_animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
-<% end %>
+// <% unless @urgent_needs_animals.blank? %>
+// 	$('#urgent_needs_animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @urgent_needs_animals) %>" );
+// <% else %>
+// 	$('#urgent_needs_animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
+// <% end %>
 
 <% unless @shelter.blank? %>
 	$('#shelter_details').html( "<%= escape_javascript( render :template => 'communities/shelter_details') %>" );

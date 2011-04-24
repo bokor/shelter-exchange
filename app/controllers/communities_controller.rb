@@ -33,23 +33,23 @@ class CommunitiesController < ApplicationController
   
   def find_animals_in_bounds
     @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]])
-    @all_animals = {}
-    @urgent_needs_animals = {}
+    @animals = {}
+    # @urgent_needs_animals = {}
     unless @shelters.blank?
       shelter_ids = @shelters.collect(&:id)
-      @all_animals = Animal.map_animals_list(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
-      @urgent_needs_animals = Animal.map_euthanasia_list(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      @animals = Animal.community_animals(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      # @urgent_needs_animals = Animal.map_euthanasia_list(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
     end
   end
   
   def find_animals_for_shelter
     @shelter = Shelter.find(params[:filters][:shelter_id])
     @capacities = @shelter.capacities
-    @all_animals = {}
-    @urgent_needs_animals = {}
+    @animals = {}
+    # @urgent_needs_animals = {}
     unless @shelter.blank?
-      @all_animals = Animal.map_animals_list(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
-      @urgent_needs_animals = Animal.map_euthanasia_list(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      @animals = Animal.community_animals(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
+      # @urgent_needs_animals = Animal.map_euthanasia_list(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page])
     end
   end
 end

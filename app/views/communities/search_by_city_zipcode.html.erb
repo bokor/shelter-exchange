@@ -58,6 +58,11 @@
 				e.preventDefault();
 			});
 			
+			$("#filters_euthanasia_only").bind("change", function(e){
+				findAnimalsInBounds();
+				e.preventDefault();
+			});
+			
 			$("#form_filters").bind("keypress", function(e){
 				return !(window.event && window.event.keyCode == 13); 
 			});
@@ -138,7 +143,7 @@
 		
 	<div class="page_content">
 		
-		<div style="padding-top: 5px;">
+		<div style="padding-top: 5px; padding-bottom: 0px;">
 			<h2>Search By City/Zipcode:</h2>
 			<div style="float: left; width: 50%;">
 				<form action="#" id="form_address_search">
@@ -153,17 +158,11 @@
 				<%= link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 			</div>
 		</div>
-		<div class="clear separator"></div>
-		
-		<div style="width: 100%; margin: 0 auto; text-align:center;" class="results">
-			<div id="map_canvas" style="width:90%; height: 400px;margin: 0 auto; text-align:center;"></div>
-		
-		</div>
 		<div class="clear"></div>
-		
 		<div class="separator"></div>
+		
 		<div style="float: left; padding-right: 50px; height: 30px; line-height: 30px;">
-			<h3>Narrow your search results:</h3>
+			<h3>Filter Animals by:</h3>
 		</div>
 		<div id="filters" style="float: left; height: 30px; line-height: 30px;">
 			<style type="text/css" media="screen">
@@ -190,24 +189,39 @@
 						<%= label_tag :filters_animal_status, "Status" %><br />
 						<%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, :prompt => "All" %>
 					</li>
+					<li>
+						<br /><%= check_box_tag "filters[euthanasia_only]", true %>
+						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks" %>
+					</li>
 				</ul>
 				<%= hidden_field_tag "filters[sw]" %>
 				<%= hidden_field_tag "filters[ne]" %>
 			</form>
 		</div>
+		
 		<div class="clear"></div>
 		<div class="separator"></div>
-		<div style="width: 100%;">
-			<div style="float:left; width:47%; padding-right: 2%; border-right: 1px dotted #ccc;">
-				<h2>Animals</h2>
+		
+		<!-- <div style="width: 100%;">
+			<div style="float:left;width:47%; height: 700px;padding-right: 2%;">
+				<div id="map_canvas" style="width:100%; height: 700px;"></div>
+			</div>
+			<div style="float:left; width:47%; padding-left: 2%; border-left: 1px dotted #ccc;">
 				<div id="all_animals"></div>
 			</div>
-			<div style="float:left; width:47%;padding-left: 2%;">
-				<h2>Urgent Needs</h2>
-				<div id="urgent_needs_animals"></div>
-			</div>
 		</div>
-		<div class="clear"></div>
+		<div class="clear"></div> -->
+		
+		<table style="width: 100%; padding-bottom: 20px;">
+			<tr>
+				<td style="width:47%; padding-right: 2%; vertical-align:top;">
+					<div id="map_canvas" style="width:100%; height: 700px;"></div>
+				</td>
+				<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
+					<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 700px; line-height: 700px;">Animal List</h1></div>
+				</td>
+			</tr>
+		</table>
 		
 	</div>
 		

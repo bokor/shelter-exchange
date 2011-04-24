@@ -20,9 +20,6 @@
 
 		$(function() {
 			
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-			
-			
 			$("#form_shelter_name_search").bind("submit", function(e){
 				e.preventDefault();
 			});
@@ -47,6 +44,7 @@
 				findAnimalsForShelter();
 				e.preventDefault();
 			});
+			
 			
 			$("#form_filters").bind("keypress", function(e){
 				return !(window.event && window.event.keyCode == 13); 
@@ -119,12 +117,15 @@
 				},
 				select: function(event, ui){
 					$('#filters_shelter_id').val(ui.item.id);
-					addMarker(ui.item.lat, ui.item.lng)
 					findAnimalsForShelter();
 				}		
 			});
 			
 		});
+		
+		function addMap(){
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		}
 		
 		
 		function addMarker(lat, lng){
@@ -151,13 +152,10 @@
 		
 
 		function findAnimalsForShelter(){
-			var zoomLevel = map.getZoom();
-			if (zoomLevel < 10) {
-				$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-				$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-			} else {
-				$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
-			}
+			$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize(), function(result){
+				addMap();
+				// addMarker(ui.item.lat, ui.item.lng);
+			});
 		}
 		
 		
@@ -172,7 +170,9 @@
 	</div> -->
 		
 	<div class="page_content">
-		
+		<style type="text/css" media="screen">
+			#form_shelter_name_search ul.form{ padding: 0; margin:0; }
+		</style>
 		<div style="padding-top: 5px;">
 			<h2>Search By Shelter Name:</h2>
 			<div style="float: left; width: 50%;">
@@ -188,16 +188,10 @@
 				<%= link_to "Search by City/Zipcode instead", search_by_city_zipcode_communities_path %>
 			</div>
 		</div>
-		<div class="clear separator"></div>
-		<div style="width: 100%;" class="results">
-			<div id="map_canvas" style="float:left;width:57%; min-height: 400px; text-align:left;padding-right: 2%;"></div>
-			<div id="shelter_details" style="float:left; width:38%; min-height: 400px;padding-left: 2%;">
-				<h1 style="color: #ccc;line-height: 400px; margin: 0 auto; text-align: center;">Shelter Details</h1>
-			</div>
-		</div>
-		<div class="clear"></div>
 		
+		<div class="clear"></div>
 		<div class="separator"></div>
+		
 		<div style="float: left; padding-right: 50px; height: 30px; line-height: 30px;">
 			<h3>Filter Animals by:</h3>
 		</div>
@@ -226,23 +220,44 @@
 						<%= label_tag :filters_animal_status, "Status" %><br />
 						<%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, :prompt => "All" %>
 					</li>
+					<li>
+						<br /><%= check_box_tag "filters[euthanasia_only]", true %>
+						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks" %>
+					</li>
 				</ul>
 				<%= hidden_field_tag "filters[shelter_id]" %>
 			</form>
 		</div>
+		
 		<div class="clear"></div>
 		<div class="separator"></div>
-		<div style="width: 100%;">
-			<div style="float:left; width:47%; padding-right: 2%; border-right: 1px dotted #ccc;">
-				<h2>Animals</h2>
-				<div id="all_animals"></div>
-			</div>
-			<div style="float:left; width:47%;padding-left: 2%;">
-				<h2>Urgent Needs</h2>
-				<div id="urgent_needs_animals"></div>
-			</div>
+		
+		
+		<!-- <div style="width: 100%;" class="results">
+			<div id="map_canvas" style="float:left;width:57%; min-height: 400px; text-align:left;padding-right: 2%;"></div>
+			
 		</div>
 		<div class="clear"></div>
+		
+		
+		<div style="width: 100%; padding-bottom: 20px;">
+			
+		</div>
+		<div class="clear"></div> -->
+		
+		
+		<table style="width: 100%; padding-bottom: 20px;">
+			<tr>
+				<td style="width:47%; padding-right: 2%; vertical-align:top;">
+					<div id="shelter_details" style="width:100%;height: 400px;">
+						<h1 style="color: #ccc;height: 400px; line-height: 400px; margin: 0 auto; text-align: center;">Shelter Details</h1>
+					</div>
+				</td>
+				<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
+					<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 400px; line-height: 400px;">Animal List</h1></div>
+				</td>
+			</tr>
+		</table>
 		
 	</div>
 		
