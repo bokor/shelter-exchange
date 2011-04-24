@@ -49,23 +49,3 @@ var Maps = {
 		});
 	}
 };
-
-
-// var infowindow = new google.maps.InfoWindow({
-// 	center: myLatlng,
-// 	position: myLatlng, // Remove this uncomment marker if we want an icon to show up
-//     content: $("#map_content").html()
-// });
-// 
-// var marker = new google.maps.Marker({
-// 	center: myLatlng,
-//     position: myLatlng,
-//     map: map,
-//     icon: '/images/logo_small.png',
-// 	clickable: true
-// });
-
-// infowindow.open(map, marker);
-// google.maps.event.addListener(marker, 'click', function() {
-// 	infowindow.open(map,marker);
-// });
