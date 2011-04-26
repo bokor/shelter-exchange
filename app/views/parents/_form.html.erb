@@ -14,7 +14,7 @@
 		</li>
 		<li>
 			<%= f.label :state, "State" %><br />
-			<%= f.text_field :state %>
+			<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, :prompt => "Select State" %>
 		</li>
 		<li>
 			<%= f.label :zip_code, "Zip code" %><br />

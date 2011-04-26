@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone
   before_filter :store_location, :set_mailer_url_options
-  
+
   layout :current_layout
-  helper :all
+  # helper :all
+  # clear_helpers
 
   private
   

@@ -360,7 +360,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .new_accommodations #left { width: 100%;}
 .new_accommodations #sidebar { display: none;width: 0;}
 
-#accommodations { border-top:1px dotted #ccc; padding-top: 20px;}
+#accommodations { border-top:1px dotted #ccc; padding-top: 20px; }
 #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 #accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 #accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
@@ -582,20 +582,31 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /**********************************************************************/
 /* -- Communities :: Common Styles --*/
 .communities ul {list-style:none;}
+.communities ul.form {padding-bottom: 0; margin-bottom:0;}
 .communities input[type=text]{height:20px;width:95%;font-size:14px; }
+
 /* -- Communities :: Page Heading and Titles --*/
 .communities .page_heading{border-bottom:1px solid #eee; }
-.communities .page_heading h1{width:100%;/* float:left;*/ }
-/*.communities .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}*/
+.communities .page_heading h1{width:100%; }
 
-.communities .animal_list .action_links {display:none;}
-
+/* -- Communities :: Page Layout --*/
 .search_by_city_zipcode_communities #main, .search_by_shelter_name_communities #main{ margin: 1em 3em 0 3em; }
 .search_by_city_zipcode_communities #left, .search_by_shelter_name_communities #left { width: 100%;}
 .search_by_city_zipcode_communities #sidebar, .search_by_shelter_name_communities #sidebar { display: none;width: 0; }
 
 
-/* -------------------------- ANIMAL COMMUNITIES -------------------------- */
+
+/* -------------------------- Communities :: Animal List -------------------------- */
+.communities table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.communities table.animal_list tr {border-bottom:1px #ccc dotted; }
+.communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.communities table.animal_list td.image { width:100px; padding-left:5px; }
+.communities table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+.communities table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.communities table.animal_list .action_links {display:none;}
+
+
+/* -------------------------- Communties :: Animal Page -------------------------- */
 .animal_communities .page_heading{border-bottom:1px solid #eee; }
 .animal_communities table.animal{width:100%;}
 .animal_communities table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
@@ -629,11 +640,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animal_communities .notes_heading .links{float:right; text-align: right;padding-top:5px;}
 .animal_communities .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* SIDEBAR - ANIMAL COMMUNITIES */
+/* -------------------------- Communties :: Animal Page :: Sidebar -------------------------- */
 .animal_communities #animal_shelter {padding: 15px 0 0 0;}
 .animal_communities #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .animal_communities #animal_shelter .shelter_details h2{border:none;}
-
 
 
 /*****************************************************************/

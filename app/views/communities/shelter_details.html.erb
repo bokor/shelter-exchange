@@ -1,6 +1,8 @@
 
 <style type="text/css" media="screen">
-	.logo_map{float:right;}
+	.logo{float:right; text-align:right;}
+	.logo:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+	.logo a{padding-top: 10px; display:block;}
 	.shelter_capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
 	.shelter_capacities h2{padding-bottom: 5px; /*border-bottom: 1px solid #ddd;*/}
 	table.capacity_details { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
@@ -35,15 +37,19 @@
 	table.legend td.normal { width: auto; }
 	
 </style>
-<div class="logo_map">
+
+<div class="logo">
 <% if @shelter.logo.file? %>
-	<%= image_tag @shelter.logo.url(:thumb) %> 
+	<div>
+		<%= image_tag @shelter.logo.url(:thumb) %>
+	</div>
 <% end %>
-	<div id="map_canvas" style="width: 150px;height: 150px;"></div>
+	<a href="#shelter_map_dialog" id="map_link" toptions="width = 400, height = 400, noGroup = 1, type = dom, title = Map of <%= @shelter.name %>, layout = quicklook, resizable = 0, shaded = 1, modal = 1, ondisplay = loadMapForModal()" tu_group="null">View Map</a>
+	<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a>
 </div>
 <h2><%=@shelter.name%></h2>
 <ul>
-	<li><%=@shelter.street%></li>
+	<li><%=@shelter.street %></li>
 	<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
 </ul>
 <br />
@@ -94,3 +100,10 @@
 	</table>
 </div>
 <% end %>
+
+<div id="shelter_map_dialog" style="display:none;">
+	<div class="wrapper">
+		<div id="map_canvas" style="width: 400px;height: 400px;"></div>
+	</div>
+</div>
+

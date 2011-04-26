@@ -176,7 +176,7 @@
 						<%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, :prompt => "All" %>
 					</li>
 					<li>
-						<div id="breed_field" style="display:none;width: 300px;">
+						<div id="breed_field" style="display:none;width: 200px;">
 							<%= label_tag :filters_breed, "Breed" %><br />
 							<%= text_field_tag "filters[breed]", "",:autocomplete => :off %>
 						</div>
@@ -202,23 +202,13 @@
 		<div class="clear"></div>
 		<div class="separator"></div>
 		
-		<!-- <div style="width: 100%;">
-			<div style="float:left;width:47%; height: 700px;padding-right: 2%;">
-				<div id="map_canvas" style="width:100%; height: 700px;"></div>
-			</div>
-			<div style="float:left; width:47%; padding-left: 2%; border-left: 1px dotted #ccc;">
-				<div id="all_animals"></div>
-			</div>
-		</div>
-		<div class="clear"></div> -->
-		
 		<table style="width: 100%; padding-bottom: 20px;">
 			<tr>
 				<td style="width:47%; padding-right: 2%; vertical-align:top;">
-					<div id="map_canvas" style="width:100%; height: 700px;"></div>
+					<div id="map_canvas" style="width:100%; height: 500px;"></div>
 				</td>
 				<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
-					<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 700px; line-height: 700px;">Animal List</h1></div>
+					<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List</h1></div>
 				</td>
 			</tr>
 		</table>

@@ -68,7 +68,7 @@ class Animal < ActiveRecord::Base
   # Scopes - Maps
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
-    scope = scope.includes(:animal_type, :animal_status)
+    scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
     scope = scope.where(:euthanasia_scheduled => Date.today..Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
     scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
