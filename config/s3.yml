@@ -1,0 +1,12 @@
+development:
+  bucket: shelterexchange-dev
+  access_key_id: AKIAIAYOGZBGGRGY46DA
+  secret_access_key: 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
+test:
+  bucket: shelterexchange-test
+  access_key_id: AKIAIAYOGZBGGRGY46DA
+  secret_access_key: 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
+production:
+  bucket: shelterexchange-prod
+  access_key_id: AKIAIAYOGZBGGRGY46DA
+  secret_access_key: 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

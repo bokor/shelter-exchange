@@ -21,12 +21,22 @@ class Animal < ActiveRecord::Base
   
   has_attached_file :photo, :whiny => false, 
                             :default_url => "/images/default_:style_photo.jpg", 
-                            :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
-                            :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
+                            :storage => :s3,
+                            :s3_credentials => "#{Rails.root.join('config/s3.yml')}",
+                            :path => "/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
                                          :medium => ["350x250>", :jpg],
                                          :large => ["500x400>", :jpg], 
-                                         :thumb => ["100x75#", :jpg] } 
+                                         :thumb => ["100x75#", :jpg] }
+  
+  # has_attached_file :photo, :whiny => false, 
+  #                           :default_url => "/images/default_:style_photo.jpg", 
+  #                           :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
+  #                           :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
+  #                           :styles => { :small => ["250x150>", :jpg],
+  #                                        :medium => ["350x250>", :jpg],
+  #                                        :large => ["500x400>", :jpg], 
+  #                                        :thumb => ["100x75#", :jpg] } 
 
   # Validations
   validates :name, :presence => true
