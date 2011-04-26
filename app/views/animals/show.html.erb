@@ -63,7 +63,7 @@
 					
 				</td>
 				<td class="image">
-			    	<a href="<%= @animal.photo.url(:original) %>" toptions="noGroup = 1, title = Picture of <%= @animal.name %>, layout = quicklook, resizable = 1, shaded = 1, modal = 1" tu_group="null"><%= image_tag @animal.photo.url(:medium) %></a>
+			    	<%= image_tag @animal.photo.url(:medium) %>
 			    </td>
 			</tr>
 		</table>
