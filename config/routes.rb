@@ -77,6 +77,9 @@ Shelterexchange::Application.routes.draw do
       end
     end
     
+#   Transfers Routes    
+    resources :transfers, :only => [:create, :update, :destroy]
+    
 #   Parents Routes
     resources :parents do
       resources :notes

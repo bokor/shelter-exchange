@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * animals.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Animals = { 
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();

@@ -17,6 +17,7 @@ class Shelter < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   has_many :capacities, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
+  has_many :transfers, :dependent => :destroy
   
  # has_one :address, :as => :addressable, :dependent => :destroy
   

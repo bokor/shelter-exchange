@@ -4,8 +4,9 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "application/application", "application/controller", "global/jquery-ui-1.8.6.custom", "global/tipsy",
-                            :media => "all", :cache => "cache/application/all" %>
+ 	<%= stylesheet_link_tag "global/jquery-ui-1.8.6.custom", "global/tipsy", 
+							"application/application", "application/controller",
+							:media => "all", :cache => "cache/application/all" %>
 
     <%= stylesheet_link_tag "application/print", :media => "print", :cache => "cache/application/print" %>
 	<%= yield(:stylesheets) %>

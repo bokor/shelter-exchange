@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * users.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Users = {
 	selectUser: function(id) {
 		$.get("/users/"+id+"/edit.js");

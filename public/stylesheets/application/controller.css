@@ -1,7 +1,7 @@
 /******************************************************************/
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
-.hover{background-color:#EFEBE3;}
+.hover{background-color:#EFEBE3; cursor: pointer;}
 .active_link {color:#888; text-decoration:none; cursor:default; }
 .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .no_tasks, .no_alerts {display:none;}
@@ -138,12 +138,13 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* SIDEBAR - SHOW ANIMAL */
 .show_animals #animal_tasks {padding: 15px 0 0 0;}
 .show_animals #animal_alerts {padding: 15px 0 0 0;}
-.show_animals #animal_tasks h2{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_animals #animal_alerts h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_animals #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
+.show_animals #animal_alerts h2{font-weight: bold;margin-bottom: 5px;}
 
 .show_animals #create_alert {display: none;background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
 .show_animals #create_task {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .show_animals #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+
 .show_animals #another_note_category{ display:none; }
 .show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
 
@@ -151,6 +152,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals #animal_tasks .edit_task h2 {border: 0;}
 .show_animals #animal_alerts .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .show_animals #animal_alerts .edit_alert h2 {border: 0;}
+
+
+
+
 
 
 
@@ -198,51 +203,53 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 /* -------------------------- ALERTS  -------------------------- */
 /******************************************************************/
-/* -- Global Alert --*/
-.alerts {}/* body class that is specific for an alerts page - Add action as well */
-.index_alerts {}
 
+/* Alerts :: Global */
+/******************************************************************/
 .alerts ul { list-style:none ;}
 
-/* -- Alerts :: Index --*/
-.index_alerts .page_content h3{border-bottom:1px #999 solid;}
-.index_alerts .page_heading{/*border-bottom:1px solid #ddd;*/ }
-.index_alerts #sidebar #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
+/* New/Create Alerts :: Layout */
+/******************************************************************/
+/*.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
+.new_alerts #left, .create_alerts #left{ width: 100%; }
+.new_alerts #sidebar, .create_alerts #sidebar{ display: none;width: 0;}*/
 
-/* -- Alerts :: New --*/
-.new_alerts #main { margin: 1em 3em 0 3em; }
-.new_alerts #left { width: 100%;}
-.new_alerts #sidebar { display: none;width: 0;}
+/* Index Alerts :: Alert List */
+/******************************************************************/
+.alerts .page_heading{/*border-bottom:1px solid #ddd;*/ }
+.alerts #sidebar #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}
 
-/* -- Alert List :: Edit Form --*/
+/* Index Alerts :: Alert List :: Edit Form */
+/******************************************************************/
 .alert_list .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .alert_list .edit_alert h2 {border: 0;}
 
-/* -- Alert List  --*/
-.alert_list h2{border-bottom: 1px #bbb solid; font-weight: bold;}
-.alert_list {margin-bottom:10px;}
-.alert_list .alert{padding: 1px 0 1px 0; margin: 2px 0 2px 0;text-align:left;display: block; }
-.alert_list .alert .description {padding: 0 0 0 20px; line-height: 2em; display:none;}
-.alert_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-/*.alert_list .details{float: left;width: 60%; margin-left: 10px;  } ORIGINAL WITH IMAGES*/
-.alert_list .details{float: left;width: 55%; margin-left: 10px;  }
-.alert_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
-.alert_list .details .alert_created_at_date{font-weight: bold; font-size: 14px; letter-spacing: -2px;padding-right: 10px; }
-.alert_list .details .alert_animal_name{font-weight:bold; font-size: 16px;}
-/*.alert_list .links{float: right; text-align:right;margin-top:5px;} 
-.alert_list .links img{margin-left: 5px;} ORIGINAL WITH IMAGES*/
-.alert_list .action_links{float: right; text-align:right;margin-top: 8px;font-size: 10px;font-weight:bold;}
+/* Index Alerts :: Alert List */
+/******************************************************************/
+.alert_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+.alert_list .alert{width: 100%; display:inline-block; line-height: 30px;padding: 5px 0;text-align:left;border-bottom: 1px dotted #bbb;}
+.alert_list .stopped{display:inline-block; width: 20px; text-align: left; }
+
+.alert_list .type{display:inline-block; width: 75px; height: 20px; line-height: 20px; padding-right: 5px; }
+.alert_list .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
+.alert_list .type div.high{background-color:#ee3124; }
+.alert_list .type div.medium{background-color:#f39500;}
+.alert_list .type div.low{background-color:gray;}
+
+.alert_list .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+.alert_list .details{display:inline-block; width: 58%; vertical-align:top; }
+.alert_list .title{display:inline-block; color: #000; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+.alert_list .alertable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.alert_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.alert_list .alert .description:before{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.alert_list .alert .description {display:block;padding: 0 0 0 30px; display:none; }
 
 
-.alert_list .high{background-color:#ee3124;color:#fff;}
-.alert_list .medium{background-color:#f39500;color:#fff;}
-.alert_list .low{background-color:gray;color:#fff;}
-
-/* -- Show Animals :: Alert List --*/
-.show_animals .alert_list .type{min-width: 80px;padding:2px 5px 2px 5px;}
-.show_animals .alert_list .details p {margin-top:3px;}
-.show_animals .alert_list .links{margin-top:3px;}
-.show_animals .alert_list .details .alert_animal_name{display:none;}
+/* Show Animals :: Alert List */
+/******************************************************************/
+.show_animals .alert_list .details {width: 45%;}
+.show_animals .alert_list .details .alertable_link{display:none;}
 
 
 
@@ -429,47 +436,55 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
-/* -- Global Task --*/
+
+/* Tasks :: Global */
+/******************************************************************/
 .tasks ul {list-style:none;}
-.index_tasks .page_content h3{border-bottom:1px #999 solid;}
-.index_tasks .page_heading{/*border-bottom:1px solid #ddd; */}
+.tasks #sidebar #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
+/* New/Create Tasks :: Layout */
+/******************************************************************/
+/*.new_tasks #main, .create_tasks #main { margin: 1em 3em 0 3em; }
+.new_tasks #left, .create_tasks #left { width: 100%;}
+.new_tasks #sidebar, .create_tasks #sidebar { display: none;width: 0;}*/
+
+/* Index Tasks :: Layout */
+/******************************************************************/
 .index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
-.index_tasks #overdue_tasks{padding-bottom: 15px;}
-.index_tasks #today_tasks{padding-bottom: 15px;}
-.index_tasks #tomorrow_tasks{padding-bottom: 15px;}
-.index_tasks #later_tasks"{padding-bottom: 0px;}
-/* -- Task  :: New --*/
-.new_tasks #main { margin: 1em 3em 0 3em; }
-.new_tasks #left { width: 100%;}
-.new_tasks #sidebar { display: none;width: 0;}
 
-.due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
-
-/* -- Task List :: Form --*/
+/* Index Tasks :: Task List :: Edit Form */
+/******************************************************************/
 .task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .task_list .edit_task h2 {border: 0;}
 
-.index_tasks #right #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 
-/* -- Task List --*/
-.task_list{margin-bottom:10px;}
-.task_list .task{padding: 1px 0 1px 0; margin: 2px 0 2px 0; text-align:left;display: block; }
-.task_list .type{float:left;min-width: 100px; text-align:center;vertical-align: middle; color: #fff; padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-/*.task_list .details{float: left;width: 60%; margin-left: 10px;  } ORIGINAL WITH IMAGES*/
-.task_list .details{float: left;width: 56%; margin-left: 10px;  }
-.task_list .details p {font-size: 14px; letter-spacing: -1px; color: #000;margin-top:5px;}
-.task_list .details .task_due_date{font-weight: bold; font-size: 14px; letter-spacing: -2px;padding-right: 10px; }
-.task_list .details .task_animal_name{font-weight:bold; font-size: 16px;}
-/*.task_list .links{float: right; text-align:right;font-size: 12px; margin-top: 3px;font-size: 10px;font-weight:bold;}  
-.task_list .links img{margin-left: 5px;} ORIGINAL WITH IMAGES*/
-.task_list .action_links{float: right; text-align:right;margin-top: 8px;font-size: 10px;font-weight:bold;}
+/* Index Tasks :: Task List */
+/******************************************************************/
+.task_list h3{border-bottom:1px #999 solid;}
+.task_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+.task_list .task{width: 100%; display:inline-block; line-height: 30px;padding: 5px 0;text-align:left;border-bottom: 1px dotted #bbb;}
+.task_list .task.hover{cursor: default;}
+.task_list .completed{display:inline-block; width: 20px; text-align: left; }
+.task_list .type{display:inline-block; width: 65px; height: 20px; line-height: 20px; }
+.task_list .type div {display:inline-block; width: 65px; height: 30px; line-height: 30px; margin:0 auto; text-align:center; }
+.task_list .type img {text-align:center; }
 
 
-/* -- Show Animals :: Task List --*/
-.show_animals .task_list .type{min-width: 80px;padding:2px 5px 2px 5px;}
-.show_animals .task_list .details p {margin-top:3px;}
-.show_animals .task_list .links{margin-top:3px;}
-.show_animals .task_list .task_animal_name{display:none;}
+.task_list .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+.task_list .details{display:inline-block; width: 58%; vertical-align:top; }
+.task_list .title{display:inline-block; color: #000; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
+.task_list .taskable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.task_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.task_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+
+/* Show Animals :: Alert List */
+/******************************************************************/
+.show_animals .task_list .details {width: 45%;}
+.show_animals .task_list .taskable_link{display:none;}
+.show_animals #animal_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
 
 
 
@@ -644,6 +659,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animal_communities #animal_shelter {padding: 15px 0 0 0;}
 .animal_communities #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .animal_communities #animal_shelter .shelter_details h2{border:none;}
+.animal_communities #create_transfer_request {display: none;background-color:#f1fce2; border:1px solid #c4f286; padding: 15px; margin-bottom: 15px;}
 
 
 /*****************************************************************/

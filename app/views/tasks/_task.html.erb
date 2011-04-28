@@ -1,18 +1,21 @@
 <div id="<%= "task_#{task.id}" %>" class="task">
-	<span class="type" style="background-color:<%= task.task_category.color if task.task_category %>">
-		<%= task.task_category.name if task.task_category %>
+	<% if can?(:update, Task) %>
+	<span class="completed">
+		<%= check_box_tag "task[completed]", 1, false, :onclick => "Tasks.completed(this, #{task.id});" %>
 	</span>
-	<span class="details">
-		<p><%= display_due_date(task) %><%= task.details %> <%= show_taskable_link(task) if controller_name == "tasks" %></p>
-	</span>
-	<div class="action_links">
-		<% if can?(:update, Task) %>
-		<span class="completed_link">
-			<%= link_to "Completed", completed_task_path(task), :confirm => "Are you sure?", :remote => true %>
-		</span>
+	<% end %>
+	<span class="type">
+		<% if task.task_category %>
+			<div><img data-helptext="<%=task.task_category.name%>" src="/images/icon_<%=task.task_category.name.underscore%>.png" /></div>
 		<% end %>
+	</span>
+	<span class="due_date"><%= display_due_date(task) %></span>
+	<span class="details">
+		<span class="title"><%= task.details %> <%= show_taskable_link(task) %></span>
+	</span>
+	<span class="action_links">
 		<% if can?(:update, Task) %>
-		<span class="edit_link">&nbsp;|&nbsp;
+		<span class="edit_link">
 			<%= link_to "Edit", edit_task_path(task), :remote => true %>
 		</span>
 		<% end %>
@@ -21,8 +24,7 @@
 			<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure?", :remote => true %>
 		</span>
 		<% end %>
-	</div>
-	<div class="clear"></div>
+	</span>
 </div>
 
 

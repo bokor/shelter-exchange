@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * tasks.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Tasks = {
 	initialize: function(){
 		Tasks.datePicker("#create_task");
@@ -58,6 +62,15 @@ var Tasks = {
 
 			}  
 		});
+	},
+	completed: function(element, id){
+		$(element).attr("disabled", true);
+		if (confirm("Are you sure you want to complete this task? This task will no longer appear in the list.")) { 
+			$.get("/tasks/"+id+"/completed.js");
+		} else {
+			$(element).attr("disabled", false);
+			$(element).attr("checked", false);
+		}
 	}
 };
 

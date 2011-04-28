@@ -21,6 +21,7 @@ class Ability
     cannot :invite, User
     cannot :change_role, User
     cannot :view_settings, User
+    cannot :request_transfer, Animal
   end
   
 end

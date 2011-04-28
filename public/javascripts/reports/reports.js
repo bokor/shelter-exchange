@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * reports.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Reports = {
 	pieChart: function(title, url_function){
 		$.get('/reports/'+url_function+'.json', 

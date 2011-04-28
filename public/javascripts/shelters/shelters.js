@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * shelters.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Shelters = {
 	loadMap: function(lat, lng){
 		var myLatlng = new google.maps.LatLng(lat,lng);

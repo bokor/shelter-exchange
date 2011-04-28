@@ -1,35 +1,26 @@
 <div id="<%= "alert_#{alert.id}" %>" class="alert">
-	<span class="type <%= alert.severity %>">
-		<%= alert.severity.humanize %>
+	<% if can?(:update, Alert) %>
+	<span class="stopped">
+		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stopped(this, #{alert.id});" %>
 	</span>
+	<% end %>
+	<span class="type"><div class="<%= alert.severity %>"><%= alert.severity.humanize %></div></span>
+	<span class="created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
 	<span class="details">
-		<p>
-			<span class="alert_created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
-			<%= alert.title %>
-			<%= show_alertable_link(alert) if controller_name == "alerts" %>
-		</p>
+		<span class="title"><%= alert.title %> <%= show_alertable_link(alert) %></span>
 	</span>
-	<div class="action_links">
-		<span class="view_link">
-			<%= link_to "View", "#", :onclick => "$('#description_alert_#{alert.id}').slideToggle();return false;" %>
-		</span>
+	<span class="action_links">
 		<% if can?(:update, Alert) %>
-		<span class="stop_link">&nbsp;|&nbsp;
-			<%= link_to "Stop", stopped_alert_path(alert), :confirm => "Are you sure?", :remote => true %>
-		</span>
-		<% end %>
-		<% if can?(:update, Alert) %>
-		<span class="edit_link">&nbsp;|&nbsp;
+		<span class="edit_link">
 			<%= link_to "Edit", edit_alert_path(alert), :remote => true %>
 		</span>
 		<% end %>
 		<% if can?(:destroy, Alert) %>
 		<span class="delete_link">&nbsp;|&nbsp;
-			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "icons" %>	
 		</span>
 		<% end %>
-	</div>
-	<div class="clear"></div>
+	</span>
 	<p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>
 </div>
 

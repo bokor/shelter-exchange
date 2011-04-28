@@ -3,7 +3,7 @@ module TasksHelper
   def show_taskable_link(task)
 	  if task.taskable
 	    link = link_to task.taskable.name, polymorphic_path(task.taskable)
-	    return ('<span class="task_animal_name">(' + link + ')</span>').html_safe
+	    return ('<span class="taskable_link">(' + link + ')</span>').html_safe
     end
   end
   

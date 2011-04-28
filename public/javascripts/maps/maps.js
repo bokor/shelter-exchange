@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * maps.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Maps = {
 	geocodeAddress: function(e, geocoder, map) {
 		geocoder.geocode( { address: $("#address").val() }, function(results, status) {

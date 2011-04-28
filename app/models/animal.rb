@@ -3,6 +3,8 @@ class Animal < ActiveRecord::Base
   before_save :check_status_changed?
   after_save :create_status_history!
   
+  attr_accessor :status_history_reason
+  
   # Pagination - Per Page
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
   PER_PAGE = 25
@@ -18,6 +20,7 @@ class Animal < ActiveRecord::Base
   has_many :alerts, :as => :alertable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
+  has_many :transfers, :dependent => :destroy
   
   has_attached_file :photo, :whiny => false, 
                             :default_url => "/images/default_:style_photo.jpg", 
@@ -74,6 +77,9 @@ class Animal < ActiveRecord::Base
   scope :foster_care, where(:animal_status_id => AnimalStatus::FOSTER_CARE)
   scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
+  def self.latest(num)
+    unscoped.order("animals.created_at DESC").limit(5)
+  end
   
   # Scopes - Maps
   def self.community_animals(shelter_ids, filters={})
@@ -146,15 +152,6 @@ class Animal < ActiveRecord::Base
 
     scope
   end
-  
-  # Virtual Attributes
-  def status_history_reason
-    @status_history_reason ||= ""
-  end
-
-  def status_history_reason=(value)
-    @status_history_reason = value
-  end
                                                  
   private
 
@@ -202,3 +199,37 @@ class Animal < ActiveRecord::Base
     end
 
 end
+
+
+# Virtual Attributes
+# def status_history_reason
+#   @status_history_reason ||= ""
+# end
+# 
+# def status_history_reason=(value)
+#   @status_history_reason = value
+# end
+
+# def dob_month
+#   @dob_month ||= ""
+# end
+# 
+# def dob_month=(value)
+#   @dob_month = value
+# end
+# 
+# def dob_day
+#   @dob_day ||= ""
+# end
+# 
+# def dob_day=(value)
+#   @dob_day = value
+# end
+# 
+# def dob_year
+#   @dob_year ||= ""
+# end
+# 
+# def dob_year=(value)
+#   @dob_year = value
+# end

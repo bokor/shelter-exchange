@@ -18,6 +18,7 @@ class CommunitiesController < ApplicationController
     @animal = Animal.includes(:animal_type, :animal_status).find(params[:animal_id])
     @notes = @animal.notes.includes(:note_category).all
     @shelter = @animal.shelter
+    @transfer = Transfer.new
     respond_with(@animal)
   end
   
@@ -32,7 +33,7 @@ class CommunitiesController < ApplicationController
   end
   
   def find_animals_in_bounds
-    @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]])
+    @shelters = Shelter.find(:all, :conditions =>["shelters.id != ?", @current_shelter.id], :bounds => [params[:filters][:sw],params[:filters][:ne]])
     @animals = {}
     # @urgent_needs_animals = {}
     unless @shelters.blank?

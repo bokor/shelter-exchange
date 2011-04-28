@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------
+ * accommodations.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
 var Accommodations = {
 	filterByTypeLocation: function() {
 		$.get("/accommodations/filter_by_type_location.js", { 

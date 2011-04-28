@@ -1,4 +1,26 @@
+<style type="text/css" media="screen">
+	fieldset{border:none;}
+	legend{color: #CC6A00;font-weight: bold; font-size: 18px; letter-spacing: -1px; padding-top: 10px;border-top: 1px solid #ddd; width: 100%; padding-bottom: 5px;}
+	ul.form{padding-top: 15px;}
+	ul.form li{margin-bottom: 15px;}
+	ul.form li.focus{background-color:#fff7c0; }
+</style>
+<!-- <script type="text/javascript" charset="utf-8">
+$(function(){
+	$(".form li").focusin(function(){
+		$(this).addClass("focus");
+		// $(this).parents().find("fieldset").addClass("focus");
+	});
+
+	$(".form li").focusout(function(){
+		$(this).removeClass("focus");
+		// $(this).parents().find("fieldset").removeClass("focus");
+	});
+});
+</script> -->
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
+	<fieldset id="" class="">
+		<legend>Features</legend>
 	<ul class="form">
 		<li style="float:right; width:42%">
 			<div id="photo">
@@ -40,10 +62,16 @@
 			<% end %>
 		</li>
 		<li>
-			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilization" %>
+			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilized" %>
 		</li>
+	</ul>
+	</fieldset>
+	<fieldset id="" class="">
+		<legend>Details</legend>
+		<ul class="form">
+
 		<li>
-			<%= f.label :date_of_birth, "Estimated Date of birth" %><br />
+			<%= f.label :date_of_birth, "Date of birth (est.)" %><br />
 			<div id="date_of_birth_field" class="date_field">
 				<div id="date_of_birth_humanize" class="humanize_date">Select Date</div>
 				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
@@ -63,10 +91,7 @@
 			<%= f.label :microchip, "Microchip#" %><br />
 			<%= f.text_field :microchip %>
 		</li>
-		<li>
-			<%= f.label :description, "Description" %><br />
-			<%= f.text_area :description %>
-		</li>
+		
 		<li>
 			<div id="accommodation_info">
 				<%= f.label :accommodation_id, "Accommodation" %><br />
@@ -80,11 +105,14 @@
 				</div>
 			</div> 
 		</li>
+		</ul>
+		</fieldset>
+		<fieldset id="" class="">
+			<legend>Euthanasia details</legend>
+			<ul class="form">
 		<li>
 			<% if @current_shelter.is_kill_shelter %>
 			<div id="euthanasia_info">
-				<fieldset>
-			    	<legend>Euthanasia info:</legend>
 					<%= f.label :arrival_date, "Date of arrival" %><br />
 					<div id="arrival_date_field" class="date_field">
 						<div id="arrival_date_humanize" class="humanize_date">Select Date</div>
@@ -103,12 +131,19 @@
 					</div>
 					<div id="euthanasia_scheduled_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :euthanasia_scheduled %>
-					
-				</fieldset>
 			</div>
 			<% end %>
 		</li>
 	</ul>
+	</fieldset>
+	<fieldset id="" class="">
+		<legend>Description</legend>
+		<ul class="form">
+			<li>
+				<%= f.text_area :description %>
+			</li>
+		</ul>
+	</fieldset>
 	<div class="actions">
 		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 	</div>

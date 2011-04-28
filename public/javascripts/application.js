@@ -1,3 +1,9 @@
+/* ------------------------------------------------------------------------
+ * application.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
+
+
 /*
  * Configure TopUp
  */
@@ -14,15 +20,16 @@ $.fn.tipsy.defaults = {
     fallback: '',    		// fallback text to use when no tooltip text
     gravity: 'n',    		// gravity
     html: false,     		// is tooltip content HTML?
-    live: false,     		// use live event support?
+    live: true,     		// use live event support?
     offset: 2,       		// pixel offset of tooltip from element
-    opacity: 0.8,    		// opacity of tooltip
+    opacity: 0.9,    		// opacity of tooltip
     title: 'data-helptext', // attribute/callback containing tooltip text
     trigger: 'hover'        // how tooltip is triggered - hover | focus | manual
 };
 $(function() {
-	$('input[data-helptext]').tipsy({trigger: 'focus', gravity: 'w'});
-	$('span[data-helptext], a[data-helptext]').tipsy({trigger: 'hover', gravity: 'sw'});
+	// $('input[data-helptext]').tipsy({trigger: 'focus', gravity: 'w'});
+	// $('span[data-helptext], a[data-helptext], div[data-helptext], img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
+	$('.task img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
 });
 
 
@@ -88,13 +95,14 @@ $(function() {
  */
 
 // Live List Hover
-$(".note, .status_history, .location, .user").live('hover', function(event) {
+$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(event) {
   if (event.type == 'mouseover') {
     $(this).addClass("hover");
   } else {
     $(this).removeClass("hover");
   }
 });
+
 
 // Pagination Links -> AJAX Searches
 $('.pagination a').live('click',function (){  
@@ -121,6 +129,10 @@ $(function() {
 	});
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
+	});
+	
+	$('#add_transfer_request_link, #cancel_transfer_request').click(function() {
+		$('#create_transfer_request').slideToggle();
 	});
 
 });

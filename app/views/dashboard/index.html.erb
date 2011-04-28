@@ -89,7 +89,26 @@
 	<div class="page_heading blue_background">
 		<h1>Dashboard</h1>
 	</div>
-		
+	
+	<div class="page_content">
+		<h2>Transfer Requests</h2>
+		<% @transfers.each do |transfer|%>
+			<h3><%= link_to transfer.animal.name, transfer.animal %></h3>		
+			<p>from_shelter = <%= transfer.from_shelter.name %></p>
+			<p>to_shelter = <%= transfer.to_shelter.name %></p>
+			<p>comment = <%= transfer.comments.first.comment %></p>
+			<p>request_date = <%= format_date(:long, transfer.created_at) %></p>
+			<% Transfer::STATUSES.each do |status| %>
+				<p><%= link_to status.humanize, transfer_path(transfer, :status => status ), :method => :put, :confirm => "This action can not be undone, would you like to proceed?", :remote => true, :class => "button" %></p>
+			<% end %>
+			<p></p>
+		<% end %>
+		<br /><br /><br />
+		<h2>Latest animals</h2>
+		<%= render "animals/animal_list", :animals => @animals %> 
+	</div>
+	
+	<br /><br /><br />
 	<div class="page_content clearfix">
 		
 			<div class="signup-form" style="float:right;">			
