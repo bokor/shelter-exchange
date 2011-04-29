@@ -246,7 +246,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .alert_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
 .alert_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.alert_list .alert .description {display:block;padding: 0 0 0 30px; display:none; }
+.alert_list .alert .description { padding: 0 4%; width: 92%; display:none; line-height: 2em; }
 
 
 /* Show Animals :: Alert List */

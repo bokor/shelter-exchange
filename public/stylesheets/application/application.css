@@ -8,6 +8,7 @@ Light Greenish background - #efebe3
 Orange - #e68e00;
 darker orange -#CC6A00;
 brown - #2c2a25
+light brown - #e6e5df
 */
 /*
 RED  - background-color: #fce2ec; border:1px solid #f286b1;
@@ -503,7 +504,6 @@ body.firefox.mac .button.default {
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	border-color: #02901f!important;
 }
-
 
 /*.button {background: #17A1E6; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0, #4AC3FF), color-stop(0.5, #17A1E6), color-stop(1, #0088CC)); background: -moz-linear-gradient(top, #4AC3FF, #0088CC); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4AC3FF, endColorstr=#0088CC); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4AC3FF, endColorstr=#0088CC)"; border: 1px solid #1c7cb0; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; -moz-box-shadow: 0 1px 1px rgba(0,0,0,.1) inset; -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1) inset; box-shadow: 0 1px 1px rgba(0,0,0,.1) inset; color: #FFF; cursor: pointer; display: inline-block; font-size: 15px; font-weight: 300; line-height: 1em !important; padding: 7px 10px; position: relative; text-align: center; text-decoration: none; text-shadow: rgba(0,0,0,.5) 1px 1px 0}
 .button.green {background: #809900; background: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0, #93B300), color-stop(0.5, #809900), color-stop(1, #6C8000)); background: -moz-linear-gradient(top, #93B300, #6C8000); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93B300, endColorstr=#6C8000); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#93B300, endColorstr=#6C8000)"; border-color: #576800; color: #F9FAF3}
