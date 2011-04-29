@@ -95,12 +95,28 @@ $(function() {
  */
 
 // Live List Hover
-$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(event) {
-  if (event.type == 'mouseover') {
-    $(this).addClass("hover");
-  } else {
-    $(this).removeClass("hover");
-  }
+
+
+/* ------------------------------------------------------------------------
+ * Live Events
+ * ------------------------------------------------------------------------ */
+$(function(){
+	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(event) {
+	  if (event.type == 'mouseover') {
+	    $(this).addClass("hover");
+	  } else {
+	    $(this).removeClass("hover");
+	  }
+	});
+	
+	$(".alert, .note").live("click", function(e){
+		var target = $(e.target);
+        if(target.is("a") || target.is("input")) { //checks if other things are clicked first
+            return;
+        } else {
+			$(".description", this).slideToggle();
+		}
+	});
 });
 
 

@@ -1,13 +1,7 @@
 <%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "animals/animals", :cache => "cache/application/animals-show" %>
-	<script type="text/javascript">
-		$(function() {
-			Animals.noteFilters();
-			Tasks.initialize();
-		});
-	</script>
+	<%= javascript_include_tag "animals/animals", :cache => "cache/application/communities-animals" %>
 <% end %>
 
 <%= content_for :page_content do %>

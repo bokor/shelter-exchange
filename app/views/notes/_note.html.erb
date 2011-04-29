@@ -1,17 +1,13 @@
 <div id="<%= "note_#{note.id}" %>" class="note">
-	<div class="note_info" onclick="$('#description_note_<%=note.id%>').slideToggle();return false;">
-  		<span class="created_date"><%= format_date(:short, note.created_at) %></span>
+	<span class="created_date"><%= format_date(:short, note.created_at) %></span>
+	<span class="details">
 		<span class="title"><%= note.title %></span>
-		<span class="category">(<%= note.note_category.name if !note.note_category.blank?  %>)</span>	
-	</div> 
+	</span>
 	<% if note.shelter_id == @current_shelter.id %>
-		<div class="action_links">
+		<span class="action_links">
 			<% if controller_name != "communities" %>
-				<span class="view_link">
-					<%= link_to "View", "#", :onclick => "$('#description_note_#{note.id}').slideToggle();return false;" %>
-				</span>
 				<% if can?(:update, Note) %>
-				<span class="edit_link">&nbsp;|&nbsp;
+				<span class="edit_link">
 					<%= link_to "Edit", edit_note_path(note), :remote => true %>
 				</span>
 				<% end %>
@@ -21,8 +17,7 @@
 				</span>
 				<% end %>
 			<% end %>
-		</div>
+		</span>
 	<% end %>
-    <div style="clear:both;"></div>
   	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
 </div>

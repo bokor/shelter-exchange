@@ -22,17 +22,3 @@ var Alerts = {
 	}
 };
 
-/* ------------------------------------------------------------------------
- * Alert Row
- * - Bind Click to the row so that it will work with inputs, a and the onclick event of the row
- * ------------------------------------------------------------------------ */
-$(function(){
-	$(".alert").live("click", function(e){
-		var target = $(e.target);
-        if(target.is("a") || target.is("input")) { //checks if other things are clicked first
-            return;
-        } else {
-			$(".description", this).slideToggle();
-		}
-	});
-});

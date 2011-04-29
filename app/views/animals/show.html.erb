@@ -1,10 +1,10 @@
 <%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "animals/animals", "tasks/tasks", "alerts/alerts", "date", :cache => "cache/application/animals-show" %>
+	<%= javascript_include_tag "animals/animals", "alerts/alerts", "notes/notes", "tasks/tasks", "date", :cache => "cache/application/animals-show" %>
 	<script type="text/javascript">
 		$(function() {
-			Animals.noteFilters();
+			Notes.filters();
 			Tasks.initialize();
 		});
 	</script>
@@ -107,16 +107,20 @@
 		</div>
 	</div>
 	
-	<div id="notes" class="page_content">
-		<%= render @notes %>
+	<div class="page_content">
+		<div id="notes" class="note_list">
+			<%= render @notes %>
+		</div>
 	</div>
 	
 	<div class="status_history_heading yellow_background">
 		<h2>Status history</h2>
 	</div>
 	
-	<div id="status_histories" class="page_content">
-		<%= render @status_histories %>
+	<div class="page_content">
+		<div id="status_histories" class="status_history_list">
+			<%= render @status_histories %>
+		</div>
 	</div>
 
 <% end %>
