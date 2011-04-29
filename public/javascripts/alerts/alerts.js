@@ -23,8 +23,8 @@ var Alerts = {
 };
 
 /* ------------------------------------------------------------------------
- * Alert Row 
- * Bind Click to the row so that it will work with inputs, a and the onclick event of the row
+ * Alert Row
+ * - Bind Click to the row so that it will work with inputs, a and the onclick event of the row
  * ------------------------------------------------------------------------ */
 $(function(){
 	$(".alert").live("click", function(e){

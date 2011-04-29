@@ -21,6 +21,6 @@ class Task < ActiveRecord::Base
   scope :overdue, where("due_date < ?", Date.today)
   scope :today, where("due_date = ?", Date.today)
   scope :tomorrow, where("due_date = ?", Date.today + 1.day)
-  scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("updated_at DESC, due_date DESC")
+  scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("due_date DESC")
   
 end

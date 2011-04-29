@@ -227,22 +227,25 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* Index Alerts :: Alert List */
 /******************************************************************/
 .alert_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
-.alert_list .alert{width: 100%; display:inline-block; line-height: 30px;padding: 5px 0;text-align:left;border-bottom: 1px dotted #bbb;}
-.alert_list .stopped{display:inline-block; width: 20px; text-align: left; }
 
-.alert_list .type{display:inline-block; width: 75px; height: 20px; line-height: 20px; padding-right: 5px; }
-.alert_list .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
-.alert_list .type div.high{background-color:#ee3124; }
-.alert_list .type div.medium{background-color:#f39500;}
-.alert_list .type div.low{background-color:gray;}
+.alert_list .alert{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.alert_list .stopped{display:inline-block; text-align: left; }
+
+.alert_list .type{display:inline-block; padding: 0 5px; }
+	.alert_list .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
+	.alert_list .type div.high{background-color:#ee3124; }
+	.alert_list .type div.medium{background-color:#f39500;}
+	.alert_list .type div.low{background-color:gray;}
 
 .alert_list .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
-.alert_list .details{display:inline-block; width: 58%; vertical-align:top; }
-.alert_list .title{display:inline-block; color: #000; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
-.alert_list .alertable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.alert_list .details{display:inline-block; width: 57%; vertical-align:top; }
+	.alert_list .title{display:inline-block; color: #000; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+	.alert_list .alertable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .alert_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
-.alert_list .alert .description:before{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.alert_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 .alert_list .alert .description {display:block;padding: 0 0 0 30px; display:none; }
 
 
@@ -252,6 +255,59 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals .alert_list .details .alertable_link{display:none;}
 
 
+
+/******************************************************************/
+/* ---------------------------- TASKS --------------------------- */
+/******************************************************************/
+
+/* Tasks :: Global */
+/******************************************************************/
+.tasks ul {list-style:none;}
+.tasks #sidebar #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
+/* New/Create Tasks :: Layout */
+/******************************************************************/
+/*.new_tasks #main, .create_tasks #main { margin: 1em 3em 0 3em; }
+.new_tasks #left, .create_tasks #left { width: 100%;}
+.new_tasks #sidebar, .create_tasks #sidebar { display: none;width: 0;}*/
+
+/* Index Tasks :: Layout */
+/******************************************************************/
+.index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
+
+/* Index Tasks :: Task List :: Edit Form */
+/******************************************************************/
+.task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.task_list .edit_task h2 {border: 0;}
+
+
+/* Index Tasks :: Task List */
+/******************************************************************/
+.task_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.task_list .task{width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;}
+.task_list .task.hover{cursor: default;}
+
+.task_list .completed{display:inline-block;text-align: left; }
+
+.task_list .type{display:inline-block; width: 65px; height: 24px; line-height: 24px; text-align:center;}
+	.task_list .type img {text-align:center; vertical-align:middle; margin-top: -6px;}
+
+.task_list .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+
+.task_list .details{display:inline-block; width: 60%; vertical-align:top; }
+	.task_list .title{display:inline-block; color: #000; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
+	.task_list .taskable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.task_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.task_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+
+/* Show Animals :: Alert List */
+/******************************************************************/
+.show_animals .task_list .details {width: 45%;}
+.show_animals .task_list .taskable_link{display:none;}
+.show_animals #animal_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 
 
 
@@ -432,58 +488,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
-
-/******************************************************************/
-/* ---------------------------- TASKS --------------------------- */
-/******************************************************************/
-
-/* Tasks :: Global */
-/******************************************************************/
-.tasks ul {list-style:none;}
-.tasks #sidebar #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
-
-/* New/Create Tasks :: Layout */
-/******************************************************************/
-/*.new_tasks #main, .create_tasks #main { margin: 1em 3em 0 3em; }
-.new_tasks #left, .create_tasks #left { width: 100%;}
-.new_tasks #sidebar, .create_tasks #sidebar { display: none;width: 0;}*/
-
-/* Index Tasks :: Layout */
-/******************************************************************/
-.index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
-
-/* Index Tasks :: Task List :: Edit Form */
-/******************************************************************/
-.task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.task_list .edit_task h2 {border: 0;}
-
-
-/* Index Tasks :: Task List */
-/******************************************************************/
-.task_list h3{border-bottom:1px #999 solid;}
-.task_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
-.task_list .task{width: 100%; display:inline-block; line-height: 30px;padding: 5px 0;text-align:left;border-bottom: 1px dotted #bbb;}
-.task_list .task.hover{cursor: default;}
-.task_list .completed{display:inline-block; width: 20px; text-align: left; }
-.task_list .type{display:inline-block; width: 65px; height: 20px; line-height: 20px; }
-.task_list .type div {display:inline-block; width: 65px; height: 30px; line-height: 30px; margin:0 auto; text-align:center; }
-.task_list .type img {text-align:center; }
-
-
-.task_list .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
-.task_list .details{display:inline-block; width: 58%; vertical-align:top; }
-.task_list .title{display:inline-block; color: #000; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
-.task_list .taskable_link{display:inline-block; font-weight:bold; color: #000;}
-
-.task_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
-.task_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-
-/* Show Animals :: Alert List */
-/******************************************************************/
-.show_animals .task_list .details {width: 45%;}
-.show_animals .task_list .taskable_link{display:none;}
-.show_animals #animal_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 
 
 
