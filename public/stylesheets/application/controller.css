@@ -696,8 +696,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 	.alert_list .alertable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .alert_list .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
-.alert_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.alert_list .alert .description { padding: 0 4%; width: 92%; display:none; line-height: 2em; }
+
+.alert_list .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em; }
 
 
 /* Show Animals :: Alert List */
@@ -782,9 +782,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 	.note_list .title {display:inline-block;color:#000; font-weight: bold;font-size: 14px; line-height: 1.5em;}
 
 .note_list .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
-.note_list .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 
-.note_list .description { padding: 0 4%; width: 92%; display:none; line-height: 2em;}
+.note_list .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em;}
 
 /* Show Parents :: Notes */
 /******************************************************************/
