@@ -19,8 +19,6 @@ class Shelter < ActiveRecord::Base
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
   
- # has_one :address, :as => :addressable, :dependent => :destroy
-  
   has_attached_file :logo, :whiny => true, 
                            :default_url => "/images/default_:style_photo.jpg", 
                            :storage => :s3,
@@ -30,21 +28,11 @@ class Shelter < ActiveRecord::Base
                                         :medium => ["350x250>", :jpg],
                                         :large => ["500x400>", :jpg], 
                                         :thumb => ["150x75>", :jpg] }
-                                        
-  # has_attached_file :logo, :whiny => true, 
-  #                          :default_url => "/images/default_:style_photo.jpg", 
-  #                          :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
-  #                          :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension",
-  #                          :styles => { :small => ["250x150>", :jpg],
-  #                                       :medium => ["350x250>", :jpg],
-  #                                       :large => ["500x400>", :jpg], 
-  #                                       :thumb => ["150x75>", :jpg] } 
-                                        
     
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
-  validates :name, :street, :city, :state, :zip_code, :main_phone, :presence => true
+  validates :organization_name, :street, :city, :state, :zip_code, :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
                     :length => {:minimum => 3, :maximum => 254}, 
@@ -76,8 +64,8 @@ class Shelter < ActiveRecord::Base
     end
 
     def format_phone_numbers
-      self.main_phone = self.main_phone.gsub(/[^0-9]/, "") unless self.main_phone.blank?
-      self.fax_phone = self.fax_phone.gsub(/[^0-9]/, "") unless self.fax_phone.blank?
+      self.phone = self.phone.gsub(/[^0-9]/, "") unless self.phone.blank?
+      self.fax = self.fax.gsub(/[^0-9]/, "") unless self.fax.blank?
     end
   
 end
