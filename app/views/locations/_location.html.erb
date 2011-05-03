@@ -1,8 +1,8 @@
 <div id="location_<%= location.id %>" class="location">
-	<div class="location_info">
+	<span class="details">
   		<span class="name"><%= location.name %></span>
-	</div> 
-	<div class="action_links">
+	</span> 
+	<span class="action_links">
 		<% if can?(:update, Location) %>
 		<span class="edit_link">
 			<%= link_to "Edit", edit_location_path(location), :remote => true %>
@@ -13,6 +13,5 @@
 			<%= link_to 'Delete', location, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 		</span>
 		<% end %>
-	</div>
-	<div style="clear:both;"></div>
+	</span>
 </div>

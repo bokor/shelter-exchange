@@ -1,6 +1,54 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+
+	$(".form input, .form select, .form textarea").focusin(function(){
+		$(this).parent().addClass("focus");
+		$(this).parents().find("fieldset").addClass("focus");
+	});
+
+	$(".form input, .form select, .form textarea").focusout(function(){
+		$(this).parent().removeClass("focus");
+		$(this).parents().find("fieldset").removeClass("focus");
+	});
+
+	// $(".form input, .form select, .form textarea").keyup(function(){
+	// 	if ($(this).val().length >0){
+	// 		$(this).siblings("label").hide();
+	// 	} else {
+	// 		$(this).siblings("label").show();
+	// 	}
+	// });
+
+});
+</script>
+<style type="text/css" media="screen">
+/*form li {
+	margin: 0;
+	padding: 6px 1% 9px 1%;
+	background-color: transparent;
+	position: relative;
+	-webkit-transition: background-color 350ms ease-out;
+	-moz-transition: background-color 350ms ease-out;
+	-o-transition: background-color 350ms ease-out;
+	transition: background-color 350ms ease-out;
+}*/
+/*form li span {
+	margin: 0 .3em 0 0;
+	padding: 0;
+	float: left;
+	color: #444;
+}*/
+/*
+
+
+	.form li {width: 50%;}*/
+	.form .focus { background-color: #fff7c0;}
+	
+	.form .paperclip {float:right; width:42%; text-align:left;}
+</style>
 <%= form_for (@shelter), :html => { :multipart => true } do |f| %>
 	<ul class="form">
-		<li style="float:right; width:42%">
+		<li class="paperclip">
 			<div id="logo">
 				<%= render "logos/logo" %>
 			</div>
@@ -26,11 +74,11 @@
 			<%= f.text_field :zip_code %>
 		</li>
 		<li>
-			<%= f.label :main_phone, "Phone (main)" %><br />
+			<%= f.label :main_phone, "Phone" %><br />
 			<%= f.text_field :main_phone, :value => number_to_phone(@shelter.main_phone, :delimiter => "-") %>
 		</li>
 		<li>
-			<%= f.label :fax_phone, "Phone (fax)" %><br />
+			<%= f.label :fax_phone, "Fax" %><br />
 			<%= f.text_field :fax_phone, :value => number_to_phone(@shelter.fax_phone, :delimiter => "-") %>
 		</li>
 		<li>
@@ -60,6 +108,6 @@
 		</li>
 	</ul>
 	<div class="actions">
-		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", shelters_path %>
 	</div>
 <% end %>

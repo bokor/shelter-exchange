@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
          
   # Accessible Attributes
-  attr_accessible :name, :email, :password, :password_confirmation, 
+  attr_accessible :name, :title, :email, :password, :password_confirmation, 
                   :remember_me, :role, :account_id 
                   
   # Validations - Extra beyond devise's validations

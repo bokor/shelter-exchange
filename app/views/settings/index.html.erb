@@ -27,25 +27,30 @@
 		<% end %>
 		
 		<h2>Web Access</h2>
-		<!-- Admins are  ALLOWED TO GENERATE -->
-		<p><%= @current_shelter.name %>'s token to gain web access.  This access token protects your shelters' data.  If you feel like someone has stole the token, please regenerate and update your shelter's website with this token</p>
+		<p><%= @current_shelter.name %>'s token to gain web access.  This access token protects your shelters' data and with the following URLs will give you access to your shelter's animals.  If you feel like someone has stole the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token</p>
 		<div class="section">
-			<p><%= label_tag :access_token, "Access Token" %></p>
+			<div class="separator"></div>
+			<!-- <p><%= label_tag :access_token, "Access Token" %></p> -->
 			<p><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %>
 			&nbsp;|&nbsp;
 			<%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></p>
-			<p>
+			<div class="separator"></div>
+			
+			<div>
 			<% if @current_shelter.access_token.blank? %>
-				<p>Token Empty</p>
+				<h3>Web Access is currently not enabled.  Please Generate a Token so you can access your animals.</h3>
 			<% else %>
 				<h3>JSON</h3>
 				<h5>Version 1</h5>
 				<p><code><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
+				<h3>JSONP</h3>
+				<h5>Version 1</h5>
+				<p><code><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
 				<h3>XML</h3>
 				<h5>Version 1</h5>
 				<p><code><%= full_url %>/api/v1/animals.xml?access_token=<%= @current_shelter.access_token %></code></p>
 			<% end %>
-			</p>
+			</div>
 			
 		</div>
 	</div>

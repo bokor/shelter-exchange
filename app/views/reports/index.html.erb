@@ -5,9 +5,9 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			var month = '<%=format_date(:month_only, Date.today)%>';
-			Reports.pieChart('Animals by Status Monthly Total - ' + month, 'status_by_current_month');
-			Reports.pieChart('Animals by Type Monthly Total - ' + month, 'type_by_current_month');
+			var monthYear = '<%=format_date(:month_only, Date.today)%> <%= current_year %>';
+			Reports.pieChart('Animals by Status Monthly Total - ' + monthYear, 'status_by_current_month');
+			Reports.pieChart('Animals by Type Monthly Total - ' + monthYear, 'type_by_current_month');
 		});
 	</script>
 <% end %>

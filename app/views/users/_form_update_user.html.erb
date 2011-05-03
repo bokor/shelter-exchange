@@ -7,6 +7,10 @@
 	  		<%= f.text_field :name, :value => user.name %>
 		</li>
 		<li>
+			<%= f.label :title, "Title" %><br />
+  			<%= f.text_field :title, :value => user.title %>
+		</li>
+		<li>
 			<%= f.label :email, "Email" %><br />
 			<%= f.text_field :email, :value => user.email %>
 		</li>
@@ -16,6 +20,12 @@
 			<%= label_tag :name, "First and Last name" %><br />
 	  		<h3><%= user.name %></h3>
 		</li>
+		<% unless user.title.blank? %>
+		<li>
+			<%= label_tag :title, "Title" %><br />
+	  		<h3><%= user.title %></h3>
+		</li>
+		<% end %>
 		<li>
 			<%= label_tag :email, "Email" %><br />
 			<h3><%= user.email %></h3>

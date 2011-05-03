@@ -23,7 +23,7 @@
 		<% end %>
 		<div class="action_links">
 			<% if can?(:update, Shelter) %>
-			<%= link_to "Edit this shelter", edit_shelter_path(@shelter)%>
+			<%= link_to "Edit your shelter", edit_shelter_path(@shelter)%>
 			<% end %>
 		</div>
 	</div>
@@ -38,29 +38,44 @@
 					<li><%=@shelter.street%></li>
 					<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
 				</ul>
+				<% if @shelter.is_kill_shelter %>
+					<div id="shelter_message" class="kill">Kill Shelter</div>
+				<% else %>
+					<div id="shelter_message" class="no_kill">No Kill Shelter</div>
+				<% end %>
 			</div>
 			<div id="contact_details">
 				<h3>Contact Details:</h3>
 				<ul>
-					<li>Main phone:  <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
-					<li>Fax phone:  <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li>
+					<li>Phone:  <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
+					
+					<% unless @shelter.fax_phone.blank? %>
+						<li>Fax:  <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li>
+					<% end %>
+					
 					<li>Email:  <%=@shelter.email %></li>
-					<li>Website:  <%=@shelter.website%></li>
-					<li>Twitter:  <%=@shelter.twitter%></li>
-					<li>Facebook Page:  <%=@shelter.facebook %></li>
-					<li>Kill shelter:  <%=@shelter.is_kill_shelter%></li>
+				</ul>
+				
+				<br />
+				
+				<h3>Website Details:</h3>
+				<ul>
+					<% unless @shelter.website.blank? %>
+						<li>Website:  <a href="<%=@shelter.website %>" target="_blank"><%=@shelter.website %></a></li>
+					<% end %>
+					
+					<% unless @shelter.twitter.blank? %>
+						<li>Twitter:  <a href="<%=@shelter.twitter %>" target="_blank"><%=@shelter.twitter %></a></li>
+					<% end %>
+					
+					<% unless @shelter.facebook.blank? %>
+						<li>Facebook Page:  <a href="<%=@shelter.facebook %>" target="_blank"><%=@shelter.facebook %></a></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
 		
 		<div id="map_canvas"></div>
-		<div id="map_content">
-			<ul>
-				<li><h2><%=@shelter.name%></h2></li>
-				<li><%=@shelter.street%></li>
-				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%><br /><br /></li>
-			</ul>
-		</div>
 		
 	</div>
 	
@@ -74,8 +89,6 @@
 			<span class="actions"><%= link_to "Edit", edit_shelter_path(@shelter), :remote => true %></span>
 			<% end %>
 		</h2>
-			
-		<!-- <p>BLAH BLAH</p> -->
 		<ol id="items">
 			<% unless @shelter.items.blank? %>
 				<%= render @shelter.items %>
@@ -84,8 +97,5 @@
 			<% end %>
 		</ol>
 	</div>
-	
-	<!-- <div class="separator"></div> -->
-	
 	
 <% end %>

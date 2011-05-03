@@ -70,12 +70,9 @@ Shelterexchange::Application.routes.draw do
       end
     end
     match 'communities/animal/:animal_id' => 'communities#animal', :as => :animal_communities
-    
-    resources :maps do
-      collection do
-        get :overlay
-      end
-    end
+
+#   Maps Routes      
+    resources :maps 
     
 #   Transfers Routes    
     resources :transfers, :only => [:create, :update, :destroy]
@@ -140,12 +137,11 @@ Shelterexchange::Application.routes.draw do
     devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invitation" } 
 
 #   Dashboard Routes   
-    # resources :dashboard, :only => [:index] 
     match "/dashboard", :to => 'dashboard#index'
     
 #   Root Route - will redirect to animals as the first page
     # root :to => redirect("/animals")
-    root :to => 'dashboard#index'
+    root :to => redirect("/dashboard")
     
   end
   
