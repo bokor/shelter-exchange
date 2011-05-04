@@ -19,6 +19,12 @@ var Alerts = {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);
 		}
+	},
+	cancelForm: function(id){
+		$('#edit_alert_'+id).slideToggle(800,function() { 
+			$(this).remove();
+		});
+		$('#alert_'+id).fadeIn(1000);
 	}
 };
 

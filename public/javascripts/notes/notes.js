@@ -6,4 +6,10 @@ var Notes = {
 			$(event.target).addClass('active_link');
 		});
 	},
+	cancelForm: function(id){
+		$('#edit_note_'+id).slideToggle(800,function() {
+			$(this).remove();
+		});
+		$('#note_'+id).fadeIn(1000);
+	}
 };

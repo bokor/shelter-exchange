@@ -6,7 +6,7 @@
 			<li class="buttons">
 				<%= f.submit "Update Task", :disable_with => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
-				<%= link_to 'Cancel', '#', :onclick => "$('#edit_task_#{@task.id}').slideToggle(800,function() {$(this).remove();});$('#task_#{@task.id}').fadeIn(1000);return false;"  %>
+				<%= link_to 'Cancel', '#', :onclick => "Tasks.cancelForm(#{@task.id});return false;"  %>
 			</li>
 		</ul>
 		

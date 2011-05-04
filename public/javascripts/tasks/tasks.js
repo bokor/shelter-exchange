@@ -71,6 +71,12 @@ var Tasks = {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);
 		}
+	},
+	cancelForm: function(id){
+		$('#edit_task_'+id).slideToggle(800,function() {
+			$(this).remove();
+		});
+		$('#task_'+id).fadeIn(1000);
 	}
 };
 
