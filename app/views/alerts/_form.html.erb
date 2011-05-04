@@ -1,14 +1,12 @@
-<ul class="form">
-	<li>
-		<%= f.label :title, "Title" %><br />
-		<%= f.text_field :title %>
-	</li>
-	<li>
-		<%= f.label :severity, "Severity" %><br />
-	    <%= f.collection_select :severity, Alert::SEVERITY, :to_s, :humanize, :prompt => "Select one" %>
-	</li>
-	<li>
-		<%= f.label :description, "Description" %><br />
-		<%= f.text_area :description %>
-	</li>	
-</ul>
+<li>
+	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<%= f.text_field :title, :class => "field text large" %>
+</li>
+<li>
+	<%= f.label :severity, "Severity <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<%= f.collection_select :severity, Alert::SEVERITY, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
+</li>
+<li class="full">
+	<%= f.label :description, "Description", :class => "desc" %>
+	<%= f.text_area :description, :class => "field textarea medium" %>
+</li>	

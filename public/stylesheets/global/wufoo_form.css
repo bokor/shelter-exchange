@@ -62,7 +62,7 @@ form ul{
 	list-style-type:none;
 }
 * html form ul{ /* IE6 Margin Percent Bug for Halves/Thirds */
-	width:99%;
+	width:98%;
 	zoom:1;
 }
 form li{
@@ -342,7 +342,7 @@ form li.price .right{
 	width:48% !important;
 }
 .full{
-	width:100% !important;
+	width:98% !important;
 }
 
 input.small, select.small{
@@ -511,7 +511,7 @@ form li.buttons{
 	width:auto !important;
 	position:relative;
 	clear:both;
-	padding:20px 1% 10px 1%;
+	padding:10px 1% 10px 1%;
 }
 form li.buttons input{
 	font-size:100%;
