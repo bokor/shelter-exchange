@@ -1,21 +1,26 @@
-<ul class="form">
-	<li>
-		<%= f.label :details, "Details" %><br />
-		<%= f.text_field :details %>
-	</li>
-	<li>
-		<%= f.label :task_category_id, "Category" %><br />
-		<%= collection_select(:task, :task_category_id, TaskCategory.all, :id, :name, :include_blank =>  "None") %>
-	</li>
-	<li>
-		<%= f.label :due_category, "When is it due?" %><br />
-		<%= f.collection_select :due_category, Task::DUE_CATEGORY, :to_s, :humanize, {}, {:class => "task_due_category"} %>
-	</li>
-	<li>
-		<div class="due_date_field" style="display:none;">
-			<div class="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
-			<div class="date_picker"></div>
-		</div>
-	</li>	
-</ul>
-<%= f.hidden_field :due_date, :class => "hidden_due_date" %>
+<li>
+	<%= f.label :details, "Details <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div>
+		<%= f.text_field :details, :class => "field text large", :maxlength => 255 %>
+	</div>
+</li>
+<li>
+	<%= f.label :task_category_id, "Category", :class => "desc" %>
+	<div>
+		<%= f.collection_select :task_category_id, TaskCategory.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
+	</div>
+</li>
+<li>
+	<%= f.label :due_category, "When is it due?", :class => "desc" %>
+	<div>
+		<%= f.collection_select :due_category, Task::DUE_CATEGORY, :to_s, :humanize, {}, { :class => "task_due_category field select medium" } %>
+	</div>
+</li>
+<li style="display:none;">
+	<div class="due_date_field">
+		<div class="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
+		<div class="date_picker"></div>
+		<%= f.hidden_field :due_date, :class => "hidden_due_date" %>
+	</div>
+</li>	
+	

@@ -9,7 +9,7 @@
 	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
 	// Clear up final functions
 	$('#new_task').get(0).reset();
-	$('.due_date_field').hide();
+	$('.due_date_field').parent().hide(); // Hide LI tag
 	$('#task_due_date').val( Date.today().toString('yyyy-MM-dd') );
 	$('#task_errors').html("");
 <% end %>

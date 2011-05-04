@@ -14,10 +14,10 @@ $('#edit_task_<%=@task.id%> .task_due_category').bind("change", function() {Task
 	var tempDate = $('#edit_task_<%=@task.id%> .date_picker').datepicker("getDate");
 	var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
 	$('#edit_task_<%=@task.id%> .due_date_alt').html(setDate);
-	$('#edit_task_<%=@task.id%> .due_date_field').show();
+	$('#edit_task_<%=@task.id%> .due_date_field').parent().show(); // Show LI tag
 <% else %>
 	$('#edit_task_<%=@task.id%> .task_due_category').val('<%=due_section%>');
-	$('#edit_task_<%=@task.id%> .due_date_field').hide();
+	$('#edit_task_<%=@task.id%> .due_date_field').parent().hide(); // Hide LI tag
 <% end %>
 
 // Not sure this is needed

@@ -1,7 +1,7 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  before_validation :format_phone_numbers
-  before_save :geocode_address 
+  # before_validation 
+  before_save :geocode_address, :format_phone_numbers
   
   # Associations
   belongs_to :account

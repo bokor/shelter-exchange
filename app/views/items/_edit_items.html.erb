@@ -1,18 +1,21 @@
 <div id="edit_items">
+	<h2>Editing Wish List</h2>
 	<%= form_for setup_items(@shelter), :remote => true do |f| %>
-		<h2>Editing Wish List</h2>
-		<ol class="form">
+		<ul>
 			<%= f.fields_for :items do |item_fields| %>
-			<li>
-				<!-- <%# item_fields.label :name, "Name" %><br /> -->
-				<%= item_fields.text_field :name %>
-			</li>
+				<li>
+					<% counter = item_fields.object_name.gsub(/[^0-9]+/,'').to_i + 1 %>
+					<div>
+						<%= item_fields.text_field :name, :class => "field text large", :tabindex => counter, :maxlength => 255 %>
+					</div>
+				</li>
 			<% end %>
-		</ol>
-		<div class="actions">
-			<%= f.submit "Update list", :disable_with => "Submitting...", :class => 'button' %>
-			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#',:onclick => "$('#edit_items').hide();$('#items_section').show();return false;"  %>
-		</div>
+			<li class="buttons">
+				<%= f.submit "Update list", :disable_with => "Submitting...", :class => 'button' %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to 'Cancel', '#',:onclick => "$('#edit_items').hide();$('#items_section').show();$('#edit_wish_list').show();return false;"  %>
+			</li>
+		</ul>
 	<% end %>
 </div>
+

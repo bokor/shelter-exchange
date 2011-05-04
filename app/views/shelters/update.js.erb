@@ -1,5 +1,6 @@
 $('#items').html( "<%= escape_javascript( render @shelter.items ) %>" );
 $('#items_section').fadeIn(1500);
 $('#edit_items').hide();
+$('#edit_wish_list').show();
 
 <% flash.discard %>
