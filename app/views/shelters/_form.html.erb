@@ -1,8 +1,8 @@
 <%= form_for (@shelter), :html => { :multipart => true } do |f| %>
 <ul>
 	<li>
-		<%= f.label :organization_name, "Organization name <span class='req'>*</span>".html_safe, :class => "desc" %>
-		<div><%= f.text_field :organization_name, :class => "field text medium", :tabindex => 1, :maxlength => 255 %></div>
+		<%= f.label :name, "Organization name <span class='req'>*</span>".html_safe, :class => "desc" %>
+		<div><%= f.text_field :name, :class => "field text medium", :tabindex => 1, :maxlength => 255 %></div>
 	</li>
 	<li class="complex">
 		<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>

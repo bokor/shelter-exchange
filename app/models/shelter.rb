@@ -32,7 +32,7 @@ class Shelter < ActiveRecord::Base
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
-  validates :organization_name, :street, :city, :state, :zip_code, :phone, :presence => true
+  validates :name, :street, :city, :state, :zip_code, :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
                     :length => {:minimum => 3, :maximum => 254}, 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110503190247) do
+ActiveRecord::Schema.define(:version => 20110504142847) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(:version => 20110503190247) do
   add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
 
   create_table "shelters", :force => true do |t|
-    t.string   "organization_name"
+    t.string   "name"
     t.string   "phone"
     t.string   "fax"
     t.string   "website"

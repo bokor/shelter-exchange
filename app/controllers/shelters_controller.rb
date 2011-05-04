@@ -16,7 +16,7 @@ class SheltersController < ApplicationController
   def update
     respond_with(@shelter  = @current_shelter) do |format|
       if @shelter.update_attributes(params[:shelter])  
-        flash[:notice] = "#{@shelter.organization_name} has been updated."
+        flash[:notice] = "#{@shelter.name} has been updated."
         format.html { redirect_to shelters_path }
       else
         @shelter.logo.clear if @shelter.logo.errors
@@ -28,7 +28,7 @@ class SheltersController < ApplicationController
   def auto_complete
     q = params[:q].strip
     @shelters = Shelter.auto_complete(q)
-    render :json => @shelters.collect{ |shelter| {:id => shelter.id, :name => "#{shelter.organization_name}", :lat => "#{shelter.lat}", :lng => "#{shelter.lng}" } }.to_json
+    render :json => @shelters.collect{ |shelter| {:id => shelter.id, :name => "#{shelter.name}", :lat => "#{shelter.lat}", :lng => "#{shelter.lng}" } }.to_json
   end
   
 end
