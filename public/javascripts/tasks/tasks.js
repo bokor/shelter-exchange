@@ -25,7 +25,7 @@ var Tasks = {
 	dueDate: function(task_div) {
 		var setDate;
 		var due_category = $(task_div + ' .task_due_category').val();
-		$(task_div + ' .due_date_field').hide();
+		$(task_div + ' .due_date_field').parent().hide(); // Hide LI tag
 
 		if (due_category == 'today') {
 			setDate = Date.today().toString('yyyy-MM-dd');
@@ -36,7 +36,7 @@ var Tasks = {
 		} else if (due_category == 'specific_date') {
 			var tempDate = $(task_div + ' .date_picker').datepicker("getDate");
 			setDate = new Date(tempDate).toString('yyyy-MM-dd');
-			$(task_div + ' .due_date_field').show();
+			$(task_div + ' .due_date_field').parent().show(); // Show LI tag
 		}
 
 		$(task_div + ' .hidden_due_date').val(setDate);

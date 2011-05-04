@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502215535) do
+ActiveRecord::Schema.define(:version => 20110503190247) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20110502215535) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "street_2"
   end
 
   add_index "parents", ["created_at"], :name => "index_parents_on_created_at"
@@ -232,9 +233,9 @@ ActiveRecord::Schema.define(:version => 20110502215535) do
   add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
 
   create_table "shelters", :force => true do |t|
-    t.string   "name"
-    t.string   "main_phone"
-    t.string   "fax_phone"
+    t.string   "organization_name"
+    t.string   "phone"
+    t.string   "fax"
     t.string   "website"
     t.string   "twitter"
     t.string   "street"
@@ -255,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20110502215535) do
     t.string   "facebook"
     t.string   "time_zone"
     t.string   "access_token"
+    t.string   "street_2"
   end
 
   add_index "shelters", ["access_token"], :name => "index_shelters_on_access_token", :unique => true

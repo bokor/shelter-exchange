@@ -119,6 +119,21 @@ $(function(){
 	});
 });
 
+/* ------------------------------------------------------------------------
+ * Live Events Forms - set LI focused on the forms
+ * ------------------------------------------------------------------------ */
+$(function() {
+
+	$("form li").live("focusin", function(){
+		$(this).addClass("focused");
+	});
+
+	$("form li").live("focusout",function(){
+		$(this).removeClass("focused");
+	});
+
+});
+
 
 // Pagination Links -> AJAX Searches
 $('.pagination a').live('click',function (){  

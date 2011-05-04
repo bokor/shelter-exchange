@@ -30,6 +30,12 @@ var Shelters = {
 	
 };
 
+$(function(){
+	$("#edit_wish_list").bind("click", function(){
+		$(this).hide();
+	});
+});
+
 
 
 // var infowindow = new google.maps.InfoWindow({

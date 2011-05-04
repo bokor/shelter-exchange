@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #ddd; color:#434343; font: normal 13px "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;; min-width: 960px; }
+body { background-color: #ddd; color:#434343; font: normal 13px "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif; min-width: 960px; }
 /* text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;}*/
 
 /*********************************************************/
@@ -19,10 +19,10 @@ img { border: none; outline: none; }
 code,code pre,kbd {font: normal 12px Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;}
 /*code.source {display: block;margin: 1em 0 1.5em;padding: 1em 1.4em;border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px;-khtml-border-radius: 3px;background-color: #F5F5FC;color: #556;font-size: 11px;}*/
 
-.center { margin: 0 auto; text-align: center; }
+/*.center { margin: 0 auto; text-align: center; }
 .left{text-align:left;}
 .right{text-align:right;}
-.clear { clear: both; }
+.clear { clear: both; }*/
 /*a, img { border: none; outline: none; }
 a:hover, a:selected { border: none; outline: none; }
 */
@@ -49,11 +49,31 @@ a:hover, a:selected { border: none; outline: none; }
 .purple_border{border:1px solid #c3b4f3;}
 
 .red_background{background-color:#fce2ec; }
-.blue_background{background-color:#d6e5f4; }
+.blue_background{background-color:#DFEFFF; }
 .green_background{background-color:#f1fce2; }
 .yellow_background{background-color:#fffbe5; }
 .orange_background{background-color:#fff6e5;}
 .purple_background{background-color:#e6e0fa;}
+
+/*
+Wufoo blue
+background-color: #DFEFFF;
+border-bottom-color: #C2D7EF;
+
+
+Wufoo Yellow
+background-color: #FFF6BF;
+border-top-color: #F7DA77;
+
+Wufoo Green
+background-color: #E7FFCF;
+border-bottom-color: #C2EF95;
+
+Wufoo Red
+background-color: #FFE5E3;
+border: 1px solid #EFD1D1;
+color: #AF2B2B;
+*/
 
 /*
 RED  - background-color: #fce2ec; border:1px solid #f286b1;
@@ -242,26 +262,6 @@ text-shadow: rgba(255, 255, 255, 0.597656) 0px 1px 0px;
 #error_explanation ul{padding-top:5px;padding-bottom:20px;}
 #error_explanation ul li{margin-left:25px;padding:5px 0px 5px 0px;font-size:12px;list-style:square;}
 
-
-/******************************************************************/
-/* -------------------------- FORMS  --------------------------- */
-/******************************************************************/
-ul.form  { list-style: none; padding-bottom: 20px;}
-ul.form li, div.actions {margin-bottom: 10px;}
-
-ol.form li {margin-left: 20px;margin-bottom: 10px;}
-label { font-weight: bold; font-size: 13px; letter-spacing: -1px;}
-input[type=text]{height:20px;width:300px;font-size:14px; }
-input[type=password]{height:20px;width:300px;font-size:14px; }
-input[type=checkbox]{}
-input[type=submit] {}
-textarea{height:100px;width:400px;font-size:14px; }
-.actions input[type=submit]{cursor: pointer;}
-
-#right #sidebar input[type=text]{height:20px;width:98%;font-size:14px; }
-#right #sidebar input[type=checkbox]{}
-#right #sidebar input[type=submit] {}
-#right #sidebar textarea{height:100px;width:98%;font-size:14px; }
 
 /****************************************************************/
 /* -------------------------- AJAX  --------------------------- */
