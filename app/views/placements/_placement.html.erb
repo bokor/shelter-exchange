@@ -2,7 +2,6 @@
 	<td class="image">
 		<%= image_tag placement.animal.photo.url(:thumb) %>
 		<% if placement.shelter.id == @current_shelter.id %>
-			<p class="action_links"><a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Add comment</a></p>
 			<div class="action_links">
 				<% if can?(:destroy, Placement) %>
 				<span class="delete_link">
@@ -18,27 +17,49 @@
 		<p><%= full_breed(placement.animal) %></p>
 		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex.humanize %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
 		<div id="comments">
-			<h4>Comments:</h4>
-			<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
-				<h2>Add an comment for <%= placement.animal.name %></h2>
-				<div id="comment_errors"></div>
-				<%= form_for ([placement, Comment.new]), :remote => true, :html => { :id => "new_comment_#{placement.id}" } do |f| %>
-					<%= render :partial => "comments/form", :locals => { :f => f } %>
-				    <div class="actions">
-						<%= f.submit "Create comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", "#create_comment_#{placement.id}", :id => "cancel_comment", :onclick => "TopUp.close();" -%>
-					</div>
-				<% end %>
-			</div>
-			<div id="comments_<%=placement.id%>" class="comment_list">
-				<%= render placement.comments %>
-			</div>
+		
+		<div style="border-top: 1px #ddd solid;border-bottom: 1px #ddd solid;height: 30px; line-height: 30px;">
+			<h4 style="float:left;border:none;height: 30px; line-height: 30px;padding:0; margin:0;">Comments:</h4>
+			<span style="float:right;text-align:right;">
+				<p class="action_links" style="font-size: 10px;font-weight:bold;">
+					<a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Add comment</a>
+				</p>
+			</span>
 		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
+			<h2>Add an comment for <%= placement.animal.name %></h2>
+			<div id="comment_errors"></div>
+			<%= form_for ([placement, Comment.new]), :remote => true, :html => { :id => "new_comment_#{placement.id}" } do |f| %>
+				<ul>
+					<%= render "comments/form", :f => f  %>
+			    	<li class="buttons">
+						<%= f.submit "Create comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>
+						&nbsp;&nbsp;or&nbsp;&nbsp;
+						<%= link_to "Cancel", "#create_comment_#{placement.id}", :id => "cancel_comment", :onclick => "TopUp.close();return false;" -%>
+					</li>
+				</ul>
+			<% end %>
+		</div>
+		<div id="comments_<%=placement.id%>" class="comment_list">
+			<%= render placement.comments %>
+		</div>
+	</div>
+		
 	</td>
 	<td class="status">
 		<p><%= placement.shelter.name %></p>
 		<p><%= placement.shelter.street %></p>
 		<p><%= placement.shelter.city %>, <%= placement.shelter.state %> <%= placement.shelter.zip_code %></p>
-		<p><%= number_to_phone(placement.shelter.main_phone, :delimiter => "-") %>(Main)</p>
+		<p><%= number_to_phone(placement.shelter.phone, :delimiter => "-") %>(Main)</p>
 		<p><a href="mailto:<%= placement.shelter.email %>"><%= placement.shelter.email %></a></p>
 	</td>
 </tr>
+<!-- <tr>
+	<td></td>
+	<td colspan="2">
+	
+	</td>
+</tr> -->

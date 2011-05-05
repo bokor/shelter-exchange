@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------------------
+ * notes.js
+ * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
+ * ------------------------------------------------------------------------ */
+
 var Notes = {
 	filters: function(){
 		$('#all_notes_link').addClass('active_link');
@@ -7,9 +12,9 @@ var Notes = {
 		});
 	},
 	cancelForm: function(id){
-		$('#edit_note_'+id).slideToggle(800,function() {
+		$("#edit_note_"+id).slideToggle(800,function() {
 			$(this).remove();
 		});
-		$('#note_'+id).fadeIn(1000);
+		$("#note_"+id).fadeIn(1000);
 	}
 };

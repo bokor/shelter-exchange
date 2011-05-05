@@ -73,10 +73,10 @@ var Tasks = {
 		}
 	},
 	cancelForm: function(id){
-		$('#edit_task_'+id).slideToggle(800,function() {
+		$("#edit_task_"+id).slideToggle(800,function() {
 			$(this).remove();
 		});
-		$('#task_'+id).fadeIn(1000);
+		$("#task_"+id).fadeIn(1000);
 	}
 };
 

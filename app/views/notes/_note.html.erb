@@ -3,8 +3,8 @@
 	<span class="details">
 		<span class="title"><%= note.title %></span>
 	</span>
-	<% if note.shelter_id == @current_shelter.id %>
-		<span class="action_links">
+	<span class="action_links">
+		<% if note.shelter_id == @current_shelter.id %>
 			<% if controller_name != "communities" %>
 				<% if can?(:update, Note) %>
 				<span class="edit_link">
@@ -17,7 +17,7 @@
 				</span>
 				<% end %>
 			<% end %>
-		</span>
-	<% end %>
-  	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
+		<% end %>
+	</span>
+	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
 </div>

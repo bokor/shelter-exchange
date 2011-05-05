@@ -21,10 +21,10 @@ var Alerts = {
 		}
 	},
 	cancelForm: function(id){
-		$('#edit_alert_'+id).slideToggle(800,function() { 
+		$("#edit_alert_"+id).slideToggle(800,function() { 
 			$(this).remove();
 		});
-		$('#alert_'+id).fadeIn(1000);
+		$("#alert_"+id).fadeIn(1000);
 	}
 };
 

@@ -34,7 +34,7 @@
 		<% end %>
 		<div class="action_links">
 			<span class="select_link">
-		    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;" %>
+		    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;", :class => "button green" %>
 			</span>
 			<% if can?(:update, Animal) %>
 			<span class="edit_link">

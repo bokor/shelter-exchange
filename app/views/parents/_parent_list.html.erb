@@ -9,9 +9,10 @@
 			</td>
 			<td class="status">
 				<p><%=number_to_phone(parent.home_phone, :delimiter => "-")%>(h)</p>
-				<% unless parent.mobile_phone.blank? %><p><%=number_to_phone(parent.mobile_phone, :delimiter => "-")%>(m)</p><% end %>
+				<% unless parent.mobile_phone.blank? %>
+					<p><%=number_to_phone(parent.mobile_phone, :delimiter => "-")%>(m)</p>
+				<% end %>
 				<p><%= parent.email %></p>
-				
 			</td>
 		</tr>
 		<% end %>

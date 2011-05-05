@@ -1,7 +1,7 @@
 <%= title "#{@parent.name}" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "parents/parents", "notes/notes", :cache => "cache/application/parents-show" %>
+	<%= javascript_include_tag "parents/parents", "notes/notes", "placements/placements", "comments/comments", :cache => "cache/application/parents-show" %>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -22,14 +22,19 @@
 				<h3>Address:</h3>
 				<ul>
 					<li><%= @parent.street %></li>
+					<% unless @parent.street_2.blank? %>
+						<li><%= @parent.street_2 %></li>
+					<% end %>
 					<li><%= @parent.city %>, <%= @parent.state %> <%= @parent.zip_code %></li>
 				</ul>
 			</div>
 			<div id="contact_details">
 				<h3>Contact details:</h3>
 				<ul>
-					<li><%=number_to_phone(@parent.home_phone, :delimiter => "-")%>(h)</li>
-					<% unless @parent.mobile_phone.blank? %><li><%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%>(m)</li><% end %>
+					<li>Tel:  <%=number_to_phone(@parent.home_phone, :delimiter => "-")%></li>
+					<% unless @parent.mobile_phone.blank? %>
+						<li>Mobile:  <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
+					<% end %>
 					<li><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
 				</ul>
 			</div>
@@ -81,27 +86,39 @@
 		<h2>Add a note for <%= @parent.name %></h2>
 		<div id="note_errors"></div>
 		<%= form_for ([@parent, Note.new]), :remote => true do |f| %>
-			<%= render :partial => "notes/form", :locals => { :f => f, :default_category => true } %>
-		    <div class="actions">
-				<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_note" -%>
-			</div>
+			<ul>
+				<%= render "notes/form", :f => f, :default_category => true %>
+		    	<li class="buttons">
+					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+					&nbsp;or&nbsp;&nbsp;
+					<%= link_to "Cancel", "#", :id => "cancel_note" -%>
+				</li>
+			</ul>
 		<% end %>
 	</div>
 
 	<div id="create_placement">
 		<h2>Create an Animal Placement</h2>
 		<div id="placement_errors"></div>
-		<div id="animal_selected">
-			<span></span>
-			<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = auto, type = dom, title = Select Animal, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Find animal</a>
-		</div>
 		<%= form_for (@placement), :remote => true do |f| %>
-			<%= render :partial => "placements/form", :locals => { :f => f } %>
-			<div class="actions">
-				<%= f.submit "Create Placement", :disable_with => "...", :id => "create_placement_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_placement" -%>
-			</div>
+			<ul>
+				<li class="complex">
+					<span class="left">
+						<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = auto, type = dom, title = Search for animal, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Search for animal</a> <span class='req'>*</span>
+					</span>
+					<span class="right">
+						<div id="animal_selected">
+							<span><b>&nbsp;</b></span>
+						</div>
+					</span>
+				</li>
+				<%= render "placements/form", :f => f %>
+				<li class="buttons">
+					<%= f.submit "Create Placement", :disable_with => "...", :id => "create_placement_button", :class => "button"  %>
+					&nbsp;or&nbsp;&nbsp;
+					<%= link_to "Cancel", "#", :id => "cancel_placement" -%>
+				</li>
+			</ul>
 		<% end %>
 	</div>	
 	

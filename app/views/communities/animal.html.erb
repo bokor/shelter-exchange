@@ -154,10 +154,14 @@
 			</ul>
 			<br />
 			<ul>
-				<li>Tel: <%=number_to_phone(@shelter.main_phone, :delimiter => "-")%></li>
-				<% unless @shelter.fax_phone.blank? %><li>Fax: <%=number_to_phone(@shelter.fax_phone, :delimiter => "-")%></li><% end %>
+				<li>Tel: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+				<% unless @shelter.fax.blank? %>
+					<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
+				<% end %>
 				<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
-				<% unless @shelter.website.blank? %><li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li><% end %>
+				<% unless @shelter.website.blank? %>
+					<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
+				<% end %>
 			</ul>
 		</div>
 	</div>

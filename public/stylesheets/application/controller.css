@@ -30,7 +30,17 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
+
+/* Animals :: Global
+-----------------------------------------------------------------------------*/
 .animals ul {list-style:none;}
+
+/* Animals :: Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.edit_animals #main, .update_animals #main, .new_animals #main, .create_animals #main { margin: 1em 3em 0 3em; }
+.edit_animals #left, .update_animals #left, .new_animals #left, .create_animals #left{ width: 100%;}
+.edit_animals #sidebar, .update_animals #sidebar, .new_animals #sidebar, .create_animals #sidebar { display: none;width: 0; }
+
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
@@ -84,13 +94,13 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_animals table.search tr {vertical-align:top;}
 .index_animals table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
-.index_animals table.search td.full_search input[type=text] {margin-top:5px;width:80%;}
+.index_animals table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
 .index_animals table.search td.full_search input[type=submit] {margin-left: 5px;}
 .index_animals table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
 .index_animals table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
 .index_animals table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
 .index_animals table.search td.filters table.filter_table tr{vertical-align:top;}
-.index_animals table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;}
+.index_animals table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
 .index_animals table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
 
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
@@ -100,6 +110,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
 .show_animals table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.show_animals table.animal td.status{text-align:right;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
@@ -318,105 +329,18 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
-/******************************************************************/
-/* -------------------------- PARENTS --------------------------- */
-/******************************************************************/
-.parents ul {list-style:none;}
-
-.parents .page_heading{border-bottom:1px solid #eee; }
-.parents .page_heading h1{width:50%; float:left; }
-.parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-.show_parents .page_heading h1{width:60%;}
-.show_parents .page_heading .action_links{width:40%;}
-
-.edit_parents .page_heading h1{width:100%;}
-
-/* -------------------------- INDEX - PARENTS  -------------------------- */
-.index_parents #main { margin: 1em 3em 0 3em; }
-.index_parents #left { width: 100%;}
-.index_parents #sidebar { display: none;width: 0; }
-
-.index_parents #parent_search {padding: 0 0 20px 0; }
-.index_parents #parents {}
-.index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
-.index_parents #parents .no_results p{font-weight: bold; }
-
-.index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
-.index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.index_parents table.parent_list td.details { width:380px; color:#666; }
-.index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
-.index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;}
 
 
-/* -------------------------- SHOW - PARENTS  -------------------------- */
-/*.show_parents .page_heading{border-bottom:1px solid #eee; }*/
-/*.show_parents table.parent{width:100%;}
-.show_parents table.parent td{vertical-align:top;width:50%;/*color:#666;*//*}
-.show_parents table.parent td.action_links{text-align:right;font-size:12px;line-height:100%;height:100%;padding-top:5px;}
-.show_parents table.parent td h1 {}
-.show_parents table.parent td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
-.show_parents table.parent td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}*/
-
-.show_parents .parent_details {padding-bottom: 20px;}
-.show_parents .parent_details #address {float:left; width: 45%; padding-right: 5%; }
-.show_parents .parent_details #contact_details {float:left; width: 50%;}
-.show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
-.show_parents #create_placement {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
-.show_parents #animal_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
-.show_parents #animal_search_dialog .wrapper { padding: 15px; }
-
-.show_parents #animal_selected{padding: 0 0 10px 0;}
-.show_parents #animal_selected span {}
-.show_parents #animal_selected span b {padding: 0 10px 0 0; font-size: 15px; letter-spacing:-1px;}
-.show_parents #animal_selected #animal_search_link{}
-
-.show_parents #animals {margin-top: 20px; width: 99%;height: 400px; }
-.show_parents #animals table.animal_list{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
-.show_parents #animals table.animal_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
-.show_parents #animals table.animal_list td.details { width:380px;color:#666; }
-.show_parents #animals table.animal_list td.status { width:175px;padding-left: 10px; text-align:right;}
-.show_parents #animals table.animal_list td .action_links{font-size: 10px;font-weight:bold;}
-.show_parents #animals .action_links .edit_link, .show_parents #animals .action_links .delete_link {display:none;}
-
-.show_parents table.placement_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
-.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
-.show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
-.show_parents table.placement_list td.image img { padding-bottom: 10px;}
-.show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
-.show_parents table.placement_list td.details { width:380px;color:#666; }
-.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
-.show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
-
-.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
-.show_parents table.placement_list tr.edit_placement h2 {border: 0;}
-
-.show_parents .placement_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
-.show_parents .placement_heading h2{float:left;}
-.show_parents .placement_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-/* -- Sidebar - Show Parents  --*/
-.show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-.show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
-.show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
 
 
-/*******************************************************************/
-/* -------------------------- COMMENTS --------------------------- */
-/*******************************************************************/
-.comment_list .comment {border-top: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
-.comment_list .comment .created_date {float: left; width: 50%; color:#999; font-size: 10px; letter-spacing: -1px;}
-.comment_list .comment .action_links {float: left; width: 50%; text-align: right;font-size: 10px; font-weight:bold;}
-.comment_list .comment .description p { line-height: 2em;}
-.comment_list .comment:last-child{border-bottom: 1px dotted #ccc; }
 
 
-/* -- Show Parents :: Notes --*/
-.show_parents .edit_comment textarea{width: 98%;}
+
+
+
+
 
 
 
@@ -558,6 +482,174 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- PARENTS --------------------------- */
+/******************************************************************/
+
+/* Parents :: Global
+-----------------------------------------------------------------------------*/
+.parents ul {list-style:none;}
+
+.parents .page_heading{border-bottom:1px solid #eee; }
+.parents .page_heading h1{width:50%; float:left; }
+.parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.show_parents .page_heading h1{width:60%;}
+.show_parents .page_heading .action_links{width:40%;}
+
+.edit_parents .page_heading h1{width:100%;}
+
+/* Show Parents :: Sidebar
+-----------------------------------------------------------------------------*/
+.show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
+.show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
+.show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
+.show_parents #sidebar .model_actions .button { min-width: 200px;}
+
+
+/* Parents :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.index_parents #main, .edit_parents #main, .update_parents #main, .new_parents #main, .create_parents #main { margin: 1em 3em 0 3em; }
+.index_parents #left, .edit_parents #left, .update_parents #left, .new_parents #left, .create_parents #left{ width: 100%;}
+.index_parents #sidebar, .edit_parents #sidebar, .update_parents #sidebar, .new_parents #sidebar, .create_parents #sidebar { display: none;width: 0; }
+
+/* Index Parents :: Parent Search Layout
+-----------------------------------------------------------------------------*/
+.index_parents #parent_search {padding: 0 0 20px 0; }
+.index_parents #parent_search input[type=text] {margin-top:5px;width:40%;height:20px;font-size:14px;}
+.index_parents #parent_search input[type=submit] {margin-left: 5px;}
+
+/* Index Parents :: Search Results
+-----------------------------------------------------------------------------*/
+.index_parents #parents {}
+.index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
+.index_parents #parents .no_results p{font-weight: bold; }
+
+.index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
+.index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.index_parents table.parent_list td.details { width:380px; color:#666; }
+.index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
+.index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;}
+
+
+/* Show Parents :: Parent Details
+-----------------------------------------------------------------------------*/
+.show_parents .parent_details {padding-bottom: 20px;}
+.show_parents .parent_details #address {float:left; width: 45%; padding-right: 5%; }
+.show_parents .parent_details #contact_details {float:left; width: 50%;}
+.show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Show Parents :: Create Placement and Animal Search Dialog
+-----------------------------------------------------------------------------*/
+.show_parents #animal_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
+.show_parents #animal_search_dialog .wrapper { padding: 15px; }
+.show_parents #animal_search_dialog input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
+.show_parents #animal_search_dialog input[type=submit] {margin-left: 5px;}
+
+/* Show Parents :: Animal Selected from Search Dialog
+-----------------------------------------------------------------------------*/
+.show_parents #animal_selected {padding-bottom: 5px;}
+.show_parents #animal_selected span b {/*padding: 0 0 0 0;*/ font-size: 15px; letter-spacing:-1px;}
+
+
+/* Show Parents :: Animal List
+-----------------------------------------------------------------------------*/
+.show_parents #animals {margin-top: 20px; width: 99%;height: 400px; }
+.show_parents #animals table.animal_list{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.show_parents #animals table.animal_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
+.show_parents #animals table.animal_list td.details { width:380px;color:#666; }
+.show_parents #animals table.animal_list td.status { width:175px;padding-left: 10px; text-align:right;}
+/*.show_parents #animals table.animal_list td .action_links{font-size: 10px;font-weight:bold;}*/
+.show_parents #animals .action_links .edit_link, .show_parents #animals .action_links .delete_link {display:none;}
+
+
+/* Show Parents :: Placement Headings
+-----------------------------------------------------------------------------*/
+.show_parents .placement_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_parents .placement_heading h2{float:left;}
+.show_parents .placement_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Show Parents :: Placement List
+-----------------------------------------------------------------------------*/
+.show_parents table.placement_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
+.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
+.show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
+.show_parents table.placement_list td.image img { padding-bottom: 10px;}
+.show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.placement_list td.details { width:380px;color:#666; }
+.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
+.show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
+
+.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
+.show_parents table.placement_list tr.edit_placement h2 {border: 0;}
+
+
+
+
+
+
+/***************************************************************/
+/* -------------------------- USERS -------------------------- */
+/***************************************************************/
+/* Users :: Global
+-----------------------------------------------------------------------------*/
+.users ul {list-style:none;}
+
+/* Users :: Layout
+-----------------------------------------------------------------------------*/
+.users .page_heading{border-bottom:1px solid #eee; }
+.users .page_heading h1{width:100%; }
+
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { display: none;width: 0; }
+
+/* Index Users :: Manage Users 
+-----------------------------------------------------------------------------*/
+.index_users .manage_users{padding-bottom: 20px;}
+.index_users .manage_users:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Index Users :: User List
+-----------------------------------------------------------------------------*/
+.index_users #users_section {float:left;width:235px;}
+.index_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
+.index_users #users_section .user_list {list-style:none;}
+.index_users #users_section .user_list .user {border-bottom: 1px solid #ddd; cursor:pointer; padding: 10px;display: block;}
+.index_users #users_section .user_list .current {background-color:#EFEBE3;}
+.index_users #users_section .user_list .username {color: #000;margin-bottom: 5px;line-height: 1;font-size: 16px; font-weight: bold; letter-spacing:-1px;}
+.index_users #users_section .user_list .owner { color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
+
+/* Index Users :: User Details
+-----------------------------------------------------------------------------*/
+.index_users #user_details {margin-left: 255px;}
+.index_users #user_details h2 { border-bottom: 1px #bbb solid; }
+.index_users #user_details .section { padding-bottom: 15px;}
+
+/* Index Users :: Invite New User form
+-----------------------------------------------------------------------------*/
+.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+
+
+
+
+
+
 /******************************************************************/
 /* -------------------------- SHELTERS -------------------------- */
 /******************************************************************/
@@ -598,15 +690,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* Index Shelters :: Map */
 /******************************************************************/
 .index_shelters #map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; /*box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999;*/}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -761,7 +844,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .note {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
 
 .note .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
-.note .details{display:inline-block; width: 75%; vertical-align:top; padding-left: 5px;}
+.note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
 	.note .title {display:inline-block;color:#000; font-weight: bold;font-size: 14px; line-height: 1.5em;}
 
 .note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
@@ -770,8 +853,12 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* Show Parents :: Notes */
 /******************************************************************/
-.show_parents .note_list .note .category{display:none;}
+/*.show_parents .note_list .note .category{display:none;}
 .show_parents #edit_note_form #note_category{display:none;}
+*/
+
+
+
 
 
 
@@ -789,6 +876,22 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .status_history .details{display:inline-block; width: 90%; vertical-align:top; padding-left: 5px;}
 	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.5em;}
 	.status_history .reason {font-weight: normal;font-size: 12px;}
+
+
+
+
+
+/*******************************************************************/
+/* -------------------------- COMMENTS --------------------------- */
+/*******************************************************************/
+.comment_list {border-top: 1px dotted #ccc;}
+.comment_list .comment {border-bottom: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+.comment_list .comment .created_date {float: left; width: 50%; color:#666; font-size: 10px; letter-spacing: -1px;}
+.comment_list .comment .action_links {float: left; width: 50%; text-align: right;font-size: 10px; font-weight:bold;}
+.comment_list .comment .description p { line-height: 2em;}
+
+
+
 
 
 /*******************************************************************/
@@ -823,44 +926,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #edit_location_dialog .wrapper { padding: 15px; }
 
 
-/***************************************************************/
-/* -------------------------- USERS -------------------------- */
-/***************************************************************/
-/* Users :: Global
------------------------------------------------------------------------------*/
-.users ul {list-style:none;}
 
-/* Users :: Layout
------------------------------------------------------------------------------*/
-.users .page_heading{border-bottom:1px solid #eee; }
-.users .page_heading h1{width:100%; }
 
-.index_users #main { margin: 1em 3em 0 3em; }
-.index_users #left { width: 100%;}
-.index_users #sidebar { display: none;width: 0; }
 
-/* Index Users :: Manage Users 
------------------------------------------------------------------------------*/
-.index_users .manage_users{padding-bottom: 20px;}
-.index_users .manage_users:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-/* Index Users :: User List
------------------------------------------------------------------------------*/
-.index_users #users_section {float:left;width:235px;}
-.index_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
-.index_users #users_section .user_list {list-style:none;}
-.index_users #users_section .user_list .user {border-bottom: 1px solid #ddd; cursor:pointer; padding: 10px;display: block;}
-.index_users #users_section .user_list .current {background-color:#EFEBE3;}
-.index_users #users_section .user_list .username {color: #000;margin-bottom: 5px;line-height: 1;font-size: 16px; font-weight: bold; letter-spacing:-1px;}
-.index_users #users_section .user_list .owner { color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
-
-/* Index Users :: User Details
------------------------------------------------------------------------------*/
-.index_users #user_details {margin-left: 255px;}
-.index_users #user_details h2 { border-bottom: 1px #bbb solid; }
-.index_users #user_details .section { padding-bottom: 15px;}
-
-/* Index Users :: Invite New User form
------------------------------------------------------------------------------*/
-.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 

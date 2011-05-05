@@ -1,6 +1,4 @@
-<ul class="form">
-	<li>
-		<%= f.label :comment %><br />
-		<%= f.text_area :comment, :rows => 5 %>
-	</li>
-</ul>
+<li class="full">
+	<%= f.label :comment, "Comment <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_area :comment, :class => "field textarea small" %></div>
+</li>

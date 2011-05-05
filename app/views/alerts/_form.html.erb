@@ -1,12 +1,16 @@
 <li>
 	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<%= f.text_field :title, :class => "field text large" %>
+	<div><%= f.text_field :title, :class => "field text large" %></div>
 </li>
 <li>
 	<%= f.label :severity, "Severity <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div>
 	<%= f.collection_select :severity, Alert::SEVERITY, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
+	</div>
 </li>
 <li class="full">
 	<%= f.label :description, "Description", :class => "desc" %>
-	<%= f.text_area :description, :class => "field textarea medium" %>
+	<div>
+		<%= f.text_area :description, :class => "field textarea medium" %>
+	</div>
 </li>	

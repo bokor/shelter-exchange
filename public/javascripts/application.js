@@ -125,14 +125,28 @@ $(function(){
 $(function() {
 
 	$("form li").live("focusin", function(){
-		$(this).addClass("focused");
+		if (!$(this).hasClass('buttons')){
+			$(this).addClass("focused");
+		}
 	});
-
+	
 	$("form li").live("focusout",function(){
 		$(this).removeClass("focused");
 	});
+	
+	// if ($.browser.webkit || $.browser.msie) {
+		$('input:radio, input:checkbox').live("click", function () {
+	   		this.blur();
+	   		this.focus();
+		});
+	// }
 
 });
+// Focuses the first text field on every page
+// $(function(){
+//    var el = $(':text:eq(0)');
+//    el.focus();
+// });
 
 
 // Pagination Links -> AJAX Searches

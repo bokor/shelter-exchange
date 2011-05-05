@@ -7,10 +7,10 @@ var Animals = {
 		var animal_type_id = $('#animal_animal_type_id').val();
 
 		if (animal_type_id == '') {
-			$('#primary_breed_field').hide();
-			$('#secondary_breed_field').hide();
+			$('#breed_fields').hide();
 			$('#accommodation_info').hide();
 		} else {
+			$('#breed_fields').show();
 			$('#primary_breed_field').show();
 			$('#accommodation_info').show();
 		}

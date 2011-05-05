@@ -1,77 +1,78 @@
-<style type="text/css" media="screen">
-	fieldset{border:none;}
-	legend{color: #CC6A00;font-weight: bold; font-size: 18px; letter-spacing: -1px; padding-top: 10px;border-top: 1px solid #ddd; width: 100%; padding-bottom: 5px;}
-	ul.form{padding-top: 15px;}
-	ul.form li{margin-bottom: 15px;}
-	ul.form li.focus{background-color:#fff7c0; }
-</style>
-<!-- <script type="text/javascript" charset="utf-8">
-$(function(){
-	$(".form li").focusin(function(){
-		$(this).addClass("focus");
-		// $(this).parents().find("fieldset").addClass("focus");
-	});
-
-	$(".form li").focusout(function(){
-		$(this).removeClass("focus");
-		// $(this).parents().find("fieldset").removeClass("focus");
-	});
-});
-</script> -->
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
-	<fieldset id="" class="">
-		<legend>Features</legend>
-	<ul class="form">
-		<li style="float:right; width:42%">
-			<div id="photo">
-				<%= render "photos/photo" %>
+	<ul>
+		<li>
+			<%= f.label :name, "Animal name <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :name, :class => "field text medium", :tabindex => 1, :maxlength => 255 %></div>
+		</li>
+		<li>
+			<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select Type"}, {:class => "field select small", :tabindex => 2 } %>
 			</div>
 		</li>
-		<li>
-			<%= f.label :name, "Animal name" %><br />
-			<%= f.text_field :name %>
-		</li>
-		<li>
-			<%= f.label :animal_type_id, "Animal type" %><br />
-			<%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, :prompt => "Select Type") %>
-		</li>
-		<li> 
+		<li id="breed_fields"> 
 			<div id="primary_breed_field">
-				<%= f.label :primary_breed, "Primary breed" %><br />
-				<%= f.text_field :primary_breed, :autocomplete => :off %>
-				<div id="is_mixed_breed_field"><%= f.check_box :is_mix_breed %>&nbsp;&nbsp;<%= f.label "Mixed Breed?" %></div>
+				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
+				<div>
+				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :tabindex => 3, :maxlength => 255 %>
+				</div>
+			</div>
+			<div id="is_mixed_breed_field">
+				<span>
+					<%= f.check_box :is_mix_breed, :class =>"field checkbox", :tabindex => 4 %>
+					<%= f.label :is_mix_breed, "Mixed Breed?", :class => "choice" %>
+				</span>
 			</div>
 			<div id="secondary_breed_field">
-				<%= f.label :secondary_breed, "Secondary breed" %><br />
-				<%= f.text_field :secondary_breed, :autocomplete => :off %>
+				<%= f.label :secondary_breed, "Secondary breed", :class => "desc" %>
+				<div>
+				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :tabindex => 5, :maxlength => 255 %>
+				</div>
 			</div>
 		</li>
 		<li>
-			<%= f.label :animal_status_id, "Animal status" %><br />
-			<%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, :prompt => "Select Status") %>
+			<%= f.label :animal_status_id, "Animal status <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select Status"}, {:class => "field select small", :tabindex => 6 } %>
+			</div>
 			<div id="reason_field">
-				<%= f.label :status_history_reason, "Reason for the status change" %><br />
-				<%= f.text_field :status_history_reason %>
+				<%= f.label :status_history_reason, "Reason for the status change <span class='req'>*</span>".html_safe, :class => "desc" %>
+				<%= f.text_field :status_history_reason, :class => "field text medium", :tabindex => 7, :maxlength => 255 %>
 			</div>
-		</li>
+		</li>		
 		<li>
-			<%= f.label :sex, "Sex" %><br />
-			<% SEX.each do |value| %>
-				<%= f.radio_button :sex, value %>
-				<%= f.label "sex_#{value}", value.humanize %>
+			<%= f.label :sex, "Sex", :class => "desc" %>
+			<% SEX.each_with_index do |value, index| %>
+				<%= f.radio_button :sex, value, :class => "field radio", :tabindex => (7+1+index) %>
+				<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
 			<% end %>
 		</li>
+		<!-- <li>
+					<fieldset>
+						<legend class="desc">Has the Animal been Sterilized>?</legend>
+						<div>
+							<span>
+							<%= f.check_box :is_sterilized, :class =>"field checkbox", :tabindex => 10 %>
+							<%= f.label :is_sterilized, "Sterilized", :class => "choice" %>
+							</span>
+						</div>
+					</fieldset>
+				</li> -->
 		<li>
-			<%= f.check_box :is_sterilized %>&nbsp;&nbsp;<%= f.label :is_sterilized, "Sterilized" %>
+			<%= f.label :is_kill_shelter, "Has the Animal been Sterilized?", :class => "desc" %>
+			<div>
+				<span class="left">
+				<%= f.radio_button :is_sterilized, true, :class => "field radio", :tabindex => 10 %>
+				<%= f.label :is_sterilized, "Yes", :class => "choice" %>
+				</span>
+				<span class="right">
+				<%= f.radio_button :is_sterilized, false, :class => "field radio", :tabindex => 11 %>
+				<%= f.label :is_sterilized, "No", :class => "choice" %>
+				</span>
+			</div>
 		</li>
-	</ul>
-	</fieldset>
-	<fieldset id="" class="">
-		<legend>Details</legend>
-		<ul class="form">
-
 		<li>
-			<%= f.label :date_of_birth, "Date of birth (est.)" %><br />
+			<%= f.label :date_of_birth, "Date of birth (est.)", :class => "desc" %>
 			<div id="date_of_birth_field" class="date_field">
 				<div id="date_of_birth_humanize" class="humanize_date">Select Date</div>
 				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
@@ -80,40 +81,45 @@ $(function(){
 			<%= f.hidden_field :date_of_birth %>
 		</li>
 		<li>
-			<%= f.label :weight, "Weight" %><br />
-			<%= f.text_field :weight %>
+			<%= f.label :weight, "Weight", :class => "desc" %>
+			<%= f.text_field :weight, :class => "field text medium", :tabindex => 12, :maxlength => 255 %>
 		</li>
 		<li>
-			<%= f.label :color, "Color" %><br />
-			<%= f.text_field :color %>
+			<%= f.label :color, "Color", :class => "desc" %>
+			<%= f.text_field :color, :class => "field text medium", :tabindex => 13, :maxlength => 255 %>
 		</li>
 		<li>
-			<%= f.label :microchip, "Microchip#" %><br />
-			<%= f.text_field :microchip %>
+			<%= f.label :microchip, "Microchip#", :class => "desc" %>
+			<%= f.text_field :microchip, :class => "field text medium", :tabindex => 14, :maxlength => 255 %>
 		</li>
-		
+		<li class="section">
+			<section>
+				<h3>Accommodation Info</h3>
+				<div>Please select the location the animal sleeps at night!</div>
+			</section>
+		</li>
 		<li>
 			<div id="accommodation_info">
-				<%= f.label :accommodation_id, "Accommodation" %><br />
 				<%= f.hidden_field :accommodation_id %>
 				<div id="accommodation_selected">
 					<span><% if @animal.accommodation_id %><b><%= @animal.accommodation.name %></b><% end %></span>
-					<a href="#accommodation_search_dialog" id="accommodation_search_link" toptions="width = 675, height = auto, type = dom, title = Select Accommodation, layout = quicklook, resizable = 0, shaded = 1, modal = 1"><% if @animal.accommodation_id %>Change<% else %>Find<% end %></a>	
+					<a href="#accommodation_search_dialog" id="accommodation_search_link" toptions="width = 675, height = auto, type = dom, title = Select Accommodation, layout = quicklook, resizable = 0, shaded = 1, modal = 1"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>	
 					
 					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();">Remove</a>
 
 				</div>
 			</div> 
 		</li>
-		</ul>
-		</fieldset>
-		<fieldset id="" class="">
-			<legend>Euthanasia details</legend>
-			<ul class="form">
+		<% if @current_shelter.is_kill_shelter %>
+		<li class="section">
+			<section>
+				<h3>Euthanasia Details</h3>
+				<div>Please feel in the correct information about the animal's euthanasia schedule.</div>
+			</section>
+		</li>
 		<li>
-			<% if @current_shelter.is_kill_shelter %>
 			<div id="euthanasia_info">
-					<%= f.label :arrival_date, "Date of arrival" %><br />
+					<%= f.label :arrival_date, "Date of arrival <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div id="arrival_date_field" class="date_field">
 						<div id="arrival_date_humanize" class="humanize_date">Select Date</div>
 						<%= image_tag "icon_calendar.png", :id => "arrival_date_trigger", :class => "icon_calendar" %>
@@ -121,10 +127,10 @@ $(function(){
 					<div id="arrival_date_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :arrival_date %>
 					
-					<%= f.label :hold_time, "Hold time" %><br />
-					<%= f.text_field :hold_time %> days<br /><br />
+					<%= f.label :hold_time, "Hold time <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<%= f.text_field :hold_time, :class => "field text medium",  :maxlength => 255 %> days<br /><br />
 					
-					<%= f.label :euthanasia_scheduled, "Euthanasia scheduled" %><br />
+					<%= f.label :euthanasia_scheduled, "Euthanasia scheduled <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div id="euthanasia_scheduled_field" class="date_field">
 						<div id="euthanasia_scheduled_humanize" class="humanize_date">Select Date</div>
 						<%= image_tag "icon_calendar.png", :id => "euthanasia_scheduled_trigger", :class => "icon_calendar" %>
@@ -132,21 +138,53 @@ $(function(){
 					<div id="euthanasia_scheduled_datepicker" class="datepicker"></div>
 					<%= f.hidden_field :euthanasia_scheduled %>
 			</div>
+		</li>
+		<% end %>
+		<li class="section">
+			<section>
+				<h3>Photo</h3>
+				<div>Select a picture of the animal</div>
+			</section>
+		</li>
+		<li class="leftHalf">
+			<div class="left center">
+				<%= image_tag @animal.photo.url(:small) %>
+				<% if @animal.photo.file? %>
+					<br /><br />
+					<%= link_to "Delete photo", photo_path(@animal), :method => :delete, :confirm => "Are you sure?", :remote => true %>
+				<% end %>
+			</div>
+		</li>
+		<li class="rightHalf">
+			<div>
+				<% if @animal.photo.file? %>
+					<%= f.label :logo, "Change logo", :class => "desc" %>
+				<% else %>
+					<%= f.label :logo, "Upload logo", :class => "desc" %>
+				<% end %>
+				<%= f.file_field :logo, :class => "field file" %>
+			</div>
+		</li>
+		<li class="section">
+			<section>
+				<h3>Description</h3>
+				<div>Please enter some nice stuff about this cute animal</div>
+			</section>
+		</li>
+		<li>
+			<%# f.label :description, "Description", :class => "desc" %>
+			<div>
+				<%= f.text_area :description, :class => "field textarea medium" %>
+			</div>
+		</li>
+		<li class="buttons">
+			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+			<% unless action_name == "new" or action_name =="create" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to "Cancel", animal_path(@animal) %>
 			<% end %>
 		</li>
 	</ul>
-	</fieldset>
-	<fieldset id="" class="">
-		<legend>Description</legend>
-		<ul class="form">
-			<li>
-				<%= f.text_area :description %>
-			</li>
-		</ul>
-	</fieldset>
-	<div class="actions">
-		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
-	</div>
 <% end %>
 
 <div id="accommodation_search_dialog" style="display:none;">

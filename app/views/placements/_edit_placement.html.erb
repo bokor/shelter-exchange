@@ -2,17 +2,17 @@
 	<td colspan="3">
 	<h2>Update placement</h2>
 	<%= form_for (@placement), :remote => true, :html => { :id => "edit_placement_form", :class => "edit_placement_form"} do |f| %>
-		<ul class="form">
+		<ul>
 			<li>
-				<%= f.label :comment, "Comment" %><br />
-				<%= f.text_area :comment %>
+				<%= f.label :comment, "Comment", :class => "desc" %>
+				<div><%= f.text_area :comment, :class => "field textarea medium" %></div>
+			</li>
+			<li class="buttons">
+				<%= f.submit "Update placement", :disable_with => "Submitting...", :class => "button" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to 'Cancel', '#', :onclick => "Placements.cancelForm(#{@placement.id}); return false;"  %>
 			</li>
 		</ul>
-		<div class="actions">
-			<%= f.submit "Update placement", :disable_with => "Submitting...", :class => "button" %>
-			&nbsp;&nbsp;or&nbsp;&nbsp;
-			<%= link_to 'Cancel', '#', :onclick => "$('#placement_#{@placement.id}').slideToggle(800,function() {$(this).remove();});$('#placement_#{@placement.id}').fadeIn(1000);return false;"  %>
-		</div>
 	<% end %>
 	</td>
 </tr>

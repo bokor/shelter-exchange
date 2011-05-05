@@ -1,39 +1,60 @@
 <%= form_for(@parent) do |f| %>
-	<ul class="form">
+	<ul>
 		<li>
-			<%= f.label :name, "Parent name" %><br />
-			<%= f.text_field :name %>
+			<%= f.label :name, "Full name <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :name, :class => "field text medium", :tabindex => 1, :maxlength => 255 %></div>
+		</li>
+		<li class="complex">
+			<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<span class="full addr1">
+					<%= f.text_field :street, :class => "field text addr", :tabindex => 2, :maxlength => 255 %>
+					<%= f.label :street, "Street Address" %>
+				</span>
+				<span class="full addr2">
+					<%= f.text_field :street_2, :class => "field text addr", :tabindex => 3, :maxlength => 255 %>
+					<%= f.label :street_2, "Address Line 2" %>
+				</span>
+				<span class="left">
+					<%= f.text_field :city, :class => "field text addr", :tabindex => 4, :maxlength => 255 %>
+					<%= f.label :city, "City" %>
+				</span>
+				<span class="right">
+					<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, { :prompt => "Select State" }, { :class => "field select addr", :tabindex => 5 }  %>
+					<%= f.label :state, "State" %>
+				</span>
+				<span class="clear left">
+					<%= f.text_field :zip_code, :class => "field text addr", :tabindex => 6, :maxlength => 255 %>
+					<%= f.label :zip_code, "Zip Code" %>
+				</span>
+			</div>
 		</li>
 		<li>
-			<%= f.label :street, "Street" %><br />
-			<%= f.text_field :street %>
+			<%= f.label :home_phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.text_field :home_phone, :class => "field text medium", :tabindex => 7, :maxlength => 12, :value => number_to_phone(@parent.home_phone, :delimiter => "-") %>
+				<%= f.label :phone, "###-###-####" %>
+			</div>
+
 		</li>
 		<li>
-			<%= f.label :city, "City" %><br />
-			<%= f.text_field :city %>
+			<%= f.label :mobile_phone, "Mobile <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.text_field :mobile_phone, :class => "field text medium", :tabindex => 8, :maxlength => 12, :value => number_to_phone(@parent.mobile_phone, :delimiter => "-") %>
+				<%= f.label :mobile_phone, "###-###-####" %>
+			</div>
+
 		</li>
 		<li>
-			<%= f.label :state, "State" %><br />
-			<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, :prompt => "Select State" %>
+			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.text_field :email, :class => "field text medium", :tabindex => 9, :maxlength => 255 %>
 		</li>
-		<li>
-			<%= f.label :zip_code, "Zip code" %><br />
-			<%= f.text_field :zip_code %>
-		</li>
-		<li>
-			<%= f.label :home_phone, "Phone (h)" %><br />
-			<%= f.text_field :home_phone, :value => number_to_phone(@parent.home_phone, :delimiter => "-") %>
-		</li>
-		<li>
-			<%= f.label :mobile_phone, "Phone (m)" %><br />
-			<%= f.text_field :mobile_phone, :value => number_to_phone(@parent.mobile_phone, :delimiter => "-") %>
-		</li>
-		<li>
-			<%= f.label :email, "Email" %><br />
-			<%= f.text_field :email %>
+		<li class="buttons">
+			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+			<% unless action_name == "new" or action_name =="create" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to "Cancel", parent_path(@parent) %>
+			<% end %>
 		</li>
 	</ul>
-	<div class="actions">
-		<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
-	</div>
 <% end %>

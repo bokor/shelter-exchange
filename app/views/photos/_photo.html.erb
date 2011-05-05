@@ -1,9 +1,0 @@
-<%= image_tag @animal.photo.url(:small) %><br />
-<% if @animal.photo.file? %>
-	<%= link_to "Delete photo", photo_path(@animal), :method => :delete, :confirm => "Are you sure?", :remote => true %><br /><br />
-	<%= label_tag "animal[photo]", "Change photo" %><br />
-	<%= file_field_tag "animal[photo]"  %>
-<% else %>
-	<%= label_tag "animal[photo]", "Upload photo" %><br />
-	<%= file_field_tag "animal[photo]"  %>
-<% end %>

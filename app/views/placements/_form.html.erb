@@ -1,18 +1,20 @@
-<ul class="form">
+<li>
+	<%= f.label :placement_type, "What type of placement? <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div>
+	<% Placement::PLACEMENT_TYPE.each do |type| %>
+		<span>
+		<%= f.radio_button :placement_type, type, :class => "field radio" %>
+		<%= f.label "placement_type_#{type}", type.humanize, :class => "choice" %>
+		</span>
+	<% end %>
+	</div>
+</li>
+<%= f.fields_for :comments, @placement.comments.build do |comment_fields| %>
 	<li>
-		<%= f.label :placement_type, "Type" %><br />
-		<% Placement::PLACEMENT_TYPE.each do |type| %>
-			<%= f.radio_button :placement_type, type %>
-			<%= f.label "placement_type_#{type}", type.humanize %>
-		<% end %>
-	</li>
-	<%= f.fields_for :comments, @placement.comments.build do |comment_fields| %>
-	<li>
-		<%= comment_fields.label :comment, "Comment" %><br />
-		<%= comment_fields.text_area :comment %>
+		<%= comment_fields.label :comment, "Comment", :class => "desc" %>
+		<div><%= comment_fields.text_area :comment, :class => "field textarea medium" %></div>
 	</li>
 	<%= comment_fields.hidden_field :shelter_id, :value => @current_shelter.id %>
-	<% end %>
-</ul>
+<% end %>
 <%= f.hidden_field :parent_id, :value => @parent.id %>
 <%= f.hidden_field :animal_id %>

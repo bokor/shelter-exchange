@@ -1,18 +1,18 @@
-<ul class="form">
-	<li>
-		<%= f.label :title %><br />
-		<%= f.text_field :title, :rows => 5 %>
+<li>
+	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :title, :class => "field text large" %></div>
+</li>
+<% if defined?(default_category) && default_category %>
+	<%= f.hidden_field :note_category_id, :value => 1 %>
+<% else %>
+	<li id="note_category">
+		<%= f.label :note_category_id, "Category <span class='req'>*</span>".html_safe, :class => "desc" %>
+		<div>
+		<%= f.collection_select :note_category_id, NoteCategory.all, :id, :name, :prompt => "Select Category", :class => "field select medium" %>
+		</div>
 	</li>
-	<% if defined?(default_category) && default_category %>
-		<%= f.hidden_field :note_category_id, :value => 1 %>
-	<% else %>
-		<li id="note_category">
-			<%= f.label :note_category_id, "Category" %><br />
-			<%= collection_select(:note, :note_category_id, NoteCategory.all, :id, :name, :prompt => "Select Category") %>
-		</li>
-	<% end %>
-	<li>
-		<%= f.label :description %><br />
-		<%= f.text_area :description, :rows => 5 %>
-	</li>
-</ul>
+<% end %>
+<li class="full">
+	<%= f.label :description, :class => "desc" %>
+	<div><%= f.text_area :description, :class => "field textarea medium" %></div>
+</li>
