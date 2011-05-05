@@ -1,0 +1,16 @@
+<span class="left center">
+	<%= image_tag @animal.photo.url(:small) %>
+	
+	<% if @animal.photo.file? %>
+		<br /><br />
+		<%= link_to "Delete photo", photo_path(@animal), :method => :delete, :confirm => "Are you sure?", :remote => true %>
+	<% end %>
+</span>
+<span class="leftPadded">
+	<% if @animal.photo.file? %>
+		<%= label_tag "animal[photo]", "Change photo", :class => "desc" %>
+	<% else %>
+		<%= label_tag "animal[photo]", "Upload photo", :class => "desc" %>
+	<% end %>
+	<%= file_field_tag "animal[photo]", :class => "field file" %>
+</span>

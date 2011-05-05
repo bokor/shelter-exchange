@@ -1,0 +1,16 @@
+<span class="left center">
+	<%= image_tag @shelter.logo.url(:small) %>
+	
+	<% if @shelter.logo.file? %>
+		<br /><br />
+		<%= link_to "Delete logo", logo_path(@shelter), :method => :delete, :confirm => "Are you sure?", :remote => true %>
+	<% end %>
+</span>
+<span class="leftPadded">
+	<% if @shelter.logo.file? %>
+		<%= label_tag "shelter[logo]", "Change logo", :class => "desc" %>
+	<% else %>
+		<%= label_tag "shelter[logo]", "Upload logo", :class => "desc" %>
+	<% end %>
+	<%= file_field_tag "shelter[logo]", :class => "field file" %>
+</span>

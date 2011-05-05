@@ -44,8 +44,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 /* -------------------------- ANIMALS FORMS -------------------------- */
 .animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
-.animals #reason_field{ padding-top:10px; }
-.animals #photo{ text-align:center; margin:0 auto; }
+.animals #reason_field{ padding-top:15px; }
 .animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
 
 /*.animals #accommodation_info{padding-top: 30px; }
@@ -55,8 +54,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .animals #euthanasia_info{padding-top: 0px; /*display:none;*/}
 .animals #euthanasia_info input{margin-bottom: 10px;}
-.animals #euthanasia_info fieldset{border:1px #ddd solid; padding: 20px; width: 90%;}
-.animals #euthanasia_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
 .animals .date_field{ padding-bottom: 15px;}
 .animals .date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -72,7 +69,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .animals #accommodation_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .animals #accommodation_selected #accommodation_search_link{}
 
-
+/* Animals :: Form :: Accommodation Search Dialog
+-----------------------------------------------------------------------------*/
 .animals #accommodation_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto;  z-index: 9999999999999;}
 .animals #accommodation_search_dialog .wrapper { padding: 15px; }
 
@@ -665,7 +663,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .shelters .page_heading{border-bottom:1px solid #eee; }
 .shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
 .shelters .page_heading .action_links{width:30%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-.shelters #logo{ text-align:center; margin:0 auto; }
 
 /* Edit/Update Shelters :: Layout */
 /******************************************************************/

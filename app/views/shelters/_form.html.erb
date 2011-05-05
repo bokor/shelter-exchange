@@ -93,24 +93,8 @@
 			<div>Select your organization's logo</div>
 		</section>
 	</li>
-	<li class="leftHalf">
-		<div class="left center">
-			<%= image_tag @shelter.logo.url(:small) %>
-			<% if @shelter.logo.file? %>
-				<br /><br />
-				<%= link_to "Delete logo", logo_path(@current_shelter), :method => :delete, :confirm => "Are you sure?", :remote => true %>
-			<% end %>
-		</div>
-	</li>
-	<li class="rightHalf">
-		<div>
-			<% if @shelter.logo.file? %>
-				<%= f.label :logo, "Change logo", :class => "desc" %>
-			<% else %>
-				<%= f.label :logo, "Upload logo", :class => "desc" %>
-			<% end %>
-			<%= f.file_field :logo, :class => "field file" %>
-		</div>
+	<li id="logo">
+		<%= render "logos/logo" %>
 	</li>
 	<li class="section">
 		<section><h3></h3></section>

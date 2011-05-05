@@ -42,10 +42,14 @@
 		</li>		
 		<li>
 			<%= f.label :sex, "Sex", :class => "desc" %>
-			<% SEX.each_with_index do |value, index| %>
-				<%= f.radio_button :sex, value, :class => "field radio", :tabindex => (7+1+index) %>
-				<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
-			<% end %>
+			<div>
+				<% SEX.each_with_index do |value, index| %>
+					<span>
+						<%= f.radio_button :sex, value, :class => "field radio", :tabindex => (7+1+index) %>
+						<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
+					</span>
+				<% end %>
+			</div>
 		</li>
 		<!-- <li>
 					<fieldset>
@@ -61,13 +65,13 @@
 		<li>
 			<%= f.label :is_kill_shelter, "Has the Animal been Sterilized?", :class => "desc" %>
 			<div>
-				<span class="left">
-				<%= f.radio_button :is_sterilized, true, :class => "field radio", :tabindex => 10 %>
-				<%= f.label :is_sterilized, "Yes", :class => "choice" %>
+				<span>
+					<%= f.radio_button :is_sterilized, true, :class => "field radio", :tabindex => 10 %>
+					<%= f.label :is_sterilized, "Yes", :class => "choice" %>
 				</span>
-				<span class="right">
-				<%= f.radio_button :is_sterilized, false, :class => "field radio", :tabindex => 11 %>
-				<%= f.label :is_sterilized, "No", :class => "choice" %>
+				<span>
+					<%= f.radio_button :is_sterilized, false, :class => "field radio", :tabindex => 11 %>
+					<%= f.label :is_sterilized, "No", :class => "choice" %>
 				</span>
 			</div>
 		</li>
@@ -146,24 +150,8 @@
 				<div>Select a picture of the animal</div>
 			</section>
 		</li>
-		<li class="leftHalf">
-			<div class="left center">
-				<%= image_tag @animal.photo.url(:small) %>
-				<% if @animal.photo.file? %>
-					<br /><br />
-					<%= link_to "Delete photo", photo_path(@animal), :method => :delete, :confirm => "Are you sure?", :remote => true %>
-				<% end %>
-			</div>
-		</li>
-		<li class="rightHalf">
-			<div>
-				<% if @animal.photo.file? %>
-					<%= f.label :logo, "Change logo", :class => "desc" %>
-				<% else %>
-					<%= f.label :logo, "Upload logo", :class => "desc" %>
-				<% end %>
-				<%= f.file_field :logo, :class => "field file" %>
-			</div>
+		<li id="photo">
+			<%= render "photos/photo" %>
 		</li>
 		<li class="section">
 			<section>

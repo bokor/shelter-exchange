@@ -25,6 +25,9 @@ Last Updated : March 2, 2010
 	width:98%;
 }
 
+span.leftPadded{padding-left: 20px;}
+span.rightPadded{padding-right: 20px;}
+
 /*#sidebar li.focused{background: none;}*/
 
 /* END Customizations
