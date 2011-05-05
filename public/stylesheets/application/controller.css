@@ -42,32 +42,21 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .edit_animals #sidebar, .update_animals #sidebar, .new_animals #sidebar, .create_animals #sidebar { display: none;width: 0; }
 
 
-/* -------------------------- ANIMALS FORMS -------------------------- */
-.animals #secondary_breed_field, .animals #primary_breed_field{display:none;}
+/* Animals :: Form :: Layout
+-----------------------------------------------------------------------------*/
 .animals #reason_field{ padding-top:15px; }
 .animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
 
-/*.animals #accommodation_info{padding-top: 30px; }
-.animals #accommodation_info input{margin-bottom: 10px;}
-.animals #accommodation_info fieldset{border:1px #ddd solid; padding: 20px; width: 80%;}
-.animals #accommodation_info fieldset legend {font-weight: bold; font-size: 16px; letter-spacing: -1px;}*/
+.animals .icon_calendar{padding-left: 10px; cursor: pointer;}
+.animals .calendar{display:none;}
 
-.animals #euthanasia_info{padding-top: 0px; /*display:none;*/}
-.animals #euthanasia_info input{margin-bottom: 10px;}
-
-.animals .date_field{ padding-bottom: 15px;}
-.animals .date_field:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animals .humanize_date{float:left; width: 190px;font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
-.animals .icon_calendar{float:left; padding-left: 10px; cursor: pointer;}
-.animals .datepicker{display:none; padding-bottom: 10px;}
-
-.animals #accommodation_info{display:none;}
 .animals #accommodation_remove_link{display:none;padding-left: 5px;}
 
 .animals #accommodation_selected{padding: 0 0 10px 0;}
 .animals #accommodation_selected span {}
 .animals #accommodation_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .animals #accommodation_selected #accommodation_search_link{}
+
 
 /* Animals :: Form :: Accommodation Search Dialog
 -----------------------------------------------------------------------------*/

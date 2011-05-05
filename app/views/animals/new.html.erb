@@ -4,7 +4,7 @@
 	<% if @current_shelter.is_kill_shelter %>
 		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
 	<% else %>
-		<%= javascript_include_tag "animals/animals", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
+		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
 	<% end %>
 	<script type="text/javascript">
 		$(function() {

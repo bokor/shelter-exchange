@@ -41,25 +41,29 @@ var Animals = {
 		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
+		
 		// Date of Birth DatePicker
-		Animals.datePicker("#date_of_birth_datepicker", "#date_of_birth_humanize", '#animal_date_of_birth', true);
-		Animals.setHumanizeDate('#date_of_birth', $('#animal_date_of_birth').val());
-		$('#date_of_birth_trigger').bind("click", function(event) { $('#date_of_birth_datepicker').slideToggle();});
+		Animals.datePicker("#animal_date_of_birth");
+		Animals.setDatePickerDate('#animal_date_of_birth');
+		$('#date_of_birth_trigger').bind("click", function(event) { $('#animal_date_of_birth_datepicker').slideToggle();});
+		
 		// Bind Form Events
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
+		
 		//Check if a kill shelter
 		if(is_kill_shelter) {
 			// Arrival Date initialize
-			Animals.datePicker("#arrival_date_datepicker", "#arrival_date_humanize", '#animal_arrival_date', false);
-			Animals.setHumanizeDate('#arrival_date', $('#animal_arrival_date').val());
-			$('#arrival_date_trigger').bind("click", function(event) { $('#arrival_date_datepicker').slideToggle(); });
+			Animals.datePicker("#animal_arrival_date");
+			Animals.setDatePickerDate('#animal_arrival_date');
+			$('#arrival_date_trigger').bind("click", function(event) { $('#animal_arrival_date_datepicker').slideToggle(); });
+		
 			// Euthanasia Date initialize
-			Animals.datePicker("#euthanasia_scheduled_datepicker", "#euthanasia_scheduled_humanize", '#animal_euthanasia_scheduled', false);
-			Animals.setHumanizeDate('#euthanasia_scheduled', $('#animal_euthanasia_scheduled').val());
-			$('#euthanasia_scheduled_trigger').bind("click", function(event) { $('#euthanasia_scheduled_datepicker').slideToggle();});
+			Animals.datePicker("#animal_euthanasia_scheduled");
+			Animals.setDatePickerDate('#animal_euthanasia_scheduled');
+			$('#euthanasia_scheduled_trigger').bind("click", function(event) { $('#animal_euthanasia_scheduled_datepicker').slideToggle();});
 		}
 	},
 	selectAccommodation: function(id, name) {
@@ -130,39 +134,35 @@ var Animals = {
 			}			
 		});
 	},
-	datePicker: function(datepickerId, altField, hiddenField, changeMonthYear){
-		var changeYear = changeMonthYear;
-		var changeMonth = changeMonthYear;
-		$(datepickerId).datepicker({
+	datePicker: function(element){
+		$(element + "_datepicker").datepicker({
 			numberOfMonths: 1,
 			showButtonPanel: false,
-			changeMonth: changeMonth,
-			changeYear: changeYear,
+			changeMonth: true,
+			changeYear: true,
 			dateFormat: 'yy-mm-dd',
-			altField: altField,
-			altFormat: "D MM d, yy",
 			onSelect: function(dateText,picker) { 
-				//HIDDEN FIELD
-				$(hiddenField).val( dateText ); 
-
-				//DIV FIELD
-				var dateFormat = $(this).datepicker( "option", "dateFormat" );
-				var altFormat = $(this).datepicker( "option", "altFormat" );
-				var altField = $(this).datepicker( "option", "altField" );
-				var parseDate = $.datepicker.parseDate(dateFormat, dateText);
-				var formatDate = $.datepicker.formatDate(altFormat, parseDate);
-				$(altField).html(formatDate);
+				var dateFormat = $(element+'_datepicker').datepicker("option", "dateFormat");
+				var tempDate = $.datepicker.parseDate(dateFormat, dateText);
+				
+				$(element+"_1i").val($.datepicker.formatDate('yy', tempDate));
+				$(element+"_2i").val($.datepicker.formatDate('mm', tempDate));
+				$(element+"_3i").val($.datepicker.formatDate('dd', tempDate));
 
 			}  
 		});
 	},
-	setHumanizeDate: function(fieldName,dateVal){
-		if(dateVal.length != 0){
-			$(fieldName+'_datepicker').datepicker("setDate", dateVal);
-			var tempDate = $(fieldName+'_datepicker').datepicker("getDate");
-			var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
-			$(fieldName+'_humanize').html(setDate);
+	setDatePickerDate: function(element){
+		var year = $(element+"_1i").val();
+		var month = $(element+"_2i").val();
+		var day = $(element+"_3i").val();
+		var formatDate;
+		if(year != "" && month != "" && day != ""){
+			formatDate = $.datepicker.formatDate('yy-mm-dd', new Date(year, month-1, day));
+		} else {
+			formatDate = new Date().toString("yyyy-MM-dd");
 		}
+		$(element+'_datepicker').datepicker("setDate", formatDate);
 	}
 	
 };

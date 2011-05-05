@@ -2,42 +2,42 @@
 	<ul>
 		<li>
 			<%= f.label :name, "Animal name <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :name, :class => "field text medium", :tabindex => 1, :maxlength => 255 %></div>
+			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
 		</li>
 		<li>
 			<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select Type"}, {:class => "field select small", :tabindex => 2 } %>
+			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select Type"}, {:class => "field select small" } %>
 			</div>
 		</li>
 		<li id="breed_fields"> 
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
-				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :tabindex => 3, :maxlength => 255 %>
+				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
 				</div>
 			</div>
 			<div id="is_mixed_breed_field">
 				<span>
-					<%= f.check_box :is_mix_breed, :class =>"field checkbox", :tabindex => 4 %>
+					<%= f.check_box :is_mix_breed, :class =>"field checkbox" %>
 					<%= f.label :is_mix_breed, "Mixed Breed?", :class => "choice" %>
 				</span>
 			</div>
 			<div id="secondary_breed_field">
 				<%= f.label :secondary_breed, "Secondary breed", :class => "desc" %>
 				<div>
-				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :tabindex => 5, :maxlength => 255 %>
+				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
 				</div>
 			</div>
 		</li>
 		<li>
 			<%= f.label :animal_status_id, "Animal status <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select Status"}, {:class => "field select small", :tabindex => 6 } %>
+			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select Status"}, {:class => "field select small" } %>
 			</div>
 			<div id="reason_field">
 				<%= f.label :status_history_reason, "Reason for the status change <span class='req'>*</span>".html_safe, :class => "desc" %>
-				<%= f.text_field :status_history_reason, :class => "field text medium", :tabindex => 7, :maxlength => 255 %>
+				<%= f.text_field :status_history_reason, :class => "field text medium", :maxlength => 255 %>
 			</div>
 		</li>		
 		<li>
@@ -45,56 +45,57 @@
 			<div>
 				<% SEX.each_with_index do |value, index| %>
 					<span>
-						<%= f.radio_button :sex, value, :class => "field radio", :tabindex => (7+1+index) %>
+						<%= f.radio_button :sex, value, :class => "field radio" %>
 						<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
 					</span>
 				<% end %>
 			</div>
 		</li>
-		<!-- <li>
-					<fieldset>
-						<legend class="desc">Has the Animal been Sterilized>?</legend>
-						<div>
-							<span>
-							<%= f.check_box :is_sterilized, :class =>"field checkbox", :tabindex => 10 %>
-							<%= f.label :is_sterilized, "Sterilized", :class => "choice" %>
-							</span>
-						</div>
-					</fieldset>
-				</li> -->
 		<li>
 			<%= f.label :is_kill_shelter, "Has the Animal been Sterilized?", :class => "desc" %>
 			<div>
 				<span>
-					<%= f.radio_button :is_sterilized, true, :class => "field radio", :tabindex => 10 %>
+					<%= f.radio_button :is_sterilized, true, :class => "field radio" %>
 					<%= f.label :is_sterilized, "Yes", :class => "choice" %>
 				</span>
 				<span>
-					<%= f.radio_button :is_sterilized, false, :class => "field radio", :tabindex => 11 %>
+					<%= f.radio_button :is_sterilized, false, :class => "field radio" %>
 					<%= f.label :is_sterilized, "No", :class => "choice" %>
 				</span>
 			</div>
 		</li>
-		<li>
-			<%= f.label :date_of_birth, "Date of birth (est.)", :class => "desc" %>
-			<div id="date_of_birth_field" class="date_field">
-				<div id="date_of_birth_humanize" class="humanize_date">Select Date</div>
+		<li class="date">
+			<%= f.label :date_of_birth, "Date of Birth (Est.)", :class => "desc" %>
+			<span>
+				<input id="animal_date_of_birth_2i" name="animal[date_of_birth(2i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.date_of_birth.strftime("%m") unless @animal.date_of_birth.blank? %>">
+				<%= f.label :date_of_birth, "MM" %>
+			</span> 
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_date_of_birth_3i" name="animal[date_of_birth(3i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.date_of_birth.strftime("%d") unless @animal.date_of_birth.blank? %>">
+				<%= f.label :date_of_birth, "DD" %>
+			</span>
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_date_of_birth_1i" name="animal[date_of_birth(1i)]" type="text" class="field text" size="4" maxlength="4" value="<%= @animal.date_of_birth.strftime("%Y") unless @animal.date_of_birth.blank? %>">
+				<%= f.label :date_of_birth, "YYYY" %>
+			</span>
+			<span>
 				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
-			</div>
-			<div id="date_of_birth_datepicker" class="datepicker"></div>
-			<%= f.hidden_field :date_of_birth %>
+			</span>
+			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
 		</li>
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
-			<%= f.text_field :weight, :class => "field text medium", :tabindex => 12, :maxlength => 255 %>
+			<%= f.text_field :weight, :class => "field text medium", :maxlength => 255 %>
 		</li>
 		<li>
 			<%= f.label :color, "Color", :class => "desc" %>
-			<%= f.text_field :color, :class => "field text medium", :tabindex => 13, :maxlength => 255 %>
+			<%= f.text_field :color, :class => "field text medium", :maxlength => 255 %>
 		</li>
 		<li>
 			<%= f.label :microchip, "Microchip#", :class => "desc" %>
-			<%= f.text_field :microchip, :class => "field text medium", :tabindex => 14, :maxlength => 255 %>
+			<%= f.text_field :microchip, :class => "field text medium", :maxlength => 255 %>
 		</li>
 		<li class="section">
 			<section>
@@ -104,7 +105,6 @@
 		</li>
 		<li>
 			<div id="accommodation_info">
-				<%= f.hidden_field :accommodation_id %>
 				<div id="accommodation_selected">
 					<span><% if @animal.accommodation_id %><b><%= @animal.accommodation.name %></b><% end %></span>
 					<a href="#accommodation_search_dialog" id="accommodation_search_link" toptions="width = 675, height = auto, type = dom, title = Select Accommodation, layout = quicklook, resizable = 0, shaded = 1, modal = 1"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>	
@@ -112,6 +112,7 @@
 					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();">Remove</a>
 
 				</div>
+				<%= f.hidden_field :accommodation_id %>
 			</div> 
 		</li>
 		<% if @current_shelter.is_kill_shelter %>
@@ -121,27 +122,53 @@
 				<div>Please feel in the correct information about the animal's euthanasia schedule.</div>
 			</section>
 		</li>
+		<li class="date">
+			<%= f.label :arrival_date, "Arrival Date <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<span>
+				<input id="animal_arrival_date_2i" name="animal[arrival_date(2i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.arrival_date.strftime("%m") unless @animal.arrival_date.blank? %>">
+				<%= f.label :arrival_date, "MM" %>
+			</span> 
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_arrival_date_3i" name="animal[arrival_date(3i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.arrival_date.strftime("%d") unless @animal.arrival_date.blank? %>">
+				<%= f.label :arrival_date, "DD" %>
+			</span>
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_arrival_date_1i" name="animal[arrival_date(1i)]" type="text" class="field text" size="4" maxlength="4" value="<%= @animal.arrival_date.strftime("%Y") unless @animal.arrival_date.blank? %>">
+				<%= f.label :arrival_date, "YYYY" %>
+			</span>
+			<span>
+				<%= image_tag "icon_calendar.png", :id => "arrival_date_trigger", :class => "icon_calendar" %>
+			</span>
+			<span id="animal_arrival_date_datepicker" class="calendar"></span>
+		</li>
 		<li>
-			<div id="euthanasia_info">
-					<%= f.label :arrival_date, "Date of arrival <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<div id="arrival_date_field" class="date_field">
-						<div id="arrival_date_humanize" class="humanize_date">Select Date</div>
-						<%= image_tag "icon_calendar.png", :id => "arrival_date_trigger", :class => "icon_calendar" %>
-					</div>
-					<div id="arrival_date_datepicker" class="datepicker"></div>
-					<%= f.hidden_field :arrival_date %>
-					
-					<%= f.label :hold_time, "Hold time <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<%= f.text_field :hold_time, :class => "field text medium",  :maxlength => 255 %> days<br /><br />
-					
-					<%= f.label :euthanasia_scheduled, "Euthanasia scheduled <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<div id="euthanasia_scheduled_field" class="date_field">
-						<div id="euthanasia_scheduled_humanize" class="humanize_date">Select Date</div>
-						<%= image_tag "icon_calendar.png", :id => "euthanasia_scheduled_trigger", :class => "icon_calendar" %>
-					</div>
-					<div id="euthanasia_scheduled_datepicker" class="datepicker"></div>
-					<%= f.hidden_field :euthanasia_scheduled %>
+			<%= f.label :hold_time, "Hold time <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.text_field :hold_time, :class => "field text",  :maxlength => 3 %> days
 			</div>
+		</li>
+		<li class="date">
+			<%= f.label :euthanasia_scheduled, "Euthanasia Scheduled <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<span>
+				<input id="animal_euthanasia_scheduled_2i" name="animal[euthanasia_scheduled(2i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.euthanasia_scheduled.strftime("%m") unless @animal.euthanasia_scheduled.blank? %>">
+				<%= f.label :euthanasia_scheduled, "MM" %>
+			</span> 
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_euthanasia_scheduled_3i" name="animal[euthanasia_scheduled(3i)]" type="text" class="field text" size="2" maxlength="2" value="<%= @animal.euthanasia_scheduled.strftime("%d") unless @animal.euthanasia_scheduled.blank? %>">
+				<%= f.label :euthanasia_scheduled, "DD" %>
+			</span>
+			<span class="symbol">/</span>
+			<span>
+				<input id="animal_euthanasia_scheduled_1i" name="animal[euthanasia_scheduled(1i)]" type="text" class="field text" size="4" maxlength="4" value="<%= @animal.euthanasia_scheduled.strftime("%Y") unless @animal.euthanasia_scheduled.blank? %>">
+				<%= f.label :euthanasia_scheduled, "YYYY" %>
+			</span>
+			<span>
+				<%= image_tag "icon_calendar.png", :id => "euthanasia_scheduled_trigger", :class => "icon_calendar" %>
+			</span>
+			<span id="animal_euthanasia_scheduled_datepicker" class="calendar"></span>
 		</li>
 		<% end %>
 		<li class="section">

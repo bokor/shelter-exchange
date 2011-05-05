@@ -4,9 +4,9 @@
 		<ul>
 			<%= f.fields_for :items do |item_fields| %>
 				<li>
-					<% counter = item_fields.object_name.gsub(/[^0-9]+/,'').to_i + 1 %>
+					<%# counter = item_fields.object_name.gsub(/[^0-9]+/,'').to_i + 1 %>
 					<div>
-						<%= item_fields.text_field :name, :class => "field text large", :tabindex => counter, :maxlength => 255 %>
+						<%= item_fields.text_field :name, :class => "field text large", :maxlength => 255 %>
 					</div>
 				</li>
 			<% end %>
