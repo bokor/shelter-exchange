@@ -8,6 +8,13 @@ var Accommodations = {
 			animal_type_id: $('#animal_animal_type_id').val(), 
 			location_id: $('#location_location_id').val() 
 		});
+	},
+	cancelForm: function(id){
+		$('#edit_accommodation_'+id).slideToggle(800,function() {
+			$(this).remove();
+		});
+		$('#accommodation_'+id).fadeIn(1000);
+		
 	}// ,
 	// 	liveSearch: function(element){
 	// 		var q = $(element);

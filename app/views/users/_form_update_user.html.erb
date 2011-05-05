@@ -1,52 +1,57 @@
 <% show_update_button = false %>
 <%= form_for (user), :remote => true do |f| %>
-	<ul class="form">
+	<ul>
 	<% if user == current_user %>
 		<li>
-			<%= f.label :name, "First and Last name" %><br />
-	  		<%= f.text_field :name, :value => user.name %>
+			<%= f.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
+	  		<div><%= f.text_field :name, :value => user.name, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
 		<li>
-			<%= f.label :title, "Title" %><br />
-  			<%= f.text_field :title, :value => user.title %>
+			<%= f.label :title, "Title", :class => "desc" %>
+  			<div><%= f.text_field :title, :value => user.title, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
 		<li>
-			<%= f.label :email, "Email" %><br />
-			<%= f.text_field :email, :value => user.email %>
+			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :email, :value => user.email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
 		<% show_update_button = true %>
 	<% else %>
 		<li>
-			<%= label_tag :name, "First and Last name" %><br />
+			<%= label_tag :name, "First and Last name", :class => "desc" %>
 	  		<h3><%= user.name %></h3>
 		</li>
 		<% unless user.title.blank? %>
 		<li>
-			<%= label_tag :title, "Title" %><br />
+			<%= label_tag :title, "Title", :class => "desc" %>
 	  		<h3><%= user.title %></h3>
 		</li>
 		<% end %>
 		<li>
-			<%= label_tag :email, "Email" %><br />
+			<%= label_tag :email, "Email", :class => "desc" %>
 			<h3><%= user.email %></h3>
 		</li>
 	<% end %>
 		<li>
-			<%= f.label :role, "Role" %><br />
+			<%= f.label :role, "Role", :class => "desc" %>
 			<% if can?(:change_role, User) and user.role != User::OWNER and user != current_user  %>
+				<div>
 				<% User::ROLES.each do |value| %>
-					<%= f.radio_button :role, value %>
-					<%= f.label "role_#{value.downcase}", value.humanize %>
+					<span>
+						<%= f.radio_button :role, value, :class => "field radio" %>
+						<%= f.label "role_#{value.downcase}", value.humanize, :class => "choice" %>
+					</span>
 				<% end %>
+				</div>
 				<% show_update_button = true %>
 			<% else %>
 				<h3><%= user.role.humanize %></h3>
 			<% end %>
 		</li>
+		<% if show_update_button %>
+		<li class="buttons">
+			<%= f.submit "Update user", :disable_with => 'Submiting...', :confirm => "Are you sure?", :class => "button"  %>
+		</li>
+		<% end %>
 	</ul>
-	<% if show_update_button %>
-	<div class="actions">
-		<%= f.submit "Update user", :disable_with => 'Submiting...', :confirm => "Are you sure?", :class => "button"  %>
-	</div>
-	<% end %>
 <% end %>
+

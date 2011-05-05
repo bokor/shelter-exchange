@@ -57,10 +57,12 @@
 		<h2>Create a new accommodation</h2>
 		<div id="accommodation_errors"></div>
 		<%= form_for (Accommodation.new), :remote => true do |f| %>
-			<%= render :partial => "form", :locals => { :f => f } %>
-			<div class="actions">
-				<%= f.submit "Create Accommodation", :disable_with => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
-			</div>
+			<ul>
+				<%= render :partial => "form", :locals => { :f => f } %>
+				<li class="buttons">
+					<%= f.submit "Create Accommodation", :disable_with => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
+				</li>
+			</ul>
 		<% end %>
 	</div>
 		
@@ -71,10 +73,12 @@
 				<h3>Add a new location</h3>
 				<div id="location_errors"></div>
 				<%= form_for (Location.new), :remote => true do |f| %>
-					<%= render :partial => "locations/form", :locals => { :f => f } %>
-					<div class="actions">
-						<%= f.submit "Create Location", :disable_with => "Submitting...", :id => "create_location_button", :class => "button"  %>
-					</div>
+					<ul>
+						<%= render :partial => "locations/form", :locals => { :f => f } %>
+						<li class="buttons">
+							<%= f.submit "Create Location", :disable_with => "Submitting...", :id => "create_location_button", :class => "button"  %>
+						</li>
+					</ul>
 				<% end %>
 			</div>
 

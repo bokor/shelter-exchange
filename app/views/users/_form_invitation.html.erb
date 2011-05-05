@@ -1,20 +1,25 @@
 <%= form_for(:user, :url => user_invitation_path, :remote => true) do |f| %>
-	<ul class="form">
+	<ul>
 		<li>
-			<%= f.label :email, "Email" %><br />
-			<%= f.text_field :email %>
+			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
 		<li>
-			<%= f.label :role, "Role" %><br />
+			<%= f.label :role, "Role <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
 			<% User::ROLES.each do |value| %>
-				<%= f.radio_button :role, value, :checked => value == "user" %>
-				<%= f.label "role_#{value.downcase}", value.humanize %>
+				<span>
+					<%= f.radio_button :role, value, :checked => value == "user", :class => "field radio" %>
+					<%= f.label "role_#{value.downcase}", value.humanize, :class => "choice" %>
+				</span>
 			<% end %>
+			</div>
+		</li>
+		<li class="buttons">
+			<%= f.submit "Send an invitation", :disable_with => 'Submiting...', :class => "button"  %>
+			&nbsp;or&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %>
 		</li>
 	</ul>
-	<div class="actions">
-		<%= f.submit "Send an invitation", :disable_with => 'Submiting...', :class => "button"  %>
-		&nbsp;or&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %>
-	</div>
+	
 	<%= f.hidden_field :account_id, :value => @current_account.id %>
 <% end %>

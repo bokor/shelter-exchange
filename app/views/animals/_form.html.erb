@@ -1,13 +1,13 @@
 <%= form_for (@animal), :html => { :multipart => :true } do |f| %>
 	<ul>
 		<li>
-			<%= f.label :name, "Animal name <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
+			<%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255, :placeholder => "Enter animal name" %></div>
 		</li>
 		<li>
-			<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :animal_type_id, "Type <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select Type"}, {:class => "field select small" } %>
+			<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "Select one"}, {:class => "field select small" } %>
 			</div>
 		</li>
 		<li id="breed_fields"> 
@@ -31,9 +31,9 @@
 			</div>
 		</li>
 		<li>
-			<%= f.label :animal_status_id, "Animal status <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :animal_status_id, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select Status"}, {:class => "field select small" } %>
+			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select small" } %>
 			</div>
 			<div id="reason_field">
 				<%= f.label :status_history_reason, "Reason for the status change <span class='req'>*</span>".html_safe, :class => "desc" %>

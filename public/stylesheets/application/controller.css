@@ -249,14 +249,16 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_accommodations table.search tr {vertical-align:top;}
 .index_accommodations table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
-.index_accommodations table.search td.full_search input[type=text] {margin-top:5px;width:80%;}
+.index_accommodations table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
 .index_accommodations table.search td.full_search input[type=submit] {margin-left: 5px;}
 .index_accommodations table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
 .index_accommodations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
 .index_accommodations table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
 .index_accommodations table.search td.filters table.filter_table tr{vertical-align:top;}
-.index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;}
+.index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
 .index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+
+
 
 /* -- Accommodations :: New --*/
 .new_accommodations #main { margin: 1em 3em 0 3em; }

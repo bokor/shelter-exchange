@@ -5,5 +5,13 @@
 var Locations = {
 	findAllLocations: function() {
 		$.get("/locations/find_all.js");
-  	}
+  	},
+	cancelForm: function(id){
+		$('#edit_location_'+id).slideToggle(800,function() {
+			$(this).remove();
+		});
+		$('#location_'+id).fadeIn(1000);
+	}
 };
+
+

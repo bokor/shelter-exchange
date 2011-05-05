@@ -1,24 +1,19 @@
-<ul class="form">
-	<li>
-		<%= f.label :location_id, "Location" %><br />
-		<%= collection_select(:accommodation, :location_id, @current_shelter.locations.all, :id, :name, :include_blank =>  "None") %>
-		<% if can?(:update, Location) %>
-		<a href="#edit_location_dialog" id="edit_location_link" toptions="width = 680, height = auto, type = dom, title = Edit Locations, layout = quicklook, resizable = 0, shaded = 1, modal = 1, onclose = Locations.findAllLocations()">Edit</a>
-		<% end %>
-	</li>
-	<li>
-		<div class="separator"></div>
-	</li>
-	<li>
-		<%= f.label :animal_type_id, "Animal type" %><br />
-		<%= collection_select(:accommodation, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
-	</li>
-	<li>
-		<%= f.label :name, "Name (i.e. Crate 1)" %><br />
-		<%= f.text_field :name %>
-	</li>
-	<li>
-		<%= f.label :max_capacity, "Max number of animals" %><br />
-		<%= f.text_field :max_capacity %>
-	</li>
-</ul>
+<li>
+	<%= f.label :location_id, "Location", :class => "desc" %>
+	<%= f.collection_select :location_id, @current_shelter.locations.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" } %>
+	<% if can?(:update, Location) %>
+	<a href="#edit_location_dialog" id="edit_location_link" toptions="width = 680, height = auto, type = dom, title = Edit Locations, layout = quicklook, resizable = 0, shaded = 1, modal = 1, onclose = Locations.findAllLocations()">Edit</a>
+	<% end %>
+</li>
+<li>
+	<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:include_blank =>  "Select one"}, {:class => "field select medium" } %>
+</li>
+<li>
+	<%= f.label :name, "Name (i.e. Crate 1) <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "Enter animal name" %></div>
+</li>
+<li>
+	<%= f.label :max_capacity, "Max number of animals <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :max_capacity, :class => "field text large", :maxlength => 3, :placeholder => "Enter animal name" %></div>
+</li>
