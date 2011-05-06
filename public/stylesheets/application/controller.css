@@ -820,7 +820,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 .show_animals .task_list .details {width: 45%;}
 .show_animals .task_list .taskable_link{display:none;}
-.show_animals #animal_tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+.show_animals .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 
 
 

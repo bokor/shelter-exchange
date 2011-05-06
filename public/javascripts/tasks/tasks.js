@@ -45,6 +45,8 @@ var Tasks = {
 		$(element + " .date_picker").datepicker({
 			numberOfMonths: 1,
 			showButtonPanel: false,
+			changeMonth: true,
+			changeYear: true,
 			dateFormat: 'yy-mm-dd',
 			altField: element + " .due_date_alt",
 			altFormat: "D MM d, yy",
