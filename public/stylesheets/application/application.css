@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #ddd; color:#434343; font: normal 13px "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif; min-width: 960px; }
+body { background-color: #ddd; color:#343434; font: normal 13px "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif; min-width: 960px; }
 /* text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;}*/
 
 /*********************************************************/

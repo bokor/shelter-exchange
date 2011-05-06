@@ -5,6 +5,12 @@
 var Users = {
 	selectUser: function(id) {
 		$.get("/users/"+id+"/edit.js");
+	},
+	cancelForm: function(id){
+		$("#edit_user_"+id).slideToggle(800,function() {
+			$(this).remove();
+		});
+		$("#user_"+id).fadeIn(1000);
 	}
 };
 

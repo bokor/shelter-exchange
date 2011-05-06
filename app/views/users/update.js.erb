@@ -5,8 +5,11 @@
 	// Display Flash Message
 	$('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages', :target => flash) %>" );
 	// Refresh User Details
+	$('#edit_user_<%=@user.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
 	$('#user_<%=@user.id%>').replaceWith( "<%= escape_javascript( render @user ) %>" );
-	$('#user_details').html( "<%= escape_javascript( render 'user_details', :user => @user ) %>" );
+	$('#user_<%=@user.id%>').show().effect("highlight", {}, 1000);
 <% end %>
 // Discard Flash Message
 <% flash.discard %>

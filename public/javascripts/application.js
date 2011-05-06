@@ -98,7 +98,7 @@ $(function() {
 
 
 /* ------------------------------------------------------------------------
- * Live Events
+ * Live - Hover, Click Events
  * ------------------------------------------------------------------------ */
 $(function(){
 	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(event) {
@@ -115,6 +115,15 @@ $(function(){
             return;
         } else {
 			$(".description", this).slideToggle();
+		}
+	});
+	$(".user").live("click", function(e){
+		var target = $(e.target);
+        if(target.is("a") || target.is("input")) { //checks if other things are clicked first
+            return;
+        } else {
+			// alert("select user");
+			// Users.selectUser(<%=user.id%>);
 		}
 	});
 });

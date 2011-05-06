@@ -4,10 +4,6 @@ $('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages',
 // Remove Old User
 $('#user_<%=@user.id%>').fadeOut(1500, function() { 
 	$(this).remove(); 
-	// Default to Current User
-	$('#user_details').html( "<%= escape_javascript( render 'user_details', :user => current_user ) %>" );
-	$('.user_list .current').removeClass('current');
-	$('#user_<%=current_user.id%>').addClass('current');
 });
 // Discard Flash Message
 <% flash.discard %>

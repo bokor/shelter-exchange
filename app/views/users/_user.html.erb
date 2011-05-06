@@ -1,7 +1,26 @@
-<li id="user_<%=user.id%>" class="user <%= "current" if current_user == user %>" onclick="Users.selectUser(<%=user.id%>);">
-	<div class="username">
-		<%= user.name %>
-		<% if user.role == "owner" %><span class="owner"><%= user.role.humanize %></span><% end %>
-	</div>
+<div id="user_<%=user.id%>" class="user <%= "current" if current_user == user %>">
+	<span class="name"><%= user.name %></span>
+	<span class="title"><%= user.title %></span>
 	<span class="email"><%= user.email %></span>
-</li>
+	<span class="role">
+		<% if user.role == "owner" %>
+			<span class="owner"><%= user.role.humanize %></span>
+		<% else %>
+			<%= user.role.humanize %>
+		<% end %>
+	</span>
+	<span class="action_links">
+		<% if can?(:update, User) %>
+		<span class="edit_link">
+			<%= link_to "Edit", edit_user_path(user), :remote => true %>
+		</span>
+		<% end %>
+		<% if can?(:destroy, User) %>
+			<% unless user.role == "owner" or user == current_user %>
+			<span class="delete_link">&nbsp;&nbsp;|&nbsp;&nbsp;
+				<%= link_to "Delete", user, :method => :delete, :confirm => "Are you sure?", :remote => true %>
+			</span>
+			<% end %>
+		<% end %>
+	</span>
+</div>

@@ -8,30 +8,19 @@
 
 	<div class="page_heading blue_background">
 		<h1>Manage Users</h1>
-		<!-- <p>This page allows you to view and manage the users associated with your shelter and update your personal email and password.</p> -->
 	</div>
 		
 	<div class="page_content">
+		<% if can?(:invite, User) %>
+			<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);", :class => "button" %><br /><br />
+			<div id="new_invitation">
+				<div id="new_invitation_errors"></div>
+				<%= render "form_invitation" %>
+			</div>
+		<% end %>
 		
-		<div class="manage_users">
-			<div class="action_links">
-				<% if can?(:invite, User) %>
-					<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);", :class => "button" %><br /><br />
-					<div id="new_invitation" style="display:none;">
-						<div id="new_invitation_errors"></div>
-						<%= render "form_invitation" %>
-					</div>
-				<% end %>
-			</div>
-			<div id="users_section">
-				<div class="count">Users(<%= @users.count %>)</div>
-				<div id="users">
-					<%= render "user_list" %>
-				</div>
-			</div>
-			<div id="user_details">
-				<%= render :partial => "user_details", :locals => { :user => current_user } %>
-			</div>
+		<div id="users">
+			<%= render "user_list" %>
 		</div>
 		
 	</div>

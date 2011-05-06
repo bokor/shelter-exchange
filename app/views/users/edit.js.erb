@@ -1,3 +1,8 @@
-$('#user_details').html( "<%= escape_javascript( render 'user_details', :user => @user ) %>" );
-$('.user_list .current').removeClass('current');
-$('#user_<%=@user.id%>').addClass('current');
+// $('#user_details').html( "<%= escape_javascript( render 'edit_user', :user => @user ) %>" );
+// $('.user_list .current').removeClass('current');
+// $('#user_<%=@user.id%>').addClass('current');
+
+$('#user_<%=@user.id%>').hide();
+$('#user_<%=@user.id%>').after("<%= escape_javascript(render 'edit_user') %>");
+$('#edit_user_<%=@user.id%>').show();
+<% flash.discard %>

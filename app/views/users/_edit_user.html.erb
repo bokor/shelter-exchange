@@ -1,0 +1,20 @@
+<div class="edit_user" id="edit_user_<%=@user.id %>">
+	
+	<div class="profile_section">
+		<h2>User Info</h2>
+		<div id="update_user">
+			<div id="update_user_errors"></div>
+			<%= render "form_update_user" %>
+		</div>
+	</div>
+	<% if @user == current_user %>
+	<div class="password_section">
+		<h2>Change Password</h2>
+		<div id="change_password">
+			<div id="change_password_errors"></div>
+			<%= render "form_change_password" %>
+		</div>
+	</div>
+	<% end %>
+	
+</div>

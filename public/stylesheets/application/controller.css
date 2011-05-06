@@ -609,26 +609,34 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_users #left { width: 100%;}
 .index_users #sidebar { display: none;width: 0; }
 
-/* Index Users :: Manage Users 
+/* Index Users :: Edit Form
 -----------------------------------------------------------------------------*/
-.index_users .manage_users{padding-bottom: 20px;}
-.index_users .manage_users:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.user_list .profile_section{float: left; width: 45%; padding-right: 2%;}
+.user_list .password_section{float: left; width: 45%; padding-left: 2%;}
 
 /* Index Users :: User List
 -----------------------------------------------------------------------------*/
-.index_users #users_section {float:left;width:235px;}
-.index_users #users_section .count {color: #333;font-size: 11px;font-weight:bold;background-color:#fffbe5; border:1px solid #fff3b2;padding: 5px 0 5px 0; text-align:center;}
-.index_users #users_section .user_list {list-style:none;}
-.index_users #users_section .user_list .user {border-bottom: 1px solid #ddd; cursor:pointer; padding: 10px;display: block;}
-.index_users #users_section .user_list .current {background-color:#EFEBE3;}
-.index_users #users_section .user_list .username {color: #000;margin-bottom: 5px;line-height: 1;font-size: 16px; font-weight: bold; letter-spacing:-1px;}
-.index_users #users_section .user_list .owner { color: #fff; font-size:10px;letter-spacing:0px; font-weight: bold;padding:3px;margin-left: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color:#ffd27f;}
+.user_list{ width: 100%; margin-bottom: 20px; table-layout: auto; border-collapse: collapse; border-spacing: 0;}
+.user_list .current {background-color:#EFEBE3;}
+.user_list .hover {cursor:default;}
 
-/* Index Users :: User Details
+.user_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.user{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.user .name{display:inline-block; width: 23%;text-align: left; color: #000; font-size: 14px; font-weight: bold; letter-spacing:-1px;}
+.user .title{display:inline-block; width: 23%;font-size: 11px;}
+.user .email{display:inline-block; width: 30%;font-size: 11px;}
+.user .role{display:inline-block;width: 10%; text-align:center; font-size:10px;letter-spacing:0px; font-weight: bold; }
+
+.user .action_links{display:inline-block; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
+
+
+
+/* Index Users :: Form :: Edit User
 -----------------------------------------------------------------------------*/
-.index_users #user_details {margin-left: 255px;}
-.index_users #user_details h2 { border-bottom: 1px #bbb solid; }
-.index_users #user_details .section { padding-bottom: 15px;}
+.user_list .edit_user {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+.user_list .edit_user:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Index Users :: Invite New User form
 -----------------------------------------------------------------------------*/

@@ -1,39 +1,39 @@
 <% show_update_button = false %>
-<%= form_for (user), :remote => true do |f| %>
+<%= form_for (@user), :remote => true, :html => { :class => "update_user", :id => "update_user_#{@user.id}" } do |f| %>
 	<ul>
-	<% if user == current_user %>
-		<li>
+	<% if @user == current_user %>
+		<li class="full">
 			<%= f.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
-	  		<div><%= f.text_field :name, :value => user.name, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+	  		<div><%= f.text_field :name, :value => @user.name, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
-		<li>
+		<li class="full">
 			<%= f.label :title, "Title", :class => "desc" %>
-  			<div><%= f.text_field :title, :value => user.title, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+  			<div><%= f.text_field :title, :value => @user.title, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
-		<li>
+		<li class="full">
 			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :email, :value => user.email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+			<div><%= f.text_field :email, :value => @user.email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
 		</li>
 		<% show_update_button = true %>
 	<% else %>
-		<li>
+		<li class="full">
 			<%= label_tag :name, "First and Last name", :class => "desc" %>
-	  		<h3><%= user.name %></h3>
+	  		<h3><%= @user.name %></h3>
 		</li>
-		<% unless user.title.blank? %>
-		<li>
+		<% unless @user.title.blank? %>
+		<li class="full">
 			<%= label_tag :title, "Title", :class => "desc" %>
-	  		<h3><%= user.title %></h3>
+	  		<h3><%= @user.title %></h3>
 		</li>
 		<% end %>
-		<li>
+		<li class="full">
 			<%= label_tag :email, "Email", :class => "desc" %>
-			<h3><%= user.email %></h3>
+			<h3><%= @user.email %></h3>
 		</li>
 	<% end %>
-		<li>
+		<li class="full">
 			<%= f.label :role, "Role", :class => "desc" %>
-			<% if can?(:change_role, User) and user.role != User::OWNER and user != current_user  %>
+			<% if can?(:change_role, User) and @user.role != User::OWNER and @user != current_user  %>
 				<div>
 				<% User::ROLES.each do |value| %>
 					<span>
@@ -44,12 +44,14 @@
 				</div>
 				<% show_update_button = true %>
 			<% else %>
-				<h3><%= user.role.humanize %></h3>
+				<h3><%= @user.role.humanize %></h3>
 			<% end %>
 		</li>
 		<% if show_update_button %>
 		<li class="buttons">
 			<%= f.submit "Update user", :disable_with => 'Submiting...', :confirm => "Are you sure?", :class => "button"  %>
+			&nbsp;or&nbsp;&nbsp;
+			<%= link_to 'Cancel', '#', :onclick => "Users.cancelForm(#{@user.id});return false;"  %>
 		</li>
 		<% end %>
 	</ul>
