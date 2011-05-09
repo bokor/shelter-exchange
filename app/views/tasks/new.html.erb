@@ -20,10 +20,12 @@
 		<%= render "global/error_messages", :target => @task %>
 		<div id="create_task">
 			<%= form_for(@task) do |f| %>
-				<%= render :partial => "form", :locals => { :f => f } %>
-			   	<div class="actions">
-					<%= f.submit "Create Task", :disable_with => "Submitting...", :class => 'button' %>
-				</div>
+				<ul>
+					<%= render "form", :f => f %>
+		    		<li class="buttons">
+						<%= f.submit "Create Task", :disable_with => "Submitting...", :class => "button" %>
+					</li>
+				</ul>
 			<% end %>
 		</div>	
 	</div>

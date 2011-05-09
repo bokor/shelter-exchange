@@ -2,9 +2,9 @@
 
 <%= content_for :javascripts do %>
 	<% if @current_shelter.is_kill_shelter %>
-		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
+		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-new" %>
 	<% else %>
-		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-edit" %>
+		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-new" %>
 	<% end %>
 	<script type="text/javascript">
 		$(function() {

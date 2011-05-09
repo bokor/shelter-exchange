@@ -15,10 +15,12 @@
 		<%= render "global/error_messages", :target => @capacity %>
 		<div id="create_capacity">
 			<%= form_for(@capacity) do |f| %>
-				<%= render :partial => "form", :locals => { :f => f } %>
-		    	<div class="actions">
-					<%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => 'button' %>
-				</div>
+				<ul>
+					<%= render "form", :f => f  %>
+		    		<li class="buttons">
+						<%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => 'button' %>
+					</li>
+				</ul>
 			<% end %>
 		</div>	
 		

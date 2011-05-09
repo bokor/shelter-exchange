@@ -8,7 +8,8 @@
 .hidden{display:none;}
 .separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
 
-#sidebar ul.model_actions { padding: 0 0 10px 0; }
+#sidebar ul.action_links { padding: 0 0 10px 0; }
+#sidebar ul.action_links .button { min-width: 200px;}
 
 .errors_heading{border-bottom:1px solid #eee; }
 .errors_heading h1{width:100%;}
@@ -67,9 +68,12 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 
 
-/* -------------------------- INDEX - ANIMALS  -------------------------- */
+/* Index Animals :: Print Heading
+-----------------------------------------------------------------------------*/
 .index_animals .print_heading { display:none; }
 
+/* Index Animals :: Animal List Layout
+-----------------------------------------------------------------------------*/
 .index_animals table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
 .index_animals table.animal_list tr {border-bottom:1px #ccc dotted; }
 .index_animals table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
@@ -78,6 +82,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_animals table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 .index_animals table.animal_list .action_links .select_link {display:none;}
 
+/* Index Animals :: Search and Filters Layout
+-----------------------------------------------------------------------------*/
 .index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_animals table.search tr {vertical-align:top;}
 .index_animals table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
@@ -92,7 +98,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
-/* -------------------------- SHOW - ANIMALS  -------------------------- */
+/* Show Animals :: Page Layout
+-----------------------------------------------------------------------------*/
 .show_animals .page_heading{border-bottom:1px solid #eee; }
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
@@ -102,6 +109,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
 
+/* Show Animal :: Animal Details
+-----------------------------------------------------------------------------*/
 .show_animals table.animal_details{text-align:left;}
 .show_animals table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
@@ -112,10 +121,13 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
 
-
+/* Show Animal :: Description Layout
+-----------------------------------------------------------------------------*/
 .show_animals .description{width:100%; padding: 0 0 0 0; }
 .show_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
+/* Show Animal :: Euthanasia Info Layout
+-----------------------------------------------------------------------------*/
 .show_animals .euthanasia_info{width:100%; padding: 0 0 0 0; }
 .show_animals .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
@@ -123,9 +135,10 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
+/*.show_animals #animal_alerts .edit_note h2 {border: 0;}*/
 
-.show_animals #animal_alerts .edit_note h2 {border: 0;}
-
+/* Show Animals :: Section Headings
+-----------------------------------------------------------------------------*/
 .show_animals .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_animals .notes_heading h2{float:left;}
 .show_animals .notes_heading .links{float:right; text-align: right;padding-top:5px;}
@@ -133,7 +146,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_animals .status_history_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 
 
-/* SIDEBAR - SHOW ANIMAL */
+/* Show Animals :: Sidebar
+-----------------------------------------------------------------------------*/
 .show_animals #animal_tasks {padding: 15px 0 0 0;}
 .show_animals #animal_alerts {padding: 15px 0 0 0;}
 .show_animals #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
@@ -202,35 +216,27 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -- Capacity List :: Edit Form --*/
 .capacity_list .edit_capacity { width: 42%; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 .capacity_list .edit_capacity h2 {border: 0;}
-.capacity_list .edit_capacity input[type=text]{width: 98%;}
 
-/* -- Capacity List  --*/
-/*.capacity_list h2{border-bottom: 1px #bbb solid; font-weight: bold;}
-.capacity_list {margin-bottom:10px;}
-.capacity_list .capacity{padding: 1px 0 1px 0; margin: 2px 0 2px 0;text-align:left;display: block; }
-.capacity_list .capacity:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.capacity_list .type{float:left;min-width: 100px; font-size: 16px; letter-spacing: -1px; font-weight:bold;text-align:center;vertical-align: middle;padding: 5px 0;-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.capacity_list .max_capacity{float: left;width: 30%;  margin-left: 10px;  }
-.capacity_list .max_capacity p {font-size: 16px; color: #000;margin-top:5px;}
-.capacity_list .warning_level{float: left;width: 30%;  margin-left: 10px;  }
-.capacity_list .warning_level p {font-size: 16px; color: #000;margin-top:5px;}
-.capacity_list .action_links{float: right; text-align:right;margin-top: 2px;padding-left:0;font-size: 10px;font-weight:bold;}*/
-
-.capacity_list { padding-top: 0px;}
+/* Capacity List :: Layout
+-----------------------------------------------------------------------------*/
+.capacity_list { }
 .capacity_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.capacity_list .capacity { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-.capacity_list .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
-.capacity_list .warning_level {background-color:#fffbe5; border:1px solid #ffd27f;}
+.capacity_list .capacity { width: 45%; margin-right: 10px;margin-bottom: 10px; padding: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 
-/* -- Index Capacities  --*/
-.capacity_list .capacity .title {border-bottom:1px #ddd solid; padding-bottom:10px; line-height: 1.2em;}
-.capacity_list .capacity .title:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.capacity_list .capacity .animal_type {float:left; width: 59%;}
-.capacity_list .capacity .animal_type h3 {padding:0; margin:0;}
-.capacity_list .capacity .links {float:right; width: 39%; }
-.capacity_list .capacity .links .action_links {display: block;text-align:right;font-size: 10px;font-weight:bold; }
-.capacity_list .capacity .details {clear:both;padding-top: 20px;}
-.capacity_list .capacity .details span {font-size: 14px; color: #000;}
+.capacity .status{/* display: inline-block;*/}
+.capacity .details{/*display: inline-block;*/}
+.capacity .circle{ height: 100px; width: 100px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
+.capacity .over_capacity .circle{background-color: #fce2ec; border:1px solid #f286b1;}
+.capacity .warning_level .circle{background-color:#fffbe5; border:1px solid #ffd27f;}
+.capacity .normal .circle{background-color:#f1fce2; border:1px solid #c4f286;}
+
+.capacity .title { padding-bottom:10px; line-height: 1.2em;}
+.capacity .animal_type {float:left; width: 59%;}
+.capacity .animal_type h3 {padding:0; margin:0;}
+.capacity .action_links { float:right; display: block;text-align:right;font-size: 10px;font-weight:bold; }
+.capacity .action_links:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.capacity .capacity_levels {clear:both;padding-top: 20px;}
+.capacity .capacity_levels span {font-size: 14px; color: #000;}
 
 
 
@@ -240,12 +246,24 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /***************************************************************************/
 /* ---------------------------- ACCOMMODATIONS --------------------------- */
 /***************************************************************************/
+
+/* Accommodations :: Global
+-----------------------------------------------------------------------------*/
 .accommodations ul {list-style:none;}
 
-/* -------------------------- INDEX - LOCATIONS  -------------------------- */
+/* Index Accommodations :: Page Layout
+-----------------------------------------------------------------------------*/
 .index_accommodations .print_heading {display:none;}
 
-/* -- Location Filters --*/
+/* New/Create Accommodations :: Page Layout
+-----------------------------------------------------------------------------*/
+.new_accommodations #main, .create_accommodations #main  { margin: 1em 3em 0 3em; }
+.new_accommodations #left, .create_accommodations #left { width: 100%;}
+.new_accommodations #sidebar, .create_accommodations #sidebar { display: none;width: 0;}
+
+
+/* Index Accommodations :: Search and Filters
+-----------------------------------------------------------------------------*/
 .index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
 .index_accommodations table.search tr {vertical-align:top;}
 .index_accommodations table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
@@ -259,18 +277,13 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
 
 
-
-/* -- Accommodations :: New --*/
-.new_accommodations #main { margin: 1em 3em 0 3em; }
-.new_accommodations #left { width: 100%;}
-.new_accommodations #sidebar { display: none;width: 0;}
-
+/* Accommodations List :: Layout
+-----------------------------------------------------------------------------*/
 #accommodations { border-top:1px dotted #ccc; padding-top: 20px; }
 #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 #accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 #accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
 
-/* -- Index Accommodations :: Accommodation Details --*/
 #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
 #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 #accommodations .accommodation .accommodation_name {float:left; width: 69%;}
@@ -283,7 +296,9 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}
 #accommodations .accommodation .accommodation_count .action_links{float: right; text-align:right;font-size: 10px;font-weight:bold;}
 
-/* -- Index Accommodations :: Animal List Table --*/
+
+/* Accommodations :: Animal List
+-----------------------------------------------------------------------------*/
 #accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
 #accommodations .accommodation table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
 #accommodations .accommodation table.animal_list tr {border-bottom:1px #ccc dotted; }
@@ -292,14 +307,16 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 #accommodations .accommodation table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
 #accommodations .accommodation table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
-/* -- Animals :: Accommodations :: Accommodation Details --*/
+/* Animals :: Accommodations
+-----------------------------------------------------------------------------*/
 .animals #accommodations { width: 100%;height: 400px; }
 .animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
 .animals #accommodations .accommodation .accommodation_types .select_link {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
 .animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
 .animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
 
-/* -- Index Locations  --*/
+/* Accommodations :: Forms
+-----------------------------------------------------------------------------*/
 .index_accommodations #sidebar #create_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 #accommodations .edit_accommodation { width: 42%; background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 #accommodations .edit_accommodation input[type=text]{width: 98%;}
@@ -406,18 +423,23 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*****************************************************************/
 /* -------------------------- REPORTS -------------------------- */
 /*****************************************************************/
-/* -- Reports :: Common Styles --*/
+
+/* Reports :: Global
+-----------------------------------------------------------------------------*/
 .reports ul {list-style:none;}
 
-/* -- Reports :: Page Heading and Titles --*/
+/* Reports :: Page Layout
+-----------------------------------------------------------------------------*/
 .reports .page_heading{border-bottom:1px solid #eee; }
 .reports .page_heading h1{width:50%; float:left; }
 .reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 
-/* -- Reports :: Each Report's layout --*/
+/* Reports :: Layout
+-----------------------------------------------------------------------------*/
 .reports .report {width: 100%; height: 100%; min-height:400px; margin: 20px auto 20px auto;}
 
-/* -- Index Reports :: Stats and Count Sections --*/
+/* Index Reports :: Stats and Count Sections
+-----------------------------------------------------------------------------*/
 .index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;}
 .index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
@@ -429,19 +451,21 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 /* -------------------------- SETTINGS -------------------------- */
 /******************************************************************/
-/* -- Settings :: Common Styles --*/
+
+/* Settings :: Global
+-----------------------------------------------------------------------------*/
 .settings ul {list-style:none;}
 
-/* -- Settings :: Page Heading and Titles --*/
+/* Settings :: Page Layout
+-----------------------------------------------------------------------------*/
 .settings .page_heading{border-bottom:1px solid #eee; }
 .settings .page_heading h1{width:100%; }
 
-/* -- Index Settings :: Page Layout --*/
 .index_settings #main { margin: 1em 3em 0 3em; }
 .index_settings #left { width: 100%;}
 .index_settings #sidebar { display: none;width: 0; }
 
-/* Index Users :: Sections
+/* Index Settings :: Section
 -----------------------------------------------------------------------------*/
 .index_settings  h2 { border-bottom: 1px #bbb solid; }
 .index_settings .section { padding-bottom: 25px;}
@@ -450,14 +474,16 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 /* -------------------------- DASHBOARD -------------------------- */
 /*******************************************************************/
-/* -- Dashboard :: Common Styles --*/
+
+/* Dashboard :: Global
+-----------------------------------------------------------------------------*/
 .dashboard ul {list-style:none;}
 
-/* -- Dashboard :: Page Heading and Titles --*/
+/* Dashboard :: Page Layout
+-----------------------------------------------------------------------------*/
 .dashboard .page_heading{border-bottom:1px solid #eee; }
 .dashboard .page_heading h1{width:100%; }
 
-/* -- Dashboard :: Page Layout --*/
 .dashboard #main { margin: 1em 3em 0 3em; }
 .dashboard #left { width: 100%;}
 .dashboard #sidebar { display: none;width: 0; }
@@ -491,6 +517,8 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 -----------------------------------------------------------------------------*/
 .parents ul {list-style:none;}
 
+/* Parents :: Page Layout
+-----------------------------------------------------------------------------*/
 .parents .page_heading{border-bottom:1px solid #eee; }
 .parents .page_heading h1{width:50%; float:left; }
 .parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
@@ -505,7 +533,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 .show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
-.show_parents #sidebar .model_actions .button { min-width: 200px;}
+.show_parents #sidebar ul.action_links .button { min-width: 200px;}
 
 
 /* Parents :: Index/Edit/Update/New/Create :: Layout
@@ -600,7 +628,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 -----------------------------------------------------------------------------*/
 .users ul {list-style:none;}
 
-/* Users :: Layout
+/* Users :: Page Layout
 -----------------------------------------------------------------------------*/
 .users .page_heading{border-bottom:1px solid #eee; }
 .users .page_heading h1{width:100%; }
@@ -632,7 +660,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .user .action_links{display:inline-block; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
 
 
-
 /* Index Users :: Form :: Edit User
 -----------------------------------------------------------------------------*/
 .user_list .edit_user {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
@@ -657,7 +684,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .shelters ol li{margin-left: 20px;}
 
 
-/* Shelters :: Layout */
+/* Shelters :: Page Layout */
 /******************************************************************/
 .shelters .page_heading{border-bottom:1px solid #eee; }
 .shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
@@ -727,7 +754,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 .alerts ul { list-style:none ;}
 
-/* New/Create Alerts :: Layout */
+/* New/Create Alerts :: Page Layout */
 /******************************************************************/
 /*.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
 .new_alerts #left, .create_alerts #left{ width: 100%; }
@@ -743,7 +770,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .alert_list .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .alert_list .edit_alert h2 {border: 0;}
 
-/* Index Alerts :: Alert List */
+/* Alert List :: Layout */
 /******************************************************************/
 .alert_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
 
@@ -760,7 +787,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .alert .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
 
 .alert .details{display:inline-block; width: 57%; vertical-align:top; }
-	.alert .title{display:inline-block; color: #000; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+	.alert .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
 	.alert .alertable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .alert .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
@@ -784,9 +811,6 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .tasks ul {list-style:none;}
 .tasks #sidebar #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
-
-/* Index Tasks :: Layout */
-/******************************************************************/
 .index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
 
 /* Index Tasks :: Task List :: Edit Form */
@@ -810,7 +834,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .task .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
 
 .task .details{display:inline-block; width: 60%; vertical-align:top; }
-	.task .title{display:inline-block; color: #000; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
+	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
 	.task .taskable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .task .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
@@ -834,25 +858,18 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /******************************************************************/
 .note_list .edit_note {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}
 
-/* Notes :: Layout */
+/* Notes List :: Layout */
 /******************************************************************/
 .note_list {border-top: 1px dotted #ccc;}
 .note {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
 
 .note .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
 .note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
-	.note .title {display:inline-block;color:#000; font-weight: bold;font-size: 14px; line-height: 1.5em;}
+	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.5em;}
 
 .note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
 
 .note .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em;}
-
-/* Show Parents :: Notes */
-/******************************************************************/
-/*.show_parents .note_list .note .category{display:none;}
-.show_parents #edit_note_form #note_category{display:none;}
-*/
-
 
 
 
@@ -862,7 +879,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -------------------------- STATUS HISTORIES  -------------------------- */
 /***************************************************************************/
 
-/* Status Histories :: Layout */
+/* Status Histories List :: Layout */
 /******************************************************************/
 .status_history_list {border-top: 1px dotted #ccc; }
 .status_history {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
@@ -880,6 +897,9 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 /* -------------------------- COMMENTS --------------------------- */
 /*******************************************************************/
+
+/* Comment List :: Layout
+-----------------------------------------------------------------------------*/
 .comment_list {border-top: 1px dotted #ccc;}
 .comment_list .comment {border-bottom: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
 .comment_list .comment .created_date {float: left; width: 50%; color:#666; font-size: 10px; letter-spacing: -1px;}
@@ -893,6 +913,9 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /*******************************************************************/
 /* -------------------------- LOCATIONS -------------------------- */
 /*******************************************************************/
+
+/* Location List :: Layout
+-----------------------------------------------------------------------------*/
 .location_list {border-top: 1px dotted #ccc; }
 .location {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
 

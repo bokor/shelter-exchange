@@ -47,11 +47,12 @@
 				<td class="metadata">
 					<h3>Details:</h3>
 					<ul>
-						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
 						<li><p><b>Age (Est.):</b> <%= humanize_dob(@animal.date_of_birth) %></p></li>
-						<li><p><b>MicroChip:</b> <%= @animal.microchip %></p></li>
-						<li><p><b>Color:</b> <%= @animal.color %></p></li>
 						<li><p><b>Sex:</b> <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+						<li><p><b>Weight:</b> <%= @animal.weight %></p></li>
+						<% unless @animal.size.blank? %><li><p><b>Size:</b> <%= @animal.size %></p></li><% end %>
+						<li><p><b>Color:</b> <%= @animal.color %></p></li>
+						<li><p><b>MicroChip:</b> <%= @animal.microchip %></p></li>
 					</ul>
 					
 					<h3>Accommodation:</h3>
@@ -127,7 +128,7 @@
 
 <%= content_for :sidebar do %>
 
-	<ul class="model_actions">
+	<ul class="action_links">
 		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" %></li>
 		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
 		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>

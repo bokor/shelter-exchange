@@ -60,5 +60,7 @@
 <% end %>
 
 <%= content_for :sidebar do %>
-	<%= link_to "Create new animal", new_animal_path, :class => "button red" %>
+	<ul class="action_links">
+		<%= link_to "Create new animal", new_animal_path, :class => "button red" %>
+	</ul>
 <% end %>

@@ -41,7 +41,7 @@
 			</div>
 		</li>		
 		<li>
-			<%= f.label :sex, "Sex", :class => "desc" %>
+			<%= f.label :sex, "Sex <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
 				<% SEX.each_with_index do |value, index| %>
 					<span>
@@ -88,6 +88,10 @@
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
 			<%= f.text_field :weight, :class => "field text medium", :maxlength => 255 %>
+		</li>
+		<li>
+			<%= f.label :size, "Size", :class => "desc" %>
+			<%= f.text_field :size, :class => "field text medium", :maxlength => 255 %>
 		</li>
 		<li>
 			<%= f.label :color, "Color", :class => "desc" %>

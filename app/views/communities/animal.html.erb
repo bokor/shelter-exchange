@@ -98,7 +98,7 @@
 
 <%= content_for :sidebar do %>
 	<% if can?(:request_transfer, Animal) %>
-	<ul class="model_actions">
+	<ul class="action_links">
 		<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_request_link", :class => "button" %></li>
 	</ul>
 	<% end %>

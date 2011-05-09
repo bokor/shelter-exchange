@@ -37,6 +37,8 @@ class Animal < ActiveRecord::Base
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
+  validates :sex, :presence => true
+  # validates :date_of_birth, :format => { :with => /\d{4}-\d{2}-\d{2}/, :message => "^Date must be in the following format: mm/dd/yyyy"}
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }
   
   # Custom Validations

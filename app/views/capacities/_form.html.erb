@@ -1,14 +1,12 @@
-<ul class="form">
-	<li>
-		<%= f.label :animal_type_id, "Animal type" %><br />
-		<%= collection_select(:capacity, :animal_type_id, AnimalType.all, :id, :name, :include_blank =>  "Select one") %>
-	</li>
-	<li>
-		<%= f.label :max_capacity, "Max capacity of animals per type" %><br />
-		<%= f.text_field :max_capacity %>
-	</li>
-	<li>
-		<%= f.label :warning_level, "Warning level" %><br />
-		<%= f.text_field :warning_level %>
-	</li>
-</ul>
+<li class="full">
+	<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:include_blank =>  "Select one"}, :class => "field select medium" %></div>
+</li>
+<li class="full">
+	<%= f.label :max_capacity, "Max capacity of animals per type <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4 %></div>
+</li>
+<li class="full">
+	<%= f.label :warning_level, "Warning level <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :warning_level, :class => "field text small", :maxlength => 4 %></div>
+</li>
