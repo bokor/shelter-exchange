@@ -19,7 +19,7 @@ module ApplicationHelper
   def format_date(type, date)
     return nil if date.blank?
     case type
-      when :month_only
+      when :full_month_only
         date.strftime("%B") #February
       when :short_no_year 
         date.strftime("%b %d") #Feb 06
@@ -29,6 +29,12 @@ module ApplicationHelper
         date.strftime("%B %d, %Y") #February 06, 2011
       when :long_day_of_week
         date.strftime("%a %B %d, %Y") #Sun February 06, 2011
+      when :month
+        date.strftime("%m") #02/06/2011
+      when :day
+        date.strftime("%d") #02/06/2011
+      when :year
+        date.strftime("%Y") #02/06/2011
       when :default
         date.strftime("%m/%d/%Y") #02/06/2011
     end
@@ -72,6 +78,14 @@ module ApplicationHelper
 
     components.join(" and ")
     
+  end
+  
+  def has_error_message?(object, field)
+    create_error_message(object.errors[field].to_sentence) unless object.errors[field].blank?
+  end
+  
+  def create_error_message(msg)
+    ['<p class="error">', msg.capitalize, '</p>'].join.html_safe
   end
   
 end

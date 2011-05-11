@@ -1,6 +1,6 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  # before_validation 
+  
   before_save :geocode_address, :format_phone_numbers
   
   # Associations
@@ -28,11 +28,13 @@ class Shelter < ActiveRecord::Base
                                         :medium => ["350x250>", :jpg],
                                         :large => ["500x400>", :jpg], 
                                         :thumb => ["150x75>", :jpg] }
-    
+  # before_post_process :is_image?
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
-  validates :name, :street, :city, :state, :zip_code, :phone, :presence => true
+  validates :name, :presence => true
+  validate :address_valid?
+  validates :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
                     :length => {:minimum => 3, :maximum => 254}, 
@@ -66,6 +68,21 @@ class Shelter < ActiveRecord::Base
     def format_phone_numbers
       self.phone = self.phone.gsub(/[^0-9]/, "") unless self.phone.blank?
       self.fax = self.fax.gsub(/[^0-9]/, "") unless self.fax.blank?
+    end
+    
+    # def has_logo_errors?
+    #   # logger.debug("ERRORS :::::::::: #{self.errors}")
+    #   #       logger.debug("LOGO ERRORS :::::::::: #{self.logo.errors}")
+    #   #       self.logo = nil  unless self.errors[:logo_content_type].blank? or self.errors[:logo_file_size].blank?
+    #   
+    # end
+    # 
+    # def is_image?
+    #   # !!(logo_content_type =~ ["image/jpeg", "image/png", "image/gif"])
+    # end
+    
+    def address_valid?
+      errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
   
 end

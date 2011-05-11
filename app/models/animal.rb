@@ -1,9 +1,13 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.status_change_date DESC', :limit => 250
+  
   before_save :check_status_changed?
   after_save :create_status_history!
   
-  attr_accessor :status_history_reason
+  attr_accessor :status_history_reason, 
+                :dob_month, :dob_day, :dob_year,
+                :arrival_date_month, :arrival_date_day, :arrival_date_year,
+                :euthanasia_scheduled_month, :euthanasia_scheduled_day, :euthanasia_scheduled_year
   
   # Pagination - Per Page
   # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
@@ -36,23 +40,19 @@ class Animal < ActiveRecord::Base
   # Validations
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
+  validate :primary_breed_valid?
+  validate :secondary_breed_valid? 
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
+  validate :status_history_reason_required?
   validates :sex, :presence => true
-  # validates :date_of_birth, :format => { :with => /\d{4}-\d{2}-\d{2}/, :message => "^Date must be in the following format: mm/dd/yyyy"}
+  validate :date_of_birth_valid?
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }
-  
-  # Custom Validations
-  validates :primary_breed, :presence => { :if => :primary_breed_exists? }
-  validates :secondary_breed, :presence => { :if => :secondary_breed_exists? }
-  validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
-  
-  # Custom Validations - If Kill Shelter
-  validates :arrival_date, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
+  validate :arrival_date_valid?
   validates :hold_time, :presence => { :if => :is_kill_shelter? }
-  validates :euthanasia_scheduled, :presence => { :message => "must be selected", :if => :is_kill_shelter? }
+  validate :euthanasia_scheduled_valid?
   
   # Custom Validations - Photo
-  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less", :if => Proc.new { |imports| !imports.photo.file? }
+  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less" #, :if => Proc.new { |imports| !imports.photo.file? }
   validates_attachment_content_type :photo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
 
   
@@ -71,6 +71,7 @@ class Animal < ActiveRecord::Base
   scope :foster_care, where(:animal_status_id => AnimalStatus::FOSTER_CARE)
   scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
+  
   def self.latest(num)
     unscoped.order("animals.created_at DESC").limit(5)
   end
@@ -90,20 +91,7 @@ class Animal < ActiveRecord::Base
     
     scope
   end
-
-  # def self.map_euthanasia_list(shelter_ids, filters={})
-  #   scope = scoped{}
-  #   scope = scope.includes(:animal_type, :animal_status)
-  #   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
-  #   scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
-  #   scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
-  #   scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
-  #   scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
-  #   scope = scope.active unless filters[:animal_status].present?
-  #   
-  #   scope
-  # end
-  
+    
   def self.filter_animal_type(animal_type)
     where(:animal_type_id => animal_type)
   end
@@ -148,20 +136,26 @@ class Animal < ActiveRecord::Base
   end
                                                  
   private
+  
+    def is_kill_shelter?
+      @shelter ||= Shelter.find_by_id(self.shelter_id).is_kill_shelter
+    end
 
-    def primary_breed_exists?
-      if self.primary_breed.blank?
-        true
-      else
-        unless self.animal_type_id == 7  # Bypass Type = Other
-          if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
-            errors.add(:primary_breed, "must contain a valid breed from the list")
+    def primary_breed_valid?
+      unless self.animal_type_id.blank?
+        if self.primary_breed.blank?
+          errors.add_on_blank(:primary_breed)
+        else
+          unless self.animal_type_id == 7  # Bypass Type = Other
+            if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
+              errors.add(:primary_breed, "must contain a valid breed from the list")
+            end
           end
         end
       end
     end
 
-    def secondary_breed_exists?
+    def secondary_breed_valid?
       unless self.animal_type_id == 7 # Bypass Type = Other
         if self.is_mix_breed and self.secondary_breed.present?
           if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
@@ -171,18 +165,52 @@ class Animal < ActiveRecord::Base
       end
     end
     
-    def is_kill_shelter?
-      @shelter ||= Shelter.find_by_id(self.shelter_id).is_kill_shelter
-    end
-        
-    def status_history_reason_required?
-      self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
+    def date_of_birth_valid?
+      unless self.dob_year.blank? and self.dob_month.blank? and self.dob_day.blank?
+        begin
+          self.date_of_birth = Date.civil(self.dob_year.to_i, self.dob_month.to_i, self.dob_day.to_i)
+        rescue ArgumentError
+           errors.add(:date_of_birth, "is an invalid date format")
+        end
+      end
     end
     
+    def arrival_date_valid?
+      if is_kill_shelter?
+        unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
+          begin
+            self.arrival_date = Date.civil(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i)
+          rescue ArgumentError
+            errors.add(:arrival_date, "is an invalid date format")
+          end
+        else
+          errors.add_on_blank(:arrival_date)
+        end
+      end 
+    end
+    
+    def euthanasia_scheduled_valid?
+      if is_kill_shelter?
+        unless self.euthanasia_scheduled_year.blank? and self.euthanasia_scheduled_month.blank? and self.euthanasia_scheduled_day.blank?
+          begin
+            self.euthanasia_scheduled = Date.civil(self.euthanasia_scheduled_year.to_i, self.euthanasia_scheduled_month.to_i, self.euthanasia_scheduled_day.to_i)
+          rescue ArgumentError
+            errors.add(:euthanasia_scheduled, "is an invalid date format")
+          end
+        else
+          errors.add_on_blank(:euthanasia_scheduled)
+        end
+      end
+    end
+        
     def check_status_changed?
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
       end
+    end
+    
+    def status_history_reason_required?
+      self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
     end
     
     def create_status_history!
@@ -195,35 +223,15 @@ class Animal < ActiveRecord::Base
 end
 
 
-# Virtual Attributes
-# def status_history_reason
-#   @status_history_reason ||= ""
-# end
-# 
-# def status_history_reason=(value)
-#   @status_history_reason = value
-# end
-
-# def dob_month
-#   @dob_month ||= ""
-# end
-# 
-# def dob_month=(value)
-#   @dob_month = value
-# end
-# 
-# def dob_day
-#   @dob_day ||= ""
-# end
-# 
-# def dob_day=(value)
-#   @dob_day = value
-# end
-# 
-# def dob_year
-#   @dob_year ||= ""
-# end
-# 
-# def dob_year=(value)
-#   @dob_year = value
+# def self.map_euthanasia_list(shelter_ids, filters={})
+#   scope = scoped{}
+#   scope = scope.includes(:animal_type, :animal_status)
+#   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+#   scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
+#   scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
+#   scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
+#   scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
+#   scope = scope.active unless filters[:animal_status].present?
+#   
+#   scope
 # end

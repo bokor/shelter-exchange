@@ -7,7 +7,8 @@ class Parent < ActiveRecord::Base
   has_many :notes, :as => :notable, :dependent => :destroy
   
   # Validations
-  validates :name, :street, :city, :state, :zip_code, :presence => true
+  validates :name, :presence => true
+  validate :address_valid?
   validates :home_phone, :presence => true, :uniqueness => true
   validates :mobile_phone, :uniqueness => true, :allow_blank => true
   validates :email, :uniqueness => true, :allow_blank => true,
@@ -28,6 +29,10 @@ class Parent < ActiveRecord::Base
     def format_phone_numbers
       self.home_phone.gsub!(/\D/, "") unless self.home_phone.blank?
       self.mobile_phone.gsub!(/\D/, "") unless self.mobile_phone.blank?
+    end
+    
+    def address_valid?
+      errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
         
 end

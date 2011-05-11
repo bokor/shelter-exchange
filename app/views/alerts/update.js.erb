@@ -1,5 +1,12 @@
 <% if @alert.errors.any? %>
-	$('#alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
+	$('#update_alert_errors_<%=@alert.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
+	<% @alert.errors.each do |field, msg| %>
+		var element = $("#alert_<%= field %>").parents("li");
+		if ( !element.hasClass("error") ) {
+			element.addClass("error");
+			element.append("<%= escape_javascript(create_error_message(msg)) %>");
+		}
+	<% end %>
 <% else %>
 	$('#edit_alert_<%=@alert.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

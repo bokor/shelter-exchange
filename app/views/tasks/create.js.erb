@@ -1,5 +1,12 @@
 <% if @task.errors.any? %>
-	$('#task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
+	$('#create_task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
+	<% @task.errors.each do |field, msg| %>
+		var element = $("#task_<%= field %>").parents("li");
+		if ( !element.hasClass("error") ) {
+			element.addClass("error");
+			element.append("<%= escape_javascript(create_error_message(msg)) %>");
+		}
+	<% end %>
 <% else %>
 	// Section Specific Code
 	<% due_section = find_due_section(@task) %>

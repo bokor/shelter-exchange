@@ -1,5 +1,12 @@
 <% if @note.errors.any? %>
-	$('#note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
+	$('#update_note_errors_<%=@note.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
+	<% @note.errors.each do |field, msg| %>
+		var element = $("#note_<%= field %>").parents("li");
+		if ( !element.hasClass("error") ) {
+			element.addClass("error");
+			element.append("<%= escape_javascript(create_error_message(msg)) %>");
+		}
+	<% end %>
 <% else %>
 	$('#edit_note_<%=@note.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

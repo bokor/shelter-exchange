@@ -14,5 +14,44 @@ module AnimalsHelper
     end
     ""
   end
+  
+  def dob_value(type, animal)
+    return nil if type.blank?
+    case type
+      when :month
+        return animal.dob_month unless animal.dob_month.blank?
+      when :day
+        return animal.dob_day unless animal.dob_day.blank?
+      when :year
+        return animal.dob_year unless animal.dob_year.blank?
+    end
+    format_date(type, animal.date_of_birth)
+  end
+  
+  def arrival_date_value(type, animal)
+    return nil if type.blank?
+    case type
+      when :month
+        return animal.arrival_date_month unless animal.arrival_date_month.blank?
+      when :day
+        return animal.arrival_date_day unless animal.arrival_date_day.blank?
+      when :year
+        return animal.arrival_date_year unless animal.arrival_date_year.blank?
+    end
+    format_date(type, animal.arrival_date)
+  end
+  
+  def euthanasia_scheduled_value(type, animal)
+    return nil if type.blank?
+    case type
+      when :month
+        return animal.euthanasia_scheduled_month unless animal.euthanasia_scheduled_month.blank?
+      when :day
+        return animal.euthanasia_scheduled_day unless animal.euthanasia_scheduled_day.blank?
+      when :year
+        return animal.euthanasia_scheduled_year unless animal.euthanasia_scheduled_year.blank?
+    end
+    format_date(type, animal.euthanasia_scheduled)
+  end
 
 end

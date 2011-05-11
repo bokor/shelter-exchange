@@ -3,6 +3,7 @@
 	<li>
 		<%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
 		<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
+		<%= has_error_message?(@shelter, :name)%>
 	</li>
 	<li class="complex">
 		<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -28,6 +29,7 @@
 				<%= f.label :zip_code, "Zip Code" %>
 			</span>
 		</div>
+		<%= has_error_message?(@shelter, :address)%>
 	</li>
 	<li>
 		<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -35,7 +37,7 @@
 			<%= f.text_field :phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@shelter.phone, :delimiter => "-") %>
 			<%= f.label :phone, "###-###-####" %>
 		</div>
-		
+		<%= has_error_message?(@shelter, :phone)%>
 	</li>
 	<li>
 		<%= f.label :fax, "Fax", :class => "desc" %>
@@ -43,30 +45,27 @@
 			<%= f.text_field :fax, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@shelter.fax, :delimiter => "-") %>
 			<%= f.label :fax, "###-###-####" %>
 		</div>
+		<%= has_error_message?(@shelter, :fax)%>
 	</li>
 	<li>
 		<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-		<div>
-			<%= f.text_field :email, :class => "field text medium", :type => "email", :maxlength => 255 %>
-		</div>
+		<div><%= f.text_field :email, :class => "field text medium", :type => "email", :maxlength => 255 %></div>
+		<%= has_error_message?(@shelter, :email)%>
 	</li>
 	<li>
 		<%= f.label :website, "Website", :class => "desc" %>
-		<div>
-			<%= f.text_field :website, :class => "field text medium", :maxlength => 255 %>
-		</div>
+		<div><%= f.text_field :website, :class => "field text medium", :maxlength => 255 %></div>
+		<%= has_error_message?(@shelter, :website)%>
 	</li>
 	<li>
 		<%= f.label :twitter, "Twitter", :class => "desc" %>
-		<div>
-			<%= f.text_field :twitter, :class => "field text medium", :maxlength => 255 %>
-		</div>
+		<div><%= f.text_field :twitter, :class => "field text medium", :maxlength => 255 %></div>
+		<%= has_error_message?(@shelter, :twitter)%>
 	</li>
 	<li>
 		<%= f.label :facebook, "Facebook Page", :class => "desc" %>
-		<div>
-			<%= f.text_field :facebook, :class => "field text medium", :maxlength => 255 %>
-		</div>
+		<div><%= f.text_field :facebook, :class => "field text medium", :maxlength => 255 %></div>
+		<%= has_error_message?(@shelter, :facebook)%>
 	</li>
 	<li>
 		<%= f.label :is_kill_shelter, "Are you a kill shelter? <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -80,12 +79,14 @@
 			<%= f.label :is_kill_shelter, "No", :class => "choice" %>
 			</span>
 		</div>
+		<%= has_error_message?(@shelter, :is_kill_shelter)%>
 	</li>
 	<li>
 		<%= f.label :time_zone, "Time Zone <span class='req'>*</span>".html_safe, :class => "desc" %>
 		<div>
 			<%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, :prompt => "Select Timezone", :class => "field select medium" %>
 		</div>
+		<%= has_error_message?(@shelter, :time_zone)%>
 	</li>
 	<li class="section">
 		<section>

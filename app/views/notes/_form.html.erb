@@ -1,6 +1,7 @@
 <li>
 	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_field :title, :class => "field text large" %></div>
+	<%= has_error_message?(@note, :title)%>
 </li>
 <% if defined?(default_category) && default_category %>
 	<%= f.hidden_field :note_category_id, :value => 1 %>
@@ -10,9 +11,11 @@
 		<div>
 		<%= f.collection_select :note_category_id, NoteCategory.all, :id, :name, :prompt => "Select Category", :class => "field select medium" %>
 		</div>
+		<%= has_error_message?(@note, :note_category_id)%>
 	</li>
 <% end %>
 <li class="full">
 	<%= f.label :description, :class => "desc" %>
 	<div><%= f.text_area :description, :class => "field textarea medium" %></div>
+	<%= has_error_message?(@note, :description)%>
 </li>

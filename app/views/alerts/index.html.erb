@@ -34,8 +34,8 @@
 	
 	<div id="create_alert">
 		<h2>Add an alert</h2>
-		<div id="alert_errors"></div>
-		<%= form_for (Alert.new), :remote => true do |f| %>
+		<div id="create_alert_errors"></div>
+		<%= form_for (@alert = Alert.new), :remote => true do |f| %>
 			<ul>
 				<%= render "form", :f => f  %>
 		    	<li class="buttons">

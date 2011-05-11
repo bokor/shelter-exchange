@@ -9,7 +9,7 @@ class AccommodationsController < ApplicationController
   
     if @accommodations.blank?
       redirect_to new_accommodation_path
-    end  
+    end
   end
   
   def edit

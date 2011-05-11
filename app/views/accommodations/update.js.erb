@@ -1,5 +1,12 @@
 <% if @accommodation.errors.any? %>
-	$('#accommodation_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
+	$('#update_accommodation_errors_<%= @accommodation.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
+	<% @accommodation.errors.each do |field, msg| %>
+		var element = $("#accommodation_<%= field %>").parents("li");
+		if ( !element.hasClass("error") ) {
+			element.addClass("error");
+			element.append("<%= escape_javascript(create_error_message(msg)) %>");
+		}
+	<% end %>
 <% else %>
 	//Update Location
 	$('#edit_accommodation_<%=@accommodation.id%>').slideToggle(800, function() { 

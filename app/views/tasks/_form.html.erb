@@ -1,20 +1,21 @@
 <li>
 	<%= f.label :details, "Details <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div>
-		<%= f.text_field :details, :class => "field text large", :maxlength => 255 %>
-	</div>
+	<div><%= f.text_field :details, :class => "field text large", :maxlength => 255 %></div>
+	<%= has_error_message?(@task, :details)%>
 </li>
 <li>
 	<%= f.label :task_category_id, "Category", :class => "desc" %>
 	<div>
-		<%= f.collection_select :task_category_id, TaskCategory.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
+	<%= f.collection_select :task_category_id, TaskCategory.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
 	</div>
+	<%= has_error_message?(@task, :task_category_id)%>
 </li>
 <li>
 	<%= f.label :due_category, "When is it due?", :class => "desc" %>
 	<div>
 		<%= f.collection_select :due_category, Task::DUE_CATEGORY, :to_s, :humanize, {}, { :class => "task_due_category field select medium" } %>
 	</div>
+	<%= has_error_message?(@task, :due_category)%>
 </li>
 <li style="display:none;">
 	<div class="due_date_field">

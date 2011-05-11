@@ -1,5 +1,6 @@
 <div class="edit_alert" id="edit_alert_<%=@alert.id %>">
 	<h2>Update alert</h2>
+	<div id="update_alert_errors_<%=@alert.id %>"></div>
 	<%= form_for (@alert), :remote => true, :html => { :id => "edit_alert_form", :class => "edit_alert_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f  %>

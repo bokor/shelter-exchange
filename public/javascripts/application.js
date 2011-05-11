@@ -94,9 +94,6 @@ $(function() {
  * Application Stuff
  */
 
-// Live List Hover
-
-
 /* ------------------------------------------------------------------------
  * Live - Hover, Click Events
  * ------------------------------------------------------------------------ */
@@ -126,7 +123,21 @@ $(function(){
 			// Users.selectUser(<%=user.id%>);
 		}
 	});
+	
 });
+
+/* ------------------------------------------------------------------------
+ * Form Errors - Sets the correct class on the li tag of where the error is
+ * ------------------------------------------------------------------------ */
+$(function(){
+	$("p.error").parents("li").addClass("error");
+});
+
+// Focuses the first text field on every page
+// $(function(){
+//    var el = $(':text:eq(0)');
+//    el.focus();
+// });
 
 /* ------------------------------------------------------------------------
  * Live Events Forms - set LI focused on the forms
@@ -151,11 +162,7 @@ $(function() {
 	// }
 
 });
-// Focuses the first text field on every page
-// $(function(){
-//    var el = $(':text:eq(0)');
-//    el.focus();
-// });
+
 
 
 // Pagination Links -> AJAX Searches

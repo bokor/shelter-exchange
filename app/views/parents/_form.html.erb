@@ -3,6 +3,7 @@
 		<li>
 			<%= f.label :name, "Full name <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
+			<%= has_error_message?(@parent, :name)%>
 		</li>
 		<li class="complex">
 			<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -28,26 +29,28 @@
 					<%= f.label :zip_code, "Zip Code" %>
 				</span>
 			</div>
+			<%= has_error_message?(@parent, :address)%>
 		</li>
 		<li>
 			<%= f.label :home_phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
 				<%= f.text_field :home_phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.home_phone, :delimiter => "-") %>
-				<%= f.label :phone, "###-###-####" %>
+				<%= f.label :home_phone, "###-###-####" %>
 			</div>
-
+			<%= has_error_message?(@parent, :home_phone)%>
 		</li>
 		<li>
-			<%= f.label :mobile_phone, "Mobile <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :mobile_phone, "Mobile", :class => "desc" %>
 			<div>
 				<%= f.text_field :mobile_phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.mobile_phone, :delimiter => "-") %>
 				<%= f.label :mobile_phone, "###-###-####" %>
 			</div>
-
+			<%= has_error_message?(@parent, :mobile_phone)%>
 		</li>
 		<li>
-			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<%= f.text_field :email, :class => "field text medium", :maxlength => 255 %>
+			<%= f.label :email, "Email", :class => "desc" %>
+			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
+			<%= has_error_message?(@parent, :email)%>
 		</li>
 		<li class="buttons">
 			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>

@@ -21,7 +21,7 @@ gem 'dynamic_form', '1.1.3'         # HTML/JS
 gem 'jquery-rails', '0.2.7'         # HTML/JS
 
 gem 'aws-s3', '0.6.2'               # Amazon S3 API
-gem 'paperclip', '2.3.8'            # Attachments
+gem 'paperclip', '2.3.11'           # Attachments
 gem 'rmagick', '2.13.1'
 
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
