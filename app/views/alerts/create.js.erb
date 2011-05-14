@@ -1,12 +1,6 @@
 <% if @alert.errors.any? %>
 	$('#create_alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
-	<% @alert.errors.each do |field, msg| %>
-		var element = $("#alert_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	<%= render 'global/ajax_form_errors', :target => @alert, :form_id => "create_alert_form" %>
 <% else %>
 	<% if @alert.alertable_type == "Animal" %>
 		$('#alerts').prepend("<%= escape_javascript(render 'alert', :alert => @alert) %>"); 
@@ -17,7 +11,7 @@
 		$('#shelter_alerts').prepend("<%= escape_javascript(render @alert) %>"); 
 		$("#shelter_alerts .alert").first().effect("highlight", {}, 1500);
 	<% end %>
-	$('#new_alert').get(0).reset();
-	$('#alert_errors').html("");
+	$('#create_alert_form').get(0).reset();
+	$('#create_alert_errors').html("");
 <% end %>
 <% flash.discard %>

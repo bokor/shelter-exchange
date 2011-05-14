@@ -1,6 +1,7 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.status_change_date DESC', :limit => 250
   
+  after_validation :photo_reverted?
   before_save :check_status_changed?
   after_save :create_status_history!
   
@@ -35,7 +36,7 @@ class Animal < ActiveRecord::Base
                                          :medium => ["350x250>", :jpg],
                                          :large => ["500x400>", :jpg], 
                                          :thumb => ["100x75#", :jpg] }
-
+  before_post_process :photo_valid?                                       
 
   # Validations
   validates :name, :presence => true
@@ -52,8 +53,8 @@ class Animal < ActiveRecord::Base
   validate :euthanasia_scheduled_valid?
   
   # Custom Validations - Photo
-  validates_attachment_size :photo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less" #, :if => Proc.new { |imports| !imports.photo.file? }
-  validates_attachment_content_type :photo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
+  validates_attachment_size :photo, :less_than => IMAGE_SIZE, :message => "needs to be 4 MB or less" #, :if => Proc.new { |imports| !imports.photo.file? }
+  validates_attachment_content_type :photo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
 
   
   # Scopes - Searches
@@ -217,6 +218,22 @@ class Animal < ActiveRecord::Base
       if self.new_record? or self.animal_status_id_changed?
         status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
         status_history.save
+      end
+    end
+    
+    def photo_valid?
+      photo? and photo_file_size < IMAGE_SIZE
+    end
+    
+    def photo?
+      IMAGE_TYPES.include?(photo_content_type)
+    end
+    
+    def photo_reverted?
+      unless self.errors[:photo_file_size].blank? or self.errors[:photo_content_type].blank?
+        self.photo.instance_write(:file_name, self.photo_file_name_was) 
+        self.photo.instance_write(:file_size, self.photo_file_size_was) 
+        self.photo.instance_write(:content_type, self.photo_content_type_was)
       end
     end
 

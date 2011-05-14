@@ -19,7 +19,6 @@ class SheltersController < ApplicationController
         flash[:notice] = "#{@shelter.name} has been updated."
         format.html { redirect_to shelters_path }
       else
-        @shelter.logo.clear if @shelter.logo.errors
         format.html { render :action => :edit }
       end
     end

@@ -1,6 +1,7 @@
 <div class="edit_location" id="edit_location_<%=@location.id %>">
 	<h3>Update location</h3>
-	<%= form_for (@location), :remote => true, :html => { :id => "edit_location_form", :class => "edit_location_form"} do |f| %>
+	<div id="edit_location_errors_<%=@location.id %>"></div>
+	<%= form_for (@location), :remote => true, :html => { :id => "edit_location_form_#{@location.id}", :class => "edit_location_form"} do |f| %>
 		<ul>
 			<%= render :partial => "form", :locals => { :f => f } %>
 	    	<li class="buttons">

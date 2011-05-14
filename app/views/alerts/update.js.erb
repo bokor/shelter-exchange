@@ -1,18 +1,12 @@
 <% if @alert.errors.any? %>
-	$('#update_alert_errors_<%=@alert.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
-	<% @alert.errors.each do |field, msg| %>
-		var element = $("#alert_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	$('#edit_alert_errors_<%=@alert.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
+	<%= render 'global/ajax_form_errors', :target => @alert, :form_id => "edit_alert_form_#{@alert.id}" %>	
 <% else %>
 	$('#edit_alert_<%=@alert.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
 	});
 	$('#alert_<%=@alert.id%>').replaceWith( "<%= escape_javascript(render @alert) %>" );
 	$('#alert_<%=@alert.id%>').show().effect("highlight", {}, 1000);
-	$('#alert_errors').html("");
+	$('#edit_alert_errors_<%=@alert.id %>').html("");
 <% end %>
 <% flash.discard %>

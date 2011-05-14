@@ -1,6 +1,7 @@
 <div class="edit_comment" id="edit_comment_<%=@comment.id %>">
 	<h2>Update comment</h2>
-	<%= form_for (@comment), :remote => true, :html => { :id => "edit_comment_form", :class => "edit_comment_form"} do |f| %>
+	<div id="edit_comment_errors_<%=@comment.id %>"></div>
+	<%= form_for (@comment), :remote => true, :html => { :id => "edit_comment_form_#{@comment.id}", :class => "edit_comment_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f %>
 	    	<li class="buttons">

@@ -17,6 +17,8 @@ Last Updated : March 2, 2010
 #main form li{
 	width:64%;
 }
+.communities #main form li { width: 100%; }
+
 /* ----- Sidebar Form - Right -> Sidebar ----- */
 #sidebar form {
 	letter-spacing:.01em;

@@ -17,15 +17,7 @@ p{ margin-bottom: 10px; }
 img { border: none; outline: none; }
 
 code,code pre,kbd {font: normal 12px Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;}
-/*code.source {display: block;margin: 1em 0 1.5em;padding: 1em 1.4em;border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px;-khtml-border-radius: 3px;background-color: #F5F5FC;color: #556;font-size: 11px;}*/
 
-/*.center { margin: 0 auto; text-align: center; }
-.left{text-align:left;}
-.right{text-align:right;}
-.clear { clear: both; }*/
-/*a, img { border: none; outline: none; }
-a:hover, a:selected { border: none; outline: none; }
-*/
 
 /* COLOR SPECIFICS */
 .light_red{color:#fce2ec;}
@@ -56,6 +48,13 @@ a:hover, a:selected { border: none; outline: none; }
 .purple_background{background-color:#e6e0fa;}
 
 /*
+
+Shelter Exchange Letters - #cf7019
+Dog House Roof - #f26649
+Dog House Sides - #db8d4a
+
+
+
 Wufoo blue
 background-color: #DFEFFF;
 border-bottom-color: #C2D7EF;
@@ -129,48 +128,8 @@ text-shadow: rgba(255, 255, 255, 0.597656) 0px 1px 0px;
   
 /* Header */   
 /******************************************************************/
-#header { height: 80px; background-color: #333; margin: 0; padding: 0 0 0 3em; position:relative;
-/*	-webkit-box-shadow: rgba(0, 0, 0, 0.246094) 0px 3px 5px;*/
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5FAFEF), to(#2F6F9F));*/
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2F6F9F), to(#5FAFEF));*/
-	
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4F9FCF), to(#5FAFEF));*/
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5FAFEF), to(#4F9FCF));*/
-	
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4F9FCF), to(#2F6F9F));*/
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2F6F9F), to(#4F9FCF));*/
-/*	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#000));
-	background: #293E65 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000), to(#666));*/
-	
-/*	dark blue text - #2F6F9F
-	middle blue text - #4F9FCF;
-	tag open/close blue - #5FAFEF;
-	
-	light blue outline tag - d6e5f4
-	
-	
-	
-	outline tag 
-	-webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAATCAYAAAAeVmTJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAcJJREFUeNq8ljtLA0EQx3fvmTSmEoKptVAwhTYpVLAQW0EQBMFC8NsI9oJBEKwsRLAyhQpKEDSGROMDH5hgfMRHkrvL5W7X2UPz4ExSeHd/GOb2ipvf7czOLKaUona6yn5Ng1sHk5AzSoPFwZZ6Q11J9gK3g7jMfjKADVEWeY7jHCFg8YhJkFE1dFgu9oUC0ZYQmccGAJ5DTosSinRNZyDDf0JcPHzMsBSIPncAfmVWTWToxpZgS9j9+yy4Nckn8RhS0KFk/iWO5xGh1bEmiNRdoQEAI+omQb1GAjWI5G1hDtwqA0CwA8T9+JZYHAsicfM2D25F9suup8AGARTCyfVrDQBhbL30UgT+WKA/QSkBw8hzsfjWET3OPFsFyXYD5CmEUlLqHTN+np9izUn2Q2UK3oEoxXJz2z5K5yfBbcKO+AWPQMpFxT47DlNP4+C2JR+AiILbPQKpJeXF1pMjA8EYVOyEpmqlqm5Yx9UtY9+HWLGWA+zgLBcBtwOpCQii6PzRNE2kllUVHgfbjvL9RG6IgUBqukVJdKg5EUQME1W0ignLhZFwTxR3mg97iWw/uF2woMOXmuXRcOi046XGK30LMAA+VQNxLbtsiAAAAABJRU5ErkJggg==) 1 5 2 10 stretch stretch;
-	border-width: 1px 5px 2px 10px;
-	color: #005082;
-	display: inline-block;
-	margin-right: 3px;
-	padding-left: 2px;
-	padding-right: 1px;
-	text-shadow: rgba(255, 255, 255, 0.597656) 0px 1px 0px;
-	Inherited from span.xv-outline-node-inner
-	safari-extension://ru.chikuyonok.xv-9U5A2DGP3C/8d6f9de8/xv.css:1
-	
-	*/
-/*	border-bottom: 1px solid #CED6E5;
-	border-top: 1px solid #090E19;
-	color: white;
-	height: 40px;
-	overflow: visible;
-	padding: 10px;
-	position: relative;
-	z-index: 10;*/ }
+#header { height: 80px; background-color: #333; margin: 0; padding: 0 0 0 3em; position:relative;}
+
 #header #primary_nav ul { list-style: none; text-align: center; }
 #header #primary_nav ul li { line-height:80px; float:left; width: 120px; color: #fff; }
 #header #primary_nav ul li.current { color: #000; background-color: #fff; }
@@ -209,9 +168,9 @@ text-shadow: rgba(255, 255, 255, 0.597656) 0px 1px 0px;
     font-size: 13px;
     list-style: none;
     margin: 0px 6px 0px 0px; }
-  #tabs li.current a{background: #ddd; color: #000;}
+  #tabs li.current a{background: #ddd; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
   #tabs a:link, #tabs a:visited {
-    background: #466bb1;
+    background: #3971a8;
     color: white;
     float: left;
     padding: 6px 10px 6px 10px;
@@ -222,14 +181,12 @@ text-shadow: rgba(255, 255, 255, 0.597656) 0px 1px 0px;
 	-moz-border-radius: 3px 3px 0px 0px;
 	}
   #tabs a:hover {
-    background: #97baff;
-    color: navy; }
+    background: #76a4d1;
+    color: #eee; }
   #tabs a:link.active, #tabs a:visited.active {
     background: azure;
     color: navy;
     text-decoration: none; }
-
-
 
 
 

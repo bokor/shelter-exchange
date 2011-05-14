@@ -1,12 +1,6 @@
 <% if @note.errors.any? %>
 	$('#create_note_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
-	<% @note.errors.each do |field, msg| %>
-		var element = $("#note_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	<%= render 'global/ajax_form_errors', :target => @note, :form_id => "create_note_form" %>
 <% else %>
 	// Check Active Link and set to All if doesn't exist so it will work for other implementations of note (i.e. Parent)
 	var note_filter_active = "All";

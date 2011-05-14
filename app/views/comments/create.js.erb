@@ -1,16 +1,28 @@
 <% if @comment.errors.any? %>
-	$('#comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+
+	<% if @comment.commentable_type == "Placement" %>
+		$('#create_comment_errors_<%=@comment.commentable_id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+		<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "create_comment_form_#{@comment.commentable_id}" %>
+	<% else %>
+		$('#create_comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+		<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "create_comment_form" %>
+	<% end %>
+	
 <% else %>
+
 	<% if @comment.commentable_type == "Placement" %>
 		TopUp.close();
 		$('#comments_<%=@comment.commentable_id%>').prepend("<%= escape_javascript(render @comment) %>"); 
 		$("#comments_<%=@comment.commentable_id%> .comment").first().effect("highlight", {}, 1000);
-		$('#new_comment_<%=@comment.commentable_id%>').get(0).reset();
+		$('#create_comment_form_<%=@comment.commentable_id%>').get(0).reset();
+		$('#create_comment_errors_<%=@comment.commentable_id%>').html("");
 	<% else %>
 		$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
 		$("#comments .comment").first().effect("highlight", {}, 1000);
-		$('#new_comment').get(0).reset();
+		$('#create_comment_form').get(0).reset();
+		$('#create_comment_errors').html("");
 	<% end %>
-	$('#comment_errors').html("");
+	
+	
 <% end %>
 <% flash.discard %>

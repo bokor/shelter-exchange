@@ -1,0 +1,7 @@
+$("#<%= form_id %> li").removeClass("error");
+$("#<%= form_id %> p.error").replaceWith("");
+<% target.errors.each do |field, msg| %>
+	var element = $("#<%= form_id %> #<%= target.class.name.downcase %>_<%= field %>").parents("li");
+	element.addClass("error");
+	element.append("<%= escape_javascript(create_error_message(msg)) %>");
+<% end %>

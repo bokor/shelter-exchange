@@ -1,5 +1,6 @@
 <% if @location.errors.any? %>
-	$('#location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+	$('#create_location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+	<%= render 'global/ajax_form_errors', :target => @location, :form_id => "create_location_form" %>
 <% else %>
 	// Add Location
 	$('#locations').prepend("<%= escape_javascript(render @location) %>"); 

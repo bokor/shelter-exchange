@@ -1,19 +1,13 @@
 <% if @note.errors.any? %>
-	$('#update_note_errors_<%=@note.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
-	<% @note.errors.each do |field, msg| %>
-		var element = $("#note_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	$('#edit_note_errors_<%=@note.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
+	<%= render 'global/ajax_form_errors', :target => @note, :form_id => "edit_note_form_#{@note.id}" %>
 <% else %>
 	$('#edit_note_<%=@note.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
 	});
 	$('#note_<%=@note.id%>').replaceWith( "<%= escape_javascript(render @note) %>" );
 	$('#note_<%=@note.id%>').show().effect("highlight", {}, 2000);
-	$('#note_errors').html("");
+	$('#edit_note_errors_<%=@note.id%>').html("");
 <% end %>
 <% flash.discard %>
 

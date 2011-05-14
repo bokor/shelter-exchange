@@ -56,7 +56,7 @@
 	<div id="create_accommodation">
 		<h2>Create a new accommodation</h2>
 		<div id="create_accommodation_errors"></div>
-		<%= form_for (@accommodation = Accommodation.new), :remote => true do |f| %>
+		<%= form_for (@accommodation = Accommodation.new), :remote => true, :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
 			<ul>
 				<%= render :partial => "form", :locals => { :f => f } %>
 				<li class="buttons">
@@ -71,8 +71,8 @@
 			<h2>Edit locations</h2>
 			<div id="create_location">
 				<h3>Add a new location</h3>
-				<div id="location_errors"></div>
-				<%= form_for (@location = Location.new), :remote => true do |f| %>
+				<div id="create_location_errors"></div>
+				<%= form_for (@location = Location.new), :remote => true, :html => { :id => "create_location_form", :class => "create_location_form" } do |f| %>
 					<ul>
 						<%= render :partial => "locations/form", :locals => { :f => f } %>
 						<li class="buttons">

@@ -1,7 +1,9 @@
 class Shelter < ActiveRecord::Base
   acts_as_mappable
-  
+
+  after_validation :logo_reverted?
   before_save :geocode_address, :format_phone_numbers
+  
   
   # Associations
   belongs_to :account
@@ -28,7 +30,8 @@ class Shelter < ActiveRecord::Base
                                         :medium => ["350x250>", :jpg],
                                         :large => ["500x400>", :jpg], 
                                         :thumb => ["150x75>", :jpg] }
-  # before_post_process :is_image?
+                          #:convert_options => { :small => "-quality 80", }
+  before_post_process :logo_valid?
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
@@ -42,9 +45,9 @@ class Shelter < ActiveRecord::Base
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
                                         :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!                 
-                    
-  validates_attachment_size :logo, :less_than => 1.megabytes, :message => "needs to be 1 MB or less"
-  validates_attachment_content_type :logo, :content_type => ["image/jpeg", "image/png", "image/gif"], :message => "needs to be a JPG, PNG, or GIF file"
+ 
+  validates_attachment_size :logo, :less_than => IMAGE_SIZE, :message => "needs to be 4 MB or less"
+  validates_attachment_content_type :logo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
   
   # Scopes  
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
@@ -70,19 +73,24 @@ class Shelter < ActiveRecord::Base
       self.fax = self.fax.gsub(/[^0-9]/, "") unless self.fax.blank?
     end
     
-    # def has_logo_errors?
-    #   # logger.debug("ERRORS :::::::::: #{self.errors}")
-    #   #       logger.debug("LOGO ERRORS :::::::::: #{self.logo.errors}")
-    #   #       self.logo = nil  unless self.errors[:logo_content_type].blank? or self.errors[:logo_file_size].blank?
-    #   
-    # end
-    # 
-    # def is_image?
-    #   # !!(logo_content_type =~ ["image/jpeg", "image/png", "image/gif"])
-    # end
-    
     def address_valid?
       errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
+    end
+        
+    def logo_valid?
+      logo? and logo_file_size < IMAGE_SIZE
+    end
+    
+    def logo?
+      IMAGE_TYPES.include?(logo_content_type)
+    end
+    
+    def logo_reverted?
+      unless self.errors[:logo_file_size].blank? or self.errors[:logo_content_type].blank?
+        self.logo.instance_write(:file_name, self.logo_file_name_was) 
+        self.logo.instance_write(:file_size, self.logo_file_size_was) 
+        self.logo.instance_write(:content_type, self.logo_content_type_was)
+      end
     end
   
 end

@@ -1,12 +1,13 @@
 <% if @comment.errors.any? %>
-	$('#comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+	$('#edit_comment_errors_<%=@comment.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+	<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "edit_comment_form_#{@comment.id}" %>	
 <% else %>
 	$('#edit_comment_<%=@comment.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
 	});
 	$('#comment_<%=@comment.id%>').replaceWith( "<%= escape_javascript(render @comment) %>" );
 	$('#comment_<%=@comment.id%>').show().effect("highlight", {}, 2000);
-	$('#comment_errors').html("");
+	$('#edit_comment_errors_<%=@comment.id %>').html("");
 <% end %>
 <% flash.discard %>
 

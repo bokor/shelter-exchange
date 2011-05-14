@@ -1,5 +1,6 @@
 <% if @location.errors.any? %>
-	$('#location_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+	$('#edit_location_errors_<%=@location.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @location) %>" );
+	<%= render 'global/ajax_form_errors', :target => @location, :form_id => "edit_location_form_#{@location.id}" %>
 <% else %>
 	$('#edit_location_<%=@location.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

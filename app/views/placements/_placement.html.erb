@@ -22,7 +22,7 @@
 			<h4 style="float:left;border:none;height: 30px; line-height: 30px;padding:0; margin:0;">Comments:</h4>
 			<span style="float:right;text-align:right;">
 				<p class="action_links" style="font-size: 10px;font-weight:bold;">
-					<a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 240, type = dom, title = Add comment, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Add comment</a>
+					<a href="#create_comment_<%=placement.id%>" id="add_comment_link_<%=placement.id%>" toptions="width = 450, height = 350, type = dom, title = Add comment, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Add comment</a>
 				</p>
 			</span>
 		</div>
@@ -31,8 +31,8 @@
 		
 		<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
 			<h2>Add an comment for <%= placement.animal.name %></h2>
-			<div id="comment_errors"></div>
-			<%= form_for ([placement, Comment.new]), :remote => true, :html => { :id => "new_comment_#{placement.id}" } do |f| %>
+			<div id="create_comment_errors_<%=placement.id%>"></div>
+			<%= form_for ([placement, @comment = Comment.new]), :remote => true, :html => { :id => "create_comment_form_#{placement.id}" } do |f| %>
 				<ul>
 					<%= render "comments/form", :f => f  %>
 			    	<li class="buttons">

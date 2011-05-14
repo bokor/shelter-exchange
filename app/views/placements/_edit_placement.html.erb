@@ -1,7 +1,8 @@
 <tr class="edit_placement" id="edit_placement_<%=@placement.id %>">
 	<td colspan="3">
 	<h2>Update placement</h2>
-	<%= form_for (@placement), :remote => true, :html => { :id => "edit_placement_form", :class => "edit_placement_form"} do |f| %>
+	<div id="edit_placement_errors_<%=@placement.id %>"></div>
+	<%= form_for (@placement), :remote => true, :html => { :id => "edit_placement_form_#{@placement.id}", :class => "edit_placement_form" } do |f| %>
 		<ul>
 			<li>
 				<%= f.label :comment, "Comment", :class => "desc" %>

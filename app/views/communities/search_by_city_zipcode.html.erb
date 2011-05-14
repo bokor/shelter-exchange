@@ -147,11 +147,7 @@
 			<h2>Search By City/Zipcode:</h2>
 			<div style="float: left; width: 50%;">
 				<form action="#" id="form_address_search">
-			    	<ul class="form">
-						<li>
-							<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
-						</li>
-					</ul>
+			    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
 				</form>
 			</div>
 			<div style="float: left; width: 50%; text-align:right;">
@@ -166,32 +162,35 @@
 		</div>
 		<div id="filters" style="float: left; height: 30px; line-height: 30px;">
 			<style type="text/css" media="screen">
-				#filters .form li{float: left; padding-right: 20px;height: 1; line-height: 1;}
-				#filters .form:after{clear:both;}
+			#form_filters ul {margin-top: -18px;}
+				#form_filters  li span{padding-right: 20px;}
+/*				#form_filters .form:after{clear:both;}*/
 			</style>
 			<form action="#" id="form_filters">
-				<ul class="form">
+				<ul>
 					<li>
-						<%= label_tag :filters_animal_type, "Animal type" %><br />
-						<%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, :prompt => "All" %>
-					</li>
-					<li>
-						<div id="breed_field" style="display:none;width: 200px;">
-							<%= label_tag :filters_breed, "Breed" %><br />
-							<%= text_field_tag "filters[breed]", "",:autocomplete => :off %>
-						</div>
-					</li>
-					<li>
-						<%= label_tag :filters_sex, "Sex" %><br />
-						<%= collection_select :filters, :sex, SEX, :to_s, :humanize, :prompt => "All" %>
-					</li>
-					<li>
-						<%= label_tag :filters_animal_status, "Status" %><br />
-						<%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, :prompt => "All" %>
-					</li>
-					<li>
-						<br /><%= check_box_tag "filters[euthanasia_only]", true %>
-						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks" %>
+						<span>
+							<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
+							<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
+						</span>
+
+						<span>
+							<div id="breed_field" style="display:none;width: 250px;">
+								<%= label_tag :filters_breed, "Breed", :class => "desc" %>
+								<%= text_field_tag "filters[breed]", "",:autocomplete => :off, :class => "field text large", :maxlength => 255 %>
+							</div>
+						</span>
+
+						<span>
+							<%= label_tag :filters_sex, "Sex", :class => "desc" %>
+							<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
+						</span>
+
+						<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
+						<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
+
+					<span>	<%= check_box_tag "filters[euthanasia_only]", true %>
+						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "desc" %></span>
 					</li>
 				</ul>
 				<%= hidden_field_tag "filters[sw]" %>

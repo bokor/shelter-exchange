@@ -1,12 +1,6 @@
 <% if @task.errors.any? %>
 	$('#create_task_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
-	<% @task.errors.each do |field, msg| %>
-		var element = $("#task_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	<%= render 'global/ajax_form_errors', :target => @task, :form_id => "create_task_form" %>
 <% else %>
 	// Section Specific Code
 	<% due_section = find_due_section(@task) %>
@@ -15,9 +9,9 @@
 	$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
 	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
 	// Clear up final functions
-	$('#new_task').get(0).reset();
+	$('#create_task_form').get(0).reset();
 	$('.due_date_field').parent().hide(); // Hide LI tag
 	$('#task_due_date').val( Date.today().toString('yyyy-MM-dd') );
-	$('#task_errors').html("");
+	$('#create_task_errors').html("");
 <% end %>
 <% flash.discard %>

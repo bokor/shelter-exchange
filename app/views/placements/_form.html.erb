@@ -1,15 +1,16 @@
 <li>
 	<%= f.label :placement_type, "What type of placement? <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div>
-	<% Placement::PLACEMENT_TYPE.each do |type| %>
-		<span>
-		<%= f.radio_button :placement_type, type, :class => "field radio" %>
-		<%= f.label "placement_type_#{type}", type.humanize, :class => "choice" %>
-		</span>
-	<% end %>
+	<div id="placement_placement_type">
+		<% Placement::PLACEMENT_TYPE.each do |type| %>
+			<span>
+				<%= f.radio_button :placement_type, type, :class => "field radio" %>
+				<%= f.label "placement_type_#{type}", type.humanize, :class => "choice" %>
+			</span>
+		<% end %>
 	</div>
+	<%= has_error_message?(@parent, :placement_type)%>
 </li>
-<%= f.fields_for :comments, @placement.comments.build do |comment_fields| %>
+<%= f.fields_for :comments, @comment do |comment_fields| %>
 	<li>
 		<%= comment_fields.label :comment, "Comment", :class => "desc" %>
 		<div><%= comment_fields.text_area :comment, :class => "field textarea medium" %></div>
@@ -17,4 +18,4 @@
 	<%= comment_fields.hidden_field :shelter_id, :value => @current_shelter.id %>
 <% end %>
 <%= f.hidden_field :parent_id, :value => @parent.id %>
-<%= f.hidden_field :animal_id %>
+

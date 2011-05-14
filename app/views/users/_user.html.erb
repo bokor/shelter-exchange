@@ -11,9 +11,11 @@
 	</span>
 	<span class="action_links">
 		<% if can?(:update, User) %>
-		<span class="edit_link">
-			<%= link_to "Edit", edit_user_path(user), :remote => true %>
-		</span>
+			<% unless user.role == "owner" and current_user.role != "owner" %>
+			<span class="edit_link">
+				<%= link_to "Edit", edit_user_path(user), :remote => true %>
+			</span>
+			<% end %>
 		<% end %>
 		<% if can?(:destroy, User) %>
 			<% unless user.role == "owner" or user == current_user %>

@@ -27,7 +27,7 @@
 	<div id="create_task">
 		<h2>Add a task</h2>
 		<div id="create_task_errors"></div>
-		<%= form_for (@task = Task.new), :remote => true do |f| %>
+		<%= form_for (@task = Task.new), :remote => true, :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f  %>
 			<li class="buttons">

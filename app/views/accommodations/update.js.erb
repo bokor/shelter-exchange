@@ -1,12 +1,6 @@
 <% if @accommodation.errors.any? %>
-	$('#update_accommodation_errors_<%= @accommodation.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
-	<% @accommodation.errors.each do |field, msg| %>
-		var element = $("#accommodation_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	$('#edit_accommodation_errors_<%=@accommodation.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
+	<%= render 'global/ajax_form_errors', :target => @accommodation, :form_id => "edit_accommodation_form_#{@accommodation.id}" %>	
 <% else %>
 	//Update Location
 	$('#edit_accommodation_<%=@accommodation.id%>').slideToggle(800, function() { 
@@ -15,6 +9,6 @@
 		$(this).remove(); 
 	});
 	
-	$('#accommodation_errors').html("");
+	$('#edit_accommodation_errors_<%=@accommodation.id %>').html("");
 <% end %>
 <% flash.discard %>

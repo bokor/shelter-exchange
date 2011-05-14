@@ -137,7 +137,7 @@
 	<div id="create_alert">
 		<h2>Add an alert for <%= @animal.name %></h2>
 		<div id="create_alert_errors"></div>
-		<%= form_for ([@animal, @alert = Alert.new]), :remote => true do |f| %>
+		<%= form_for ([@animal, @alert = Alert.new]), :remote => true, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
 			<ul>
 				<%= render "alerts/form", :f => f %>
 		    	<li class="buttons">
@@ -152,7 +152,7 @@
 	<div id="create_note">
 		<h2>Add a note for <%= @animal.name %></h2>
 		<div id="create_note_errors"></div>
-		<%= form_for ([@animal, @note = Note.new]), :remote => true do |f| %>
+		<%= form_for ([@animal, @note = Note.new]), :remote => true, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
 			<ul>
 				<%= render "notes/form", :f => f %>
 		    	<li class="buttons">
@@ -168,7 +168,7 @@
 	<div id="create_task">
 		<h2>Add a task for <%= @animal.name %></h2>
 		<div id="create_task_errors"></div>
-		<%= form_for ([@animal, @task = Task.new]), :remote => true do |f| %>
+		<%= form_for ([@animal, @task = Task.new]), :remote => true, :html => { :id => "create_task_form", :class => "create_task_form" } do |f| %>
 			<ul>
 				<%= render "tasks/form", :f => f %>
 		    	<li class="buttons">

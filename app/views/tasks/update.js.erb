@@ -1,12 +1,6 @@
 <% if @task.errors.any? %>
-	$('#update_task_errors_<%= @task.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
-	<% @task.errors.each do |field, msg| %>
-		var element = $("#task_<%= field %>").parents("li");
-		if ( !element.hasClass("error") ) {
-			element.addClass("error");
-			element.append("<%= escape_javascript(create_error_message(msg)) %>");
-		}
-	<% end %>
+	$('#edit_task_errors_<%=@task.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
+	<%= render 'global/ajax_form_errors', :target => @task, :form_id => "edit_task_form_#{@task.id}" %>
 <% else %>
 	<% due_section = find_due_section(@task) %>
 	<% if @changed %>
@@ -31,6 +25,6 @@
 		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
 		$('#task_<%=@task.id%>').show().effect("highlight", {}, 1000);
 	<% end %>
-	$('#task_errors').html("");
+	$('#edit_task_errors_<%=@task.id%>').html("");
 <% end %>
 <% flash.discard %>

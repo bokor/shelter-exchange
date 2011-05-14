@@ -318,8 +318,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* Accommodations :: Forms
 -----------------------------------------------------------------------------*/
 .index_accommodations #sidebar #create_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
-#accommodations .edit_accommodation { width: 42%; background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-#accommodations .edit_accommodation input[type=text]{width: 98%;}
+#accommodations .edit_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 
 
 
@@ -356,7 +355,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 /* -- Communities :: Common Styles --*/
 .communities ul {list-style:none;}
 .communities ul.form {padding-bottom: 0; margin-bottom:0;}
-.communities input[type=text]{height:20px;width:95%;font-size:14px; }
+.communities input[type=text]{height:20px;width:90%;font-size:14px; }
 
 /* -- Communities :: Page Heading and Titles --*/
 .communities .page_heading{border-bottom:1px solid #eee; }
@@ -532,7 +531,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 .show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
 .show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}
 .show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}
-.show_parents .create_comment{background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
+.show_parents .create_comment{height: 350px;background-color: #fffbe5; border: 1px #fff3b2 solid; padding: 15px; margin-bottom: 15px;}
 .show_parents #sidebar ul.action_links .button { min-width: 200px;}
 
 
