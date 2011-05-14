@@ -225,7 +225,7 @@ If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
 
 .capacity .status{/* display: inline-block;*/}
 .capacity .details{/*display: inline-block;*/}
-.capacity .circle{ height: 100px; width: 100px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
+.capacity .circle{ height: 100px; width: 100px; text-align:center; line-height: 100px; -moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .capacity .over_capacity .circle{background-color: #fce2ec; border:1px solid #f286b1;}
 .capacity .warning_level .circle{background-color:#fffbe5; border:1px solid #ffd27f;}
 .capacity .normal .circle{background-color:#f1fce2; border:1px solid #c4f286;}
