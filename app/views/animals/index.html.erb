@@ -17,7 +17,7 @@
 			<table class="search">
 				<tr>
 					<td class="full_search">
-						<h3>Search for animal:(<span class="texthelp" data-helptext="this is a test. this is a test. this is a test. this is a test. this is a test. this is a test. this is a test. this is a test. ">?</span>)</h3>
+						<h3>Search for animal:</h3>
 						<%= form_for :animals, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", ""  %>
 							<%# text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this);"  %>

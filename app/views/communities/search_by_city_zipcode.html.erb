@@ -38,12 +38,14 @@
 			});
 			
 			$("#filters_animal_type").bind("change", function(e){
-				if($(this).val() == ""){
-					$("#breed_field").hide();
-				} else {
-					$("#breed_field").show();
-				}
 				$("#filters_breed").val("");
+				if($(this).val() == ""){
+					$("#filters_breed").attr("disabled", true);
+					$("#filters_breed").attr("placeholder", "Please select type first");
+				} else {
+					$("#filters_breed").attr("disabled", false);
+					$("#filters_breed").attr("placeholder", "Enter Breed Name");
+				}
 				findAnimalsInBounds();
 				e.preventDefault();
 			});
@@ -141,31 +143,19 @@
 		<h1>Community</h1>
 	</div> -->
 		
-	<div class="page_content">
-		
-		<div style="padding-top: 5px; padding-bottom: 0px;">
-			<h2>Search By City/Zipcode:</h2>
-			<div style="float: left; width: 50%;">
-				<form action="#" id="form_address_search">
-			    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
-				</form>
-			</div>
-			<div style="float: left; width: 50%; text-align:right;">
-				<%= link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div class="separator"></div>
-		
-		<div style="float: left; padding-right: 50px; height: 30px; line-height: 30px;">
-			<h3>Filter Animals by:</h3>
-		</div>
-		<div id="filters" style="float: left; height: 30px; line-height: 30px;">
-			<style type="text/css" media="screen">
-			#form_filters ul {margin-top: -18px;}
-				#form_filters  li span{padding-right: 20px;}
-/*				#form_filters .form:after{clear:both;}*/
-			</style>
+	
+		<style type="text/css" media="screen">
+		#filters{display:none; height: 75px;}
+		#filters2{display:none; height: 75px;}
+		#filters.filter_section{padding: 1.5em 1.5em 1em 1.5em; }
+		#form_filters  li span{padding-right: 20px;}
+		.filter_link { color: #343434; padding: 13px;  -webkit-border-radius: 0 0 10px 10px;border-bottom:1px solid #ddd;}
+		.filter_link2 { color: #343434; padding: 13px;  -webkit-border-radius: 10px 10px 0 0;border-bottom:1px solid #ddd;}
+		</style>
+
+
+		<div id="filters" class="filter_section blue_background">
+			
 			<form action="#" id="form_filters">
 				<ul>
 					<li>
@@ -175,9 +165,8 @@
 						</span>
 
 						<span>
-							<div id="breed_field" style="display:none;width: 250px;">
-								<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-								<%= text_field_tag "filters[breed]", "",:autocomplete => :off, :class => "field text large", :maxlength => 255 %>
+							<%= label_tag :filters_breed, "Breed", :class => "desc" %>
+							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255 %>
 							</div>
 						</span>
 
@@ -198,19 +187,70 @@
 			</form>
 		</div>
 		
-		<div class="clear"></div>
-		<div class="separator"></div>
+
+		<div class="page_content">
+			
+			<div style="padding-bottom: 0px;">
+				<div style="padding-top: 5px;float: left; width: 50%;">
+					<h2>Search By City/Zipcode:</h2>
+					<form action="#" id="form_address_search">
+				    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
+					</form>
+				</div>
+				<div style="float: left; width: 50%; text-align:right;">
+					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your animals?</a>
+					<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div style="float: right; width: 100%; text-align:right;">
+				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow your animals?</a>
+				<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
+			</div>
+				<div id="filters2" class="filter_section blue_background">
+
+					<form action="#" id="form_filters">
+						<ul>
+							<li>
+								<span>
+									<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
+									<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
+								</span>
+
+								<span>
+									<%= label_tag :filters_breed, "Breed", :class => "desc" %>
+									<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255 %>
+									</div>
+								</span>
+
+								<span>
+									<%= label_tag :filters_sex, "Sex", :class => "desc" %>
+									<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
+								</span>
+
+								<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
+								<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
+
+							<span>	<%= check_box_tag "filters[euthanasia_only]", true %>
+								<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "desc" %></span>
+							</li>
+						</ul>
+						<%= hidden_field_tag "filters[sw]" %>
+						<%= hidden_field_tag "filters[ne]" %>
+					</form>
+				</div>
+			<div class="separator"></div>
 		
-		<table style="width: 100%; padding-bottom: 20px;">
-			<tr>
-				<td style="width:47%; padding-right: 2%; vertical-align:top;">
-					<div id="map_canvas" style="width:100%; height: 500px;"></div>
-				</td>
-				<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
-					<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List</h1></div>
-				</td>
-			</tr>
-		</table>
+			<table style="width: 100%; padding-bottom: 20px;">
+				<tr>
+					<td style="width:47%; padding-right: 2%; vertical-align:top;">
+						<div id="map_canvas" style="width:100%; height: 500px;"></div>
+					</td>
+					<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
+						<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List</h1></div>
+					</td>
+				</tr>
+			</table>
 		
 	</div>
 		

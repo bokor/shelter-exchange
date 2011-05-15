@@ -1,53 +1,36 @@
-<div id="header">
-	<!-- <div id="tabs"> -->
-		<ul id="tabs">
-			<li class="<%= selected_navigation(:dashboard) %>"><%= link_to "Dashboard", dashboard_path %></li>
-			<li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
-			<li class="<%= selected_navigation(:tasks) %>"><%= link_to "Tasks", tasks_path %></li>
-			<li class="<%= selected_navigation(:alerts) %>"><%= link_to "Alerts", alerts_path %></li>
-			<li class="<%= selected_navigation(:parents) %>"><%= link_to "Parents", parents_path %></li>
-			<li class="<%= selected_navigation(:accommodations) %>"><%= link_to "Accommodations", accommodations_path %></li>
-			<li class="<%= selected_navigation(:communities) %>"><%= link_to "Community", communities_path %></li>
-			<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", reports_path %></li>
-		</ul>
-	<!-- </div> -->
-	<!-- <style type="text/css" media="screen">
-		#navbox{position: relative; position: relative;background-color: #fff; width: 100px; text-align: right;
-			-mox-box-shadow: 0px 0px 10px #000;-webkit-box-shadow: 0px 0px 10px #000;box-shadow: 0px 0px 10px #000;}
-		#navbox a{color: #343434;}
-		#navbox-links{ position: relative;padding: 15px; background-color: #fff; width: 200px;
-			-mox-box-shadow: 0px 0px 10px #000;-webkit-box-shadow: 0px 0px 10px #000;box-shadow: 0px 0px 10px #000;
-			z-index: 10;
-			}
-		#navbox-links div{ }
-		#navbox-links div a{}
-	</style> -->
-	<div id="secondary_nav">
-		<ul>
-			<li class=""><%= link_to "Settings", "#" %>
-				<!-- <div id="navbox">
-									<%= link_to "Settings", "#" %>
-								</div>
-								<div id="navbox-links">
-									<div class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></div>
-									<div class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></div>
-									<div class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></div>
-									<% if can?(:update_settings, User)%>
-									<div class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></div>
-									<% end %>
-									
-								</div> -->
-				<ul>
-					<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
-					<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
-					<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
-					<% if can?(:update_settings, User)%>
-					<li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
-					<% end %>
-				</ul>
-		    </li>
-			<li class="help"><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></li>
-		    <li class="logout"><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></li>
-		</ul>
+<header>
+	<div id="toolbar">
+		<span class="col_1">
+			<span><%=@current_shelter.name%></span>	
+		</span>
+		<span class="col_2">
+			<span><%=current_user.name%></span>	
+			<span class="link_separator">|</span>
+			<span><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></span>
+			<span class="link_separator">|</span>
+			<span><%= link_to "Settings", "#", :class => "settings_link" %></span>
+			<span class="link_separator">|</span>
+			<span><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></span>
+			<ul class="settings_menu">
+				<!-- <li class="arrow-border"></li>
+				<li class="arrow"></li> -->
+		      	<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
+				<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
+				<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
+				<% if can?(:update_settings, User)%>
+				<li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
+				<% end %>
+		    </ul>
+		</span>
 	</div>
-</div>
+	<ul id="menu">
+		<li class="<%= selected_navigation(:dashboard) %>"><%= link_to "Dashboard", dashboard_path %></li>
+		<li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
+		<li class="<%= selected_navigation(:tasks) %>"><%= link_to "Tasks", tasks_path %></li>
+		<li class="<%= selected_navigation(:alerts) %>"><%= link_to "Alerts", alerts_path %></li>
+		<li class="<%= selected_navigation(:parents) %>"><%= link_to "Parents", parents_path %></li>
+		<li class="<%= selected_navigation(:accommodations) %>"><%= link_to "Accommodations", accommodations_path %></li>
+		<li class="<%= selected_navigation(:communities) %>"><%= link_to "Community", communities_path %></li>
+		<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", reports_path %></li>
+	</ul>
+</header>

@@ -191,24 +191,18 @@ $(function() {
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
 	});
-	
 	$('#add_transfer_request_link, #cancel_transfer_request').click(function() {
 		$('#create_transfer_request').slideToggle();
 	});
 
 });
 
-
-
-$(function(){
-	$('#secondary_nav ul li').bind("click", function(){
-		//Add the Arrow
-		$('ul li:first-child', this).before(
-			'<li class="arrow"></li>'
-		);
-		//Remove the Border
-		$('ul li.arrow', this).css('border-bottom', '0');
-		// Show or Hide Hoved Menu
-		$('ul', this).slideToggle();
-	});
+/* ------------------------------------------------------------------------
+ * Toolbar Settings Menu
+ * ------------------------------------------------------------------------ */
+$(function () {
+    $('.settings_link').bind("click", function (e) {
+		$('ul.settings_menu').slideToggle("medium");
+		e.preventDefault();
+    });
 });

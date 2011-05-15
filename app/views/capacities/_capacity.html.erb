@@ -12,13 +12,10 @@
 <div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
 	
 	<span class="status <%=status_class%>">
-		<div class="circle"></div>
+		<div class="circle"><h3><%= capacity.animal_type.name %></h3></div>
 	</span>
 	
 	<span style="details">
-		<span class="animal_type">
-			<h3><%= capacity.animal_type.name %></h3>
-		</span>
 		<span class="action_links">
 			<% if can?(:update, Capacity) %>
 				<span class="edit_link">
