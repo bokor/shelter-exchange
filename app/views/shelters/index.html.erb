@@ -12,7 +12,7 @@
 
 <%= content_for :page_content do %>
 
-	<div class="page_heading blue_background">
+	<div class="page_heading blue">
 		
 		<% if @shelter.logo.file? %>
 			<div class="logo">
@@ -42,9 +42,9 @@
 					<li><%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %></li>
 				</ul>
 				<% if @shelter.is_kill_shelter %>
-					<div id="shelter_message" class="kill">Kill Shelter</div>
+					<div class="shelter_type kill">Kill Shelter</div>
 				<% else %>
-					<div id="shelter_message" class="no_kill">No Kill Shelter</div>
+					<div class="shelter_type no_kill">No Kill Shelter</div>
 				<% end %>
 			</div>
 			<div id="contact_details">

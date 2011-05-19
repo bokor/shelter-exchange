@@ -1,4 +1,4 @@
-<div class="edit_accommodation" id="edit_accommodation_<%=@accommodation.id %>">
+<div class="box blue" id="edit_accommodation_<%=@accommodation.id %>">
 	<h2>Update accommodation</h2>
 	<div id="edit_accommodation_errors_<%=@accommodation.id %>"></div>
 	<%= form_for (@accommodation), :remote => true, :html => { :id => "edit_accommodation_form_#{@accommodation.id}", :class => "edit_accommodation_form"} do |f| %>

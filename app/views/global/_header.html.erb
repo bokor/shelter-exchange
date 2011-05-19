@@ -6,9 +6,9 @@
 		<span class="col_2">
 			<span><%=current_user.name%></span>	
 			<span class="link_separator">|</span>
-			<span><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></span>
-			<span class="link_separator">|</span>
 			<span><%= link_to "Settings", "#", :class => "settings_link" %></span>
+			<span class="link_separator">|</span>
+			<span><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></span>
 			<span class="link_separator">|</span>
 			<span><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></span>
 			<ul class="settings_menu">

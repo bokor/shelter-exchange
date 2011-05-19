@@ -1,7 +1,9 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
 body { background-color: #e7e7e7; color: #222; font: normal 13px "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif; min-width: 960px; }
-/*text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;}*/
+/*
+-webkit-font-smoothing: subpixel-antialiased;
+text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;}*/
 
 /*********************************************************/
 /* ---------------------- GLOBAL ----------------------- */
@@ -16,40 +18,10 @@ h5 {  }
 p{ margin-bottom: 10px; }
 img { border: none; outline: none; }
 
-code,code pre,kbd {font: normal 12px Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;}
+code,code pre,kbd {font: normal 12px Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace; /*Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;*/}
 
-.link_separator{padding: 0 10px;}
-
-/* COLOR SPECIFICS */
-.light_red{color:#fce2ec;}
-.dark_red{color:#f286b1;}
-.light_blue{color:#e0f1fa;}
-.dark_blue{color:#89cbeb;}
-.light_green{color:#f1fce2;}
-.dark_green{color:#c4f286;}
-.light_yellow{color:#fffbe5;}
-.dark_yellow{color:#fff3b2;}
-.light_orange{color:#fff6e5;}
-.dark_orange{color:#ffd27f;}
-.light_purple{color:#e6e0fa;}
-.dark_purple{color:#c3b4f3;}
-
-.red_border{border:1px solid #f286b1;}
-.blue_border{border:1px solid #89cbeb;}
-.green_border{border:1px solid #c4f286;}
-.yellow_border{border:1px solid #fff3b2;}
-.orange_border{border:1px solid #ffd27f;}
-.purple_border{border:1px solid #c3b4f3;}
-
-.red_background{background-color:#fce2ec; }
-.blue_background{background-color:#e0f1fa; }
-.green_background{background-color:#f1fce2; }
-.yellow_background{background-color:#fffbe5; }
-.orange_background{background-color:#fff6e5;}
-.purple_background{background-color:#e6e0fa;}
 
 /*
-
 Shelter Exchange Letters - #cf7019
 Dog House Roof - #f26649
 Dog House Sides - #db8d4a
@@ -87,7 +59,7 @@ color: #AF2B2B;
   
 /* Header */   
 /******************************************************************/
-header{height: 80px; background-color: #209000; position:relative;}
+header{height: 90px; background-color: #209000; position:relative;}
 
 #toolbar { font-family: 'Helvetica Neue', Arial, Verdana, sans-serif; height: 35px; line-height: 35px; background-color: #222; margin: 0; padding: 0 3em 0 3em; position:relative;}
 #toolbar:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -96,13 +68,12 @@ header{height: 80px; background-color: #209000; position:relative;}
 #toolbar a {color: #eee;}
 #toolbar .col_1{width: 50%;}
 #toolbar .col_2{width: 50%; float:right; text-align:right;}
-#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:8em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
+#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
 #toolbar .settings_menu li { padding: 0px 10px; }
 #toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
-#toolbar .settings_menu li a:hover { color: #f26649;}
-#toolbar .settings_menu li.current a { color: #f26649;}
-
-#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; }
+#toolbar .settings_menu li a:hover { color: #f26649;/*text-decoration: underline;*/}
+#toolbar .settings_menu li.current a { color: #f26649; /*text-decoration: underline;*/}
+#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
 #menu li {float: left; font-size: 13px;list-style: none;margin: 0px 6px 0px 0px; }
 #menu li.current a{background: #e7e7e7; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
 #menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}

@@ -154,7 +154,7 @@
 		</style>
 
 
-		<div id="filters" class="filter_section blue_background">
+		<div id="filters" class="section_heading no_borders blue">
 			
 			<form action="#" id="form_filters">
 				<ul>
@@ -178,8 +178,17 @@
 						<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
 						<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
 
-					<span>	<%= check_box_tag "filters[euthanasia_only]", true %>
-						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "desc" %></span>
+						<span>	
+							<fieldset>
+							<legend id="title9" class="desc">Euthanized Animals</legend>
+							<div>
+							<span>
+								<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
+								<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "choice" %>
+							</span>
+							</div>
+							</fieldset>
+						</span>
 					</li>
 				</ul>
 				<%= hidden_field_tag "filters[sw]" %>
@@ -207,7 +216,7 @@
 				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow your animals?</a>
 				<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 			</div>
-				<div id="filters2" class="filter_section blue_background">
+				<div id="filters2" class="section_heading no_borders blue">
 
 					<form action="#" id="form_filters">
 						<ul>
@@ -231,17 +240,166 @@
 								<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
 								<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
 
-							<span>	<%= check_box_tag "filters[euthanasia_only]", true %>
-								<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "desc" %></span>
+								<span>	
+									<fieldset>
+									<legend id="title9" class="desc">Euthanized Animals</legend>
+									<div>
+									<span>
+										<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
+										<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "choice" %>
+									</span>
+									</div>
+									</fieldset>
+								</span>
 							</li>
 						</ul>
 						<%= hidden_field_tag "filters[sw]" %>
 						<%= hidden_field_tag "filters[ne]" %>
 					</form>
 				</div>
+				
+				<div class="separator"></div>
+				
+				<style type="text/css" media="screen">
+					.segmented-control {
+					    background-color: #333;
+					    list-style-type: none;
+					    width: 401px;
+					    height: 25px;
+					    padding: 1px;
+					    margin: 0 auto;
+
+					    -webkit-border-radius: 4px;
+					    -moz-border-radius: 4px;
+					    border-radius: 4px;
+
+					    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+					    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+					    box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+					}
+
+					.segmented-control li {
+					    background-color: #595959;
+					    float: left;
+					    margin-left: 1px;
+					}
+
+					.segmented-control li {
+					    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .1)), to(rgba(255, 255, 255, 0)));
+
+					    background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+					}
+
+					.segmented-control li {
+					    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+					    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+					    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+					}
+
+					.segmented-control li:first-child {
+					    margin-left: 0;
+
+					    -webkit-border-top-left-radius: 3px;
+					    -webkit-border-bottom-left-radius: 3px;
+					    -moz-border-radius-topleft: 3px;
+					    -moz-border-radius-bottomleft: 3px;
+					    border-top-left-radius: 3px;
+					    border-bottom-left-radius: 3px;
+					}
+
+					.segmented-control li:last-child {
+					    -webkit-border-top-right-radius: 3px;
+					    -webkit-border-bottom-right-radius: 3px;
+					    -moz-border-radius-topright: 3px;
+					    -moz-border-radius-bottomright: 3px;
+					    border-top-right-radius: 3px;
+					    border-bottom-right-radius: 3px;
+					}
+
+					.segmented-control a {
+					    font-size: 12px;
+					    font-weight: bold;
+					    line-height: 24px;
+					    text-align: center;
+					    text-decoration: none;
+					    display: block;
+					    width: 200px;
+					    height: 25px;
+					}
+
+					.segmented-control a {
+					    color: #262626;
+					    text-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+					}
+
+					.segmented-control li.current {background-color: #525252;}
+
+					.segmented-control li.current{
+					    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+					                        inset 0 0 5px rgba(0, 0, 0, .1);
+					    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+					                     inset 0 0 5px rgba(0, 0, 0, .1);
+					    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+					                inset 0 0 5px rgba(0, 0, 0, .1);
+					}
+
+					.segmented-control li.current a {
+					    text-shadow: 0 1px 0 rgba(255, 255, 255, .1);
+					    position: relative;
+					    top: 1px;
+					}
+
+					.segmented-control li.current {
+					    background-image:
+					        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .1))),
+					        url(/images/background-segmented-control-selected.png);
+
+					    background-image:
+					        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)),
+					        url(/images/background-segmented-control-selected.png);
+
+					    background-color: #333;
+
+					    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+					                        inset 0 0 5px rgba(0, 0, 0, .15);
+					    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+					                     inset 0 0 5px rgba(0, 0, 0, .15);
+					    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+					                inset 0 0 5px rgba(0, 0, 0, .15);
+					}
+
+
+					.segmented-control li.current a {color: #fff; text-shadow: 0 1px 0 #000;}
+
+					.segmented-control li.current:active {
+					    background-image:
+					        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .05))),
+					        url(/images/background-segmented-control-selected.png);
+
+					    background-image:
+					        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .05)),
+					        url(/images/background-segmented-control-selected.png);
+
+					    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+					                        inset 0 0 5px rgba(0, 0, 0, .15);
+					    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+					                     inset 0 0 5px rgba(0, 0, 0, .15);
+					    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+					                inset 0 0 5px rgba(0, 0, 0, .15);
+					}
+				</style>
+
+				<div id="demo-view">
+											<ul class="segmented-control">
+												<li class="current"><a href="#">Search by City/Zipcode</a></li>
+												<li><a href="#search_by_shelter_name">Search by Shelter Name</a></li>
+											</ul>
+										</div>
 			<div class="separator"></div>
+
+				<div class="separator"></div>
 		
-			<table style="width: 100%; padding-bottom: 20px;">
+<!-- 			<table style="width: 100%; padding-bottom: 20px;">
 				<tr>
 					<td style="width:47%; padding-right: 2%; vertical-align:top;">
 						<div id="map_canvas" style="width:100%; height: 500px;"></div>
@@ -251,6 +409,18 @@
 					</td>
 				</tr>
 			</table>
+			 -->
+			<div style="overflow: hidden;width: 100%;">
+				<div style="float:left; width:49%;padding-right:1%;">
+					<div id="map_canvas" style="width:100%; height: 500px;"></div>
+				</div>
+				<div style="float:left;width: 49%;padding-left:1%;border-left: 1px dotted #ccc;">
+					<div id="animals">
+						<h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List Loading</h1>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
 		
 	</div>
 		

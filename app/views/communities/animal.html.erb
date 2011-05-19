@@ -5,7 +5,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading blue_background">
+	<div class="page_heading blue">
 		<table class="animal">
 			<tr>
 				<td>
@@ -77,7 +77,7 @@
 		<% end %>
 	</div>
 	
-	<div class="notes_heading yellow_background">
+	<div class="section_heading yellow">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
@@ -103,7 +103,7 @@
 	</ul>
 	<% end %>
 	
-	<div id="create_transfer_request">
+	<div id="create_transfer_request" class="box hide green">
 		<h2>Create a transfer request</h2>
 		<p>blah blah</p>
 		<div id="transfer_errors"></div>

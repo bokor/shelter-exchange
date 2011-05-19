@@ -5,7 +5,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading green_background">
+	<div class="page_heading blue">
 		<h1><%= @parent.name %></h1>
 		<div class="action_links">
 			<% if can?(:update, Parent) %>
@@ -42,7 +42,7 @@
 		
 	</div>
 	
-	<div id="notes_heading" class="placement_heading yellow_background">
+	<div class="section_heading yellow">
 		<h2>Notes</h2>
 	</div>
 	
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	
-	<div class="placement_heading blue_background">
+	<div class="section_heading blue">
 		<h2>Adoption History</h2>
 	</div>
 	
@@ -62,7 +62,7 @@
 		</table>
 	</div>
 		
-	<div class="placement_heading blue_background">
+	<div class="section_heading blue">
 		<h2>Foster Care History</h2>
 	</div>
 	
@@ -82,7 +82,7 @@
 		<li><%= link_to 'Create an animal placement', "#", :id => "add_placement_link", :class => "button" -%></li>
 	</ul>
 	
-	<div id="create_note">
+	<div id="create_note" class="box hide yellow">
 		<h2>Add a note for <%= @parent.name %></h2>
 		<div id="create_note_errors"></div>
 		<%= form_for ([@parent, @note = Note.new]), :remote => true, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
@@ -97,7 +97,7 @@
 		<% end %>
 	</div>
 
-	<div id="create_placement">
+	<div id="create_placement" class="box hide blue">
 		<h2>Create an Animal Placement</h2>
 		<div id="create_placement_errors"></div>
 		<%= form_for (@placement), :remote => true, :html => { :id => "create_placement_form", :class => "create_placement_form" } do |f| %>

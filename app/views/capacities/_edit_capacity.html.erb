@@ -1,4 +1,4 @@
-<div class="edit_capacity" id="edit_capacity_<%=@capacity.id %>">
+<div class="box blue" id="edit_capacity_<%=@capacity.id %>">
 	<h2>Update capacity</h2>
 	<div id="edit_capacity_errors_<%= @capacity.id %>"></div>
 	<%= form_for (@capacity), :remote => true, :html => { :id => "edit_capacity_form_#{@capacity.id}", :class => "edit_capacity_form" } do |f| %>

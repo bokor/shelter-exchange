@@ -1,4 +1,4 @@
-<div class="edit_alert" id="edit_alert_<%=@alert.id %>">
+<div class="box blue" id="edit_alert_<%=@alert.id %>">
 	<h2>Update alert</h2>
 	<div id="edit_alert_errors_<%=@alert.id %>"></div>
 	<%= form_for (@alert), :remote => true, :html => { :id => "edit_alert_form_#{@alert.id}", :class => "edit_alert_form"} do |f| %>

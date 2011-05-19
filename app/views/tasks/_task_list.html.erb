@@ -1,25 +1,25 @@
-<div id="overdue_tasks_section" class="<%= "no_tasks" if @overdue_tasks.blank? %>">
+<div id="overdue_tasks_section" class="<%= "hide" if @overdue_tasks.blank? %>">
 	<h3>Overdue</h3>
 	<div id="overdue_tasks" class="task_list">
 		<%= render @overdue_tasks %>
 	</div>
 </div>
 
-<div id="today_tasks_section" class="<%= "no_tasks" if @today_tasks.blank? %>">
+<div id="today_tasks_section" class="<%= "hide" if @today_tasks.blank? %>">
 	<h3>Today</h3>
 	<div id="today_tasks" class="task_list">
 		<%= render @today_tasks %>
 	</div>
 </div>
 
-<div id="tomorrow_tasks_section" class="<%= "no_tasks" if @tomorrow_tasks.blank? %>">
+<div id="tomorrow_tasks_section" class="<%= "hide" if @tomorrow_tasks.blank? %>">
 	<h3>Tomorrow</h3>
 	<div id="tomorrow_tasks" class="task_list">
 		<%= render @tomorrow_tasks %>
 	</div>
 </div>
 
-<div id="later_tasks_section" class="<%= "no_tasks" if @later_tasks.blank? %>">
+<div id="later_tasks_section" class="<%= "hide" if @later_tasks.blank? %>">
 	<h3>Later</h3>
 	<div id="later_tasks" class="task_list">
 		<%= render @later_tasks %>

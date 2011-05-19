@@ -1,7 +1,7 @@
 <% unless @animals.blank? %>
 	$('#animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @animals) %>" );
 <% else %>
-	$('#animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
+	$('#animals').html( "<h1 style='color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;'>No Animals found</h1>" );
 <% end %>
 
 // <% unless @urgent_needs_animals.blank? %>

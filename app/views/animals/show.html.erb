@@ -11,7 +11,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading blue_background">
+	<div class="page_heading blue">
 		<table class="animal">
 			<tr>
 				<td>
@@ -96,7 +96,7 @@
 		
 	</div>
 	
-	<div class="notes_heading yellow_background">
+	<div class="section_heading yellow">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id), :remote => true, :id => "all_notes_link" %>
@@ -114,7 +114,7 @@
 		</div>
 	</div>
 	
-	<div class="status_history_heading yellow_background">
+	<div class="section_heading yellow">
 		<h2>Status history</h2>
 	</div>
 	
@@ -134,7 +134,7 @@
 		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
 	</ul>
 	
-	<div id="create_alert">
+	<div id="create_alert" class="box hide red">
 		<h2>Add an alert for <%= @animal.name %></h2>
 		<div id="create_alert_errors"></div>
 		<%= form_for ([@animal, @alert = Alert.new]), :remote => true, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
@@ -149,7 +149,7 @@
 		<% end %>
 	</div>
 	
-	<div id="create_note">
+	<div id="create_note" class="box hide yellow">
 		<h2>Add a note for <%= @animal.name %></h2>
 		<div id="create_note_errors"></div>
 		<%= form_for ([@animal, @note = Note.new]), :remote => true, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
@@ -165,7 +165,7 @@
 		<div id="another_note_category"></div>
 	</div>
 	
-	<div id="create_task">
+	<div id="create_task" class="box hide blue">
 		<h2>Add a task for <%= @animal.name %></h2>
 		<div id="create_task_errors"></div>
 		<%= form_for ([@animal, @task = Task.new]), :remote => true, :html => { :id => "create_task_form", :class => "create_task_form" } do |f| %>
