@@ -1,0 +1,15 @@
+<div id="transfer_<%=transfer.id%>">
+	<h3><%= link_to transfer.animal.name, transfer.animal %></h3>		
+	<p>Current_shelter = <%= transfer.shelter.name %></p>
+	<p>Requestor Shelter = <%= transfer.requestor_shelter.name %></p>
+	<p>comment = <%= transfer.comments.first.comment %></p>
+	<p>request_date = <%= format_date(:long, transfer.created_at) %></p>
+	<%=transfer.approved%>
+	<% if transfer.approved %>
+		<p><%= link_to "Complete Request", completed_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true, :class => "button" %></p>
+	<% else %>
+		<p><%= link_to "Approve", approved_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true, :class => "button" %></p>
+		
+		<p><%= link_to "Reject", transfer, :method => :delete, :remote => true, :confirm => "This action can not be undone, would you like to proceed?", :class => "button" %></p>
+	<% end %>
+</div>
