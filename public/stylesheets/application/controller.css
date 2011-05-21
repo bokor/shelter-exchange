@@ -27,6 +27,7 @@
 .box.green{border-color: #69f779;background-color:#cafcd0;}
 .box.yellow{border-color: #ffc566; background-color:#feffcc;}
 .box.blue{border-color: #699cf7;background-color:#cadcfc;}
+.box.default{border-color: #ccc;background-color: none;}
 .box h2{border: none;}
 .box h3{border: none;}
 
@@ -327,8 +328,7 @@
 -----------------------------------------------------------------------------*/
 #accommodations { border-top:1px dotted #ccc; padding-top: 20px; }
 #accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-#accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-#accommodations .over_capacity {background-color: #fce2ec; border:1px solid #f286b1;}
+#accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
 
 #accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
 #accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }

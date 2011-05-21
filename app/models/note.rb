@@ -2,7 +2,7 @@ class Note < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
    
   # Associations
-  belongs_to :shelter
+  belongs_to :shelter, :readonly => true
   belongs_to :notable, :polymorphic => true
   belongs_to :note_category, :readonly => true
    

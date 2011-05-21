@@ -1,7 +1,13 @@
 <%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "animals/animals", :cache => "cache/application/communities-animals" %>
+	<%= javascript_include_tag "animals/animals", "notes/notes", "transfers/transfers", :cache => "cache/application/communities-animals" %>
+	<script type="text/javascript">
+		$(function() {
+			Notes.filters();
+			Transfers.hasRequest(<%=@transfer_requested %>);
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -97,45 +103,29 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+
 	<% if can?(:request_transfer, Animal) %>
-	<ul class="action_links">
-		<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_request_link", :class => "button" %></li>
+	<ul id="transfer_request_button" class="action_links">
+		<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button" %></li>
 	</ul>
 	<% end %>
-	
-	<div id="create_transfer_request" class="box hide green">
-		<h2>Create a transfer request</h2>
-		<p>blah blah</p>
-		<div id="transfer_errors"></div>
-		<%= form_for (@transfer), :remote => true do |f| %>
-			<ul class="form">
-				<li>
-					<%= f.label :requestor, "Name of requestor" %><br />
-					<%= f.text_field :requestor %>
-				</li>
-				<li>
-					<%= f.label :phone, "Phone" %><br />
-					<%= f.text_field :phone %>
-				</li>
-				<li>
-					<%= f.label :email, "Email" %><br />
-					<%= f.text_field :email %>
-				</li>
-				<%= f.fields_for :comments, @transfer.comments.build do |comment_fields| %>
-					<li>
-						<%= comment_fields.label :comment, "Comment" %><br />
-						<%= comment_fields.text_area :comment %>
-					</li>
-				<% end %>
-			</ul>
-			<%= f.hidden_field :animal_id, :value => @animal.id %>
-			<%= f.hidden_field :to_shelter_id, :value => @current_shelter.id %>
-			<%= f.hidden_field :from_shelter_id, :value => @shelter.id %>
-		    <div class="actions">
-				<%= f.submit "Create Request", :disable_with => "Submitting...", :id => "create_transfer_request_button", :class => "button"  %>
-				&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_transfer_request" %>
-			</div>
-		<% end %>
+	<div id="transfer_requested" class="box hide yellow">
+		<h3><%= @animal.name %> has been requested for transfer from your shelter</h3>
+	</div>
+
+	<div id="create_transfer" class="box hide green">
+		<h2>Create a transfer request for <%= @animal.name %></h2>
+		<div id="create_transfer_errors"></div>
+		<%= form_for (@transfer = Transfer.new), :remote => true, :html => { :id => "create_transfer_form", :class => "create_transfer_form" } do |f| %>
+		<ul>
+			<%= render "transfers/form", :f => f %>
+	    	<li class="buttons">
+				<%= f.submit "Create Transfer", :disable_with => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
+				&nbsp;or&nbsp;
+				<%= link_to "Cancel", "#", :id => "cancel_transfer" %>
+			</li>
+		</ul>
+	<% end %>
 	</div>
 	
 	<div id="animal_shelter">

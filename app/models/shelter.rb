@@ -40,7 +40,7 @@ class Shelter < ActiveRecord::Base
   validates :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
-                    :length => {:minimum => 3, :maximum => 254}, 
+                    # :length => {:minimum => 3, :maximum => 254}, 
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
                                         :message => "is not a valid US Time Zone" }

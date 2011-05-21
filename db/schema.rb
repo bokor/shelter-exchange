@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509155536) do
+ActiveRecord::Schema.define(:version => 20110520213944) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -312,19 +312,20 @@ ActiveRecord::Schema.define(:version => 20110509155536) do
 
   create_table "transfers", :force => true do |t|
     t.integer  "animal_id"
-    t.integer  "to_shelter_id"
+    t.integer  "requestor_shelter_id"
     t.string   "requestor"
     t.string   "phone"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "from_shelter_id"
-    t.string   "status"
+    t.integer  "shelter_id"
+    t.boolean  "approved",             :default => false
+    t.boolean  "completed",            :default => false
   end
 
   add_index "transfers", ["animal_id"], :name => "index_transfers_on_animal_id"
-  add_index "transfers", ["from_shelter_id"], :name => "index_transfers_on_from_shelter"
-  add_index "transfers", ["to_shelter_id"], :name => "index_transfers_on_to_shelter"
+  add_index "transfers", ["requestor_shelter_id"], :name => "index_transfers_on_to_shelter"
+  add_index "transfers", ["shelter_id"], :name => "index_transfers_on_from_shelter"
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :default => "", :null => false

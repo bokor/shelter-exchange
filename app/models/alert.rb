@@ -5,7 +5,7 @@ class Alert < ActiveRecord::Base
   SEVERITY = %w[high medium low]
   
   # Associations
-  belongs_to :shelter
+  belongs_to :shelter, :readonly => true
   belongs_to :alertable, :polymorphic => true
   
   # Validations

@@ -6,11 +6,11 @@ class Accommodation < ActiveRecord::Base
   PER_PAGE = 50
   
   # Associations
-  belongs_to :shelter
-  belongs_to :animal_type
-  belongs_to :location
+  belongs_to :shelter, :readonly => true
+  belongs_to :animal_type, :readonly => true
+  belongs_to :location, :readonly => true
 
-  has_many :animals
+  has_many :animals, :readonly => true
   
   # Validations
   validates :animal_type_id, :presence => {:message => "needs to be selected"}

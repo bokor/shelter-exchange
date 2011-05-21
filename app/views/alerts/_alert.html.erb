@@ -17,7 +17,7 @@
 		<% end %>
 		<% if can?(:destroy, Alert) %>
 		<span class="delete_link">&nbsp;|&nbsp;
-			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "icons" %>	
+			<%= link_to "Delete", alert, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
 		</span>
 		<% end %>
 	</span>

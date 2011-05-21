@@ -105,13 +105,13 @@ form li span{
 	color:#444;
 }
 
-form li div.date_picker, form li div.date_picker div, form li div.date_picker span{
+/*form li div.date_picker, form li div.date_picker div, form li div.date_picker span{
 	margin:0;
 	padding:0;
 	float:none;
 	color:0;
 	display: block;
-}
+}*/
 
 /* ----- Choices Field Structures ----- */
 

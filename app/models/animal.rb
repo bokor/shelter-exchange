@@ -135,6 +135,24 @@ class Animal < ActiveRecord::Base
 
     scope
   end
+  
+  # Finalized Transfer Request
+  def complete_transfer_request!(current_shelter, requestor_shelter)
+    self.animal_status_id = AnimalStatus::NEW_INTAKE
+    self.status_history_reason = "Transferred from #{current_shelter.name}"
+    self.shelter_id = requestor_shelter.id
+    self.arrival_date = nil
+    self.hold_time = nil
+    self.euthanasia_scheduled = nil
+    self.accommodation_id = nil
+    if self.save(:validate => false)
+      create_status_history!(true)
+      self.tasks.delete_all
+      self.alerts.delete_all
+    end
+    # self.photo.reprocess!
+  end
+
                                                  
   private
   
@@ -214,12 +232,13 @@ class Animal < ActiveRecord::Base
       self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
     end
     
-    def create_status_history!
-      if self.new_record? or self.animal_status_id_changed?
+    def create_status_history!(force = false)
+      if self.new_record? or self.animal_status_id_changed? or force
         status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
         status_history.save
       end
     end
+
     
     def photo_valid?
       photo? and photo_file_size < IMAGE_SIZE

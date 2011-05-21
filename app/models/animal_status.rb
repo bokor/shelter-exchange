@@ -5,11 +5,12 @@ class AnimalStatus < ActiveRecord::Base
   AVAILABLE_FOR_ADOPTION = 1
   ADOPTED = 2
   FOSTER_CARE = 3
+  NEW_INTAKE = 4
   RECLAIMED = 12
   EUTHANIZED = 14
   
   # Associations
-  has_many :animals
+  has_many :animals, :readonly => true
   has_many :status_histories, :dependent => :destroy
   
   # Scopes

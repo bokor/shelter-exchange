@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   DUE_CATEGORY = %w[today tomorrow later specific_date]
   
   # Associations
-  belongs_to :shelter
+  belongs_to :shelter, :readonly => true
   belongs_to :taskable, :polymorphic => true
   belongs_to :task_category, :readonly => true
   

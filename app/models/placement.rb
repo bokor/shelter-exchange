@@ -5,9 +5,9 @@ class Placement < ActiveRecord::Base
   PLACEMENT_TYPE = %w[adopted foster_care]
   
   # Associations
-  belongs_to :shelter
-  belongs_to :animal
-  belongs_to :parent
+  belongs_to :shelter, :readonly => true
+  belongs_to :animal, :readonly => true
+  belongs_to :parent, :readonly => true
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   

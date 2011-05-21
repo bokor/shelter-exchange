@@ -191,8 +191,8 @@ $(function() {
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
 	});
-	$('#add_transfer_request_link, #cancel_transfer_request').click(function() {
-		$('#create_transfer_request').slideToggle();
+	$('#add_transfer_link, #cancel_transfer').click(function() {
+		$('#create_transfer').slideToggle();
 	});
 
 });
@@ -207,3 +207,31 @@ $(function () {
 		e.preventDefault();
     });
 });
+
+
+
+
+
+
+// function _ajax_request(url, data, callback, type, method) {
+//     if (jQuery.isFunction(data)) {
+//         callback = data;
+//         data = {};
+//     }
+//     return jQuery.ajax({
+//         type: method,
+//         url: url,
+//         data: data,
+//         success: callback,
+//         dataType: type
+//         });
+// }
+// 
+// jQuery.extend({
+//     put: function(url, data, callback, type) {
+//         return _ajax_request(url, data, callback, type, 'PUT');
+//     },
+//     delete_: function(url, data, callback, type) {
+//         return _ajax_request(url, data, callback, type, 'DELETE');
+//     }
+// });
