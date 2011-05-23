@@ -1,153 +1,21 @@
 <%= title "Dashboard" %>
 
 <%= content_for :javascripts do %>
-
-	<script type="text/javascript">
-		$(function() {
-
-			$(".field input, .field select").focusin(function(){
-				$(this).parent().addClass("focus");
-				$(this).parents().find("fieldset").addClass("focus");
-			});
-
-			$(".field input, .field select").focusout(function(){
-				$(this).parent().removeClass("focus");
-				$(this).parents().find("fieldset").removeClass("focus");
-			});
-
-			$(".field input, .field select").keyup(function(){
-				if ($(this).val().length >0){
-					$(this).siblings("label").hide();
-				} else {
-					$(this).siblings("label").show();
-				}
-			});
-
-		});
-	</script>
 <% end %>
 
 <%= content_for :page_content do %>
-
-	<style>
-	
-	fieldset{
-	display: block;	background: transparent;
-		border: 0px;
-		font-size: 100%;
-		margin: 0px;
-		outline: 0px;
-		padding: 0px;
-		vertical-align: baseline;}
-	.signup-form legend {color: #FF8800; font-size: 21px; font-weight: 300; line-height: 1em; margin: 1.5em 0 .5em 0}
-	.signup-form {margin-bottom: 100px; width: 430px !important}
-	.signup-form .button:after {border-color: #E3E7ED}
-	.signup-form aside {color: #B3B3B3; font-size: 11px; padding-top: 10px; position: absolute; left: -275px; -moz-transition: color 0.4s ease 0s; -webkit-transition: color 0.4s ease 0s; transition: color 0.4s ease 0s; width: 210px}
-	.signup-form fieldset:hover aside, .signup-form fieldset.focus aside {color: #717B80}
-	.signup-form .credit-cards img {float: left; margin-left: 10px; margin-top: -4px}
-	.signup-form .credit-cards img:first-child {margin-left: 0}
-	.signup-form .toggle {color: #0087CC; font-size: 12px; font-weight: 500; text-decoration: none}
-	.signup-form .plan-name {color: #FF8800}
-	.signup-form ol {margin-left: 0; list-style: none}
-	.signup-form ol li {clear: both; margin-bottom: 20px; position: relative}
-	.signup-form ol li:before {background: #FCF1E3; border: 2px solid #FFF; -moz-border-radius: 25px; -webkit-border-radius: 25px; -moz-box-shadow: rgba(0,0,0,.2) 0 1px 2px; -webkit-box-shadow: rgba(0,0,0,.2) 0 1px 2px; box-shadow: rgba(0,0,0,.2) 0 1px 2px; border-radius: 25px; color: #FF8800; font-size: 21px; height: 45px; line-height: 45px; padding-top: 1px; position: absolute; left: -65px; text-align: center; -moz-transition: color 0.4s ease 0s; -webkit-transition: color 0.4s ease 0s; transition: color 0.4s ease 0s; width: 46px}
-	.signup-form ol li:hover:before {}
-	.signup-form ol li:nth-child(1):before {content: "1"}
-	.signup-form ol li:nth-child(2):before {content: "2"}
-	.signup-form ol li:nth-child(3):before {content: "3"}
-	.signup-form ol li:nth-child(4):before {content: "4"}
-	.signup-form ol li:nth-child(5):before {content: "5"}
-	.signup-form fieldset {}
-	.signup-form legend {line-height: 50px; margin: 0; padding-top: 1px}
-	.signup-form legend span {color: #717B80; font-size: 14px; position: relative; top: -2px; left: 5px}
-	.signup-form legend span img {position: relative; top: 1px}
-	.field, .field-group {background: #FFF; border: 1px solid #A0A6B3; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; color: #717B80; font-size: 18px; font-weight: 300; height: 20px; line-height: 1em; margin-bottom: 10px; padding: 9px; position: relative; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
-	.field-textarea {height: auto}
-	.field.focus {background-color: #F2FAFF; border-color: #66AACC}
-	.field.disabled {background: #FAFBFC; border-color: #E3E7ED; color: #B3B3B3}
-	.field-group {padding: 0; height: auto}
-	.field-group.focus {border-color: #66AACC}
-	.field-group .field {border: none; border-top: 1px solid #DBDEE6; -moz-border-radius: 0 0 3px 3px; -webkit-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px; margin-bottom: 0}
-	.field-group .field:first-child {border-top: none; -moz-border-radius: 3px 3px 0 0; -webkit-border-radius: 3px 3px 0 0; border-radius: 3px 3px 0 0}
-	.field label {font-size: 18px; font-weight: normal;color: #B3B3B3; line-height: 1em; position: absolute; top: 11px; left: 10px; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; z-index: 100}
-	.field.focus label {color: #B1D5E8}
-	.field.disabled label {font-size: 11px; font-weight: 500; top: 14px; right: 10px; left: auto; text-align: right}
-	.field input, .field-select select, .field textarea {-webkit-appearance: none; background: none; border: none; color: #000000; display: block; font-size: 18px; font-weight: 300; line-height: 1em; margin: 0; outline: none; padding: 0; position: relative; width: 100%; z-index: 200}
-	.field input[required], .field-select select[required], .field textarea[required] {-moz-box-shadow: none; box-shadow: none}
-	.field input.error, .field-select select.error, .field textarea.error {color: #C1272D}
-	.field .after {margin-left: 10px; position: absolute; top: 11px; left: 100%}
-	span.error {color: #C1272D; font-family: "apolline-1", "apolline-2", Georgia, serif; font-size: 14px; font-style: italic; display: block; position: absolute; left: 440px; top: 10px; width: 255px; z-index: 1000}
-	.field-select {}
-	.field-select label {font-size: 11px; font-weight: 500; top: 14px; right: 30px; left: auto; text-align: right}
-	.webkit .field-select label {right: 10px}
-	.webkit .field-select select {top: 1px}
-	.gecko .field-select select, .ie7 .field-select select {top: -2px}
-	.field-standard {background: #E3E7ED !important; border: none; padding: 10px}
-	
-	</style>
 
 	<div class="page_heading blue">
 		<h1>Dashboard</h1>
 	</div>
 	
 	<div class="page_content">
+		
 		<h2>Transfer Requests</h2>
 		<div id="transfers">
 			<%= render "transfers/transfer_list", :transfers => @transfers %>
 		</div>
-		<br /><br /><br />
-		<h2>Latest animals</h2>
-		<%= render "animals/animal_list", :animals => @animals %> 
-	</div>
-	
-	<br /><br /><br />
-	<div class="page_content clearfix">
 		
-			<div class="signup-form" style="float:right;">			
-				<ol>    
-
-			      <li>
-			        <fieldset>
-			          <legend>Create your profile</legend>     
-
-			          <aside>
-			            <p>Already have a user profile? <a href="/signin">Sign&nbsp;in</a></p>
-			          </aside>
-
-			          <div class="field">
-						
-			            <label for="user_email">Email address</label>
-			            <input id="user_email" name="user[email]" type="email" required value="" class=""/> 
-
-			          </div>
-
-			          <div class="field">
-			            <label for="user_display_name">Display name</label>
-			            <input id="user_display_name" name="user[display_name]" type="text" required value="" class=""/>
-
-			          </div>
-			          <div class="field-group">
-			            <div class="field">
-			              <label for="user_password">Password</label>
-			              <input id="user_password" name="user[password]" type="password" required value="" class=""/>
-
-			            </div>
-			            <div class="field">
-			              <label for="user_password_confirmation">Confirm password</label>
-			              <input id="user_password_confirmation" name="user[password_confirmation]" type="password" required value="" class=""/>
-
-			            </div>
-			          </div>
-						<div class="field field-select">
-			              	<%= label_tag :animal_animal_type_id, "Animal type", :class => "toggle" %>
-							<%= collection_select :type, :type, AnimalType.all,:id, :name, :prompt => "Select Type" %>
-
-			            </div>
-			        </fieldset>
-			      </li>
-				</ol>
-			</div>
-			
 	</div>
 		
 <% end %>

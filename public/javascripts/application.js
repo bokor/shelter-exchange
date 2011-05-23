@@ -202,9 +202,8 @@ $(function() {
  * ------------------------------------------------------------------------ */
 $(function () {
     $('.settings_link').bind("click", function (e) {
-		// $(this).parent("span").addClass("selected");
 		$('ul.settings_menu').slideToggle("medium");
-		e.preventDefault();
+	    e.preventDefault();
     });
 });
 

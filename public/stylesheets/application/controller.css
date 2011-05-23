@@ -486,7 +486,7 @@
 /* Index Reports :: Stats and Count Sections
 -----------------------------------------------------------------------------*/
 .index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; border-radius: 10px; border: 1px #ddd solid;}
+.index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px #ddd solid;}
 .index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
 .index_reports .count_sections h2.euthanized_color {color:red;}
 .index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}

@@ -16,7 +16,7 @@ h5 {  }
 p{ margin-bottom: 10px; }
 img { border: none; outline: none; }
 
-code,code pre,kbd {font: normal 12px Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace; /*Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;*/}
+code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
 
 
 /*
@@ -57,7 +57,7 @@ color: #AF2B2B;
   
 /* Header */   
 /******************************************************************/
-header{height: 90px; background-color: #209000; position:relative;}
+#header{height: 90px; background-color: #209000; position:relative;}
 
 #toolbar { font-family: 'Helvetica Neue', Arial, Verdana, sans-serif; height: 35px; line-height: 35px; background-color: #222; margin: 0; padding: 0 3em 0 3em; position:relative;}
 #toolbar:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -67,7 +67,7 @@ header{height: 90px; background-color: #209000; position:relative;}
 #toolbar .col_1{width: 50%;}
 #toolbar .col_2{width: 50%; float:right; text-align:right;}
 #toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
-#toolbar .settings_menu li { padding: 0px 10px; }
+#toolbar .settings_menu li { padding: 0px 10px; display:block;}
 #toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
 #toolbar .settings_menu li a:hover { color: #f26649;/*text-decoration: underline;*/}
 #toolbar .settings_menu li.current a { color: #f26649; /*text-decoration: underline;*/}
@@ -97,10 +97,10 @@ header{height: 90px; background-color: #209000; position:relative;}
 
 /* Footer */   
 /******************************************************************/
-footer { width: 100%; height: 100px; padding: 10px 0 0 0; margin:0 auto; background-color: #e7e7e7; }
-footer img{float:left;}
-footer h5{float:left;padding-left:5px;line-height:65px;}
-footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#footer { width: 100%; height: 100px; padding: 10px 0 0 0; margin:0 auto; background-color: #e7e7e7; }
+#footer img{float:left;}
+#footer h5{float:left;padding-left:5px;line-height:65px;}
+#footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Ajax :: Messages */   
 /******************************************************************/
