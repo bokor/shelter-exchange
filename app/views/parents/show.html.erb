@@ -42,7 +42,7 @@
 		
 	</div>
 	
-	<div class="section_heading yellow">
+	<div class="section_heading orange">
 		<h2>Notes</h2>
 	</div>
 	
@@ -82,7 +82,7 @@
 		<li><%= link_to 'Create an animal placement', "#", :id => "add_placement_link", :class => "button" -%></li>
 	</ul>
 	
-	<div id="create_note" class="box hide yellow">
+	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @parent.name %></h2>
 		<div id="create_note_errors"></div>
 		<%= form_for ([@parent, @note = Note.new]), :remote => true, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>

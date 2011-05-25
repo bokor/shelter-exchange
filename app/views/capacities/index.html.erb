@@ -22,7 +22,7 @@
 
 <%= content_for :sidebar do %>
 	
-	<div id="create_capacity" class="box yellow">
+	<div id="create_capacity" class="box orange">
 		<h2>Add a capacity</h2>
 		<div id="create_capacity_errors"></div>
 		<%= form_for (@capacity = Capacity.new), :remote => true, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>

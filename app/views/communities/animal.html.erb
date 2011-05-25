@@ -83,7 +83,7 @@
 		<% end %>
 	</div>
 	
-	<div class="section_heading yellow">
+	<div class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
@@ -109,7 +109,7 @@
 		<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button" %></li>
 	</ul>
 	<% end %>
-	<div id="transfer_requested" class="box hide yellow">
+	<div id="transfer_requested" class="box hide orange">
 		<h3><%= @animal.name %> has been requested for transfer from your shelter</h3>
 	</div>
 

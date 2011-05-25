@@ -29,7 +29,7 @@
 		
 		<div class="clear"></div>
 		
-		<div class="create_comment" id="create_comment_<%=placement.id%>" style="display: none;">
+		<div class="box hide orange" id="create_comment_<%=placement.id%>">
 			<h2>Add an comment for <%= placement.animal.name %></h2>
 			<div id="create_comment_errors_<%=placement.id%>"></div>
 			<%= form_for ([placement, @comment = Comment.new]), :remote => true, :html => { :id => "create_comment_form_#{placement.id}" } do |f| %>

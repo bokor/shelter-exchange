@@ -1,4 +1,4 @@
-<div class="edit_comment" id="edit_comment_<%=@comment.id %>">
+<div class="box green" id="edit_comment_<%=@comment.id %>">
 	<h2>Update comment</h2>
 	<div id="edit_comment_errors_<%=@comment.id %>"></div>
 	<%= form_for (@comment), :remote => true, :html => { :id => "edit_comment_form_#{@comment.id}", :class => "edit_comment_form"} do |f| %>

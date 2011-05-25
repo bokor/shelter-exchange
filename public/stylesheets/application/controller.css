@@ -44,23 +44,25 @@
 -----------------------------------------------------------------------------*/
 .box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;}
 .box.hide{display: none;}
-.box.red{border-color: #ff6c66;background-color:#ffcecc;}
-.box.green{border-color: #69f779;background-color:#cafcd0;}
-.box.yellow{border-color: #ffe366; background-color:#feffcc;}/*background #f8f7c8 and border #ffe222*/
-.box.blue{border-color: #699cf7;background-color:#cadcfc;}/* background #ddeff9 and border #86c7ea */
+.box.red{border-color: #f07280;background-color:#faced3;}
+.box.green{border-color: #90e674;background-color:#d5f6ca;}
+.box.orange{border-color: #f9d36f; background-color:#fdf1d0;}
+.box.blue{border-color: #74afe3;background-color:#c9e0f4;}
 .box.default{border-color: #ccc;background-color: none;}
 .box h2{border: none;}
 .box h3{border: none;}
+.box:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
 /* Sections :: Headings
 -----------------------------------------------------------------------------*/
 .section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;}
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
-.section_heading.red{border-color: #ff6c66; background-color:#ffcecc;}
-.section_heading.green{border-color: #69f779; background-color:#cafcd0;}
-.section_heading.yellow{border-color: #ffe366; background-color:#feffcc;}
-.section_heading.blue{border-color: #699cf7; background-color:#cadcfc;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}
+.section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
+.section_heading.orange{border-color: #f9d36f; background-color:#fdf1d0;}
+.section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
+.section_heading.default{border-color: #ccc;background-color: none;}
 .section_heading h2{float:left;}
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
 .section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -695,8 +697,8 @@
 .show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
 .show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
 
-.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}
-.show_parents table.placement_list tr.edit_placement h2 {border: 0;}
+/*.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}*/
+/*.show_parents table.placement_list tr.edit_placement h2 {border: 0;}*/
 
 
 
@@ -744,12 +746,12 @@
 
 /* Index Users :: Form :: Edit User
 -----------------------------------------------------------------------------*/
-.user_list .edit_user {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
-.user_list .edit_user:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+/*.user_list .edit_user {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
+/*.user_list .edit_user:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 /* Index Users :: Invite New User form
 -----------------------------------------------------------------------------*/
-.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}
+/*.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
 
 
 
@@ -938,7 +940,7 @@
 
 /* Notes :: Edit Form */
 /******************************************************************/
-.note_list .edit_note {display:none;background-color:#cafcd0; border:1px solid #69f779;padding:15px; margin-bottom:15px;}
+/*.note_list .edit_note {display:none;border-color: #d5f6ca;background-color:#90e674;padding:15px; margin-bottom:15px;}*/
 
 /* Notes List :: Layout */
 /******************************************************************/
