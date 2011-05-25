@@ -15,15 +15,15 @@ module AnimalsHelper
     ""
   end
   
-  def dob_value(type, animal)
+  def date_of_birth_value(type, animal)
     return nil if type.blank?
     case type
       when :month
-        return animal.dob_month unless animal.dob_month.blank?
+        return animal.date_of_birth_month unless animal.date_of_birth_month.blank?
       when :day
-        return animal.dob_day unless animal.dob_day.blank?
+        return animal.date_of_birth_day unless animal.date_of_birth_day.blank?
       when :year
-        return animal.dob_year unless animal.dob_year.blank?
+        return animal.date_of_birth_year unless animal.date_of_birth_year.blank?
     end
     format_date(type, animal.date_of_birth)
   end

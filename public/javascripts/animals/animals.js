@@ -145,9 +145,9 @@ var Animals = {
 				var dateFormat = $(element+'_datepicker').datepicker("option", "dateFormat");
 				var tempDate = $.datepicker.parseDate(dateFormat, dateText);
 				
-				$(element+"_1i").val($.datepicker.formatDate('yy', tempDate));
-				$(element+"_2i").val($.datepicker.formatDate('mm', tempDate));
-				$(element+"_3i").val($.datepicker.formatDate('dd', tempDate));
+				$(element+"_year").val($.datepicker.formatDate('yy', tempDate));
+				$(element+"_month").val($.datepicker.formatDate('mm', tempDate));
+				$(element+"_day").val($.datepicker.formatDate('dd', tempDate));
 
 			}  
 		});

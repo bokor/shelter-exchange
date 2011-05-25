@@ -77,17 +77,17 @@
 			<%= f.label :date_of_birth, "Date of Birth (Est.)", :class => "desc" %>
 			
 			<span>
-				<%= f.text_field :dob_month, :class => "field text", :maxlength => 2, :size => 2, :value => dob_value(:month, @animal)  %>
+				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
 				<%= f.label :date_of_birth, "MM" %>
 			</span> 
 			<span class="symbol">/</span>
 			<span>
-				<%= f.text_field :dob_day, :class => "field text", :maxlength => 2, :size => 2, :value => dob_value(:day, @animal) %>
+				<%= f.text_field :date_of_birth_day, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:day, @animal) %>
 				<%= f.label :date_of_birth, "DD" %>
 			</span>
 			<span class="symbol">/</span>
 			<span>
-				<%= f.text_field :dob_year, :class => "field text", :maxlength => 4, :size => 4, :value => dob_value(:year, @animal) %>
+				<%= f.text_field :date_of_birth_year, :class => "field text", :maxlength => 4, :size => 4, :value => date_of_birth_value(:year, @animal) %>
 				<%= f.label :date_of_birth, "YYYY" %>
 			</span>
 			<span>

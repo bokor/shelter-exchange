@@ -6,7 +6,7 @@ class Animal < ActiveRecord::Base
   after_save :create_status_history!
   
   attr_accessor :status_history_reason, 
-                :dob_month, :dob_day, :dob_year,
+                :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_scheduled_month, :euthanasia_scheduled_day, :euthanasia_scheduled_year
   
@@ -186,9 +186,9 @@ class Animal < ActiveRecord::Base
     end
     
     def date_of_birth_valid?
-      unless self.dob_year.blank? and self.dob_month.blank? and self.dob_day.blank?
+      unless self.date_of_birth_year.blank? and self.date_of_birth_month.blank? and self.date_of_birth_day.blank?
         begin
-          self.date_of_birth = Date.civil(self.dob_year.to_i, self.dob_month.to_i, self.dob_day.to_i)
+          self.date_of_birth = Date.civil(self.date_of_birth_year.to_i, self.date_of_birth_month.to_i, self.date_of_birth_day.to_i)
         rescue ArgumentError
            errors.add(:date_of_birth, "is an invalid date format")
         end

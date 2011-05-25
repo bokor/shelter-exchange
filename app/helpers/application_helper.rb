@@ -77,8 +77,7 @@ module ApplicationHelper
         end
       end
     end
-
-    components.join(" and ")
+    components.blank? ? "Less than 1 week" : components.join(" and ")
     
   end
   
