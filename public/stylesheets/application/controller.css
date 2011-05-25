@@ -25,7 +25,7 @@
 .box.hide{display: none;}
 .box.red{border-color: #ff6c66;background-color:#ffcecc;}
 .box.green{border-color: #69f779;background-color:#cafcd0;}
-.box.yellow{border-color: #ffc566; background-color:#feffcc;}
+.box.yellow{border-color: #ffe366; background-color:#feffcc;}
 .box.blue{border-color: #699cf7;background-color:#cadcfc;}
 .box.default{border-color: #ccc;background-color: none;}
 .box h2{border: none;}
@@ -38,7 +38,7 @@
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
 .section_heading.red{border-color: #ff6c66; background-color:#ffcecc;}
 .section_heading.green{border-color: #69f779; background-color:#cafcd0;}
-.section_heading.yellow{border-color: #ffc566; background-color:#feffcc;}
+.section_heading.yellow{border-color: #ffe366; background-color:#feffcc;}
 .section_heading.blue{border-color: #699cf7; background-color:#cadcfc;}
 .section_heading h2{float:left;}
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
@@ -533,13 +533,29 @@
 /*.dashboard .page_heading{border-bottom:1px solid #eee; }*/
 /*.dashboard .page_heading h1{width:100%; }*/
 
-.dashboard #main { margin: 1em 3em 0 3em; }
+/*.dashboard #main { margin: 1em 3em 0 3em; }
 .dashboard #left { width: 100%;}
-.dashboard #sidebar { display: none;width: 0; }
+.dashboard #sidebar { display: none;width: 0; }*/
 
+/* Dashboard :: Activity List :: Layout */
+/******************************************************************/
+.activity_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
 
+.activity{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
 
+/*.activity .type{display:inline-block; padding: 0 5px; }
+	.activity .type div {display:inline-block; width: 75px; height: 30px; line-height: 30px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px; border:none;}
+	.activity .type div.alert{background:url(/images/icon_call.png) top center no-repeat; cursor:default; }
+	.activity .type div.task{background:url(/images/icon_task.png) top center no-repeat;}
+	.activity .type div.animal{background:url(/images/icon_animal.png) top center no-repeat;}*/
+	
+.activity .type{display:inline-block; width: 65px; height: 24px; line-height: 50px; text-align:center;}
+	.activity.type img {text-align:center; vertical-align:middle;}
 
+.activity .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.activity .details{display:inline-block; width: 57%; vertical-align:top; }
+	.activity .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
 
 
 

@@ -1,7 +1,14 @@
+GIT
+  remote: git://github.com/adamcooper/vestal_versions
+  revision: 6273df533f85014062e346cb1807b0531a809ee2
+  specs:
+    vestal_versions (1.2.2)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.5)
       actionpack (= 3.0.5)
@@ -92,9 +99,6 @@ GEM
     tzinfo (0.3.25)
     warden (1.0.3)
       rack (>= 1.0.0)
-    whenever (0.6.7)
-      aaronh-chronic (>= 0.3.9)
-      activesupport (>= 2.3.4)
     will_paginate (2.3.15)
     xml-simple (1.0.15)
     yaml_db (0.2.0)
@@ -120,7 +124,7 @@ DEPENDENCIES
   rmagick (= 2.13.1)
   rubyzip (= 0.9.4)
   sqlite3-ruby
-  whenever (= 0.6.7)
+  vestal_versions!
   will_paginate (= 2.3.15)
   yaml_db
   zippy (= 0.1.0)

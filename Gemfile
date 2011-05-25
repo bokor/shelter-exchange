@@ -27,14 +27,12 @@ gem 'rmagick', '2.13.1'
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
-gem 'whenever', '0.6.7'             # Cron Jobs
-
+gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 
 
 ##TESTING THESE GEMS/Plugins
+# gem 'whenever', '0.6.7'             # Cron Jobs
 # gem 'geokit-rails3', '0.1.3'        # Geocoding
-#gem 'paper_trail', '2.0.2'
-#gem 'acts_as_archive'
 
 
 

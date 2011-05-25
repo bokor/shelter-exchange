@@ -1,15 +1,40 @@
-<div id="transfer_<%=transfer.id%>">
-	<h3><%= link_to transfer.animal.name, transfer.animal %></h3>		
-	<p>Current_shelter = <%= transfer.shelter.name %></p>
-	<p>Requestor Shelter = <%= transfer.requestor_shelter.name %></p>
-	<p>comment = <%= transfer.comments.first.comment %></p>
-	<p>request_date = <%= format_date(:long, transfer.created_at) %></p>
-	<%=transfer.approved%>
-	<% if transfer.approved %>
-		<p><%= link_to "Complete Request", completed_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true, :class => "button" %></p>
-	<% else %>
-		<p><%= link_to "Approve", approved_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true, :class => "button" %></p>
+<style type="text/css" media="screen">
+	.transfer_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+	.transfer{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+	.transfer .type{display:inline-block; padding: 0 5px; }
+
+	.transfer .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+	.transfer .details{display:inline-block; width: 57%; vertical-align:top; }
+		.transfer .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
 		
-		<p><%= link_to "Reject", transfer, :method => :delete, :remote => true, :confirm => "This action can not be undone, would you like to proceed?", :class => "button" %></p>
-	<% end %>
+	.transfer .comment{line-height: 1em;}
+	.transfer .action_links{line-height: 1em;}
+	
+</style>
+
+<div id="transfer_<%=transfer.id%>" class="transfer">
+	<div class="details">
+		<%= transfer.requestor_shelter.name %> has requested <%= link_to transfer.animal.name, transfer.animal %><br />
+		<span class="comment">Comment: <%= transfer.comments.first.comment %></span>
+	</div>
+	<span class="created_at_date">
+		<%= format_date(:long, transfer.created_at) %><br />
+		<span class="action_links">
+		<% if transfer.approved %>
+			<span class="complete_request_link">
+			<%= link_to "Complete Request", completed_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true %>
+			</span>
+		<% else %>
+			<span class="approve_link">
+			<%= link_to "Approve", approved_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true %>
+			</span>
+			<span class="reject_link">&nbsp;|&nbsp;
+			<%= link_to "Reject", transfer, :method => :delete, :remote => true, :confirm => "This action can not be undone, would you like to proceed?" %>
+			</span>
+		<% end %>
+		</span>
+	</span>
 </div>

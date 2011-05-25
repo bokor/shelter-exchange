@@ -29,7 +29,7 @@ $.fn.tipsy.defaults = {
 $(function() {
 	// $('input[data-helptext]').tipsy({trigger: 'focus', gravity: 'w'});
 	// $('span[data-helptext], a[data-helptext], div[data-helptext], img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
-	$('.task img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
+	$('.task img[data-helptext], .activity img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
 });
 
 

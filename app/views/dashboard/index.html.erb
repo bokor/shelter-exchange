@@ -6,14 +6,21 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<h1>Dashboard</h1>
+		<h1>Latest Activity</h1>
 	</div>
 	
 	<div class="page_content">
-		
-		<h2>Transfer Requests</h2>
-		<div id="transfers">
-			<%= render "transfers/transfer_list", :transfers => @transfers %>
+	
+		<div id="activities" class="activity_list">
+			<% @latest_activity.each do |object| %>
+				<div class="activity">
+					<span class="type"><img data-helptext="<%=object.class.name%>" src="/images/icon_<%= object.class.name.downcase %>.png"></span>
+					<span class="details">
+						<span class="title"><%= activity_message_for(object)  %></span>
+					</span>
+					<span class="created_at_date"><%= format_date(:short_full_year, object.updated_at) %></span>
+				</div>
+			<% end %>
 		</div>
 		
 	</div>
@@ -21,5 +28,9 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+	<h2>Transfer Requests</h2>
+	<div id="transfers">
+		<%= render "transfers/transfer_list", :transfers => @transfers %>
+	</div>
 <% end %>
 

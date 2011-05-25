@@ -73,8 +73,9 @@ class Animal < ActiveRecord::Base
   scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
-  def self.latest(num)
-    unscoped.order("animals.created_at DESC").limit(5)
+  # Scopes - Dashboard Only
+  def self.recent_activity(shelter, limit=10)
+    unscoped.where(:shelter_id => shelter).order("updated_at DESC").limit(limit)
   end
   
   # Scopes - Maps

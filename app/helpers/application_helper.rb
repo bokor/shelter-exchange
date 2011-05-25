@@ -25,6 +25,8 @@ module ApplicationHelper
         date.strftime("%b %d") #Feb 06
       when :short
         date.strftime("%b %d, %y") #Feb 06, 11
+      when :short_full_year
+        date.strftime("%b %d, %Y") #Feb 06, 11
       when :long 
         date.strftime("%B %d, %Y") #February 06, 2011
       when :long_day_of_week
