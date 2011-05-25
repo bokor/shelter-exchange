@@ -6,11 +6,11 @@ module DashboardHelper
   
   def animal_message(animal)
     if animal.updated_at == animal.created_at
-      "{animal.name} was created"
+      "#{link_to possessive(animal.name), animal} was created"
     elsif animal.status_change_date == animal.updated_at.to_date
-      "#{link_to animal.name+"'s", animal} status was changed to <strong>'#{animal.animal_status.name}'</strong>"
+      "#{link_to possessive(animal.name), animal} status was changed to <strong>'#{animal.animal_status.name}'</strong>"
     else
-      "#{animal.name} was updated"
+      "#{link_to possessive(animal.name), animal} was updated"
     end.html_safe
   end
   

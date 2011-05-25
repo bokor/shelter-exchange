@@ -19,14 +19,35 @@
 #sidebar ul.action_links { padding: 0 0 10px 0; }
 #sidebar ul.action_links .button { min-width: 200px;}
 
+
+/* old colors
+.red{background-color:#fce2ec; border:1px solid #f286b1;}
+.blue{background-color:#e0f1fa; border:1px solid #89cbeb;}
+.green{background-color:#f1fce2; border:1px solid #c4f286;}
+.yellow{background-color:#fffbe5; border:1px solid #fff3b2;}
+.orange{background-color:#fff6e5;border:1px solid #ffd27f;}
+.purple{background-color:#e6e0fa;border:1px solid #c3b4f3;}
+
+*/
+
+/* new colors
+.red{border-color: #ff6c66;background-color:#ffcecc;}
+.green{border-color: #69f779;background-color:#cafcd0;}
+.yellow{border-color: #ffe366; background-color:#feffcc;}
+.blue{border-color: #699cf7;background-color:#cadcfc;}
+.default{border-color: #ccc;background-color: none;}
+
+
+*/
+
 /* Box :: Forms
 -----------------------------------------------------------------------------*/
 .box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;}
 .box.hide{display: none;}
 .box.red{border-color: #ff6c66;background-color:#ffcecc;}
 .box.green{border-color: #69f779;background-color:#cafcd0;}
-.box.yellow{border-color: #ffe366; background-color:#feffcc;}
-.box.blue{border-color: #699cf7;background-color:#cadcfc;}
+.box.yellow{border-color: #ffe366; background-color:#feffcc;}/*background #f8f7c8 and border #ffe222*/
+.box.blue{border-color: #699cf7;background-color:#cadcfc;}/* background #ddeff9 and border #86c7ea */
 .box.default{border-color: #ccc;background-color: none;}
 .box h2{border: none;}
 .box h3{border: none;}
@@ -46,11 +67,7 @@
 
 /* Page Headings
 -----------------------------------------------------------------------------*/
-/*.page_heading.red{border-color: #ff6c66;background-color:#ffcecc;}*/
-/*.page_heading.green{border-color: #69f779;background-color:#cafcd0;}*/
-/*.page_heading.yellow{border-color: #ffc566; background-color:#feffcc;}*/
-/*.page_heading.blue{border-bottom: 1px solid #699cf7;background-color:#cadcfc;}*/
-.page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}
+.page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}/*e0f1fa*/
 .page_heading h1{width:100%; }
 .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 

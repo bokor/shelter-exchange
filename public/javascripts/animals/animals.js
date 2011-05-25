@@ -153,9 +153,9 @@ var Animals = {
 		});
 	},
 	setDatePickerDate: function(element){
-		var year = $(element+"_1i").val();
-		var month = $(element+"_2i").val();
-		var day = $(element+"_3i").val();
+		var year = $(element+"_year").val();
+		var month = $(element+"_month").val();
+		var day = $(element+"_day").val();
 		var formatDate;
 		if(year != "" && month != "" && day != ""){
 			formatDate = $.datepicker.formatDate('yy-mm-dd', new Date(year, month-1, day));

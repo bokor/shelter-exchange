@@ -89,6 +89,10 @@ module ApplicationHelper
     ['<p class="error">', msg.capitalize, '</p>'].join.html_safe
   end
   
+  def possessive(str)
+    (str[-1,1] == "s") ? str + "'" : str + "'s"
+  end
+  
 end
 
 

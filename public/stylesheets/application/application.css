@@ -77,6 +77,15 @@ color: #AF2B2B;
 #menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
 #menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
 
+/* 37 signals 
+- dark green - 195d00 or 008c15
+middle green - 279000 or 00bf1d
+light green - 34c300 or 00f224
+ 
+dark blue - 00638c
+middle blue - 0087bf
+light blue - 00abf2
+*/
 
 /* Main */   
 /******************************************************************/
