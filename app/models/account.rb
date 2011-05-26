@@ -1,6 +1,5 @@
 class Account < ActiveRecord::Base
   before_validation :downcase_subdomain, :assign_owner_role
-  after_save :new_account_notification
   
   # Associations
   has_many :users, :uniq => true, :dependent => :destroy
@@ -17,17 +16,12 @@ class Account < ActiveRecord::Base
                         
    
   private
-   
     def downcase_subdomain
       self.subdomain.downcase! if attribute_present?(:subdomain)
     end
      
     def assign_owner_role
       self.users.first.role = User::OWNER
-    end
-     
-    def new_account_notification
-      Mailer::Account.new_account(self,self.shelters.first,self.users.first).deliver
     end
     
 end

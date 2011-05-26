@@ -4,4 +4,11 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
+# Delayed Jobs Addition
+begin
+  require 'delayed/tasks'
+rescue LoadError
+  STDERR.puts "Run `bundle:install` to install delayed_job"
+end
+
 Shelterexchange::Application.load_tasks

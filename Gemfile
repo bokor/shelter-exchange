@@ -27,7 +27,7 @@ gem 'rmagick', '2.13.1'
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
-gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+gem 'delayed_job', '2.1.4'          # Background Job Queue  #:git => 'git://github.com/collectiveidea/delayed_job.git'
 
 
 ##TESTING THESE GEMS/Plugins

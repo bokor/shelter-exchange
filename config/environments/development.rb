@@ -22,6 +22,9 @@ Shelterexchange::Application.configure do
   config.action_mailer.default_url_options = { :host => "lvh.me:3000" }
   config.action_mailer.delivery_method = :sendmail
 
+  # Observers
+  config.active_record.observers = :account_observer, :transfer_observer
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

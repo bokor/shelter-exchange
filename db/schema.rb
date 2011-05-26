@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524144311) do
+ActiveRecord::Schema.define(:version => 20110525203742) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -153,6 +153,21 @@ ActiveRecord::Schema.define(:version => 20110524144311) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "items", :force => true do |t|
     t.integer  "shelter_id"
@@ -362,26 +377,5 @@ ActiveRecord::Schema.define(:version => 20110524144311) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "versions", :force => true do |t|
-    t.integer  "versioned_id"
-    t.string   "versioned_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "user_name"
-    t.text     "modifications"
-    t.integer  "number"
-    t.integer  "reverted_from"
-    t.string   "tag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
-  add_index "versions", ["number"], :name => "index_versions_on_number"
-  add_index "versions", ["tag"], :name => "index_versions_on_tag"
-  add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
-  add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
-  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
 
 end

@@ -1,8 +1,7 @@
 class Transfer < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
-  after_save :transfer_record?, :request_transfer_notification
-  after_destroy :rejected_notification
+  after_save :transfer_record?
   
   # Associations
   belongs_to :shelter, :class_name => "Shelter", :readonly => true
@@ -30,23 +29,7 @@ class Transfer < ActiveRecord::Base
     def transfer_record?
       self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.approved and self.completed
     end
-    
-    def request_transfer_notification
-      Mailer::Transfer.request_transfer(self).deliver
-    end
-    
-    def approved_notification
-      Mailer::Transfer.approved(self).deliver
-    end
-    
-    def rejected_notification
-      Mailer::Transfer.rejected(self).deliver
-    end
-    
-    def completed_notification
-      Mailer::Transfer.completed(self).deliver
-    end
-  
+
 end
 
 #, :allow_destroy => true #, :reject_if => proc { |attributes| attributes['comment'].blank? }
