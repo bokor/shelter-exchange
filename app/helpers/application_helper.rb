@@ -93,6 +93,10 @@ module ApplicationHelper
     (str[-1,1] == "s") ? str + "'" : str + "'s"
   end
   
+  def s3_expiring_url(file_name, use_ssl = false, time = 3600)
+    AWS::S3::S3Object.url_for(file_name, S3_BUCKET, :expires_in => time, :use_ssl => use_ssl) #, :authenticated => false
+  end
+  
 end
 
 

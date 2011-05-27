@@ -16,8 +16,7 @@
 
 		var map;
 
-		// var fileUrl = "http://s3.amazonaws.com/shelterexchange-dev/maps/overlay.kmz?<%=Time.new.to_i%>"
-		var fileUrl = "<%=s3_overlay_url%>";
+		var fileUrl = "<%=s3_expiring_url('maps/overlay.kmz')%>";
 		var kmlLayer;
 		
 		
