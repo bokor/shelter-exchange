@@ -72,7 +72,7 @@ Shelterexchange::Application.routes.draw do
     match 'communities/animal/:animal_id' => 'communities#animal', :as => :animal_communities
 
 #   Maps Routes      
-    resources :maps 
+    resources :maps, :only => [:overlay]
     
 #   Transfers Routes    
     resources :transfers, :except => [:index, :show] do

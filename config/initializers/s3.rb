@@ -1,7 +1,13 @@
-# if Rails.env == "production"
-#   # set credentials from ENV hash
-#   S3_CREDENTIALS = { :access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET'], :bucket => "sharedearth-production"}
-# else
-  # get credentials from YML file
-  S3_CREDENTIALS = Rails.root.join("config/s3.yml")
-# end
+require "yaml"
+
+S3_CREDENTIALS = YAML.load_file(Rails.root.join("config/s3.yml"))
+
+
+
+require "aws/s3"
+
+unless AWS::S3::Base.connected?
+  AWS::S3::Base.establish_connection!(
+          :access_key_id => S3_CREDENTIALS["common"]["access_key_id"],
+          :secret_access_key => S3_CREDENTIALS["common"]["secret_access_key"])
+end

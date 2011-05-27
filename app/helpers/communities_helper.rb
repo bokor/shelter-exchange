@@ -18,4 +18,10 @@ module CommunitiesHelper
     end
     components.join() << " left"
   end
+  
+  def s3_overlay_url
+    s3_bucket = S3_CREDENTIALS[Rails.env]["bucket"]
+    AWS::S3::S3Object.url_for("maps/overlay.kmz", s3_bucket, :expires_in => 3600)
+  end
+
 end

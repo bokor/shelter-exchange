@@ -15,8 +15,9 @@
 		}
 
 		var map;
-	
-		var fileUrl = 'http://www.designwaves.com/shelters.kmz'; //?<%=Time.new.to_i%>
+
+		// var fileUrl = "http://s3.amazonaws.com/shelterexchange-dev/maps/overlay.kmz?<%=Time.new.to_i%>"
+		var fileUrl = "<%=s3_overlay_url%>";
 		var kmlLayer;
 		
 		

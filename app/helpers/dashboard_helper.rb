@@ -35,3 +35,8 @@ module DashboardHelper
   end
   
 end
+
+# case object
+# when Animal
+#   logger.debug("TESTING THIS OUT")
+# end
