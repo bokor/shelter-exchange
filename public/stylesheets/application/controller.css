@@ -76,18 +76,23 @@
 
 /* Circles :: Capacity
 -----------------------------------------------------------------------------*/
-.circle{ -moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
+.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
+.section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}
+
+
+.circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
 .circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
-.circle.over_capacity{border: 1px solid #ff6c66;background-color:#ffcecc;}
-.circle.warning_level{border: 1px solid #ffc566; background-color:#feffcc;}
-.circle.normal{border: 1px solid #69f779;background-color:#cafcd0;}
+.circle.over_capacity{border-color: #f07280;background-color:#faced3;}
+.circle.warning_level{border-color: #f9d36f; background-color:#fdf1d0;}
+.circle.normal{border-color: #90e674;background-color:#d5f6ca;}
 
 /* Circles :: Capacity
 -----------------------------------------------------------------------------*/
-.shelter_type{width: 150px; margin-top: 20px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
-.shelter_type.kill{border: 1px solid #ff6c66;background-color:#ffcecc;}
-.shelter_type.no_kill{border: 1px solid #69f779;background-color:#cafcd0;}
+.shelter_type{width: 150px; margin-top: 20px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.shelter_type.kill{border-color: #f07280;background-color:#faced3;}
+.shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
 
 
 
@@ -291,10 +296,6 @@
 
 .capacity .status{display: inline-block;}
 .capacity .details{display: inline-block;}
-/*.capacity .circle{ height: 100px; width: 100px; text-align:center; line-height: 100px; -moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}*/
-/*.capacity .circle.over_capacity{border: 1px solid #ff6c66;background-color:#ffcecc;}*/
-/*.capacity .circle.warning_level{border: 1px solid #ffc566; background-color:#feffcc;}*/
-/*.capacity .circle.normal{border: 1px solid #69f779;background-color:#cafcd0;}*/
 
 .capacity .title { padding-bottom:10px; line-height: 1.2em;}
 .capacity .animal_type {float:left; width: 59%;}

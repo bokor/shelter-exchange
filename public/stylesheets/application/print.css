@@ -34,23 +34,13 @@ body { background-color: #fff; color:#000; }
 .index_animals table.search {display:none;}
 
 /* -- SHOW --*/
-.show_animals .page_heading{border-bottom:0px; }
-.show_animals .blue_background{background-color: #fff; }
+.show_animals .page_heading.blue{border-bottom:0px; background-color: #fff;}
 .show_animals .notes_heading, .show_animals .status_history_heading {display:none;}
 .show_animals #notes, .show_animals .note_filters {display:none;}
 .show_animals #status_histories{display:none;}
 .show_animals .euthanasia_info{display:none;}
 
-/****************************************************************/
-/* -------------------------- NOTES  -------------------------- */
-/****************************************************************/
 
-
-/*****************************************************************/
-/* -------------------------- ALERTS  -------------------------- */
-/*****************************************************************/
-/* -- INDEX --*/
-/* -- SHOW --*/
 /*************************************************************************/
 /* -------------------------- ACCOMMODATIONS  -------------------------- */
 /*************************************************************************/
@@ -59,61 +49,48 @@ body { background-color: #fff; color:#000; }
 .index_accommodations table.search {display:none;}
 .index_accommodations .accommodation_details {clear:both; display:block; padding-top: 20px;}
 
-/*******************************************************************/
-/* -------------------------- LOCATIONS -------------------------- */
-/*******************************************************************/
-/* -- INDEX --*/
-/* -- SHOW --*/
-/******************************************************************/
-/* ---------------------------- TASKS --------------------------- */
-/******************************************************************/
-/* -- INDEX --*/
-/* -- SHOW --*/
-/*******************************************************************/
-/* -------------------------- COMMENTS --------------------------- */
-/*******************************************************************/
-/* -- INDEX --*/
-/* -- SHOW --*/
+
 /******************************************************************/
 /* -------------------------- PARENTS --------------------------- */
 /******************************************************************/
 /* -- INDEX --*/
-.parents .page_heading{border-bottom:0px; }
-.parents .green_background{background-color: #fff; }
+.parents .page_heading.blue{border-bottom:0px; background-color: #fff;}
 
 /* -- SHOW --*/
 .show_parents #notes_heading{ display: none; }
 .show_parents #notes{ display: none; }
 .show_parents #comments{ display: none; }
-/*.show_parents .page_heading{border-bottom:1px solid #ddd; }
-.show_parents table.parent{width:100%;}
-.show_parents table.list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; }*/
+
 
 /******************************************************************/
 /* -------------------------- REPORTS --------------------------- */
 /******************************************************************/
-/* -- INDEX --*/
-.reports .page_heading{border-bottom:0px; }
-.reports .yellow_background{background-color: #fff; }
-/* -- SHOW --*/
+.reports .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
 
 /*******************************************************************/
 /* -------------------------- SHELTERS --------------------------- */
 /*******************************************************************/
-/* -- INDEX --*/
-.shelters .page_heading{border-bottom:0px; }
-.shelters .blue_background{background-color: #fff; }
+.shelters .page_heading.blue{border-bottom:0px; background-color: #fff;}
 
-/* -- SHOW --*/
 
 /****************************************************************/
 /* -------------------------- USERS --------------------------- */
 /****************************************************************/
-/* -- INDEX --*/
-.users .page_heading{border-bottom:0px; }
-.users .blue_background{background-color: #fff; }
+.users .page_heading.blue{border-bottom:0px; background-color: #fff;}
 
-/* -- SHOW --*/
+
+/********************************************************************/
+/* -------------------------- DASHBOARD --------------------------- */
+/********************************************************************/
+.dashboard .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+
+/*******************************************************************/
+/* -------------------------- CAPACITY --------------------------- */
+/*******************************************************************/
+.capacities .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
 
 
 
