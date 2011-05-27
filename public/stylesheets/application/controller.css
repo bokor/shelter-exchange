@@ -452,6 +452,7 @@
 .animal_communities table.animal td h1 {}
 .animal_communities table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .animal_communities table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+.animal_communities table.animal td.status{text-align:right;}
 
 .animal_communities table.animal_details{text-align:left;}
 .animal_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }

@@ -1,0 +1,33 @@
+<style type="text/css" media="screen">
+	#email_logo { width: 100%; text-align:center; margin:0 auto;}
+	#email_logo img{text-align:center; margin:0 auto;}
+	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+	.closing{padding: 20px 0 0 0; }
+	.closing p{padding-bottom: 10px;}
+</style>
+
+<div id="email_logo">
+	<%= image_tag attachments['logo_email.jpg'].url -%>
+</div>
+
+<p>A transfer request has been submitted for <strong><%=@animal.name%></strong>. Below are the details of the shelter or rescue that wish to transfer this animal to their facility.</p>
+
+<strong><%= @requestor_shelter.name %></strong><br />
+<%= @requestor_shelter.street %><br />
+<%= @requestor_shelter.city %>, <%= @requestor_shelter.state %> <%= @requestor_shelter.zip_code %><br />
+Tel: <%= @requestor_shelter.phone %><br />
+Email: <a href="mailto:<%= @requestor_shelter.email %>"><%= @requestor_shelter.email %></a><br /><br />
+
+
+Contact: <%= @transfer.requestor %><br />
+Tel: <%= @transfer.phone %><br />
+Email: <a href="mailto:<%= @transfer.email %>"><%= @transfer.email %></a><br />
+
+<p>Sign into Shelter Exchange and click on the 'Dashboard' to view this pending request. Please Approve or Reject this request in accordance with your internal adoption and rescue procedures. </p>
+
+<p>If you APPROVE this request and the animal has been transferred from your shelter (or is in transit to the new shelter) please click COMPLETE on the Dashboard page to transfer the animal record to the new shelter.</p>
+
+<div class="closing">
+	<p>Many thanks,</p>
+	<p>Shelter Exchange Team</p>
+</div>

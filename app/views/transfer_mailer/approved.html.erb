@@ -1,0 +1,49 @@
+<%
+	# Update Host only on this email because we don't want it coming from www but the subdomain of the new account
+	subdomain = @resource.account.subdomain
+	host = ActionMailer::Base::default_url_options[:host].gsub!("www.", subdomain << ".")
+	
+	attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+%>
+<style type="text/css" media="screen">
+	#email_logo { width: 100%; text-align:center; margin:0 auto;}
+	#email_logo img{text-align:center; margin:0 auto;}
+	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+</style>
+
+<div id="email_logo">
+	<%= image_tag attachments['logo_email.jpg'].url %>
+</div>
+
+<p>Dear <%= @resource.first_name %>,</p>
+
+<p>Welcome! Thank you for joining Shelter Exchange.</p>
+<p>You will be required to enter your password when logging in so keep a copy for your records. Please also note, passwords are case sensitive.</p>
+<p><strong><%= link_to 'Confirm my account', confirmation_url(@resource, :host => host, :confirmation_token => @resource.confirmation_token) %></strong> to get started.</p>
+<p>Once again, welcome to the Shelter Exchange community!</p>
+
+<h3>Shelter Exchange</h3>
+<a href="mailto:info@shelterexchange.org">info@shelterexchange.org</a><br />
+<a href="http://www.shelterexchange.org">www.shelterexchange.org</a>
+
+
+
+
+
+Congratulations! Your request to transfer Billy Joel to your shelter or rescue has been Approved by SPCA Wake County Animal Center. Any details regarding this transfer request maybe noted below:
+
+Note: Please call ASAP to arrange pick up! Claire - 919-227-3051 
+
+Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:
+
+SPCA Wake County Animal Center
+100 Petfinder Lane,
+Raleigh, NC 27612
+Tel: 919-222-3022
+Email: spca@spcawake.org
+
+Once the animal has been transported to your shelter the record for Billy Joel will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the SPCA Wake County Animal to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.
+
+Many thanks,
+
+Shelter Exchange Team

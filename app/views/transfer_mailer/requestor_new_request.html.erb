@@ -1,0 +1,34 @@
+<style type="text/css" media="screen">
+	#email_logo { width: 100%; text-align:center; margin:0 auto;}
+	#email_logo img{text-align:center; margin:0 auto;}
+	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+	.closing{padding: 20px 0 0 0; }
+	.closing p{padding-bottom: 10px;}
+</style>
+
+<div id="email_logo">
+	<%= image_tag attachments['logo_email.jpg'].url -%>
+</div>
+
+
+<p>Thank you!</p>
+
+<p>You have requested <%=@animal.name%> from <%= @shelter.name %> and an email notification has been sent to notify them of your request.</p>
+
+<p>If the transfer is approved by <%= @shelter.name %> you will receive an email notifying you of this. You must make the necessary arrangements to pull or collect this animal in accordance with their procedures and guidelines.</p>
+
+<p>Once the animal has been transported to your shelter the record for <%=@animal.name%> will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the <%= @shelter.name %> to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.</p>
+
+<p>Please consult directly with the shelter regarding all transfer requests that you have sent, their contact details are below:</p>
+
+<strong><%= @shelter.name %></strong><br />
+<%= @shelter.street %><br />
+<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
+Tel: <%= @shelter.phone %><br />
+Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
+
+<div class="closing">
+	<p>Many thanks,</p>
+	<p>Shelter Exchange Team</p>
+</div>
+

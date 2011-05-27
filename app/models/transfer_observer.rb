@@ -1,7 +1,7 @@
 class TransferObserver < ActiveRecord::Observer
   
   def after_create(transfer)
-    request_transfer_notification(transfer)
+    transfer_request_notification(transfer)
   end
   
   def after_save(transfer)
@@ -19,8 +19,9 @@ class TransferObserver < ActiveRecord::Observer
   
   private
     
-    def request_transfer_notification(transfer)
-      TransferMailer.delay.request_transfer(transfer)
+    def transfer_request_notification(transfer)
+      TransferMailer.delay.requestor_new_request(transfer)
+      TransferMailer.delay.requestee_new_request(transfer)
     end
     
     def approved_notification(transfer)
