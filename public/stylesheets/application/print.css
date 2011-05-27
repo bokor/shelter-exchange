@@ -35,7 +35,7 @@ body { background-color: #fff; color:#000; }
 
 /* -- SHOW --*/
 .show_animals .page_heading.blue{border-bottom:0px; background-color: #fff;}
-.show_animals .notes_heading, .show_animals .status_history_heading {display:none;}
+.show_animals #notes_heading, .show_animals #status_history_heading {display:none;}
 .show_animals #notes, .show_animals .note_filters {display:none;}
 .show_animals #status_histories{display:none;}
 .show_animals .euthanasia_info{display:none;}
