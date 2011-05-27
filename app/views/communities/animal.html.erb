@@ -83,7 +83,7 @@
 		<% end %>
 	</div>
 	
-	<div class="section_heading orange">
+	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
@@ -95,9 +95,12 @@
 		</div>
 	</div>
 	
-	<div id="notes" class="page_content">
-		<%= render @notes %>
+	<div class="page_content">
+		<div id="notes" class="note_list">
+			<%= render @notes %>
+		</div>
 	</div>
+
 
 
 <% end %>
