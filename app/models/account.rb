@@ -13,7 +13,15 @@ class Account < ActiveRecord::Base
                         :uniqueness => true,
                         :format => { :with => SUBDOMAIN_FORMAT, :message => "can only contain alphanumeric characters; A-Z, 0-9 or hyphen" },
                         :exclusion => { :in => RESERVED_SUBDOMAINS, :message => "is reserved and unavailable."}
-                        
+           
+           
+  def approved?
+    !self.is_blocked
+  end
+  
+  def blocked?
+    self.is_blocked
+  end
    
   private
     def downcase_subdomain

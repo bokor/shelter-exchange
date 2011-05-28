@@ -8,7 +8,3 @@ $("#<%= form_id %> p.error").replaceWith("");
 	element.addClass("error");
 	element.append("<%= escape_javascript(create_error_message(msg)) %>");
 <% end %>
-
-<%# if field.to_s.include? "." %>
-	//alert("<%#target.errors.on(field)%>");
-<%# end %>

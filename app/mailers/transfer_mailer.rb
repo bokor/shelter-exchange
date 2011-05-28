@@ -11,12 +11,13 @@ class TransferMailer < ActionMailer::Base
         
   end
   
-  def requestee_new_request(transfer)
+  def requestee_new_request(transfer, email_note)
     @transfer = transfer
     @shelter = transfer.shelter
     @requestor_shelter = transfer.requestor_shelter
     # @account = @shelter.account
     @animal = transfer.animal
+    @email_note = email_note
     attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
     mail(:to => @shelter.email, 
          :subject => "Requested Transfer from #{@requestor_shelter.name} by #{@transfer.requestor}")

@@ -2,7 +2,10 @@
 	#email_logo { width: 100%; text-align:center; margin:0 auto;}
 	#email_logo img{text-align:center; margin:0 auto;}
 	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
-	.closing{padding: 20px 0 0 0; }
+	ul{list-style-type:none;padding:0;margin:0;}
+	li{padding-bottom: 0;}
+	.additional_notes{padding: 10px 0;}
+	.closing{padding-top:5px;}
 	.closing p{padding-bottom: 10px;}
 </style>
 
@@ -12,16 +15,22 @@
 
 <p>A transfer request has been submitted for <strong><%=@animal.name%></strong>. Below are the details of the shelter or rescue that wish to transfer this animal to their facility.</p>
 
-<strong><%= @requestor_shelter.name %></strong><br />
-<%= @requestor_shelter.street %><br />
-<%= @requestor_shelter.city %>, <%= @requestor_shelter.state %> <%= @requestor_shelter.zip_code %><br />
-Tel: <%= @requestor_shelter.phone %><br />
-Email: <a href="mailto:<%= @requestor_shelter.email %>"><%= @requestor_shelter.email %></a><br /><br />
+<p>
+	<strong><%= @requestor_shelter.name %></strong><br />
+	<%= @requestor_shelter.street %><br />
+	<%= @requestor_shelter.city %>, <%= @requestor_shelter.state %> <%= @requestor_shelter.zip_code %><br />
+	Tel: <%= number_to_phone(@requestor_shelter.phone, :delimiter => "-") %><br />
+	Email: <a href="mailto:<%= @requestor_shelter.email %>"><%= @requestor_shelter.email %></a>
+</p>
+
+<p>
+	Contact: <%= @transfer.requestor %><br />
+	Tel: <%= number_to_phone(@transfer.phone, :delimiter => "-") %><br />
+	Email: <a href="mailto:<%= @transfer.email %>"><%= @transfer.email %></a>
+</p>
 
 
-Contact: <%= @transfer.requestor %><br />
-Tel: <%= @transfer.phone %><br />
-Email: <a href="mailto:<%= @transfer.email %>"><%= @transfer.email %></a><br />
+<p class="additional_notes">Addtional Notes: <strong><%=@email_note%></strong></p>
 
 <p>Sign into Shelter Exchange and click on the 'Dashboard' to view this pending request. Please Approve or Reject this request in accordance with your internal adoption and rescue procedures. </p>
 

@@ -2,7 +2,9 @@
 	#email_logo { width: 100%; text-align:center; margin:0 auto;}
 	#email_logo img{text-align:center; margin:0 auto;}
 	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
-	.closing{padding: 20px 0 0 0; }
+	ul{list-style:none;padding:0;margin:0;}
+	li{padding-bottom: 0;}
+	.closing{padding-top:5px;}
 	.closing p{padding-bottom: 10px;}
 </style>
 
@@ -21,11 +23,13 @@
 
 <p>Please consult directly with the shelter regarding all transfer requests that you have sent, their contact details are below:</p>
 
-<strong><%= @shelter.name %></strong><br />
-<%= @shelter.street %><br />
-<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
-Tel: <%= @shelter.phone %><br />
-Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
+<p>
+	<strong><%= @shelter.name %></strong><br />
+	<%= @shelter.street %><br />
+	<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
+	Tel: <%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
+	Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
+</p>
 
 <div class="closing">
 	<p>Many thanks,</p>

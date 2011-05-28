@@ -16,7 +16,7 @@ body { background-color: #fff; color:#000; }
 #right { display:none; }
 
 /******************************************************************/
-#footer { background-color: #fff; }
+#footer { display:none; }
 
 /******************************************************************/
 .pagination { display: none; }
@@ -92,7 +92,13 @@ body { background-color: #fff; color:#000; }
 .capacities .page_heading.blue{border-bottom:0px; background-color: #fff;}
 
 
-
-
-
-
+/**********************************************************************/
+/* -------------------------- COMMUNITIES  -------------------------- */
+/**********************************************************************/
+.communities .page_heading.blue{border-bottom:0px; background-color: #fff;}
+.communities #notes_heading, .show_animals #status_history_heading {display:none;}
+.communities #notes, .show_animals .note_filters {display:none;}
+.communities #right {display:block; width: 100%;padding: 0 0 0 0; margin:0 0 0 0;}
+.communities #right #sidebar { padding: 0 0 0 0; }
+.communities #transfer_request_button {display:none;}
+.communities #transfer_requested {display:none;}

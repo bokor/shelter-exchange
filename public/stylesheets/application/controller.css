@@ -1,3 +1,8 @@
+/* If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { width: 0;}*/
+
 /******************************************************************/
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
@@ -19,26 +24,6 @@
 #sidebar ul.action_links { padding: 0 0 10px 0; }
 #sidebar ul.action_links .button { min-width: 200px;}
 
-
-/* old colors
-.red{background-color:#fce2ec; border:1px solid #f286b1;}
-.blue{background-color:#e0f1fa; border:1px solid #89cbeb;}
-.green{background-color:#f1fce2; border:1px solid #c4f286;}
-.yellow{background-color:#fffbe5; border:1px solid #fff3b2;}
-.orange{background-color:#fff6e5;border:1px solid #ffd27f;}
-.purple{background-color:#e6e0fa;border:1px solid #c3b4f3;}
-
-*/
-
-/* new colors
-.red{border-color: #ff6c66;background-color:#ffcecc;}
-.green{border-color: #69f779;background-color:#cafcd0;}
-.yellow{border-color: #ffe366; background-color:#feffcc;}
-.blue{border-color: #699cf7;background-color:#cadcfc;}
-.default{border-color: #ccc;background-color: none;}
-
-
-*/
 
 /* Box :: Forms
 -----------------------------------------------------------------------------*/
@@ -96,10 +81,7 @@
 
 
 
-/* If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
-.index_users #main { margin: 1em 3em 0 3em; }
-.index_users #left { width: 100%;}
-.index_users #sidebar { width: 0;}*/
+
 
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
@@ -223,51 +205,8 @@
 .show_animals #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
 .show_animals #animal_alerts h2{font-weight: bold;margin-bottom: 5px;}
 
-/*.show_animals #create_alert {display: none;background-color: #ffcecc; border:1px solid #ff6c66;padding: 15px; margin-bottom: 15px;}*/
-/*.show_animals #create_task {display: none; background-color:#cadcfc; border:1px solid #699cf7; padding: 15px; margin-bottom: 15px;}*/
-/*.show_animals #create_note {display: none;background-color:#feffcc; border:1px solid #fcff66; padding: 15px; margin-bottom: 15px;}*/
-
 .show_animals #another_note_category{ display:none; }
 .show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
-
-/*.show_animals .box.blue h2{border: none;}*/
-/*.show_animals #animal_tasks .edit_task {display: none;background-color:#cadcfc; border:1px solid #699cf7; padding: 15px; margin-bottom: 15px;}*/
-/*.show_animals #animal_tasks .edit_task h2 {border: 0;}*/
-/*.show_animals #animal_alerts .edit_alert {display: none;background-color: #ffcecc; border:1px solid #ff6c66; padding: 15px; margin-bottom: 15px;}*/
-/*.show_animals #animal_alerts .edit_alert h2 {border: 0;}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -280,13 +219,9 @@
 /********************************************************************/
 .capacities ul {list-style:none;}
 
-/* -- Index Capacities --*/
-/*.index_capacities .page_heading{border-bottom:1px solid #eee; }*/
-/*.index_capacities #sidebar #create_capacity {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}*/
-
-/* -- Capacity List :: Edit Form --*/
-.capacity_list .edit_capacity { width: 42%; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px; margin-right: 10px; border: 1px #ccc solid; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-.capacity_list .edit_capacity h2 {border: 0;}
+/* Capacity List :: Edit Box
+-----------------------------------------------------------------------------*/
+/*.capacity_list .box { width: 42%;  margin-right: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}*/
 
 /* Capacity List :: Layout
 -----------------------------------------------------------------------------*/
@@ -381,32 +316,6 @@
 .animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
 .animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
 
-/* Accommodations :: Forms
------------------------------------------------------------------------------*/
-/*.index_accommodations #sidebar #create_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}*/
-/*#accommodations .edit_accommodation {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -418,23 +327,22 @@
 /**********************************************************************/
 /* -------------------------- COMMUNITIES --------------------------- */
 /**********************************************************************/
-/* -- Communities :: Common Styles --*/
+/* Communities :: Global
+-----------------------------------------------------------------------------*/
 .communities ul {list-style:none;}
 .communities ul.form {padding-bottom: 0; margin-bottom:0;}
 .communities input[type=text]{height:20px;width:90%;font-size:14px; }
 
-/* -- Communities :: Page Heading and Titles --*/
-/*.communities .page_heading{border-bottom:1px solid #eee; }*/
-/*.communities .page_heading h1{width:100%; }*/
 
-/* -- Communities :: Page Layout --*/
+/* Communities :: Page Layout
+-----------------------------------------------------------------------------*/
 .search_by_city_zipcode_communities #main, .search_by_shelter_name_communities #main{ margin: 1em 3em 0 3em; }
 .search_by_city_zipcode_communities #left, .search_by_shelter_name_communities #left { width: 100%;}
 .search_by_city_zipcode_communities #sidebar, .search_by_shelter_name_communities #sidebar { display: none;width: 0; }
 
 
-
-/* -------------------------- Communities :: Animal List -------------------------- */
+/* Communities :: Animal List
+-----------------------------------------------------------------------------*/
 .communities table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
 .communities table.animal_list tr {border-bottom:1px #ccc dotted; }
 .communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
@@ -444,8 +352,8 @@
 .communities table.animal_list .action_links {display:none;}
 
 
-/* -------------------------- Communties :: Animal Page -------------------------- */
-/*.animal_communities .page_heading{border-bottom:1px solid #eee; }*/
+/* Communities :: Animal Page
+-----------------------------------------------------------------------------*/
 .animal_communities table.animal{width:100%;}
 .animal_communities table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
 .animal_communities table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
@@ -479,11 +387,15 @@
 .animal_communities .notes_heading .links{float:right; text-align: right;padding-top:5px;}
 .animal_communities .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* -------------------------- Communties :: Animal Page :: Sidebar -------------------------- */
+/* Communities :: Animal Page :: Sidebar
+-----------------------------------------------------------------------------*/
 .animal_communities #animal_shelter {padding: 15px 0 0 0;}
 .animal_communities #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .animal_communities #animal_shelter .shelter_details h2{border:none;}
-/*.animal_communities #transfer_request {display: none;background-color:#f1fce2; border:1px solid #c4f286; padding: 15px; margin-bottom: 15px;}*/
+
+
+
+
 
 
 /*****************************************************************/
@@ -496,7 +408,6 @@
 
 /* Reports :: Page Layout
 -----------------------------------------------------------------------------*/
-/*.reports .page_heading{border-bottom:1px solid #eee; }*/
 .reports .page_heading h1{width:50%; float:left; }
 .reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 
@@ -518,6 +429,8 @@
 
 
 
+
+
 /******************************************************************/
 /* -------------------------- SETTINGS -------------------------- */
 /******************************************************************/
@@ -526,11 +439,8 @@
 -----------------------------------------------------------------------------*/
 .settings ul {list-style:none;}
 
-/* Settings :: Page Layout
+/* Index Settings :: Page Layout
 -----------------------------------------------------------------------------*/
-/*.settings .page_heading{border-bottom:1px solid #eee; }*/
-/*.settings .page_heading h1{width:100%; }*/
-
 .index_settings #main { margin: 1em 3em 0 3em; }
 .index_settings #left { width: 100%;}
 .index_settings #sidebar { display: none;width: 0; }
@@ -541,6 +451,11 @@
 .index_settings .section { padding-bottom: 25px;}
 
 
+
+
+
+
+
 /*******************************************************************/
 /* -------------------------- DASHBOARD -------------------------- */
 /*******************************************************************/
@@ -549,26 +464,12 @@
 -----------------------------------------------------------------------------*/
 .dashboard ul {list-style:none;}
 
-/* Dashboard :: Page Layout
+
+/* Activity List :: Layout
 -----------------------------------------------------------------------------*/
-/*.dashboard .page_heading{border-bottom:1px solid #eee; }*/
-/*.dashboard .page_heading h1{width:100%; }*/
-
-/*.dashboard #main { margin: 1em 3em 0 3em; }
-.dashboard #left { width: 100%;}
-.dashboard #sidebar { display: none;width: 0; }*/
-
-/* Dashboard :: Activity List :: Layout */
-/******************************************************************/
 .activity_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
 
 .activity{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
-
-/*.activity .type{display:inline-block; padding: 0 5px; }
-	.activity .type div {display:inline-block; width: 75px; height: 30px; line-height: 30px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px; border:none;}
-	.activity .type div.alert{background:url(/images/icon_call.png) top center no-repeat; cursor:default; }
-	.activity .type div.task{background:url(/images/icon_task.png) top center no-repeat;}
-	.activity .type div.animal{background:url(/images/icon_animal.png) top center no-repeat;}*/
 	
 .activity .type{display:inline-block; width: 65px; height: 24px; line-height: 50px; text-align:center;}
 	.activity.type img {text-align:center; vertical-align:middle;}
@@ -577,14 +478,6 @@
 
 .activity .details{display:inline-block; width: 57%; vertical-align:top; }
 	.activity .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
-
-
-
-
-
-
-
-
 
 
 
@@ -605,7 +498,6 @@
 
 /* Parents :: Page Layout
 -----------------------------------------------------------------------------*/
-/*.parents .page_heading{border-bottom:1px solid #eee; }*/
 .parents .page_heading h1{width:50%; float:left; }
 .parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 .show_parents .page_heading h1{width:60%;}
@@ -615,9 +507,6 @@
 
 /* Show Parents :: Sidebar
 -----------------------------------------------------------------------------*/
-/*.show_parents #create_placement {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
-/*.show_parents #create_note {display: none;background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}*/
-/*.show_parents .edit_comment{background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}*/
 .show_parents .create_comment{height: 350px;}
 .show_parents #sidebar ul.action_links .button { min-width: 200px;}
 
@@ -677,7 +566,6 @@
 .show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
 .show_parents #animals table.animal_list td.details { width:380px;color:#666; }
 .show_parents #animals table.animal_list td.status { width:175px;padding-left: 10px; text-align:right;}
-/*.show_parents #animals table.animal_list td .action_links{font-size: 10px;font-weight:bold;}*/
 .show_parents #animals .action_links .edit_link, .show_parents #animals .action_links .delete_link {display:none;}
 
 
@@ -699,9 +587,6 @@
 .show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
 .show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
 
-/*.show_parents table.placement_list tr.edit_placement td {background-color: #f1fce2; border:1px solid #c4f286;padding: 15px; margin-bottom: 15px;}*/
-/*.show_parents table.placement_list tr.edit_placement h2 {border: 0;}*/
-
 
 
 
@@ -714,11 +599,8 @@
 -----------------------------------------------------------------------------*/
 .users ul {list-style:none;}
 
-/* Users :: Page Layout
+/* Index Users :: Page Layout
 -----------------------------------------------------------------------------*/
-/*.users .page_heading{border-bottom:1px solid #eee; }*/
-/*.users .page_heading h1{width:100%; }*/
-
 .index_users #main { margin: 1em 3em 0 3em; }
 .index_users #left { width: 100%;}
 .index_users #sidebar { display: none;width: 0; }
@@ -728,7 +610,7 @@
 .user_list .profile_section{float: left; width: 45%; padding-right: 2%;}
 .user_list .password_section{float: left; width: 45%; padding-left: 2%;}
 
-/* Index Users :: User List
+/* User List :: Layout
 -----------------------------------------------------------------------------*/
 .user_list{ width: 100%; margin-bottom: 20px; table-layout: auto; border-collapse: collapse; border-spacing: 0;}
 .user_list .current {background-color:#EFEBE3;}
@@ -745,15 +627,6 @@
 
 .user .action_links{display:inline-block; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
 
-
-/* Index Users :: Form :: Edit User
------------------------------------------------------------------------------*/
-/*.user_list .edit_user {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
-/*.user_list .edit_user:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
-
-/* Index Users :: Invite New User form
------------------------------------------------------------------------------*/
-/*.index_users #new_invitation {display: none; background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
 
 
 
@@ -772,7 +645,6 @@
 
 /* Shelters :: Page Heading */
 /******************************************************************/
-/*.shelters .page_heading{border-bottom:1px solid #eee; }*/
 .shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
 .shelters .page_heading .action_links{width:30%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
 .edit_shelters .page_heading h1, .update_shelters .page_heading h1{width:100%;}
@@ -794,37 +666,10 @@
 /* Index Shelters :: Sidebar */
 /******************************************************************/
 .index_shelters #sidebar #items_section .actions {padding-left:10px; font-size: 13px; font-weight:normal;}
-/*.index_shelters #edit_items {background-color: #f1fce2; border: 1px #c4f286 solid; padding: 15px; margin-bottom: 15px;}*/
 
 /* Index Shelters :: Map */
 /******************************************************************/
-.index_shelters #map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; /*box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999;*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.index_shelters #map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
 
 
 
@@ -840,21 +685,6 @@
 /******************************************************************/
 .alerts ul { list-style:none ;}
 
-/* New/Create Alerts :: Page Layout */
-/******************************************************************/
-/*.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
-.new_alerts #left, .create_alerts #left{ width: 100%; }
-.new_alerts #sidebar, .create_alerts #sidebar{ display: none;width: 0;}*/
-
-/* Index Alerts :: Alert List */
-/******************************************************************/
-/*.alerts .page_heading{border-bottom:1px solid #ddd; }*/
-/*.alerts #sidebar #create_alert {background-color: #fce2ec; border:1px solid #f286b1;padding: 15px; margin-bottom: 15px;}*/
-
-/* Index Alerts :: Alert List :: Edit Form */
-/******************************************************************/
-/*.alert_list .edit_alert {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
-/*.alert_list .edit_alert h2 {border: 0;}*/
 
 /* Alert List :: Layout */
 /******************************************************************/
@@ -888,6 +718,8 @@
 
 
 
+
+
 /******************************************************************/
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
@@ -895,14 +727,9 @@
 /* Tasks :: Global */
 /******************************************************************/
 .tasks ul {list-style:none;}
-/*.tasks #sidebar #create_task {background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
 .tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 .index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
 
-/* Index Tasks :: Task List :: Edit Form */
-/******************************************************************/
-/*.task_list .edit_task {display: none;background-color:#e0f1fa; border:1px solid #89cbeb; padding: 15px; margin-bottom: 15px;}*/
-/*.task_list .edit_task h2 {border: 0;}*/
 
 
 /* Index Tasks :: Task List */
@@ -936,13 +763,12 @@
 
 
 
+
+
 /******************************************************************/
 /* -------------------------- NOTES  -------------------------- */
 /******************************************************************/
 
-/* Notes :: Edit Form */
-/******************************************************************/
-/*.note_list .edit_note {display:none;border-color: #d5f6ca;background-color:#90e674;padding:15px; margin-bottom:15px;}*/
 
 /* Notes List :: Layout */
 /******************************************************************/
@@ -1016,14 +842,10 @@
 
 /* New/Create Locations :: Layout */
 /******************************************************************/
-/*#create_location {background-color:#fffbe5; border:1px solid #ffd27f; padding: 15px; margin-bottom: 15px;}*/
 #create_location .form {float:left; padding-bottom: 0;}
 #create_location .actions {float: left; margin: -5px 0 0 10px;}
 #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* Edit Locations :: Layout */
-/******************************************************************/
-/*.edit_location {display:none;background-color:#f1fce2; border:1px solid #c4f286;padding:15px; margin-bottom:15px;}*/
 
 /* Index Accommodations :: Edit Location Dialog  */
 /******************************************************************/

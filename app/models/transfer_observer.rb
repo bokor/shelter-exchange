@@ -21,7 +21,7 @@ class TransferObserver < ActiveRecord::Observer
     
     def transfer_request_notification(transfer)
       TransferMailer.delay.requestor_new_request(transfer)
-      TransferMailer.delay.requestee_new_request(transfer)
+      TransferMailer.delay.requestee_new_request(transfer, transfer.email_note)
     end
     
     def approved_notification(transfer)

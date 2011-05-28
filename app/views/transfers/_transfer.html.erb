@@ -18,7 +18,6 @@
 <div id="transfer_<%=transfer.id%>" class="transfer">
 	<div class="details">
 		<%= transfer.requestor_shelter.name %> has requested <%= link_to transfer.animal.name, transfer.animal %><br />
-		<span class="comment">Comment: <%= transfer.comments.first.comment %></span>
 	</div>
 	<span class="created_at_date">
 		<%= format_date(:long, transfer.created_at) %><br />

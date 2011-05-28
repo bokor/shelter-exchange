@@ -23,26 +23,6 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 Shelter Exchange Letters - #cf7019
 Dog House Roof - #f26649
 Dog House Sides - #db8d4a
-
-
-
-Wufoo blue
-background-color: #DFEFFF;
-border-bottom-color: #C2D7EF;
-
-
-Wufoo Yellow
-background-color: #fff8df;
-border-top-color: #FFE99F;
-
-Wufoo Green
-background-color: #f7ffef;
-border-bottom-color: #bedf99;
-
-Wufoo Red
-background-color: #FFE5E3;
-border: 1px solid #EFD1D1;
-color: #AF2B2B;
 */
 
 /* ClearFix */
@@ -77,15 +57,6 @@ color: #AF2B2B;
 #menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
 #menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
 
-/* 37 signals 
-- dark green - 195d00 or 008c15
-middle green - 279000 or 00bf1d
-light green - 34c300 or 00f224
- 
-dark blue - 00638c
-middle blue - 0087bf
-light blue - 00abf2
-*/
 
 /* Main */   
 /******************************************************************/
@@ -126,19 +97,6 @@ light blue - 00abf2
 .pagination a:active { border: 1px solid #000099; color: #000; } 
 .pagination span.current { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #ccc; font-weight: bold; background-color: #bbb; color: #FFF; } 
 .pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

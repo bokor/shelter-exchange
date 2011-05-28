@@ -16,13 +16,11 @@
 	<div><%= f.text_field :email, :class => "field text large" %></div>
 	<%= has_error_message?(@transfer, :phone)%>
 </li>
-<%= f.fields_for :comments, @transfer.comments.build do |comment_fields| %>
-	<li class="full">
-		<%= comment_fields.label :comment, "Comment <span class='req'>*</span>".html_safe, :class => "desc" %>
-		<div><%= comment_fields.text_area :comment, :class => "field textarea small" %></div>
-		<%= has_error_message?(@transfer, :comment)%>
-	</li>
-<% end %>
+<li class="full">
+	<%= f.label :email_note, "Add note to email".html_safe, :class => "desc" %>
+	<div><%= f.text_area :email_note, :class => "field textarea small" %></div>
+	<%= has_error_message?(@transfer, :email_note)%>
+</li>
 
 <%= f.hidden_field :animal_id, :value => @animal.id %>
 <%= f.hidden_field :requestor_shelter_id, :value => @current_shelter.id %>

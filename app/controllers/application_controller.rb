@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   
     def current_account
       @current_account ||= Account.find_by_subdomain!(request.subdomains.first)
+      # raise AccessBlocked if @current_account.blocked?
     end
     
     def current_shelter

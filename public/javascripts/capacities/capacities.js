@@ -8,5 +8,6 @@ var Capacities = {
 			$(this).remove();
 		});
 		$('#capacity_'+id).fadeIn(1000);
+		
 	}
 };

@@ -15,7 +15,7 @@ EMAIL_FORMAT = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i  #old one - /^([^@\s]+
 PASSWORD_FORMAT = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 
 
 SUBDOMAIN_FORMAT = /^[A-Za-z0-9-]+$/
-RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api authenticate launchpad forum admin user login logout signup register mail ftp pop smtp ssl sftp map maps]
+RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api authenticate launchpad forum admin manage account accounts user login logout signup register mail ftp pop smtp ssl sftp map maps community communities social]
 API_VERSION = %w[v1]
 
 IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"]

@@ -3,14 +3,12 @@ class Transfer < ActiveRecord::Base
   
   after_save :transfer_record?
   
+  attr_accessor :email_note
+  
   # Associations
   belongs_to :shelter, :class_name => "Shelter", :readonly => true
   belongs_to :requestor_shelter, :class_name => "Shelter", :readonly => true
   belongs_to :animal
-  
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  
-  accepts_nested_attributes_for :comments
   
   # Validations
   validates :requestor, :presence => true
