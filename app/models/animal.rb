@@ -47,9 +47,10 @@ class Animal < ActiveRecord::Base
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :hold_time, :presence => { :if => :is_kill_shelter? }
   
+  validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
+  
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
-  validate :status_history_reason_required?
   validate :date_of_birth_valid?
   validate :arrival_date_valid?
   validate :euthanasia_scheduled_valid?
@@ -76,8 +77,8 @@ class Animal < ActiveRecord::Base
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
   # Scopes - Dashboard Only
-  def self.recent_activity(shelter, limit=10)
-    unscoped.where(:shelter_id => shelter).order("updated_at DESC").limit(limit)
+  def self.recent_activity(shelter_id, limit=10)
+    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
   # Scopes - Maps

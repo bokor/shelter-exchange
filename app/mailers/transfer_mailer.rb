@@ -12,12 +12,12 @@ class TransferMailer < ActionMailer::Base
          :subject => "Requested Transfer from #{@shelter.name}")   
   end
   
-  def requestee_new_request(transfer, email_note)
+  def requestee_new_request(transfer, transfer_history_reason)
     @transfer = transfer
     @shelter = transfer.shelter
     @requestor_shelter = transfer.requestor_shelter
     @animal = transfer.animal
-    @email_note = email_note
+    @transfer_history_reason = transfer_history_reason
     
     attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
     
@@ -25,11 +25,11 @@ class TransferMailer < ActionMailer::Base
          :subject => "Requested Transfer from #{@requestor_shelter.name} by #{@transfer.requestor}")
   end
   
-  def approved(transfer, email_note)
+  def approved(transfer, transfer_history_reason)
     @transfer = transfer
     @shelter = transfer.shelter
     @animal = transfer.animal
-    @email_note = email_note
+    @transfer_history_reason = transfer_history_reason
     
     attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
     
@@ -37,11 +37,11 @@ class TransferMailer < ActionMailer::Base
          :subject => "Transfer Request from #{@shelter.name} for #{@animal.name} - Approved")
   end
   
-  def rejected(transfer, email_note)
+  def rejected(transfer, transfer_history_reason)
     @transfer = transfer
     @shelter = transfer.shelter
     @animal = transfer.animal
-    @email_note = email_note
+    @transfer_history_reason = transfer_history_reason
     
     attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
     
@@ -49,11 +49,11 @@ class TransferMailer < ActionMailer::Base
          :subject => "Transfer Request from #{@shelter.name} for #{@animal.name} - Rejected")
   end
   
-  def completed(transfer, email_note)
+  def completed(transfer, transfer_history_reason)
     @transfer = transfer
     @shelter = transfer.shelter
     @animal = transfer.animal
-    @email_note = email_note
+    @transfer_history_reason = transfer_history_reason
     
     attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
     

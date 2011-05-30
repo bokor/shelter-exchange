@@ -20,8 +20,8 @@ class Alert < ActiveRecord::Base
   scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
   
   # Scopes - Dashboard Only
-  def self.recent_activity(shelter, limit=10)
-    unscoped.where(:shelter_id => shelter).order("updated_at DESC").limit(limit)
+  def self.recent_activity(shelter_id, limit=10)
+    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
 end

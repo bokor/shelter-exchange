@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530063738) do
+ActiveRecord::Schema.define(:version => 20110530135531) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -325,6 +325,18 @@ ActiveRecord::Schema.define(:version => 20110530063738) do
   add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"
   add_index "tasks", ["updated_at", "due_date"], :name => "index_tasks_on_updated_at_and_due_date"
   add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
+
+  create_table "transfer_histories", :force => true do |t|
+    t.integer  "shelter_id"
+    t.integer  "transfer_id"
+    t.string   "status"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transfer_histories", ["shelter_id"], :name => "index_transfer_histories_on_shelter_id"
+  add_index "transfer_histories", ["transfer_id"], :name => "index_transfer_histories_on_transfer_id"
 
   create_table "transfers", :force => true do |t|
     t.integer  "animal_id"

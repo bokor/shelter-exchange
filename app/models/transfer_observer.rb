@@ -13,19 +13,19 @@ class TransferObserver < ActiveRecord::Observer
     
     def transfer_request_notification(transfer)
       TransferMailer.delay.requestor_new_request(transfer)
-      TransferMailer.delay.requestee_new_request(transfer, transfer.email_note)
+      TransferMailer.delay.requestee_new_request(transfer, transfer.transfer_history_reason)
     end
     
     def approved_notification(transfer)
-      TransferMailer.delay.approved(transfer, transfer.email_note)
+      TransferMailer.delay.approved(transfer, transfer.transfer_history_reason)
     end
     
     def rejected_notification(transfer)
-      TransferMailer.delay.rejected(transfer, transfer.email_note)
+      TransferMailer.delay.rejected(transfer, transfer.transfer_history_reason)
     end
     
     def completed_notification(transfer)
-      TransferMailer.delay.completed(transfer, transfer.email_note)
+      TransferMailer.delay.completed(transfer, transfer.transfer_history_reason)
     end
   
 end

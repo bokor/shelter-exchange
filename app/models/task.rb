@@ -24,8 +24,8 @@ class Task < ActiveRecord::Base
   scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("due_date DESC")
   
   # Scopes - Dashboard Only
-  def self.recent_activity(shelter, limit=10)
-    unscoped.where(:shelter_id => shelter).order("updated_at DESC").limit(limit)
+  def self.recent_activity(shelter_id, limit=10)
+    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
 end

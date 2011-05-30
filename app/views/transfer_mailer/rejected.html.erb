@@ -15,7 +15,7 @@
 
 <p>Unfortunately your request to transfer <%=@animal.name%> to your shelter or rescue has been declined by <%=@shelter.name%> and the reason is given below.</p>
 
-<% unless @email_note.blank? %><p class="additional_notes">Reason: <strong><%=@email_note%></strong></p><% end %>
+<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional Notes: <strong><%=@transfer_history_reason%></strong></p><% end %>
 
 <p>Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:</p>
 

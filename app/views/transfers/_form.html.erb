@@ -17,9 +17,9 @@
 	<%= has_error_message?(@transfer, :phone)%>
 </li>
 <li class="full">
-	<%= f.label :email_note, "Add note to email".html_safe, :class => "desc" %>
-	<div><%= f.text_area :email_note, :class => "field textarea small" %></div>
-	<%= has_error_message?(@transfer, :email_note)%>
+	<%= f.label :transfer_history_reason, "Additional notes".html_safe, :class => "desc" %>
+	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small" %></div>
+	<%= has_error_message?(@transfer, :transfer_history_reason)%>
 </li>
 
 <%= f.hidden_field :animal_id, :value => @animal.id %>

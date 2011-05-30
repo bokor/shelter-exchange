@@ -82,6 +82,9 @@ Shelterexchange::Application.routes.draw do
         post :reject
       end
     end
+
+#   Transfer Histories Routes        
+    # resources :transfer_histories
     
 #   Parents Routes
     resources :parents do
@@ -150,11 +153,10 @@ Shelterexchange::Application.routes.draw do
     root :to => redirect("/dashboard")
     
   end
-  
+
+# Admin Website Routes for manage.domain.com
   constraints(ManageSubdomain) do
-    ActiveAdmin.routes(self)
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    root :to => redirect("/admin")
+
   end 
   
 
