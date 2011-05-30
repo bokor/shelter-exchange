@@ -11,4 +11,4 @@ rescue LoadError
   STDERR.puts "Run `bundle:install` to install delayed_job"
 end
 
-Shelterexchange::Application.load_tasks
+ShelterExchangeApp::Application.load_tasks

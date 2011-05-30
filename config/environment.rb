@@ -2,7 +2,7 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Shelterexchange::Application.initialize!
+ShelterExchangeApp::Application.initialize!
 
 
 # Makes the errors blank

@@ -1,4 +1,4 @@
-Shelterexchange::Application.routes.draw do
+ShelterExchangeApp::Application.routes.draw do
 
 # Application Website Routes for *subdomain*.domain.com
   constraints(AppSubdomain) do
