@@ -6,37 +6,44 @@ module DashboardHelper
   
   def animal_message(animal)
     if animal.updated_at == animal.created_at
-      "#{link_to possessive(animal.name), animal} was created"
+      "A new animal record for #{link_to animal.name, animal} has been created."
     elsif animal.status_change_date == animal.updated_at.to_date
       "#{link_to possessive(animal.name), animal} status was changed to <strong>'#{animal.animal_status.name}'</strong>"
     else
-      "#{link_to possessive(animal.name), animal} was updated"
+      "#{link_to possessive(animal.name), animal} record has been updated."
     end.html_safe
   end
   
   def alert_message(alert)
+    title = alert.title.chomp('.') 
     if alert.updated_at == alert.created_at
-      "#{alert.title} - Created"
+      "New - #{alert.severity.humanize} - #{title}#{show_polymorphic_link(alert)}."
     elsif alert.stopped
-      "#{alert.title} - Completed"
+      "<span class='stopped'>#{alert.severity.humanize} - #{title} has been stopped#{show_polymorphic_link(alert)}.</span>"
     else
-      "#{alert.title} - Updated"
+      "#{alert.severity.humanize} - #{title} was updated#{show_polymorphic_link(alert)}."
     end.html_safe
   end
   
   def task_message(task)
+    details = task.details.chomp('.')
     if task.updated_at == task.created_at
-      "#{task.details} - Created"
+      "New - #{task.task_category.name} - #{details}#{show_polymorphic_link(task)}."
     elsif task.completed
-      "#{task.details} - Completed"
+      "<span class='completed'>#{task.task_category.name} - #{details} is complete#{show_polymorphic_link(task)}.</span>"
     else
-      "#{task.details} - Updated"
+      "#{task.task_category.name} - #{details} was updated#{show_polymorphic_link(task)}."
     end.html_safe
   end
   
+  def show_polymorphic_link(object)
+    if object.kind_of?(Alert) and object.alertable
+        link = link_to object.alertable.name, polymorphic_path(object.alertable)
+        return (" for <span class='polymorphic_link'>#{link}</span>").html_safe
+    elsif object.kind_of?(Task) and object.taskable
+      link = link_to object.taskable.name, polymorphic_path(object.taskable)
+      return (" for <span class='polymorphic_link'>#{link}</span>").html_safe
+    end
+  end
+  
 end
-
-# case object
-# when Animal
-#   logger.debug("TESTING THIS OUT")
-# end

@@ -464,6 +464,7 @@
 /* Dashboard :: Global
 -----------------------------------------------------------------------------*/
 .dashboard ul {list-style:none;}
+.dashboard .completed, .dashboard .stopped {text-decoration: line-through; color: #999;}
 
 
 /* Activity List :: Layout
