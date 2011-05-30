@@ -25,7 +25,8 @@ class TransferObserver < ActiveRecord::Observer
     end
     
     def completed_notification(transfer)
-      TransferMailer.delay.completed(transfer, transfer.transfer_history_reason)
+      TransferMailer.delay.requestor_completed(transfer, transfer.transfer_history_reason)
+      TransferMailer.delay.requestee_completed(transfer, transfer.transfer_history_reason)
     end
   
 end
