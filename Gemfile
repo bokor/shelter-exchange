@@ -29,6 +29,8 @@ gem 'rails3-generators', '0.14.0'   # Generators
 
 gem 'delayed_job', '2.1.4'          # Background Job Queue  #:git => 'git://github.com/collectiveidea/delayed_job.git'
 
+# gem 'activeadmin', '0.2.2'          # Admin Tool
+
 
 ##TESTING THESE GEMS/Plugins
 # gem 'whenever', '0.6.7'             # Cron Jobs
