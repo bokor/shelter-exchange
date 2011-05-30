@@ -78,7 +78,7 @@ class Animal < ActiveRecord::Base
   
   # Scopes - Dashboard Only
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    unscoped.includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
   # Scopes - Maps
@@ -144,13 +144,14 @@ class Animal < ActiveRecord::Base
   def complete_transfer_request!(current_shelter, requestor_shelter)
     self.animal_status_id = AnimalStatus::NEW_INTAKE
     self.status_history_reason = "Transferred from #{current_shelter.name}"
+    self.status_change_date = Date.today
     self.shelter_id = requestor_shelter.id
     self.arrival_date = nil
     self.hold_time = nil
     self.euthanasia_scheduled = nil
     self.accommodation_id = nil
+    self.touch(:updated_at)
     if self.save(:validate => false)
-      create_status_history!(true)
       self.tasks.delete_all
       self.alerts.delete_all
     end
@@ -236,13 +237,9 @@ class Animal < ActiveRecord::Base
       self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
     end
     
-    def create_status_history!(force = false)
-      if self.new_record? or self.animal_status_id_changed? or force
-        status_history = StatusHistory.new(:shelter_id => self.shelter_id, :animal_id => self.id, :animal_status_id => self.animal_status_id, :reason => @status_history_reason)
-        status_history.save
-      end
+    def create_status_history!
+      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason) if self.new_record? or self.animal_status_id_changed? or self.shelter_id_changed?
     end
-
     
     def photo_valid?
       photo? and photo_file_size < IMAGE_SIZE

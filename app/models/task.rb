@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   validates :details, :presence => true
   
   # Scopes
-  scope :for_all, includes([:task_category, :taskable])
+  scope :for_all, includes(:task_category, :taskable)
  
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true) 
@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   
   # Scopes - Dashboard Only
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    unscoped.includes(:task_category, :taskable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
 end

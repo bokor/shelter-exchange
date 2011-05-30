@@ -21,7 +21,7 @@ class Alert < ActiveRecord::Base
   
   # Scopes - Dashboard Only
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    unscoped.includes(:alertable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
 end

@@ -47,10 +47,7 @@ class Transfer < ActiveRecord::Base
     end
     
     def create_transfer_history!
-      unless @transfer_history_reason.blank?
-        transfer_history = TransferHistory.new(:shelter_id => self.shelter_id, :transfer_id => self.id, :status => self.status, :reason => @transfer_history_reason)
-        transfer_history.save
-      end
+      TransferHistory.create_with(self.shelter_id, self.id, self.status, @transfer_history_reason) unless @transfer_history_reason.blank?
     end
     
     def transfer_animal_record!
