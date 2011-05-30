@@ -152,13 +152,7 @@ Shelterexchange::Application.routes.draw do
   end
   
   constraints(ManageSubdomain) do
-    # NEED TO TRY MIGHT NOT WORK
-    #devise_for :admins, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invite" } 
-    namespace :admin do
-      scope "admin", :as => "" do
-        
-      end
-    end
+
   end 
   
 
