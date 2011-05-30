@@ -1,7 +1,7 @@
 <div id="<%= "alert_#{alert.id}" %>" class="alert">
 	<% if can?(:update, Alert) %>
-	<span class="stopped">
-		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stopped(this, #{alert.id});" %>
+	<span class="stop">
+		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stop(this, #{alert.id});" %>
 	</span>
 	<% end %>
 	<span class="type"><div class="<%= alert.severity %>"><%= alert.severity.humanize %></div></span>

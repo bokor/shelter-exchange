@@ -65,10 +65,10 @@ var Tasks = {
 			}  
 		});
 	},
-	completed: function(element, id){
+	complete: function(element, id){
 		$(element).attr("disabled", true);
 		if (confirm("Are you sure you want to complete this task? This task will no longer appear in the list.")) { 
-			$.post("/tasks/"+id+"/completed.js");
+			$.post("/tasks/"+id+"/complete.js");
 		} else {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);

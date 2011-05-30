@@ -1,5 +1,5 @@
 class Parent < ActiveRecord::Base
-  default_scope :order => 'created_at DESC', :limit => 25
+  default_scope :order => 'created_at DESC' #, :limit => 25
   before_validation :format_phone_numbers
   
   # Associations
@@ -8,12 +8,13 @@ class Parent < ActiveRecord::Base
   
   # Validations
   validates :name, :presence => true
-  validate :address_valid?
   validates :home_phone, :presence => true, :uniqueness => true
   validates :mobile_phone, :uniqueness => true, :allow_blank => true
   validates :email, :uniqueness => true, :allow_blank => true,
                     # :length => {:minimum => 3, :maximum => 254}, 
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+                    
+  validate :address_valid?
                     
                     
                     

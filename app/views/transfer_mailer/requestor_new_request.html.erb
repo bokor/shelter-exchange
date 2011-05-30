@@ -9,7 +9,7 @@
 </style>
 
 <div id="email_logo">
-	<%= image_tag attachments['logo_email.jpg'].url -%>
+	<%= image_tag attachments['logo_email.jpg'].url %>
 </div>
 
 
@@ -26,6 +26,7 @@
 <p>
 	<strong><%= @shelter.name %></strong><br />
 	<%= @shelter.street %><br />
+	<% unless @shelter.street_2.blank? %><%= @shelter.street_2 %><br /><% end %>
 	<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
 	Tel: <%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
 	Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>

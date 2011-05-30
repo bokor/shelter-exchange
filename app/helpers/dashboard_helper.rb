@@ -17,7 +17,7 @@ module DashboardHelper
   def alert_message(alert)
     if alert.updated_at == alert.created_at
       "#{alert.title} - Created"
-    elsif alert.is_stopped
+    elsif alert.stopped
       "#{alert.title} - Completed"
     else
       "#{alert.title} - Updated"
@@ -27,7 +27,7 @@ module DashboardHelper
   def task_message(task)
     if task.updated_at == task.created_at
       "#{task.details} - Created"
-    elsif task.is_completed
+    elsif task.completed
       "#{task.details} - Completed"
     else
       "#{task.details} - Updated"

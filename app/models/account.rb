@@ -16,11 +16,11 @@ class Account < ActiveRecord::Base
            
            
   def approved?
-    !self.is_blocked
+    !self.blocked
   end
   
   def blocked?
-    self.is_blocked
+    self.blocked
   end
    
   private

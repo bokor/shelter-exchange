@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone
+  before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone, :account_blocked?
   before_filter :store_location, :set_mailer_url_options
 
   layout :current_layout
@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   
     def current_account
       @current_account ||= Account.find_by_subdomain!(request.subdomains.first)
-      # raise AccessBlocked if @current_account.blocked?
     end
     
     def current_shelter
@@ -30,6 +29,10 @@ class ApplicationController < ActionController::Base
     
     def set_shelter_timezone
       Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
+    end
+    
+    def account_blocked?
+      raise Exceptions::AccountBlocked if @current_account.blocked?
     end
     
     def store_location
@@ -58,6 +61,10 @@ class ApplicationController < ActionController::Base
         end
       end
       nil
+    end
+    
+    rescue_from Exceptions::AccountBlocked do |exception|
+      render :template => 'errors/account_blocked'
     end
     
     rescue_from CanCan::AccessDenied do |exception|

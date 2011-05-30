@@ -53,9 +53,9 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
   
-  def completed
+  def complete
     @task = @current_shelter.tasks.find(params[:id])   
-    flash[:notice] = "Task has been completed." if @task.update_attributes({ :is_completed => true })  
+    flash[:notice] = "Task has been completed." if @task.update_attributes({ :completed => true })  
     respond_with(@task)
   end
 

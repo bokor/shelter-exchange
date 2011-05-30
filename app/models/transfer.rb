@@ -1,7 +1,7 @@
 class Transfer < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
-  after_save :transfer_record?
+  after_save :transfer_animal_record!
   
   attr_accessor :email_note
   
@@ -17,17 +17,33 @@ class Transfer < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
  
   # Scopes  
-  scope :approved, where(:approved => true)
-  scope :completed, where(:completed => true)
-  scope :approved_and_completed, where(:approved => true, :completed => true)
-  scope :not_completed, where(:completed => false)
-                    
+  scope :approved, where(:status => "approved")
+  scope :rejected, where(:status => "rejected")
+  scope :completed, where(:status => "completed")
+  scope :active, where("transfers.status IS NULL or transfers.status = ?", "approved")
+  
+  def new_request?
+    self.status.blank?
+  end
+  
+  def approved?
+    self.status == "approved"
+  end
+  
+  def rejected?
+    self.status == "rejected"
+  end
+  
+  def completed?
+    self.status == "completed"
+  end            
                     
   private
-    def transfer_record?
-      self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.approved and self.completed
+    def transfer_animal_record!
+      self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
     end
 
 end
 
-#, :allow_destroy => true #, :reject_if => proc { |attributes| attributes['comment'].blank? }
+
+

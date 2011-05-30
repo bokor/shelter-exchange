@@ -1,49 +1,37 @@
-<%
-	# Update Host only on this email because we don't want it coming from www but the subdomain of the new account
-	subdomain = @resource.account.subdomain
-	host = ActionMailer::Base::default_url_options[:host].gsub!("www.", subdomain << ".")
-	
-	attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
-%>
 <style type="text/css" media="screen">
 	#email_logo { width: 100%; text-align:center; margin:0 auto;}
 	#email_logo img{text-align:center; margin:0 auto;}
 	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+	ul{list-style-type:none;padding:0;margin:0;}
+	li{padding-bottom: 0;}
+	.additional_notes{padding: 10px 0;}
+	.closing{padding-top:5px;}
+	.closing p{padding-bottom: 10px;}
 </style>
 
 <div id="email_logo">
-	<%= image_tag attachments['logo_email.jpg'].url %>
+	<%= image_tag attachments['logo_email.jpg'].url -%>
 </div>
 
-<p>Dear <%= @resource.first_name %>,</p>
+<p>Congratulations! Your request to transfer <%=@animal.name%> to your shelter or rescue has been Approved by <%=@shelter.name%>. Any details regarding this transfer request maybe noted below:</p>
 
-<p>Welcome! Thank you for joining Shelter Exchange.</p>
-<p>You will be required to enter your password when logging in so keep a copy for your records. Please also note, passwords are case sensitive.</p>
-<p><strong><%= link_to 'Confirm my account', confirmation_url(@resource, :host => host, :confirmation_token => @resource.confirmation_token) %></strong> to get started.</p>
-<p>Once again, welcome to the Shelter Exchange community!</p>
+<% unless @email_note.blank? %><p class="additional_notes">Additional note: <strong><%=@email_note%></strong></p><% end %>
 
-<h3>Shelter Exchange</h3>
-<a href="mailto:info@shelterexchange.org">info@shelterexchange.org</a><br />
-<a href="http://www.shelterexchange.org">www.shelterexchange.org</a>
+<p>Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:</p>
+
+<p>
+	<strong><%= @shelter.name %></strong><br />
+	<%= @shelter.street %><br />
+	<% unless @shelter.street_2.blank? %><%= @shelter.street_2 %><br /><% end %>
+	<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
+	Tel: <%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
+	Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
+</p>
+
+<p>Once the animal has been transported to your shelter the record for <%=@animal.name%> will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the <%=@shelter.name%> to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.</p>
 
 
-
-
-
-Congratulations! Your request to transfer Billy Joel to your shelter or rescue has been Approved by SPCA Wake County Animal Center. Any details regarding this transfer request maybe noted below:
-
-Note: Please call ASAP to arrange pick up! Claire - 919-227-3051 
-
-Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:
-
-SPCA Wake County Animal Center
-100 Petfinder Lane,
-Raleigh, NC 27612
-Tel: 919-222-3022
-Email: spca@spcawake.org
-
-Once the animal has been transported to your shelter the record for Billy Joel will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the SPCA Wake County Animal to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.
-
-Many thanks,
-
-Shelter Exchange Team
+<div class="closing">
+	<p>Many thanks,</p>
+	<p>Shelter Exchange Team</p>
+</div>

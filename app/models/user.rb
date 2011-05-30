@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   # Constants 
-  ROLES = %w[user admin] #ROLES => Owner(only created on account creation), Admin, User  
+  ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User  
   OWNER = "owner"
 
   # Associations

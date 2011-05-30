@@ -1,14 +1,14 @@
 <li>
-	<%= f.label :placement_type, "What type of placement? <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div id="placement_placement_type">
-		<% Placement::PLACEMENT_TYPE.each do |type| %>
+	<%= f.label :status, "What type of placement? <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div id="placement_status">
+		<% Placement::STATUS.each do |status| %>
 			<span>
-				<%= f.radio_button :placement_type, type, :class => "field radio" %>
-				<%= f.label "placement_type_#{type}", type.humanize, :class => "choice" %>
+				<%= f.radio_button :status, status, :class => "field radio" %>
+				<%= f.label "status_#{status}", status.humanize, :class => "choice" %>
 			</span>
 		<% end %>
 	</div>
-	<%= has_error_message?(@parent, :placement_type)%>
+	<%= has_error_message?(@parent, :status)%>
 </li>
 <%= f.fields_for :comments, @comment do |comment_fields| %>
 	<li>

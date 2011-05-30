@@ -5,15 +5,7 @@ class TransferObserver < ActiveRecord::Observer
   end
   
   def after_save(transfer)
-    if transfer.approved and transfer.completed
-      completed_notification(transfer)
-    elsif transfer.approved
-      approved_notification(transfer)
-    end
-  end
-  
-  def after_destroy(transfer)
-     rejected_notification(transfer)
+    send("#{transfer.status}_notification", transfer) unless transfer.new_record? or transfer.new_request?
   end
   
   
@@ -25,15 +17,15 @@ class TransferObserver < ActiveRecord::Observer
     end
     
     def approved_notification(transfer)
-      TransferMailer.delay.approved(transfer)
+      TransferMailer.delay.approved(transfer, transfer.email_note)
     end
     
     def rejected_notification(transfer)
-      TransferMailer.delay.rejected(transfer)
+      TransferMailer.delay.rejected(transfer, transfer.email_note)
     end
     
     def completed_notification(transfer)
-      TransferMailer.delay.completed(transfer)
+      TransferMailer.delay.completed(transfer, transfer.email_note)
     end
   
 end

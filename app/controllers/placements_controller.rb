@@ -3,7 +3,7 @@ class PlacementsController < ApplicationController
   
   def create
     @placement = @current_shelter.placements.new(params[:placement])
-    flash[:notice] = "#{@placement.placement_type.humanize} has been created." if @placement.save
+    flash[:notice] = "#{@placement.status.humanize} has been created." if @placement.save
   end
   
   def edit
@@ -12,7 +12,7 @@ class PlacementsController < ApplicationController
   
   def update
     @placement = @current_shelter.placements.find(params[:id])
-    flash[:notice] = "#{@placement.placement_type.humanize} has been updated." if @placement.update_attributes(params[:placement])
+    flash[:notice] = "#{@placement.status.humanize} has been updated." if @placement.update_attributes(params[:placement])
   end
   
   def destroy

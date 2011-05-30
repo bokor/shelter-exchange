@@ -6,20 +6,20 @@ US_STATES = { :AK => "Alaska", :AL => "Alabama", :AR => "Arkansas", :AZ => "Ariz
               :NE => "Nebraska", :NH => "New Hampshire", :NJ => "New Jersey", :NM => "New Mexico", :NV => "Nevada", 
               :NY => "New York", :OH => "Ohio", :OK => "Oklahoma", :OR => "Oregon", :PA => "Pennsylvania", :RI => "Rhode Island", 
               :SC => "South Carolina", :SD => "South Dakota", :TN => "Tennessee", :TX => "Texas", :UT => "Utah", :VA => "Virginia", 
-              :VT => "Vermont", :WA => "Washington", :WI => "Wisconsin", :WV => "West Virginia", :WY => "Wyoming" }
+              :VT => "Vermont", :WA => "Washington", :WI => "Wisconsin", :WV => "West Virginia", :WY => "Wyoming" }.freeze
 
-SEX = %w[male female]
+SEX = %w[male female].freeze
 
 EMAIL_FORMAT = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i  #old one - /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i             
 
 PASSWORD_FORMAT = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 
 
 SUBDOMAIN_FORMAT = /^[A-Za-z0-9-]+$/
-RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api authenticate launchpad forum admin manage account accounts user login logout signup register mail ftp pop smtp ssl sftp map maps community communities social]
-API_VERSION = %w[v1]
+RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api authenticate launchpad forum admin manage account accounts user login logout signup register mail ftp pop smtp ssl sftp map maps community communities social].freeze
+API_VERSION = %w[v1].freeze
 
-IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"]
-IMAGE_SIZE = 4.megabytes
+IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
+IMAGE_SIZE = 4 # in megabytes
 
 
 

@@ -1,7 +1,7 @@
 <div id="<%= "task_#{task.id}" %>" class="task">
 	<% if can?(:update, Task) %>
-	<span class="completed">
-		<%= check_box_tag "task[completed]", 1, false, :onclick => "Tasks.completed(this, #{task.id});" %>
+	<span class="complete">
+		<%= check_box_tag "task[completed]", 1, false, :onclick => "Tasks.complete(this, #{task.id});" %>
 	</span>
 	<% end %>
 	<span class="type">

@@ -4,7 +4,6 @@ class Shelter < ActiveRecord::Base
   after_validation :logo_reverted?
   before_save :geocode_address, :format_phone_numbers
   
-  
   # Associations
   belongs_to :account
 
@@ -37,7 +36,6 @@ class Shelter < ActiveRecord::Base
    
   # Validations
   validates :name, :presence => true
-  validate :address_valid?
   validates :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
@@ -45,10 +43,13 @@ class Shelter < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
                                         :message => "is not a valid US Time Zone" }
-  validates :access_token, :uniqueness => true, :on => :generate_access_token!                 
+  validates :access_token, :uniqueness => true, :on => :generate_access_token!        
+  
+  validate :address_valid?         
  
-  validates_attachment_size :logo, :less_than => IMAGE_SIZE, :message => "needs to be 4 MB or less"
+  validates_attachment_size :logo, :less_than => IMAGE_SIZE.megabytes, :message => "needs to be #{IMAGE_SIZE} megabytes or less"
   validates_attachment_content_type :logo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
+  
   
   # Scopes  
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
@@ -75,6 +76,7 @@ class Shelter < ActiveRecord::Base
     end
     
     def address_valid?
+      # %w(street city state zip_code).all? { |attr| self.send(attr).blank? }
       errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
         

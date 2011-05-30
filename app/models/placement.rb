@@ -2,7 +2,7 @@ class Placement < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
   # Constants
-  PLACEMENT_TYPE = %w[adopted foster_care]
+  STATUS = %w[adopted foster_care].freeze
   
   # Associations
   belongs_to :shelter, :readonly => true
@@ -15,10 +15,10 @@ class Placement < ActiveRecord::Base
 
   # Validations
   validates :animal_id, :presence => {:message => 'needs to be selected'}
-  validates :placement_type, :presence => {:in => PLACEMENT_TYPE, :message => 'needs to be selected'}
+  validates :status, :presence => {:in => STATUS, :message => 'needs to be selected'}
   
   # Scopes
-  scope :adopted, includes([:animal, :shelter]).where(:placement_type => :adopted)
-  scope :foster_care, includes([:animal, :shelter]).where(:placement_type => :foster_care)
+  scope :adopted, includes([:animal, :shelter]).where(:status => "adopted")
+  scope :foster_care, includes([:animal, :shelter]).where(:status => "foster_care")
   
 end

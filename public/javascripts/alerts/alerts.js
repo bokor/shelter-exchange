@@ -11,10 +11,10 @@ var Alerts = {
 			$('#animal_alerts_section').slideToggle();
 		}
 	},
-	stopped: function(element, id){
+	stop: function(element, id){
 		$(element).attr("disabled", true);
 		if (confirm("Are you sure you want to stop this alert? This alert will no longer appear in the list.")) { 
-			$.post("/alerts/"+id+"/stopped.js");
+			$.post("/alerts/"+id+"/stop.js");
 		} else {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);

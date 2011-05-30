@@ -2,8 +2,8 @@
 	$('#create_placement_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @placement) %>" );
 	<%= render 'global/ajax_form_errors', :target => @placement, :form_id => "create_placement_form" %>
 <% else %>
-	$('#placement_<%=@placement.placement_type %> table').prepend("<%= escape_javascript(render @placement) %>"); 
-	$("#placement_<%=@placement.placement_type %> .placement").first().effect("highlight", {}, 1000);
+	$('#placement_<%=@placement.status %> table').prepend("<%= escape_javascript(render @placement) %>"); 
+	$("#placement_<%=@placement.status %> .placement").first().effect("highlight", {}, 1000);
 	// Reset Form
 	$('#create_placement_form').get(0).reset();
 	$('#animal_selected span').html('');

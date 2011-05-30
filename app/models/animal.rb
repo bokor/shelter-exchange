@@ -42,19 +42,20 @@ class Animal < ActiveRecord::Base
   # Validations
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
+  validates :animal_status_id, :presence => { :message => 'needs to be selected' }
+  validates :sex, :presence => true
+  validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
+  validates :hold_time, :presence => { :if => :is_kill_shelter? }
+  
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
-  validates :animal_status_id, :presence => { :message => 'needs to be selected' }
   validate :status_history_reason_required?
-  validates :sex, :presence => true
   validate :date_of_birth_valid?
-  validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }
   validate :arrival_date_valid?
-  validates :hold_time, :presence => { :if => :is_kill_shelter? }
   validate :euthanasia_scheduled_valid?
   
   # Custom Validations - Photo
-  validates_attachment_size :photo, :less_than => IMAGE_SIZE, :message => "needs to be 4 MB or less" #, :if => Proc.new { |imports| !imports.photo.file? }
+  validates_attachment_size :photo, :less_than => IMAGE_SIZE.megabytes, :message => "needs to be #{IMAGE_SIZE} megabytes or less"
   validates_attachment_content_type :photo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
 
   

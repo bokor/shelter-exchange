@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
   
   # Constants
-  DUE_CATEGORY = %w[today tomorrow later specific_date]
+  DUE_CATEGORY = %w[today tomorrow later specific_date].freeze
   
   # Associations
   belongs_to :shelter, :readonly => true
@@ -15,8 +15,8 @@ class Task < ActiveRecord::Base
   # Scopes
   scope :for_all, includes([:task_category, :taskable])
  
-  scope :active, where(:is_completed => false)
-  scope :completed, where(:is_completed => true) 
+  scope :active, where(:completed => false)
+  scope :completed, where(:completed => true) 
   
   scope :overdue, where("due_date < ?", Date.today)
   scope :today, where("due_date = ?", Date.today)

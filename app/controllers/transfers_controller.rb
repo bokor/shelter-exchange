@@ -17,15 +17,21 @@ class TransfersController < ApplicationController
     @transfer.destroy
   end
   
-  def approved
+  def approve
     @transfer = @current_shelter.transfers.find(params[:id])
-    flash[:notice] = "Transfer has been approved." if @transfer.update_attributes({:approved => true})
+    flash[:notice] = "Transfer has been approved." if @transfer.update_attributes({:status => "approved"})
     respond_with(@transfer)
   end
   
-  def completed
+  def reject
     @transfer = @current_shelter.transfers.find(params[:id])
-    flash[:notice] = "Transfer has been approved." if @transfer.update_attributes({:completed => true})
+    flash[:notice] = "Transfer has been Rejected." if @transfer.update_attributes({:status => "rejected"})
+    respond_with(@transfer)
+  end
+  
+  def complete
+    @transfer = @current_shelter.transfers.find(params[:id])
+    flash[:notice] = "Transfer has been Completed." if @transfer.update_attributes({:status => "completed"})
     respond_with(@transfer)
   end
   

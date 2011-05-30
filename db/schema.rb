@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528151917) do
+ActiveRecord::Schema.define(:version => 20110530054505) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -31,7 +31,8 @@ ActiveRecord::Schema.define(:version => 20110528151917) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_blocked", :default => false
+    t.boolean  "blocked",        :default => false
+    t.text     "reason_blocked"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain"
@@ -43,8 +44,7 @@ ActiveRecord::Schema.define(:version => 20110528151917) do
     t.string   "alertable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_broadcast",   :default => false
-    t.boolean  "is_stopped",     :default => false, :null => false
+    t.boolean  "stopped",        :default => false, :null => false
     t.integer  "shelter_id"
     t.string   "severity"
   end
@@ -238,14 +238,14 @@ ActiveRecord::Schema.define(:version => 20110528151917) do
     t.integer  "animal_id"
     t.integer  "parent_id"
     t.integer  "shelter_id"
-    t.string   "placement_type"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "placements", ["animal_id"], :name => "index_placements_on_animal_id"
-  add_index "placements", ["parent_id", "placement_type"], :name => "index_placements_on_parent_id_and_placement_type"
   add_index "placements", ["parent_id", "shelter_id", "animal_id"], :name => "index_placements_on_parent_id_and_shelter_id_and_animal_id"
+  add_index "placements", ["parent_id", "status"], :name => "index_placements_on_parent_id_and_placement_type"
   add_index "placements", ["parent_id"], :name => "index_placements_on_parent_id"
   add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
 
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(:version => 20110528151917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "due_category"
-    t.boolean  "is_completed",     :default => false, :null => false
+    t.boolean  "completed",        :default => false, :null => false
     t.integer  "shelter_id"
   end
 
@@ -335,8 +335,7 @@ ActiveRecord::Schema.define(:version => 20110528151917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shelter_id"
-    t.boolean  "approved",             :default => false
-    t.boolean  "completed",            :default => false
+    t.string   "status"
   end
 
   add_index "transfers", ["animal_id"], :name => "index_transfers_on_animal_id"

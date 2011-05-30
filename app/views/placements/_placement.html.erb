@@ -13,7 +13,7 @@
 	</td>
 	<td class="details">
 		<h3><%= placement.animal.name %></h3>
-		<h3><%= placement.placement_type.humanize%> (<%= format_date(:long, placement.created_at) %>)</h3>
+		<h3><%= placement.status.humanize%> (<%= format_date(:long, placement.created_at) %>)</h3>
 		<p><%= full_breed(placement.animal) %></p>
 		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex.humanize %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
 		<div id="comments">

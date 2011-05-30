@@ -57,9 +57,9 @@ class AlertsController < ApplicationController
      respond_with(@alert)
   end
   
-  def stopped
+  def stop
     @alert = @current_shelter.alerts.find(params[:id])   
-    flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :is_stopped => true })  
+    flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :stopped => true })  
     respond_with(@alert)
   end
 

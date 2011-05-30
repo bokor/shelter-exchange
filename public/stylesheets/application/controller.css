@@ -55,6 +55,7 @@
 /* Page Headings
 -----------------------------------------------------------------------------*/
 .page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}/*e0f1fa*/
+.page_heading.red{background-color:#faced3;}
 .page_heading h1{width:100%; }
 .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
@@ -480,6 +481,21 @@
 	.activity .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
 
 
+/* Transfer List :: Layout
+-----------------------------------------------------------------------------*/
+.transfer_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.transfer{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.transfer .type{display:inline-block; padding: 0 5px; }
+
+.transfer .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.transfer .details{display:inline-block; width: 57%; vertical-align:top; }
+	.transfer .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+	
+.transfer .comment{line-height: 1em;}
+.transfer .action_links{line-height: 1em;}
 
 
 
@@ -692,7 +708,7 @@
 
 .alert{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
 
-.alert .stopped{display:inline-block; text-align: left; }
+.alert .stop{display:inline-block; text-align: left; }
 
 .alert .type{display:inline-block; padding: 0 5px; }
 	.alert .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
@@ -739,7 +755,7 @@
 .task{width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;}
 .task.hover{cursor: default;}
 
-.task .completed{display:inline-block;text-align: left; }
+.task .complete{display:inline-block;text-align: left; }
 
 .task .type{display:inline-block; width: 65px; height: 24px; line-height: 24px; text-align:center;}
 	.task .type img {text-align:center; vertical-align:middle; margin-top: -6px;}

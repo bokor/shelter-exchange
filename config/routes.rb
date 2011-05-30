@@ -47,12 +47,12 @@ Shelterexchange::Application.routes.draw do
     
 #   Tasks Routes
     resources :tasks, :except => [:show] do
-      post :completed, :on => :member
+      post :complete, :on => :member
     end
 
 #   Alerts Routes
     resources :alerts, :except => [:show] do
-      post :stopped, :on => :member
+      post :stop, :on => :member
     end
     
 #   Placements Routes
@@ -77,8 +77,9 @@ Shelterexchange::Application.routes.draw do
 #   Transfers Routes    
     resources :transfers, :except => [:index, :show] do
       member do
-        post :approved
-        post :completed
+        post :approve
+        post :complete
+        post :reject
       end
     end
     
