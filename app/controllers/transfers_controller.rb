@@ -14,7 +14,7 @@ class TransfersController < ApplicationController
   
   def update
     @transfer = @current_shelter.transfers.find(params[:id])
-    flash[:notice] = "Transfer has been approved." if @transfer.update_attributes(params[:transfer])
+    flash[:notice] = "Transfer has been #{params[:transfer][:status]}." if @transfer.update_attributes(params[:transfer])
     respond_with(@transfer)
   end
 
