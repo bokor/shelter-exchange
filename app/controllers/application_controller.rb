@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone, :account_blocked?,
+  before_filter :authenticate_user!, :current_account,
+                :current_shelter, :set_shelter_timezone, :account_blocked?, 
                 :store_location, :set_mailer_url_options
 
   layout :current_layout
@@ -32,7 +33,7 @@ class ApplicationController < ActionController::Base
     end
     
     def account_blocked?
-      raise Exceptions::AccountBlocked if @current_account.blocked?
+      raise Exceptions::AccountBlocked if @current_account and @current_account.blocked?
     end
     
     def store_location

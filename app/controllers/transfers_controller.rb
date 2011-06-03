@@ -7,7 +7,7 @@ class TransfersController < ApplicationController
   end
   
   def edit
-    @transfer = @current_shelter.transfers.find(params[:id])
+    @transfer = @current_shelter.transfers.includes(:animal).find(params[:id])
     @transfer.status = params[:status] unless params[:status].blank?
     respond_with(@transfer)
   end
@@ -22,24 +22,6 @@ class TransfersController < ApplicationController
     @transfer = @current_shelter.transfers.find(params[:id])
     @transfer.destroy
   end
-  
-  # def approve
-  #   @transfer = @current_shelter.transfers.find(params[:id])
-  #   flash[:notice] = "Transfer has been Approved." if @transfer.update_attributes({:status => "approved"})
-  #   respond_with(@transfer)
-  # end
-  # 
-  # def reject
-  #   @transfer = @current_shelter.transfers.find(params[:id])
-  #   flash[:notice] = "Transfer has been Rejected." if @transfer.update_attributes({:status => "rejected"})
-  #   respond_with(@transfer)
-  # end
-  # 
-  # def complete
-  #   @transfer = @current_shelter.transfers.find(params[:id])
-  #   flash[:notice] = "Transfer has been Completed." if @transfer.update_attributes({:status => "completed"})
-  #   respond_with(@transfer)
-  # end
   
 end
 
