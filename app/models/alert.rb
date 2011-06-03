@@ -17,7 +17,7 @@ class Alert < ActiveRecord::Base
   scope :stopped, where(:stopped => true)
   
   scope :for_shelter, where(:alertable_type => nil)
-  scope :for_animals, includes(:alertable).where(:alertable_type => "Animal")
+  scope :for_animals, includes(:alertable).where(:alertable_type => Animal)
   
   # Scopes - Dashboard Only
   def self.recent_activity(shelter_id, limit=10)

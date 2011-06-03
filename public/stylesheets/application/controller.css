@@ -476,10 +476,10 @@
 .activity .type{display:inline-block; width: 65px; height: 24px; line-height: 50px; text-align:center;}
 	.activity.type img {text-align:center; vertical-align:middle;}
 
-.activity .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.activity .details{display:inline-block; width: 71%; vertical-align:top; }
+	.activity .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top: 5px; padding-left: 5px;}
 
-.activity .details{display:inline-block; width: 57%; vertical-align:top; }
-	.activity .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+.activity .created_at_date{display:inline-block; width: 90px; float:right; text-align:right;font-size: 10px;font-weight:bold;}
 
 
 /* Transfer List :: Layout
@@ -720,7 +720,7 @@
 .alert .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
 
 .alert .details{display:inline-block; width: 57%; vertical-align:top; }
-	.alert .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+	.alert .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top:5px; padding-left: 5px;}
 	.alert .alertable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .alert .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
@@ -764,7 +764,7 @@
 .task .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
 
 .task .details{display:inline-block; width: 60%; vertical-align:top; }
-	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.5em;}
+	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.75em; padding-top:5px;}
 	.task .taskable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .task .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
@@ -794,7 +794,7 @@
 
 .note .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
 .note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
-	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.5em;}
+	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:5px;}
 
 .note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
 
@@ -816,7 +816,7 @@
 .status_history .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px; }
 
 .status_history .details{display:inline-block; width: 90%; vertical-align:top; padding-left: 5px;}
-	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.5em;}
+	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:5px;}
 	.status_history .reason {font-weight: normal;font-size: 12px;}
 
 
@@ -851,7 +851,7 @@
 .location .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px; }
 
 .location .details{display:inline-block; width: 82%; vertical-align:top; padding-left: 5px;}
-	.location .name {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.5em;}
+	.location .name {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:5px;}
 
 .location .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
 .location .action_links:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }

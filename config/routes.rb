@@ -75,13 +75,7 @@ ShelterExchangeApp::Application.routes.draw do
     resources :maps, :only => [:overlay]
     
 #   Transfers Routes    
-    resources :transfers, :except => [:index, :show] do
-      member do
-        post :approve
-        post :complete
-        post :reject
-      end
-    end
+    resources :transfers, :except => [:index, :show]
 
 #   Transfer Histories Routes        
     # resources :transfer_histories

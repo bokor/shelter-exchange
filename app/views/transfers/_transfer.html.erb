@@ -7,18 +7,19 @@
 		<span class="action_links">
 		<% if transfer.approved? %>
 			<span class="complete_request_link">
-			<%= link_to "Complete Request", complete_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true %>
+			<%= link_to "Complete Request", edit_transfer_path(transfer, :status => "completed"), :remote => true %>
 			</span>
 		<% elsif transfer.new_request? %>
 			<span class="approve_link">
-			<%= link_to "Approve", approve_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true %>
+			<%= link_to "Approve", edit_transfer_path(transfer, :status => "approved"), :remote => true %>
 			</span>
 			<span class="reject_link">&nbsp;|&nbsp;
-			<%= link_to "Reject", reject_transfer_path(transfer), :method => :post, :confirm => "This action can not be undone, would you like to proceed?", :remote => true %>
+			<%= link_to "Reject", edit_transfer_path(transfer, :status => "rejected"), :remote => true %>
 			</span>
 		<% end %>
 		</span>
 	</span>
 </div>
+<!-- approve_transfer_path(transfer) -->
 
 

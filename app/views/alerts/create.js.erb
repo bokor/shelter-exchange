@@ -2,8 +2,8 @@
 	$('#create_alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
 	<%= render 'global/ajax_form_errors', :target => @alert, :form_id => "create_alert_form" %>
 <% else %>
-	<% if @alert.alertable_type == "Animal" %>
-		$('#alerts').prepend("<%= escape_javascript(render 'alert', :alert => @alert) %>"); 
+	<% if @alert.alertable.is_a?(Animal) %>
+		$('#alerts').prepend("<%= escape_javascript(render @alert) %>"); 
 		$(".alert").first().effect("highlight", {}, 1500);
 	<% else %>
 		$('#shelter_alerts_section').removeClass("no_alert");

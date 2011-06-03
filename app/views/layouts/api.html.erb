@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+	<title><%= yield(:title) %> - Shelter Exchange</title>
+  
+ 	<%= stylesheet_link_tag "global/jquery-ui-1.8.6.custom", "global/tipsy", "global/wufoo_form",
+							"application/application", "application/controller",
+							:media => "all", :cache => "cache/application/all" %>
+
+    <%= stylesheet_link_tag "application/print", :media => "print", :cache => "cache/application/print" %>
+	<%= yield(:stylesheets) %>
+	
+	
+	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", "jquery.ui.autocomplete.ext", 		
+							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "jquery.blockUI.min", "top_up-min", 
+							   "rails", "application", 
+							   :cache => "cache/application/all" %>
+
+	<%= yield(:javascripts) %>
+		
+	<%= csrf_meta_tag %>
+
+</head>
+<body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
+
+	<div id="main">
+		
+		<div id="left">
+			
+			<div id="content">
+				<% if content_for?(:page_content) %>
+			  		<%= yield(:page_content) %>
+				<% end %>
+			</div>
+			<!--//end screen -->
+			
+			<%= render :partial => "global/footer" %>
+			
+		</div>
+		<!--//end left -->
+		
+	</div>
+	<!--//end main -->
+	
+</body>
+
+</html>

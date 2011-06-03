@@ -1,0 +1,13 @@
+<%= title "Animals" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_content">
+		<div id="animals">
+			<%= render 'animals/animal_list', :animals => @animals %>
+		</div>
+	</div>
+<% end %>
+	

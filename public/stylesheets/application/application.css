@@ -65,8 +65,9 @@ Dog House Sides - #db8d4a
 
 /* Left - Content Area */   
 /******************************************************************/
+/*border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;*/
 #left { float: left; width: 65%; background-color: #fff; margin: 0; padding: 0; position: relative; text-align: left;  }
-#left #content {box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999; }
+#left #content { box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999; }
 #left #content .page_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;}
 #left #content .page_content{padding: 1em 1.5em 1em 1.5em; margin:0 auto;}
 

@@ -1,0 +1,4 @@
+$('#transfer_<%=@transfer.id%>').hide();
+$('#transfer_<%=@transfer.id%>').after("<%= escape_javascript(render 'edit_transfer', :collection => @transfer) %>");
+$('#edit_transfer_<%=@transfer.id%>').show();
+<% flash.discard %>

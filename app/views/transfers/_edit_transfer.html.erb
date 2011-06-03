@@ -1,0 +1,19 @@
+<div class="box blue" id="edit_transfer_<%=@transfer.id %>">
+	<h2><%= status_action_name(@transfer)%> transfer request of <%=@transfer.animal.name%></h2>
+	<div id="edit_transfer_errors_<%=@transfer.id %>"></div>
+	<%= form_for (@transfer), :remote => true, :html => { :id => "edit_transfer_form_#{@transfer.id}", :class => "edit_transfer_form"} do |f| %>
+		<ul>
+			<li class="full">
+				<%= f.label :transfer_history_reason, "Additional notes".html_safe, :class => "desc" %>
+				<div><%= f.text_area :transfer_history_reason, :class => "field textarea small" %></div>
+				<%= has_error_message?(@transfer, :transfer_history_reason)%>
+			</li>
+			<li class="buttons">
+				<%= f.submit status_action_name(@transfer), :disable_with => "Submitting...", :class => "button" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to 'Cancel', '#', :onclick => "Transfers.cancelForm(#{@transfer.id});return false;"  %>
+			</li>
+		</ul>
+		<%= f.hidden_field :status, :value => @transfer.status %>
+	<% end %>
+</div>
