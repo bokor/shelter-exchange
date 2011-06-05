@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     self.name.split(' ').first
   end
   
+  def last_name
+    self.name.split(' ').last
+  end
+  
   def is?(role)
     self.role == role.to_s and (ROLES.include?(role.to_s) or role.to_s == OWNER)
   end
