@@ -27,12 +27,14 @@ module DashboardHelper
   
   def task_message(task)
     details = task.details.chomp('.')
+    category =  task.task_category.name + " -" unless task.task_category.blank?
+    
     if task.updated_at == task.created_at
-      "New - #{task.task_category.name} - #{details}#{show_polymorphic_link(task)}."
+      "New - #{category} #{details}#{show_polymorphic_link(task)}."
     elsif task.completed
-      "<span class='completed'>#{task.task_category.name} - #{details} is complete#{show_polymorphic_link(task)}.</span>"
+      "<span class='completed'>#{category} #{details} is complete#{show_polymorphic_link(task)}.</span>"
     else
-      "#{task.task_category.name} - #{details} was updated#{show_polymorphic_link(task)}."
+      "#{category} #{details} was updated#{show_polymorphic_link(task)}."
     end.html_safe
   end
   
