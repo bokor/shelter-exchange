@@ -68,6 +68,9 @@ ShelterExchangeApp::Application.routes.draw do
         get :find_animals_in_bounds
         get :find_animals_for_shelter
       end
+      # member do
+      #   get :animal
+      # end
     end
     match 'communities/animal/:animal_id' => 'communities#animal', :as => :animal_communities
 
