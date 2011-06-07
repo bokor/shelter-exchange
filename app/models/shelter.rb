@@ -39,7 +39,6 @@ class Shelter < ActiveRecord::Base
   validates :phone, :presence => true
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
-                    # :length => {:minimum => 3, :maximum => 254}, 
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
                                         :message => "is not a valid US Time Zone" }
@@ -61,10 +60,14 @@ class Shelter < ActiveRecord::Base
     self.save
   end
   
+  def address_changed?
+    (self.new_record?) or (self.street_changed? or self.street_2_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
+  end
+  
   private
     def geocode_address
-      if (self.new_record?) or (self.street_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
-        geo = Geokit::Geocoders::MultiGeocoder.geocode ([self.street, self.city, self.state, self.zip_code].join(" "))
+      if address_changed?
+        geo = Geokit::Geocoders::MultiGeocoder.geocode ([self.street, self.street_2, self.city, self.state, self.zip_code].join(" "))
         errors.add(:street, "Could not Geocode address") if !geo.success
         self.lat, self.lng = geo.lat, geo.lng if geo.success
       end
@@ -76,7 +79,6 @@ class Shelter < ActiveRecord::Base
     end
     
     def address_valid?
-      # %w(street city state zip_code).all? { |attr| self.send(attr).blank? }
       errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
         
@@ -98,3 +100,4 @@ class Shelter < ActiveRecord::Base
   
 end
 
+      # %w(street city state zip_code).all? { |attr| self.send(attr).blank? }

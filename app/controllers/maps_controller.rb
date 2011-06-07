@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   
   def overlay
     @shelters = Shelter.all
-    return render_to_string("overlay.kml")
+    render_to_string("overlay.kml")
   end
 
 end
