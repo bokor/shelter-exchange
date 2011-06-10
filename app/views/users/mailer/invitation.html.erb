@@ -1,4 +1,9 @@
 <%
+	subdomain = @resource.account.subdomain
+	subdomain = (subdomain || "")
+	subdomain += "." unless subdomain.empty?
+	host = [subdomain, ActionMailer::Base::default_url_options[:host]].join
+
 	attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
 %>
 <style type="text/css" media="screen">
@@ -14,7 +19,7 @@
 <!-- <p>Hello <%# @resource.name %></p> -->
 
 <p>Congratulations! You have been invited by the <%= @resource.account.shelters.first.name %> to join Shelter Exchange. </p>
-<p>You can accept this invitation by clicking this link <strong><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></strong></p>
+<p>You can accept this invitation by clicking this link <strong><%= link_to 'Accept invitation', accept_invitation_url(@resource, :host => host, :invitation_token => @resource.invitation_token) %></strong></p>
 <p>If you do not want to accept the invitation, please ignore this email. Your account will not be created until you access the link above and set up your password.</p>
 <p>Welcome to the Shelter Exchange community!</p>
 

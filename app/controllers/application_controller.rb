@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
     end
     
     def set_mailer_url_options
-      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomains.first)
+      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomain)
     end
 
     

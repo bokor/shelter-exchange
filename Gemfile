@@ -16,7 +16,7 @@ gem 'devise_invitable', '0.3.5'     # Login/Authentication
 
 gem 'cancan', '1.5.1'               # Authorization
 
-gem 'will_paginate', '2.3.15'       # Pagination
+gem 'will_paginate', '3.0.pre2'       # Pagination
 
 gem 'dynamic_form', '1.1.3'         # HTML/JS
 gem 'jquery-rails', '0.2.7'         # HTML/JS
@@ -28,7 +28,7 @@ gem 'rmagick', '2.13.1'
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
-gem 'delayed_job', '2.1.4'          # Background Job Queue  #:git => 'git://github.com/collectiveidea/delayed_job.git'
+gem 'delayed_job', '2.1.4'          # Background Job Queue
 
 # gem 'activeadmin', '0.2.2'          # Admin Tool
 

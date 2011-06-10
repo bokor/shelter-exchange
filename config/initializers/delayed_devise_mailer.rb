@@ -11,5 +11,9 @@ module Devise
 		module Lockable
 			handle_asynchronously :send_unlock_instructions
 		end
+		
+		module Invitable
+		  handle_asynchronously :send_invitation
+		end
 	end
 end
