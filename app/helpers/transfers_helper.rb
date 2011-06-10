@@ -1,13 +1,12 @@
 module TransfersHelper
   
   def status_action_name(transfer)
-    case transfer.status
-      when "approved"
-        "Approve".html_safe
-      when "completed"
-        "Complete".html_safe
-      when "rejected"
-        "Reject".html_safe
+    if transfer.approved?
+      "Approve"
+    elsif transfer.completed?
+      "Complete"
+    elsif transfer.rejected?
+      "Reject"
     end
   end
   
