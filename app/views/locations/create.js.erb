@@ -5,7 +5,13 @@
 	// Add Location
 	$('#locations').prepend("<%= escape_javascript(render @location) %>"); 
 	$(".location").first().effect("highlight", {}, 1000);
-	$('#new_location').get(0).reset();
-	$('#location_errors').html("");
+
+	// Clear Form
+	$('#create_location_form').get(0).reset();
+	
+	// Remove Errors
+	$('#create_location_errors').html("");
+	$('#create_location_form p.error').remove();
+	$('#create_location_form li').removeClass("error");
 <% end %>
 <% flash.discard %>

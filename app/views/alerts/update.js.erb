@@ -7,6 +7,10 @@
 	});
 	$('#alert_<%=@alert.id%>').replaceWith( "<%= escape_javascript(render @alert) %>" );
 	$('#alert_<%=@alert.id%>').show().effect("highlight", {}, 1000);
+	
+	// Remove Errors
 	$('#edit_alert_errors_<%=@alert.id %>').html("");
+	$('#edit_alert_form_<%=@alert.id %> p.error').remove();
+	$('#edit_alert_form_<%=@alert.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>

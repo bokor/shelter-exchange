@@ -5,7 +5,13 @@
 	// Add Location
 	$('#accommodations').prepend("<%= escape_javascript(render @accommodation) %>"); 
 	$(".accommodation").first().effect("highlight", {}, 1000);
+	
+	// Clear Form
 	$('#create_accommodation_form').get(0).reset();
+	
+	// Remove Errors
 	$('#create_accommodation_errors').html("");
+	$('#create_accommodation_form p.error').remove();
+	$('#create_accommodation_form li').removeClass("error");
 <% end %>
 <% flash.discard %>

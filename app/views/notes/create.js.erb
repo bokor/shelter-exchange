@@ -17,7 +17,13 @@
 			$(this).fadeOut(2000); 
 		});
 	}
-	$('#new_note').get(0).reset();
-	$('#note_errors').html("");
+
+	// Clear Form
+	$('#create_note_form').get(0).reset();
+	
+	// Remove Errors
+	$('#create_note_errors').html("");
+	$('#create_note_form p.error').remove();
+	$('#create_note_form li').removeClass("error");
 <% end %>
 <% flash.discard %>

@@ -5,7 +5,14 @@
     $('#capacity_help').hide();
 	$('#capacities').prepend("<%= escape_javascript(render 'capacity', :capacity => @capacity) %>"); 
 	$(".capacity").first().effect("highlight", {}, 1500);
+
+	// Clear Form
 	$('#create_capacity_form').get(0).reset();
+	
+	// Remove Errors
 	$('#create_capacity_errors').html("");
+	$('#create_capacity_form p.error').remove();
+	$('#create_capacity_form li').removeClass("error");
+	
 <% end %>
 <% flash.discard %>

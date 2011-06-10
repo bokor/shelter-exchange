@@ -7,6 +7,10 @@
 	});
 	$('#location_<%=@location.id%>').replaceWith( "<%= escape_javascript(render @location) %>" );
 	$('#location_<%=@location.id%>').show().effect("highlight", {}, 2000);
-	$('#location_errors').html("");
+
+	// Remove Errors
+	$('#edit_location_errors_<%=@location.id %>').html("");
+	$('#edit_location_form_<%=@location.id %> p.error').remove();
+	$('#edit_location_form_<%=@location.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>

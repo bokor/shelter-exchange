@@ -7,7 +7,11 @@
 	});
 	$('#note_<%=@note.id%>').replaceWith( "<%= escape_javascript(render @note) %>" );
 	$('#note_<%=@note.id%>').show().effect("highlight", {}, 2000);
-	$('#edit_note_errors_<%=@note.id%>').html("");
+	
+	// Remove Errors
+	$('#edit_note_errors_<%=@note.id %>').html("");
+	$('#edit_note_form_<%=@note.id %> p.error').remove();
+	$('#edit_note_form_<%=@note.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>
 

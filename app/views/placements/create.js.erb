@@ -4,12 +4,16 @@
 <% else %>
 	$('#placement_<%=@placement.status %> table').prepend("<%= escape_javascript(render @placement) %>"); 
 	$("#placement_<%=@placement.status %> .placement").first().effect("highlight", {}, 1000);
-	// Reset Form
+	
+	// Clear Form
 	$('#create_placement_form').get(0).reset();
 	$('#animal_selected span').html('');
 	$('#animal_search_link').html("Find animal");
 	$('#placement_animal_id').val("");
-	// Clear Errors
+	
+	// Remove Errors
 	$('#create_placement_errors').html("");
+	$('#create_placement_form p.error').remove();
+	$('#create_placement_form li').removeClass("error");
 <% end %>
 <% flash.discard %>

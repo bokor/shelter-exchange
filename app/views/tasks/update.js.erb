@@ -2,7 +2,7 @@
 	$('#edit_task_errors_<%=@task.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
 	<%= render 'global/ajax_form_errors', :target => @task, :form_id => "edit_task_form_#{@task.id}" %>
 <% else %>
-	<% due_section = find_due_section(@task) %>
+	<% due_section = @task.due_section %>
 	<% if @changed %>
 		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() { 
 			$(this).remove(); 
@@ -25,6 +25,11 @@
 		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
 		$('#task_<%=@task.id%>').show().effect("highlight", {}, 1000);
 	<% end %>
-	$('#edit_task_errors_<%=@task.id%>').html("");
+
+	// Remove Errors
+	$('#edit_task_errors_<%=@task.id %>').html("");
+	$('#edit_task_form_<%=@task.id %> p.error').remove();
+	$('#edit_task_form_<%=@task.id %> li').removeClass("error");
+	
 <% end %>
 <% flash.discard %>

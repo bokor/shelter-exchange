@@ -1,6 +1,6 @@
 <% 
 	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count 
-	accommodation_class = (animal_count == accommodation.max_capacity) ? "box red" : "box default"
+	accommodation_class = (animal_count == accommodation.max_capacity) ? "box red" : "box"
 %>
 <div id="accommodation_<%= accommodation.id %>" class="<%=accommodation_class%> accommodation">
 	
@@ -35,7 +35,7 @@
 			<% end %>
 			<% if can?(:destroy, Accommodation) %>
 			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure?", :remote => true %>
+				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure you want to delete? This will no longer display as an accommodation.", :remote => true %>
 			</span>
 			<% end %>
 		</div>

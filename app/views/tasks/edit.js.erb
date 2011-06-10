@@ -5,9 +5,9 @@ $('#edit_task_<%=@task.id%>').show();
 Tasks.datePicker("#edit_task_<%=@task.id%>");
 $('#edit_task_<%=@task.id%> .task_due_category').bind("change", function() {Tasks.dueDate("#edit_task_<%=@task.id%>");});
 
-<% due_section = find_due_section(@task) %>
+<% due_section = @task.due_section %>
 
-<% if due_section == "overdue" or @task.due_category == "specific_date" %>
+<% if @task.overdue? or @task.specific_date? %>
 	var db_date = $('#edit_task_<%=@task.id%> .hidden_due_date').val();
 	$('#edit_task_<%=@task.id%> .task_due_category').val('specific_date');
 	$('#edit_task_<%=@task.id%> .date_picker').datepicker("setDate", db_date);

@@ -7,6 +7,10 @@
 		$('#capacity_<%=@capacity.id%>').fadeIn(1000).effect("highlight", {}, 1000);
 		$(this).remove(); 
 	});
-	$('#edit_capacity_errors_<%=@capacity.id%>').html("");
+
+	// Remove Errors
+	$('#edit_capacity_errors_<%=@capacity.id %>').html("");
+	$('#edit_capacity_form_<%=@capacity.id %> p.error').remove();
+	$('#edit_capacity_form_<%=@capacity.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>

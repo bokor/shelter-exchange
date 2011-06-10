@@ -9,5 +9,9 @@
 	$('#accommodation_<%=@accommodation.id%>').replaceWith( "<%= escape_javascript(render @accommodation) %>" );
 	$('#accommodation_<%=@accommodation.id%>').fadeIn(1000).effect("highlight", {}, 1000);
 	$('#edit_accommodation_errors_<%=@accommodation.id %>').html("");
+	// Remove Errors
+	$('#edit_accommodation_errors_<%=@accommodation.id %>').html("");
+	$('#edit_accommodation_form_<%=@accommodation.id %> p.error').remove();
+	$('#edit_accommodation_form_<%=@accommodation.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>

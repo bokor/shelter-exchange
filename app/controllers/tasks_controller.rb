@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
   respond_to :html, :js
   
+  
   def index
     @overdue_tasks =  @current_shelter.tasks.for_all.overdue.active.all
     @today_tasks = @current_shelter.tasks.for_all.today.active.all
@@ -60,3 +61,20 @@ class TasksController < ApplicationController
   end
 
 end
+
+# @tasks =  @current_shelter.tasks.for_all.active
+# @overdue_tasks =  []
+# @today_tasks =  []
+# @tomorrow_tasks =  []
+# @later_tasks =  []
+# 
+# @tasks.each{|task| 
+#   @overdue_tasks <<  task if task.overdue?
+#   @today_tasks <<  task if task.today?
+#   @tomorrow_tasks << task if task.tomorrow?
+#   @later_tasks <<  task if task.later?
+# }
+# 
+# if @tasks.blank?
+#   redirect_to new_task_path
+# end

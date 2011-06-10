@@ -7,6 +7,10 @@
 	});
 	$('#placement_<%=@placement.id%>').replaceWith( "<%= escape_javascript(render @placement) %>" );
 	$('#placement_<%=@placement.id%>').show().effect("highlight", {}, 1000);
+
+	// Remove Errors
 	$('#edit_placement_errors_<%=@placement.id %>').html("");
+	$('#edit_placement_form_<%=@placement.id %> p.error').remove();
+	$('#edit_placement_form_<%=@placement.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>

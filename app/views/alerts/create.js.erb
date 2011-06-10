@@ -11,7 +11,14 @@
 		$('#shelter_alerts').prepend("<%= escape_javascript(render @alert) %>"); 
 		$("#shelter_alerts .alert").first().effect("highlight", {}, 1500);
 	<% end %>
+	
+	// Clear Form
 	$('#create_alert_form').get(0).reset();
-	$('#create_alert_errors').html("");
+	
+	// Remove Errors
+	$('#create_alert_errors_<%=@alert.id %>').html("");
+	$('#create_alert_form p.error').remove();
+	$('#create_alert_form li').removeClass("error");
+	
 <% end %>
 <% flash.discard %>

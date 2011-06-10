@@ -10,7 +10,7 @@
 		<% end %>
 		<% if can?(:destroy, Location) %>
 		<span class="delete_link">&nbsp;|&nbsp;
-			<%= link_to 'Delete', location, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+			<%= link_to 'Delete', location, :confirm => "Are you sure you want to delete? This location will no longer appear in the list.", :method => :delete, :remote => true %>	
 		</span>
 		<% end %>
 	</span>

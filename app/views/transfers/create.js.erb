@@ -2,13 +2,19 @@
 	$('#create_transfer_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @transfer) %>" );
 	<%= render 'global/ajax_form_errors', :target => @transfer, :form_id => "create_transfer_form" %>
 <% else %>
-	// Clear form and errors
-	$('#create_transfer_form').get(0).reset();
-	$('#create_transfer_errors').html("");
 	
 	// Hide Form, Buttons, and Show Request Message
 	$('#transfer_request_button').hide();
 	$('#create_transfer').slideToggle(1000);
 	$('#transfer_requested').fadeIn(2000).removeClass("hide");
+	
+	// Clear Form
+	$('#create_transfer_form').get(0).reset();
+	
+	// Remove Errors
+	$('#create_transfer_errors').html("");
+	$('#create_transfer_form p.error').remove();
+	$('#create_transfer_form li').removeClass("error");
+	
 <% end %>
 <% flash.discard %>
