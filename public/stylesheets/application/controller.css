@@ -700,6 +700,11 @@
 /******************************************************************/
 .alerts ul { list-style:none ;}
 
+/* New/Create Alerts :: Layout */
+/******************************************************************/
+.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
+.new_alerts #left, .create_alerts #left{ width: 100%;}
+.new_alerts #sidebar, .create_alerts #sidebar { display: none;width: 0; }
 
 /* Alert List :: Layout */
 /******************************************************************/
@@ -745,7 +750,11 @@
 .tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
 .index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
 
-
+/* New/Create Tasks :: Layout */
+/******************************************************************/
+.new_tasks #main, .create_tasks #main { margin: 1em 3em 0 3em; }
+.new_tasks #left, .create_tasks #left{ width: 100%;}
+.new_tasks #sidebar, .create_tasks #sidebar { display: none;width: 0; }
 
 /* Index Tasks :: Task List */
 /******************************************************************/
