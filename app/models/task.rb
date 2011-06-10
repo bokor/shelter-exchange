@@ -44,6 +44,10 @@ class Task < ActiveRecord::Base
     self.due_date.blank? or self.due_date > Date.today + 1.day or self.due_category == "later"
   end
   
+  def specific_date?
+    self.due_category == "specific_date"
+  end
+  
   def due_section
     due_section = self.due_category
     if self.later?
@@ -55,10 +59,6 @@ class Task < ActiveRecord::Base
     elsif self.tomorrow?
       due_section = "tomorrow"
     end
-  end
-  
-  def specific_date?
-    self.due_category == "specific_date"
   end
 
   def completed?
