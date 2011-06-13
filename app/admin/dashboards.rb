@@ -9,10 +9,19 @@ ActiveAdmin::Dashboards.build do
     end
   end
   
-  section "Transfer Totals", :priority => 1 do
+  section "Transfer Totals", :priority => 2 do
     table_for Transfer.unscoped.includes(:shelter, :requestor_shelter, :animal).group("transfers.status").limit(nil).count do
       column("Status") { |status, count| status.blank? ? "New Request" : status.to_s.humanize } 
       column("Count")  { |status, count| count.to_s } 
+    end
+  end
+  
+  section "Animal Status Totals", :priority => 3 do
+    counts = Animal.unscoped.joins(:animal_status, :shelter).group("shelters.state").group("animal_statuses.name").limit(nil).count
+    table_for counts do
+      column("State") { |grouping, count| grouping[0].to_s } 
+      column("Status") { |grouping, count| grouping[1].to_s } 
+      column("Count")  { |grouping, count| count.to_s } 
     end
   end
   

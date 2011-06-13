@@ -35,17 +35,6 @@ ActiveAdmin.register Shelter do
     column :email, :sortable => false
     # column("Kill/No Kill") { |shelter| shelter.is_kill_shelter ? "Kill" : "No Kill" }
   end
-
-  # Show
-  #----------------------------------------------------------------------------  
-  show do
-    
-  end
-  
-  # Form
-  #----------------------------------------------------------------------------
-  form do |f|
-  end
   
 end
 
