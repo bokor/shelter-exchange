@@ -2,9 +2,11 @@ class Placement < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
   
   # Constants
+  #----------------------------------------------------------------------------
   STATUS = %w[adopted foster_care].freeze
   
   # Associations
+  #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
   belongs_to :animal, :readonly => true
   belongs_to :parent, :readonly => true
@@ -14,10 +16,12 @@ class Placement < ActiveRecord::Base
   accepts_nested_attributes_for :comments, :allow_destroy => true, :reject_if => proc { |attributes| attributes['comment'].blank? }
 
   # Validations
+  #----------------------------------------------------------------------------
   validates :animal_id, :presence => {:message => 'needs to be selected'}
   validates :status, :presence => {:in => STATUS, :message => 'needs to be selected'}
   
   # Scopes
+  #----------------------------------------------------------------------------
   scope :adopted, includes([:animal, :shelter]).where(:status => "adopted")
   scope :foster_care, includes([:animal, :shelter]).where(:status => "foster_care")
   

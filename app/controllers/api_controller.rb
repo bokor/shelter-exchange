@@ -2,8 +2,8 @@ class ApiController < ApplicationController
   skip_before_filter :authenticate_user!, :current_shelter, :set_shelter_timezone
   before_filter :api_version, :find_shelter
   
-  respond_to :html, :js, :json, :xml, :rss
-  
+  respond_to :html, :js, :json, :xml
+    
   def animals
     animal_view_path = "api/#{api_version}/animals"
     
@@ -18,7 +18,6 @@ class ApiController < ApplicationController
         format.js { render :js, :template => animal_view_path }
         format.json { render :json, :template => animal_view_path }
         format.xml { render :xml, :template => animal_view_path }
-        # format.rss { render :rss, :template => animal_view_path }
       end
     else
       respond_with_error({ :error => "Incorrect version" })
@@ -26,6 +25,10 @@ class ApiController < ApplicationController
   end
   
   private
+  
+    def account_blocked?
+      respond_with_error({ :error => "Account's access has been revoked.  Reason: #{@current_account.reason_blocked}" })  if @current_account.blocked?
+    end
   
     def api_version
       @api_version ||= params[:version]
@@ -41,7 +44,6 @@ class ApiController < ApplicationController
         format.html { render :html, :template => "api/error", :layout => "api"  }
         format.json { render :json => error.to_json, :status => :forbidden }
         format.xml { render :xml => error.to_xml, :status => :forbidden }
-        # format.rss { render :rss => error.to_rss, :status => :forbidden }
       end
     end
   

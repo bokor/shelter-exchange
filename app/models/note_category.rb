@@ -1,6 +1,7 @@
 class NoteCategory < ActiveRecord::Base
   
-  # Associations
+  # Associatons
+  #----------------------------------------------------------------------------
   has_many :notes, :readonly => true
   
 end

@@ -12,7 +12,7 @@ class AnimalsController < ApplicationController
   def show
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
     @notes = @animal.notes.includes(:note_category).all
-    @status_histories = @animal.status_histories.all
+    @status_histories = @animal.status_histories.includes(:animal_status).all
     @alerts = @animal.alerts.active.all
     @overdue_tasks = @animal.tasks.overdue.active.includes(:task_category).all
   	@today_tasks = @animal.tasks.today.active.includes(:task_category).all 
@@ -34,7 +34,7 @@ class AnimalsController < ApplicationController
   def create
     @animal = @current_shelter.animals.new(params[:animal])
     flash[:notice] = "#{@animal.name} has been created." if @animal.save
-    @animal.photo.clear if @animal.photo.errors
+    # @animal.photo.clear if @animal.photo.errors
     respond_with(@animal)
   end
   

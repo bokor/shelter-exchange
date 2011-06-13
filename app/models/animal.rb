@@ -1,20 +1,25 @@
 class Animal < ActiveRecord::Base
   default_scope :order => 'animals.status_change_date DESC', :limit => 250
-  
+
+  # Callbacks
+  #----------------------------------------------------------------------------  
   after_validation :photo_reverted?
   before_save :check_status_changed?
   after_save :create_status_history!
-  
+
+  # Getters/Setters
+  #----------------------------------------------------------------------------  
   attr_accessor :status_history_reason, 
                 :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_scheduled_month, :euthanasia_scheduled_day, :euthanasia_scheduled_year
   
-  # Pagination - Per Page
-  # Rails.env.development? ? PER_PAGE = 4 : PER_PAGE = 25
+  # Constants
+  #----------------------------------------------------------------------------
   PER_PAGE = 25
   
   # Associations
+  #----------------------------------------------------------------------------
   belongs_to :animal_type, :readonly => true
   belongs_to :animal_status, :readonly => true
   belongs_to :accommodation
@@ -37,9 +42,12 @@ class Animal < ActiveRecord::Base
                                          :medium => ["350x250>", :jpg],
                                          :large => ["500x400>", :jpg], 
                                          :thumb => ["100x75#", :jpg] }
+  # Callbacks - Paperclip
+  #----------------------------------------------------------------------------
   before_post_process :photo_valid?                                       
 
   # Validations
+  #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => 'needs to be selected' }
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
@@ -55,12 +63,14 @@ class Animal < ActiveRecord::Base
   validate :arrival_date_valid?
   validate :euthanasia_scheduled_valid?
   
-  # Custom Validations - Photo
+  # Validations - PaperClip
+  #----------------------------------------------------------------------------
   validates_attachment_size :photo, :less_than => IMAGE_SIZE.megabytes, :message => "needs to be #{IMAGE_SIZE} megabytes or less"
   validates_attachment_content_type :photo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
 
   
-  # Scopes - Searches
+  # Scopes - Search
+  #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }
   scope :search, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%')
                                                                             OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
@@ -68,6 +78,7 @@ class Animal < ActiveRecord::Base
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
   
   # Scopes - Statuses
+  #----------------------------------------------------------------------------
   scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
   scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
   scope :available_for_adoption, where(:animal_status_id => AnimalStatus::AVAILABLE_FOR_ADOPTION)
@@ -76,12 +87,14 @@ class Animal < ActiveRecord::Base
   scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
   scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
   
-  # Scopes - Dashboard Only
+  # Scopes - Dashboard - Recent Activity
+  #----------------------------------------------------------------------------
   def self.recent_activity(shelter_id, limit=10)
     unscoped.includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
-  # Scopes - Maps
+  # Scopes - Maps and Filters
+  #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
     scope = scope.includes(:animal_type, :animal_status, :shelter)
@@ -115,7 +128,8 @@ class Animal < ActiveRecord::Base
   end
 
   
-  # Scopes - Reporting
+  # Scopes - Reports
+  #----------------------------------------------------------------------------
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
@@ -140,7 +154,8 @@ class Animal < ActiveRecord::Base
     scope
   end
   
-  # Finalized Transfer Request
+  # Finalize Transfer Request
+  #----------------------------------------------------------------------------
   def complete_transfer_request!(current_shelter, requestor_shelter)
     self.animal_status_id = AnimalStatus::NEW_INTAKE
     self.status_history_reason = "Transferred from #{current_shelter.name}"
@@ -162,7 +177,7 @@ class Animal < ActiveRecord::Base
   private
   
     def is_kill_shelter?
-      @shelter ||= Shelter.find_by_id(self.shelter_id).is_kill_shelter
+      @shelter ||= self.shelter.is_kill_shelter
     end
 
     def primary_breed_valid?

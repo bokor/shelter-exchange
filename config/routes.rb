@@ -1,18 +1,34 @@
 ShelterExchangeApp::Application.routes.draw do
-
-# Application Website Routes for *subdomain*.domain.com
+  
+  
+  # Admin - Routes for manage.domain.com
+  #----------------------------------------------------------------------------
+  constraints(AdminSubdomain) do
+    ActiveAdmin.routes(self)
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    root :to => redirect("/admin")
+  end
+  
+  
+  
+  # Application - Routes for *subdomain*.domain.com
+  #----------------------------------------------------------------------------
   constraints(AppSubdomain) do
 
-#   Notes Routes
+    # Notes
+    #----------------------------------------------------------------------------
     resources :notes, :only => [:create, :edit, :update, :destroy]
 
-#   Comments Routes
+    # Comments
+    #----------------------------------------------------------------------------
     resources :comments, :only => [:create, :edit, :update, :destroy]
 
-#   Items Routes    
+    # Items
+    #----------------------------------------------------------------------------
     resources :items
 
-#   Reports Routes    
+    # Reports
+    #----------------------------------------------------------------------------    
     resources :reports do
       collection do
         get :status_by_current_month
@@ -30,14 +46,16 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
     
-#   Locations Routes 
+    # Locations
+    #----------------------------------------------------------------------------
     resources :locations, :only => [:create, :edit, :update, :destroy] do
       collection do
         get :find_all
       end
     end
 
-#   Accommodations Routes 
+    # Accommodations
+    #----------------------------------------------------------------------------
     resources :accommodations, :except => [:show] do
       collection do
         get :search
@@ -45,21 +63,26 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
     
-#   Tasks Routes
+    # Tasks
+    #----------------------------------------------------------------------------
     resources :tasks, :except => [:show] do
       post :complete, :on => :member
     end
 
-#   Alerts Routes
+    # Alerts
+    #----------------------------------------------------------------------------
     resources :alerts, :except => [:show] do
       post :stop, :on => :member
     end
     
-#   Placements Routes
+    # Placements
+    #----------------------------------------------------------------------------
     resources :placements, :only => [:create, :edit, :update, :destroy] do
       resources :comments
     end
-    
+ 
+    # Communities
+    #----------------------------------------------------------------------------    
     resources :communities do
       collection do
         get :search_by_city_zipcode
@@ -74,16 +97,16 @@ ShelterExchangeApp::Application.routes.draw do
     end
     match 'communities/animal/:animal_id' => 'communities#animal', :as => :animal_communities
 
-#   Maps Routes      
+    # Maps
+    #----------------------------------------------------------------------------
     resources :maps, :only => [:overlay]
     
-#   Transfers Routes    
+    # Transfers
+    #----------------------------------------------------------------------------
     resources :transfers, :except => [:index, :show]
-
-#   Transfer Histories Routes        
-    # resources :transfer_histories
     
-#   Parents Routes
+    # Parents
+    #----------------------------------------------------------------------------
     resources :parents do
       resources :notes
       collection do
@@ -92,7 +115,8 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
     
-#   Animals Routes
+    # Animals
+    #----------------------------------------------------------------------------
     resources :animals do
       resources :notes
       resources :alerts 
@@ -104,34 +128,47 @@ ShelterExchangeApp::Application.routes.draw do
         get :auto_complete
       end
     end
-    
+  
+    # Photos
+    #----------------------------------------------------------------------------    
     resources :photos, :only => [:destroy]
+
+    # Logos
+    #----------------------------------------------------------------------------
     resources :logos, :only => [:destroy]
     
-#   Breeds Routes - Used as a look up for the auto_complete on the animal page
+    # Breeds
+    #----------------------------------------------------------------------------
     resources :breeds, :only => [:auto_complete] do
       get :auto_complete, :on => :collection
     end
 
-#   Shelter Routes 
+    # Shelters
+    #----------------------------------------------------------------------------
     resources :shelters, :only => [:index, :edit, :update, :auto_complete] do
       get :auto_complete, :on => :collection
     end 
-    
+
+    # Wish Lists
+    #----------------------------------------------------------------------------    
     resources :wish_lists, :only => [:edit, :update]
     
-#   Capacity Routes    
+    # Capacities
+    #----------------------------------------------------------------------------
     resources :capacities
     
-#   API Routes   
+    # API
+    #----------------------------------------------------------------------------
     resources :api, :only => [:animals]
     match '/api/:version/animals' => 'api#animals'
         
-#   Account Settings Routes    
+    # Account Settings
+    #----------------------------------------------------------------------------
     resources :settings, :only => [:index] 
     resources :token_authentications, :only => [:create, :destroy]
     
-#   Users Routes - Localized updated
+    # Users
+    #----------------------------------------------------------------------------
     resources :users, :except => [:show, :new, :create] do
       member do
         post :change_password
@@ -139,25 +176,20 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
 
-#   Devise Routes
     devise_for :users, :path => "", :path_names => { :sign_in => "login", :sign_out => "logout", :confirmation => "confirmation", :invitation => "invitation" } 
 
-#   Dashboard Routes   
+    # Dashboard
+    #----------------------------------------------------------------------------
     match "/dashboard", :to => 'dashboard#index'
     
-#   Root Route - will redirect to animals as the first page
-    # root :to => redirect("/animals")
+    # ROOT
+    #----------------------------------------------------------------------------
     root :to => redirect("/dashboard")
     
   end
-
-# Admin Website Routes for manage.domain.com
-  constraints(ManageSubdomain) do
-
-  end 
   
 
-# Public Website Routes for www.domain.com
+# REMOVE LATER - Public Website Routes for www.domain.com
   constraints(PublicSubdomain) do
     
 #   Public Route
@@ -181,6 +213,8 @@ ShelterExchangeApp::Application.routes.draw do
   end
 
 
-# 404 Error for URLs not mapped  
+  # Catch All - If route isn't found then Four oh Four
+  #----------------------------------------------------------------------------
   match "*path" => redirect("/404.html")   
+  
 end

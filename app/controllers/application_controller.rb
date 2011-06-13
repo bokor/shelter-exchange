@@ -2,38 +2,32 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_account,
-                :current_shelter, :set_shelter_timezone, :account_blocked?, 
-                :store_location, :set_mailer_url_options
+  before_filter :authenticate_user!,
+                :current_account, :account_blocked?, :current_shelter,
+                :set_time_zone, :store_location, :set_mailer_url_options
 
   layout :current_layout
-  # helper :all
-  # clear_helpers
 
   private
   
     def current_account
-      @current_account ||= Account.find_by_subdomain!(request.subdomains.first)
+      @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless RESERVED_SUBDOMAINS.include?(request.subdomains.last)
     end
     
     def current_shelter
-      @current_shelter ||= @current_account.shelters.first if user_signed_in?
+      @current_shelter ||= @current_account.shelters.first if @current_account and user_signed_in?
     end
     
     def current_layout
-      if @current_account.blank?
-        'public'
-      else
-        user_signed_in? ? 'application' : 'login'
-      end
-    end
-    
-    def set_shelter_timezone
-      Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
+      user_signed_in? ? 'application' : 'login'
     end
     
     def account_blocked?
       raise Exceptions::AccountBlocked if @current_account and @current_account.blocked?
+    end
+    
+    def set_time_zone
+      Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
     end
     
     def store_location
@@ -45,7 +39,7 @@ class ApplicationController < ActionController::Base
     end
     
     def set_mailer_url_options
-      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomain)
+      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomains.last)
     end
 
     
@@ -77,3 +71,7 @@ class ApplicationController < ActionController::Base
     end
 
 end
+
+
+# helper :all
+# clear_helpers

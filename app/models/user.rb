@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   
-  # Constants 
+  # Constants
+  #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User  
   OWNER = "owner"
 
   # Associations
+  #----------------------------------------------------------------------------
   belongs_to :account
   
   devise :database_authenticatable, :confirmable, :lockable, :recoverable, 
@@ -12,20 +14,24 @@ class User < ActiveRecord::Base
          :authentication_keys => [ :email, :subdomain ]
 
          
-  # Accessible Attributes
+  # Getters/Setters
+  #----------------------------------------------------------------------------
   attr_accessible :name, :title, :email, :password, :password_confirmation, 
                   :remember_me, :role, :account_id 
                   
   # Validations - Extra beyond devise's validations
+  #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :role, :presence => { :message => "needs to be selected" }
   
   # Scopes
+  #----------------------------------------------------------------------------
   scope :owner, where(:role => :owner)
   scope :admin, where(:role => :admin)
-  scope :user, where(:role => :user)
+  scope :default, where(:role => :user)
   
-  
+  # Instance Methods
+  #----------------------------------------------------------------------------  
   def first_name
     self.name.split(' ').first
   end
@@ -37,7 +43,9 @@ class User < ActiveRecord::Base
   def is?(role)
     self.role == role.to_s and (ROLES.include?(role.to_s) or role.to_s == OWNER)
   end
-  
+
+  # Class Methods
+  #----------------------------------------------------------------------------  
   def self.find_for_authentication(conditions={})
     conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
     find(:first, :conditions => conditions, :joins => :account, :readonly => false)

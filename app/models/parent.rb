@@ -1,12 +1,17 @@
 class Parent < ActiveRecord::Base
   default_scope :order => 'created_at DESC' #, :limit => 25
+
+  # Callbacks
+  #----------------------------------------------------------------------------
   before_validation :format_phone_numbers
   
   # Associations
+  #----------------------------------------------------------------------------
   has_many :placements, :dependent => :destroy
   has_many :notes, :as => :notable, :dependent => :destroy
   
   # Validations
+  #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :home_phone, :presence => true, :uniqueness => true
   validates :mobile_phone, :uniqueness => true, :allow_blank => true
@@ -16,9 +21,8 @@ class Parent < ActiveRecord::Base
                     
   validate :address_valid?
                     
-                    
-                    
   # Scopes
+  #----------------------------------------------------------------------------
   scope :search, lambda { |q| phone = q.gsub(/\D/, "")
                               phone = q if phone.blank?
                               where("home_phone = '#{phone}' OR 

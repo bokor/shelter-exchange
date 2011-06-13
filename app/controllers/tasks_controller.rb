@@ -6,6 +6,9 @@ class TasksController < ApplicationController
   
   
   def index
+    
+
+    
     @overdue_tasks =  @current_shelter.tasks.for_all.overdue.active.all
     @today_tasks = @current_shelter.tasks.for_all.today.active.all
     @tomorrow_tasks = @current_shelter.tasks.for_all.tomorrow.active.all

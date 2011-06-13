@@ -1,10 +1,16 @@
 class Shelter < ActiveRecord::Base
+
+  # Plugins
+  #----------------------------------------------------------------------------
   acts_as_mappable
 
+  # Callbacks
+  #----------------------------------------------------------------------------
   after_validation :logo_reverted?
   before_save :geocode_address, :format_phone_numbers
   
-  # Associations
+  # Assocations
+  #----------------------------------------------------------------------------
   belongs_to :account
 
   has_many :locations, :dependent => :destroy
@@ -31,10 +37,13 @@ class Shelter < ActiveRecord::Base
                                         :large => ["500x400>", :jpg], 
                                         :thumb => ["150x75>", :jpg] }
                           #:convert_options => { :small => "-quality 80", }
+  # Callback - Paperclip
+  #----------------------------------------------------------------------------
   before_post_process :logo_valid?
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
+  #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :phone, :presence => true
   validates :email, :presence => true,
@@ -50,14 +59,17 @@ class Shelter < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
   
   
-  # Scopes  
+  # Scopes
+  #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
-  
+
+  # Instance Methods
+  #----------------------------------------------------------------------------
   def generate_access_token!
     # self.access_token = ActiveSupport::SecureRandom.base64(10)
     self.access_token = ActiveSupport::SecureRandom.hex(15)
-    self.save
+    save!
   end
   
   def address_changed?
