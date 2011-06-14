@@ -88,26 +88,10 @@ a:hover, a:selected { border: none; outline: none; }
 
 
 
+/* Flash Messages */   
 /******************************************************************/
-/* ----------------------- ERROR MESSAGES ----------------------- */
-/******************************************************************/
-.notice{color:green;width:450px;border:2px solid green;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
-.notice h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:green;}
-/******************************************************************/
-.warning{color:yellow;width:450px;border:2px solid yellow;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
-.warning h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:yellow;}
-/******************************************************************/
-.info{color:blue;width:450px;border:2px solid blue;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
-.info h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:blue;}
-/******************************************************************/
-.error{color:red;width:450px;border:2px solid red;padding:7px;margin:0px 0 10px 0;background-color:#f0f0f0;}
-.error h2{text-align:left;font-weight:red;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:5px;background-color:#f0f0f0;color:red;}
-/******************************************************************/
-.field_with_errors{padding:1px;background-color:red;display:table;}
-#error_explanation{width:96%;border:1px solid red;padding:7px 7px 0px 7px;margin:10px 0px 10px 0px;background-color:#f0f0f0;}
-#error_explanation h2{text-align:left;font-weight:bold;padding:5px 5px 5px 15px;font-size:12px;margin:-7px;margin-bottom:10px;background-color:#c00;color:#fff;}
-#error_explanation ul{padding-top:5px;padding-bottom:20px;}
-#error_explanation ul li{margin-left:25px;padding:5px 0px 5px 0px;font-size:12px;list-style:square;}
+.flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
+.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
 
 
 /******************************************************************/

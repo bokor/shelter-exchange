@@ -11,8 +11,8 @@
 	
 	<% if msg.present? %>	
 	<div class="ui-widget">
-		<div id="<%= key %>" class="<%= class_name %> ui-corner-all" style="width: 97%;padding: 1.2em 0 .7em .7em; margin-bottom: 10px; "> 
-			<p><span class="ui-icon <%=icon_name%>" style="float: left; margin-right: .3em;"></span><%=body.html_safe%></p>
+		<div id="<%= key %>" class="flash_message <%= class_name %> ui-corner-all"> 
+			<div><span class="icon ui-icon <%=icon_name%>"></span><%=body.html_safe%></div>
 		</div>
 	</div>
     <script type="text/javascript">

@@ -89,6 +89,12 @@ Dog House Sides - #db8d4a
 
 
 
+/* Flash Messages */   
+/******************************************************************/
+.flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
+.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
+
+
 
 /* Pagination */   
 /******************************************************************/
