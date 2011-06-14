@@ -1,0 +1,890 @@
+/* If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { width: 0;}*/
+
+/******************************************************************/
+/* -------------------------- COMMON  -------------------------- */
+/******************************************************************/
+.hover{background-color:#EFEBE3; cursor: pointer;}
+.active_link {color:#888; text-decoration:none; cursor:default; }
+
+/* Hidden and Display
+-----------------------------------------------------------------------------*/
+.hide {display:none;}
+.show {display:block;}
+
+/* Separators
+-----------------------------------------------------------------------------*/
+.link_separator{padding: 0 10px;}
+.separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
+
+/* Sidebar :: Action Links
+-----------------------------------------------------------------------------*/
+#sidebar ul.action_links { padding: 0 0 10px 0; }
+#sidebar ul.action_links .button { min-width: 200px;}
+
+
+/* Box :: Forms
+-----------------------------------------------------------------------------*/
+.box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
+.box.hide{display: none;}
+.box.red{border-color: #f07280;background-color:#faced3;}
+.box.green{border-color: #90e674;background-color:#d5f6ca;}
+.box.orange{border-color: #f9d36f; background-color:#fdf1d0;}
+.box.blue{border-color: #74afe3;background-color:#c9e0f4;}
+.box h2{border: none;}
+.box h3{border: none;}
+.box:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Sections :: Headings
+-----------------------------------------------------------------------------*/
+.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
+.section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}
+.section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
+.section_heading.orange{border-color: #f9d36f; background-color:#fdf1d0;}
+.section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
+.section_heading h2{float:left;}
+.section_heading .links{float:right; text-align: right;padding-top:5px;}
+.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Page Headings
+-----------------------------------------------------------------------------*/
+.page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}/*e0f1fa*/
+.page_heading.red{background-color:#faced3;}
+.page_heading h1{width:100%; }
+.page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Circles :: Capacity
+-----------------------------------------------------------------------------*/
+.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
+.section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}
+
+
+.circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
+.circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
+.circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
+.circle.over_capacity{border-color: #f07280;background-color:#faced3;}
+.circle.warning_level{border-color: #f9d36f; background-color:#fdf1d0;}
+.circle.normal{border-color: #90e674;background-color:#d5f6ca;}
+
+/* Circles :: Capacity
+-----------------------------------------------------------------------------*/
+.shelter_type{width: 150px; margin-top: 20px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.shelter_type.kill{border-color: #f07280;background-color:#faced3;}
+.shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- ANIMALS  -------------------------- */
+/******************************************************************/
+
+/* Animals :: Global
+-----------------------------------------------------------------------------*/
+.animals ul {list-style:none;}
+
+/* Animals :: Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.edit_animals #main, .update_animals #main, .new_animals #main, .create_animals #main { margin: 1em 3em 0 3em; }
+.edit_animals #left, .update_animals #left, .new_animals #left, .create_animals #left{ width: 100%;}
+.edit_animals #sidebar, .update_animals #sidebar, .new_animals #sidebar, .create_animals #sidebar { display: none;width: 0; }
+
+
+/* Animals :: Form :: Layout
+-----------------------------------------------------------------------------*/
+.animals #reason_field{ padding-top:15px; }
+.animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
+
+.animals .icon_calendar{padding-left: 10px; cursor: pointer;}
+.animals .calendar{display:none;}
+
+.animals #accommodation_remove_link{display:none;padding-left: 5px;}
+
+.animals #accommodation_selected{padding: 0 0 10px 0;}
+.animals #accommodation_selected span {}
+.animals #accommodation_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
+.animals #accommodation_selected #accommodation_search_link{}
+
+
+/* Animals :: Form :: Accommodation Search Dialog
+-----------------------------------------------------------------------------*/
+.animals #accommodation_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto;  z-index: 9999999999999;}
+.animals #accommodation_search_dialog .wrapper { padding: 15px; }
+
+
+/* Index Animals :: Print Heading
+-----------------------------------------------------------------------------*/
+.index_animals .print_heading { display:none; }
+
+/* Index Animals :: Animal List Layout
+-----------------------------------------------------------------------------*/
+.index_animals table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.index_animals table.animal_list tr {border-bottom:1px #ccc dotted; }
+.index_animals table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_animals table.animal_list td.image { width:100px; padding-left:5px; }
+.index_animals table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_animals table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_animals table.animal_list .action_links .select_link {display:none;}
+
+/* Index Animals :: Search and Filters Layout
+-----------------------------------------------------------------------------*/
+.index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
+.index_animals table.search tr {vertical-align:top;}
+.index_animals table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
+.index_animals table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
+.index_animals table.search td.full_search input[type=submit] {margin-left: 5px;}
+.index_animals table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_animals table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+.index_animals table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
+.index_animals table.search td.filters table.filter_table tr{vertical-align:top;}
+.index_animals table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
+.index_animals table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+
+.index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
+
+/* Show Animals :: Page Layout
+-----------------------------------------------------------------------------*/
+/*.show_animals .page_heading{border-bottom:1px solid #eee; }*/
+.show_animals table.animal{width:100%;}
+.show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
+.show_animals table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.show_animals table.animal td.status{text-align:right;}
+.show_animals table.animal td h1 {}
+.show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
+.show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+
+/* Show Animal :: Animal Details
+-----------------------------------------------------------------------------*/
+.show_animals table.animal_details{text-align:left;}
+.show_animals table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_animals table.animal_details td{vertical-align:top; }
+.show_animals table.animal_details td.image{}
+.show_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
+.show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
+.show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
+
+/* Show Animal :: Description Layout
+-----------------------------------------------------------------------------*/
+.show_animals .description{width:100%; padding: 0 0 0 0; }
+.show_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+
+/* Show Animal :: Euthanasia Info Layout
+-----------------------------------------------------------------------------*/
+.show_animals .euthanasia_info{width:100%; padding: 0 0 0 0; }
+.show_animals .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_animals .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_animals .euthanasia_info ul li {float:left; padding-right: 20px;}
+.show_animals .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_animals .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+
+/*.show_animals #animal_alerts .edit_note h2 {border: 0;}*/
+
+/* Show Animals :: Section Headings
+-----------------------------------------------------------------------------*/
+/*.show_animals .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border:1px solid #fcff66;}*/
+.show_animals .section_heading h2{float:left;}
+.show_animals .section_heading .links{float:right; text-align: right;padding-top:5px;}
+.show_animals .section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+/*.show_animals .status_history_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}*/
+
+
+/* Show Animals :: Sidebar
+-----------------------------------------------------------------------------*/
+.show_animals #animal_tasks {padding: 15px 0 0 0;}
+.show_animals #animal_alerts {padding: 15px 0 0 0;}
+.show_animals #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
+.show_animals #animal_alerts h2{font-weight: bold;margin-bottom: 5px;}
+
+.show_animals #another_note_category{ display:none; }
+.show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
+
+
+
+
+
+
+
+/********************************************************************/
+/* -------------------------- CAPACITIES -------------------------- */
+/********************************************************************/
+.capacities ul {list-style:none;}
+
+/* Capacity List :: Edit Box
+-----------------------------------------------------------------------------*/
+/*.capacity_list .box { width: 42%;  margin-right: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}*/
+
+/* Capacity List :: Layout
+-----------------------------------------------------------------------------*/
+.capacity_list { }
+.capacity_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.capacity_list .capacity { width: 45%; margin-right: 10px;margin-bottom: 10px; padding: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+
+.capacity .status{display: inline-block;}
+.capacity .details{display: inline-block;}
+
+.capacity .title { padding-bottom:10px; line-height: 1.2em;}
+.capacity .animal_type {float:left; width: 59%;}
+.capacity .animal_type h3 {padding:0; margin:0;}
+.capacity .action_links { float:right; display: block;text-align:right;font-size: 10px;font-weight:bold; }
+.capacity .action_links:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.capacity .capacity_levels {clear:both;padding-top: 20px;}
+.capacity .capacity_levels span {font-size: 14px; color: #000;}
+
+
+
+
+
+
+/***************************************************************************/
+/* ---------------------------- ACCOMMODATIONS --------------------------- */
+/***************************************************************************/
+
+/* Accommodations :: Global
+-----------------------------------------------------------------------------*/
+.accommodations ul {list-style:none;}
+
+/* Index Accommodations :: Page Layout
+-----------------------------------------------------------------------------*/
+.index_accommodations .print_heading {display:none;}
+
+/* New/Create Accommodations :: Page Layout
+-----------------------------------------------------------------------------*/
+.new_accommodations #main, .create_accommodations #main  { margin: 1em 3em 0 3em; }
+.new_accommodations #left, .create_accommodations #left { width: 100%;}
+.new_accommodations #sidebar, .create_accommodations #sidebar { display: none;width: 0;}
+
+
+/* Index Accommodations :: Search and Filters
+-----------------------------------------------------------------------------*/
+.index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
+.index_accommodations table.search tr {vertical-align:top;}
+.index_accommodations table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
+.index_accommodations table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
+.index_accommodations table.search td.full_search input[type=submit] {margin-left: 5px;}
+.index_accommodations table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_accommodations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+.index_accommodations table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
+.index_accommodations table.search td.filters table.filter_table tr{vertical-align:top;}
+.index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
+.index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+
+
+/* Accommodations List :: Layout
+-----------------------------------------------------------------------------*/
+#accommodations { border-top:1px dotted #ccc; padding-top: 20px; }
+#accommodations:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#accommodations .accommodation { width: 42%; margin-right: 10px;margin-bottom: 10px; padding: 15px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
+
+#accommodations .accommodation .accommodation_info {border-bottom:1px #ddd solid; padding-bottom:10px;}
+#accommodations .accommodation .accommodation_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#accommodations .accommodation .accommodation_name {float:left; width: 69%;}
+#accommodations .accommodation .accommodation_name h3 {padding:0; margin:0;}
+#accommodations .accommodation .accommodation_name .location_details{ font-size: 12px; letter-spacing: -1px;}
+#accommodations .accommodation .accommodation_types {float:right; width: 29%; text-align:right;}
+#accommodations .accommodation .accommodation_types .animal_type {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
+#accommodations .accommodation .accommodation_types .select_link {display: none;}
+#accommodations .accommodation .accommodation_count {padding-top: 10px; line-height: 15px; }
+#accommodations .accommodation .accommodation_count .space_available {font-size: 11px;font-weight:bold; color: #000;}
+#accommodations .accommodation .accommodation_count .action_links{float: right; text-align:right;font-size: 10px;font-weight:bold;}
+
+
+/* Accommodations :: Animal List
+-----------------------------------------------------------------------------*/
+#accommodations .accommodation .accommodation_details {clear:both; display:none; padding-top: 20px;}
+#accommodations .accommodation table.animal_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+#accommodations .accommodation table.animal_list tr {border-bottom:1px #ccc dotted; }
+#accommodations .accommodation table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+#accommodations .accommodation table.animal_list td.image { width:100px; padding-left:5px; }
+#accommodations .accommodation table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+#accommodations .accommodation table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+
+/* Animals :: Accommodations
+-----------------------------------------------------------------------------*/
+.animals #accommodations { width: 100%;height: 400px; }
+.animals #accommodations .accommodation .accommodation_types .animal_type {display: none;}
+.animals #accommodations .accommodation .accommodation_types .select_link {display: block;font-weight:bold; font-size: 14px; letter-spacing: -1px;}
+.animals #accommodations .accommodation .accommodation_count .action_links .edit_link,
+.animals #accommodations .accommodation .accommodation_count .action_links .delete_link{display:none;}
+
+
+
+
+
+
+
+
+
+/**********************************************************************/
+/* -------------------------- COMMUNITIES --------------------------- */
+/**********************************************************************/
+/* Communities :: Global
+-----------------------------------------------------------------------------*/
+.communities ul {list-style:none;}
+.communities ul.form {padding-bottom: 0; margin-bottom:0;}
+.communities input[type=text]{height:20px;width:90%;font-size:14px; }
+
+
+/* Communities :: Page Layout
+-----------------------------------------------------------------------------*/
+.search_by_city_zipcode_communities #main, .search_by_shelter_name_communities #main{ margin: 1em 3em 0 3em; }
+.search_by_city_zipcode_communities #left, .search_by_shelter_name_communities #left { width: 100%;}
+.search_by_city_zipcode_communities #sidebar, .search_by_shelter_name_communities #sidebar { display: none;width: 0; }
+
+
+/* Communities :: Animal List
+-----------------------------------------------------------------------------*/
+.communities table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.communities table.animal_list tr {border-bottom:1px #ccc dotted; }
+.communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.communities table.animal_list td.image { width:100px; padding-left:5px; }
+.communities table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
+.communities table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.communities table.animal_list .action_links {display:none;}
+
+
+/* Communities :: Animal Page
+-----------------------------------------------------------------------------*/
+.animal_communities table.animal{width:100%;}
+.animal_communities table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
+.animal_communities table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.animal_communities table.animal td h1 {}
+.animal_communities table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
+.animal_communities table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+.animal_communities table.animal td.status{text-align:right;}
+
+.animal_communities table.animal_details{text-align:left;}
+.animal_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animal_communities table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.animal_communities table.animal_details td{vertical-align:top; }
+.animal_communities table.animal_details td.image{}
+.animal_communities table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
+.animal_communities table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
+.animal_communities table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.animal_communities table.animal_details td.metadata ul .red_date{color:#ee3124;}
+
+.animal_communities .description{width:100%; padding: 0 0 0 0; }
+.animal_communities .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+
+.animal_communities .euthanasia_info{width:100%; padding: 0 0 0 0; }
+.animal_communities .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.animal_communities .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.animal_communities .euthanasia_info ul li {float:left; padding-right: 20px;}
+.animal_communities .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.animal_communities .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+
+.animal_communities .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.animal_communities .notes_heading h2{float:left;}
+.animal_communities .notes_heading .links{float:right; text-align: right;padding-top:5px;}
+.animal_communities .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Communities :: Animal Page :: Sidebar
+-----------------------------------------------------------------------------*/
+.animal_communities #animal_shelter {padding: 15px 0 0 0;}
+.animal_communities #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.animal_communities #animal_shelter .shelter_details h2{border:none;}
+
+
+
+
+
+
+/*****************************************************************/
+/* -------------------------- REPORTS -------------------------- */
+/*****************************************************************/
+
+/* Reports :: Global
+-----------------------------------------------------------------------------*/
+.reports ul {list-style:none;}
+
+/* Reports :: Page Layout
+-----------------------------------------------------------------------------*/
+.reports .page_heading h1{width:50%; float:left; }
+.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+
+/* Reports :: Layout
+-----------------------------------------------------------------------------*/
+.reports .report {width: 100%; height: 100%; min-height:400px; margin: 20px auto 20px auto;}
+
+/* Index Reports :: Stats and Count Sections
+-----------------------------------------------------------------------------*/
+.index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px #ddd solid;}
+.index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
+.index_reports .count_sections h2.euthanized_color {color:red;}
+.index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
+
+/* Reports :: Layout
+-----------------------------------------------------------------------------*/
+.reports #sidebar .box ul {list-style:none; padding-left: 15px;}
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- SETTINGS -------------------------- */
+/******************************************************************/
+
+/* Settings :: Global
+-----------------------------------------------------------------------------*/
+.settings ul {list-style:none;}
+
+/* Index Settings :: Page Layout
+-----------------------------------------------------------------------------*/
+.index_settings #main { margin: 1em 3em 0 3em; }
+.index_settings #left { width: 100%;}
+.index_settings #sidebar { display: none;width: 0; }
+
+/* Index Settings :: Section
+-----------------------------------------------------------------------------*/
+.index_settings  h2 { border-bottom: 1px #bbb solid; }
+.index_settings .section { padding-bottom: 25px;}
+
+
+
+
+
+
+
+/*******************************************************************/
+/* -------------------------- DASHBOARD -------------------------- */
+/*******************************************************************/
+
+/* Dashboard :: Global
+-----------------------------------------------------------------------------*/
+.dashboard ul {list-style:none;}
+.dashboard .completed, .dashboard .stopped {text-decoration: line-through; color: #999;}
+
+/* Parents :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.dashboard #main { margin: 1em 3em 0 3em; }
+.dashboard #left{ width: 100%;}
+.dashboard #sidebar { display: none;width: 0; }
+
+
+
+/* Activity List :: Layout
+-----------------------------------------------------------------------------*/
+.activity_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.activity{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+	
+.activity .type{display:inline-block; width: 65px; height: 24px; line-height: 50px; text-align:center;}
+	.activity.type img {text-align:center; vertical-align:middle;}
+
+.activity .details{display:inline-block; width: 71%; vertical-align:top; }
+	.activity .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top: 5px; padding-left: 5px;}
+
+.activity .created_at_date{display:inline-block; width: 90px; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+
+/* Transfer List :: Layout
+-----------------------------------------------------------------------------*/
+.transfer_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.transfer{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.transfer .type{display:inline-block; padding: 0 5px; }
+
+.transfer .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.transfer .details{display:inline-block; width: 57%; vertical-align:top; }
+	.transfer .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
+	
+.transfer .comment{line-height: 1em;}
+.transfer .action_links{line-height: 1em;}
+
+
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- PARENTS --------------------------- */
+/******************************************************************/
+
+/* Parents :: Global
+-----------------------------------------------------------------------------*/
+.parents ul {list-style:none;}
+
+/* Parents :: Page Layout
+-----------------------------------------------------------------------------*/
+.parents .page_heading h1{width:50%; float:left; }
+.parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.show_parents .page_heading h1{width:60%;}
+.show_parents .page_heading .action_links{width:40%;}
+
+.edit_parents .page_heading h1{width:100%;}
+
+/* Show Parents :: Sidebar
+-----------------------------------------------------------------------------*/
+.show_parents .create_comment{height: 350px;}
+.show_parents #sidebar ul.action_links .button { min-width: 200px;}
+
+
+/* Parents :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.index_parents #main, .edit_parents #main, .update_parents #main, .new_parents #main, .create_parents #main { margin: 1em 3em 0 3em; }
+.index_parents #left, .edit_parents #left, .update_parents #left, .new_parents #left, .create_parents #left{ width: 100%;}
+.index_parents #sidebar, .edit_parents #sidebar, .update_parents #sidebar, .new_parents #sidebar, .create_parents #sidebar { display: none;width: 0; }
+
+/* Index Parents :: Parent Search Layout
+-----------------------------------------------------------------------------*/
+.index_parents #parent_search {padding: 0 0 20px 0; }
+.index_parents #parent_search input[type=text] {margin-top:5px;width:40%;height:20px;font-size:14px;}
+.index_parents #parent_search input[type=submit] {margin-left: 5px;}
+
+/* Index Parents :: Search Results
+-----------------------------------------------------------------------------*/
+.index_parents #parents {}
+.index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
+.index_parents #parents .no_results p{font-weight: bold; }
+
+.index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
+.index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.index_parents table.parent_list td.details { width:380px; color:#666; }
+.index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
+.index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;}
+
+
+/* Show Parents :: Parent Details
+-----------------------------------------------------------------------------*/
+.show_parents .parent_details {padding-bottom: 20px;}
+.show_parents .parent_details #address {float:left; width: 45%; padding-right: 5%; }
+.show_parents .parent_details #contact_details {float:left; width: 50%;}
+.show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Show Parents :: Create Placement and Animal Search Dialog
+-----------------------------------------------------------------------------*/
+.show_parents #animal_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
+.show_parents #animal_search_dialog .wrapper { padding: 15px; }
+.show_parents #animal_search_dialog input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
+.show_parents #animal_search_dialog input[type=submit] {margin-left: 5px;}
+
+/* Show Parents :: Animal Selected from Search Dialog
+-----------------------------------------------------------------------------*/
+.show_parents #animal_selected {padding-bottom: 5px;}
+.show_parents #animal_selected span b {/*padding: 0 0 0 0;*/ font-size: 15px; letter-spacing:-1px;}
+
+
+/* Show Parents :: Animal List
+-----------------------------------------------------------------------------*/
+.show_parents #animals {margin-top: 20px; width: 99%;height: 400px; }
+.show_parents #animals table.animal_list{width: 100%;overflow:auto; padding:0 0 5px 0; border-top:1px #ccc dotted;  }
+.show_parents #animals table.animal_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
+.show_parents #animals table.animal_list td.image { width:100px; padding-right: 15px;}
+.show_parents #animals table.animal_list td.details { width:380px;color:#666; }
+.show_parents #animals table.animal_list td.status { width:175px;padding-left: 10px; text-align:right;}
+.show_parents #animals .action_links .edit_link, .show_parents #animals .action_links .delete_link {display:none;}
+
+
+/* Show Parents :: Placement Headings
+-----------------------------------------------------------------------------*/
+.show_parents .placement_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_parents .placement_heading h2{float:left;}
+.show_parents .placement_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Show Parents :: Placement List
+-----------------------------------------------------------------------------*/
+.show_parents table.placement_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
+.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
+.show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
+.show_parents table.placement_list td.image img { padding-bottom: 10px;}
+.show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.placement_list td.details { width:380px;color:#666; }
+.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
+.show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
+
+
+
+
+
+
+/***************************************************************/
+/* -------------------------- USERS -------------------------- */
+/***************************************************************/
+/* Users :: Global
+-----------------------------------------------------------------------------*/
+.users ul {list-style:none;}
+
+/* Index Users :: Page Layout
+-----------------------------------------------------------------------------*/
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { display: none;width: 0; }
+
+/* Index Users :: Edit Form
+-----------------------------------------------------------------------------*/
+.user_list .profile_section{float: left; width: 45%; padding-right: 2%;}
+.user_list .password_section{float: left; width: 45%; padding-left: 2%;}
+
+/* User List :: Layout
+-----------------------------------------------------------------------------*/
+.user_list{ width: 100%; margin-bottom: 20px; table-layout: auto; border-collapse: collapse; border-spacing: 0;}
+.user_list .current {background-color:#EFEBE3;}
+.user_list .hover {cursor:default;}
+
+.user_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.user{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.user .name{display:inline-block; width: 23%;text-align: left; color: #000; font-size: 14px; font-weight: bold; letter-spacing:-1px;}
+.user .title{display:inline-block; width: 23%;font-size: 11px;}
+.user .email{display:inline-block; width: 30%;font-size: 11px;}
+.user .role{display:inline-block;width: 10%; text-align:center; font-size:10px;letter-spacing:0px; font-weight: bold; }
+
+.user .action_links{display:inline-block; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
+
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- SHELTERS -------------------------- */
+/******************************************************************/
+
+/* Shelters :: Global */
+/******************************************************************/
+.shelters ul {list-style:none;}
+.shelters ol li{margin-left: 20px;}
+
+
+/* Shelters :: Page Heading */
+/******************************************************************/
+.shelters .page_heading h1, .index_shelters .page_heading .logo{width:70%; float:left; }
+.shelters .page_heading .action_links{width:30%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.edit_shelters .page_heading h1, .update_shelters .page_heading h1{width:100%;}
+
+/* Edit/Update Shelters :: Layout */
+/******************************************************************/
+.edit_shelters #main, .update_shelters #main { margin: 1em 3em 0 3em; }
+.edit_shelters #left, .update_shelters #left{ width: 100%; }
+.edit_shelters #sidebar, .update_shelters #sidebar{ display: none;width: 0;}
+
+/* Index Shelters :: Details */
+/******************************************************************/
+.index_shelters .shelter_details {padding-bottom: 20px;}
+.index_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
+.index_shelters .shelter_details #contact_details {float:left; width: 50%;}
+.index_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.index_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Index Shelters :: Sidebar */
+/******************************************************************/
+.index_shelters #sidebar #items_section .actions {padding-left:10px; font-size: 13px; font-weight:normal;}
+
+/* Index Shelters :: Map */
+/******************************************************************/
+.index_shelters #map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
+
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- ALERTS  -------------------------- */
+/******************************************************************/
+
+/* Alerts :: Global */
+/******************************************************************/
+.alerts ul { list-style:none ;}
+
+/* New/Create Alerts :: Layout */
+/******************************************************************/
+.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
+.new_alerts #left, .create_alerts #left{ width: 100%;}
+.new_alerts #sidebar, .create_alerts #sidebar { display: none;width: 0; }
+
+/* Alert List :: Layout */
+/******************************************************************/
+.alert_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.alert{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.alert .stop{display:inline-block; text-align: left; }
+
+.alert .type{display:inline-block; padding: 0 5px; }
+	.alert .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
+	.alert .type div.high{background-color:#ee3124; }
+	.alert .type div.medium{background-color:#f39500;}
+	.alert .type div.low{background-color:gray;}
+
+.alert .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+
+.alert .details{display:inline-block; width: 57%; vertical-align:top; }
+	.alert .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top:5px; padding-left: 5px;}
+	.alert .alertable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.alert .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.alert .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em; }
+
+
+/* Show Animals :: Alert List */
+/******************************************************************/
+.show_animals .alert_list .details {width: 45%;}
+.show_animals .alert_list .details .alertable_link{display:none;}
+
+
+
+
+
+/******************************************************************/
+/* ---------------------------- TASKS --------------------------- */
+/******************************************************************/
+
+/* Tasks :: Global */
+/******************************************************************/
+.tasks ul {list-style:none;}
+.tasks .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+.index_tasks #overdue_tasks_section h3 {color: red; font-weight:bold;}
+
+/* New/Create Tasks :: Layout */
+/******************************************************************/
+.new_tasks #main, .create_tasks #main { margin: 1em 3em 0 3em; }
+.new_tasks #left, .create_tasks #left{ width: 100%;}
+.new_tasks #sidebar, .create_tasks #sidebar { display: none;width: 0; }
+
+/* Index Tasks :: Task List */
+/******************************************************************/
+.task_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.task{width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;}
+.task.hover{cursor: default;}
+
+.task .complete{display:inline-block;text-align: left; }
+
+.task .type{display:inline-block; width: 65px; height: 24px; line-height: 24px; text-align:center;}
+	.task .type img {text-align:center; vertical-align:middle; margin-top: -6px;}
+
+.task .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+
+.task .details{display:inline-block; width: 60%; vertical-align:top; }
+	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.75em; padding-top:5px;}
+	.task .taskable_link{display:inline-block; font-weight:bold; color: #000;}
+
+.task .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.task .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+
+/* Show Animals :: Alert List */
+/******************************************************************/
+.show_animals .task_list .details {width: 45%;}
+.show_animals .task_list .taskable_link{display:none;}
+.show_animals .due_date_alt {font-weight: bold; font-size: 16px;letter-spacing: -1px;color:#000;padding: 10px 0 10px 0;}
+
+
+
+
+
+
+
+/******************************************************************/
+/* -------------------------- NOTES  -------------------------- */
+/******************************************************************/
+
+
+/* Notes List :: Layout */
+/******************************************************************/
+.note_list {border-top: 1px dotted #ccc;}
+.note {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
+
+.note .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
+.note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
+	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:5px;}
+
+.note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
+
+.note .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em;}
+
+
+
+
+
+/***************************************************************************/
+/* -------------------------- STATUS HISTORIES  -------------------------- */
+/***************************************************************************/
+
+/* Status Histories List :: Layout */
+/******************************************************************/
+.status_history_list {border-top: 1px dotted #ccc; }
+.status_history {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
+
+.status_history .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px; }
+
+.status_history .details{display:inline-block; width: 90%; vertical-align:top; padding-left: 5px;}
+	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:5px;}
+	.status_history .reason {font-weight: normal;font-size: 12px;}
+
+
+
+
+
+/*******************************************************************/
+/* -------------------------- COMMENTS --------------------------- */
+/*******************************************************************/
+
+/* Comment List :: Layout
+-----------------------------------------------------------------------------*/
+.comment_list {border-top: 1px dotted #ccc;}
+.comment_list .comment {border-bottom: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
+.comment_list .comment .created_date {float: left; width: 50%; color:#666; font-size: 10px; letter-spacing: -1px;}
+.comment_list .comment .action_links {float: left; width: 50%; text-align: right;font-size: 10px; font-weight:bold;}
+.comment_list .comment .description p { line-height: 2em;}
+
+
+
+
+
+/*******************************************************************/
+/* -------------------------- LOCATIONS -------------------------- */
+/*******************************************************************/
+
+/* Location List :: Layout
+-----------------------------------------------------------------------------*/
+.location_list {border-top: 1px dotted #ccc; }
+.location {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
+
+.location .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px; }
+
+.location .details{display:inline-block; width: 82%; vertical-align:top; padding-left: 5px;}
+	.location .name {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:5px;}
+
+.location .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
+.location .action_links:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* New/Create Locations :: Layout */
+/******************************************************************/
+#create_location .form {float:left; padding-bottom: 0;}
+#create_location .actions {float: left; margin: -5px 0 0 10px;}
+#create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Index Accommodations :: Edit Location Dialog  */
+/******************************************************************/
+#edit_location_dialog {width:99%; height:100%; min-height: 350px; background-color: #fff; overflow:auto; z-index: 9999999999999;}
+#edit_location_dialog .wrapper { padding: 15px; }
+
+
+
+
+
+

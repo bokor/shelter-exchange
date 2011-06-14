@@ -31,13 +31,13 @@ gem 'cancan', '1.5.1'
 
 # HTML - JS - CSS
 #----------------------------------------------------------------------------
-gem 'will_paginate', '3.0.pre2'       # Pagination
-gem 'dynamic_form', '1.1.3'         # HTML/JS
-gem 'jquery-rails', '0.2.7'         # HTML/JS
+gem 'will_paginate', '3.0.pre2'      
+gem 'dynamic_form', '1.1.3'         
+gem 'jquery-rails', '0.2.7'         
 
 # APIs
 #----------------------------------------------------------------------------
-gem 'aws-s3', '0.6.2'               # Amazon S3 API
+gem 'aws-s3', '0.6.2'               
 
 # Images
 #----------------------------------------------------------------------------
@@ -46,8 +46,8 @@ gem 'rmagick', '2.13.1'
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
-gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
-gem 'rails3-generators', '0.14.0'   # Generators
+gem 'geokit', '1.5.0'				
+gem 'rails3-generators', '0.14.0'  
 
 # Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
