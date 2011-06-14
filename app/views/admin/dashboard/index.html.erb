@@ -1,0 +1,25 @@
+<%= title "Dashboard" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1>Latest Activity</h1>
+	</div>
+	
+	<div class="page_content">
+		<h2>Transfer Requests</h2>
+		<div id="transfers">
+			<%= @transfers %>
+			<%= render "global/footer"%>
+		</div>
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+	
+<% end %>
+
