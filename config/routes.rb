@@ -1,13 +1,22 @@
 ShelterExchangeApp::Application.routes.draw do
   
   
+
   # Admin - Routes for manage.domain.com
   #----------------------------------------------------------------------------
   constraints(AdminSubdomain) do
-    ActiveAdmin.routes(self)
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    root :to => redirect("/admin")
+
+    devise_for :owners, :path => "admin", :controllers => { :sessions => "admin/owners/sessions" },
+                        :path_names => { :sign_in => "login", :sign_out => "logout" }
+        
+    namespace :admin do
+      match "/dashboard", :to => 'dashboard#index'
+    end
+    
+    root :to => redirect("/admin/dashboard")
+    
   end
+  
   
   
   
