@@ -10,10 +10,8 @@
 			<span class="link_separator">|</span>
 			<span><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></span>
 			<span class="link_separator">|</span>
-			<span><%= link_to "Logout", "/logout", :confirm => "Are you sure?" %></span>
+			<span><%= link_to "Logout", destroy_user_session_path, :confirm => "Are you sure?" %></span>
 			<ul class="settings_menu">
-				<!-- <li class="arrow-border"></li>
-				<li class="arrow"></li> -->
 		      	<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
 				<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
 				<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
