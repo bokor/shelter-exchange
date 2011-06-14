@@ -1,36 +1,70 @@
 source 'http://rubygems.org'
 
+# Rails
+#----------------------------------------------------------------------------
 gem 'rails', '3.0.5'
+
+# Rake
+#----------------------------------------------------------------------------
 gem 'rake', '0.8.7'
+
+# Database
+#----------------------------------------------------------------------------
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql', '2.8.1'
 gem 'yaml_db'
 
-gem 'rubyzip', '0.9.4'              # Zip Files
-gem 'zippy', '0.1.0'                # Zip Files
+# Zip Files
+#----------------------------------------------------------------------------
+gem 'rubyzip', '0.9.4'             
+gem 'zippy', '0.1.0'               
 
+# Mail
+#----------------------------------------------------------------------------
 gem 'mail', '2.2.15'
 
-gem 'devise', '1.1.7'               # Login/Authentication
-gem 'devise_invitable', '0.3.5'     # Login/Authentication
+# Login - Authentication - Authorization
+#----------------------------------------------------------------------------
+gem 'devise', '1.1.7'               
+gem 'devise_invitable', '0.3.5'     
+gem 'cancan', '1.5.1'               
 
-gem 'cancan', '1.5.1'               # Authorization
-
+# HTML - JS - CSS
+#----------------------------------------------------------------------------
 gem 'will_paginate', '3.0.pre2'       # Pagination
-
 gem 'dynamic_form', '1.1.3'         # HTML/JS
 gem 'jquery-rails', '0.2.7'         # HTML/JS
 
+# APIs
+#----------------------------------------------------------------------------
 gem 'aws-s3', '0.6.2'               # Amazon S3 API
-gem 'paperclip', '2.3.11'           # Attachments
+
+# Images
+#----------------------------------------------------------------------------
+gem 'paperclip', '2.3.11'           
 gem 'rmagick', '2.13.1'
 
+# Maps - Geocoding
+#----------------------------------------------------------------------------
 gem 'geokit', '1.5.0'				# OLD Geocoding - requires plugin as well.
 gem 'rails3-generators', '0.14.0'   # Generators
 
-gem 'delayed_job', '2.1.4'          # Background Job Queue  #:git => 'git://github.com/collectiveidea/delayed_job.git'
+# Delayed Jobs - Asyc Transactions
+#----------------------------------------------------------------------------
+gem 'delayed_job', '2.1.4'         
 
+# Admin Tool
+#----------------------------------------------------------------------------
 gem 'activeadmin', '0.2.2'          # Admin Tool
+
+
+
+
+
+
+
+
+
 
 ##TESTING THESE GEMS/Plugins
 # gem 'whenever', '0.6.7'             # Cron Jobs

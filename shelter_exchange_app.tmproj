@@ -68,7 +68,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>2</integer>
 				<key>line</key>
 				<integer>11</integer>
 			</dict>
@@ -1507,20 +1507,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>lib/manage_subdomain.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>70</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>lib/map_overlay_job.rb</key>
 		<dict>
 			<key>caret</key>
@@ -1654,7 +1640,6 @@
 		<string>public/javascripts/locations/locations.js</string>
 		<string>lib/exceptions.rb</string>
 		<string>lib/app_subdomain.rb</string>
-		<string>lib/manage_subdomain.rb</string>
 		<string>lib/map_overlay_job.rb</string>
 		<string>app/controllers/maps_controller.rb</string>
 		<string>app/views/alerts/_alert.html.erb</string>
@@ -1877,6 +1862,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{340, -4}, {1021, 823}}</string>
+	<string>{{340, 74}, {1021, 823}}</string>
 </dict>
 </plist>

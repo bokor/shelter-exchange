@@ -123,8 +123,8 @@ GEM
     warden (1.0.4)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
-    xml-simple (1.0.15)
-    yaml_db (0.2.0)
+    xml-simple (1.0.16)
+    yaml_db (0.2.1)
     zippy (0.1.0)
       rubyzip (>= 0.9.1)
 

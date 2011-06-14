@@ -43,5 +43,11 @@ module ShelterExchangeApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
     
+    config.to_prepare do
+      Devise::Mailer.class_eval do 
+        helper :url
+      end
+    end
+    
   end
 end

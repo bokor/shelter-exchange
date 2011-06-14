@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-  include UrlHelper
+  # include UrlHelper
   protect_from_forgery
   
   before_filter :authenticate_user!,
                 :current_account, :account_blocked?, :current_shelter,
-                :set_time_zone, :store_location, :set_mailer_url_options
+                :set_time_zone, :store_location
 
   layout :current_layout
 
@@ -33,13 +33,25 @@ class ApplicationController < ActionController::Base
     def store_location
       session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller? 
     end
-        
-    def after_sign_in_path_for(resource)
-       session[:"user_return_to"].blank? ? "/" : session[:"user_return_to"].to_s 
+    
+    def after_sign_in_path_for(resource_or_scope)
+      case resource_or_scope
+        when :user, User
+          session[:"user_return_to"].blank? ? dashboard_path.to_s : session[:"user_return_to"].to_s 
+        else
+          super
+      end
     end
     
-    def set_mailer_url_options
-      ActionMailer::Base.default_url_options[:host] = with_subdomain(request.subdomains.last)
+    def after_sign_out_path_for(resource_or_scope)
+      case resource_or_scope
+        when :user, User
+          new_user_session_path
+        when :admin_user, AdminUser
+          new_admin_user_session_path
+        else
+          super
+      end
     end
 
     
@@ -71,7 +83,3 @@ class ApplicationController < ActionController::Base
     end
 
 end
-
-
-# helper :all
-# clear_helpers
