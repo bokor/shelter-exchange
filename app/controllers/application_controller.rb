@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  # include UrlHelper
   protect_from_forgery
   
   before_filter :authenticate_user!,
@@ -35,22 +34,18 @@ class ApplicationController < ActionController::Base
     end
     
     def after_sign_in_path_for(resource_or_scope)
-      case resource_or_scope
-        when :user, User
-          session[:"user_return_to"].blank? ? dashboard_path.to_s : session[:"user_return_to"].to_s 
-        else
-          super
+      if resource_or_scope.is_a?(User)
+        session[:"user_return_to"].blank? ? dashboard_path.to_s : session[:"user_return_to"].to_s 
+      else
+        super
       end
     end
     
     def after_sign_out_path_for(resource_or_scope)
-      case resource_or_scope
-        when :user, User
-          new_user_session_path
-        when :admin_user, AdminUser
-          new_admin_user_session_path
-        else
-          super
+      if resource_or_scope.is_a?(User)
+        new_user_session_path
+      else
+        super
       end
     end
 
