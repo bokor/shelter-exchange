@@ -1,8 +1,8 @@
 <%= title "Accommodations" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "accommodations/accommodations", "locations/locations", 
-	                           :cache => "cache/application/accommodations-index" %>
+	<%= javascript_include_tag "app/accommodations", "app/locations", 
+	                           :cache => "cache/app/accommodations-index" %>
 <% end %>
 
 <%= content_for :page_content do %>

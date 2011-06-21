@@ -1,11 +1,7 @@
 <%= title "Create a new animal" %>
 
 <%= content_for :javascripts do %>
-	<% if @current_shelter.is_kill_shelter %>
-		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-new" %>
-	<% else %>
-		<%= javascript_include_tag "animals/animals", "date", "accommodations/accommodations", :cache => "cache/application/animals-new" %>
-	<% end %>
+		<%= javascript_include_tag "app/animals", "global/date", "app/accommodations", :cache => "cache/app/animals-new" %>
 	<script type="text/javascript">
 		$(function() {
 			Animals.formInitialize(<%=@current_shelter.is_kill_shelter%>, <%=@animal.errors[:status_history_reason].any?%>, <%= @animal.new_record? ? 0 : @animal.animal_status_id_was %>);

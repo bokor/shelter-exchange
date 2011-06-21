@@ -5,23 +5,24 @@
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
  	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/tipsy", "global/wufoo_form",
-							"application/common", "application/controller",
-							:media => "all", :cache => "cache/application/all" %>
+							"app/common", "app/controller",
+							:media => "all", :cache => "cache/app/all" %>
 
-    <%= stylesheet_link_tag "application/print", 
-							:media => "print", :cache => "cache/application/print" %>
+    <%= stylesheet_link_tag "app/print", 
+							:media => "print", :cache => "cache/app/print" %>
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery.ui.autocomplete.ext", 	
-							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "jquery.blockUI.min", "top_up-min", 
-							   "modernizr", "jquery_ujs", "application", 
-							   :cache => "cache/application/all" %>
+	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	
+							   "global/jquery.jtruncate","global/jquery.tokeninput", "global/jquery.tipsy", 
+							   "global/jquery.blockUI.min", "global/top_up-min", 
+							   "global/modernizr", "global/jquery_ujs", "app/application", 
+							   :cache => "cache/app/all" %>
 
 	<%= yield(:javascripts) %>
 	
 	<!--[if lt IE 9]>
-		<%= javascript_include_tag "selectivizr-min" %>
+		<%= javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
 		
 	<%= csrf_meta_tag %>

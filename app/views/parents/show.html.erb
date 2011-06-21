@@ -1,7 +1,7 @@
 <%= title "#{@parent.name}" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "parents/parents", "notes/notes", "placements/placements", "comments/comments", :cache => "cache/application/parents-show" %>
+	<%= javascript_include_tag "app/parents", "app/notes", "app/placements", "app/comments", :cache => "cache/app/parents-show" %>
 <% end %>
 
 <%= content_for :page_content do %>

@@ -9,8 +9,8 @@
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "top_up-min", 
-	                           "jquery_ujs", "admin/application", :cache => "cache/admin/login/all" %> 
+	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min"
+	                           "global/jquery_ujs", "admin/application", :cache => "cache/admin/login/all" %> 
 	<%= yield(:javascripts) %>
 		
 	<%= csrf_meta_tag %>

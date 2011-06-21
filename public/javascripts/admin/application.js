@@ -2,6 +2,10 @@
 //  * application.js
 //  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
 //  * ------------------------------------------------------------------------ */
+$(document).ready(function() {
+	$('#example').dataTable();
+} );
+
 // 
 // 
 // /*

@@ -10,10 +10,15 @@
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery.ui.autocomplete.ext", 		
-							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "jquery.blockUI.min", "top_up-min", 
-							   "jquery_ujs", "admin/application", 
+	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	
+							   "global/jquery.blockUI.min", 
+							   "global/jquery_ujs", "admin/application", 
 							   :cache => "cache/admin/application/all" %>
+							
+	<!-- 						"global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	
+													   "global/jquery.jtruncate","global/jquery.tokeninput", "global/jquery.tipsy", 
+													   "global/jquery.blockUI.min", "global/top_up-min", 
+													   "global/jquery_ujs", "admin/application", -->
 
 	<%= yield(:javascripts) %>
 		

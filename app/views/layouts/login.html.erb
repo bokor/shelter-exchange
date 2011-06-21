@@ -9,12 +9,12 @@
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "top_up-min", 
-	                           "modernizr", "jquery_ujs", "application", :cache => "cache/login/all" %> 
+	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/top_up-min", 
+	                           "global/modernizr", "global/jquery_ujs", "app/application", :cache => "cache/login/all" %> 
 	<%= yield(:javascripts) %>
 	
 	<!--[if lt IE 9]>
-		<%= javascript_include_tag "selectivizr-min" %>
+		<%= javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
 		
 	<%= csrf_meta_tag %>
