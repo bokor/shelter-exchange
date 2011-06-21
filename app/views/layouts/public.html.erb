@@ -9,9 +9,13 @@
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min",
-							   "rails", "application", :cache => "cache/public/all" %> 
+	<%= javascript_include_tag "jquery.min", "jquery-ui.min",
+							   "modernizr", "jquery_ujs", "application", :cache => "cache/public/all" %> 
 	<%= yield(:javascripts) %>
+	
+	<!--[if lt IE 9]>
+		<%= javascript_include_tag "selectivizr-min" %>
+	<![endif]-->
 	
 	<%= csrf_meta_tag %>
 

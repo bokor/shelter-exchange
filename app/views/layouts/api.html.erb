@@ -6,18 +6,20 @@
   
  	<%= stylesheet_link_tag "global/jquery-ui-1.8.6.custom", "global/tipsy", "global/wufoo_form",
 							"application/application", "application/controller",
-							:media => "all", :cache => "cache/application/all" %>
-
-    <%= stylesheet_link_tag "application/print", :media => "print", :cache => "cache/application/print" %>
+							:media => "all", :cache => "cache/api/all" %>
 	<%= yield(:stylesheets) %>
 	
-	
-	<%= javascript_include_tag "jquery-1.4.2.min", "jquery-ui-1.8.6.custom.min", "jquery.ui.autocomplete.ext", 		
+	<%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery.ui.autocomplete.ext", 	
 							   "jquery.jtruncate","jquery.tokeninput", "jquery.tipsy", "jquery.blockUI.min", "top_up-min", 
-							   "rails", "application", 
-							   :cache => "cache/application/all" %>
+							   "modernizr", "jquery_ujs", "application", 
+							   :cache => "cache/api/all" %>
 
 	<%= yield(:javascripts) %>
+	
+	<!--[if lt IE 9]>
+		<%= javascript_include_tag "selectivizr-min" %>
+	<![endif]-->
+	
 		
 	<%= csrf_meta_tag %>
 
