@@ -10,10 +10,19 @@
 	</div>
 	
 	<div class="page_content">
+		<style type="text/css" media="screen">
+			table{width: 60%; border: 1px #ccc solid; border-collapse: collapse;}
+			table td{width: 50%; border: 1px #ccc solid;}
+		</style>
 		<h2>Transfer Requests</h2>
-		<div id="transfers">
-			<%= @transfers %>
-		</div>
+		<table id="transfers">
+			<% @transfers.each do |transfer|%>
+				<tr>
+					<td><%= transfer[0] %></td>
+					<td><%= transfer[1] %></td>
+				</tr>
+			<% end %>
+		</table>
 	</div>
 		
 <% end %>
