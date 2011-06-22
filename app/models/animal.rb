@@ -20,7 +20,7 @@ class Animal < ActiveRecord::Base
   PER_PAGE = 25
   PHOTO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
   PHOTO_SIZE = 4.megabytes
-  PHOTO_SIZE_IN_TEXT = "4 megabytes(MB)"
+  PHOTO_SIZE_IN_TEXT = "4 MB"
   
   # Associations
   #----------------------------------------------------------------------------
@@ -40,7 +40,6 @@ class Animal < ActiveRecord::Base
                             :default_url => "/images/default_:style_photo.jpg", 
                             :storage => :s3,
                             :s3_credentials => S3_CREDENTIALS,
-                            # :url => ":s3_domain_url",
                             :path => "/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
                                          :medium => ["350x250>", :jpg],
@@ -170,11 +169,9 @@ class Animal < ActiveRecord::Base
     self.euthanasia_date = nil
     self.accommodation_id = nil
     self.touch(:updated_at)
-    if self.save(:validate => false)
-      self.tasks.delete_all
-      self.alerts.delete_all
-    end
-    # self.photo.reprocess!
+    self.save(:validate => false)
+    self.tasks.delete_all
+    self.alerts.delete_all
   end
 
                                                  
