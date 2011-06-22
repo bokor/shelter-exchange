@@ -14,5 +14,6 @@
 	<% end %>
 	<%= file_field_tag "animal[photo]", :class => "field file" %>
 </span>
+<%= has_error_message?(@animal, :upload_photo_again)%>
 <%= has_error_message?(@animal, :photo_content_type)%>
 <%= has_error_message?(@animal, :photo_file_size) %>

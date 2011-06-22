@@ -103,10 +103,17 @@ class Shelter < ActiveRecord::Base
     end
     
     def logo_reverted?
-      unless self.errors[:logo_file_size].blank? or self.errors[:logo_content_type].blank?
+      unless self.errors.blank? and self.logo.file?
         self.logo.instance_write(:file_name, self.logo_file_name_was) 
         self.logo.instance_write(:file_size, self.logo_file_size_was) 
         self.logo.instance_write(:content_type, self.logo_content_type_was)
+        errors.add(:upload_logo_again, "please re-upload the logo")
+      end
+    end
+    
+    def upload_logo_again?
+      if self.errors
+        errors.add(:upload_logo_again, "please re-upload the image")
       end
     end
   

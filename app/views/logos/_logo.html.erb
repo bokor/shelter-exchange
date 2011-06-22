@@ -14,5 +14,6 @@
 	<% end %>
 	<%= file_field_tag "shelter[logo]", :class => "field file" %>
 </span>
+<%= has_error_message?(@shelter, :upload_logo_again)%>
 <%= has_error_message?(@shelter, :logo_content_type)%>
 <%= has_error_message?(@shelter, :logo_file_size) %>

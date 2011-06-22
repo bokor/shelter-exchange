@@ -265,10 +265,11 @@ class Animal < ActiveRecord::Base
     end
     
     def photo_reverted?
-      unless self.errors[:photo_file_size].blank? or self.errors[:photo_content_type].blank?
+      unless self.errors.blank? and self.photo.file?
         self.photo.instance_write(:file_name, self.photo_file_name_was) 
         self.photo.instance_write(:file_size, self.photo_file_size_was) 
         self.photo.instance_write(:content_type, self.photo_content_type_was)
+        errors.add(:upload_photo_again, "please re-upload the photo")
       end
     end
 
