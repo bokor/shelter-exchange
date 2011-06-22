@@ -17,6 +17,9 @@ class Animal < ActiveRecord::Base
   # Constants
   #----------------------------------------------------------------------------
   PER_PAGE = 25
+  PHOTO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
+  PHOTO_SIZE = 4.megabytes
+  PHOTO_SIZE_IN_TEXT = "4 megabytes(MB)"
   
   # Associations
   #----------------------------------------------------------------------------
@@ -65,8 +68,8 @@ class Animal < ActiveRecord::Base
   
   # Validations - PaperClip
   #----------------------------------------------------------------------------
-  validates_attachment_size :photo, :less_than => IMAGE_SIZE.megabytes, :message => "needs to be #{IMAGE_SIZE} megabytes or less"
-  validates_attachment_content_type :photo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
+  validates_attachment_size :photo, :less_than => PHOTO_SIZE, :message => "needs to be #{PHOTO_SIZE_IN_TEXT} megabytes or less"
+  validates_attachment_content_type :photo, :content_type => PHOTO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
 
   
   # Scopes - Search
@@ -257,11 +260,11 @@ class Animal < ActiveRecord::Base
     end
     
     def photo_valid?
-      photo? and photo_file_size < IMAGE_SIZE
+      photo? and self.photo_file_size < PHOTO_SIZE
     end
     
     def photo?
-      IMAGE_TYPES.include?(photo_content_type)
+      PHOTO_TYPES.include?(self.photo_content_type)
     end
     
     def photo_reverted?
