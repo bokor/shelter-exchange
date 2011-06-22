@@ -6,7 +6,8 @@ class Shelter < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  after_validation :logo_reverted?
+  before_validation :delete_logo?
+  after_validation :revert_logo?
   before_save :geocode_address, :format_phone_numbers
   
   # Constants
@@ -14,6 +15,10 @@ class Shelter < ActiveRecord::Base
   LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
   LOGO_SIZE = 4.megabytes
   LOGO_SIZE_IN_TEXT = "4 megabytes(MB)"
+  
+  # Getter/Setter
+  #----------------------------------------------------------------------------  
+  attr_accessor :delete_logo
   
   # Assocations
   #----------------------------------------------------------------------------
@@ -33,7 +38,7 @@ class Shelter < ActiveRecord::Base
   has_many :transfers, :dependent => :destroy
   
   has_attached_file :logo, :whiny => true, 
-                           :default_url => "/images/default_:style_photo.jpg", 
+                           :default_url => "/images/default_:style_logo.jpg", 
                            :storage => :s3,
                            :s3_credentials => S3_CREDENTIALS,
                            :path => "/:class/:attachment/:id/:style/:basename.:extension",
@@ -100,20 +105,20 @@ class Shelter < ActiveRecord::Base
     end
         
     def logo_valid?
-      logo? and self.logo_file_size < LOGO_SIZE
+      LOGO_TYPES.include?(self.logo_content_type) and self.logo_file_size < LOGO_SIZE
     end
     
-    def logo?
-      LOGO_TYPES.include?(self.logo_content_type)
-    end
-    
-    def logo_reverted?
-      unless self.errors.blank? and self.logo.file?
+    def revert_logo?
+      if self.errors.present? and self.logo.file?
         self.logo.instance_write(:file_name, self.logo_file_name_was) 
         self.logo.instance_write(:file_size, self.logo_file_size_was) 
         self.logo.instance_write(:content_type, self.logo_content_type_was)
         errors.add(:upload_logo_again, "please re-upload the logo")
       end
+    end
+    
+    def delete_logo?
+      self.logo.clear if delete_logo
     end
   
 end

@@ -95,7 +95,26 @@
 		</section>
 	</li>
 	<li id="logo" class="full">
-		<%= render "logos/logo" %>
+		<span class="left center">
+			<%= image_tag @shelter.logo.url(:small) %>
+
+			<% if !@shelter.new_record? and @shelter.logo.file? %>
+				<br /><br />
+				<%= f.check_box :delete_logo %> 
+				<%= f.label :delete_logo, "Delete logo", :class => "desc" %>
+			<% end %>
+		</span>
+		<span class="leftPadded">
+			<% if !@shelter.new_record? and @shelter.logo.file? %>
+				<%= f.label :logo, "Change logo", :class => "desc" %>
+			<% else %>
+				<%= f.label :logo, "Upload logo", :class => "desc" %>
+			<% end %>
+			<%= f.file_field :logo, :class => "field file" %>
+		</span>
+		<%= has_error_message?(@shelter, :upload_logo_again)%>
+		<%= has_error_message?(@shelter, :logo_content_type)%>
+		<%= has_error_message?(@shelter, :logo_file_size) %>
 	</li>
 	<li class="section">
 		<section><h3></h3></section>

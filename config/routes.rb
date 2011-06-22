@@ -138,15 +138,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :auto_complete
       end
     end
-  
-    # Photos
-    #----------------------------------------------------------------------------    
-    resources :photos, :only => [:destroy]
-
-    # Logos
-    #----------------------------------------------------------------------------
-    resources :logos, :only => [:destroy]
-    
+      
     # Breeds
     #----------------------------------------------------------------------------
     resources :breeds, :only => [:auto_complete] do

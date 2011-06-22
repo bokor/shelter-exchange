@@ -202,7 +202,27 @@
 			</section>
 		</li>
 		<li id="photo" class="full">
-			<%= render "photos/photo" %>
+			<span class="left center">
+				<%= image_tag @animal.photo.url(:small) %>
+
+				<% if !@animal.new_record? and @animal.photo.file? %>
+					<br /><br />
+					<%= f.check_box :delete_photo %> 
+					<%= f.label :delete_photo, "Delete photo", :class => "desc" %>
+				<% end %>
+			</span>
+			<span class="leftPadded">
+				<% if !@animal.new_record? and @animal.photo.file? %>
+					<%= f.label :photo, "Change photo", :class => "desc" %>
+				<% else %>
+					<%= f.label :photo, "Upload photo", :class => "desc" %>
+				<% end %>
+				<%= f.file_field :photo, :class => "field file" %>
+			</span>
+			<%= has_error_message?(@animal, :upload_photo_again)%>
+			<%= has_error_message?(@animal, :photo_content_type)%>
+			<%= has_error_message?(@animal, :photo_file_size) %>
+			
 		</li>
 		<li class="section">
 			<section>
