@@ -3,13 +3,14 @@ class Animal < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------  
-  after_validation :photo_reverted?
+  before_validation :delete_photo?
+  after_validation :revert_photo?
   before_save :check_status_changed?
   after_save :create_status_history!
 
   # Getters/Setters
   #----------------------------------------------------------------------------  
-  attr_accessor :status_history_reason, 
+  attr_accessor :delete_photo, :status_history_reason, 
                 :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
@@ -260,20 +261,20 @@ class Animal < ActiveRecord::Base
     end
     
     def photo_valid?
-      photo? and self.photo_file_size < PHOTO_SIZE
+      PHOTO_TYPES.include?(self.photo_content_type) and self.photo_file_size < PHOTO_SIZE
     end
     
-    def photo?
-      PHOTO_TYPES.include?(self.photo_content_type)
-    end
-    
-    def photo_reverted?
-      unless self.errors.blank? and self.photo.file?
+    def revert_photo?
+      if self.errors.present? and self.photo.file?
         self.photo.instance_write(:file_name, self.photo_file_name_was) 
         self.photo.instance_write(:file_size, self.photo_file_size_was) 
         self.photo.instance_write(:content_type, self.photo_content_type_was)
         errors.add(:upload_photo_again, "please re-upload the photo")
       end
+    end
+    
+    def delete_photo?
+      self.photo.clear if delete_photo
     end
 
 end
