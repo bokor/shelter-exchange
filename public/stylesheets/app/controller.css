@@ -218,9 +218,11 @@
 /********************************************************************/
 .capacities ul {list-style:none;}
 
-/* Capacity List :: Edit Box
+/* Capacity :: Edit/Update/New/Create :: Layout
 -----------------------------------------------------------------------------*/
-/*.capacity_list .box { width: 42%;  margin-right: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}*/
+.new_capacities #main, .create_capacities #main { margin: 1em 3em 0 3em; }
+.new_capacities #left, .create_capacities #left{ width: 100%;}
+.new_capacities #sidebar, .create_capacities #sidebar { display: none;width: 0; }
 
 /* Capacity List :: Layout
 -----------------------------------------------------------------------------*/
