@@ -18,9 +18,6 @@ SUBDOMAIN_FORMAT = /^[A-Za-z0-9-]+$/
 RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api authenticate launchpad forum admin manage account accounts user login logout signup register mail ftp pop smtp ssl sftp map maps community communities social administration manager calendar email imap authentication rss atom chat media video videos facebook twitter youtube picture pictures vimeo flickr shelterexchange shelter shelters images image css stylesheets javascript javascripts].freeze
 API_VERSION = %w[v1].freeze
 
-IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
-IMAGE_SIZE = 4 # in megabytes
-
 
 
 

@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   
   def overlay
     @shelters = Shelter.all
-    render_to_string("overlay.kml")
+    return render_to_string("overlay.kml")
   end
 
 end
@@ -20,9 +20,9 @@ end
 #   
 #   self.view_paths = "app/views"
 #   
-#   def index
+#   def overlay
 #     @shelters = Shelter.all
-#     return render_to_string("index.kml")
+#     return render_to_string("overlay.kml")
 #   end
 # 
 # end

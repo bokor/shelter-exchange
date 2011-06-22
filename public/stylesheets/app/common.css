@@ -46,7 +46,7 @@ Dog House Sides - #db8d4a
 #toolbar a {color: #eee;}
 #toolbar .col_1{width: 50%;}
 #toolbar .col_2{width: 50%; float:right; text-align:right;}
-#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
+#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 99999;background-color: #222; border: 1px solid #333;}
 #toolbar .settings_menu li { padding: 0px 10px; display:block;}
 #toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
 #toolbar .settings_menu li a:hover { color: #f26649;/*text-decoration: underline;*/}
@@ -116,36 +116,19 @@ Dog House Sides - #db8d4a
 	padding: 7px 15px 7px 15px;
 	margin-bottom: 5px;
 	display: inline-block;
+	*display:inline;
 	position: relative;
-	cursor: pointer;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+	-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
 	border: 1px solid #999;
-	/* ENGINE YARD BUTTONS -background: -moz-linear-gradient(top, #f8fafc, #9bb4cf);
-		  background: -webkit-gradient(linear, left top, left bottom, from(#f8fafc), to(#9bb4cf));*/
 	background-image: -moz-linear-gradient(center top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7));
 	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
 	background-image: linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#d7d7d7');
+/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#d7d7d7');*/
 	color: #444;
 	text-shadow: #fff 0 1px 0;
-	outline: none;
-	-moz-outline: none;
 	text-decoration: none!important;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-o-user-select: none;
-	user-select: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-background-clip: padding-box;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
 	font-size: 13px;
 	font-weight: bold;
 	text-align: center;
