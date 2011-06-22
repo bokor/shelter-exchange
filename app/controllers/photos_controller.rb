@@ -3,8 +3,7 @@ class PhotosController < ApplicationController
   
   def destroy
     @animal = @current_shelter.animals.find(params[:id])
-    @animal.photo.clear 
-    @animal.save
+    @animal.photo.destroy
   end
   
 end

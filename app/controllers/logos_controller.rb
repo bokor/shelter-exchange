@@ -3,8 +3,7 @@ class LogosController < ApplicationController
   
   def destroy
     @shelter = @current_shelter
-    @shelter.logo.clear 
-    @shelter.save
+    @shelter.logo.destroy
   end
   
 
