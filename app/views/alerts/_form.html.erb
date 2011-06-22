@@ -6,7 +6,7 @@
 <li>
 	<%= f.label :severity, "Severity <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div>
-	<%= f.collection_select :severity, Alert::SEVERITY, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
+	<%= f.collection_select :severity, Alert::SEVERITIES, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
 	</div>
 	<%= has_error_message?(@alert, :severity)%>
 </li>

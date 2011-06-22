@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622050122) do
+ActiveRecord::Schema.define(:version => 20110622164428) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -36,41 +36,6 @@ ActiveRecord::Schema.define(:version => 20110622050122) do
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain"
-
-  create_table "active_admin_comments", :force => true do |t|
-    t.integer  "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "alerts", :force => true do |t|
     t.string   "title"
@@ -224,31 +189,21 @@ ActiveRecord::Schema.define(:version => 20110622050122) do
   add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["shelter_id"], :name => "index_locations_on_shelter_id"
 
-  create_table "note_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "note_categories", ["created_at"], :name => "index_note_categories_on_created_at"
-  add_index "note_categories", ["name"], :name => "index_note_categories_on_name"
-
   create_table "notes", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "notable_id"
     t.string   "notable_type"
-    t.integer  "note_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shelter_id"
+    t.string   "category"
   end
 
   add_index "notes", ["created_at"], :name => "index_notes_on_created_at"
   add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
   add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
-  add_index "notes", ["note_category_id"], :name => "index_notes_on_note_category_id"
   add_index "notes", ["shelter_id"], :name => "index_notes_on_shelter_id"
   add_index "notes", ["title"], :name => "index_notes_on_title"
 
@@ -303,19 +258,6 @@ ActiveRecord::Schema.define(:version => 20110622050122) do
   add_index "placements", ["parent_id", "status"], :name => "index_placements_on_parent_id_and_placement_type"
   add_index "placements", ["parent_id"], :name => "index_placements_on_parent_id"
   add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
-
-  create_table "rails_admin_histories", :force => true do |t|
-    t.string   "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "shelters", :force => true do |t|
     t.string   "name"

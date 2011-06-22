@@ -38,7 +38,7 @@
 		<li>
 			<%= f.label :animal_status_id, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select small" } %>
+			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select medium" } %>
 			</div>
 			<%= has_error_message?(@animal, :animal_status_id)%>
 			<div id="reason_field">

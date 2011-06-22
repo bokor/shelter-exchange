@@ -11,7 +11,7 @@ class AnimalsController < ApplicationController
   
   def show
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
-    @notes = @animal.notes.includes(:note_category).all
+    @notes = @animal.notes.all
     @status_histories = @animal.status_histories.includes(:animal_status).all
     @alerts = @animal.alerts.active.all
     @overdue_tasks = @animal.tasks.overdue.active.includes(:task_category).all
@@ -62,7 +62,7 @@ class AnimalsController < ApplicationController
     if filter_param.blank?
       @notes = @animal.notes
     else
-      @notes = @animal.notes.animal_filter(filter_param)
+      @notes = @animal.notes.where(:category => filter_param)
     end
   end
 

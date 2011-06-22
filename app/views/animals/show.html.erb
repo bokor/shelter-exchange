@@ -100,10 +100,10 @@
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id), :remote => true, :id => "all_notes_link" %>
-			<% NoteCategory.all.each do |category|%>
+			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.name, filter_notes_animals_path(:filter => category.name, :id => @animal.id), 
-				                          :remote => true, :id => "#{category.name.downcase}_notes_link" %>
+				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id), 
+				                          :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>
 	</div>

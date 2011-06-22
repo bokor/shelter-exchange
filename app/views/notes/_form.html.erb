@@ -4,14 +4,14 @@
 	<%= has_error_message?(@note, :title)%>
 </li>
 <% if defined?(default_category) && default_category %>
-	<%= f.hidden_field :note_category_id, :value => 1 %>
+	<%= f.hidden_field :category, :value => Note::DEFAULT_CATEGORY %>
 <% else %>
 	<li id="note_category">
-		<%= f.label :note_category_id, "Category <span class='req'>*</span>".html_safe, :class => "desc" %>
+		<%= f.label :category, "Category <span class='req'>*</span>".html_safe, :class => "desc" %>
 		<div>
-		<%= f.collection_select :note_category_id, NoteCategory.all, :id, :name, :prompt => "Select Category", :class => "field select medium" %>
+		<%= f.collection_select :category, Note::CATEGORIES, :to_s, :humanize, :prompt => "Select Category", :class => "field select medium" %>
 		</div>
-		<%= has_error_message?(@note, :note_category_id)%>
+		<%= has_error_message?(@note, :category)%>
 	</li>
 <% end %>
 <li class="full">

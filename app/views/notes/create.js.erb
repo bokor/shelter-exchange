@@ -8,11 +8,11 @@
 		note_filter_active = $('.active_link').html();
 	} 
      
-	if (note_filter_active == '<%=@note.note_category.name%>' || note_filter_active == "All") {
+	if (note_filter_active == '<%=@note.category%>' || note_filter_active == "All") {
 		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {
-		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.note_category.name%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>');
+		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.category.humanize%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>');
 		$("#another_note_category").slideToggle(1500,function() {
 			$(this).fadeOut(2000); 
 		});

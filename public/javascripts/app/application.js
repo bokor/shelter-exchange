@@ -98,8 +98,8 @@ $(function() {
  * Live - Hover, Click Events
  * ------------------------------------------------------------------------ */
 $(function(){
-	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(event) {
-	  if (event.type == 'mouseover') {
+	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(e) {
+	  if (e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {
 	    $(this).removeClass("hover");

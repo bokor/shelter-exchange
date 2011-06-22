@@ -3,7 +3,7 @@ class Alert < ActiveRecord::Base
   
   # Constants
   #----------------------------------------------------------------------------
-  SEVERITY = %w[high medium low].freeze
+  SEVERITIES = %w[high medium low].freeze
   
   # Associations
   #----------------------------------------------------------------------------

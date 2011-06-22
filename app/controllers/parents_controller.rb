@@ -9,7 +9,7 @@ class ParentsController < ApplicationController
   end
   
   def show
-    @parent = Parent.includes(:notes => [:note_category], :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
+    @parent = Parent.includes(:notes, :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
     @placement = @parent.placements.new
     @comment = @placement.comments.build
     respond_with(@parent)
