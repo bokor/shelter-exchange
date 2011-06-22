@@ -17,8 +17,6 @@ class Task < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
-  scope :for_all, includes(:taskable)
- 
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true) 
   

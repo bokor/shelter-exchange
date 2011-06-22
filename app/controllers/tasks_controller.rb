@@ -6,13 +6,10 @@ class TasksController < ApplicationController
   
   
   def index
-    
-
-    
-    @overdue_tasks =  @current_shelter.tasks.for_all.overdue.active.all
-    @today_tasks = @current_shelter.tasks.for_all.today.active.all
-    @tomorrow_tasks = @current_shelter.tasks.for_all.tomorrow.active.all
-    @later_tasks = @current_shelter.tasks.for_all.later.active.all
+    @overdue_tasks =  @current_shelter.tasks.overdue.active.includes(:taskable).all
+    @today_tasks = @current_shelter.tasks.today.active.includes(:taskable).all
+    @tomorrow_tasks = @current_shelter.tasks.tomorrow.active.includes(:taskable).all
+    @later_tasks = @current_shelter.tasks.later.active.includes(:taskable).all
 
     if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
       redirect_to new_task_path
