@@ -14,11 +14,11 @@
 </li>
 <li>
 	<%= f.label :name, "Name (i.e. Crate 1) <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "Enter animal name" %></div>
+	<div><%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "i.e - Crate 1 or Kennel 3 or Stall 2" %></div>
 	<%= has_error_message?(@accommodation, :name)%>
 </li>
 <li>
 	<%= f.label :max_capacity, "Max number of animals <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :max_capacity, :class => "field text large", :maxlength => 3, :placeholder => "Enter animal name" %></div>
+	<div><%= f.text_field :max_capacity, :class => "field text large", :maxlength => 3, :placeholder => "Enter the max # of animals the above accommodation can house." %></div>
 	<%= has_error_message?(@accommodation, :max_capacity)%>
 </li>

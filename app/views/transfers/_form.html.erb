@@ -1,24 +1,24 @@
 <li>
 	<%= f.label :requestor, "Name of requestor <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :requestor, :class => "field text large" %></div>
+	<div><%= f.text_field :requestor, :class => "field text large", :placeholder => "Enter your name" %></div>
 	<%= has_error_message?(@transfer, :requestor)%>
 </li>
 <li>
 	<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div>
-		<%= f.text_field :phone, :class => "field text large", :maxlength => 12 %>
+		<%= f.text_field :phone, :class => "field text large", :maxlength => 12, :placeholder => "Your phone number" %>
 		<%= f.label :phone, "###-###-####" %>
 	</div>
 	<%= has_error_message?(@transfer, :phone)%>
 </li>
 <li>
 	<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :email, :class => "field text large" %></div>
+	<div><%= f.text_field :email, :class => "field text large", :placeholder => "Your email address" %></div>
 	<%= has_error_message?(@transfer, :phone)%>
 </li>
 <li class="full">
 	<%= f.label :transfer_history_reason, "Additional notes".html_safe, :class => "desc" %>
-	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small" %></div>
+	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small", :placeholder => "Please enter any notes that maybe helpful to expedite this transfer." %></div>
 	<%= has_error_message?(@transfer, :transfer_history_reason)%>
 </li>
 

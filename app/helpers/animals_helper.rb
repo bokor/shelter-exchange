@@ -41,17 +41,17 @@ module AnimalsHelper
     format_date(type, animal.arrival_date)
   end
   
-  def euthanasia_scheduled_value(type, animal)
+  def euthanasia_date_value(type, animal)
     return nil if type.blank?
     case type
       when :month
-        return animal.euthanasia_scheduled_month unless animal.euthanasia_scheduled_month.blank?
+        return animal.euthanasia_date_month unless animal.euthanasia_date_month.blank?
       when :day
-        return animal.euthanasia_scheduled_day unless animal.euthanasia_scheduled_day.blank?
+        return animal.euthanasia_date_day unless animal.euthanasia_date_day.blank?
       when :year
-        return animal.euthanasia_scheduled_year unless animal.euthanasia_scheduled_year.blank?
+        return animal.euthanasia_date_year unless animal.euthanasia_date_year.blank?
     end
-    format_date(type, animal.euthanasia_scheduled)
+    format_date(type, animal.euthanasia_date)
   end
 
 end

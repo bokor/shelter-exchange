@@ -61,9 +61,9 @@ var Animals = {
 			$('#arrival_date_trigger').bind("click", function(event) { $('#animal_arrival_date_datepicker').slideToggle(); });
 		
 			// Euthanasia Date initialize
-			Animals.datePicker("#animal_euthanasia_scheduled");
-			Animals.setDatePickerDate('#animal_euthanasia_scheduled');
-			$('#euthanasia_scheduled_trigger').bind("click", function(event) { $('#animal_euthanasia_scheduled_datepicker').slideToggle();});
+			Animals.datePicker("#animal_euthanasia_date");
+			Animals.setDatePickerDate('#animal_euthanasia_date');
+			$('#euthanasia_date_trigger').bind("click", function(event) { $('#animal_euthanasia_date_datepicker').slideToggle();});
 		}
 	},
 	selectAccommodation: function(id, name) {

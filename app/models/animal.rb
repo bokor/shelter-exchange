@@ -3,17 +3,16 @@ class Animal < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------  
-  before_validation :delete_photo?
-  after_validation :revert_photo?
+  after_validation :photo_reverted?
   before_save :check_status_changed?
   after_save :create_status_history!
 
-  # Getter/Setter
+  # Getters/Setters
   #----------------------------------------------------------------------------  
-  attr_accessor :delete_photo, :status_history_reason, 
+  attr_accessor :status_history_reason, 
                 :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
-                :euthanasia_scheduled_month, :euthanasia_scheduled_day, :euthanasia_scheduled_year
+                :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
   
   # Constants
   #----------------------------------------------------------------------------
@@ -65,7 +64,7 @@ class Animal < ActiveRecord::Base
   validate :secondary_breed_valid? 
   validate :date_of_birth_valid?
   validate :arrival_date_valid?
-  validate :euthanasia_scheduled_valid?
+  validate :euthanasia_date_valid?
   
   # Validations - PaperClip
   #----------------------------------------------------------------------------
@@ -103,7 +102,7 @@ class Animal < ActiveRecord::Base
     scope = scoped{}
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
-    scope = scope.where(:euthanasia_scheduled => Date.today..Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
+    scope = scope.where(:euthanasia_date => Date.today..Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
     scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
     scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
     scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
@@ -167,7 +166,7 @@ class Animal < ActiveRecord::Base
     self.shelter_id = requestor_shelter.id
     self.arrival_date = nil
     self.hold_time = nil
-    self.euthanasia_scheduled = nil
+    self.euthanasia_date = nil
     self.accommodation_id = nil
     self.touch(:updated_at)
     if self.save(:validate => false)
@@ -232,16 +231,16 @@ class Animal < ActiveRecord::Base
       end 
     end
     
-    def euthanasia_scheduled_valid?
+    def euthanasia_date_valid?
       if is_kill_shelter?
-        unless self.euthanasia_scheduled_year.blank? and self.euthanasia_scheduled_month.blank? and self.euthanasia_scheduled_day.blank?
+        unless self.euthanasia_date_year.blank? and self.euthanasia_date_month.blank? and self.euthanasia_date_day.blank?
           begin
-            self.euthanasia_scheduled = Date.civil(self.euthanasia_scheduled_year.to_i, self.euthanasia_scheduled_month.to_i, self.euthanasia_scheduled_day.to_i)
+            self.euthanasia_date = Date.civil(self.euthanasia_date_year.to_i, self.euthanasia_date_month.to_i, self.euthanasia_date_day.to_i)
           rescue ArgumentError
-            errors.add(:euthanasia_scheduled, "is an invalid date format")
+            errors.add(:euthanasia_date, "is an invalid date format")
           end
         else
-          errors.add_on_blank(:euthanasia_scheduled)
+          errors.add_on_blank(:euthanasia_date)
         end
       end
     end
@@ -261,20 +260,20 @@ class Animal < ActiveRecord::Base
     end
     
     def photo_valid?
-      PHOTO_TYPES.include?(self.photo_content_type) and self.photo_file_size < PHOTO_SIZE
+      photo? and self.photo_file_size < PHOTO_SIZE
     end
     
-    def revert_photo?
-      if self.errors.present? and self.photo.file?
+    def photo?
+      PHOTO_TYPES.include?(self.photo_content_type)
+    end
+    
+    def photo_reverted?
+      unless self.errors.blank? and self.photo.file?
         self.photo.instance_write(:file_name, self.photo_file_name_was) 
         self.photo.instance_write(:file_size, self.photo_file_size_was) 
         self.photo.instance_write(:content_type, self.photo_content_type_was)
         errors.add(:upload_photo_again, "please re-upload the photo")
       end
-    end
-    
-    def delete_photo?
-      self.photo.clear if delete_photo
     end
 
 end
@@ -283,7 +282,7 @@ end
 # def self.map_euthanasia_list(shelter_ids, filters={})
 #   scope = scoped{}
 #   scope = scope.includes(:animal_type, :animal_status)
-#   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_scheduled => Date.today..Date.today + 2.weeks)
+#   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_date => Date.today..Date.today + 2.weeks)
 #   scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
 #   scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
 #   scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?

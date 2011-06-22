@@ -16,7 +16,7 @@
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
-				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
+				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
 				</div>
 				<%= has_error_message?(@animal, :primary_breed)%>
 			</div>
@@ -30,7 +30,7 @@
 			<div id="secondary_breed_field">
 				<%= f.label :secondary_breed, "Secondary breed", :class => "desc" %>
 				<div>
-				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
+				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
 				</div>
 				<%= has_error_message?(@animal, :secondary_breed)%>
 			</div>
@@ -98,28 +98,28 @@
 		</li>
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
-			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255 %></div>
+			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "i.e. - 40 lbs" %></div>
 			<%= has_error_message?(@animal, :weight)%>
 		</li>
 		<li>
 			<%= f.label :size, "Size", :class => "desc" %>
-			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255 %></div>
+			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255, :placeholder => "i.e. - Small, Medium, Large" %></div>
 			<%= has_error_message?(@animal, :size)%>
 		</li>
 		<li>
 			<%= f.label :color, "Color", :class => "desc" %>
-			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255 %></div>
+			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255, :placeholder => "Black and white" %></div>
 			<%= has_error_message?(@animal, :color)%>
 		</li>
 		<li>
 			<%= f.label :microchip, "Microchip#", :class => "desc" %>
-			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255 %></div>
+			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
 		<li class="section">
 			<section>
 				<h3>Accommodation Info</h3>
-				<div>Please select the location the animal sleeps at night!</div>
+				<div>Select the location where the animal is being kept.</div>
 			</section>
 		</li>
 		<li>
@@ -139,11 +139,11 @@
 		<li class="section">
 			<section>
 				<h3>Euthanasia Details</h3>
-				<div>Please feel in the correct information about the animal's euthanasia schedule.</div>
+				<div>Enter the animals arrival date, hold time if given and the scheduled euthanasia date.</div>
 			</section>
 		</li>
 		<li class="date">
-			<%= f.label :arrival_date, "Arrival Date <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :arrival_date, "Arrival date <span class='req'>*</span>".html_safe, :class => "desc" %>
 			
 			<span>
 				<%= f.text_field :arrival_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => arrival_date_value(:month, @animal)  %>
@@ -171,34 +171,34 @@
 			<%= has_error_message?(@animal, :hold_time)%>
 		</li>
 		<li class="date">
-			<%= f.label :euthanasia_scheduled, "Euthanasia Scheduled <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :euthanasia_date, "Euthanasia date <span class='req'>*</span>".html_safe, :class => "desc" %>
 			
 			<span>
-				<%= f.text_field :euthanasia_scheduled_month, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_scheduled_value(:month, @animal)  %>
-				<%= f.label :euthanasia_scheduled, "MM" %>
+				<%= f.text_field :euthanasia_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_date_value(:month, @animal)  %>
+				<%= f.label :euthanasia_date, "MM" %>
 			</span> 
 			<span class="symbol">/</span>
 			<span>
-				<%= f.text_field :euthanasia_scheduled_day, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_scheduled_value(:day, @animal) %>
-				<%= f.label :euthanasia_scheduled, "DD" %>
+				<%= f.text_field :euthanasia_date_day, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_date_value(:day, @animal) %>
+				<%= f.label :euthanasia_date, "DD" %>
 			</span>
 			<span class="symbol">/</span>
 			<span>
-				<%= f.text_field :euthanasia_scheduled_year, :class => "field text", :maxlength => 4, :size => 4, :value => euthanasia_scheduled_value(:year, @animal) %>
-				<%= f.label :euthanasia_scheduled, "YYYY" %>
+				<%= f.text_field :euthanasia_date_year, :class => "field text", :maxlength => 4, :size => 4, :value => euthanasia_date_value(:year, @animal) %>
+				<%= f.label :euthanasia_date, "YYYY" %>
 			</span>
 			<span>
-				<%= image_tag "icon_calendar.png", :id => "euthanasia_scheduled_trigger", :class => "icon_calendar" %>
+				<%= image_tag "icon_calendar.png", :id => "euthanasia_date_trigger", :class => "icon_calendar" %>
 			</span>
-			<span id="animal_euthanasia_scheduled_datepicker" class="calendar"></span>
-			<%= has_error_message?(@animal, :euthanasia_scheduled)%>
+			<span id="animal_euthanasia_date_datepicker" class="calendar"></span>
+			<%= has_error_message?(@animal, :euthanasia_date)%>
 		</li>
 		
 		<% end %>
 		<li class="section">
 			<section>
 				<h3>Photo</h3>
-				<div>Select a picture of the animal</div>
+				<div>Select a picture of the animal (max size 4 MB)</div>
 			</section>
 		</li>
 		<li id="photo" class="full">
@@ -227,7 +227,7 @@
 		<li class="section">
 			<section>
 				<h3>Description</h3>
-				<div>Please enter some nice stuff about this cute animal</div>
+				<div>Enter a description of the animal below.</div>
 			</section>
 		</li>
 		<li>

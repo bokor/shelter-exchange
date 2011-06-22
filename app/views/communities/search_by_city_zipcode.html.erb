@@ -166,7 +166,7 @@
 
 						<span>
 							<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255 %>
+							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
 							</div>
 						</span>
 
@@ -201,19 +201,19 @@
 			
 			<div style="padding-bottom: 0px;">
 				<div style="padding-top: 5px;float: left; width: 50%;">
-					<h2>Search By City/Zipcode:</h2>
+					<h2>Search by City or Zip code</h2>
 					<form action="#" id="form_address_search">
-				    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
+				    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;", :placeholder => "i.e - 40356 or Nicholasville, KY"  %> <%= submit_tag "Go" %>
 					</form>
 				</div>
 				<div style="float: left; width: 50%; text-align:right;">
-					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your animals?</a>
+					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow Your results</a>
 					<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div style="float: right; width: 100%; text-align:right;">
-				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow your animals?</a>
+				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow Your results</a>
 				<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 			</div>
 				<div id="filters2" class="section_heading no_borders blue">
@@ -228,7 +228,7 @@
 
 								<span>
 									<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-									<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255 %>
+									<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
 									</div>
 								</span>
 

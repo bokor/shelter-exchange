@@ -4,15 +4,15 @@
 	<% if @user == current_user %>
 		<li class="full">
 			<%= f.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
-	  		<div><%= f.text_field :name, :value => @user.name, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+	  		<div><%= f.text_field :name, :value => @user.name, :class => "field text large", :maxlength => 255, :placeholder => "Enter your first and last name" %></div>
 		</li>
 		<li class="full">
 			<%= f.label :title, "Title", :class => "desc" %>
-  			<div><%= f.text_field :title, :value => @user.title, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+  			<div><%= f.text_field :title, :value => @user.title, :class => "field text large", :maxlength => 255, :placeholder => "i.e - Adoption Counselor" %></div>
 		</li>
 		<li class="full">
 			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :email, :value => @user.email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>
+			<div><%= f.text_field :email, :value => @user.email, :class => "field text large", :maxlength => 255, :placeholder => "Enter your email address" %></div>
 		</li>
 		<% show_update_button = true %>
 	<% else %>

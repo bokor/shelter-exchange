@@ -23,9 +23,9 @@
 		<p><b><%= animal.animal_status.name %></b></p>
 		<% if controller_name == "communities" %>
 		<%
-			if animal.euthanasia_scheduled.present?
-				if animal.euthanasia_scheduled >= Date.today and animal.euthanasia_scheduled <= Date.today + 2.weeks 
-					days_left = days_left(animal.euthanasia_scheduled, Date.today)
+			if animal.euthanasia_date.present?
+				if animal.euthanasia_date >= Date.today and animal.euthanasia_date <= Date.today + 2.weeks 
+					days_left = days_left(animal.euthanasia_date, Date.today)
 				end
 			end
 		%>

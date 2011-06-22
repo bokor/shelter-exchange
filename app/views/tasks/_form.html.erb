@@ -1,6 +1,6 @@
 <li>
 	<%= f.label :details, "Details <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :details, :class => "field text large", :maxlength => 255 %></div>
+	<div><%= f.text_field :details, :class => "field text large", :maxlength => 255, :placeholder => "i.e - Clean and sanitize cat crates." %></div>
 	<%= has_error_message?(@task, :details)%>
 </li>
 <li>

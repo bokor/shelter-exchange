@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614032829) do
+ActiveRecord::Schema.define(:version => 20110622050122) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20110614032829) do
     t.date     "status_change_date"
     t.date     "arrival_date"
     t.integer  "hold_time"
-    t.date     "euthanasia_scheduled"
+    t.date     "euthanasia_date"
     t.integer  "accommodation_id"
     t.string   "size"
   end

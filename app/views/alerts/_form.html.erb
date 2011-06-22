@@ -1,6 +1,6 @@
 <li>
 	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :title, :class => "field text large" %></div>
+	<div><%= f.text_field :title, :class => "field text large", :placeholder => "i.e - Parvo outbreak." %></div>
 	<%= has_error_message?(@alert, :title)%>
 </li>
 <li>
@@ -12,6 +12,6 @@
 </li>
 <li class="full">
 	<%= f.label :description, "Description", :class => "desc" %>
-	<div><%= f.text_area :description, :class => "field textarea medium" %></div>
+	<div><%= f.text_area :description, :class => "field textarea medium", :placeholder => "i.e - Parvo outbreak in building 2 - quarantine all animals." %></div>
 	<%= has_error_message?(@alert, :description)%>
 </li>	

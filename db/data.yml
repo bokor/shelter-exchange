@@ -5600,7 +5600,7 @@ animals:
   - status_change_date
   - arrival_date
   - hold_time
-  - euthanasia_scheduled
+  - euthanasia_date
   - accommodation_id
   records: 
   - - 1
