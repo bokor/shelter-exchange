@@ -9,6 +9,12 @@ class Shelter < ActiveRecord::Base
   after_validation :logo_reverted?
   before_save :geocode_address, :format_phone_numbers
   
+  # Constants
+  #----------------------------------------------------------------------------
+  LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
+  LOGO_SIZE = 4.megabytes
+  LOGO_SIZE_IN_TEXT = "4 megabytes(MB)"
+  
   # Assocations
   #----------------------------------------------------------------------------
   belongs_to :account
@@ -30,16 +36,17 @@ class Shelter < ActiveRecord::Base
                            :default_url => "/images/default_:style_photo.jpg", 
                            :storage => :s3,
                            :s3_credentials => S3_CREDENTIALS,
-                           # :url => ":s3_domain_url",
                            :path => "/:class/:attachment/:id/:style/:basename.:extension",
                            :styles => { :small => ["250x150>", :jpg],
                                         :medium => ["350x250>", :jpg],
                                         :large => ["500x400>", :jpg], 
                                         :thumb => ["150x75>", :jpg] }
-                          #:convert_options => { :small => "-quality 80", }
   # Callback - Paperclip
   #----------------------------------------------------------------------------
   before_post_process :logo_valid?
+
+  # Nested Attributes
+  #----------------------------------------------------------------------------  
   accepts_nested_attributes_for :items, :allow_destroy => true
    
   # Validations
@@ -49,14 +56,12 @@ class Shelter < ActiveRecord::Base
   validates :email, :presence => true,
                     :uniqueness => true, :allow_blank => true,
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
-  validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, 
-                                        :message => "is not a valid US Time Zone" }
+  validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!        
-  
   validate :address_valid?         
  
-  validates_attachment_size :logo, :less_than => IMAGE_SIZE.megabytes, :message => "needs to be #{IMAGE_SIZE} megabytes or less"
-  validates_attachment_content_type :logo, :content_type => IMAGE_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
+  validates_attachment_size :logo, :less_than => LOGO_SIZE, :message => "needs to be #{LOGO_SIZE_IN_TEXT} or less"
+  validates_attachment_content_type :logo, :content_type => LOGO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
   
   
   # Scopes
@@ -95,11 +100,11 @@ class Shelter < ActiveRecord::Base
     end
         
     def logo_valid?
-      logo? and logo_file_size < IMAGE_SIZE
+      logo? and self.logo_file_size < LOGO_SIZE
     end
     
     def logo?
-      IMAGE_TYPES.include?(logo_content_type)
+      LOGO_TYPES.include?(self.logo_content_type)
     end
     
     def logo_reverted?
