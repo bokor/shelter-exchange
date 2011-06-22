@@ -4,16 +4,16 @@
 	<%= has_error_message?(@task, :details)%>
 </li>
 <li>
-	<%= f.label :task_category_id, "Category", :class => "desc" %>
+	<%= f.label :category, "Category", :class => "desc" %>
 	<div>
-	<%= f.collection_select :task_category_id, TaskCategory.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
+	<%= f.collection_select :category, Task::CATEGORIES, :to_s, :humanize, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
 	</div>
-	<%= has_error_message?(@task, :task_category_id)%>
+	<%= has_error_message?(@task, :category)%>
 </li>
 <li>
 	<%= f.label :due_category, "When is it due?", :class => "desc" %>
 	<div>
-		<%= f.collection_select :due_category, Task::DUE_CATEGORY, :to_s, :humanize, {}, { :class => "task_due_category field select medium" } %>
+		<%= f.collection_select :due_category, Task::DUE_CATEGORIES, :to_s, :humanize, {}, { :class => "task_due_category field select medium" } %>
 	</div>
 	<%= has_error_message?(@task, :due_category)%>
 </li>

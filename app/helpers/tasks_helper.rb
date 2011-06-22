@@ -1,7 +1,7 @@
 module TasksHelper
   
   def show_taskable_link(task)
-	  if task.taskable
+	  if controller_name == "tasks" and task.taskable
 	    link = link_to task.taskable.name, polymorphic_path(task.taskable)
 	    return ('<span class="taskable_link">(' + link + ')</span>').html_safe
     end

@@ -27,7 +27,7 @@ module DashboardHelper
   
   def task_message(task)
     details = task.details.chomp('.')
-    category =  task.task_category.name + " -" unless task.task_category.blank?
+    category =  task.category.humanize + " -" unless task.category.blank?
     
     if task.updated_at == task.created_at
       "New - #{category} #{details}#{show_polymorphic_link(task)}."

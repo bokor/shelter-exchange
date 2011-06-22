@@ -13,6 +13,8 @@ class Placement < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   
+  # Nested Attributes
+  #----------------------------------------------------------------------------  
   accepts_nested_attributes_for :comments, :allow_destroy => true, :reject_if => proc { |attributes| attributes['comment'].blank? }
 
   # Validations

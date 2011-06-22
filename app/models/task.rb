@@ -3,14 +3,13 @@ class Task < ActiveRecord::Base
   
   # Constants
   #----------------------------------------------------------------------------
-  # CATEGORY = %w[call email follow-up meeting to-do educational behavioral medical].freeze
-  DUE_CATEGORY = %w[today tomorrow later specific_date].freeze
+  CATEGORIES = %w[call email follow-up meeting to-do educational behavioral medical].freeze
+  DUE_CATEGORIES = %w[today tomorrow later specific_date].freeze
   
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
   belongs_to :taskable, :polymorphic => true
-  belongs_to :task_category, :readonly => true
   
   # Validations
   #----------------------------------------------------------------------------
@@ -18,7 +17,7 @@ class Task < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
-  scope :for_all, includes(:task_category, :taskable)
+  scope :for_all, includes(:taskable)
  
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true) 
@@ -31,7 +30,7 @@ class Task < ActiveRecord::Base
   # Scopes - Dashboard Only - Recent Activity
   #----------------------------------------------------------------------------
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.includes(:task_category, :taskable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    unscoped.includes(:taskable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
   
   # Return a map when the key is category type id as a string

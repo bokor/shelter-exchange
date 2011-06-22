@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622164428) do
+ActiveRecord::Schema.define(:version => 20110622183133) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -303,33 +303,24 @@ ActiveRecord::Schema.define(:version => 20110622164428) do
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
   add_index "status_histories", ["shelter_id"], :name => "index_status_histories_on_shelter_id"
 
-  create_table "task_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "task_categories", ["created_at"], :name => "index_task_categories_on_created_at"
-  add_index "task_categories", ["name"], :name => "index_task_categories_on_name"
-
   create_table "tasks", :force => true do |t|
     t.string   "details"
     t.string   "due_at"
     t.date     "due_date"
     t.integer  "taskable_id"
     t.string   "taskable_type"
-    t.integer  "task_category_id"
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "due_category"
-    t.boolean  "completed",        :default => false, :null => false
+    t.boolean  "completed",     :default => false, :null => false
     t.integer  "shelter_id"
   end
 
+  add_index "tasks", ["category"], :name => "index_tasks_on_task_category_id"
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"
   add_index "tasks", ["details"], :name => "index_tasks_on_info"
   add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
-  add_index "tasks", ["task_category_id"], :name => "index_tasks_on_task_category_id"
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
   add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"
   add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"

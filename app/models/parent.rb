@@ -16,7 +16,6 @@ class Parent < ActiveRecord::Base
   validates :home_phone, :presence => true, :uniqueness => true
   validates :mobile_phone, :uniqueness => true, :allow_blank => true
   validates :email, :uniqueness => true, :allow_blank => true,
-                    # :length => {:minimum => 3, :maximum => 254}, 
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
                     
   validate :address_valid?

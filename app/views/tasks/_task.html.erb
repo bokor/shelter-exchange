@@ -5,8 +5,8 @@
 	</span>
 	<% end %>
 	<span class="type">
-		<% if task.task_category %>
-			<img data-helptext="<%=task.task_category.name%>" src="/images/icon_<%=task.task_category.name.underscore%>.png" />
+		<% unless task.category.blank? %>
+			<img data-helptext="<%=task.category.humanize%>" src="/images/icon_<%=task.category.underscore%>.png" />
 		<% end %>
 	</span>
 	<span class="due_date"><%= display_due_date(task) %></span>

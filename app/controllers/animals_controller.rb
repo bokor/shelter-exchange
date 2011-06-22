@@ -14,10 +14,11 @@ class AnimalsController < ApplicationController
     @notes = @animal.notes.all
     @status_histories = @animal.status_histories.includes(:animal_status).all
     @alerts = @animal.alerts.active.all
-    @overdue_tasks = @animal.tasks.overdue.active.includes(:task_category).all
-  	@today_tasks = @animal.tasks.today.active.includes(:task_category).all 
-  	@tomorrow_tasks = @animal.tasks.tomorrow.active.includes(:task_category).all
-  	@later_tasks = @animal.tasks.later.active.includes(:task_category).all
+    @overdue_tasks = @animal.tasks.overdue.active.all
+  	@today_tasks = @animal.tasks.today.active.all
+  	@tomorrow_tasks = @animal.tasks.tomorrow.active.all
+  	@later_tasks = @animal.tasks.later.active.all
+  	
     respond_with(@animal)
   end
   
@@ -34,7 +35,6 @@ class AnimalsController < ApplicationController
   def create
     @animal = @current_shelter.animals.new(params[:animal])
     flash[:notice] = "#{@animal.name} has been created." if @animal.save
-    # @animal.photo.clear if @animal.photo.errors
     respond_with(@animal)
   end
   
