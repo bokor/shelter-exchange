@@ -15,7 +15,7 @@
 			
 		<%= render "global/error_messages", :target => @accommodation %>
 		<div id="create_accommodation">
-			<%= form_for(@accommodation), :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
+			<%= form_for @accommodation, :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
 				<ul>
 					<%= render "form", :f => f %>
 		    		<li class="buttons">
