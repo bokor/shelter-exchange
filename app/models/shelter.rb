@@ -110,12 +110,6 @@ class Shelter < ActiveRecord::Base
         errors.add(:upload_logo_again, "please re-upload the logo")
       end
     end
-    
-    def upload_logo_again?
-      if self.errors
-        errors.add(:upload_logo_again, "please re-upload the image")
-      end
-    end
   
 end
 
