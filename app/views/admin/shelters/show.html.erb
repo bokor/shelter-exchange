@@ -1,0 +1,87 @@
+<%= title "#{@shelter.name}" %>
+
+<%= content_for :javascripts do %>
+<%= javascript_include_tag "admin/shelters", "http://maps.google.com/maps/api/js?sensor=false", :cache => "cache/admin/shelters-index" %>
+<script type="text/javascript">
+	$(function() {
+		Shelters.loadMap(<%=@shelter.lat%>, <%=@shelter.lng%>);
+	});
+</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1><%= @shelter.name %></h1>
+		<% if @shelter.logo.file? %>
+			<div class="logo">
+				<%= image_tag @shelter.logo.url(:thumb)%>
+			</div>
+		<% end %>
+	</div>
+	
+	<div class="page_content">
+		
+		<div class="shelter_details">
+			<div id="address">
+				<h3>Address:</h3>
+				<ul>
+					<li><%= @shelter.name %></li>
+					<li><%= @shelter.street %></li>
+					<% unless @shelter.street_2.blank? %>
+						<li><%= @shelter.street_2 %></li>
+					<% end %>
+					<li><%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %></li>
+				</ul>
+				<% if @shelter.is_kill_shelter %>
+					<div class="shelter_type kill">Kill Shelter</div>
+				<% else %>
+					<div class="shelter_type no_kill">No Kill Shelter</div>
+				<% end %>
+			</div>
+			<div id="contact_details">
+				<h3>Contact Details:</h3>
+				<ul>
+					<li>Phone:  <%= number_to_phone(@shelter.phone, :delimiter => "-") %></li>
+				
+					<% unless @shelter.fax.blank? %>
+						<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
+					<% end %>
+					
+					<li>Email:  <%= @shelter.email %></li>
+				</ul>
+				
+				<h3>Website Details:</h3>
+				<ul>
+					<% unless @shelter.website.blank? %>
+						<li>Website:  <a href="<%= @shelter.website %>" target="_blank"><%= @shelter.website %></a></li>
+					<% end %>
+
+					<% unless @shelter.twitter.blank? %>
+						<li>Twitter:  <a href="<%= @shelter.twitter %>" target="_blank"><%= @shelter.twitter %></a></li>
+					<% end %>
+
+					<% unless @shelter.facebook.blank? %>
+						<li>Facebook Page:  <a href="<%= @shelter.facebook %>" target="_blank"><%= @shelter.facebook %></a></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="map_canvas"></div>
+		
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+
+	<div id="account_details">
+		<h2>Account Information</h2>
+		<p>Subdomain: <%= @account.subdomain %></p>
+		<p>Account Blocked: <%= @account.blocked? %></p>
+		<p>Reason Blocked: <%= @account.reason_blocked %></p>
+	</div>
+	
+<% end %>
+

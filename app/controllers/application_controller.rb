@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
     end
     
     def current_layout
-      return false if @current_account.blank?
       user_signed_in? ? 'application' : 'login'
     end
     

@@ -31,8 +31,8 @@ gem 'cancan', '1.5.1'
 
 # HTML - JS - CSS
 #----------------------------------------------------------------------------
-# gem 'will_paginate', '3.0.pre2'     
-gem 'will_paginate', '2.3.15'
+gem 'will_paginate', '3.0.pre2'     
+# gem 'will_paginate', '2.3.15'
 gem 'dynamic_form', '1.1.3'         
 gem 'jquery-rails', '1.0.11'         
 

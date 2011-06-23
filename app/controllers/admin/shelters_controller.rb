@@ -8,6 +8,7 @@ class Admin::SheltersController < Admin::ApplicationController
   
   def show
     @shelter = Shelter.find(params[:id])
+    @account = @shelter.account
     respond_with(@shelter)
   end
   

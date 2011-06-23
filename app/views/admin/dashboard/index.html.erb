@@ -6,23 +6,22 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<h1>Latest Activity</h1>
+		<h1>Latest Stats</h1>
 	</div>
 	
 	<div class="page_content">
-		<style type="text/css" media="screen">
-			table{width: 60%; border: 1px #ccc solid; border-collapse: collapse;}
-			table td{width: 50%; border: 1px #ccc solid;}
-		</style>
-		<h2>Transfer Requests</h2>
-		<table id="transfers">
-			<% @transfers.each do |transfer|%>
-				<tr>
-					<td><%= transfer[0] %></td>
-					<td><%= transfer[1] %></td>
-				</tr>
+
+		<h2>Counts by status - All Shelters</h2>
+		
+		<div class="counts_by_status_list">
+			<% @counts_by_status.map do |status, count| %>
+				<div class="counts_by_status">
+					<span class="status"><%= status %></span>
+					<span class="count"><%= count %></span>
+				</div>
 			<% end %>
-		</table>
+		</div>
+		
 	</div>
 		
 <% end %>

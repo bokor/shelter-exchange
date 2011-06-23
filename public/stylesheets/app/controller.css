@@ -58,13 +58,14 @@
 .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
-/* Circles :: Capacity
+/* Section Heading
 -----------------------------------------------------------------------------*/
 .section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
 .section_heading.red{border-color: #f07280;background-color:#faced3;}
 
-
+/* Circles :: Capacity
+-----------------------------------------------------------------------------*/
 .circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
 .circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
@@ -72,9 +73,9 @@
 .circle.warning_level{border-color: #f9d36f; background-color:#fdf1d0;}
 .circle.normal{border-color: #90e674;background-color:#d5f6ca;}
 
-/* Circles :: Capacity
+/* Shelter Kill/No Kill Bubble
 -----------------------------------------------------------------------------*/
-.shelter_type{width: 150px; margin-top: 20px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.shelter_type{width: 150px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .shelter_type.kill{border-color: #f07280;background-color:#faced3;}
 .shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
 
@@ -629,13 +630,11 @@
 
 /* User List :: Layout
 -----------------------------------------------------------------------------*/
-.user_list{ width: 100%; margin-bottom: 20px; table-layout: auto; border-collapse: collapse; border-spacing: 0;}
-.user_list .current {background-color:#EFEBE3;}
-.user_list .hover {cursor:default;}
-
-.user_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+.user_list{ width: 100%; margin-bottom: 20px; table-layout: auto; border-collapse: collapse; border-spacing: 0;border-top: 1px #bbb dotted; padding-bottom: 30px;}
 
 .user{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+.user.current {background-color:#EFEBE3;}
+.user.hover {cursor:default;}
 
 .user .name{display:inline-block; width: 23%;text-align: left; color: #000; font-size: 14px; font-weight: bold; letter-spacing:-1px;}
 .user .title{display:inline-block; width: 23%;font-size: 11px;}
@@ -675,6 +674,7 @@
 /* Index Shelters :: Details */
 /******************************************************************/
 .index_shelters .shelter_details {padding-bottom: 20px;}
+.index_shelters .shelter_details ul {padding-bottom: 20px;}
 .index_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
 .index_shelters .shelter_details #contact_details {float:left; width: 50%;}
 .index_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
