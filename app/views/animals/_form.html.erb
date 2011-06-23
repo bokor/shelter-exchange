@@ -98,12 +98,12 @@
 		</li>
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
-			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "i.e. - 40 lbs" %></div>
+			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>
 			<%= has_error_message?(@animal, :weight)%>
 		</li>
 		<li>
 			<%= f.label :size, "Size", :class => "desc" %>
-			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255, :placeholder => "i.e. - Small, Medium, Large" %></div>
+			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255, :placeholder => "Small, Medium, Large or other" %></div>
 			<%= has_error_message?(@animal, :size)%>
 		</li>
 		<li>

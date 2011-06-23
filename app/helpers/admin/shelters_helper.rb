@@ -1,0 +1,2 @@
+module Admin::SheltersHelper
+end

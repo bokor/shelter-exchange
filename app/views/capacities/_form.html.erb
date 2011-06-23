@@ -5,11 +5,11 @@
 </li>
 <li class="full">
 	<%= f.label :max_capacity, "Max capacity of capacitys per type <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4 %></div>
+	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4, :placeholder => "Maximum animals your shelter can house - per type." %></div>
 	<%= has_error_message?(@capacity, :max_capacity)%>
 </li>
 <li class="full">
 	<%= f.label :warning_level, "Warning level <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :warning_level, :class => "field text small", :maxlength => 4 %></div>
+	<div><%= f.text_field :warning_level, :class => "field text small", :maxlength => 4, :placeholder => "Number of animals when your shelter is almost full - per type." %></div>
 	<%= has_error_message?(@capacity, :warning_level)%>
 </li>

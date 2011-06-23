@@ -80,6 +80,22 @@
 .shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
 
 
+/* Stats
+-----------------------------------------------------------------------------*/
+.stats{padding:20px 0;}
+.stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Counts by Status List :: Layout
+-----------------------------------------------------------------------------*/
+.counts_by_status_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.counts_by_status{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.counts_by_status.hover{cursor:default;}
+
+	.counts_by_status .status{display:inline-block; width: 30%; font-weight: bold;}
+	.counts_by_status .count{display:inline-block; width: 10%; }
+
 
 
 
@@ -97,22 +113,6 @@
 .dashboard #main { margin: 1em 3em 0 3em; }
 .dashboard #left{ width: 100%;}
 .dashboard #sidebar { display: none;width: 0; }
-
-
-
-/* Counts by Status :: Layout
------------------------------------------------------------------------------*/
-.counts_by_status_list { width: 70%; border-top: 1px #bbb dotted; padding-bottom: 30px;}
-
-.counts_by_status{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
-.counts_by_status.hover{cursor:default;}
-
-	.counts_by_status .status{display:inline-block; width: 300px; font-weight: bold;}
-	.counts_by_status .count{display:inline-block; width: 300px; }
-
-
-
-
 
 
 
@@ -153,20 +153,55 @@
 	.shelter .city_state{display:inline-block; width: 20%; }
 	.shelter .email{display:inline-block;  }
 	
+	
+/* User List :: Layout
+-----------------------------------------------------------------------------*/
+.user_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.user{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.user.hover{cursor:default;}
+
+	.user .name{display:inline-block; width: 25%; font-weight: bold;}
+	.user .role{display:inline-block; width: 20%; font-size : 11px;}
+	.user .email{display:inline-block; width: 45%; }
+
+	
 
 /* Shelter Details :: Show :: Layout
 -----------------------------------------------------------------------------*/
-.show_shelters .shelter_details {padding-bottom: 20px;}
-.show_shelters .shelter_details ul {padding-bottom: 20px;}
-.show_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
-.show_shelters .shelter_details #contact_details {float:left; width: 50%;}
-.show_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.shelter_details {padding-bottom: 20px;}
+.shelter_details ul {padding-bottom: 20px;}
+.shelter_details #address {float:left; width: 45%; padding-right: 5%; }
+.shelter_details #contact_details {float:left; width: 50%;}
+.shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
 /* Shelter Map :: Canvas
 -----------------------------------------------------------------------------*/
-#map_canvas { margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
+.show_shelters #map_canvas {margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
+
+
+/* Shelter Capacities :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters table.capacity_details .hover {cursor:default;}
+.show_shelters table.capacity_details { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+.show_shelters table.capacity_details tr {border-bottom:1px #ccc dotted; }
+.show_shelters table.capacity_details tr:last-child {border-bottom:1px #ccc dotted; }
+.show_shelters table.capacity_details td{vertical-align:top;font-size:12px;padding:5px 0;}
+.show_shelters td {width:25%;}
+.show_shelters td .circle{padding: 0; margin:0;}
+.show_shelters td.over_capacity .circle{background-color: #fce2ec; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #f286b1;}
+.show_shelters td.warning_level .circle{background-color:#fffbe5; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #ffd27f;}
+.show_shelters td.normal .circle{background-color:#f1fce2; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #c4f286;}
+
+.show_shelters table.legend { width: 100%; padding: 5px 0 0 0; }
+.show_shelters table.legend td{width: 30%;}
+.show_shelters table.legend td.over_capacity span, table.legend td.warning_level span, table.legend td.normal span{ margin-left: 20px; white-space: nowrap; }
+.show_shelters table.legend td.over_capacity{width: 22%;}
+.show_shelters table.legend td.warning_level{width: 34%;} 
+.show_shelters table.legend td.normal { width: auto; }
+
 
 
 

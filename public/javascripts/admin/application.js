@@ -8,7 +8,7 @@
  * Live - Hover, Click Events
  * ------------------------------------------------------------------------ */
 $(function(){
-	$(".counts_by_status").live('hover', function(e) {
+	$(".counts_by_status, .users, .capacity_details tbody tr").live('hover', function(e) {
 	  if (e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {

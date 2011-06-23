@@ -68,7 +68,74 @@
 			</div>
 		</div>
 		
-		<div id="map_canvas"></div>
+		
+		<div class="stats">
+			<h2>Counts by status</h2>
+			<div class="counts_by_status_list">
+				<% @counts_by_status.map do |status, count| %>
+					<div class="counts_by_status">
+						<span class="status"><%= status %></span>
+						<span class="count"><%= count %></span>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="stats">
+			<h2>Shelter Users</h2>
+			<div class="user_list">
+				<% @users.each do |user| %>
+					<div id="<%= "user_#{user.id}" %>" class="user">
+						<span class="name"><%= user.name %></span>
+						<span class="role"><%= user.role.humanize %></span>
+						<span class="email"><%= user.email %></span>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="stats">
+			<% unless @capacities.blank? %>
+				<h2>Does this shelter have room?</h2>
+				<table class="capacity_details">
+					<thead>
+						<tr>
+							<th>Animal</th>
+							<th>Status</th>
+							<th>Space Avail</th>
+							<th>Max</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @capacities.each do |capacity| %>
+						<% animal_count = capacity.animal_type.animals.active.count %>
+						<%  status_class = ""
+							if animal_count >= capacity.warning_level and animal_count <= capacity.max_capacity
+								status_class = "warning_level"  
+							elsif animal_count >= capacity.max_capacity
+								status_class = "over_capacity"
+							else 
+								status_class = "normal"
+							end
+						%>
+						<tr class="row">
+							<td><%= capacity.animal_type.name %></td>
+							<td class="<%=status_class%>"><div class="circle"></div></td>
+							<td><%= capacity.max_capacity - animal_count %></td>
+							<td><%= capacity.max_capacity%></td>
+						</tr>
+					<% end %>
+					</tbody>
+				</table>
+				<table class="legend">
+					<tr>
+						<td class="over_capacity"><div class="circle"><span>Full</span></div></td>
+						<td class="warning_level"><div class="circle"><span>Almost full</span></div></td>
+						<td class="normal"><div class="circle"><span>Good</span></div></td>
+					</tr>
+				</table>
+			<% end %>
+		</div>
 		
 	</div>
 		
@@ -82,6 +149,8 @@
 		<p>Account Blocked: <%= @account.blocked? %></p>
 		<p>Reason Blocked: <%= @account.reason_blocked %></p>
 	</div>
+	
+	<div id="map_canvas"></div>
 	
 <% end %>
 
