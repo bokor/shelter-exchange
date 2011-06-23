@@ -1,0 +1,39 @@
+<%= title "Shelter List" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1>Shelters</h1>
+	</div>
+	
+	<div class="page_content">
+
+		<div id="shelter_section">
+			<h3 style="font-weight:bold;">No Kill Shelters</h3>
+			<div id="shelters" class="shelter_list">
+				<% @no_kill_shelters.each do |shelter| %>
+					<div style="border-top: 1px #ccc dotted;border-bottom: 1px #ccc dotted;"><%=shelter.name %></div>
+				<% end %>
+			</div>
+		</div>
+		<br /><br />
+		<div id="shelter_section">
+			<h3 style="color: red; font-weight:bold;">Kill Shelters</h3>
+			<div id="shelters" class="shelter_list">
+				<% @kill_shelters.each do |shelter| %>
+					<div style="border-top: 1px #ccc dotted;border-bottom: 1px #ccc dotted;"><%=shelter.name %></div>
+				<% end %>
+			</div>
+		</div>
+		
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+	
+<% end %>
+

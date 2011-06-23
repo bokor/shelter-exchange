@@ -8,6 +8,7 @@ ShelterExchangeApp::Application.routes.draw do
         
     namespace :admin do
       match "/dashboard", :to => 'dashboard#index'
+      resources :shelters, :only => [:index, :show]
     end
     
     devise_for :owners, :path => "admin", :controllers => { :sessions => "admin/owners/sessions" },
