@@ -1,0 +1,16 @@
+<% if @account.errors.any? %>
+	$('#edit_account_errors_<%=@account.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @account) %>" );
+	<%= render 'global/ajax_form_errors', :target => @account, :form_id => "edit_account_form_#{@account.id}" %>	
+<% else %>
+	$('#edit_account_<%=@account.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
+	$('#account_<%=@account.id%>').replaceWith( "<%= escape_javascript(render @account) %>" );
+	$('#account_<%=@account.id%>').show().effect("highlight", {}, 1000);
+	
+	// Remove Errors
+	$('#edit_account_errors_<%=@account.id %>').html("");
+	$('#edit_account_form_<%=@account.id %> p.error').remove();
+	$('#edit_account_form_<%=@account.id %> li').removeClass("error");
+<% end %>
+<% flash.discard %>

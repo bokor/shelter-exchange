@@ -1,12 +1,12 @@
 <%= title "#{@shelter.name}" %>
 
 <%= content_for :javascripts do %>
-<%= javascript_include_tag "admin/shelters", "http://maps.google.com/maps/api/js?sensor=false", :cache => "cache/admin/shelters-index" %>
-<script type="text/javascript">
-	$(function() {
-		Shelters.loadMap(<%=@shelter.lat%>, <%=@shelter.lng%>);
-	});
-</script>
+<%= javascript_include_tag "admin/shelters", "admin/accounts", "http://maps.google.com/maps/api/js?sensor=false", :cache => "cache/admin/shelters-index" %>
+	<script type="text/javascript">
+		$(function() {
+			Shelters.loadMap(<%=@shelter.lat%>, <%=@shelter.lng%>);
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -143,12 +143,7 @@
 
 <%= content_for :sidebar do %>
 
-	<div id="account_details">
-		<h2>Account Information</h2>
-		<p>Subdomain: <%= @account.subdomain %></p>
-		<p>Account Blocked: <%= @account.blocked? %></p>
-		<p>Reason Blocked: <%= @account.reason_blocked %></p>
-	</div>
+	<%= render @account %>
 	
 	<div id="map_canvas"></div>
 	

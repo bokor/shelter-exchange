@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------
- * communities.js
+ * app/communities.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 // var Maps = function(){

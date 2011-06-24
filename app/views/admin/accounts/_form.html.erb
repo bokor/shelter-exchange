@@ -1,0 +1,20 @@
+<li>
+	<%= f.label :blocked, "Blocked", :class => "desc" %>
+	<div>
+		<span>
+			<%= f.radio_button :blocked, :true, :class => "field radio" %>
+			<%= f.label :blocked, "Yes", :class => "choice" %>
+		</span>
+		<span>
+			<%= f.radio_button :blocked, :false, :class => "field radio" %>
+			<%= f.label :blocked, "No", :class => "choice" %>
+		</span>
+	</div>
+	<%= has_error_message?(@account, :blocked)%>
+</li>
+
+<li class="full">
+	<%= f.label :reason_blocked, "Reason blocked", :class => "desc" %>
+	<div><%= f.text_area :reason_blocked, :class => "field textarea medium" %></div>
+	<%= has_error_message?(@account, :reason_blocked)%>
+</li>

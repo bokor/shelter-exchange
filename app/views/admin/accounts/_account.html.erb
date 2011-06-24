@@ -1,0 +1,15 @@
+<div id="<%= "account_#{account.id}" %>" class="account">
+	<h2>Account Information</h2>
+	<ul>
+		<li>Subdomain: <%= account.subdomain %></li>
+		<% if account.blocked? %>
+			<li>Status: Blocked</li>
+			<li>Reason Blocked: <%= account.reason_blocked %></li>
+		<% else %>
+			<li>Status: Approved</li>
+		<% end %>
+	</ul>
+	<ul class="action_links">
+		<li><%= link_to "Edit Account", edit_admin_account_path(account), :remote => true, :class => "button" %></li>
+	</ul>
+</div>

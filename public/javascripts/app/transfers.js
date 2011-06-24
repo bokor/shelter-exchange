@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------
- * transfers.js
+ * app/transfers.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Transfers = {

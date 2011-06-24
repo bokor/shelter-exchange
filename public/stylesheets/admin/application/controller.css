@@ -136,7 +136,7 @@
 .show_shelters .page_heading .logo{width:30%; float:left; text-align:right; padding-top: 5px;}
 
 
-/* Shelters Section :: Index/Edit/Update/New/Create :: Layout
+/* Shelters Section :: Index :: Layout
 -----------------------------------------------------------------------------*/
 .no_kill_shelters_section h2{font-weight: bold;}
 .kill_shelters_section h2{color: red;font-weight: bold;}
@@ -169,20 +169,20 @@
 
 /* Shelter Details :: Show :: Layout
 -----------------------------------------------------------------------------*/
-.shelter_details {padding-bottom: 20px;}
-.shelter_details ul {padding-bottom: 20px;}
-.shelter_details #address {float:left; width: 45%; padding-right: 5%; }
-.shelter_details #contact_details {float:left; width: 50%;}
-.shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_shelters .shelter_details {padding-bottom: 20px;}
+.show_shelters .shelter_details ul {padding-bottom: 20px;}
+.show_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
+.show_shelters .shelter_details #contact_details {float:left; width: 50%;}
+.show_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
-/* Shelter Map :: Canvas
+/* Shelter Map :: Show :: Canvas
 -----------------------------------------------------------------------------*/
 .show_shelters #map_canvas {margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
 
 
-/* Shelter Capacities :: Layout
+/* Shelter Capacities :: Show :: Layout
 -----------------------------------------------------------------------------*/
 .show_shelters table.capacity_details .hover {cursor:default;}
 .show_shelters table.capacity_details { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
@@ -201,6 +201,20 @@
 .show_shelters table.legend td.over_capacity{width: 22%;}
 .show_shelters table.legend td.warning_level{width: 34%;} 
 .show_shelters table.legend td.normal { width: auto; }
+
+
+
+
+/******************************************************************/
+/* -------------------------- ACCOUNTS -------------------------- */
+/******************************************************************/
+
+
+/* Account :: Layout
+-----------------------------------------------------------------------------*/
+.account{padding-bottom: 20px;}
+.account ul {padding-bottom: 20px;}
+
 
 
 
