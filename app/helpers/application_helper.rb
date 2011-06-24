@@ -42,6 +42,10 @@ module ApplicationHelper
     end
   end
   
+  def current_month
+    Time.zone.now.month
+  end
+  
   def current_year
     Time.zone.now.year
   end

@@ -1,11 +1,11 @@
 <%= title "Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "global/highcharts", "app/reports", :cache => "cache/app/-index" %>
+	<%= javascript_include_tag "global/highcharts", "app/reports", :cache => "cache/app/reports-index" %>
 	
 	<script type="text/javascript">
 		$(function() {
-			var monthYear = '<%=format_date(:month_only, Date.today)%> <%= current_year %>';
+			var monthYear = '<%=format_date(:full_month_only, Date.today)%> <%= current_year %>';
 			Reports.pieChart('Animals by Status Monthly Total - ' + monthYear, 'status_by_current_month');
 			Reports.pieChart('Animals by Type Monthly Total - ' + monthYear, 'type_by_current_month');
 		});

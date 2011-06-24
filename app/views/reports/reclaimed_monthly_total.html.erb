@@ -1,7 +1,7 @@
 <%= title "Reclaimed Monthly Total - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "global/highcharts", "app/reports", :cache => "cache/app/-index" %>
+	<%= javascript_include_tag "global/highcharts", "app/reports", :cache => "cache/app/reports-index" %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Reclaimed Monthly Total', 'reclaimed_monthly_total', 'Reclaimed');

@@ -7,15 +7,36 @@ ShelterExchangeApp::Application.routes.draw do
   constraints(AdminSubdomain) do
         
     namespace :admin do
-      match "/dashboard", :to => 'dashboard#index'
+      
+      # Admin :: Dashboard
+      #----------------------------------------------------------------------------
+      match "/dashboard", :to => "dashboard#index"
+      
+      # Admin :: Shelters
+      #----------------------------------------------------------------------------
       resources :shelters, :only => [:index, :show]
+      
+      # Admin :: Accounts
+      #----------------------------------------------------------------------------
       resources :accounts, :only => [:edit, :update]
+      
+      # Admin :: Reports
+      #----------------------------------------------------------------------------
+      resources :reports do
+        collection do 
+          get :status_by_month_year
+        end
+      end
+      
     end
     
+    # Admin :: Owners :: Devise
+    #----------------------------------------------------------------------------
     devise_for :owners, :path => "admin", :controllers => { :sessions => "admin/owners/sessions" },
                         :path_names => { :sign_in => "login", :sign_out => "logout" }
     
-    
+    # Root
+    #----------------------------------------------------------------------------
     root :to => redirect("/admin/dashboard")
     
   end

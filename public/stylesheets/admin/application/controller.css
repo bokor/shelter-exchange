@@ -205,6 +205,10 @@
 
 
 
+
+
+
+
 /******************************************************************/
 /* -------------------------- ACCOUNTS -------------------------- */
 /******************************************************************/
@@ -214,6 +218,32 @@
 -----------------------------------------------------------------------------*/
 .account{padding-bottom: 20px;}
 .account ul {padding-bottom: 20px;}
+
+
+
+
+
+
+
+
+/*****************************************************************/
+/* -------------------------- REPORTS -------------------------- */
+/*****************************************************************/
+
+/* Reports :: Global
+-----------------------------------------------------------------------------*/
+.reports ul {list-style:none;}
+
+.reports .page_heading h1{width:50%; float:left; }
+.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.reports .page_heading .action_links label {padding-left: 15px;}
+.reports .page_heading .action_links input {margin-left: 15px;}
+
+/* Reports :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.reports #main { margin: 1em 3em 0 3em; }
+.reports #left{ width: 100%;}
+.reports #sidebar { display: none;width: 0; }
 
 
 

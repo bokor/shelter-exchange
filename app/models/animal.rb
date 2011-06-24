@@ -132,11 +132,17 @@ class Animal < ActiveRecord::Base
 
   
   # Scopes - Reports
-  #----------------------------------------------------------------------------
+  #----------------------------------------------------------------------------  
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id) 
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
+  
+  def self.count_by_status_by_month_year(month, year)
+    start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
+    range = start_date.beginning_of_month..start_date.end_of_month
+    select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id).where(:status_change_date => range)
+  end
   
   def self.totals_by_month(year, date_type, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
