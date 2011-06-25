@@ -190,18 +190,13 @@
 .show_shelters table.capacity_details tr:last-child {border-bottom:1px #ccc dotted; }
 .show_shelters table.capacity_details td{vertical-align:top;font-size:12px;padding:5px 0;}
 .show_shelters td {width:25%;}
-.show_shelters td .circle{padding: 0; margin:0;}
-.show_shelters td.over_capacity .circle{background-color: #fce2ec; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #f286b1;}
-.show_shelters td.warning_level .circle{background-color:#fffbe5; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #ffd27f;}
-.show_shelters td.normal .circle{background-color:#f1fce2; height: 15px; width: 15px;-moz-border-radius:75px;-webkit-border-radius: 75px;border-radius: 75px;border:1px solid #c4f286;}
 
 .show_shelters table.legend { width: 100%; padding: 5px 0 0 0; }
-.show_shelters table.legend td{width: 30%;}
-.show_shelters table.legend td.over_capacity span, table.legend td.warning_level span, table.legend td.normal span{ margin-left: 20px; white-space: nowrap; }
-.show_shelters table.legend td.over_capacity{width: 22%;}
-.show_shelters table.legend td.warning_level{width: 34%;} 
-.show_shelters table.legend td.normal { width: auto; }
-
+.show_shelters table.legend td{width: 30%; }
+.show_shelters table.legend td span{ margin-left: 20px; white-space: nowrap; }
+.show_shelters table.legend td .over_capacity span{width: 22%;}
+.show_shelters table.legend td .warning_level span{width: 34%;} 
+.show_shelters table.legend td .normal span{ width: auto; }
 
 
 

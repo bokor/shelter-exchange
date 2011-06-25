@@ -120,7 +120,7 @@
 						%>
 						<tr class="row">
 							<td><%= capacity.animal_type.name %></td>
-							<td class="<%=status_class%>"><div class="circle"></div></td>
+							<td><div class="circle small <%=status_class%>"></div></td>
 							<td><%= capacity.max_capacity - animal_count %></td>
 							<td><%= capacity.max_capacity%></td>
 						</tr>
@@ -129,9 +129,9 @@
 				</table>
 				<table class="legend">
 					<tr>
-						<td class="over_capacity"><div class="circle"><span>Full</span></div></td>
-						<td class="warning_level"><div class="circle"><span>Almost full</span></div></td>
-						<td class="normal"><div class="circle"><span>Good</span></div></td>
+						<td><div class="circle small over_capacity"><span>Full</span></div></td>
+						<td><div class="circle small warning_level"><span>Almost full</span></div></td>
+						<td><div class="circle small normal"><span>Good</span></div></td>
 					</tr>
 				</table>
 			<% end %>
