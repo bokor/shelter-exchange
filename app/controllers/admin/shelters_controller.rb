@@ -2,8 +2,8 @@ class Admin::SheltersController < Admin::ApplicationController
   respond_to :html, :js
   
   def index
-    @kill_shelters = Shelter.where(:is_kill_shelter => true).all
-    @no_kill_shelters = Shelter.where(:is_kill_shelter => false).all
+    @kill_shelters = Shelter.where(:is_kill_shelter => true).order('name ASC').all
+    @no_kill_shelters = Shelter.where(:is_kill_shelter => false).order('name ASC').all
   end
   
   def show
