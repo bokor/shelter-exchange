@@ -1,5 +1,6 @@
 <%= title "Login" %>
 
+
 <%= content_for :page_content do %>
 
 	<!-- <div class="page_heading">
@@ -9,31 +10,41 @@
 	<div class="page_content">
 		
 		<%= render "global/error_messages", :target => resource %>
-		<%# devise_error_messages! %>
 		
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-			<ul class="form">
-		  		<li>
-		  			<%= f.label :email %><br />
-		  			<%= f.text_field :email %>
+			<ul>
+		  		<li class="full">
+		  			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Your email address" %>
+					</div>
+					<%= has_error_message?(resource, :email)%>
 				</li>
-				<li>
-					<%= f.label :password %><br />
-					<%= f.password_field :password %>
+				<li class="full">
+					<%= f.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+					<%= f.password_field :password, :class => "field text large", :maxlength => 255, :placeholder => "Your password" %>
+					</div>
+					<%= has_error_message?(resource, :password)%>
 				</li>
-				<li>
-					<% if devise_mapping.rememberable? -%>
-						<%= f.check_box :remember_me %>  <%= f.label :remember_me %></p>
-					<% end -%>
+				<li class="full">
+					<% if devise_mapping.rememberable? %>
+					<div>
+						<span>
+							<%= f.check_box :remember_me, :class => "field checkbox" %>  
+							<%= f.label :remember_me, :class => "choice" %>
+						</span>
+					</div>
+					<% end %>
+				</li>
+				<li class="buttons">
+					<%= f.submit "Sign in", :disable_with => 'Submiting...', :class => "button" %>
+					<% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+						<%= link_to "Forgot your password?", new_password_path(resource_name) %><br /><br />
+					<% end %>
 				</li>
 			</ul>
-			<div class="actions">
-		  		<%= f.submit "Sign in", :disable_with => 'Submiting...' %>
-				<% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-					&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-					<%= link_to "Forgot your password?", new_password_path(resource_name) %><br /><br />
-				<% end %>
-			</div>
 			
 			<%= f.hidden_field :subdomain, :value => @current_account.subdomain %>
 		

@@ -166,7 +166,7 @@
 
 						<span>
 							<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
+							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :autocomplete => :off, :class => "field text large", :maxlength => 255 %>
 							</div>
 						</span>
 
@@ -180,11 +180,11 @@
 
 						<span>	
 							<fieldset>
-							<legend id="title9" class="desc">Euthanized Animals</legend>
+							<legend id="title9" class="desc">Euthanasia List</legend>
 							<div>
 							<span>
 								<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-								<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "choice" %>
+								<%= label_tag :filters_euthanasia_only, "Show me the animals in danger", :class => "choice" %>
 							</span>
 							</div>
 							</fieldset>
@@ -203,17 +203,17 @@
 				<div style="padding-top: 5px;float: left; width: 50%;">
 					<h2>Search by City or Zip code</h2>
 					<form action="#" id="form_address_search">
-				    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;", :placeholder => "i.e - 40356 or Nicholasville, KY"  %> <%= submit_tag "Go" %>
+				    	<%= text_field_tag :address, @current_shelter.zip_code, :style => "width: 90%;"  %> <%= submit_tag "Go" %>
 					</form>
 				</div>
 				<div style="float: left; width: 50%; text-align:right;">
-					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow Your results</a>
+					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your results</a>
 					<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div style="float: right; width: 100%; text-align:right;">
-				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow Your results</a>
+				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow your results</a>
 				<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 			</div>
 				<div id="filters2" class="section_heading no_borders blue">
@@ -242,11 +242,11 @@
 
 								<span>	
 									<fieldset>
-									<legend id="title9" class="desc">Euthanized Animals</legend>
+									<legend id="title9" class="desc">Euthanasia List</legend>
 									<div>
 									<span>
 										<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-										<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks", :class => "choice" %>
+										<%= label_tag :filters_euthanasia_only, "Show me the animals in danger", :class => "choice" %>
 									</span>
 									</div>
 									</fieldset>

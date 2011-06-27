@@ -1,6 +1,6 @@
 <li>
 	<%= f.label :requestor, "Name of requestor <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :requestor, :class => "field text large", :placeholder => "Enter your name" %></div>
+	<div><%= f.text_field :requestor, :class => "field text large", :placeholder => "Your name" %></div>
 	<%= has_error_message?(@transfer, :requestor)%>
 </li>
 <li>
@@ -18,7 +18,7 @@
 </li>
 <li class="full">
 	<%= f.label :transfer_history_reason, "Additional notes".html_safe, :class => "desc" %>
-	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small", :placeholder => "Please enter any notes that maybe helpful to expedite this transfer." %></div>
+	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small", :placeholder => "Add a note that may help expedite this transfer." %></div>
 	<%= has_error_message?(@transfer, :transfer_history_reason)%>
 </li>
 

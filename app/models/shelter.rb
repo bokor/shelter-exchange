@@ -118,9 +118,9 @@ class Shelter < ActiveRecord::Base
     end
     
     def delete_logo?
-      self.logo.clear if delete_logo
+      self.logo.clear if delete_logo == "1" 
     end
   
 end
-
+      #unless delete_logo.to_i.zero?
       # %w(street city state zip_code).all? { |attr| self.send(attr).blank? }

@@ -277,11 +277,12 @@ class Animal < ActiveRecord::Base
     end
     
     def delete_photo?
-      self.photo.clear if delete_photo
+      self.photo.clear if delete_photo == "1" 
     end
 
 end
 
+#unless delete_photo.to_i.zero?
 
 # def self.map_euthanasia_list(shelter_ids, filters={})
 #   scope = scoped{}

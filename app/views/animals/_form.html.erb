@@ -2,7 +2,7 @@
 	<ul>
 		<li>
 			<%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255, :placeholder => "Enter animal name" %></div>
+			<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@animal, :name)%>
 		</li>
 		<li>
@@ -16,7 +16,7 @@
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
-				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
 				</div>
 				<%= has_error_message?(@animal, :primary_breed)%>
 			</div>
@@ -30,7 +30,7 @@
 			<div id="secondary_breed_field">
 				<%= f.label :secondary_breed, "Secondary breed", :class => "desc" %>
 				<div>
-				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255 %>
 				</div>
 				<%= has_error_message?(@animal, :secondary_breed)%>
 			</div>
@@ -98,22 +98,22 @@
 		</li>
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
-			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>
+			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@animal, :weight)%>
 		</li>
 		<li>
 			<%= f.label :size, "Size", :class => "desc" %>
-			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255, :placeholder => "Small, Medium, Large or other" %></div>
+			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@animal, :size)%>
 		</li>
 		<li>
 			<%= f.label :color, "Color", :class => "desc" %>
-			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255, :placeholder => "Black and white" %></div>
+			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@animal, :color)%>
 		</li>
 		<li>
 			<%= f.label :microchip, "Microchip#", :class => "desc" %>
-			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
+			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
 		<li class="section">
@@ -139,7 +139,7 @@
 		<li class="section">
 			<section>
 				<h3>Euthanasia Details</h3>
-				<div>Enter the animals arrival date, hold time if given and the scheduled euthanasia date.</div>
+				<div>Enter the animals arrival date, hold time and the scheduled euthanasia date.</div>
 			</section>
 		</li>
 		<li class="date">
