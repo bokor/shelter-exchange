@@ -19,6 +19,6 @@
 </li>
 <li>
 	<%= f.label :max_capacity, "Max number of animals <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :max_capacity, :class => "field text large", :maxlength => 3, :placeholder => "4" %></div>
+	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4, :placeholder => "4" %></div>
 	<%= has_error_message?(@accommodation, :max_capacity)%>
 </li>

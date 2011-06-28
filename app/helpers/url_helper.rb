@@ -16,4 +16,9 @@ module UrlHelper
   def full_url
     request.port != 80 ? [request.protocol, request.host, ":", request.port].join : [request.protocol, request.host].join
   end
+  
+  def api_url
+    request.port != 80 ? [request.protocol, "api.", request.domain, ":", request.port].join : [request.protocol, "api.", request.domain].join
+  end
+  
 end

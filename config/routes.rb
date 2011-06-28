@@ -42,6 +42,21 @@ ShelterExchangeApp::Application.routes.draw do
   end
   
   
+  # Api - Routes for api.domain.com
+  #----------------------------------------------------------------------------
+  constraints(ApiSubdomain) do
+        
+    namespace :api, :path => "/" do
+      
+      # Api :: Animals
+      #----------------------------------------------------------------------------
+      resources :animals, :only => [:index, :show]
+      
+    end
+    
+  end
+  
+  
   
   
   # Application - Routes for *subdomain*.domain.com
@@ -184,8 +199,10 @@ ShelterExchangeApp::Application.routes.draw do
     
     # API
     #----------------------------------------------------------------------------
-    resources :api, :only => [:animals]
-    match '/api/:version/animals' => 'api#animals'
+    resources :api, :only => [:animals, :animal]
+    match '/api/animals' => 'api#animals'
+    match '/api/animal' => 'api#animal'
+    # match '/api/:version/animals' => 'api#animals'
         
     # Account Settings
     #----------------------------------------------------------------------------

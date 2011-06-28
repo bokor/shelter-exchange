@@ -1,0 +1,88 @@
+<%= title "#{@animal.name} (#{@animal.id})" %>
+
+<%= content_for :javascripts do %>
+	
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading blue">
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="action_links"></td>
+			</tr>
+			<tr>
+				<td>
+					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
+				</td>
+				<td class="status">
+					<p><%= @animal.animal_status.name %></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		 
+		<table class="animal_details">
+			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
+						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
+						<% unless @animal.size.blank? %><li><p><b>Size:</b>  <%= @animal.size %></p></li><% end %>
+						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
+						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
+					</ul>
+					
+					<h3>Accommodation:</h3>
+					<ul>
+						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
+						<li><p><b>Location:</b>  <%= @animal.accommodation and @animal.accommodation.location ? @animal.accommodation.location.name : "None"   %></p></li>
+					</ul>
+					
+					
+				</td>
+				<td class="image">
+			    	<%= image_tag @animal.photo.url(:medium) %>
+			    </td>
+			</tr>
+		</table>
+		
+		<table class="description">
+			<tr>
+				<td>
+					<h3>Description:</h3>
+					<p><%= @animal.description %></p>
+				</td>
+			</tr>
+		</table>
+		
+		<% if @current_shelter.is_kill_shelter %>
+		<table class="euthanasia_info">
+			<tr>
+				<td>
+					<h3>Euthanasia Info:</h3>
+					<ul>
+						<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
+						<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
+						<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+
+		
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+
+<% end %>
+	

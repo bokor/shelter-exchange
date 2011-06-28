@@ -40,15 +40,17 @@
 			<% if @current_shelter.access_token.blank? %>
 				<h3>Web Access is currently not enabled.  Please Generate a Token so you can access your animals.</h3>
 			<% else %>
+				<h3>HTML</h3>
+				<p><code><%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
+				
 				<h3>JSON</h3>
-				<h5>Version 1</h5>
-				<p><code><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
+				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
+				
 				<h3>JSONP</h3>
-				<h5>Version 1</h5>
-				<p><code><%= full_url %>/api/v1/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
+				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
+				
 				<h3>XML</h3>
-				<h5>Version 1</h5>
-				<p><code><%= full_url %>/api/v1/animals.xml?access_token=<%= @current_shelter.access_token %></code></p>
+				<p><code><%= api_url %>/animals.xml?access_token=<%= @current_shelter.access_token %></code></p>
 			<% end %>
 			</div>
 			

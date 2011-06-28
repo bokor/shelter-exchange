@@ -5,14 +5,8 @@ xml.animals do
     xml.animal do
       xml.id(animal.id)
       xml.name(animal.name)
-      xml.type do 
-        xml.id(animal.animal_type_id)
-        xml.name(animal.animal_type.name)
-      end
-      xml.status do 
-        xml.id(animal.animal_status_id)
-        xml.name(animal.animal_status.name)
-      end
+      xml.type(animal.animal_type.name)
+      xml.status(animal.animal_status.name)
       xml.breed(full_breed(animal))
       xml.microchip(animal.microchip)
       xml.estimated_age(humanize_dob(animal.date_of_birth))
@@ -21,6 +15,11 @@ xml.animals do
       xml.is_sterilized(animal.is_sterilized)
       xml.weight(animal.weight)
       xml.sex(animal.sex.to_s.humanize)
+      xml.euthanasia_info do
+    	  xml.arrival_date(format_date(:default, animal.arrival_date))
+    		xml.hold_time(animal.hold_time.blank? ? "" : "#{animal.hold_time} days")
+    		xml.euthanasia_date(format_date(:default, animal.euthanasia_date))
+      end
       xml.photo do 
         xml.thumbnail(animal.photo.url(:thumbnail))
         xml.small(animal.photo.url(:small))

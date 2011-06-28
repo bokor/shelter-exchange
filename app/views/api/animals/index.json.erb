@@ -2,14 +2,8 @@
 { :animal => {
 	:id => animal.id,
     :name => animal.name,
-    :type => {
-    	:id => animal.animal_type_id,
-       	:name => animal.animal_type.name
-   	},
-	:status => {
-       	:id => animal.animal_status_id,
-        :name => animal.animal_status.name
-   	},
+    :type => animal.animal_type.name,
+	:status => animal.animal_status.name,
    	:breed => full_breed(animal),
     :estimated_age => humanize_dob(animal.date_of_birth),
 	:microchip => animal.microchip,
@@ -18,6 +12,11 @@
     :is_sterilized => animal.is_sterilized,
     :weight => animal.weight,
     :sex => animal.sex.to_s.humanize,
+    :euthanasia_info => {
+		:arrival_date => format_date(:default, animal.arrival_date),
+		:hold_time => animal.hold_time.blank? ? "" : "#{animal.hold_time} days",
+		:euthanasia_date => format_date(:default, animal.euthanasia_date)
+	},
     :photo => {
     	:thumbnail => animal.photo.url(:thumbnail),
     	:small => animal.photo.url(:small),
