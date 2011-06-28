@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
     
     def current_layout
-      user_signed_in? ? 'application' : 'login'
+      user_signed_in? ? 'app/application' : 'app/login'
     end
     
     def account_blocked?
