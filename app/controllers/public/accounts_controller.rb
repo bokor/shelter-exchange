@@ -1,5 +1,4 @@
-class AccountsController < ApplicationController
-  skip_before_filter :authenticate_user!, :current_account, :current_shelter, :set_shelter_timezone
+class Public::AccountsController < Public::ApplicationController
   respond_to :html
   
   def new

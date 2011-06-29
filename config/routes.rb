@@ -42,6 +42,8 @@ ShelterExchangeApp::Application.routes.draw do
   end
   
   
+  
+  
   # Api - Routes for api.domain.com
   #----------------------------------------------------------------------------
   constraints(ApiSubdomain) do
@@ -55,6 +57,25 @@ ShelterExchangeApp::Application.routes.draw do
     end
     
   end
+  
+  
+  
+  # Public - Routes for www.domain.com or domain.com
+  #----------------------------------------------------------------------------
+  constraints(PublicSubdomain) do
+        
+    namespace :public, :path => "/" do
+      
+      # Public :: Accounts
+      #----------------------------------------------------------------------------
+      resources :accounts
+      get "signup" => "accounts#new", :path => :signup
+      post "signup" => "accounts#create", :path => :signup
+      
+    end
+    
+  end
+  
   
   
   
@@ -229,31 +250,6 @@ ShelterExchangeApp::Application.routes.draw do
     root :to => redirect("/dashboard")
     
   end
-  
-
-# REMOVE LATER - Public Website Routes for www.domain.com
-  constraints(PublicSubdomain) do
-    
-#   Public Route
-    resources :public
-    # , :path => "" do
-    #   collection do
-    #     get :videos
-    #   end
-    # end
-    
-#   Public - Pages
-    get "videos" => "public#videos", :path => :videos
-    
-#   Accounts Route
-    resources :accounts
-    get "signup" => "accounts#new", :path => :signup
-    post "signup" => "accounts#create", :path => :signup
-    
-    
-    root :to => "public#index"
-  end
-
 
   # Catch All - If route isn't found then Four oh Four
   #----------------------------------------------------------------------------

@@ -5,14 +5,14 @@
 	<title><%= yield(:title) %> - Shelter Exchange - Admin</title>
   
  	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/tipsy", "global/wufoo_form",
-							"admin/application/common", "admin/application/controller",
+							"admin/common", "admin/controller",
 							:media => "all", :cache => "cache/admin/application/all" %>
 	<%= yield(:stylesheets) %>
 	
 	
 	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	
-							   "global/jquery.blockUI.min", 
-							   "global/jquery_ujs", "admin/application", 
+							   "global/jquery.blockUI.min", "global/forms"
+							   "global/jquery_ujs", "admin/application"
 							   :cache => "cache/admin/application/all" %>
 							
 	<!-- 						"global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	

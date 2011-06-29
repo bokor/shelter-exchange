@@ -5,14 +5,15 @@
 	<title><%= yield(:title) %> - Shelter Exchange</title>
 	
 	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/wufoo_form",
-						    "login/common",
+						    "app/login",
 					        :media => "all", :cache => "cache/login/all" %>
 
 	<%= yield(:stylesheets) %>
 	
 	
 	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min",
-	                           "global/modernizr", "global/jquery_ujs", "login/application", 
+	                           "global/modernizr", "global/forms",
+	                           "global/jquery_ujs", 
 	                           :cache => "cache/login/all" %> 
 	<%= yield(:javascripts) %>
 	

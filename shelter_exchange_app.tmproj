@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/controllers/locations_controller.rb</string>
+	<string>app/controllers/capacities_controller.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -13,8 +13,6 @@
 			<string>shelter_exchange_app</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>selected</key>
-			<true/>
 			<key>sourceDirectory</key>
 			<string></string>
 		</dict>
@@ -789,20 +787,6 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>app/models/admin_user.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/models/alert.rb</key>
 		<dict>
 			<key>caret</key>
@@ -943,20 +927,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/models/note_category.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>15</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/models/owner.rb</key>
 		<dict>
 			<key>caret</key>
@@ -1086,20 +1056,6 @@
 				<key>line</key>
 				<integer>20</integer>
 			</dict>
-		</dict>
-		<key>app/models/task_category.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>16</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/models/transfer.rb</key>
 		<dict>
@@ -1637,6 +1593,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/views/api/v1/animals.rss.builder</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/views/capacities/create.js.erb</key>
 		<dict>
 			<key>caret</key>
@@ -1914,14 +1884,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>77</integer>
+				<integer>79</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>30</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>27</integer>
 		</dict>
 		<key>app/views/layouts/login.html.erb</key>
 		<dict>
@@ -3355,7 +3325,6 @@
 		<string>app/models/comment.rb</string>
 		<string>app/models/location.rb</string>
 		<string>app/models/note.rb</string>
-		<string>app/models/note_category.rb</string>
 		<string>app/models/parent.rb</string>
 		<string>app/models/placement.rb</string>
 		<string>app/models/item.rb</string>
@@ -3374,7 +3343,6 @@
 		<string>app/controllers/dashboard_controller.rb</string>
 		<string>app/views/communities/animal.html.erb</string>
 		<string>config/routes.rb</string>
-		<string>app/models/admin_user.rb</string>
 		<string>app/views/transfers/_edit_transfer.html.erb</string>
 		<string>app/views/transfers/_transfer_list.html.erb</string>
 		<string>app/controllers/admin/owners/sessions_controller.rb</string>
@@ -3414,6 +3382,7 @@
 		<string>app/views/dashboard/index.html.erb</string>
 		<string>app/views/admin/owners/sessions/new.html.erb</string>
 		<string>app/views/layouts/application.html.erb</string>
+		<string>app/views/api/v1/animals.rss.builder</string>
 		<string>app/views/communities/search_by_city_zipcode.html.erb</string>
 		<string>app/views/communities/search_by_shelter_name.html.erb</string>
 		<string>app/views/communities/find_animals_for_shelter.js.erb</string>
@@ -3453,7 +3422,6 @@
 		<string>app/models/transfer_observer.rb</string>
 		<string>app/models/transfer_history.rb</string>
 		<string>app/models/transfer.rb</string>
-		<string>app/models/task_category.rb</string>
 		<string>app/models/task.rb</string>
 		<string>Gemfile</string>
 		<string>config/database.yml</string>
@@ -3519,13 +3487,6 @@
 									<key>subItems</key>
 									<dict/>
 								</dict>
-								<key>admin</key>
-								<dict>
-									<key>isExpanded</key>
-									<true/>
-									<key>subItems</key>
-									<dict/>
-								</dict>
 								<key>animals</key>
 								<dict>
 									<key>isExpanded</key>
@@ -3538,7 +3499,15 @@
 									<key>isExpanded</key>
 									<true/>
 									<key>subItems</key>
-									<dict/>
+									<dict>
+										<key>v1</key>
+										<dict>
+											<key>isExpanded</key>
+											<true/>
+											<key>subItems</key>
+											<dict/>
+										</dict>
+									</dict>
 								</dict>
 								<key>layouts</key>
 								<dict>
@@ -3629,6 +3598,6 @@
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{62, 25}, {1021, 823}}</string>
+	<string>{{171, -83}, {1021, 823}}</string>
 </dict>
 </plist>

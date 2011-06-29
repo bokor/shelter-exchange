@@ -1,0 +1,141 @@
+<%= title "Create new account" %>
+
+<%= content_for :javascripts do %>
+	<% if @account.errors.any? %>
+		<script type="text/javascript" charset="utf-8">
+			$(function() {
+				<%= render 'global/ajax_form_errors.js', :target => @account, :form_id => "signup_form" %>
+			});
+		</script>
+	<% end %>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading">
+		<h1>Create a new account for your Animal Shelter</h1>
+	</div>
+	
+	<div class="page_content">
+		<%= render "global/error_messages", :target => @account %>
+		
+		
+		<%= form_for (@account), :url => public_accounts_path, :html => { :id => "signup_form" } do |account_form| %>
+
+			<%= account_form.fields_for :shelters do |shelter_fields| %>
+			<ul>
+				<li class="section">
+					<section>
+						<h3>Step 1 - Shelter Details</h3>
+						<div>Select your organization's logo</div>
+					</section>
+				</li>
+				<li class="full">
+					<%= shelter_fields.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div><%= shelter_fields.text_field :name, :class => "field text medium" %></div>
+				</li>
+				<li class="full complex">
+					<%= shelter_fields.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<span class="full addr1">
+							<%= shelter_fields.text_field :street, :class => "field text addr", :maxlength => 255 %>
+							<%= shelter_fields.label :street, "Street Address" %>
+						</span>
+						<span class="full addr2">
+							<%= shelter_fields.text_field :street_2, :class => "field text addr", :maxlength => 255 %>
+							<%= shelter_fields.label :street_2, "Address Line 2" %>
+						</span>
+						<span class="left">
+							<%= shelter_fields.text_field :city, :class => "field text addr", :maxlength => 255 %>
+							<%= shelter_fields.label :city, "City" %>
+						</span>
+						<span class="right">
+							<%= shelter_fields.select :state, US_STATES.map {|k,v| [ v, k ] }, { :prompt => "Select State" }, { :class => "field select addr" }  %>
+							<%= shelter_fields.label :state, "State" %>
+						</span>
+						<span class="clear left">
+							<%= shelter_fields.text_field :zip_code, :class => "field text addr", :maxlength => 255 %>
+							<%= shelter_fields.label :zip_code, "Zip Code" %>
+						</span>
+					</div>
+				</li>
+				<li class="full">
+					<%= shelter_fields.label :phone, "Main phone <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<%= shelter_fields.text_field :phone, :class => "field text medium", :maxlength => 12  %>
+						<%= shelter_fields.label :phone, "###-###-####" %>
+					</div>
+				</li>
+				<li class="full">
+					<%= shelter_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div><%= shelter_fields.text_field :email, :class => "field text medium", :type => "email", :maxlength => 255 %></div>
+				</li>
+				<li>
+					<%= shelter_fields.label :is_kill_shelter, "Are you a kill shelter? <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<span>
+						<%= shelter_fields.radio_button :is_kill_shelter, true, :class => "field radio" %>
+						<%= shelter_fields.label :is_kill_shelter, "Yes", :class => "choice" %>
+						</span>
+						<span>
+						<%= shelter_fields.radio_button :is_kill_shelter, false, :class => "field radio" %>
+						<%= shelter_fields.label :is_kill_shelter, "No", :class => "choice" %>
+						</span>
+					</div>
+				</li>
+				<li>
+					<%= shelter_fields.label :time_zone, "Time Zone <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<%= shelter_fields.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, :prompt => "Select Timezone", :class => "field select large" %>
+					</div>
+				</li>
+				<% end %>
+			
+				<%= account_form.fields_for :users do |user_fields| %>
+				<li class="section">
+					<section>
+						<h3>Step 2 - Admin Login (Super User)</h3>
+						<div>Select your organization's logo</div>
+					</section>
+				</li>
+				<li class="full">
+					<%= user_fields.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<%= user_fields.text_field :name, :class => "field text medium" %>
+				</li>
+				<li class="full">
+					<%= user_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<%= user_fields.text_field :email, :class => "field text medium" %>
+				</li>
+				<li class="full">
+					<%= user_fields.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<%= user_fields.password_field :password, :class => "field text medium" %>
+				</li>
+				<li class="full">
+					<%= user_fields.label :password_confirmation, "Confirm Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<%= user_fields.password_field :password_confirmation, :class => "field text medium" %>
+				</li>
+				<% end %>
+				
+				<li class="section">
+					<section>
+						<h3>Step 3 - Account URL</h3>
+						<div>Select your organization's logo</div>
+					</section>
+				</li>
+				<li>
+					<%= account_form.label :subdomain, "Subdomain <span class='req'>*</span>".html_safe, :class => "desc" %>
+		  			<%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org
+				</li>
+				<li class="buttons">
+					<div>
+						<%= account_form.submit "Create new account", :disable_with => 'Submiting...', :class => 'button' %>
+					</div>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+	
+<% end %>
