@@ -11,5 +11,16 @@ class Capacity < ActiveRecord::Base
                              :uniqueness => { :scope => :shelter_id, :message => "is already in use" }
   validates :max_capacity, :numericality => true
   validates :warning_level, :numericality => true
+  
+  # Scopes
+  #----------------------------------------------------------------------------
+  
+  
+  
+  # Instance Methods
+  #----------------------------------------------------------------------------  
+  def animal_count(current_shelter)
+    self.animal_type.animals.active.where(:shelter_id => current_shelter).count
+  end
 
 end

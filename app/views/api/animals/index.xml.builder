@@ -9,7 +9,7 @@ xml.animals do
       xml.status(animal.animal_status.name)
       xml.breed(full_breed(animal))
       xml.microchip(animal.microchip)
-      xml.estimated_age(humanize_dob(animal.date_of_birth))
+      xml.age(humanize_dob(animal.date_of_birth))
       xml.color(animal.color)
       xml.description(animal.description)
       xml.is_sterilized(animal.is_sterilized)

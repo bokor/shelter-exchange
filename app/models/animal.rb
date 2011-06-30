@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  default_scope :order => 'animals.status_change_date DESC', :limit => 250
+  default_scope :order => 'animals.updated_at DESC', :limit => 250
 
   # Callbacks
   #----------------------------------------------------------------------------  

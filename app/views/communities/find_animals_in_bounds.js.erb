@@ -3,9 +3,3 @@
 <% else %>
 	$('#animals').html( "<h1 style='color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;'>No Animals found</h1>" );
 <% end %>
-
-// <% unless @urgent_needs_animals.blank? %>
-// 	$('#urgent_needs_animals').html( "<%= escape_javascript( render 'animals/animal_list', :animals => @urgent_needs_animals) %>" );
-// <% else %>
-// 	$('#urgent_needs_animals').html( "<div class='no_results'><p>No Animals found</p></div>" );
-// <% end %>

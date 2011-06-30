@@ -2,11 +2,11 @@
 	$('#edit_capacity_errors_<%=@capacity.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @capacity) %>" );
 	<%= render 'global/ajax_form_errors', :target => @capacity, :form_id => "edit_capacity_form_#{@capacity.id}" %>
 <% else %>
-	$('#edit_capacity_<%=@capacity.id%>').slideToggle(800, function() { 
-		$('#capacity_<%=@capacity.id%>').replaceWith( "<%= escape_javascript(render @capacity) %>" );
-		$('#capacity_<%=@capacity.id%>').fadeIn(1000).effect("highlight", {}, 1000);
+	$('#edit_capacity_<%=@capacity.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
 	});
+	$('#capacity_<%=@capacity.id%>').replaceWith( "<%= escape_javascript(render @capacity) %>" );
+	$('#capacity_<%=@capacity.id%>').fadeIn(1000).effect("highlight", {}, 2000);
 
 	// Remove Errors
 	$('#edit_capacity_errors_<%=@capacity.id %>').html("");
@@ -14,3 +14,4 @@
 	$('#edit_capacity_form_<%=@capacity.id %> li').removeClass("error");
 <% end %>
 <% flash.discard %>
+

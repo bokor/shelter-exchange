@@ -1,25 +1,26 @@
 <div id="transfer_<%=transfer.id %>" class="transfer">
-	<div class="details">
-		<%= transfer.requestor_shelter.name %> has requested <%= link_to transfer.animal.name, transfer.animal %><br />
-	</div>
-	<span class="created_at_date">
-		<%= format_date(:long, transfer.created_at) %><br />
+	<div class="date_actions">
+		<span class="created_at_date">
+			<%= format_date(:long, transfer.created_at) %>
+		</span>
 		<span class="action_links">
 		<% if transfer.approved? %>
 			<span class="complete_request_link">
 			<%= link_to "Complete Request", edit_transfer_path(transfer, :status => "completed"), :remote => true %>
 			</span>
-		<% elsif transfer.new_request? %>
+			<% elsif transfer.new_request? %>
 			<span class="approve_link">
-			<%= link_to "Approve", edit_transfer_path(transfer, :status => "approved"), :remote => true %>
+				<%= link_to "Approve", edit_transfer_path(transfer, :status => "approved"), :remote => true %>
 			</span>
 			<span class="reject_link">&nbsp;|&nbsp;
-			<%= link_to "Reject", edit_transfer_path(transfer, :status => "rejected"), :remote => true %>
+				<%= link_to "Reject", edit_transfer_path(transfer, :status => "rejected"), :remote => true %>
 			</span>
-		<% end %>
+			<% end %>
 		</span>
-	</span>
+	</div>
+	<div class="details">
+		<p><%= transfer.requestor_shelter.name %> has requested <%= link_to transfer.animal.name, transfer.animal %></p>
+	</div>
 </div>
-<!-- approve_transfer_path(transfer) -->
 
 

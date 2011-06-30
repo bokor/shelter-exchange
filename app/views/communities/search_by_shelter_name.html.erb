@@ -1,8 +1,7 @@
 <%= title "Community" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", "app/communities", :cache => "cache/app/communities-index" %>
-	<!-- "jquery.googlemaps.min" --> <!-- , "maps/maps" -->
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", :cache => "cache/app/communities-search-by-shelter-name" %>
 	<script type="text/javascript">
 		var defaultZoom = 11;
 		var geocoder = new google.maps.Geocoder();
@@ -29,36 +28,28 @@
 				e.preventDefault();
 			});
 			
-			$("#filters_animal_type").bind("change", function(e){
-				if($(this).val() == ""){
-					$("#breed_field").hide();
-				} else {
-					$("#breed_field").show();
-				}
-				$("#filters_breed").val("");
-				findAnimalsForShelter();
-				e.preventDefault();
-			});
-			
-			$("#filters_sex").bind("change", function(e){
-				findAnimalsForShelter();
-				e.preventDefault();
-			});
-			
-			$("#filters_animal_status").bind("change", function(e){
-				findAnimalsForShelter();
-				e.preventDefault();
-			});
-			
-			
 			$("#form_filters").bind("keypress", function(e){
 				return !(window.event && window.event.keyCode == 13); 
 			});
-	
 
-			// $("#filters_breed").click(function(){
-			// 				$("#filters_breed").autocomplete( "search", "" );
-			// 			});
+			$("#filters_animal_type").bind("change", function(e){
+				e.preventDefault();
+				$("#filters_breed").val("");
+				if($(this).val() == ""){
+					$("#filters_breed").attr("disabled", true);
+					$("#filters_breed").attr("placeholder", "Please select type first");
+				} else {
+					$("#filters_breed").attr("disabled", false);
+					$("#filters_breed").attr("placeholder", "Enter Breed Name");
+				}
+				findAnimalsForShelter();
+			});
+
+			$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").bind("change", function(e){
+				e.preventDefault();
+				findAnimalsForShelter();
+			});
+			
 			
 			$("#filters_breed").autocomplete({
 				minLength: 0,
@@ -172,86 +163,48 @@
 
 <%= content_for :page_content do %>
 
-	<!-- <div class="page_heading green_background">
-		<h1>Community</h1>
-	</div> -->
+<style type="text/css" media="screen">
+#filters{display:none; height: 75px;}
+#filters.filter_section{padding: 1.5em 1.5em 1em 1.5em; }
+#form_filters  li span{padding-right: 20px;}
+.filter_link { color: #343434; padding: 13px;  -webkit-border-radius: 0 0 10px 10px;border-bottom:1px solid #ddd;}
+
+
+.community_section{overflow: hidden;width: 100%;}
+.community_section:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.community_section .map_section{float:left; width:49%;padding-right:1%;}
+.community_section .map_section #map_canvas{width:100%; height: 500px;}
+.community_section .animal_section{float:left;width: 49%;padding-left:1%;border-left: 1px dotted #ccc;}
+.community_section .animal_list h1{color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
+</style>
+
+
+<div id="filters" class="section_heading no_borders blue">
+	<%= render "form_filters" %>
+</div>
+
 		
 	<div class="page_content">
-		<style type="text/css" media="screen">
-			#form_shelter_name_search ul.form{ padding: 0; margin:0; }
-		</style>
-		<div style="padding-top: 5px;">
-			<h2>Search By Shelter Name:</h2>
-			<div style="float: left; width: 50%;">
+		
+		<div style="padding-bottom: 0px;">
+			<div style="padding-top: 5px;float: left; width: 50%;">
+				<h2>Search by Shelter Name:</h2>
 				<form action="#" id="form_shelter_name_search">
-			    	<ul class="form">
-						<li>
-							<%= text_field_tag :shelter_name, "", :style => "width: 90%;"  %>
-						</li>
-					</ul>
+			    	<%= text_field_tag :shelter_name, "", :style => "width: 90%;"  %>
 				</form>
 			</div>
 			<div style="float: left; width: 50%; text-align:right;">
+				<a class="filter_link box no_borders blue" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your results</a><br /><br /><br />
 				<%= link_to "Search by City/Zipcode instead", search_by_city_zipcode_communities_path %>
+				
 			</div>
 		</div>
+
 		
 		<div class="clear"></div>
 		<div class="separator"></div>
 		
-		<div style="float: left; padding-right: 50px; height: 30px; line-height: 30px;">
-			<h3>Filter Animals by:</h3>
-		</div>
-		<div id="filters" style="float: left; height: 30px; line-height: 30px;">
-			<style type="text/css" media="screen">
-				#filters .form li{float: left; padding-right: 30px;height: 1; line-height: 1;}
-				#filters .form:after{clear:both;}
-			</style>
-			<form action="#" id="form_filters">
-				<ul class="form">
-					<li>
-						<%= label_tag :filters_animal_type, "Animal type" %><br />
-						<%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, :prompt => "All" %>
-					</li>
-					<li>
-						<div id="breed_field" style="display:none;width: 300px;">
-							<%= label_tag :filters_breed, "Breed" %><br />
-							<%= text_field_tag "filters[breed]", "",:autocomplete => :off %>
-						</div>
-					</li>
-					<li>
-						<%= label_tag :filters_sex, "Sex" %><br />
-						<%= collection_select :filters, :sex, SEX, :to_s, :humanize, :prompt => "All" %>
-					</li>
-					<li>
-						<%= label_tag :filters_animal_status, "Status" %><br />
-						<%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, :prompt => "All" %>
-					</li>
-					<li>
-						<br /><%= check_box_tag "filters[euthanasia_only]", true %>
-						<%= label_tag :filters_euthanasia_only, "Animals killed in the next 2 weeks" %>
-					</li>
-				</ul>
-				<%= hidden_field_tag "filters[shelter_id]" %>
-			</form>
-		</div>
-		
-		<div class="clear"></div>
-		<div class="separator"></div>
-		
-		
-		<!-- <div style="width: 100%;" class="results">
-			<div id="map_canvas" style="float:left;width:57%; min-height: 400px; text-align:left;padding-right: 2%;"></div>
-			
-		</div>
-		<div class="clear"></div>
-		
-		
-		<div style="width: 100%; padding-bottom: 20px;">
-			
-		</div>
-		<div class="clear"></div> -->
-		
+
 		
 		<table style="width: 100%; padding-bottom: 20px;">
 			<tr>

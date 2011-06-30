@@ -1,4 +1,4 @@
-<% animal_count = capacity.animal_type.animals.active.count %>
+<% animal_count = capacity.animal_count(@current_shelter) %>
 <%  status_class = ""
 	if animal_count >= capacity.warning_level and animal_count <= capacity.max_capacity
 		status_class = "warning_level"  
@@ -8,31 +8,28 @@
 		status_class = "normal"
 	end
 %>
-
 <div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
-	
-	<span class="status">
-		<div class="circle large <%=status_class%>"><h3><%= capacity.animal_type.name %></h3></div>
+	<span class="status"><div class="circle large <%=status_class%>"><%= capacity.animal_type.name %></div></span>
+	<span class="counts">
+		<ul>
+			<li class="max">Max capacity: <%= capacity.max_capacity%></li>
+			<li class="warning">Warning level: <%= capacity.warning_level%></li>
+			<li class="available">Available space: <%= capacity.max_capacity - animal_count %></li>
+			<li class="active">Total active animals: <%= animal_count %></li>
+		</ul>
 	</span>
 	
-	<span style="details">
-		<span class="action_links">
-			<% if can?(:update, Capacity) %>
-				<span class="edit_link">
-					<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
-				</span>
-			<% end %>
-			<% if can?(:destroy, Capacity) %>
-				<span class="delete_link">&nbsp;|&nbsp;
-					<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
-				</span>
-			<% end %>
-		</span>
-		<span class="capacity_levels">
-			<p><label>Max capacity:</label> <span><%= capacity.max_capacity %></span></p>
-			<p><label>Warning level:</label> <span><%= capacity.warning_level %></span></p>
-			<p><label>Total active animals:</label> <span><%= animal_count %></span></p>
-			<p><label>Space available for <%= capacity.animal_type.name.pluralize %>:</label> <span><%= capacity.max_capacity - animal_count %></span></p>
-		</span>
+	<span class="action_links">
+		<% if can?(:update, Capacity) %>
+			<span class="edit_link">
+				<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
+			</span>
+		<% end %>
+		<% if can?(:destroy, Capacity) %>
+			<span class="delete_link">&nbsp;|&nbsp;
+				<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+			</span>
+		<% end %>
 	</span>
+	
 </div>

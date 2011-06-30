@@ -1,204 +1,42 @@
 <%= title "Community" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", :cache => "cache/app/communities-index" %>
-	<!-- "jquery.googlemaps.min" --> <!-- , "maps/maps" -->
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/communities", "app/shelters", :cache => "cache/app/communities-search-by-city-zipcode" %>
 	<script type="text/javascript">
-		var defaultZoom = 11;
-		var geocoder = new google.maps.Geocoder();
-		var myLatlng = new google.maps.LatLng(<%=@current_shelter.lat%>,<%=@current_shelter.lng%>);
-		var myOptions = {
-			scrollwheel: false,
-	    	zoom: defaultZoom,
-		    center: myLatlng,
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-
-		var map;
-
-		var fileUrl = "<%=s3_expiring_url('maps/overlay.kmz')%>";
-		var kmlLayer;
-		
-		
 		$(function() {
-			
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		
-			kmlLayer = new google.maps.KmlLayer(fileUrl, { preserveViewport: true });
-			kmlLayer.setMap(map);
-			
-			// Add Listener for City/Zipcode Searching and Map Movement
-			google.maps.event.addListener(map, 'idle', function(e){
-				findAnimalsInBounds();
-			});
-			
-			$("#form_address_search").bind("submit", function(e){
-				geocodeAddress(e);
-				e.preventDefault();
-			});
-			
-			$("#filters_animal_type").bind("change", function(e){
-				$("#filters_breed").val("");
-				if($(this).val() == ""){
-					$("#filters_breed").attr("disabled", true);
-					$("#filters_breed").attr("placeholder", "Please select type first");
-				} else {
-					$("#filters_breed").attr("disabled", false);
-					$("#filters_breed").attr("placeholder", "Enter Breed Name");
-				}
-				findAnimalsInBounds();
-				e.preventDefault();
-			});
-			
-			$("#filters_sex").bind("change", function(e){
-				findAnimalsInBounds();
-				e.preventDefault();
-			});
-			
-			$("#filters_animal_status").bind("change", function(e){
-				findAnimalsInBounds();
-				e.preventDefault();
-			});
-			
-			$("#filters_euthanasia_only").bind("change", function(e){
-				findAnimalsInBounds();
-				e.preventDefault();
-			});
-			
-			$("#form_filters").bind("keypress", function(e){
-				return !(window.event && window.event.keyCode == 13); 
-			});
-	
-
-			// $("#filters_breed").click(function(){
-			// 				$("#filters_breed").autocomplete( "search", "" );
-			// 			});
-			
-			$("#filters_breed").autocomplete({
-				minLength: 0,
-				selectFirst: true,
-				html: true,
-				delay: 500,
-				source: function( request, response ) {
-					$.ajax({
-						url: "/breeds/auto_complete.json",
-						dataType: "json",
-						data: {
-							q: request.term,
-							animal_type_id: $("#filters_animal_type").val()
-						},
-						success: function( data ) {
-							response( $.map( data, function( item ) {
-								var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-								var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
-								return {
-									label: item.name.replace(matcher,'<strong>$1</strong>'),
-									value: item.name,
-									id: item.id
-								}  
-							}));
-						}
-					});
-				},
-				close: function(event, ui) { 
-					findAnimalsInBounds();
-					event.preventDefault();
-				}			
-			});
-			
+			Communities.initialize(<%=@current_shelter.lat%>,<%=@current_shelter.lng%>,"<%=s3_expiring_url('maps/overlay.kmz')%>");
 		});
-		
-		//MOVE INTO MAPS.js
-		function geocodeAddress(e){
-			geocoder.geocode( { address: $("#address").val() }, function(results, status) {
-		     	if (status == google.maps.GeocoderStatus.OK) {
-		        	map.setCenter(results[0].geometry.location);
-					map.setZoom(defaultZoom);
-		      	} else {
-		        	alert("Geocode was not successful for the following reason: " + status);
-		      	}
-		    });
-		}
-		//MOVE INTO MAPS.js
-		function findAnimalsInBounds(){
-			var zoomLevel = map.getZoom();
-			if (zoomLevel < 10) {
-				$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-				$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-			} else {
-				var bounds = map.getBounds();
-				$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
-				$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-				$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
-			}
-		
-		}
-		
 	</script>
 <% end %>
 
 <%= content_for :page_content do %>
 
-	<!-- <div class="page_heading green_background">
-		<h1>Community</h1>
-	</div> -->
+
 		
 	
 		<style type="text/css" media="screen">
 		#filters{display:none; height: 75px;}
-		#filters2{display:none; height: 75px;}
 		#filters.filter_section{padding: 1.5em 1.5em 1em 1.5em; }
 		#form_filters  li span{padding-right: 20px;}
 		.filter_link { color: #343434; padding: 13px;  -webkit-border-radius: 0 0 10px 10px;border-bottom:1px solid #ddd;}
-		.filter_link2 { color: #343434; padding: 13px;  -webkit-border-radius: 10px 10px 0 0;border-bottom:1px solid #ddd;}
+		
+		
+		.community_section{overflow: hidden;width: 100%;}
+		.community_section:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+		.community_section .map_section{float:left; width:49%;padding-right:1%;}
+		.community_section .map_section #map_canvas{width:100%; height: 500px;}
+		.community_section .animal_section{float:left;width: 49%;padding-left:1%;border-left: 1px dotted #ccc;}
+		.community_section .animal_list h1{color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
 		</style>
 
 
 		<div id="filters" class="section_heading no_borders blue">
-			
-			<form action="#" id="form_filters">
-				<ul>
-					<li>
-						<span>
-							<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
-							<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
-						</span>
-
-						<span>
-							<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-							<div><%= text_field_tag "filters[breed]", "", :disabled => true, :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
-							</div>
-						</span>
-
-						<span>
-							<%= label_tag :filters_sex, "Sex", :class => "desc" %>
-							<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
-						</span>
-
-						<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
-						<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
-
-						<span>	
-							<fieldset>
-							<legend id="title9" class="desc">Euthanasia List</legend>
-							<div>
-							<span>
-								<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-								<%= label_tag :filters_euthanasia_only, "Show me the animals in danger", :class => "choice" %>
-							</span>
-							</div>
-							</fieldset>
-						</span>
-					</li>
-				</ul>
-				<%= hidden_field_tag "filters[sw]" %>
-				<%= hidden_field_tag "filters[ne]" %>
-			</form>
+			<%= render "form_filters" %>
 		</div>
 		
 
 		<div class="page_content">
-			
+
 			<div style="padding-bottom: 0px;">
 				<div style="padding-top: 5px;float: left; width: 50%;">
 					<h2>Search by City or Zip code</h2>
@@ -207,216 +45,21 @@
 					</form>
 				</div>
 				<div style="float: left; width: 50%; text-align:right;">
-					<a class="filter_link blue_background" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your results</a>
-					<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
+					<a class="filter_link box no_borders blue" href="#" onclick="$('#filters').slideToggle('slow');">Narrow your results</a><br /><br /><br />
+					<%= link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
 				</div>
 			</div>
 			<div class="clear"></div>
-			<div style="float: right; width: 100%; text-align:right;">
-				<a class="filter_link2 blue_background" href="#" onclick="$('#filters2').slideToggle('slow');">Narrow your results</a>
-				<%# link_to "Search by Shelter Name instead", search_by_shelter_name_communities_path %>
-			</div>
-				<div id="filters2" class="section_heading no_borders blue">
-
-					<form action="#" id="form_filters">
-						<ul>
-							<li>
-								<span>
-									<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
-									<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
-								</span>
-
-								<span>
-									<%= label_tag :filters_breed, "Breed", :class => "desc" %>
-									<div><%= text_field_tag "filters[breed]", "", :disabled => true, :placeholder => "Please select type first", :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
-									</div>
-								</span>
-
-								<span>
-									<%= label_tag :filters_sex, "Sex", :class => "desc" %>
-									<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
-								</span>
-
-								<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
-								<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
-
-								<span>	
-									<fieldset>
-									<legend id="title9" class="desc">Euthanasia List</legend>
-									<div>
-									<span>
-										<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-										<%= label_tag :filters_euthanasia_only, "Show all the animals in danger", :class => "choice" %>
-									</span>
-									</div>
-									</fieldset>
-								</span>
-							</li>
-						</ul>
-						<%= hidden_field_tag "filters[sw]" %>
-						<%= hidden_field_tag "filters[ne]" %>
-					</form>
-				</div>
 				
-				<div class="separator"></div>
-				
-				<style type="text/css" media="screen">
-					.segmented-control {
-					    background-color: #333;
-					    list-style-type: none;
-					    width: 401px;
-					    height: 25px;
-					    padding: 1px;
-					    margin: 0 auto;
-
-					    -webkit-border-radius: 4px;
-					    -moz-border-radius: 4px;
-					    border-radius: 4px;
-
-					    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-					    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-					    box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-					}
-
-					.segmented-control li {
-					    background-color: #595959;
-					    float: left;
-					    margin-left: 1px;
-					}
-
-					.segmented-control li {
-					    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .1)), to(rgba(255, 255, 255, 0)));
-
-					    background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
-					}
-
-					.segmented-control li {
-					    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-					    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-					    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
-					}
-
-					.segmented-control li:first-child {
-					    margin-left: 0;
-
-					    -webkit-border-top-left-radius: 3px;
-					    -webkit-border-bottom-left-radius: 3px;
-					    -moz-border-radius-topleft: 3px;
-					    -moz-border-radius-bottomleft: 3px;
-					    border-top-left-radius: 3px;
-					    border-bottom-left-radius: 3px;
-					}
-
-					.segmented-control li:last-child {
-					    -webkit-border-top-right-radius: 3px;
-					    -webkit-border-bottom-right-radius: 3px;
-					    -moz-border-radius-topright: 3px;
-					    -moz-border-radius-bottomright: 3px;
-					    border-top-right-radius: 3px;
-					    border-bottom-right-radius: 3px;
-					}
-
-					.segmented-control a {
-					    font-size: 12px;
-					    font-weight: bold;
-					    line-height: 24px;
-					    text-align: center;
-					    text-decoration: none;
-					    display: block;
-					    width: 200px;
-					    height: 25px;
-					}
-
-					.segmented-control a {
-					    color: #262626;
-					    text-shadow: 0 1px 0 rgba(255, 255, 255, .15);
-					}
-
-					.segmented-control li.current {background-color: #525252;}
-
-					.segmented-control li.current{
-					    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-					                        inset 0 0 5px rgba(0, 0, 0, .1);
-					    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-					                     inset 0 0 5px rgba(0, 0, 0, .1);
-					    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
-					                inset 0 0 5px rgba(0, 0, 0, .1);
-					}
-
-					.segmented-control li.current a {
-					    text-shadow: 0 1px 0 rgba(255, 255, 255, .1);
-					    position: relative;
-					    top: 1px;
-					}
-
-					.segmented-control li.current {
-					    background-image:
-					        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .1))),
-					        url(/images/background-segmented-control-selected.png);
-
-					    background-image:
-					        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)),
-					        url(/images/background-segmented-control-selected.png);
-
-					    background-color: #333;
-
-					    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-					                        inset 0 0 5px rgba(0, 0, 0, .15);
-					    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-					                     inset 0 0 5px rgba(0, 0, 0, .15);
-					    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
-					                inset 0 0 5px rgba(0, 0, 0, .15);
-					}
-
-
-					.segmented-control li.current a {color: #fff; text-shadow: 0 1px 0 #000;}
-
-					.segmented-control li.current:active {
-					    background-image:
-					        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .05))),
-					        url(/images/background-segmented-control-selected.png);
-
-					    background-image:
-					        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .05)),
-					        url(/images/background-segmented-control-selected.png);
-
-					    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-					                        inset 0 0 5px rgba(0, 0, 0, .15);
-					    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-					                     inset 0 0 5px rgba(0, 0, 0, .15);
-					    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
-					                inset 0 0 5px rgba(0, 0, 0, .15);
-					}
-				</style>
-
-				<div id="demo-view">
-											<ul class="segmented-control">
-												<li class="current"><a href="#">Search by City/Zipcode</a></li>
-												<li><a href="#search_by_shelter_name">Search by Shelter Name</a></li>
-											</ul>
-										</div>
 			<div class="separator"></div>
 
-				<div class="separator"></div>
-		
-<!-- 			<table style="width: 100%; padding-bottom: 20px;">
-				<tr>
-					<td style="width:47%; padding-right: 2%; vertical-align:top;">
-						<div id="map_canvas" style="width:100%; height: 500px;"></div>
-					</td>
-					<td style="width:47%; padding-left: 2%; border-left: 1px dotted #ccc;vertical-align:top;">
-						<div id="animals"><h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List</h1></div>
-					</td>
-				</tr>
-			</table>
-			 -->
-			<div style="overflow: hidden;width: 100%;">
-				<div style="float:left; width:49%;padding-right:1%;">
-					<div id="map_canvas" style="width:100%; height: 500px;"></div>
+			<div class="community_section">
+				<div class="map_section">
+					<div id="map_canvas"></div>
 				</div>
-				<div style="float:left;width: 49%;padding-left:1%;border-left: 1px dotted #ccc;">
-					<div id="animals">
-						<h1 style="color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;">Animal List Loading</h1>
+				<div class="animal_section">
+					<div id="animals" class="animal_list">
+						<h1>Animal List Loading</h1>
 					</div>
 				</div>
 			</div>

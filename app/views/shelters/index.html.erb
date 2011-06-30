@@ -90,13 +90,12 @@
 				<span class="actions"><%= link_to "Edit", edit_shelter_path(@shelter), :remote => true, :id => "edit_wish_list" %></span>
 			<% end %>
 		</h2>
+		<p>List below the 5 items most needed as donations to your facility. This list will be displayed on the Shelter Exchange website so please keep this list up to date!</p>
+		<% unless @shelter.items.blank? %>
 		<ol id="items">
-			<% unless @shelter.items.blank? %>
-				<%= render @shelter.items %>
-			<% else %>
-				<p>Please enter the items you need the most</p>
-			<% end %>
+			<%= render @shelter.items %>
 		</ol>
+		<% end %>
 	</div>
 	
 <% end %>

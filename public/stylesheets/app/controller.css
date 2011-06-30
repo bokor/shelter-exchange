@@ -225,22 +225,27 @@
 .new_capacities #left, .create_capacities #left{ width: 100%;}
 .new_capacities #sidebar, .create_capacities #sidebar { display: none;width: 0; }
 
-/* Capacity List :: Layout
+
+/* Capacities List :: Layout */
+/******************************************************************/
+.capacity_list {border-top: 1px dotted #ccc;}
+.capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
+
+.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 100px; width: 100px;font-size: 16px; font-weight: bold; }
+.capacity .counts{display:inline-block;  padding-left: 75px;}
+	.capacity .counts ul{padding-top: 5px;}
+	.capacity .counts ul li{line-height: 25px; }
+
+.capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
+
+
+/* Capacity Legend :: Layout
 -----------------------------------------------------------------------------*/
-.capacity_list { }
-.capacity_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.capacity_list .capacity { width: 45%; margin-right: 10px;margin-bottom: 10px; padding: 10px; display: inline-block; vertical-align: top; zoom: 1; *display: inline;}
-
-.capacity .status{display: inline-block;}
-.capacity .details{display: inline-block;}
-
-.capacity .title { padding-bottom:10px; line-height: 1.2em;}
-.capacity .animal_type {float:left; width: 59%;}
-.capacity .animal_type h3 {padding:0; margin:0;}
-.capacity .action_links { float:right; display: block;text-align:right;font-size: 10px;font-weight:bold; }
-.capacity .action_links:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.capacity .capacity_levels {clear:both;padding-top: 20px;}
-.capacity .capacity_levels span {font-size: 14px; color: #000;}
+.capacities .legend{width: 90px; margin-top: 20px; padding: 10px 15px; border: 1px solid #eee; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+.capacities .legend table { border-collapse: collapse; border-spacing: 0;  }
+.capacities .legend table th{font-size: 14px;}
+.capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
+.capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
 
 
 
@@ -391,9 +396,10 @@
 
 /* Communities :: Animal Page :: Sidebar
 -----------------------------------------------------------------------------*/
-.animal_communities #animal_shelter {padding: 15px 0 0 0;}
-.animal_communities #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
-.animal_communities #animal_shelter .shelter_details h2{border:none;}
+.animal_communities #sidebar #transfer_section {padding: 0 0 15px 0;}
+.animal_communities #sidebar #animal_shelter {padding: 0;}
+.animal_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.animal_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
 
 
 
@@ -489,15 +495,13 @@
 
 .transfer{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
 
-.transfer .type{display:inline-block; padding: 0 5px; }
+.transfer .date_actions{ display:inline-block; width: 100%; font-size: 10px;font-weight:bold;line-height: 1em;}
+.transfer .date_actions:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+	.transfer .created_at_date{display:inline-block; float:left; }
+	.transfer .action_links{display:inline-block; float:right; }
 
-.transfer .created_at_date{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+.transfer .details{display:inline-block; width: 100%; vertical-align:top; font-size: 13px;}
 
-.transfer .details{display:inline-block; width: 57%; vertical-align:top; }
-	.transfer .title{display:inline-block; font-size: 13px; line-height: 1.5em; padding-left: 5px;}
-	
-.transfer .comment{line-height: 1em;}
-.transfer .action_links{line-height: 1em;}
 
 
 
@@ -656,8 +660,6 @@
 /* Shelters :: Global */
 /******************************************************************/
 .shelters ul {list-style:none;}
-.shelters ol li{margin-left: 20px;}
-
 
 /* Shelters :: Page Heading */
 /******************************************************************/
@@ -683,6 +685,8 @@
 /* Index Shelters :: Sidebar */
 /******************************************************************/
 .index_shelters #sidebar #items_section .actions {padding-left:10px; font-size: 13px; font-weight:normal;}
+.index_shelters #sidebar #items_section p{padding-bottom: 15px;}
+.index_shelters #sidebar #items_section ol li { margin-left: 25px; padding-bottom: 5px; font-size: 16px;}
 
 /* Index Shelters :: Map */
 /******************************************************************/

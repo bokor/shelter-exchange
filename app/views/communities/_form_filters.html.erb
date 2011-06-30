@@ -1,0 +1,39 @@
+<form action="#" id="form_filters">
+	<ul>
+		<li>
+			<span>
+				<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
+				<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
+			</span>
+
+			<span>
+				<%= label_tag :filters_breed, "Breed", :class => "desc" %>
+				<div><%= text_field_tag "filters[breed]", "", :disabled => true, :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Type animal breed" %>
+				</div>
+			</span>
+
+			<span>
+				<%= label_tag :filters_sex, "Sex", :class => "desc" %>
+				<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
+			</span>
+
+			<span><%= label_tag :filters_animal_status, "Status", :class => "desc" %>
+			<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div></span>
+
+			<span>	
+				<fieldset>
+				<legend id="title9" class="desc">Euthanasia List</legend>
+				<div>
+				<span>
+					<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
+					<%= label_tag :filters_euthanasia_only, "Show me the animals in danger", :class => "choice" %>
+				</span>
+				</div>
+				</fieldset>
+			</span>
+		</li>
+	</ul>
+	<%= hidden_field_tag "filters[sw]" %>
+	<%= hidden_field_tag "filters[ne]" %>
+	<%= hidden_field_tag "filters[shelter_id]" %>
+</form>
