@@ -1,14 +1,42 @@
 <div id="<%= "account_#{account.id}" %>" class="account">
 	<h2>Account Information</h2>
-	<ul>
-		<li>Subdomain: <%= account.subdomain %></li>
+	
+	<div class="account_details">
+		<table>
+			<tr>
+				<td class="key"><strong>Subdomain:</strong></td>
+				<td class="value"><%= account.subdomain %></td>
+			</tr>
 		<% if account.blocked? %>
-			<li>Status: Blocked</li>
-			<li>Reason Blocked: <%= account.reason_blocked %></li>
+			<tr>
+				<td class="key"><strong>Status:</strong></td>
+				<td class="value">Blocked</td>
+			</tr>
+			<tr>
+				<td class="key">Reason Blocked:</td>
+				<td class="value"><%= account.reason_blocked %></td>
+			</tr>
 		<% else %>
-			<li>Status: Approved</li>
+			<tr>
+				<td class="key"><strong>Status:</strong></td>
+				<td class="value">Approved</td>
+			</tr>
 		<% end %>
-	</ul>
+		<% unless account.document_type.blank? %>
+			<tr>
+				<td class="key"><strong>Document type:</strong></td>
+				<td class="value"><%= account.document_type %></td>
+			</tr>
+		<% end %>
+		<% if account.document.file? %>
+			<tr>
+				<td class="key"><strong>Document:</strong></td>
+				<td class="value"><%= link_to account.document_file_name, account.document.url %></td>
+			</tr>
+		<% end %>
+		</table>
+	</div>
+
 	<ul class="action_links">
 		<li><%= link_to "Edit Account", edit_admin_account_path(account), :remote => true, :class => "button" %></li>
 	</ul>

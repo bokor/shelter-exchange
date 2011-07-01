@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622183133) do
+ActiveRecord::Schema.define(:version => 20110701032322) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -31,8 +31,13 @@ ActiveRecord::Schema.define(:version => 20110622183133) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "blocked",        :default => false
+    t.boolean  "blocked",               :default => false
     t.text     "reason_blocked"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.string   "document_status"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain"

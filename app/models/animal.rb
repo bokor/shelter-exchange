@@ -36,7 +36,7 @@ class Animal < ActiveRecord::Base
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
   
-  has_attached_file :photo, :whiny => false, 
+  has_attached_file :photo, :whiny => true, 
                             :default_url => "/images/default_:style_photo.jpg", 
                             :storage => :s3,
                             :s3_credentials => S3_CREDENTIALS,
@@ -68,7 +68,7 @@ class Animal < ActiveRecord::Base
   
   # Validations - PaperClip
   #----------------------------------------------------------------------------
-  validates_attachment_size :photo, :less_than => PHOTO_SIZE, :message => "needs to be #{PHOTO_SIZE_IN_TEXT} megabytes or less"
+  validates_attachment_size :photo, :less_than => PHOTO_SIZE, :message => "needs to be #{PHOTO_SIZE_IN_TEXT} or less"
   validates_attachment_content_type :photo, :content_type => PHOTO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
 
   

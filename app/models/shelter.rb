@@ -64,7 +64,9 @@ class Shelter < ActiveRecord::Base
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!        
   validate :address_valid?         
- 
+
+  # Validations - Paperclip
+  #---------------------------------------------------------------------------- 
   validates_attachment_size :logo, :less_than => LOGO_SIZE, :message => "needs to be #{LOGO_SIZE_IN_TEXT} or less"
   validates_attachment_content_type :logo, :content_type => LOGO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
   

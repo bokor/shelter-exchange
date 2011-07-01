@@ -1,13 +1,7 @@
 <%= title "Create new account" %>
 
 <%= content_for :javascripts do %>
-	<% if @account.errors.any? %>
-		<script type="text/javascript" charset="utf-8">
-			$(function() {
-				<%= render 'global/ajax_form_errors.js', :target => @account, :form_id => "signup_form" %>
-			});
-		</script>
-	<% end %>
+
 <% end %>
 
 <%= content_for :page_content do %>
@@ -18,8 +12,7 @@
 	<div class="page_content">
 		<%= render "global/error_messages", :target => @account %>
 		
-		
-		<%= form_for (@account), :url => public_accounts_path, :html => { :id => "signup_form" } do |account_form| %>
+		<%= form_for (@account), :url => public_accounts_path, :html => { :multipart => true } do |account_form| %>
 
 			<%= account_form.fields_for :shelters do |shelter_fields| %>
 			<ul>
@@ -32,6 +25,7 @@
 				<li class="full">
 					<%= shelter_fields.label :name, "Organization Name <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= shelter_fields.text_field :name, :class => "field text medium" %></div>
+					<%= has_error_message?(@account.shelters.first, :name)%>
 				</li>
 				<li class="full complex">
 					<%= shelter_fields.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -57,6 +51,7 @@
 							<%= shelter_fields.label :zip_code, "Zip Code" %>
 						</span>
 					</div>
+					<%= has_error_message?(@account.shelters.first, :address)%>
 				</li>
 				<li class="full">
 					<%= shelter_fields.label :phone, "Main phone <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -64,10 +59,12 @@
 						<%= shelter_fields.text_field :phone, :class => "field text medium", :maxlength => 12  %>
 						<%= shelter_fields.label :phone, "###-###-####" %>
 					</div>
+					<%= has_error_message?(@account.shelters.first, :phone)%>
 				</li>
 				<li class="full">
 					<%= shelter_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= shelter_fields.text_field :email, :class => "field text medium", :type => "email", :maxlength => 255 %></div>
+					<%= has_error_message?(@account.shelters.first, :email)%>
 				</li>
 				<li>
 					<%= shelter_fields.label :is_kill_shelter, "Are you a kill shelter? <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -81,13 +78,17 @@
 						<%= shelter_fields.label :is_kill_shelter, "No", :class => "choice" %>
 						</span>
 					</div>
+					<%= has_error_message?(@account.shelters.first, :is_kill_shelter)%>
 				</li>
 				<li>
 					<%= shelter_fields.label :time_zone, "Time Zone <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div>
 						<%= shelter_fields.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, :prompt => "Select Timezone", :class => "field select large" %>
 					</div>
+					<%= has_error_message?(@account.shelters.first, :time_zone)%>
 				</li>
+				<li><p></p></li>
+				
 				<li class="section">
 					<section>
 						<h3>Step 2:  Organization Status</h3>
@@ -95,6 +96,27 @@
 					</section>
 				</li>
 				<% end %>
+				<li>
+					<%= account_form.label :document_type, "Document type", :class => "desc" %>
+					<div>
+						<% Account::DOCUMENT_TYPE.each_with_index do |value, index| %>
+							<span>
+								<%= account_form.radio_button :document_type, value, :class => "field radio" %>
+								<%= account_form.label "document_type_#{value}", value.humanize, :class => "choice" %>
+							</span>
+						<% end %>
+					</div>
+					<%= has_error_message?(@account, :document_type)%>
+				</li>
+				<li class="full">
+					<%= account_form.label :document, "Upload document", :class => "desc" %>
+					<div>
+						<%= account_form.file_field :document, :class => "field file" %>
+					</div>
+					<%= has_error_message?(@account, :upload_document_again)%>
+					<%= has_error_message?(@account, :document_file_size) %>
+					<%= has_error_message?(@account, :document_file_name)%>
+				</li>
 				
 				<li><p></p></li>
 				
@@ -107,19 +129,23 @@
 				</li>
 				<li class="full">
 					<%= user_fields.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<%= user_fields.text_field :name, :class => "field text medium" %>
+					<div><%= user_fields.text_field :name, :class => "field text medium" %></div>
+					<%= has_error_message?(@account.users.first, :name)%>
 				</li>
 				<li class="full">
 					<%= user_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<%= user_fields.text_field :email, :class => "field text medium" %>
+					<div><%= user_fields.text_field :email, :class => "field text medium" %></div>
+					<%= has_error_message?(@account.users.first, :email)%>
 				</li>
 				<li class="full">
 					<%= user_fields.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<%= user_fields.password_field :password, :class => "field text medium" %>
+					<div><%= user_fields.password_field :password, :class => "field text medium" %></div>
+					<%= has_error_message?(@account.users.first, :password)%>
 				</li>
 				<li class="full">
 					<%= user_fields.label :password_confirmation, "Confirm Password <span class='req'>*</span>".html_safe, :class => "desc" %>
-					<%= user_fields.password_field :password_confirmation, :class => "field text medium" %>
+					<div><%= user_fields.password_field :password_confirmation, :class => "field text medium" %></div>
+					<%= has_error_message?(@account.users.first, :password_confirmation)%>
 				</li>
 				<% end %>
 				
@@ -131,9 +157,10 @@
 						<div>Please create a personalized subdomain for your organization - for example johnsrescuedogs</div>
 					</section>
 				</li>
-				<li>
+				<li class="full">
 					<%= account_form.label :subdomain, "Subdomain <span class='req'>*</span>".html_safe, :class => "desc" %>
-		  			<%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org
+		  			<div><%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org</div>
+					<%= has_error_message?(@account, :subdomain)%>
 				</li>
 				<li class="buttons">
 					<div>

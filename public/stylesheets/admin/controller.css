@@ -198,7 +198,13 @@
 .show_shelters table.legend td .warning_level span{width: 34%;} 
 .show_shelters table.legend td .normal span{ width: auto; }
 
-
+/* Account Details :: Show Sidebar :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters #sidebar .account_details{padding: 5px 0 20px 0; }
+.show_shelters #sidebar .account_details table { width: 100%; border-collapse: collapse; border-spacing: 0; border: 1px solid #bbb; }
+.show_shelters #sidebar .account_details table td{padding:5px; border: 1px solid #bbb;}
+.show_shelters #sidebar .account_details table td.key{width: 35%;}
+.show_shelters #sidebar .account_details table td.value{width: 65%;}
 
 
 

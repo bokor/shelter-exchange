@@ -3,7 +3,7 @@ $("#<%= form_id %> p.error").replaceWith("");
 
 <% target.errors.each do |field, msg| %>
 	// Hack to fix nested forms but still not 100% correct
-	var elementName = "#<%= form_id %> #<%= target.class.name.downcase %>_<%= field %>".replace(".","_attributes_0_").replace("address", "zip_code");
+	var elementName = "#<%= form_id %> #<%= target.class.name.downcase %>_<%= field %>".replace(".","_attributes_0_");
 	var element = $(elementName).parents("li");
 	element.addClass("error");
 	element.append("<%= escape_javascript(create_error_message(msg)) %>");
