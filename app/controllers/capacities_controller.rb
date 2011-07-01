@@ -1,7 +1,4 @@
 class CapacitiesController < ApplicationController
-  # caches_action :index
-  # cache_sweeper :capacity_sweeper
-  
   respond_to :html, :js
   
   def index

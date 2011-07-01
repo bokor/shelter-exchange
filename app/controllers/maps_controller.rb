@@ -1,5 +1,4 @@
 class MapsController < ApplicationController
-  
   layout false
   
   def overlay

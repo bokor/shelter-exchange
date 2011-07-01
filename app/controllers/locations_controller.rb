@@ -1,7 +1,4 @@
 class LocationsController < ApplicationController
-  # caches_action :find_all
-  # cache_sweeper :location_sweeper
-  
   respond_to :js
   
   def create

@@ -2,8 +2,8 @@ class Api::ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :set_access_token, :shelter_lookup, :account_blocked?
-
   layout :current_layout
+  
 
   private
   

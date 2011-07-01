@@ -1,7 +1,4 @@
 class AccommodationsController < ApplicationController
-  # caches_action :index
-  # cache_sweeper :accommodation_sweeper
-  
   respond_to :html, :js
   
   def index

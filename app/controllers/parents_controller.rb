@@ -1,7 +1,4 @@
 class ParentsController < ApplicationController
-  # caches_action :show
-  # cache_sweeper :parent_sweeper
-  
   respond_to :html, :js
   
   def index

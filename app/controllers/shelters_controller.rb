@@ -1,8 +1,5 @@
 class SheltersController < ApplicationController
   load_and_authorize_resource :only => [:edit]
-  # caches_action :index
-  # cache_sweeper :shelter_sweeper
-  
   respond_to :html, :js, :json
   
   def index

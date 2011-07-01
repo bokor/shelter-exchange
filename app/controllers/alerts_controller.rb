@@ -1,7 +1,4 @@
 class AlertsController < ApplicationController
-  # caches_action :index
-  # cache_sweeper :alert_sweeper
-  
   respond_to :html, :js
   
   def index

@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  # caches_action :index
-  # cache_sweeper :user_sweeper
-  
   respond_to :html, :js
   
   def index

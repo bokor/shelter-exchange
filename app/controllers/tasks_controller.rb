@@ -1,9 +1,5 @@
 class TasksController < ApplicationController
-  # caches_action :index
-  # cache_sweeper :task_sweeper
-  
   respond_to :html, :js
-  
   
   def index
     @overdue_tasks =  @current_shelter.tasks.overdue.active.includes(:taskable).all

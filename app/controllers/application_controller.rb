@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!,
                 :current_account, :current_shelter, :account_blocked?,
                 :set_time_zone, :store_location
-
+                
   layout :current_layout
+  
+
 
   private
   

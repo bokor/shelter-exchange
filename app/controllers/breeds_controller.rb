@@ -9,7 +9,3 @@ class BreedsController < ApplicationController
   end
 
 end
-
-
-
-#, :value => "#{breed.name}", :name => "#{breed.name}" } }.to_json
