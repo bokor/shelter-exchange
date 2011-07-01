@@ -111,7 +111,7 @@
 	<div class="transfer_section">
 		<% if can?(:request_transfer, Animal) %>
 		<ul id="transfer_request_button" class="action_links">
-			<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button" %></li>
+			<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button red" %></li>
 		</ul>
 		<% end %>
 		<div id="transfer_requested" class="box hide orange">

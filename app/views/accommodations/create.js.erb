@@ -3,7 +3,7 @@
 	<%= render 'global/ajax_form_errors', :target => @accommodation, :form_id => "create_accommodation_form" %>
 <% else %>
 	// Add Location
-	$('#accommodations').prepend("<%= escape_javascript(render @accommodation) %>"); 
+	$(".accommodation_list").prepend("<%= escape_javascript(render @accommodation) %>"); 
 	$(".accommodation").first().effect("highlight", {}, 1000);
 	
 	// Clear Form
