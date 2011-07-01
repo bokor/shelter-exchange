@@ -26,7 +26,9 @@
 		<%= image_tag @shelter.logo.url(:thumb) %>
 	</div>
 <% end %>
-	<a href="#shelter_map_dialog" id="map_link" toptions="width = 400, height = 400, noGroup = 1, type = dom, title = Map of <%= @shelter.name %>, layout = quicklook, resizable = 0, shaded = 1, modal = 1, ondisplay = loadMapForModal()" tu_group="null">View Map</a>
+	<a href="#" class="tipped" data-tipped="dialog_shelter_map" 
+	                           data-tipped-options="skin: 'map_box', onShow: function() { loadMapForModal();}" 
+	        				   onclick="return false;">View map</a>
 	<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a>
 </div>
 <h2><%=@shelter.name%></h2>
@@ -95,9 +97,5 @@
 </div>
 <% end %>
 
-<div id="shelter_map_dialog" style="display:none;">
-	<div class="wrapper">
-		<div id="map_canvas" style="width: 400px;height: 400px;"></div>
-	</div>
-</div>
+<%= render "dialog_shelter_map" %>
 

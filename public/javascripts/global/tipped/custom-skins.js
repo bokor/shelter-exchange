@@ -51,5 +51,31 @@ Bridge.Object.extend(Tipped.Skins || (Tipped.Skins = {}), {
 		showOn: 'click', 
 		stem: true, 
 		hook: 'leftbottom',
+  	},
+	'map_box' : {
+		border: { size: 1, color: '#1f1f1f', opacity: .95 },
+    	radius: { size: 6 },
+    	background: { 
+			color: [ { position: 0, color: '#898989' },{ position: .015, color: '#686766' },{ position: .48, color: '#3a3939' },{ position: .52, color: '#2e2d2d' },{ position: .54, color: '#2c2b2b' },{ position: 0.95, color: '#222' },{ position: 1, color: '#202020' } ], opacity: .9 },
+    	shadow: { 
+			color: '#2f2f2f', 
+			offset: { 
+				x: 0, 
+				y: 1 
+			}, 
+			opacity: .4 
+		},
+    	spinner: { color: '#ffffff' },
+		// maxWidth: 430, 
+		// maxHeight: 430,
+		inline: true, 
+		// closeButton: true, 
+		// hideOn: false, 
+		// hideOnClickOutside: true,
+		fadeDuration: .5,  
+		// showOn: 'click', 
+		stem: true, 
+		hook: 'leftmiddle',
   	}
+
 });
