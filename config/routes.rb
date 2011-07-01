@@ -60,22 +60,34 @@ ShelterExchangeApp::Application.routes.draw do
   
   
   
+  
+  # Signup - Routes for signup.domain.com
+  #----------------------------------------------------------------------------
+  constraints(SignupSubdomain) do
+        
+    namespace :signup, :path => "/" do
+      
+      # Signup :: Accounts
+      #----------------------------------------------------------------------------
+      resources :accounts, :only => [:new, :registered]
+      
+    end
+    
+    root :to => redirect("/accounts/new")
+    
+  end
+  
+  
+  
+  
   # Public - Routes for www.domain.com or domain.com
   #----------------------------------------------------------------------------
   constraints(PublicSubdomain) do
         
     namespace :public, :path => "/" do
-      
-      # Public :: Accounts
-      #----------------------------------------------------------------------------
-      resources :accounts
-      get "signup" => "accounts#new", :path => :signup
-      post "signup" => "accounts#create", :path => :signup
-      
     end
     
   end
-  
   
   
   

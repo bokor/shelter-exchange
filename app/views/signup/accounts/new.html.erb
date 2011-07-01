@@ -12,7 +12,7 @@
 	<div class="page_content">
 		<%= render "global/error_messages", :target => @account %>
 		
-		<%= form_for (@account), :url => public_accounts_path, :html => { :multipart => true } do |account_form| %>
+		<%= form_for (@account), :url => new_signup_account_path, :html => { :multipart => true } do |account_form| %>
 
 			<%= account_form.fields_for :shelters do |shelter_fields| %>
 			<ul>

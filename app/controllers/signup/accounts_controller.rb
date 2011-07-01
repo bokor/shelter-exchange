@@ -1,4 +1,4 @@
-class Public::AccountsController < Public::ApplicationController
+class Signup::AccountsController < Signup::ApplicationController
   respond_to :html
   
   def new

@@ -1,0 +1,2 @@
+module Signup::ApplicationHelper
+end
