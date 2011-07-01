@@ -71,7 +71,7 @@ var Animals = {
 		$('#animal_accommodation_id').val(id);
 		$('#accommodation_search_link').html("Change");
 		$("#accommodation_remove_link").show();
-		TopUp.close();
+		Tipped.hideAll();
   	},
 	removeAccommodation: function() {
 		$('#accommodation_selected span').html('');

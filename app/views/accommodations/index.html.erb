@@ -66,27 +66,6 @@
 		<% end %>
 	</div>
 		
-	<div id="edit_location_dialog" style="display:none;">
-		<div class="wrapper">
-			<h2>Edit locations</h2>
-			<div id="create_location" class="box orange">
-				<h3>Add a new location</h3>
-				<div id="create_location_errors"></div>
-				<%= form_for (@location = Location.new), :remote => true, :html => { :id => "create_location_form", :class => "create_location_form" } do |f| %>
-					<ul>
-						<%= render :partial => "locations/form", :locals => { :f => f } %>
-						<li class="buttons">
-							<%= f.submit "Create Location", :disable_with => "Submitting...", :id => "create_location_button", :class => "button"  %>
-						</li>
-					</ul>
-				<% end %>
-			</div>
-
-			<div id="locations" class="location_list">
-				<%= render @current_shelter.locations.all %>
-			</div>
-			<!-- <div class="done_editing"><%= link_to "I'm done editing", "#", :onclick => "TopUp.close(); return false;" %></div> -->
-		</div>
-	</div>
+	<%= render "locations/dialog_locations" %>
 	
 <% end %>

@@ -3,7 +3,9 @@
 	<div>
 	<%= f.collection_select :location_id, @current_shelter.locations.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" } %>
 	<% if can?(:update, Location) %>
-	<a href="#edit_location_dialog" id="edit_location_link" toptions="width = 680, height = auto, type = dom, title = Edit Locations, layout = quicklook, resizable = 0, shaded = 1, modal = 1, onclose = Locations.findAllLocations()">Edit</a>
+	<a href="#" class="tipped" data-tipped="dialog_locations" 
+	                           data-tipped-options="skin: 'dialog_box', onHide: function() { Locations.findAllLocations();}" 
+	        				   onclick="return false;">Edit</a>
 	<% end %>
 	</div>
 </li>

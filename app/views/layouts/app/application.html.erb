@@ -4,7 +4,7 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/tipsy", "global/wufoo_form",
+ 	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/wufoo_form", "global/tipped",
 							"app/common", "app/controller",
 							:media => "all", :cache => "cache/app/all" %>
 
@@ -14,15 +14,16 @@
 	
 	
 	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 	
-							   "global/jquery.jtruncate","global/jquery.tokeninput", "global/jquery.tipsy", 
-							   "global/jquery.blockUI.min", "global/top_up-min", "global/modernizr", 
+							   "global/jquery.jtruncate","global/jquery.tokeninput", "global/jquery.blockUI.min", "global/modernizr",
+							   "global/bridge/bridge","global/spinners/spinners", "global/tipped/tipped", "global/tipped/custom-skins",
 							   "global/forms", "global/jquery_ujs", "app/application",
 							   :cache => "cache/app/all" %>
+
 
 	<%= yield(:javascripts) %>
 	
 	<!--[if lt IE 9]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
+		<%= javascript_include_tag "/global/excanvas/excanvas.js", "global/selectivizr-min" %>
 	<![endif]-->
 		
 	<%= csrf_meta_tag %>

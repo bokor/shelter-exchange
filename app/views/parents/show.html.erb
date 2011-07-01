@@ -104,7 +104,9 @@
 			<ul>
 				<li class="complex">
 					<span class="left">
-						<a href="#animal_search_dialog" id="animal_search_link" toptions="width = 675, height = auto, type = dom, title = Search for animal, layout = quicklook, resizable = 0, shaded = 1, modal = 1">Search for animal</a> <span class='req'>*</span>
+						<a href="#" class="tipped" data-tipped="dialog_animal_search" 
+						                           data-tipped-options="skin: 'dialog_box'" 
+						        				   onclick="return false;">Search for animal</a> <span class='req'>*</span>
 					</span>
 					<span class="right">
 						<div id="animal_selected">
@@ -124,18 +126,7 @@
 		<% end %>
 	</div>	
 	
-	<div id="animal_search_dialog" style="display:none;">
-		<div class="wrapper">
-			<%= form_for :parents, :url => { :action => :find_animals_by_name, :controller => :parents }, 
-			             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
-	  			<h2>Search for animal:</h2>
-	  			<%= text_field_tag "q", ""  %>
-				<%= f.submit "Go", :disable_with => "..." %>
-	  		<% end %>
-	
-			<div id="animals"></div>
-		</div>
-	</div>
+	<%= render "dialog_animal_search" %>
 	
 <% end %>
 	

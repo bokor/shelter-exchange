@@ -114,11 +114,6 @@
 .animals #accommodation_selected #accommodation_search_link{}
 
 
-/* Animals :: Form :: Accommodation Search Dialog
------------------------------------------------------------------------------*/
-.animals #accommodation_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto;  z-index: 9999999999999;}
-.animals #accommodation_search_dialog .wrapper { padding: 15px; }
-
 
 /* Index Animals :: Print Heading
 -----------------------------------------------------------------------------*/
@@ -872,11 +867,6 @@
 #create_location .actions {float: left; margin: -5px 0 0 10px;}
 #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-
-/* Index Accommodations :: Edit Location Dialog  */
-/******************************************************************/
-#edit_location_dialog {width:99%; height:100%; min-height: 350px; background-color: #fff; overflow:auto; z-index: 9999999999999;}
-#edit_location_dialog .wrapper { padding: 15px; }
 
 
 

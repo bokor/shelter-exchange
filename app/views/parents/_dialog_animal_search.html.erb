@@ -1,0 +1,12 @@
+<div id="dialog_animal_search" class="dialog">
+	<div class="wrapper">
+		<%= form_for :parents, :url => { :action => :find_animals_by_name, :controller => :parents }, 
+		             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
+  			<h2>Search for animal:</h2>
+  			<%= text_field_tag "q", ""  %>
+			<%= f.submit "Go", :disable_with => "..." %>
+  		<% end %>
+
+		<div id="animals"></div>
+	</div>
+</div>

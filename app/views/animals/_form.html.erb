@@ -126,9 +126,11 @@
 			<div id="accommodation_info">
 				<div id="accommodation_selected">
 					<span><% if @animal.accommodation %><b><%= @animal.accommodation.name %></b><% end %></span>
-					<a href="#accommodation_search_dialog" id="accommodation_search_link" toptions="width = 675, height = auto, type = dom, title = Select Accommodation, layout = quicklook, resizable = 0, shaded = 1, modal = 1"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>	
-					
-					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();">Remove</a>
+					<a href="#" id="accommodation_search_link" class="tipped" 
+							    data-tipped="dialog_accommodation_search" 
+					            data-tipped-options="skin: 'dialog_box', hook:'rightbottom', onShow: function() {}" 
+					        	onclick="return false;"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>
+					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();return false;">Remove</a>
 
 				</div>
 				<%= f.hidden_field :accommodation_id %>
@@ -245,14 +247,4 @@
 	</ul>
 <% end %>
 
-<div id="accommodation_search_dialog" style="display:none;">
-	<div class="wrapper">
-		<h3>Filter by specific location:</h3>
-		<%= form_for :accommodations, :url => { :action => :filter_by_type_location, :controller => :accommodations }, :remote => true, :html => { :id => "form_find_by_location", :method => :get } do |f| %>
-			<%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
-				{ :name => "location_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %><br /><br />
-		<% end %>
-		
-		<div id="accommodations"></div>
-	</div>
-</div>
+<%= render "accommodations/dialog_accommodation_search" %>

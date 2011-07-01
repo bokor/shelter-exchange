@@ -4,39 +4,10 @@
  * ------------------------------------------------------------------------ */
 
 
-/*
- * Configure TopUp
- */
-TopUp.images_path = "/images/top_up/";
-TopUp.players_path = "/players/";
-
-/*
- * Tipsy
- */
-$.fn.tipsy.defaults = {
-    delayIn: 0,      		// delay before showing tooltip (ms)
-    delayOut: 0,     		// delay before hiding tooltip (ms)
-    fade: true,     		// fade tooltips in/out?
-    fallback: '',    		// fallback text to use when no tooltip text
-    gravity: 'n',    		// gravity
-    html: false,     		// is tooltip content HTML?
-    live: true,     		// use live event support?
-    offset: 2,       		// pixel offset of tooltip from element
-    opacity: 0.9,    		// opacity of tooltip
-    title: 'data-helptext', // attribute/callback containing tooltip text
-    trigger: 'hover'        // how tooltip is triggered - hover | focus | manual
-};
-$(function() {
-	// $('input[data-helptext]').tipsy({trigger: 'focus', gravity: 'w'});
-	// $('span[data-helptext], a[data-helptext], div[data-helptext], img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
-	$('.task img[data-helptext], .activity img[data-helptext]').tipsy({trigger: 'hover', gravity: 'e'});
-});
 
 
-
-/*
- * Block UI
- */
+/* Block UI - Setup and Config
+/*----------------------------------------------------------------------------*/
 
 // Complex Block UI 
 //    - Shows up if > than 400 ms

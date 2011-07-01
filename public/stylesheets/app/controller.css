@@ -24,8 +24,13 @@
 #sidebar ul.action_links { padding: 0 0 10px 0; }
 #sidebar ul.action_links .button { min-width: 200px;}
 
+/* Dialog :: Layout
+-----------------------------------------------------------------------------*/
+.dialog {width: 680px; height: 425px; background-color: #fff; overflow:auto; display:none; z-index: 9999999999999; }
+.dialog .wrapper { padding: 15px; }
 
-/* Box :: Forms
+
+/* Box :: Layout :: Forms
 -----------------------------------------------------------------------------*/
 .box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
 .box.hide{display: none;}
@@ -113,11 +118,6 @@
 .animals #accommodation_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .animals #accommodation_selected #accommodation_search_link{}
 
-
-/* Animals :: Form :: Accommodation Search Dialog
------------------------------------------------------------------------------*/
-.animals #accommodation_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto;  z-index: 9999999999999;}
-.animals #accommodation_search_dialog .wrapper { padding: 15px; }
 
 
 /* Index Animals :: Print Heading
@@ -567,12 +567,11 @@
 .show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
-/* Show Parents :: Create Placement and Animal Search Dialog
+/* Show Parents :: Animal Search Dialog
 -----------------------------------------------------------------------------*/
-.show_parents #animal_search_dialog {width:99%; height:100%; background-color: #fff; overflow:auto; z-index: 9999999999999;}
-.show_parents #animal_search_dialog .wrapper { padding: 15px; }
-.show_parents #animal_search_dialog input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
-.show_parents #animal_search_dialog input[type=submit] {margin-left: 5px;}
+.show_parents #dialog_animal_search{height: 350px;}
+.show_parents #dialog_animal_search input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
+.show_parents #dialog_animal_search input[type=submit] {margin-left: 5px;}
 
 /* Show Parents :: Animal Selected from Search Dialog
 -----------------------------------------------------------------------------*/
@@ -879,8 +878,7 @@
 
 /* Index Accommodations :: Edit Location Dialog  */
 /******************************************************************/
-#edit_location_dialog {width:99%; height:100%; min-height: 350px; background-color: #fff; overflow:auto; z-index: 9999999999999;}
-#edit_location_dialog .wrapper { padding: 15px; }
+
 
 
 
