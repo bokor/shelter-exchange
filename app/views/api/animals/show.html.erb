@@ -11,7 +11,12 @@
 				<td>
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
-				<td class="action_links"></td>
+				<td class="action_links">
+					<span>Share this animal:</span>
+					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -44,8 +49,6 @@
 						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
 						<li><p><b>Location:</b>  <%= @animal.accommodation and @animal.accommodation.location ? @animal.accommodation.location.name : "None"   %></p></li>
 					</ul>
-					
-					
 				</td>
 				<td class="image">
 			    	<%= image_tag @animal.photo.url(:medium) %>
@@ -76,13 +79,37 @@
 			</tr>
 		</table>
 		<% end %>
+		
+		<table class="shelter_details">
+			<tr>
+				<td class="metadata">
+					<h3>Shelter Details:</h3>
+					<% if @animal.shelter.logo.file? %>
+						<div class="logo">
+							<%= image_tag @animal.shelter.logo.url(:small) %> 
+						</div>
+					<% end %>
+					<h2><%=@animal.shelter.name%></h2>
+					<ul>
+						<li><%=@animal.shelter.street%></li>
+						<li><%=@animal.shelter.city%>, <%=@animal.shelter.state%> <%=@animal.shelter.zip_code%></li>
+					</ul>
+					<ul>
+						<li>Tel: <%=number_to_phone(@animal.shelter.phone, :delimiter => "-")%></li>
+						<% unless @animal.shelter.fax.blank? %>
+							<li>Fax: <%=number_to_phone(@animal.shelter.fax, :delimiter => "-")%></li>
+						<% end %>
+						<li><a href="mailto:<%=@animal.shelter.email %>?subject=From Shelter Exchange"><%=@animal.shelter.email %></a></li>
+						<% unless @animal.shelter.website.blank? %>
+							<li><a href="<%=@animal.shelter.website%>" target="_new"><%=@animal.shelter.website%></a></li>
+						<% end %>
+					</ul>
+				</td>
+			</tr>
+		</table>
 
 		
 	</div>
-
-<% end %>
-
-<%= content_for :sidebar do %>
 
 <% end %>
 	

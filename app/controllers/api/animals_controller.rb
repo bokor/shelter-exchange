@@ -5,7 +5,7 @@ class Api::AnimalsController < Api::ApplicationController
     unless request.format.html?
       @animals = @current_shelter.animals.includes(:animal_type, :animal_status).available_for_adoption
     else
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).available_for_adoption.paginate(:per_page => 2, :page => params[:page])
+      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).available_for_adoption.paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
     end
       
     respond_with(@animals)
