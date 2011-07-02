@@ -5,7 +5,7 @@
 			<% if placement.shelter.id == @current_shelter.id %>
 				<% if can?(:destroy, Placement) %>
 					<div class="delete_link">
-					<%= link_to "Delete placement", placement, :confirm => "Are you sure?", :method => :delete, :remote => true %>
+					<%= link_to "Delete placement", placement, :confirm => "Are you sure you want to delete?  This animal will no longer show on the parents record.", :method => :delete, :remote => true %>
 					</div>
 				<% end %>
 			<% end %>
