@@ -5,17 +5,14 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading blue">
+	<div class="page_heading">
 		<table class="animal">
 			<tr>
 				<td>
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
 				<td class="action_links">
-					<span><strong>Share this animal:</strong></span>
-					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>
-					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>
-					<a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a>
+					<%= link_to "Back to Results", url_for(:back) %>
 				</td>
 			</tr>
 			<tr>
@@ -30,6 +27,14 @@
 	</div>
 	
 	<div class="page_content">
+
+		<div class="social_media">
+			<span class="title"><strong>Share this animal:</strong></span>
+			<span class="icon"><a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a></span>
+			<span class="icon"><a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a></span>
+			<span class="icon"><a href="http://google.com"><img src="<%= s3_expiring_url('/assets/images/logo_small.png') %>" /></a></span>
+		</div>
+				
 		 
 		<table class="animal_details">
 			<tr>

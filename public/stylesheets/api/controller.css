@@ -63,7 +63,8 @@
 
 /* Page Headings
 -----------------------------------------------------------------------------*/
-.page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee; margin: -1em -1em 1em -1em; padding: 1em;}
+.page_heading{background-color: #e7e7e7;border-bottom:1px solid #eee; margin: -1em -1em 1em -1em; padding: 1em;}
+.page_heading.blue {background-color: #edf3fe;}
 .page_heading.red{background-color:#faced3;}
 .page_heading h1{width:100%; }
 .page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -137,12 +138,20 @@
 -----------------------------------------------------------------------------*/
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;}
-.show_animals table.animal td.action_links{text-align:right;font-size:12px;position:absolute;top: 2px;right: 20px;}
-.show_animals table.animal td.action_links span{margin-top: -20px;padding-right: 10px;}
+.show_animals table.animal td.action_links{text-align:right;font-size:12px;padding-top:5px;}
 .show_animals table.animal td.status{text-align:right;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+
+
+/* Show Animal :: Social Media
+-----------------------------------------------------------------------------*/
+.show_animals .social_media{height: 50px; line-height: 50px; width: 100%; margin-bottom: 20px; border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
+.show_animals .social_media span{/*float:right;*/display:inline-block; *display:inline; vertical-align: middle; width: 60px;}
+.show_animals .social_media span.title{width: 125px;}
+.show_animals .social_media img{vertical-align: middle;margin-top: -10px;}
+
 
 /* Show Animal :: Animal Details
 -----------------------------------------------------------------------------*/
