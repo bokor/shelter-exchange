@@ -138,7 +138,7 @@
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;}
 .show_animals table.animal td.action_links{text-align:right;font-size:12px;position:absolute;top: 2px;right: 20px;}
-/*.show_animals table.animal td.action_links span{display:inline-block; padding-top: -20px;}*/
+.show_animals table.animal td.action_links span{margin-top: -20px;padding-right: 10px;}
 .show_animals table.animal td.status{text-align:right;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
