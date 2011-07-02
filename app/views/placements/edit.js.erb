@@ -1,3 +1,0 @@
-$('#placement_<%=@placement.id%>').hide();
-$('#placement_<%=@placement.id%>').after( "<%= escape_javascript(render 'edit_placement', :collection => @placement) %>" );
-$('#edit_placement_<%=@placement.id%>').show();

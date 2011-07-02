@@ -145,7 +145,8 @@ ShelterExchangeApp::Application.routes.draw do
     
     # Placements
     #----------------------------------------------------------------------------
-    resources :placements, :only => [:create, :edit, :update, :destroy] do
+    resources :placements, :only => [:create, :destroy] do
+      get :find_comments, :on => :member
       resources :comments
     end
  
@@ -179,7 +180,6 @@ ShelterExchangeApp::Application.routes.draw do
       resources :notes
       collection do
         get :search
-        get :find_animals_by_name
       end
     end
     
@@ -193,6 +193,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :search
         get :filter_notes
         get :filter_by_type_status
+        get :find_animals_by_name
         get :auto_complete
       end
     end

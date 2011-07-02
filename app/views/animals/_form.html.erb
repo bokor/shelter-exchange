@@ -128,7 +128,7 @@
 					<span><% if @animal.accommodation %><b><%= @animal.accommodation.name %></b><% end %></span>
 					<a href="#" id="accommodation_search_link" class="tipped" 
 							    data-tipped="dialog_accommodation_search" 
-					            data-tipped-options="skin: 'dialog_box', hook:'rightbottom', onShow: function() {}" 
+					            data-tipped-options="skin: 'dialog_box', hook:'rightbottom'" 
 					        	onclick="return false;"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>
 					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();return false;">Remove</a>
 

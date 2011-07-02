@@ -1,41 +1,17 @@
 <% if @comment.errors.any? %>
-
-	<% if @comment.commentable_type == "Placement" %>
-		$('#create_comment_errors_<%=@comment.commentable_id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
-		<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "create_comment_form_#{@comment.commentable_id}" %>
-	<% else %>
-		$('#create_comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
-		<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "create_comment_form" %>
-	<% end %>
-	
+	$('#create_comment_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
+	<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "create_comment_form" %>
 <% else %>
-
-	<% if @comment.commentable_type == "Placement" %>
-		TopUp.close();
-		$('#comments_<%=@comment.commentable_id%>').prepend("<%= escape_javascript(render @comment) %>"); 
-		$("#comments_<%=@comment.commentable_id%> .comment").first().effect("highlight", {}, 1000);
+	$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
+	$("#comments .comment").first().effect("highlight", {}, 1000);
 		
-		// Clear Form
-		$('#create_comment_form_<%=@comment.commentable_id%>').get(0).reset();
+	// Clear Form
+	$('#create_comment_form').get(0).reset();
 
-		// Remove Errors
-		$('#create_comment_errors_<%=@comment.commentable_id%>').html("");
-		$('#create_comment_form_<%=@comment.commentable_id%> p.error').remove();
-		$('#create_comment_form_<%=@comment.commentable_id%> li').removeClass("error");
-		
-	<% else %>
-		$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
-		$("#comments .comment").first().effect("highlight", {}, 1000);
-		
-		// Clear Form
-		$('#create_comment_form').get(0).reset();
+	// Remove Errors
+	$('#create_comment_errors').html("");
+	$('#create_comment_form p.error').remove();
+	$('#create_comment_form li').removeClass("error");
 
-		// Remove Errors
-		$('#create_comment_errors').html("");
-		$('#create_comment_form p.error').remove();
-		$('#create_comment_form li').removeClass("error");
-	<% end %>
-	
-	
 <% end %>
 <% flash.discard %>

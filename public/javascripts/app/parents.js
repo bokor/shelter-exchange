@@ -11,11 +11,11 @@ var Parents = {
   	}
 };
 
-$(function() {
-	$('.description').jTruncate({
-		length: 100,
-		minTrail: 0,
-		moreText: "More",
-		lessText: "Less"
-	});
-});
+// $(function() {
+// 	$('.description').jTruncate({
+// 		length: 100,
+// 		minTrail: 0,
+// 		moreText: "More",
+// 		lessText: "Less"
+// 	});
+// });

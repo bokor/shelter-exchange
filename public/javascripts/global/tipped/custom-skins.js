@@ -66,14 +66,8 @@ Bridge.Object.extend(Tipped.Skins || (Tipped.Skins = {}), {
 			opacity: .4 
 		},
     	spinner: { color: '#ffffff' },
-		// maxWidth: 430, 
-		// maxHeight: 430,
 		inline: true, 
-		// closeButton: true, 
-		// hideOn: false, 
-		// hideOnClickOutside: true,
 		fadeDuration: .5,  
-		// showOn: 'click', 
 		stem: true, 
 		hook: 'leftmiddle',
   	}

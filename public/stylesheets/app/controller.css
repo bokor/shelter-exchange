@@ -26,13 +26,13 @@
 
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.dialog {width: 680px; height: 425px; background-color: #fff; overflow:auto; display:none; z-index: 9999999999999; }
-.dialog .wrapper { padding: 15px; }
+.dialog {width: 680px; height: 425px; background-color: #fff; overflow:auto; display:none; z-index: 9999; }
+.dialog .wrapper { padding: 15px; color: #222; z-index: 99999; }
 
 /* Map Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.map_dialog {width: 420px; height: 420px; background-color: #fff; overflow:auto; display:none; z-index: 9999999999999; }
-.map_dialog .wrapper { padding: 10px; }
+.map_dialog {width: 420px; height: 420px; background-color: #fff; overflow:auto; display:none;  z-index: 9999; }
+.map_dialog .wrapper { padding: 10px; color: #222; z-index: 99999; }
 .map_dialog #map_canvas{ width: 400px; height: 400px; }
 
 
@@ -609,12 +609,14 @@
 /* Show Parents :: Placement List
 -----------------------------------------------------------------------------*/
 .show_parents table.placement_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted; border-collapse:collapse; }
-.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted; }
+.show_parents table.placement_list tr{border-bottom:1px #ccc dotted;}
+.show_parents table.placement_list td{vertical-align:top;font-size:12px;padding:8px 0; }
 .show_parents table.placement_list td.image { width:100px; padding-right: 15px; }
-.show_parents table.placement_list td.image img { padding-bottom: 10px;}
+.show_parents table.placement_list td.image img { padding-bottom: 5px;}
 .show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
+.show_parents table.placement_list td.image .action_links .delete_link{padding-bottom: 10px;}
 .show_parents table.placement_list td.details { width:380px;color:#666; }
-.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}
+/*.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}*/
 .show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
 
 
@@ -785,7 +787,7 @@
 .task .due_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
 
 .task .details{display:inline-block; width: 60%; vertical-align:top; }
-	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.75em; padding-top:5px;}
+	.task .title{display:inline-block; font-size: 13px;padding-left: 5px; line-height: 1.75em; padding-top:8px;}
 	.task .taskable_link{display:inline-block; font-weight:bold; color: #000;}
 
 .task .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
@@ -815,7 +817,7 @@
 
 .note .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
 .note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
-	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:5px;}
+	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:8px;}
 
 .note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
 
@@ -837,7 +839,7 @@
 .status_history .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px; }
 
 .status_history .details{display:inline-block; width: 90%; vertical-align:top; padding-left: 5px;}
-	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:5px;}
+	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:8px;}
 	.status_history .reason {font-weight: normal;font-size: 12px;}
 
 
@@ -848,14 +850,16 @@
 /* -------------------------- COMMENTS --------------------------- */
 /*******************************************************************/
 
-/* Comment List :: Layout
------------------------------------------------------------------------------*/
+/* Comments List :: Layout */
+/******************************************************************/
 .comment_list {border-top: 1px dotted #ccc;}
-.comment_list .comment {border-bottom: 1px dotted #ccc; line-height: 2.5em; padding: 5px 0 5px 0; }
-.comment_list .comment .created_date {float: left; width: 50%; color:#666; font-size: 10px; letter-spacing: -1px;}
-.comment_list .comment .action_links {float: left; width: 50%; text-align: right;font-size: 10px; font-weight:bold;}
-.comment_list .comment .description p { line-height: 2em;}
+.comment {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
 
+.comment .created_date {display:inline-block;color:#666; font-size: 10px; letter-spacing: -1px;  }
+.comment .description{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
+	.comment .description p {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:8px; color: #222;}
+
+.comment .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
 
 
 

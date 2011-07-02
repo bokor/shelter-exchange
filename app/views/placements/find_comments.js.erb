@@ -1,0 +1,5 @@
+<% unless @comments.blank? %>
+	$('#comments').html( "<%= escape_javascript( render @comments ) %>" );
+<% else %>
+	$('#commments').html( "<div class='no_results'><h2>No comments found</h2></div>" );
+<% end %>

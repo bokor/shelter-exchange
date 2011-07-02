@@ -6,7 +6,7 @@ class ParentsController < ApplicationController
   end
   
   def show
-    @parent = Parent.includes(:notes, :placements => [:comments, :animal => [:animal_type]]).find(params[:id])
+    @parent = Parent.includes(:notes, :placements => [:shelter, :animal => [:animal_type]]).find(params[:id])
     @placement = @parent.placements.new
     @comment = @placement.comments.build
     respond_with(@parent)
@@ -47,10 +47,6 @@ class ParentsController < ApplicationController
     @parents = q.blank? ? {} : Parent.search(q)
   end
   
-  def find_animals_by_name
-    q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-  end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid parent => #{params[:id]}")

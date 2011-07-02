@@ -4,6 +4,15 @@
  * ------------------------------------------------------------------------ */
 
 var Comments = {
+	updateCommentableDialog: function(id, commentable, placement_shelter, current_shelter){
+		if(placement_shelter != current_shelter){
+			$("#create_comment").hide();
+		} else {
+			$("#create_comment").show();
+		}
+		$("#comment_commentable_id").val(id);
+		$("#comment_commentable_type").val(commentable);
+	},
 	cancelForm: function(id){
 		$("#edit_comment_"+id).slideToggle(800,function() {
 			$(this).remove();
