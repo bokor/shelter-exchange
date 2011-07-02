@@ -1,8 +1,17 @@
 <div id="dialog_locations" class="dialog">
 	<div class="wrapper">
-		<h2>Edit locations</h2>
-		<div id="create_location" class="box orange">
-			<h3>Add a new location</h3>
+		
+		<span class="title">
+			<h2>Edit locations</h2>
+		</span>
+		<span class="action_links">
+			<span class="add_location_link"><%= link_to "Add a location", "#" %>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+			<span class="close_link"><%= link_to "Close", "#" %></span>
+		</span>
+		<div class="clear"></div>
+
+		<div id="create_location" class="box hide orange">
+			<!-- <h3>Add a new location</h3> -->
 			<div id="create_location_errors"></div>
 			<%= form_for (@location = Location.new), :remote => true, :html => { :id => "create_location_form", :class => "create_location_form" } do |f| %>
 				<ul>

@@ -1,5 +1,5 @@
 <li class="full">
-	<%= f.label :comment, "Comment <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<%= f.label :comment, "Add a comment <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_area :comment, :class => "field textarea small" %></div>
 	<%= has_error_message?(@comment, :comment)%>
 </li>

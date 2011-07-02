@@ -10,7 +10,7 @@
 				<% end %>
 			<% end %>
 			<div class="view_comments_link">
-				<a href="#" class="tipped" data-tipped="dialog_comments" data-tipped-options="skin:'dialog_box',onShow:function(){ Comments.updateCommentableDialog(<%=placement.id%>,'<%=placement.class.name.to_s%>',<%=placement.shelter_id%>, <%=@current_shelter.id%>); 
+				<a href="#" class="tipped" data-tipped="dialog_comments" data-tipped-options="skin:'dialog_box',onShow:function(){ Comments.updateCommentable(<%=placement.id%>,'<%=placement.class.name.to_s%>');Comments.updateDialog(<%=placement.shelter_id%>, <%=@current_shelter.id%>);
 Placements.findComments(<%=placement.id%>); }, onHide:function(){$('#comments').html('');}" onclick="return false;">View comments</a>
 			</div>
 		</div>

@@ -1,3 +1,5 @@
 <li>
-	<div><%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "Enter animal name" %></div>
+	<%= f.label :name, "Add a location <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255 %></div>
+	<%= has_error_message?(@location, :name)%>
 </li>
