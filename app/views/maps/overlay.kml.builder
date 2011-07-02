@@ -5,8 +5,7 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
     xml.Style :id => "shelterExchangeLogo" do
       xml.IconStyle do
         xml.Icon do
-          xml.href "http://www.designwaves.com/logo_small.png"
-          # xml.href "/images/logo_small.png"
+          xml.href s3_expiring_url('assets/images/logo_small.png')
         end
       end
     end
@@ -14,7 +13,7 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
       xml.Placemark do
         xml.name shelter.name
         xml.description do
-           xml.cdata! shelter_xml_description(shelter)
+           xml.cdata! shelter_info_window(shelter)
         end
         xml.styleUrl "#shelterExchangeLogo"
         xml.Point do
