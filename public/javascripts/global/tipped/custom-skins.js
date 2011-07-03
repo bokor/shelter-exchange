@@ -50,7 +50,7 @@ Bridge.Object.extend(Tipped.Skins || (Tipped.Skins = {}), {
 		fadeDuration: .5,  
 		showOn: 'click', 
 		stem: true, 
-		hook: 'leftbottom',
+		hook: 'leftbottom'
   	},
 	'map_box' : {
 		border: { size: 1, color: '#1f1f1f', opacity: .95 },
@@ -69,7 +69,8 @@ Bridge.Object.extend(Tipped.Skins || (Tipped.Skins = {}), {
 		inline: true, 
 		fadeDuration: .5,  
 		stem: true, 
-		hook: 'leftmiddle',
+		hook: 'leftmiddle'
   	}
+
 
 });

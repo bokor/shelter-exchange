@@ -371,7 +371,8 @@
 .communities table.animal_list td.image { width:100px; padding-left:5px; }
 .communities table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
 .communities table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-.communities table.animal_list .action_links {display:none;}
+.communities table.animal_list .euthanisia_date{color:red;}
+/*.communities table.animal_list .action_links {display:none;}*/
 
 
 /* Communities :: Animal Page
@@ -893,11 +894,6 @@
 #create_location .form {float:left; padding-bottom: 0;}
 #create_location .actions {float: left; margin: -5px 0 0 10px;}
 #create_location:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-
-/* Index Accommodations :: Edit Location Dialog  */
-/******************************************************************/
-
 
 
 

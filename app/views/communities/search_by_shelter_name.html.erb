@@ -1,7 +1,8 @@
 <%= title "Community" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", :cache => "cache/app/communities-search-by-shelter-name" %>
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", 
+	                           :cache => "cache/app/communities-search-by-shelter-name" %>
 	<script type="text/javascript">
 		var defaultZoom = 11;
 		var geocoder = new google.maps.Geocoder();
