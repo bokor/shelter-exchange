@@ -42,6 +42,9 @@
 						<li>Mobile:  <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
 					<% end %>
 					<li><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
+					<% unless @parent.secondary_email.blank? %>
+						<li><a href="mailto:<%=@parent.secondary_email %>"><%=@parent.secondary_email %></a></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>

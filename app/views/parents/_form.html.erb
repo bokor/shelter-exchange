@@ -52,6 +52,11 @@
 			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@parent, :email)%>
 		</li>
+		<li>
+			<%= f.label :secondary_email, "Secondary Email", :class => "desc" %>
+			<div><%= f.text_field :secondary_email, :class => "field text medium", :maxlength => 255 %></div>
+			<%= has_error_message?(@parent, :secondary_email)%>
+		</li>
 		<li class="buttons">
 			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
 			<% unless action_name == "new" or action_name =="create" %>

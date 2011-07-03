@@ -2,8 +2,6 @@
 	<td class="image">
 		<% if controller_name == "parents" %>
 			<%= link_to image_tag(animal.photo.url(:thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
-		<% elsif controller_name == "communities" %>
-			<%= link_to image_tag(animal.photo.url(:thumb)), animal_communities_path(animal.id), :target => "_blank"  %>
 		<% else %>
 			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
 		<% end %>
@@ -11,8 +9,6 @@
 	<td class="details">
 		<% if controller_name == "parents" %>
 			<h3><%= link_to animal.name, "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %></h3>
-		<% elsif controller_name == "communities" %>
-			<h3><%= link_to animal.name, animal_communities_path(animal.id), :target => "_blank"  %></h3>
 		<% else %>
 			<h3><%= link_to animal.name, animal %></h3>		
 		<% end %>
@@ -21,17 +17,6 @@
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
-		<% if controller_name == "communities" %>
-		<%
-			if animal.euthanasia_date.present?
-				if animal.euthanasia_date >= Date.today and animal.euthanasia_date <= Date.today + 2.weeks 
-					days_left = days_left(animal.euthanasia_date, Date.today)
-				end
-			end
-		%>
-			<p><%= animal.shelter.name %></p>
-			<p><b style="color:red;"><%= days_left %></b></p>
-		<% end %>
 		<div class="action_links">
 			<span class="select_link">
 		    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;", :class => "button green" %>

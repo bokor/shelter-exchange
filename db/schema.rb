@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701035358) do
+ActiveRecord::Schema.define(:version => 20110703144624) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(:version => 20110701035358) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "street_2"
+    t.string   "secondary_email"
   end
 
   add_index "parents", ["created_at"], :name => "index_parents_on_created_at"

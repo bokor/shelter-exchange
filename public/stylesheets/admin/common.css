@@ -37,7 +37,7 @@ Dog House Sides - #db8d4a
   
 /* Header */   
 /******************************************************************/
-#header{height: 90px; background-color: #209000; position:relative;}
+#header{height: 90px; background-color: #cf7019; position:relative;}
 
 #toolbar { font-family: 'Helvetica Neue', Arial, Verdana, sans-serif; height: 35px; line-height: 35px; background-color: #222; margin: 0; padding: 0 3em 0 3em; position:relative;}
 #toolbar:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -49,14 +49,28 @@ Dog House Sides - #db8d4a
 #toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
 #toolbar .settings_menu li { padding: 0px 10px; display:block;}
 #toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
-#toolbar .settings_menu li a:hover { color: #f26649;/*text-decoration: underline;*/}
-#toolbar .settings_menu li.current a { color: #f26649; /*text-decoration: underline;*/}
-#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
+#toolbar .settings_menu li a:hover { color: #f26649;}
+#toolbar .settings_menu li.current a { color: #f26649;}
+#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; }
 #menu li {float: left; font-size: 13px;list-style: none;margin: 0px 6px 0px 0px; }
 #menu li.current a{background: #e7e7e7; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
-#menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
-#menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
+#menu a:link, #menu a:visited {background: #8f4400;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
+#menu a:hover,#menu a:link.active, #menu a:visited.active {background: #ff912d;color: #eee; }
 
+
+/*
+
+dark
+ad5d00 - background
+762f0e - tab
+dc7327 - tab hover
+
+blue
+00488a- background
+0c3561 - tab
+218db8 - tab hover
+
+*/
 
 /* Main */   
 /******************************************************************/

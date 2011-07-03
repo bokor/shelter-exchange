@@ -12,7 +12,7 @@
 		
 	<div class="page_content">
 		<div id="parent_search">
-			<h3>Search for parent:</h3>
+			<h3>Lookup by Email address or Phone number:</h3>
 			<%= form_for :parents, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 				<%= text_field_tag "q", "" %>
 				<%= f.submit "Go" %>
