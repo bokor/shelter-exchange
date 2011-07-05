@@ -40,9 +40,16 @@
 			<% if @current_shelter.access_token.blank? %>
 				<h3>Web Access is currently not enabled.  Please Generate a Token so you can access your animals.</h3>
 			<% else %>
+				<h2>Basic Access</h2>
 				<h3>HTML</h3>
 				<p><code><%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
 				
+				<h4>Below is code that can be put on your website to show your list of animals.  Some of the settings of this iframe tag may need to be customized to fit into your site's layout.</h4>
+				
+				<p><code>&lt;iframe src="<%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %>" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code></p>
+				<br /><br />
+				
+				<h2>Advanced Access</h2>
 				<h3>JSON</h3>
 				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
 				
