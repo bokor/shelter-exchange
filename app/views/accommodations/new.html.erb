@@ -1,7 +1,13 @@
 <%= title "Create your first accommodation" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "app/accommodations", :cache => "cache/app/accommodations-new" %>
+	<%= javascript_include_tag "app/accommodations", "app/locations", :cache => "cache/app/accommodations-new" %>
+	<script type="text/javascript">
+		$(function() {
+			Locations.initializeDialog();
+		});
+	</script>
+	
 <% end %>
 
 <%= content_for :page_content do %>
@@ -25,6 +31,8 @@
 			<% end %>
 		</div>	
 	</div>
+	
+	<%= render "locations/dialog_locations" %>
 	
 <% end %>
 

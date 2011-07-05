@@ -26,6 +26,7 @@ var Communities = {
 		google.maps.event.addListener(map, 'idle', function(e){
 			Communities.findAnimalsInBounds();
 		});
+		
 		// Set up forms
 		Communities.bindFilters();
 		Communities.breedAutoComplete();

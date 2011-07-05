@@ -4,7 +4,7 @@
  * ------------------------------------------------------------------------ */
 var Locations = {
 	initializeDialog: function(){
-		$('.add_location_link a').bind('click', function(e){
+		$('.add_location_link a, .close_location_form').bind('click', function(e){
 			e.preventDefault();
 			$('#create_location').slideToggle(800);
 		});
