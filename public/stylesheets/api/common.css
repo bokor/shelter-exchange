@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; }
-html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #fff; color: #222; font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px; }
+html, body { margin:0; padding:0; height: 99%; }
+body { min-width: 625px;background-color: #fff; color: #222; font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; }
 
 
 /*********************************************************/
