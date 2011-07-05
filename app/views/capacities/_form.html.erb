@@ -8,8 +8,3 @@
 	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4, :placeholder => "100" %></div>
 	<%= has_error_message?(@capacity, :max_capacity)%>
 </li>
-<li class="full">
-	<%= f.label :warning_level, "Warning level <span class='req'>*</span>".html_safe, :class => "desc" %>
-	<div><%= f.text_field :warning_level, :class => "field text small", :maxlength => 4, :placeholder => "85" %></div>
-	<%= has_error_message?(@capacity, :warning_level)%>
-</li>

@@ -84,10 +84,11 @@
 -----------------------------------------------------------------------------*/
 .circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
+.circle.medium{height: 60px; width: 60px; text-align:center; line-height: 60px;}
 .circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
-.circle.over_capacity{border-color: #f07280;background-color:#faced3;}
-.circle.warning_level{border-color: #f9d36f; background-color:#fdf1d0;}
-.circle.normal{border-color: #90e674;background-color:#d5f6ca;}
+.circle.red{border-color: #f07280;background-color:#faced3;}
+.circle.yellow{border-color: #f9d36f; background-color:#fdf1d0;}
+.circle.green{border-color: #90e674;background-color:#d5f6ca;}
 
 /* Shelter Kill/No Kill Bubble
 -----------------------------------------------------------------------------*/
@@ -244,9 +245,9 @@
 .capacity_list {border-top: 1px dotted #ccc;}
 .capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
 
-.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 100px; width: 100px;font-size: 16px; font-weight: bold; }
-.capacity .counts{display:inline-block;  padding-left: 75px;}
-	.capacity .counts ul{padding-top: 5px;}
+.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 60px; width: 60px;font-size: 13px; font-weight: bold; }
+.capacity .counts{display:inline-block;  padding-left: 60px;}
+	.capacity .counts ul{padding-top: 8px;}
 	.capacity .counts ul li{line-height: 25px; }
 
 .capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
@@ -260,7 +261,11 @@
 .capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
 .capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
 
-
+/* Community :: Capacity
+-----------------------------------------------------------------------------*/
+.communities .capacity .action_links{display:none;}
+.communities .capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
+.communities .capacities h2{padding-bottom: 5px; /*border-bottom: 1px solid #ddd;*/}
 
 
 

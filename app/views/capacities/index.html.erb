@@ -11,20 +11,7 @@
 	</div>
 		
 	<div class="page_content">
-		
-		<div id="capacities" class="capacity_list">
-			<%= render @capacities %>
-		</div>
-		
-		<div class="legend">
-			<table>
-				<tr><th>Legend:</th></tr>
-				<tr><td><div class="circle small over_capacity"><span>Full</span></div></td></tr>
-				<tr><td><div class="circle small warning_level"><span>Almost full</span></div></td></tr>
-				<tr><td><div class="circle small normal"><span>Good</span></div></td></tr>
-			</table>
-		</div>
-			
+		<%= render "capacity_list" %>
 	</div>
 	
 <% end %>

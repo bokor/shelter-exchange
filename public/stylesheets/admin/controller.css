@@ -68,10 +68,11 @@
 -----------------------------------------------------------------------------*/
 .circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
+.circle.medium{height: 60px; width: 60px; text-align:center; line-height: 60px;}
 .circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
-.circle.over_capacity{border-color: #f07280;background-color:#faced3;}
-.circle.warning_level{border-color: #f9d36f; background-color:#fdf1d0;}
-.circle.normal{border-color: #90e674;background-color:#d5f6ca;}
+.circle.red{border-color: #f07280;background-color:#faced3;}
+.circle.yellow{border-color: #f9d36f; background-color:#fdf1d0;}
+.circle.green{border-color: #90e674;background-color:#d5f6ca;}
 
 /* Shelter Kill/No Kill Bubble
 -----------------------------------------------------------------------------*/
@@ -182,22 +183,6 @@
 .show_shelters #map_canvas {margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
 
 
-/* Shelter Capacities :: Show :: Layout
------------------------------------------------------------------------------*/
-.show_shelters table.capacity_details .hover {cursor:default;}
-.show_shelters table.capacity_details { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
-.show_shelters table.capacity_details tr {border-bottom:1px #ccc dotted; }
-.show_shelters table.capacity_details tr:last-child {border-bottom:1px #ccc dotted; }
-.show_shelters table.capacity_details td{vertical-align:top;font-size:12px;padding:5px 0;}
-.show_shelters td {width:25%;}
-
-.show_shelters table.legend { width: 100%; padding: 5px 0 0 0; }
-.show_shelters table.legend td{width: 30%; }
-.show_shelters table.legend td span{ margin-left: 20px; white-space: nowrap; }
-.show_shelters table.legend td .over_capacity span{width: 22%;}
-.show_shelters table.legend td .warning_level span{width: 34%;} 
-.show_shelters table.legend td .normal span{ width: auto; }
-
 /* Account Details :: Show Sidebar :: Layout
 -----------------------------------------------------------------------------*/
 .show_shelters #sidebar .account_details{padding: 5px 0 20px 0; }
@@ -207,6 +192,31 @@
 .show_shelters #sidebar .account_details table td.value{width: 65%;}
 
 
+
+/********************************************************************/
+/* -------------------------- CAPACITIES -------------------------- */
+/********************************************************************/
+
+/* Capacities List :: Layout */
+/******************************************************************/
+.capacity_list {border-top: 1px dotted #ccc;}
+.capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
+
+.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 60px; width: 60px;font-size: 13px; font-weight: bold; }
+.capacity .counts{display:inline-block;  padding-left: 60px;}
+	.capacity .counts ul{padding-top: 8px;}
+	.capacity .counts ul li{line-height: 25px; }
+
+.capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
+
+
+/* Capacity Legend :: Layout
+-----------------------------------------------------------------------------*/
+.capacities .legend{width: 90px; margin-top: 20px; padding: 10px 15px; border: 1px solid #eee; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+.capacities .legend table { border-collapse: collapse; border-spacing: 0;  }
+.capacities .legend table th{font-size: 14px;}
+.capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
+.capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
 
 
 

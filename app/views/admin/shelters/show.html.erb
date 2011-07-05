@@ -96,44 +96,10 @@
 		
 		<div class="stats">
 			<% unless @capacities.blank? %>
-				<h2>Does this shelter have room?</h2>
-				<table class="capacity_details">
-					<thead>
-						<tr>
-							<th>Animal</th>
-							<th>Status</th>
-							<th>Space Avail</th>
-							<th>Max</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% @capacities.each do |capacity| %>
-						<% animal_count = capacity.animal_type.animals.active.count %>
-						<%  status_class = ""
-							if animal_count >= capacity.warning_level and animal_count <= capacity.max_capacity
-								status_class = "warning_level"  
-							elsif animal_count >= capacity.max_capacity
-								status_class = "over_capacity"
-							else 
-								status_class = "normal"
-							end
-						%>
-						<tr class="row">
-							<td><%= capacity.animal_type.name %></td>
-							<td><div class="circle small <%=status_class%>"></div></td>
-							<td><%= capacity.max_capacity - animal_count %></td>
-							<td><%= capacity.max_capacity%></td>
-						</tr>
-					<% end %>
-					</tbody>
-				</table>
-				<table class="legend">
-					<tr>
-						<td><div class="circle small over_capacity"><span>Full</span></div></td>
-						<td><div class="circle small warning_level"><span>Almost full</span></div></td>
-						<td><div class="circle small normal"><span>Good</span></div></td>
-					</tr>
-				</table>
+				<div class="capacities">
+					<h2>Does this shelter have space available?</h2>
+					<%= render "capacities/capacity_list" %>
+				</div>
 			<% end %>
 		</div>
 		
