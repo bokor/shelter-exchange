@@ -1,7 +1,7 @@
 <%= title "Community" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/shelters", "app/communities",
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/communities",
 	                           :cache => "cache/app/communities-search-by-shelter-name" %>
 	<script type="text/javascript">
 		$(function() {

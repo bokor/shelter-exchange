@@ -2,7 +2,6 @@
  * app/notes.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-
 var Notes = {
 	filters: function(){
 		$('#all_notes_link').addClass('active_link');

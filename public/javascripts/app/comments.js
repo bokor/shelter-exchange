@@ -2,7 +2,6 @@
  * app/comments.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-
 var Comments = {
 	initializeDialog: function(){
 		$('.add_comment_link a').bind('click', function(e){
