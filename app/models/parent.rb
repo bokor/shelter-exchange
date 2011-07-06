@@ -35,8 +35,8 @@ class Parent < ActiveRecord::Base
   private 
   
     def format_phone_numbers
-      self.home_phone.gsub(/\D/, "") unless self.home_phone.blank?
-      self.mobile_phone.gsub(/\D/, "") unless self.mobile_phone.blank?
+      self.home_phone.gsub!(/\D/, "") unless self.home_phone.blank?
+      self.mobile_phone.gsub!(/\D/, "") unless self.mobile_phone.blank?
     end
     
     def address_valid?

@@ -1,13 +1,3 @@
-
-<style type="text/css" media="screen">
-	.logo{float:right; text-align:right;}
-	.logo:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-	.logo a{padding-top: 10px; display:block;}
-
-
-	
-</style>
-
 <div class="logo">
 <% if @shelter.logo.file? %>
 	<div>
@@ -15,7 +5,7 @@
 	</div>
 <% end %>
 	<a href="#" class="tipped" data-tipped="dialog_shelter_map" 
-	                           data-tipped-options="skin: 'map_box', onShow: function() { loadMapForModal();}" 
+	                           data-tipped-options="skin: 'map_box', onShow: function() { Communities.loadMapForModal();}" 
 	        				   onclick="return false;">View map</a>
 	<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a>
 </div>
@@ -26,7 +16,7 @@
 </ul>
 <br />
 <ul>
-	<li>Tel: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+	<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
 	<% unless @shelter.fax.blank? %>
 		<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
 	<% end %>

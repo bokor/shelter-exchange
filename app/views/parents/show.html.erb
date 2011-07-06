@@ -37,13 +37,13 @@
 			<div id="contact_details">
 				<h3>Contact details:</h3>
 				<ul>
-					<li>Tel:  <%=number_to_phone(@parent.home_phone, :delimiter => "-")%></li>
+					<li>Phone:  <%=number_to_phone(@parent.home_phone, :delimiter => "-")%></li>
 					<% unless @parent.mobile_phone.blank? %>
-						<li>Mobile:  <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
+						<li>Mobile:<%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
 					<% end %>
-					<li><a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
+					<li>Email:  <a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
 					<% unless @parent.secondary_email.blank? %>
-						<li><a href="mailto:<%=@parent.secondary_email %>"><%=@parent.secondary_email %></a></li>
+						<li>Email(2):  <a href="mailto:<%=@parent.secondary_email %>"><%=@parent.secondary_email %></a></li>
 					<% end %>
 				</ul>
 			</div>

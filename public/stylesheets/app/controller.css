@@ -102,7 +102,6 @@
 
 
 
-
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
@@ -289,6 +288,11 @@
 .new_accommodations #left, .create_accommodations #left { width: 100%;}
 .new_accommodations #sidebar, .create_accommodations #sidebar { display: none;width: 0;}
 
+/* Accommodations :: Help
+-----------------------------------------------------------------------------*/
+.accommodations ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
+.accommodations ul.help li{margin-left: 20px;padding-bottom: 10px;}
+
 
 /* Index Accommodations :: Search and Filters
 -----------------------------------------------------------------------------*/
@@ -423,6 +427,23 @@
 .animal_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .animal_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
 
+
+/* Search by Shelter Name Communities :: Results :: Layout
+-----------------------------------------------------------------------------*/
+.search_by_shelter_name_communities table.results{width: 100%; padding-bottom: 20px;}
+.search_by_shelter_name_communities table.results td.shelter_half{width:48%; padding-right: 2%; vertical-align:top;}
+.search_by_shelter_name_communities table.results td.animal_half{width:48%; padding-left: 2%; vertical-align:top;border-left: 1px dotted #ccc;}
+
+/* Search by Shelter Name Communities :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.search_by_shelter_name_communities #shelter_details h1{color: #ccc;height: 400px; line-height: 400px; margin: 0 auto; text-align: center;}
+.search_by_shelter_name_communities #shelter_details .logo{float:right; text-align:right;}
+.search_by_shelter_name_communities #shelter_details .logo:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.search_by_shelter_name_communities #shelter_details .logo a{padding-top: 10px; display:block;}
+
+/* Search by Shelter Name Communities :: Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.search_by_shelter_name_communities #animals h1 {color: #ccc;margin: 0 auto; text-align: center;height: 400px; line-height: 400px;}
 
 
 
@@ -734,6 +755,12 @@
 .new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
 .new_alerts #left, .create_alerts #left{ width: 100%;}
 .new_alerts #sidebar, .create_alerts #sidebar { display: none;width: 0; }
+
+/* Alerts :: Help
+-----------------------------------------------------------------------------*/
+.alerts ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
+.alerts ul.help li{margin-left: 20px;padding-bottom: 10px;}
+
 
 /* Alert List :: Layout */
 /******************************************************************/
