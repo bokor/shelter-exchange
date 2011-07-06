@@ -16,7 +16,6 @@ var lng;
 var markersArray = [];
 
 var Communities = {
-	logo: null,
 	
 	initializeByCityZipCode: function(lat, lng, s3_url) {
 		

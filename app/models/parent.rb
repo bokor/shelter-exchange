@@ -15,10 +15,10 @@ class Parent < ActiveRecord::Base
   validates :name, :presence => true
   validates :home_phone, :presence => true, :uniqueness => true
   validates :mobile_phone, :uniqueness => true, :allow_blank => true
-  validates :email, :uniqueness => true, 
+  validates :email, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."}, 
                     :allow_blank => true,
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
-  validates :secondary_email, :uniqueness => true, 
+  validates :email_2, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."}, 
                               :allow_blank => true,
                               :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
                     
@@ -28,7 +28,7 @@ class Parent < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.search(q)
     phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
-    where("home_phone = '#{phone}' OR mobile_phone = '#{phone}' OR email = '#{q}' OR secondary_email = '#{q}'").limit(10)
+    where("home_phone = '#{phone}' OR mobile_phone = '#{phone}' OR email = '#{q}' OR email_2 = '#{q}'").limit(10)
   end
 
   

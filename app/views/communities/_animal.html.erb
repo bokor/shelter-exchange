@@ -12,7 +12,7 @@
 		<p><b><%= animal.animal_status.name %></b></p>
 		<p><%= animal.shelter.name %></p>
 		<% if animal.shelter.is_kill_shelter %>
-			<p class="euthanisia_date"><b><%= days_left(animal.euthanasia_date, Date.today) %></b></p>
+			<p class="euthanisia_date"><b><%= days_left(animal.euthanasia_date) %></b></p>
 		<% end %>
 		<div class="action_links">
 			

@@ -15,7 +15,7 @@
 	<%= has_error_message?(@accommodation, :animal_type_id)%>
 </li>
 <li>
-	<%= f.label :name, "Accommodation name <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255, :placeholder => "Crate 1 or Kennel 3" %></div>
 	<%= has_error_message?(@accommodation, :name)%>
 </li>

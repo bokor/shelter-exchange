@@ -1,9 +1,9 @@
 class AddSecondaryEmailAddressToParent < ActiveRecord::Migration
   def self.up
-    add_column :parents, :secondary_email, :string
+    add_column :parents, :email_2, :string
   end
 
   def self.down
-    remove_column :parents, :secondary_email
+    remove_column :parents, :email_2
   end
 end

@@ -3,23 +3,25 @@ module CommunitiesHelper
     [@shelter.street, @shelter.street_2, @shelter.city, @shelter.state, @shelter.zip_code].join('+')
   end
   
-  def days_left(from_time, to_time)
-    if from_time.present? and (from_time >= to_time and from_time <= to_time + 2.weeks)
-      from_time = from_time.to_time if from_time.respond_to?(:to_time)
-      to_time = to_time.to_time if to_time.respond_to?(:to_time)
+  def days_left(from_time, to_time = Date.today)
+    from_time = from_time.to_time if from_time.respond_to?(:to_time)
+    to_time = to_time.to_time if to_time.respond_to?(:to_time)
+    
+    if from_time.present? and (from_time <= to_time + 2.weeks)
       distance_in_seconds = ((to_time - from_time).abs).round
       components = []
-
-      %w(day).each do |interval|
-        if distance_in_seconds >= 1.send(interval)
-          delta = (distance_in_seconds / 1.send(interval)).floor
-          distance_in_seconds -= delta.send(interval)
-          components << pluralize(delta, interval)
+    
+      unless from_time < current_time 
+        %w(day).each do |interval|
+          if distance_in_seconds >= 1.send(interval)
+            delta = (distance_in_seconds / 1.send(interval)).floor
+            distance_in_seconds -= delta.send(interval)
+            components << pluralize(delta, interval)
+          end
         end
       end
-      components.blank? ? "No Days left" : components.join() << " left"
+      components.blank? ? "URGENT RESCUE NEEDED" : components.join() << " left"
     end
   end
-  
 
 end

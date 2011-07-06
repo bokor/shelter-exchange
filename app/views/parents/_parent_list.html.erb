@@ -13,8 +13,8 @@
 					<p><%=number_to_phone(parent.mobile_phone, :delimiter => "-")%>(m)</p>
 				<% end %>
 				<p><%= parent.email %></p>
-				<% unless parent.secondary_email.blank? %>
-					<p><%= parent.secondary_email %></p>
+				<% unless parent.email_2.blank? %>
+					<p><%= parent.email_2 %></p>
 				<% end %>
 			</td>
 		</tr>

@@ -20,7 +20,7 @@ class Task < ActiveRecord::Base
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true) 
   
-  scope :overdue, where("due_date < ?", Date.today)
+  scope :overdue, where("due_date < ?", Date.today) # ??? Time.zone.now.midnight.to_date
   scope :today, where("due_date = ?", Date.today)
   scope :tomorrow, where("due_date = ?", Date.today + 1.day)
   scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("due_date DESC")

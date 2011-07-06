@@ -9,14 +9,8 @@
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
-		<% if @current_shelter.is_kill_shelter
-		   		if animal.euthanasia_date.present?
-					if animal.euthanasia_date >= Date.today and animal.euthanasia_date <= Date.today + 2.weeks 
-						days_left = days_left(animal.euthanasia_date, Date.today)
-					end
-				end %>
-			<!-- <p><%= animal.shelter.name %></p> -->
-			<p><b style="color:red;"><%= days_left %></b></p>
+		<% if @current_shelter.is_kill_shelter %>
+			<p><b style="color:red;"><%= days_left(animal.euthanasia_date) %></b></p>
 		<% end %>
 	</td>
 </tr>

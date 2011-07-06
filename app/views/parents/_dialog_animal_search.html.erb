@@ -5,6 +5,7 @@
   			<h2>Search for animal:</h2>
   			<%= text_field_tag "q", ""  %>
 			<%= f.submit "Go", :disable_with => "..." %>
+			<%= hidden_field_tag :from_controller, controller_name %>
   		<% end %>
 
 		<div id="animals"></div>

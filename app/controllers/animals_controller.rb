@@ -79,6 +79,7 @@ class AnimalsController < ApplicationController
   
   def find_animals_by_name
     q = params[:q].strip
+    @from_controller = params[:from_controller]
     @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   

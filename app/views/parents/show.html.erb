@@ -39,11 +39,11 @@
 				<ul>
 					<li>Phone:  <%=number_to_phone(@parent.home_phone, :delimiter => "-")%></li>
 					<% unless @parent.mobile_phone.blank? %>
-						<li>Mobile:<%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
+						<li>Mobile: <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
 					<% end %>
 					<li>Email:  <a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
-					<% unless @parent.secondary_email.blank? %>
-						<li>Email(2):  <a href="mailto:<%=@parent.secondary_email %>"><%=@parent.secondary_email %></a></li>
+					<% unless @parent.email_2.blank? %>
+						<li>Email 2:  <a href="mailto:<%=@parent.email_2 %>"><%=@parent.email_2 %></a></li>
 					<% end %>
 				</ul>
 			</div>
@@ -119,9 +119,7 @@
 						        				   onclick="return false;">Search for animal</a> <span class='req'>*</span>
 					</span>
 					<span class="right">
-						<div id="animal_selected">
-							<span><b>&nbsp;</b></span>
-						</div>
+						<span id="animal_selected"></span>
 						<%= f.hidden_field :animal_id %>
 					</span>
 					<%= has_error_message?(@parent, :animal_id)%>

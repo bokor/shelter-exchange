@@ -600,6 +600,9 @@
 .index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
 .index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;}
 
+/* Show Parents :: Notes
+-----------------------------------------------------------------------------*/
+.show_parents #note_category{display:none;}
 
 /* Show Parents :: Parent Details
 -----------------------------------------------------------------------------*/
@@ -618,8 +621,7 @@
 
 /* Show Parents :: Animal Selected from Search Dialog
 -----------------------------------------------------------------------------*/
-.show_parents #animal_selected {padding-bottom: 5px;}
-.show_parents #animal_selected span b {/*padding: 0 0 0 0;*/ font-size: 15px; letter-spacing:-1px;}
+.show_parents #animal_selected {padding-bottom: 10px;font-weight:bold; font-size: 15px; letter-spacing:-1px;height: 20px;}
 
 
 /* Show Parents :: Animal List
