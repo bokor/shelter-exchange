@@ -2,19 +2,6 @@
  * app/communities.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-// var TYPE_SHELTER_NAME = "SHELTER_NAME";
-// var TYPE_CITY_ZIPCODE = "CITY_ZIPCODE";
-
-// var defaultZoom = 11;
-// var logo;
-// var myLatLng;
-// var geocoder;
-// var kmlLayer;
-// var map;
-// var lat;
-// var lng;
-// var markersArray = [];
-
 var Communities = {
 	defaultZoom: 11,
 	logo: null,
