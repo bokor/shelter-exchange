@@ -609,34 +609,3 @@ Breed.create([
   { :animal_type_id => other.id, :name => "Sheep" },
   { :animal_type_id => other.id, :name => "Spider" }
 ])
-
-#######################################################################################################################
-#
-#   NoteCategory Create
-#      Creates the NoteCategories so that we have a standard set of notes
-#
-#######################################################################################################################
-NoteCategory.create([
-  { :name => "General" },
-  { :name => "Medical" },
-  { :name => "Behavioral" },
-  { :name => "Intake" }
-])
-
-
-#######################################################################################################################
-#
-#   TaskCategory Create
-#      Creates the TaskCategory so that we have a standard set of TaskCategories
-#
-#######################################################################################################################
-TaskCategory.create([
-  { :name => "Call", :color => "#cc1d0a" },
-  { :name => "Email", :color => "#0871a5" },
-  { :name => "Follow-up", :color => "#cc610a" },
-  { :name => "Meeting", :color => "#9108a5" },
-  { :name => "To-do", :color => "#08a535" },
-  { :name => "Educational", :color => "#ccaf0a" },
-  { :name => "Behavioral", :color => "#b4094a" },
-  { :name => "Medical", :color => "#0833a6" }
-])
