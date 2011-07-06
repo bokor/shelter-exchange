@@ -13,4 +13,4 @@ test:
 
 production:
     <<: *common
-    bucket: shelterexchange-prod
+    bucket: shelterexchange
