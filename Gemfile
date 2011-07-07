@@ -11,15 +11,7 @@ gem 'rake', '0.8.7'
 # Database
 #----------------------------------------------------------------------------
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-
-group :development, :test do
-	gem 'mysql', '2.8.1'
-end
-
-group :production, :staging do
-    gem 'mysql2', '~> 0.2.7'
-end
-
+gem 'mysql2', '~> 0.2.7'
 gem 'yaml_db'
 
 # Zip Files

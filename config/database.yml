@@ -1,9 +1,8 @@
 development:
-    adapter: mysql
+    adapter: mysql2
     database: shelterexchange_dev
     username: shelterexchange
     password: shelterexchange
-    socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
 test:
     adapter: mysql
