@@ -13,7 +13,7 @@ test:
     socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
 production:
-    adapter: mysql2
+    adapter: mysql
     database: shelterexchange
     username: se_prod
     password: 
