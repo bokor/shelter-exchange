@@ -12,6 +12,12 @@ test:
     password: shelterexchange
     socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
+staging:
+    adapter: mysql
+    database: shelterexchange-staging
+    username: se_prod
+    password: 
+
 production:
     adapter: mysql
     database: shelterexchange
