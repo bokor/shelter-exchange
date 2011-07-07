@@ -1,0 +1,7 @@
+environments:
+ shelter_exchange_app_staging:
+   copy_exclude:
+     - .git
+ shelter_exchange_app_production:
+   copy_exclude:
+     - .git
