@@ -60,10 +60,12 @@ var Communities = {
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
 	geocodeAddress: function(e){
+		var map = this.map;
+		var defaultZoom = this.defaultZoom;
 		this.geocoder.geocode( { address: $("#address").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
-	        	this.map.setCenter(results[0].geometry.location);
-				this.map.setZoom(this.defaultZoom);
+	        	map.setCenter(results[0].geometry.location);
+				map.setZoom(defaultZoom);
 	      	} else {
 	        	alert("Geocode was not successful for the following reason: " + status);
 	      	}
@@ -73,6 +75,7 @@ var Communities = {
 		$("#form_filters").bind("keypress", function(e){
 			return !(window.event && window.event.keyCode == 13); 
 		});
+		
 		$("#form_address_search").bind("submit", function(e){
 			e.preventDefault();
 			Communities.geocodeAddress(e);
