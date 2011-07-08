@@ -2,31 +2,41 @@
  * app/communities.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
+var defaultZoom = 11;
+var logo = null;
+var myLatLng = null;
+var geocoder = null;
+var map = null;
+var kmlLayer = null;
+var lat = null;
+var lng = null;
+var markersArray = [];
+
 var Communities = {
-	defaultZoom: 11,
-	logo: null,
-	myLatLng: null,
-	geocoder: null,
-	map: null,
-	kmlLayer: null,
-	lat: null, 
-	lng: null,
-	markersArray: [],
+	// defaultZoom: 11,
+	// logo: null,
+	// myLatLng: null,
+	// geocoder: null,
+	// map: null,
+	// kmlLayer: null,
+	// lat: null, 
+	// lng: null,
+	// markersArray: [],
 	
 	initializeByCityZipCode: function(lat, lng, s3_url) {
 		// Map setup and config
-		this.myLatLng = new google.maps.LatLng(lat, lng);
-		this.geocoder = new google.maps.Geocoder();
-		this.map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-	 																				 zoom: this.defaultZoom,
-																					 center: this.myLatLng,
+		myLatLng = new google.maps.LatLng(lat, lng);
+		geocoder = new google.maps.Geocoder();
+		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
+	 																				 zoom: defaultZoom,
+																					 center: myLatLng,
 		    																		 mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
-		this.kmlLayer = new google.maps.KmlLayer(s3_url, { preserveViewport: true });
-		this.kmlLayer.setMap(this.map);
+		kmlLayer = new google.maps.KmlLayer(s3_url, { preserveViewport: true });
+		kmlLayer.setMap(map);
 		
 		// Add Google Map Listener
-		google.maps.event.addListener(this.map, 'idle', function(e){
+		google.maps.event.addListener(map, 'idle', function(e){
 			Communities.findAnimalsInBounds();
 		});
 		
@@ -36,8 +46,8 @@ var Communities = {
   	},
 	initializeByShelterName: function(lat, lng, marker) {
 		// Set up and config
-		this.logo     = marker;
-	    this.myLatLng = new google.maps.LatLng(lat, lng);
+		logo     = marker;
+	    myLatLng = new google.maps.LatLng(lat, lng);
 
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
@@ -45,12 +55,12 @@ var Communities = {
 		Communities.shelterNameAutoComplete();
   	},
 	findAnimalsInBounds: function(){
-		var zoomLevel = this.map.getZoom();
+		var zoomLevel = map.getZoom();
 		if (zoomLevel < 10) {
 			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
 			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
 		} else {
-			var bounds = this.map.getBounds();
+			var bounds = map.getBounds();
 			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 			$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
@@ -60,9 +70,7 @@ var Communities = {
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
 	geocodeAddress: function(e){
-		var map = this.map;
-		var defaultZoom = this.defaultZoom;
-		this.geocoder.geocode( { address: $("#address").val() }, function(results, status) {
+		geocoder.geocode( { address: $("#address").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 	        	map.setCenter(results[0].geometry.location);
 				map.setZoom(defaultZoom);
@@ -169,8 +177,8 @@ var Communities = {
 			select: function(event, ui){
 				$('#filters_shelter_id').val(ui.item.id);
 				Communities.findAnimalsForShelter();
-				this.lat = ui.item.lat;
-				this.lng = ui.item.lng;
+				lat = ui.item.lat;
+				lng = ui.item.lng;
 			}	
 		});
 	},
@@ -179,25 +187,25 @@ var Communities = {
 		Communities.addMarker();
 	},
 	addMap: function(){
-		this.map = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-	    																   		zoom: this.defaultZoom,
-		    															   		center: this.myLatLng,
+		map = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
+	    																   		zoom: defaultZoom,
+		    															   		center: myLatLng,
 																				disableDefaultUI: true,
 		    																	mapTypeId: google.maps.MapTypeId.ROADMAP });
-		this.map.setCenter(this.myLatLng);
+		map.setCenter(myLatLng);
 	},
 	addMarker: function(){
 		Communities.clearOverlays();
-		var marker = new google.maps.Marker({ position: this.myLatLng,
-											  map: this.map,
+		var marker = new google.maps.Marker({ position: myLatLng,
+											  map: map,
 											  animation: google.maps.Animation.DROP,
-		    								  icon: this.logo });
-		this.markersArray.push(marker);
+		    								  icon: logo });
+		markersArray.push(marker);
 	},
 	clearOverlays: function(){
-	  if (this.markersArray) {
-	    for (i in this.markersArray) {
-	      this.markersArray[i].setMap(null);
+	  if (markersArray) {
+	    for (i in markersArray) {
+	      markersArray[i].setMap(null);
 	    }
 	  }
 	}
