@@ -1,7 +1,8 @@
 <%= title "Community" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/communities", :cache => "cache/app/communities-search-by-city-zipcode" %>
+	<%# javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false", "app/communities", :cache => "cache/app/communities-search-by-city-zipcode" %>
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 	<script type="text/javascript">
 		$(function() {
 			Communities.initializeByCityZipCode(<%=@current_shelter.lat%>, <%=@current_shelter.lng%>, "<%=s3_expiring_url('maps/overlay.kmz')%>");

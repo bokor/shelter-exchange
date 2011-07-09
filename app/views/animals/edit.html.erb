@@ -1,7 +1,7 @@
 <%= title "Editing animal - #{@animal.name}" %>
 
 <%= content_for :javascripts do %>
-		<%= javascript_include_tag "app/animals", "global/date", "app/accommodations", :cache => "cache/app/animals-edit" %>
+		<%# javascript_include_tag "app/animals", "global/date", "app/accommodations", :cache => "cache/app/animals-edit" %>
 	<script type="text/javascript">
 		$(function() {
 			Animals.formInitialize(<%=@current_shelter.is_kill_shelter%>, <%=@animal.errors[:status_history_reason].any?%>, <%= @animal.new_record? ? 0 : @animal.animal_status_id_was %>);

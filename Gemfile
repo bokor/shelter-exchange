@@ -58,7 +58,8 @@ gem 'delayed_job', '2.1.4'
 
 
 
-
+# Add Gems for Engine Yard
+# MySql, delayed_job, jammit, jammit-s3
 
 
 

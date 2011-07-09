@@ -1,7 +1,8 @@
 <%= title "Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "global/highcharts", "admin/reports", :cache => "cache/admin/reports-index" %>
+	<%# javascript_include_tag "global/highcharts", "admin/reports", :cache => "cache/admin/reports-index" %>
+	<%= include_javascripts :reports %>
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
 			Reports.initialize();

@@ -1,7 +1,7 @@
 <%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
-	<%= javascript_include_tag "app/animals", "app/alerts", "app/notes", "app/tasks", "global/date", :cache => "cache/app/animals-show" %>
+	<%# javascript_include_tag "app/animals", "app/alerts", "app/notes", "app/tasks", "global/date", :cache => "cache/app/animals-show" %>
 	<script type="text/javascript">
 		$(function() {
 			Notes.filters();
