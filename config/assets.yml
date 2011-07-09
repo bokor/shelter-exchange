@@ -3,10 +3,10 @@ s3_access_key_id: AKIAIAYOGZBGGRGY46DA
 s3_secret_access_key: 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
 s3_permission: public_read
 
-package_assets:         on         # (on, off, always)
-compress_assets:        on          # (on, off)
-gzip_assets:            on          # (on, off)
-javascript_compressor:  yui     # (yui, closure)
+package_assets:         on           # (on, off, always)
+compress_assets:        on           # (on, off)
+gzip_assets:            on           # (on, off)
+javascript_compressor:  yui          # (yui, closure)
 #embed_assets:           on          # (on, off, datauri)
 #template_function:      _.template  # (defaults to the built-in micro-templating)
 #package_path:           packages    # (defaults to assets)
@@ -14,7 +14,6 @@ javascript_compressor:  yui     # (yui, closure)
   # compilation_level: ADVANCED_OPTIMIZATIONS
 
 
-# Missing Google Maps API and HighCharts
 javascripts:
   app:
     - public/javascripts/global/jquery.min.js
