@@ -1,0 +1,1 @@
+sudo "monit -g dj_shelter_exchange_app restart all"
