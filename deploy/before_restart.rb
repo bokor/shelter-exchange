@@ -1,1 +1,1 @@
-run "#{current_path}/jammit-s3"
+run "exec ssh-agent bash -c '#{current_path}/jammit-s3'"
