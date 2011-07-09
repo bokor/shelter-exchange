@@ -26,15 +26,15 @@
 
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.dialog {width: 680px; height: 425px; background-color: #fff; overflow:auto; display:none; z-index: 9999; }
+.dialog {width: 680px; height: 425px; overflow:auto; display:none; }
 .dialog .wrapper { padding: 15px; color: #222; z-index: 99999; }
 .dialog .title{float:left;}
-.dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; padding-top: 5px;}
+.dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }
 
 
 /* Map Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.map_dialog {width: 420px; height: 420px; background-color: #fff; overflow:auto; display:none;  z-index: 9999; }
+.map_dialog {width: 420px; height: 420px; display:none; }
 .map_dialog .wrapper { padding: 10px; color: #222; z-index: 99999; }
 .map_dialog #map_canvas{ width: 400px; height: 400px; }
 

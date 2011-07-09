@@ -106,11 +106,20 @@ Dog House Sides - #db8d4a
 .pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
 
 
+/* ToolTips
+-----------------------------------------------------------------------------*/
+.tooltip{cursor:pointer;}
+
+.ui-tooltip-dialog{max-width: 100%;font-size: 13px;}
+.ui-tooltip-dialog .ui-tooltip-titlebar{font-size: 11px;}
+
+.ui-tooltip-map{max-width: 100%;font-size: 13px;}
+.ui-tooltip-map .ui-tooltip-titlebar{font-size: 11px;}
 
 
+/* Button */   
 /******************************************************************/
-/* -------------------------- Buttons --------------------------- */
-/******************************************************************/
+
 .button {
 	min-width: 100px;
 	padding: 7px 15px 7px 15px;

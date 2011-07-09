@@ -106,6 +106,9 @@ Dog House Sides - #db8d4a
 .pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
 
 
+/* Tooltips */   
+/******************************************************************/
+.tooltip{cursor:pointer;}
 
 
 /******************************************************************/

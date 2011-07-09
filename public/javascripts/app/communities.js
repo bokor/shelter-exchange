@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------------
+/*!------------------------------------------------------------------------
  * app/communities.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
@@ -210,3 +210,39 @@ var Communities = {
 	  }
 	}
 };
+
+$(function() {
+
+	$("#address").autocomplete({
+		minLength: 3,
+		selectFirst: true,
+		html: true,
+		delay: 500, //maybe 400
+		// highlight: true, MAKE EXT LATER
+		source: function(request, response) {
+	        geocoder.geocode( { 'address': request.term + " , US", 'region': 'us' }, function(results, status) { 
+			  	response( $.map( results, function( item ) {
+					var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+					var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+					return {
+						label:  item.formatted_address.replace(matcher,'<strong>$1</strong>'),
+			            value: item.formatted_address,
+			            latitude: item.geometry.location.lat(),
+			            longitude: item.geometry.location.lng()
+					}  
+				}));
+	        })
+	      },
+	      //This bit is executed upon selection of an address
+	      select: function(event, ui) {
+		    $(this).val(ui.item.value);
+			map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
+			map.setZoom(defaultZoom);
+			Communities.findAnimalsForShelter();
+			event.preventDefault();
+	      }	
+	});
+
+
+
+});

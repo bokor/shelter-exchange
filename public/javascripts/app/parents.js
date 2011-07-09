@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------------
+/*!------------------------------------------------------------------------
  * app/parents.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
@@ -7,6 +7,6 @@ var Parents = {
 		$('#animal_selected').html(name);
 		$('#placement_animal_id').val(id);
 		$('#animal_search_link').text("Change animal");
-		Tipped.hideAll();
+		$('.tooltip-dialog').qtip('hide');
   	}
 };

@@ -55,3 +55,7 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 .pagination a:active { border: 1px solid #000099; color: #000; } 
 .pagination span.current { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #ccc; font-weight: bold; background-color: #bbb; color: #FFF; } 
 .pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
+
+/* Tooltips */   
+/******************************************************************/
+.tooltip{cursor:pointer;}

@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------------
+/*!------------------------------------------------------------------------
  * app/locations.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
@@ -10,7 +10,7 @@ var Locations = {
 		});
 		$('.close_link a').bind('click', function(e){
 			e.preventDefault();
-			Tipped.hideAll();
+			$('.tooltip-dialog').qtip('hide');
 		});
 	},	
 	findAllLocations: function() {

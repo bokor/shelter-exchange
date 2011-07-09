@@ -4,9 +4,9 @@
 		<%= image_tag @shelter.logo.url(:thumb) %>
 	</div>
 <% end %>
-	<a href="#" class="tipped" data-tipped="dialog_shelter_map" 
-	                           data-tipped-options="skin: 'map_box', onShow: function() { Communities.loadMapForModal();}" 
-	        				   onclick="return false;">View map</a>
+	<a href="#" class="tooltip-map" data-dialog-element="#dialog_shelter_map" 
+									data-dialog-render="Communities.loadMapForModal()" 
+									data-dialog-title="">View map</a>
 	<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a>
 </div>
 <h2><%=@shelter.name%></h2>

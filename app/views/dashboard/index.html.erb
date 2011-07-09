@@ -16,8 +16,7 @@
 			<% @latest_activity.each do |object| %>
 				<div class="activity">
 					<span class="type">
-						<img class="tipped" data-tipped="<%=object.class.name%>" data-tipped-options="skin:'tooltip'"  
-						                    src="/images/icon_<%= object.class.name.downcase %>.png">
+						<img class="tooltip" data-tip="<%=object.class.name%>" src="/images/icon_<%= object.class.name.downcase %>.png" />
 					</span>
 					<span class="details">
 						<span class="title"><%= activity_message_for(object)  %></span>
