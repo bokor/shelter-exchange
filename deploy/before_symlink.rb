@@ -1,0 +1,1 @@
+run "#{release_path}/jammit-s3"
