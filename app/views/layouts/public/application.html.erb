@@ -4,19 +4,12 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "global/jquery-ui.custom", "global/wufoo_form",
-							"public/common", "public/controller",
-                            :media => "all", :cache => "cache/public/all" %>
-
-    <%= stylesheet_link_tag "public/print", 
-                            :media => "print", :cache => "cache/public/print" %>
+	<%= include_stylesheets :public, :media => "all" %>
+	<%= include_stylesheets :public_print, :media => "print" %>
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.ui.autocomplete.ext", 
-							   "global/jquery.blockUI.min", "global/modernizr", "global/forms",
-							   "global/jquery_ujs", "public/application",
-							   :cache => "cache/public/all" %> 
+	<%= include_javascripts :public %>
 	<%= yield(:javascripts) %>
 	
 	<!--[if lt IE 9]>
