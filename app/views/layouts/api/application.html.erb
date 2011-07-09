@@ -4,19 +4,12 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
- 	<%= stylesheet_link_tag "global/jquery-ui.custom", "api/common", "api/controller",
-							:media => "all", :cache => "cache/api/all" %>
+ 	<%= include_stylesheets :api, :media => "all" %>
 	<%= yield(:stylesheets) %>
 	
-	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/jquery.blockUI.min", 
-							   "global/modernizr", "global/jquery_ujs", "api/application",
-							   :cache => "cache/api/all" %>
-
-	<%= yield(:javascripts) %>
 	
-	<!--[if lt IE 9]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
-	<![endif]-->
+	<%= include_javascripts :api %>
+	<%= yield(:javascripts) %>
 	
 		
 	<%= csrf_meta_tag %>

@@ -4,14 +4,11 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange - Admin</title>
 	
- 	<%= stylesheet_link_tag "global/jquery-ui.custom", "admin/login",
-							:media => "all", :cache => "cache/admin/login/all" %>
+ 	<%= include_stylesheets :admin_login, :media => "all" %>
 	<%= yield(:stylesheets) %>
 	
 	
-	<%= javascript_include_tag "global/jquery.min", "global/jquery-ui.min", "global/forms",
-							   "global/jquery_ujs", 
-							   :cache => "cache/admin/login/all" %> 
+	<%= include_javascripts :admin %>
 	<%= yield(:javascripts) %>
 		
 	<%= csrf_meta_tag %>
