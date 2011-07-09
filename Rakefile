@@ -11,4 +11,7 @@ rescue LoadError
   STDERR.puts "Run `bundle:install` to install delayed_job"
 end
 
+require 'jammit'
+require 'jammit-s3'
+
 ShelterExchangeApp::Application.load_tasks
