@@ -1,9 +1,5 @@
 <%
-	# Update Host only on this email because we don't want it coming from www but the subdomain of the new account
-	# subdomain = @resource.account.subdomain
-	# host = ActionMailer::Base::default_url_options[:host].gsub!("www.", subdomain << ".")
-	
-	attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+	attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
 %>
 <style type="text/css" media="screen">
 	#email_logo { width: 100%; text-align:center; margin:0 auto;}

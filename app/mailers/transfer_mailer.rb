@@ -6,7 +6,7 @@ class TransferMailer < ActionMailer::Base
     @shelter = transfer.shelter
     @animal = transfer.animal
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @transfer.email, 
          :subject => "Requested Transfer from #{@shelter.name}")   
@@ -19,7 +19,7 @@ class TransferMailer < ActionMailer::Base
     @animal = transfer.animal
     @transfer_history_reason = transfer_history_reason
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @shelter.email, 
          :subject => "Requested Transfer from #{@requestor_shelter.name} by #{@transfer.requestor}")
@@ -31,7 +31,7 @@ class TransferMailer < ActionMailer::Base
     @animal = transfer.animal
     @transfer_history_reason = transfer_history_reason
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @transfer.email, 
          :subject => "Transfer Request from #{@shelter.name} for #{@animal.name} - Approved")
@@ -43,7 +43,7 @@ class TransferMailer < ActionMailer::Base
     @animal = transfer.animal
     @transfer_history_reason = transfer_history_reason
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @transfer.email, 
          :subject => "Transfer Request from #{@shelter.name} for #{@animal.name} - Rejected")
@@ -56,7 +56,7 @@ class TransferMailer < ActionMailer::Base
     @animal = transfer.animal
     @transfer_history_reason = transfer_history_reason
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @transfer.email, 
          :subject => "Transfer Request for #{@animal.name} is Complete and ready to view")
@@ -69,7 +69,7 @@ class TransferMailer < ActionMailer::Base
     @animal = transfer.animal
     @transfer_history_reason = transfer_history_reason
     
-    attachments.inline["logo_email.jpg"] = File.read("#{Rails.root}/public/images/logo_email.jpg")
+    attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
     
     mail(:to => @shelter.email, 
          :subject => "Transfer Request for #{@animal.name} is now Complete")
