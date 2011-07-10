@@ -24,4 +24,3 @@ sudo "/engineyard/bin/dj shelter_exchange_app start production"
 # You can now deploy your app code that depends on customizations that chef has configured for you.
 
 
-
