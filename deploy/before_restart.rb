@@ -3,7 +3,7 @@
 run "#{current_path}/tmp/git clone git://github.com/kmamykin/jammit-s3.git"
 run "cd #{current_path}/tmp/jammit-s3"
 run "git checkout -b aws-s3 remotes/origin/aws-s3"
-rum "gem build jammit-s3.gemspec"
+run "gem build jammit-s3.gemspec"
 run "sudo gem install jammit-s3-0.6.0.2.gem"
 
 # Run Jammit-s3
