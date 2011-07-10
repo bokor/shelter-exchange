@@ -10,6 +10,10 @@ development:
 test:
     <<: *common
     bucket: shelterexchange-test
+    
+staging:
+    <<: *common
+    bucket: shelterexchange-staging
 
 production:
     <<: *common

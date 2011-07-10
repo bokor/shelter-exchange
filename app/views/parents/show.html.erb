@@ -1,7 +1,6 @@
 <%= title "#{@parent.name}" %>
 
 <%= content_for :javascripts do %>
-	<%# javascript_include_tag "app/parents", "app/notes", "app/placements", "app/comments", :cache => "cache/app/parents-show" %>
 	<script type="text/javascript">
 		$(function() {
 			Comments.initializeDialog();
