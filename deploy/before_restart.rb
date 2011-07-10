@@ -5,7 +5,7 @@ run "exec ssh-agent bash -c 'ssh-add /home/deploy/.ssh/shelter_exchange_app-depl
 run "cd #{current_path} && jammit-s3"
 
 # Restart Delayed Job
-sudo "monit restart all -g dj_shelter_exchange_app"
+sudo "monit -g dj_shelter_exchange_app restart all"
 # sudo "/engineyard/bin/dj shelter_exchange_app start production"
 
 # Upload Recipes
