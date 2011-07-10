@@ -1,6 +1,6 @@
 # Install Jammit Gem
 run "cd #{current_path}/tmp/"
-run "exec ssh-agent bash -c 'ssh-add /home/deploy/.ssh/shelter_exchange_app-deploy-key && git clone clone git://github.com/kmamykin/jammit-s3.git'"
+run "exec ssh-agent bash -c 'ssh-add /home/deploy/.ssh/shelter_exchange_app-deploy-key && git clone git://github.com/kmamykin/jammit-s3.git'"
 run "cd jammit-s3"
 run "exec ssh-agent bash -c 'ssh-add /home/deploy/.ssh/shelter_exchange_app-deploy-key && git checkout -b remotes/origin/aws-s3'"
 run "gem build jammit-s3.gemspec"
