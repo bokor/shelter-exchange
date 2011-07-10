@@ -5,8 +5,8 @@ run "exec ssh-agent bash -c 'ssh-add /home/deploy/.ssh/shelter_exchange_app-depl
 run "cd #{current_path} && jammit-s3"
 
 # Restart Delayed Job
-# sudo "monit restart all -g dj_shelter_exchange_app"
-sudo "/engineyard/bin/dj shelter_exchange_app start production"
+sudo "monit restart all -g dj_shelter_exchange_app"
+# sudo "/engineyard/bin/dj shelter_exchange_app start production"
 
 # Upload Recipes
 # Invoking Custom Chef Recipes
@@ -22,6 +22,5 @@ sudo "/engineyard/bin/dj shelter_exchange_app start production"
 # 
 # $ ey rebuild -e <environment name>
 # You can now deploy your app code that depends on customizations that chef has configured for you.
-
 
 
