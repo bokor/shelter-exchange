@@ -19,7 +19,8 @@ ShelterExchangeApp::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
 
-  config.action_mailer.default_url_options = { :host => "lvh.me:3000" }
+  # config.action_mailer.default_url_options = { :host => "lvh.me:3000" }
+  config.action_mailer.default_url_options =  request.host_with_port
   config.action_mailer.delivery_method = :sendmail
 
   # Print deprecation notices to the Rails logger

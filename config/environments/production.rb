@@ -34,6 +34,7 @@ ShelterExchangeApp::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   config.action_controller.asset_host = "http://shelterexchange.s3.amazonaws.com"
   
+  config.action_mailer.default_url_options =  request.host_with_port
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.sendmail_settings = {:arguments => '-i'}
 
