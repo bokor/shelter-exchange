@@ -2,7 +2,7 @@ module UrlHelper
   def with_subdomain(subdomain)
     subdomain = (subdomain || "")
     subdomain += "." unless subdomain.empty?
-    host = ActionMailer::Base.default_url_options[:host]
+    host = ActionMailer::Base.default_url_options[:host].blank? ? request.host : ActionMailer::Base.default_url_options[:host]
     [subdomain, host].join
   end
   
