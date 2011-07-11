@@ -8,3 +8,14 @@ environments:
    copy_exclude:
      - .git
      
+#      SSMTP SETTINGS
+     # root=postmaster
+     # mailhub=smtp.sendgrid.com:587
+     # rewriteDomain=shelterexchange.org
+     # FromLineOverride=YES
+     # UseSTARTTLS=YES
+     # AuthUser=shelterexchange
+     # AuthPass=sav1ngl1v3s
+     # AuthMethod=LOGIN
+
+     
