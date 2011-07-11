@@ -57,6 +57,11 @@ gem 'rails3-generators', '0.14.0'
 gem 'delayed_job', '2.1.4'         
 
 
+# Monitoring - New Relic
+#----------------------------------------------------------------------------
+group :production do
+	gem 'newrelic_rpm', '3.1.0'         
+end
 
 # Add Gems for Engine Yard
 # MySql, delayed_job, jammit, jammit-s3
