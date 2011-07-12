@@ -1,9 +1,6 @@
 # Set Current TimeZone
 sudo "ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime"
 
-# Remove Generated Assets
-sudo "rm -rf #{current_path}/public/assets/*"
-
 # Run Jammit-s3
 run "cd #{current_path} && bundle exec jammit-s3"
 
