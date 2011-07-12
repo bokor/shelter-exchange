@@ -15,6 +15,10 @@ staging:
     <<: *common
     bucket: shelterexchange-staging
 
+demo:
+    <<: *common
+    bucket: shelterexchange-demo
+
 production:
     <<: *common
     bucket: shelterexchange

@@ -1,21 +1,15 @@
 environments:
- shelter_exchange_app_staging:
-   branch: master
+ # shelter_exchange_app_demo:
+   # branch: master
    copy_exclude:
      - .git
- shelter_exchange_app_production:
+ # shelter_exchange_app_staging:
+   # branch: master
+   # copy_exclude:
+     # - .git
+ # shelter_exchange_app_production:
    # branch: master 
-   copy_exclude:
-     - .git
-     
-#      SSMTP SETTINGS
-     # root=postmaster
-     # mailhub=smtp.sendgrid.com:587
-     # rewriteDomain=shelterexchange.org
-     # FromLineOverride=YES
-     # UseSTARTTLS=YES
-     # AuthUser=shelterexchange
-     # AuthPass=sav1ngl1v3s
-     # AuthMethod=LOGIN
+   # copy_exclude:
+     # - .git
 
      
