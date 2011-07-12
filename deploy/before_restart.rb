@@ -1,5 +1,5 @@
 # Set Current TimeZone
-sudo "ln -sf /usr/share/zoneinfo/US/Eastern /usr/share/zoneinfo/localtime"
+sudo "ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime"
 
 # Remove Generated Assets
 sudo "rm -rf #{current_path}/public/assets/*"
