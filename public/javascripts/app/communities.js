@@ -23,6 +23,9 @@ var Communities = {
 	// lng: null,
 	// markersArray: [],
 	
+	initialize: function(lat, lng, s3_url) {
+	
+	},	
 	initializeByCityZipCode: function(lat, lng, s3_url) {
 		// Map setup and config
 		myLatLng = new google.maps.LatLng(lat, lng);
@@ -43,6 +46,7 @@ var Communities = {
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
 		Communities.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
+		Communities.addressAutoComplete();
   	},
 	initializeByShelterName: function(lat, lng, marker) {
 		// Set up and config
@@ -182,6 +186,37 @@ var Communities = {
 			}	
 		});
 	},
+	addressAutoComplete: function(){
+		$("#address").autocomplete({
+			minLength: 3,
+			selectFirst: true,
+			html: true,
+			delay: 400, 
+			source: function(request, response) {
+		        geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
+				  	response( $.map( results, function( item ) {
+						var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+						var address = item.formatted_address.replace(", USA", "");
+						return {
+							label: address.replace(matcher,'<strong>$1</strong>'),
+				            value: address,
+				            latitude: item.geometry.location.lat(),
+				            longitude: item.geometry.location.lng()
+						}  
+					}));
+		        })
+		      },
+		      //This bit is executed upon selection of an address
+		      select: function(event, ui) {
+			    $(this).val(ui.item.value);
+				map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
+				map.setZoom(defaultZoom);
+				Communities.findAnimalsForShelter();
+				event.preventDefault();
+		      }	
+		});
+	},
 	loadMapForModal: function(){
 		Communities.addMap();
 		Communities.addMarker();
@@ -210,39 +245,3 @@ var Communities = {
 	  }
 	}
 };
-
-$(function() {
-
-	$("#address").autocomplete({
-		minLength: 3,
-		selectFirst: true,
-		html: true,
-		delay: 500, //maybe 400
-		// highlight: true, MAKE EXT LATER
-		source: function(request, response) {
-	        geocoder.geocode( { 'address': request.term + " , US", 'region': 'us' }, function(results, status) { 
-			  	response( $.map( results, function( item ) {
-					var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-					var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
-					return {
-						label:  item.formatted_address.replace(matcher,'<strong>$1</strong>'),
-			            value: item.formatted_address,
-			            latitude: item.geometry.location.lat(),
-			            longitude: item.geometry.location.lng()
-					}  
-				}));
-	        })
-	      },
-	      //This bit is executed upon selection of an address
-	      select: function(event, ui) {
-		    $(this).val(ui.item.value);
-			map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
-			map.setZoom(defaultZoom);
-			Communities.findAnimalsForShelter();
-			event.preventDefault();
-	      }	
-	});
-
-
-
-});

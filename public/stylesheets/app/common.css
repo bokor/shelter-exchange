@@ -121,7 +121,6 @@ Dog House Sides - #db8d4a
 
 /* Button */   
 /******************************************************************/
-
 .button {
 	min-width: 100px;
 	padding: 7px 15px 7px 15px;
@@ -296,3 +295,62 @@ body.firefox.mac .button.default {
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	border-color: #02901f!important;
 }
+
+
+/* Toggle Buttons */   
+/******************************************************************/
+
+ul.toggle_buttons{
+	background-color: #FEFEFE; 
+	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD)); 
+   	background-image: -webkit-linear-gradient(top,  #FEFEFE,  #DDD); 
+	background-image:    -moz-linear-gradient(top,  #FEFEFE,  #DDD); 
+	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD); 
+	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD); 
+	background-image:         linear-gradient(top,  #FEFEFE,  #DDD); 
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#DDDDDD');
+	border: 1px solid #D4D4D4;
+	border-radius: 3px 3px;
+	-webkit-border-radius: 3px 3px;
+	-moz-border-radius: 3px 3px;
+	border-left-color: #D4D4D4;
+	border-top-color: #D4D4D4;
+	color: #555;
+	display: inline-block;
+	margin: 0 0 0 15px;
+	min-width: 24px;
+	padding: 0px;
+	vertical-align: middle;
+}
+ul.toggle_buttons li{
+	display: block;
+	float: left;
+	line-height: 100%;
+	margin: 0px;
+}
+ul.toggle_buttons li a {
+	border-left: 1px solid rgba(0, 0, 0, 0.199219);
+	color: #555;
+	display: block;
+	float: left;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 100%;
+	padding: 6px 12px;
+	text-align: center;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
+	text-transform: uppercase;
+}
+ul.toggle_buttons li:first-child a{border-left: 0px;}
+ul.toggle_buttons li a.current {
+	background-color: rgba(0, 111, 187, 0.0976562);
+	border-left-color: rgba(0, 111, 187, 0.296875);
+	color: #006FBB;
+}
+ul.toggle_buttons li a:hover{
+	color: #005188;
+}
+
