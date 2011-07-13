@@ -1,14 +1,14 @@
 class AccountObserver < ActiveRecord::Observer
   
   def after_create(account)
-    new_account_notification(account)
+    account_created_notification(account)
   end
   
   
   private
     
-    def new_account_notification(account)
-      AccountMailer.delay.welcome(account,account.shelters.first,account.users.first)
+    def account_created_notification(account)
+      AccountMailer.delay.account_created(account,account.shelters.first,account.users.first)
     end
 
 end
