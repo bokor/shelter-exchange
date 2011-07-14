@@ -154,8 +154,6 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------    
     resources :communities do
       collection do
-        get :search_by_city_zipcode
-        get :search_by_shelter_name
         get :filter_notes
         get :find_animals_in_bounds
         get :find_animals_for_shelter

@@ -5,7 +5,7 @@ common: &common
 
 development:
     <<: *common
-    bucket: shelterexchange-dev
+    bucket: shelterexchange-development
   
 test:
     <<: *common

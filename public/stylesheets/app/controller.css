@@ -27,16 +27,9 @@
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
 .dialog {width: 680px; height: 425px; overflow:auto; display:none; }
-.dialog .wrapper { padding: 15px; color: #222; z-index: 99999; }
+.dialog .wrapper { padding: 15px; color: #222; }
 .dialog .title{float:left;}
 .dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }
-
-
-/* Map Dialog :: Layout
------------------------------------------------------------------------------*/
-.map_dialog {width: 420px; height: 420px; display:none; }
-.map_dialog .wrapper { padding: 10px; color: #222; z-index: 99999; }
-.map_dialog #map_canvas{ width: 400px; height: 400px; }
 
 
 
@@ -368,9 +361,66 @@
 
 /* Communities :: Page Layout
 -----------------------------------------------------------------------------*/
-.search_by_city_zipcode_communities #main, .search_by_shelter_name_communities #main{ margin: 1em 3em 0 3em; }
-.search_by_city_zipcode_communities #left, .search_by_shelter_name_communities #left { width: 100%;}
-.search_by_city_zipcode_communities #sidebar, .search_by_shelter_name_communities #sidebar { display: none;width: 0; }
+.index_communities #main{ margin: 1em 3em 0 3em; }
+.index_communities #left{ width: 100%;}
+.index_communities #sidebar { display: none;width: 0; }
+
+
+/* Commmunities :: Search Section :: Search Bar */   
+/******************************************************************/
+.communities .search_content {padding-bottom: 0px;padding-top: 10px;}
+.communities .search_form{width: 70%}
+.communities .search_form form{float:left;width: 38%;}
+.communities .search_form form input{width: 100%;}
+.communities .narrow_search{width: 30%; text-align:right;float:right;}
+
+
+
+/* Commmunities :: Search Section :: Filters */   
+/******************************************************************/
+.communities #filters{display:none; height: 75px;}
+.communities #form_filters table {vertical-align: top; width:100%;}
+.communities #form_filters table tr{vertical-align: top; width:100%;}
+.communities #form_filters table td{padding-right:20px;}
+.communities #form_filters table td.type {width: 15%;}
+.communities #form_filters table td.breed {width: 25%;}
+	.communities #form_filters table td.breed input {width: 99%;}
+.communities #form_filters table td.sex {width: 10%;}
+.communities #form_filters table td.status {width: 20%;}
+.communities #form_filters table td.euthanasia {width: 30%;}
+	.communities #form_filters table td.euthanasia label{color:#DF0000;}
+
+
+/* Commmunities :: Search Section :: Layout */   
+/******************************************************************/
+.communities .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
+
+
+
+
+/* Index Communities :: Results :: Layout
+-----------------------------------------------------------------------------*/
+.communities table.results{width: 100%; padding-bottom: 20px;}
+.communities table.results td.shelter_half{width:49%; padding-right: 1%; vertical-align:top;}
+.communities table.results td.animal_half{width:49%; padding-left: 1%; vertical-align:top;border-left: 1px dotted #ccc;}
+
+/* Index Communities :: Map Canvas :: Layout
+-----------------------------------------------------------------------------*/
+.communities #map_canvas{width:100%; height: 500px;}
+
+/* Search by Shelter Name Communities :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.communities #shelter_details h1{color: #ccc;height: 500px; line-height: 500px; margin: 0 auto; text-align: center;}
+.communities #shelter_details .right_side{float:right; text-align:right;}
+.communities #shelter_details .logo{padding-bottom: 15px;}
+.communities #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Search by Shelter Name Communities :: Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.communities .animals h1 {color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
+
+
+
 
 
 /* Communities :: Animal List
@@ -381,7 +431,7 @@
 .communities table.animal_list td.image { width:100px; padding-left:5px; }
 .communities table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
 .communities table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-.communities table.animal_list .euthanisia_date{color:red;}
+.communities table.animal_list .euthanisia_date{color:#DF0000;}
 /*.communities table.animal_list .action_links {display:none;}*/
 
 
@@ -428,22 +478,8 @@
 .animal_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
 
 
-/* Search by Shelter Name Communities :: Results :: Layout
------------------------------------------------------------------------------*/
-.search_by_shelter_name_communities table.results{width: 100%; padding-bottom: 20px;}
-.search_by_shelter_name_communities table.results td.shelter_half{width:48%; padding-right: 2%; vertical-align:top;}
-.search_by_shelter_name_communities table.results td.animal_half{width:48%; padding-left: 2%; vertical-align:top;border-left: 1px dotted #ccc;}
 
-/* Search by Shelter Name Communities :: Shelter Details :: Layout
------------------------------------------------------------------------------*/
-.search_by_shelter_name_communities #shelter_details h1{color: #ccc;height: 400px; line-height: 400px; margin: 0 auto; text-align: center;}
-.search_by_shelter_name_communities #shelter_details .logo{float:right; text-align:right;}
-.search_by_shelter_name_communities #shelter_details .logo:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.search_by_shelter_name_communities #shelter_details .logo a{padding-top: 10px; display:block;}
 
-/* Search by Shelter Name Communities :: Animal List :: Layout
------------------------------------------------------------------------------*/
-.search_by_shelter_name_communities #animals h1 {color: #ccc;margin: 0 auto; text-align: center;height: 400px; line-height: 400px;}
 
 
 

@@ -3,43 +3,91 @@
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var defaultZoom = 11;
-var logo = null;
 var myLatLng = null;
 var geocoder = null;
 var map = null;
 var kmlLayer = null;
 var lat = null;
 var lng = null;
-var markersArray = [];
+var mapOverlay = null;
+var logo = null;
+var googleListener = null;
 
 var Communities = {
-	// defaultZoom: 11,
-	// logo: null,
-	// myLatLng: null,
-	// geocoder: null,
-	// map: null,
-	// kmlLayer: null,
-	// lat: null, 
-	// lng: null,
-	// markersArray: [],
-	
-	initialize: function(lat, lng, s3_url) {
-	
+	initialize: function(latitude, longitude, overlay, marker){
+		mapOverlay = overlay;
+		logo = marker;
+		lat = latitude;
+		lng = longitude;
+		
+		$("#narrow_search_results").bind("click",function(e){
+			e.preventDefault();
+			$('#filters').slideToggle('slow');
+			$(this).toggleClass('current');
+		}); 
+
+		$("#search_by_city_zipcode").bind("click",function(e, first){
+			e.preventDefault();
+			$("#results_by_city_zipcode").show();
+			$("#results_by_shelter_name").hide();
+			$("#form_city_zipcode_search").show();
+			$("#form_shelter_name_search").hide();
+			//Reset All
+			if(!first){ Communities.resetAll(); }
+
+			$(this).parents("ul").find("a").removeClass("current");
+			$(this).addClass("current");
+
+			Communities.searchByCityZipCode();
+		});
+
+		$("#search_by_shelter_name").bind("click",function(e, first){
+			e.preventDefault();
+			$("#results_by_city_zipcode").hide();
+			$("#results_by_shelter_name").show();
+			$("#form_city_zipcode_search").hide();
+			$("#form_shelter_name_search").show();
+			//Reset All
+			if(!first){ Communities.resetAll(); }
+
+			$(this).parents("ul").find("a").removeClass("current");
+			$(this).addClass("current");
+			Communities.searchByShelterName();
+		});
+		
+		$("#search_by_city_zipcode").trigger("click", true);
+	},
+	resetAll: function() {
+		//Remove Listener
+		if(googleListener != null){
+			google.maps.event.removeListener(googleListener);
+		}
+
+		// Unbind All Form Filters
+		$("#form_filters").unbind("keypress");
+		$("#form_city_zipcode_search").unbind("submit");
+		$("#form_shelter_name_search").unbind("submit");
+		$("#form_shelter_name_search").unbind("submit");
+		$("#filters_animal_type").unbind("change");
+		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").unbind("change");
+		
+		//Destroy all AutoCompletes
+		$("#filters_breed").autocomplete("destroy");
 	},	
-	initializeByCityZipCode: function(lat, lng, s3_url) {
+	searchByCityZipCode: function() {
 		// Map setup and config
 		myLatLng = new google.maps.LatLng(lat, lng);
 		geocoder = new google.maps.Geocoder();
 		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-	 																				 zoom: defaultZoom,
-																					 center: myLatLng,
-		    																		 mapTypeId: google.maps.MapTypeId.ROADMAP});
+	 																		    zoom: defaultZoom,
+																				center: myLatLng,
+		    																	mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
-		kmlLayer = new google.maps.KmlLayer(s3_url, { preserveViewport: true });
+		kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
 		kmlLayer.setMap(map);
 		
 		// Add Google Map Listener
-		google.maps.event.addListener(map, 'idle', function(e){
+		googleListener = google.maps.event.addListener(map, 'idle', function(e){
 			Communities.findAnimalsInBounds();
 		});
 		
@@ -48,11 +96,14 @@ var Communities = {
 		Communities.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
 		Communities.addressAutoComplete();
   	},
-	initializeByShelterName: function(lat, lng, marker) {
+	searchByShelterName: function() {
 		// Set up and config
-		logo     = marker;
 	    myLatLng = new google.maps.LatLng(lat, lng);
-
+	
+		if($('#filters_shelter_id').val() != ""){
+			Communities.findAnimalsForShelter();
+		}
+	
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
 		Communities.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
@@ -73,8 +124,8 @@ var Communities = {
 	findAnimalsForShelter: function(){
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
-	geocodeAddress: function(e){
-		geocoder.geocode( { address: $("#address").val() }, function(results, status) {
+	geocodeAddress: function(){
+		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 	        	map.setCenter(results[0].geometry.location);
 				map.setZoom(defaultZoom);
@@ -88,9 +139,9 @@ var Communities = {
 			return !(window.event && window.event.keyCode == 13); 
 		});
 		
-		$("#form_address_search").bind("submit", function(e){
+		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
-			Communities.geocodeAddress(e);
+			Communities.geocodeAddress();
 		});
 		
 		$("#form_shelter_name_search").bind("submit", function(e){
@@ -187,7 +238,7 @@ var Communities = {
 		});
 	},
 	addressAutoComplete: function(){
-		$("#address").autocomplete({
+		$("#city_zipcode").autocomplete({
 			minLength: 3,
 			selectFirst: true,
 			html: true,
@@ -208,40 +259,14 @@ var Communities = {
 		        })
 		      },
 		      //This bit is executed upon selection of an address
-		      select: function(event, ui) {
+		      select: function(e, ui) {
+				e.preventDefault();
 			    $(this).val(ui.item.value);
 				map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
 				map.setZoom(defaultZoom);
-				Communities.findAnimalsForShelter();
-				event.preventDefault();
+				lat = ui.item.latitude; 
+				lng = ui.item.longitude;
 		      }	
 		});
-	},
-	loadMapForModal: function(){
-		Communities.addMap();
-		Communities.addMarker();
-	},
-	addMap: function(){
-		map = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-	    																   		zoom: defaultZoom,
-		    															   		center: myLatLng,
-																				disableDefaultUI: true,
-		    																	mapTypeId: google.maps.MapTypeId.ROADMAP });
-		map.setCenter(myLatLng);
-	},
-	addMarker: function(){
-		Communities.clearOverlays();
-		var marker = new google.maps.Marker({ position: myLatLng,
-											  map: map,
-											  animation: google.maps.Animation.DROP,
-		    								  icon: logo });
-		markersArray.push(marker);
-	},
-	clearOverlays: function(){
-	  if (markersArray) {
-	    for (i in markersArray) {
-	      markersArray[i].setMap(null);
-	    }
-	  }
 	}
 };

@@ -101,9 +101,10 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
+    scope = scope.unscoped.order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
-    scope = scope.where(:euthanasia_date => Date.today..Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
+    scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
     scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
     scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
     scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
@@ -120,7 +121,6 @@ class Animal < ActiveRecord::Base
   
   def self.filter_breed(breed)
     where("animals.primary_breed = ? OR animals.secondary_breed = ?", breed, breed)
-    # where(self.arel_table[:primary_breed].eq(breed).or(self.arel_table[:secondary_breed].eq(breed)))
   end
   
   def self.filter_sex(sex)
@@ -269,7 +269,7 @@ class Animal < ActiveRecord::Base
     end
     
     def revert_photo?
-      if self.errors.present? and self.photo.file?
+      if self.errors.present? and self.photo.file? and self.photo_file_name_changed?
         self.photo.instance_write(:file_name, self.photo_file_name_was) 
         self.photo.instance_write(:file_size, self.photo_file_size_was) 
         self.photo.instance_write(:content_type, self.photo_content_type_was)
@@ -283,17 +283,6 @@ class Animal < ActiveRecord::Base
 
 end
 
-#unless delete_photo.to_i.zero?
 
-# def self.map_euthanasia_list(shelter_ids, filters={})
-#   scope = scoped{}
-#   scope = scope.includes(:animal_type, :animal_status)
-#   scope = scope.where(:shelter_id => shelter_ids, :euthanasia_date => Date.today..Date.today + 2.weeks)
-#   scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
-#   scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
-#   scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
-#   scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
-#   scope = scope.active unless filters[:animal_status].present?
-#   
-#   scope
-# end
+# where(self.arel_table[:primary_breed].eq(breed).or(self.arel_table[:secondary_breed].eq(breed)))
+

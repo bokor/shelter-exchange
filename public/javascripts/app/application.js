@@ -64,42 +64,7 @@ $(function() {
 				}
 			}
 		});
-	});
-	
-	$('.tooltip-map').live('mouseover', function(event) {
-		event.preventDefault();
-		$(this).qtip({
-			overwrite: false,
-			content: {
-				text: $($(this).attr('data-dialog-element')),
-				title: {
-					text: $(this).attr('data-dialog-title'),
-					button: true
-				}
-			},
-			position: {
-				my: 'right middle', 
-				at: 'left middle',
-			},
-			show: {
-				event: event.type, 
-				ready: true 
-			},
-			hide: 'unfocus',
-			style: {
-				classes: 'ui-tooltip-map ui-tooltip-dark ui-tooltip-jtools'
-			},
-			events: {
-				render: function(event, api) {
-					var fn = api.elements.target.attr('data-dialog-render');
-					if (typeof fn != 'undefined' && fn.length > 0) {
-						eval(fn);
-					} 
-				}
-			}
-		});
-	});
-		
+	});		
 });
 
 
@@ -203,9 +168,10 @@ $(function(){
 
 
 // Pagination Links -> AJAX Searches
-$('.pagination a').live('click',function (){  
+$('.pagination a').live('click',function (e){  
 	$.getScript(this.href);  
-    return false;  
+    // return false;  
+	e.preventDefault();
 });
 
 

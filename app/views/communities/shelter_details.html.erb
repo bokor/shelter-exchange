@@ -1,13 +1,12 @@
-<div class="logo">
+<div class="right_side">
 <% if @shelter.logo.file? %>
-	<div>
+	<div class="logo">
 		<%= image_tag @shelter.logo.url(:thumb) %>
 	</div>
 <% end %>
-	<a href="#" class="tooltip-map" data-dialog-element="#dialog_shelter_map" 
-									data-dialog-render="Communities.loadMapForModal()" 
-									data-dialog-title="">View map</a>
-	<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a>
+	<ul class="toggle_buttons">
+		<li><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a></li>
+	</ul>
 </div>
 <h2><%=@shelter.name%></h2>
 <ul>
@@ -38,6 +37,4 @@
 		<%= render "capacities/capacity_list" %>
 	</div>
 <% end %>
-
-<%= render "dialog_shelter_map" %>
 

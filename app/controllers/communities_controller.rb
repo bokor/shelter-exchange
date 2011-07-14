@@ -2,13 +2,6 @@ class CommunitiesController < ApplicationController
   respond_to :html, :js
   
   def index
-    redirect_to search_by_city_zipcode_communities_path
-  end
-  
-  def search_by_city_zipcode
-  end
-  
-  def search_by_shelter_name
   end
   
   def animal

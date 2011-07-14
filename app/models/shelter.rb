@@ -111,7 +111,7 @@ class Shelter < ActiveRecord::Base
     end
     
     def revert_logo?
-      if self.errors.present? and self.logo.file?
+      if self.errors.present? and self.logo.file? and self.logo_file_name_changed?
         self.logo.instance_write(:file_name, self.logo_file_name_was) 
         self.logo.instance_write(:file_size, self.logo_file_size_was) 
         self.logo.instance_write(:content_type, self.logo_content_type_was)

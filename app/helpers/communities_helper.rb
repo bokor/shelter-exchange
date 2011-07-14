@@ -1,4 +1,9 @@
 module CommunitiesHelper
+  
+  def city_zipcode_default
+    "#{@current_shelter.city}, #{@current_shelter.state} #{@current_shelter.zip_code}"
+  end
+  
   def get_directions_address
     [@shelter.street, @shelter.street_2, @shelter.city, @shelter.state, @shelter.zip_code].join('+')
   end
@@ -20,7 +25,9 @@ module CommunitiesHelper
           end
         end
       end
-      components.blank? ? "URGENT RESCUE NEEDED" : components.join() << " left"
+      output = image_tag("icon_community_alert.png") + " "
+      output += (components.blank? ? "Needs Urgent Rescue" : components.join() << " left").upcase
+      output
     end
   end
 
