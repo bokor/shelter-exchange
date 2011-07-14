@@ -429,8 +429,8 @@
 .communities table.animal_list tr {border-bottom:1px #ccc dotted; }
 .communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .communities table.animal_list td.image { width:100px; padding-left:5px; }
-.communities table.animal_list td.details { width:380px;padding-left: 15px;color:#666; }
-.communities table.animal_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.communities table.animal_list td.details { /*width: 400px;*/width:58%;padding-left: 15px;color:#666; }
+.communities table.animal_list td.status {/*width: 290px;*/ width:43%;padding-left: 10px; padding-right: 5px; text-align:right;}
 .communities table.animal_list .euthanisia_date{color:#DF0000;}
 /*.communities table.animal_list .action_links {display:none;}*/
 
