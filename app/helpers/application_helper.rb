@@ -97,8 +97,14 @@ module ApplicationHelper
     (str[-1,1] == "s") ? str + "'" : str + "'s"
   end
   
-  def s3_expiring_url(file_name, use_ssl = false, time = 3600)
-    AWS::S3::S3Object.url_for(file_name, S3_BUCKET, :expires_in => time, :use_ssl => use_ssl) #, :authenticated => false
+  def s3_expiring_url(file_name, authenticated = false, use_ssl = false, time = 3600)
+    # Get Object
+    s3_object = AWS::S3::S3Object.find(file_name, S3_BUCKET)
+    # Get Last Modified Time
+    last_modified = s3_object.about["last-modified"].to_time.to_i unless s3_object.blank?
+    # Get URL with Options
+    logger.debug(s3_object.url(:expires_in => time, :use_ssl => use_ssl, :authenticated => authenticated))
+    AWS::S3::S3Object.url_for(file_name, S3_BUCKET, :expires_in => time, :use_ssl => use_ssl, :authenticated => authenticated)
   end
   
 end
