@@ -1,18 +1,30 @@
 <%= title "#{@animal.name} (#{@animal.id}) - #{@animal.shelter.name}" %>
 
 <%= content_for :javascripts do %>
-	
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">
+		stLight.options({
+	    	publisher:'95fc3e87-ce6f-4899-b4e2-ad52add9d5b4'
+	  	});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading">
+	<div class="page_heading gray">
 		<table class="animal">
 			<tr>
 				<td>
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
 				<td class="action_links">
-					<%= link_to "Back to Results", url_for(:back) %>
+					<!-- Share This -->
+					<span class="st_facebook_button"></span>
+					<span class="st_twitter_button"></span>
+					<span class="st_email_button" displayText="Email"></span>
+					<!--// Share This -->
+					<ul class="toggle_buttons">
+						<li><%= link_to "Back to Results", url_for(:back) %></li>
+					</ul>
 				</td>
 			</tr>
 			<tr>
@@ -27,14 +39,6 @@
 	</div>
 	
 	<div class="page_content">
-
-		<div class="social_media">
-			<span class="title"><strong>Share this animal:</strong></span>
-			<span class="icon"><a href="http://google.com"><img src="<%= s3_url('images/logo_small.png') %>" /></a></span>
-			<span class="icon"><a href="http://google.com"><img src="<%= s3_url('images/logo_small.png') %>" /></a></span>
-			<span class="icon"><a href="http://google.com"><img src="<%= s3_url('images/logo_small.png') %>" /></a></span>
-		</div>
-				
 		 
 		<table class="animal_details">
 			<tr>

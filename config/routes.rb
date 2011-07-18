@@ -218,10 +218,10 @@ ShelterExchangeApp::Application.routes.draw do
     
     # API
     #----------------------------------------------------------------------------
-    resources :api, :only => [:animals, :animal]
-    match '/api/animals' => 'api#animals'
-    match '/api/animal' => 'api#animal'
-    # match '/api/:version/animals' => 'api#animals'
+    # resources :api, :only => [:animals, :animal]
+    # match '/api/animals' => 'api#animals', :as => :api_animals
+    # match '/api/animal' => 'api#animal', :as => :api_animal
+    # # match '/api/:version/animals' => 'api#animals'
         
     # Account Settings
     #----------------------------------------------------------------------------
