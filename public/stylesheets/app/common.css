@@ -121,41 +121,45 @@ Dog House Sides - #db8d4a
 /******************************************************************/
 .button {
 	min-width: 100px;
-	max-width: 200px;
-	padding: 7px 15px 7px 15px;
-	margin-bottom: 5px;
-	display: block;
-/*	*display:inline;*/
-	position: relative;
-	-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-	border: 1px solid #999;
-	background-image: -moz-linear-gradient(center top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7));
-	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
-	background-image: linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
-	color: #444;
-	text-shadow: #fff 0 1px 0;
-/*	text-decoration: none !important;
-	font-size: 13px;
-	font-weight: bold;
-	text-align: center;*/
-	
-	font-size: 11px;
-	font-style: normal;
-	font-weight: bold;
-	line-height: 100%;
+/*	padding: 7px 15px 7px 15px;*/
 	padding: 6px 12px;
-	text-align: center;
-	text-decoration: none !important;
+	margin-bottom: 5px;
+	display: inline-block;
+	*display:inline;
+	position: relative;
+	border: 1px solid #999;
+	
+	background-color: #d7d7d7; 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7)); 
+   	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
+	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
+	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
+	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
+	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#D7D7D7');
+	
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px; 
+	border-radius: 6px;
+	
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+	
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
+	
+	color: #444;
+	font-size: 11px;
+	font-weight: bold;
 	text-transform: uppercase;
 	
-	
+	text-decoration: none!important;
+	text-align: center;
 }
 
 .button:hover {
 	cursor: pointer;
+	color: #CF7019;
 }
 
 .button:active,.button.depressed {
@@ -322,6 +326,7 @@ ul.toggle_buttons{
 	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD); 
 	background-image:         linear-gradient(top,  #FEFEFE,  #DDD); 
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#DDDDDD');
+	
 	border: 1px solid #D4D4D4;
 	border-radius: 3px 3px;
 	-webkit-border-radius: 3px 3px;
@@ -352,6 +357,7 @@ ul.toggle_buttons li a {
 	line-height: 100%;
 	padding: 6px 12px;
 	text-align: center;
+	text-align: center;
 	text-decoration: none;
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
 	text-transform: uppercase;
@@ -363,6 +369,7 @@ ul.toggle_buttons li a.current {
 	color: #006FBB;
 }
 ul.toggle_buttons li a:hover{
-	color: #005188;
+/*	color: #005188;*/
+	color: #CF7019;
 }
 

@@ -519,8 +519,8 @@ form li.buttons{
 	padding:10px 1% 10px 1%;
 }
 form li.buttons input{
-	font-size:100%;
-	margin-right:5px;
+/*	font-size:100%; Removed for application*/
+/*	margin-right:5px;*/
 }
 input.btTxt{
 	padding:0 7px;
