@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="page_content">
-		<%= render "global/error_messages", :target => @alert %>
+		<%= render "shared/error_messages", :target => @alert %>
 		<div id="create_alert">
 			<%= form_for @alert, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
 				<ul>

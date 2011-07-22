@@ -1,6 +1,6 @@
 <% if @accommodation.errors.any? %>
-	$('#create_accommodation_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
-	<%= render 'global/ajax_form_errors', :target => @accommodation, :form_id => "create_accommodation_form" %>
+	$('#create_accommodation_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @accommodation) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @accommodation, :form_id => "create_accommodation_form" %>
 <% else %>
 	// Add Location
 	$(".accommodation_list").prepend("<%= escape_javascript(render @accommodation) %>"); 

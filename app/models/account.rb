@@ -73,7 +73,7 @@ class Account < ActiveRecord::Base
     end
     
     def revert_document?
-      if self.errors.present? and self.document.file?
+      if self.errors.present? and self.document.file? and self.document_file_name_changed?
         self.document.instance_write(:file_name, self.document_file_name_was) 
         self.document.instance_write(:file_size, self.document_file_size_was) 
         self.document.instance_write(:content_type, self.document_content_type_was)

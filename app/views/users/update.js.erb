@@ -1,10 +1,10 @@
 <% if @user.errors.any? %>
 	// Display Errors
-	$('#update_user_errors').html("<%= escape_javascript(render 'global/error_messages', :target => @user) %>" );
-	<%= render 'global/ajax_form_errors', :target => @user, :form_id => "update_user_form_#{@user.id}" %>
+	$('#update_user_errors').html("<%= escape_javascript(render 'shared/error_messages', :target => @user) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @user, :form_id => "update_user_form_#{@user.id}" %>
 <% else %>
 	// Display Flash Message
-	$('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages', :target => flash) %>" );
+	$('#flash_messages').html("<%= escape_javascript(render 'shared/flash_messages', :target => flash) %>" );
 	// Refresh User Details
 	$('#edit_user_<%=@user.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

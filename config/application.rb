@@ -24,6 +24,9 @@ module ShelterExchangeApp
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
     config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer
+    
+    # Remove Timestamps from migrations and use version numbers
+    # config.active_record.timestamped_migrations = false
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

@@ -1,6 +1,6 @@
 <% if @comment.errors.any? %>
-	$('#edit_comment_errors_<%=@comment.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @comment) %>" );
-	<%= render 'global/ajax_form_errors', :target => @comment, :form_id => "edit_comment_form_#{@comment.id}" %>	
+	$('#edit_comment_errors_<%=@comment.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @comment) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @comment, :form_id => "edit_comment_form_#{@comment.id}" %>	
 <% else %>
 	$('#edit_comment_<%=@comment.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

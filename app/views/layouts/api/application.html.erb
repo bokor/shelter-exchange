@@ -4,8 +4,8 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
+
  	<%= include_stylesheets :api, :media => "all" %>
-	<%= yield(:stylesheets) %>
 	
 	
 	<%= include_javascripts :api %>
@@ -26,7 +26,7 @@
 		</div>
 		<!--//end screen -->
 			
-		<%= render :partial => "global/footer" %>	
+		<%= render :partial => "shared/footer" %>	
 		
 	</div>
 	<!--//end main -->

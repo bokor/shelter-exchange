@@ -1,6 +1,6 @@
 <% if @accommodation.errors.any? %>
-	$('#edit_accommodation_errors_<%=@accommodation.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @accommodation) %>" );
-	<%= render 'global/ajax_form_errors', :target => @accommodation, :form_id => "edit_accommodation_form_#{@accommodation.id}" %>	
+	$('#edit_accommodation_errors_<%=@accommodation.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @accommodation) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @accommodation, :form_id => "edit_accommodation_form_#{@accommodation.id}" %>	
 <% else %>
 	//Update Location
 	$('#edit_accommodation_<%=@accommodation.id%>').slideToggle(800, function() { 

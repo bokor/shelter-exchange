@@ -1,6 +1,6 @@
 <% if @note.errors.any? %>
-	$('#edit_note_errors_<%=@note.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @note) %>" );
-	<%= render 'global/ajax_form_errors', :target => @note, :form_id => "edit_note_form_#{@note.id}" %>
+	$('#edit_note_errors_<%=@note.id%>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @note) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @note, :form_id => "edit_note_form_#{@note.id}" %>
 <% else %>
 	$('#edit_note_<%=@note.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

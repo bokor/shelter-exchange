@@ -1,6 +1,6 @@
 <% if @placement.errors.any? %>
-	$('#create_placement_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @placement) %>" );
-	<%= render 'global/ajax_form_errors', :target => @placement, :form_id => "create_placement_form" %>
+	$('#create_placement_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @placement) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @placement, :form_id => "create_placement_form" %>
 <% else %>
 	$('#placement_<%=@placement.status %> table').prepend("<%= escape_javascript(render @placement) %>"); 
 	$("#placement_<%=@placement.status %> .placement").first().effect("highlight", {}, 1000);

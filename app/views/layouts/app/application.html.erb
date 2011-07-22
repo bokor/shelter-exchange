@@ -4,10 +4,10 @@
   
 	<title><%= yield(:title) %> - Shelter Exchange</title>
   
+
  	<%= include_stylesheets :app, :media => "all" %>
 	<%= include_stylesheets :app_print, :media => "print" %>
-	<%= yield(:stylesheets) %>
-	
+
 	
 	<%= include_javascripts :app %>
 	<%= yield(:javascripts) %>
@@ -18,11 +18,11 @@
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 	
-	<%= render :partial => "global/header" %>
+	<%= render :partial => "shared/header" %>
 
 	<div id="main">
 		
-		<div id="flash_messages"><%= render :partial => "global/flash_messages" %></div>
+		<div id="flash_messages"><%= render :partial => "shared/flash_messages" %></div>
 		
 		<div id="left">
 			
@@ -33,7 +33,7 @@
 			</div>
 			<!--//end screen -->
 			
-			<%= render :partial => "global/footer" %>
+			<%= render :partial => "shared/footer" %>
 			
 		</div>
 		<!--//end left -->

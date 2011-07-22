@@ -1,6 +1,6 @@
 <% if @transfer.errors.any? %>
-	$('#create_transfer_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @transfer) %>" );
-	<%= render 'global/ajax_form_errors', :target => @transfer, :form_id => "create_transfer_form" %>
+	$('#create_transfer_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @transfer) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @transfer, :form_id => "create_transfer_form" %>
 <% else %>
 	
 	// Hide Form, Buttons, and Show Request Message

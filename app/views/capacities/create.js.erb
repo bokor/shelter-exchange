@@ -1,6 +1,6 @@
 <% if @capacity.errors.any? %>
-	$('#create_capacity_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @capacity) %>" );
-	<%= render 'global/ajax_form_errors', :target => @capacity, :form_id => "create_capacity_form" %>
+	$('#create_capacity_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @capacity) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @capacity, :form_id => "create_capacity_form" %>
 <% else %>
     $('#capacity_help').hide();
 	$('#capacities').prepend("<%= escape_javascript(render 'capacity', :capacity => @capacity) %>"); 

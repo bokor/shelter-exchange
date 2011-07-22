@@ -1,6 +1,6 @@
 <% if @alert.errors.any? %>
-	$('#create_alert_errors').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
-	<%= render 'global/ajax_form_errors', :target => @alert, :form_id => "create_alert_form" %>
+	$('#create_alert_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @alert) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @alert, :form_id => "create_alert_form" %>
 <% else %>
 	<% if @alert.alertable.is_a?(Animal) %>
 		$('#alerts').prepend("<%= escape_javascript(render @alert) %>"); 

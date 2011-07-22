@@ -7,7 +7,7 @@
 	</div>
 	
 	<div class="page_content">
-		<%= render "global/error_messages", :target => resource %>
+		<%= render "shared/error_messages", :target => resource %>
 		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :remote => true do |f| %>
 			<ul class="form">
 				<li>

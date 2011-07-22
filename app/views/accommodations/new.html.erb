@@ -23,7 +23,7 @@
 		
 	<div class="page_content">
 			
-		<%= render "global/error_messages", :target => @accommodation %>
+		<%= render "shared/error_messages", :target => @accommodation %>
 		<div id="create_accommodation">
 			<%= form_for @accommodation, :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
 				<ul>

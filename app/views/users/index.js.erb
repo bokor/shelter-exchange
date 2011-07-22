@@ -1,5 +1,5 @@
 // Successful form Submitted for User Invitation => from invitations/new.js.erb
-$('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages', :target => flash) %>" );
+$('#flash_messages').html("<%= escape_javascript(render 'shared/flash_messages', :target => flash) %>" );
 
 // Reset Form
 $('#new_invitation form').get(0).reset();

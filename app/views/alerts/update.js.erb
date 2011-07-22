@@ -1,6 +1,6 @@
 <% if @alert.errors.any? %>
-	$('#edit_alert_errors_<%=@alert.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @alert) %>" );
-	<%= render 'global/ajax_form_errors', :target => @alert, :form_id => "edit_alert_form_#{@alert.id}" %>	
+	$('#edit_alert_errors_<%=@alert.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @alert) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @alert, :form_id => "edit_alert_form_#{@alert.id}" %>	
 <% else %>
 	$('#edit_alert_<%=@alert.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

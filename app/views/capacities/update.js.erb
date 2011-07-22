@@ -1,6 +1,6 @@
 <% if @capacity.errors.any? %>
-	$('#edit_capacity_errors_<%=@capacity.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @capacity) %>" );
-	<%= render 'global/ajax_form_errors', :target => @capacity, :form_id => "edit_capacity_form_#{@capacity.id}" %>
+	$('#edit_capacity_errors_<%=@capacity.id%>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @capacity) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @capacity, :form_id => "edit_capacity_form_#{@capacity.id}" %>
 <% else %>
 	$('#edit_capacity_<%=@capacity.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 

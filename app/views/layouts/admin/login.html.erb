@@ -3,13 +3,14 @@
 <head>
   
 	<title><%= yield(:title) %> - Shelter Exchange - Admin</title>
-	
+		
+		
  	<%= include_stylesheets :admin_login, :media => "all" %>
-	<%= yield(:stylesheets) %>
-	
-	
+
+
 	<%= include_javascripts :admin %>
 	<%= yield(:javascripts) %>
+		
 		
 	<%= csrf_meta_tag %>
 
@@ -23,7 +24,7 @@
 			<div>Admin Tool</div>
 		</div>
 		
-		<div id="flash_messages"><%= render :partial => "global/flash_messages" %></div>
+		<div id="flash_messages"><%= render :partial => "shared/flash_messages" %></div>
 		
 		<div id="center">
 			

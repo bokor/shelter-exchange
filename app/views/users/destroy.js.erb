@@ -1,5 +1,5 @@
 // Display Flash Message
-$('#flash_messages').html("<%= escape_javascript(render 'global/flash_messages', :target => flash) %>" );
+$('#flash_messages').html("<%= escape_javascript(render 'shared/flash_messages', :target => flash) %>" );
 
 // Remove Old User
 $('#user_<%=@user.id%>').fadeOut(1500, function() { 

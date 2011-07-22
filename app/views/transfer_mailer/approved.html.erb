@@ -1,37 +1,44 @@
-<style type="text/css" media="screen">
-	#email_logo { width: 100%; text-align:center; margin:0 auto;}
-	#email_logo img{text-align:center; margin:0 auto;}
-	h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
-	ul{list-style-type:none;padding:0;margin:0;}
-	li{padding-bottom: 0;}
-	.additional_notes{padding: 10px 0;}
-	.closing{padding-top:5px;}
-	.closing p{padding-bottom: 10px;}
-</style>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css" media="screen">
+		#email_logo { width: 100%; text-align:center; margin:0 auto;}
+		#email_logo img{text-align:center; margin:0 auto;}
+		h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+		ul{list-style-type:none;padding:0;margin:0;}
+		li{padding-bottom: 0;}
+		.additional_notes{padding: 10px 0;}
+		.closing{padding-top:5px;}
+		.closing p{padding-bottom: 10px;}
+	</style>
+</head>
+<body>
 
-<div id="email_logo">
-	<%= image_tag attachments['logo_email.jpg'].url -%>
-</div>
+	<div id="email_logo">
+		<%= image_tag attachments['logo_email.jpg'].url -%>
+	</div>
 
-<p>Congratulations! Your request to transfer <%=@animal.name%> to your shelter or rescue has been Approved by <%=@shelter.name%>. Any details regarding this transfer request maybe noted below:</p>
+	<p>Congratulations! Your request to transfer <%=@animal.name%> to your shelter or rescue has been Approved by <%=@shelter.name%>. Any details regarding this transfer request maybe noted below:</p>
 
-<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional note: <strong><%=@transfer_history_reason%></strong></p><% end %>
+	<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional note: <strong><%=@transfer_history_reason%></strong></p><% end %>
 
-<p>Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:</p>
+	<p>Please consult directly with this shelter regarding all transfer requests that you have sent to them, their contact details are below:</p>
 
-<p>
-	<strong><%= @shelter.name %></strong><br />
-	<%= @shelter.street %><br />
-	<% unless @shelter.street_2.blank? %><%= @shelter.street_2 %><br /><% end %>
-	<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
-	Tel: <%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
-	Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
-</p>
+	<p>
+		<strong><%= @shelter.name %></strong><br />
+		<%= @shelter.street %><br />
+		<% unless @shelter.street_2.blank? %><%= @shelter.street_2 %><br /><% end %>
+		<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
+		Tel: <%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
+		Email: <a href="mailto:<%= @shelter.email %>"><%= @shelter.email %></a>
+	</p>
 
-<p>Once the animal has been transported to your shelter the record for <%=@animal.name%> will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the <%=@shelter.name%> to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.</p>
+	<p>Once the animal has been transported to your shelter the record for <%=@animal.name%> will be transferred to your animal database within Shelter Exchange. If you are having difficultly locating the record please contact the <%=@shelter.name%> to ensure they have clicked the 'Complete' button on the Dashboard page, this will transfer the record to your shelter.</p>
 
 
-<div class="closing">
-	<p>Many thanks,</p>
-	<p>Shelter Exchange Team</p>
-</div>
+	<div class="closing">
+		<p>Many thanks,</p>
+		<p>Shelter Exchange Team</p>
+	</div>
+</body>
+</html>

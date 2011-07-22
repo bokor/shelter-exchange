@@ -1,6 +1,6 @@
 <% if @task.errors.any? %>
-	$('#edit_task_errors_<%=@task.id%>').html( "<%= escape_javascript(render 'global/error_messages', :target => @task) %>" );
-	<%= render 'global/ajax_form_errors', :target => @task, :form_id => "edit_task_form_#{@task.id}" %>
+	$('#edit_task_errors_<%=@task.id%>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @task) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @task, :form_id => "edit_task_form_#{@task.id}" %>
 <% else %>
 	<% due_section = @task.due_section %>
 	<% if @changed %>

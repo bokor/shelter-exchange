@@ -16,7 +16,7 @@ h4 {  }
 h5 {  }
 
 p{ margin-bottom: 10px; }
-img { border: none; outline: none; }
+a, img { border: none; outline: none; }
 
 code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
 

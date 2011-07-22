@@ -4,7 +4,7 @@
 	<% if resource.errors[:password] or resource.errors[:password_confirmation] %>
 		<script type="text/javascript" charset="utf-8">
 			$(function() {
-				<%= render 'global/ajax_form_errors.js', :target => resource, :form_id => "edit_reset_password_form" %>
+				<%= render 'shared/ajax_form_errors.js', :target => resource, :form_id => "edit_reset_password_form" %>
 			});
 		</script>
 	<% end %>
@@ -20,7 +20,7 @@
 	<div class="page_content">
 		
 		<div id="reset_password_errors">
-			<%= render "global/error_messages", :target => resource %>
+			<%= render "shared/error_messages", :target => resource %>
 		</div>
 		
 		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :id => "edit_reset_password_form" }) do |f| %>

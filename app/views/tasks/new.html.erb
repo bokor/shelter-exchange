@@ -21,7 +21,7 @@
 	</div>
 		
 	<div class="page_content">
-		<%= render "global/error_messages", :target => @task %>
+		<%= render "shared/error_messages", :target => @task %>
 		<div id="create_task">
 			<%= form_for (@task), :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
 				<ul>

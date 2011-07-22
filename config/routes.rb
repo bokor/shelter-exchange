@@ -72,6 +72,12 @@ ShelterExchangeApp::Application.routes.draw do
       get "signup" => "accounts#new", :path => :signup
       post "signup" => "accounts#create", :path => :signup
       
+      # Public :: Pages
+      #----------------------------------------------------------------------------
+      resources :pages, :only => [:index, :show]
+      match '*path' => 'pages#show'
+      root :to => 'pages#index'
+      
     end
     
   end

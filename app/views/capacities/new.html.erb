@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="page_content">
-		<%= render "global/error_messages", :target => @capacity %>
+		<%= render "shared/error_messages", :target => @capacity %>
 		<div id="create_capacity">
 			<%= form_for @capacity, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>
 				<ul>

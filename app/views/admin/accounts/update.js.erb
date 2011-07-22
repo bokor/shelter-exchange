@@ -1,6 +1,6 @@
 <% if @account.errors.any? %>
-	$('#edit_account_errors_<%=@account.id %>').html( "<%= escape_javascript(render 'global/error_messages', :target => @account) %>" );
-	<%= render 'global/ajax_form_errors', :target => @account, :form_id => "edit_account_form_#{@account.id}" %>	
+	$('#edit_account_errors_<%=@account.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @account) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @account, :form_id => "edit_account_form_#{@account.id}" %>	
 <% else %>
 	$('#edit_account_<%=@account.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
