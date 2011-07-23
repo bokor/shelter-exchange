@@ -2,12 +2,17 @@
 <html>
 <head>
   
+	<!-- title -->
 	<title><%= yield(:title) %> - Shelter Exchange</title>
 	
+	<!-- icons -->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="/shelterexchange-icon.png" />
 	
+	<!-- stylesheets -->
 	<%= include_stylesheets :app_login, :media => "all" %>
 	
-	
+	<!-- javascripts -->
 	<%= include_javascripts :app %>
 	<%= yield(:javascripts) %>
 		
