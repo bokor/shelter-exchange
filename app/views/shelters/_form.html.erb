@@ -54,17 +54,17 @@
 	</li>
 	<li>
 		<%= f.label :website, "Website", :class => "desc" %>
-		<div><%= f.text_field :website, :class => "field text medium", :maxlength => 255 %></div>
+		<div><%= f.text_field :website, :class => "field text medium url_formatter", :maxlength => 255 %></div>
 		<%= has_error_message?(@shelter, :website)%>
 	</li>
 	<li>
 		<%= f.label :twitter, "Twitter", :class => "desc" %>
-		<div><%= f.text_field :twitter, :class => "field text medium", :maxlength => 255 %></div>
+		<div><%= f.text_field :twitter, :class => "field text medium url_formatter", :maxlength => 255 %></div>
 		<%= has_error_message?(@shelter, :twitter)%>
 	</li>
 	<li>
 		<%= f.label :facebook, "Facebook Page", :class => "desc" %>
-		<div><%= f.text_field :facebook, :class => "field text medium", :maxlength => 255 %></div>
+		<div><%= f.text_field :facebook, :class => "field text medium url_formatter", :maxlength => 255 %></div>
 		<%= has_error_message?(@shelter, :facebook)%>
 	</li>
 	<li>

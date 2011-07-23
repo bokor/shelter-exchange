@@ -72,11 +72,8 @@ $(function() {
 
 
 
-/* Block UI - Setup and Config
-/*----------------------------------------------------------------------------*/
-
-// Complex Block UI 
-//    - Shows up if > than 400 ms
+/* Block UI - Setup and Config - Shows up if > than 400 ms
+/*----------------------------------------------------------------------------*/ 
 $(function() {
 	var timer;
 	
@@ -115,25 +112,10 @@ $(function() {
     	$("#left").unblock();
 	});
 });
-// Simple Block UI 
-//  - Shows up everytime
-// $(function() { 
-// 	$(document).ajaxStart($.blockUI);
-// 	$(document).ajaxStop($.unblockUI);
-// 
-// });
 
 
-
-
-
-/*
- * Application Stuff
- */
-
-/* ------------------------------------------------------------------------
- * Live - Hover, Click Events
- * ------------------------------------------------------------------------ */
+/* Live - Hover, Click Events
+/*----------------------------------------------------------------------------*/
 $(function(){
 	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(e) {
 	  if (e.type == 'mouseenter') {
@@ -165,9 +147,8 @@ $(function(){
 
 
 
-
-
-// Pagination Links -> AJAX Searches
+/* Pagination Links :: AJAX Searches
+/*----------------------------------------------------------------------------*/
 $('.pagination a').live('click',function (e){  
 	$.getScript(this.href);  
     // return false;  
@@ -176,7 +157,8 @@ $('.pagination a').live('click',function (e){
 
 
 
-//Sidebar Functions to Show and Hide them When Button is clicked
+/* Sidebar Function :: Show and Hide
+/*----------------------------------------------------------------------------*/
 $(function() {
 
 	$('#add_alert_link, #cancel_alert').click(function() {
@@ -200,13 +182,33 @@ $(function() {
 
 });
 
-/* ------------------------------------------------------------------------
- * Toolbar Settings Menu
- * ------------------------------------------------------------------------ */
+/* Settings Menu :: Toolbar
+/*----------------------------------------------------------------------------*/
 $(function () {
     $('.settings_link').bind("click", function (e) {
 		$('ul.settings_menu').slideToggle("medium");
 	    e.preventDefault();
     });
+});
+
+
+/* ------------------------------------------------------------------------
+ * Utilities
+ * ------------------------------------------------------------------------ */
+
+
+/* URL Formatter :: Prepends http:// to url input fields
+/*----------------------------------------------------------------------------*/
+$(function(){
+	$('.url_formatter').bind('focus', function(e){
+	    $(this).val('http://' + $(this).val().replace('http://', ''));
+	}).bind('blur', function(e){
+		var testStr = $(this).val();
+		if (testStr.replace('http://', '') == ''){
+			$(this).val("");
+		} else {
+	    	$(this).val('http://' + $(this).val().replace('http://', ''));
+		}
+	});
 });
 

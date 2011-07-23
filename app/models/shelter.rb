@@ -62,7 +62,7 @@ class Shelter < ActiveRecord::Base
                     :uniqueness => true, :allow_blank => true,
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
-  validates :access_token, :uniqueness => true, :on => :generate_access_token!        
+  validates :access_token, :uniqueness => true, :on => :generate_access_token!    
   validate :address_valid?         
 
   # Validations - Paperclip
