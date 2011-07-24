@@ -5,7 +5,7 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   before_validation :delete_photo?
   after_validation :revert_photo?
-  before_save :check_status_changed?
+  before_save :change_status_date!
   after_save :create_status_history!
 
   # Getters/Setters
@@ -250,7 +250,7 @@ class Animal < ActiveRecord::Base
       end
     end
         
-    def check_status_changed?
+    def change_status_date!
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
       end
