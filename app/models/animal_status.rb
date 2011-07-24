@@ -1,5 +1,7 @@
 class AnimalStatus < ActiveRecord::Base
   
+  # Constants
+  #----------------------------------------------------------------------------
   ACTIVE = [1,3,4,5,6,7,8,9,10,11].freeze
   NON_ACTIVE = [2,12,13,14].freeze
   AVAILABLE_FOR_ADOPTION = 1
@@ -10,10 +12,12 @@ class AnimalStatus < ActiveRecord::Base
   EUTHANIZED = 14
   
   # Associations
+  #----------------------------------------------------------------------------
   has_many :animals, :readonly => true
   has_many :status_histories, :dependent => :destroy
   
   # Scopes
+  #----------------------------------------------------------------------------
   scope :active, where(:id => ACTIVE)
   scope :non_active, where(:id => NON_ACTIVE)
   

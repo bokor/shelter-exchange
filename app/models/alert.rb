@@ -30,6 +30,12 @@ class Alert < ActiveRecord::Base
   
   # Instance Methods
   #----------------------------------------------------------------------------
+  def stopped?
+    self.stopped
+  end
   
+  def active?
+    !self.stopped
+  end
   
 end

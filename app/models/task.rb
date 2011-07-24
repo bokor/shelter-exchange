@@ -30,17 +30,6 @@ class Task < ActiveRecord::Base
   def self.recent_activity(shelter_id, limit=10)
     unscoped.includes(:taskable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
-  
-  # Return a map when the key is category type id as a string
-  # and the value is an array of arrays, each entry having 
-  # the first value as the category path and the second value
-  # being the category id as a string
-  # def self.all_groups
-  #   all.inject(Hash.new([])) do |map, due_section| 
-  #     map[due_section] = task
-  #     map
-  #   end
-  # end
 
   # Instance Methods
   #----------------------------------------------------------------------------  
@@ -82,3 +71,14 @@ class Task < ActiveRecord::Base
   end
   
 end
+
+# Return a map when the key is category type id as a string
+# and the value is an array of arrays, each entry having 
+# the first value as the category path and the second value
+# being the category id as a string
+# def self.all_groups
+#   all.inject(Hash.new([])) do |map, due_section| 
+#     map[due_section] = task
+#     map
+#   end
+# end

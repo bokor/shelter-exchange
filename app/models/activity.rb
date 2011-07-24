@@ -5,7 +5,7 @@ class Activity
   end
   
   def recent(limit=10)
-    returning([]) do |collection|
+    [].tap do |collection|
       collection << Alert.recent_activity(@current_shelter.id,10)
       collection << Task.recent_activity(@current_shelter.id, 10)
       collection << Animal.recent_activity(@current_shelter.id, 10)
