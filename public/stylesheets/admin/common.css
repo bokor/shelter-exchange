@@ -19,12 +19,6 @@ img { border: none; outline: none; }
 code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
 
 
-/*
-Shelter Exchange Letters - #cf7019
-Dog House Roof - #f26649
-Dog House Sides - #db8d4a
-*/
-
 /* ClearFix */
 /******************************************************************/
 .clearfix:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }

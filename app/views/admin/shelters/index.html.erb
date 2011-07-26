@@ -6,10 +6,18 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<h1>Shelter List</h1>
+		<%= form_for :shelters, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+			<ul>
+				<li class="full">
+					<%= label_tag "q", "Search Shelter List", :class => "desc" %>
+					<%= text_field_tag "q", "", :class => "field text medium", :onkeyup =>"Shelters.liveSearch(this);"  %>
+				</li>
+			</ul>
+		<% end %>
 	</div>
 	
 	<div class="page_content">
+
 
 		<div class="no_kill_shelters_section">
 			<h2>No Kill Shelters</h2>
