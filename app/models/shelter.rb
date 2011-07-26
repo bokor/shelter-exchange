@@ -78,9 +78,9 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
-  scope :live_search, lambda { |q| where("LOWER(name) LIKE LOWER('%#{q}%') 
-                                          OR LOWER(city) LIKE LOWER('%#{q}%')
-                                          OR LOWER(state) LIKE LOWER('%#{q}%')") }
+  scope :live_search, lambda { |q| where("LOWER(name) LIKE LOWER('#{q}%') 
+                                          OR LOWER(city) LIKE LOWER('#{q}%')
+                                          OR LOWER(state) LIKE LOWER('#{q}%')") }
 
   # Instance Methods
   #----------------------------------------------------------------------------
