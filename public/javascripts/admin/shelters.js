@@ -26,14 +26,12 @@ var Shelters = {
 	},
 	liveSearch: function(element){
 		var q = $(element);
-		if (q.val().length >= 3) {
-			clearTimeout($.data(element, "search_timer"));
-			var wait = setTimeout(function() { 
-				$.get("/admin/shelters/live_search.js", { q: q.val() });
-				clearTimeout($.data(element, "search_timer"));  
-			}, 500);
-			$.data(element, "search_timer", wait);
-		}
+		clearTimeout($.data(element, "search_timer"));
+		var wait = setTimeout(function() { 
+			$.get("/admin/shelters/live_search.js", { q: q.val() });
+			clearTimeout($.data(element, "search_timer"));  
+		}, 500);
+		$.data(element, "search_timer", wait);
 	}
 
 };
