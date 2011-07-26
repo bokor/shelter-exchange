@@ -17,8 +17,8 @@ class Admin::SheltersController < Admin::ApplicationController
   
   def live_search
     q = params[:q].strip
-    @kill_shelters = q.blank? ? {} : Shelter.live_search(q).where(:is_kill_shelter => true)
-    @no_kill_shelters = q.blank? ? {} : Shelter.live_search(q).where(:is_kill_shelter => false)
+    @kill_shelters = q.blank? ? Shelter.where(:is_kill_shelter => true).order('name ASC').all : Shelter.live_search(q).where(:is_kill_shelter => true)
+    @no_kill_shelters = q.blank? ? Shelter.where(:is_kill_shelter => false).order('name ASC').all : Shelter.live_search(q).where(:is_kill_shelter => false)
   end
   
 end
