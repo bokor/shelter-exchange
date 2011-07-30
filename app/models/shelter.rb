@@ -78,6 +78,9 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
+  scope :live_search, lambda { |q| where("LOWER(name) LIKE LOWER('#{q}%') 
+                                          OR LOWER(city) LIKE LOWER('#{q}%')
+                                          OR LOWER(state) LIKE LOWER('#{q}%')") }
 
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -89,6 +92,10 @@ class Shelter < ActiveRecord::Base
   
   def address_changed?
     (self.new_record?) or (self.street_changed? or self.street_2_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
+  end
+  
+  def kill_shelter?
+    self.is_kill_shelter
   end
   
   private

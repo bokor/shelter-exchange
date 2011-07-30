@@ -23,6 +23,15 @@ var Shelters = {
 			draggable: false
 		});
 
+	},
+	liveSearch: function(element){
+		var q = $(element);
+		clearTimeout($.data(element, "search_timer"));
+		var wait = setTimeout(function() { 
+			$.get("/admin/shelters/live_search.js", { q: q.val() });
+			clearTimeout($.data(element, "search_timer"));  
+		}, 500);
+		$.data(element, "search_timer", wait);
 	}
 
 };

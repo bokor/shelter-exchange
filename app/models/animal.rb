@@ -185,7 +185,7 @@ class Animal < ActiveRecord::Base
   private
   
     def is_kill_shelter?
-      @shelter ||= self.shelter.is_kill_shelter
+      @shelter ||= self.shelter.kill_shelter?
     end
 
     def primary_breed_valid?

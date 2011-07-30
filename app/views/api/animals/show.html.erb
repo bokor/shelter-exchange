@@ -1,11 +1,13 @@
 <%= title "#{@animal.name} (#{@animal.id}) - #{@animal.shelter.name}" %>
 
 <%= content_for :javascripts do %>
+	<script type="text/javascript">var switchTo5x=true;</script>
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">
 		stLight.options({
-	    	publisher:'95fc3e87-ce6f-4899-b4e2-ad52add9d5b4'
-	  	});
+			publisher:'95fc3e87-ce6f-4899-b4e2-ad52add9d5b4',
+			onhover: false
+		});
 	</script>
 <% end %>
 
@@ -14,13 +16,14 @@
 		<table class="animal">
 			<tr>
 				<td>
-					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+					<h1><%= @animal.name %></h1>
 				</td>
 				<td class="action_links">
 					<!-- Share This -->
-					<span class="st_facebook_button"></span>
-					<span class="st_twitter_button"></span>
-					<span class="st_email_button" displayText="Email"></span>
+					<span class='st_facebook' displayText='Facebook' onclick="alert('test');"></span>
+					<span class='st_twitter' displayText='Tweet'></span>
+					<span class='st_email' displayText='Email'></span>
+					<span class='st_sharethis' displayText='ShareThis'></span>
 					<!--// Share This -->
 					<ul class="toggle_buttons">
 						<li><%= link_to "Back to Results", url_for(:back) %></li>
