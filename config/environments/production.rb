@@ -35,11 +35,8 @@ ShelterExchangeApp::Application.configure do
   config.action_controller.asset_host = "http://shelterexchange.s3.amazonaws.com"
   
   config.action_mailer.default_url_options = { :host => "shelterexchange.org" }
-  config.action_mailer.delivery_method = :ses
-  
-  # SendGrid
-  # config.action_mailer.delivery_method = :sendmail
-  # config.action_mailer.sendmail_settings = {:arguments => '-i'}
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {:arguments => '-i'}
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
