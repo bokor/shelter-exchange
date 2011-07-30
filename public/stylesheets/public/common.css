@@ -41,10 +41,10 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 
 /* Page Layouts */   
 /******************************************************************/
-#toolbar { height: 40px; background-color: #444; position: relative;  }
-#header { height: 100px; background-color: #222; position: relative;  }
-#main {min-height:100%; height: auto !important; height: 100%; margin-top: 20px; padding-bottom: 220px; position: relative; }
-#main .content {height: 100%; background-color: #fff; padding: 15px;
+#toolbar { height: 40px; background-color: #222; position: relative;  }
+#header { height: 100px; background-color: #F2EADA; position: relative;  }/*f3f1ec*/
+#main {min-height:100%; height: auto !important; height: 100%; margin-top: 10px; padding-bottom: 220px; position: relative; }
+#main .content {width: 960px;height: 100%; background-color: #fff; padding: 20px;
 	            -webkit-box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999;  box-shadow: 0px 0px 6px #999; 
 	            -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
 #footer {width:100%;height: 200px; bottom: 0; position:absolute; background-color: #222; }
@@ -58,9 +58,9 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 /* Toolbar :: Menu */   
 /******************************************************************/
 #toolbar .menu { float: left; width: 75%; list-style:none; text-align:left; }
-#toolbar .menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 30px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
-					background: url(/images/public/separator-toolbar.png) no-repeat right; }
-#toolbar .menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; text-transform: uppercase; }
+#toolbar .menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 15px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
+					/*background: url(/images/public/separator-toolbar.png) no-repeat top right;*/ }
+#toolbar .menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; /*text-transform: uppercase;*/ }
 #toolbar .menu a:hover, #toolbar .menu a:active { color: #ccc; text-shadow: 2px 2px 2px #222; }
 #toolbar .menu li:first-child{padding-left: 0;}
 #toolbar .menu li:last-child{background: none; padding-right: 0px;}
@@ -68,9 +68,9 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 /* Toolbar :: Tools Menu*/   
 /******************************************************************/
 #toolbar .tools_menu { float: right; width: 25%; list-style:none;text-align:right; }
-#toolbar .tools_menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 30px; text-align:right; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
-					background: url(/images/public/separator-toolbar.png) no-repeat right; }
-#toolbar .tools_menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; text-transform: uppercase; }
+#toolbar .tools_menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 15px; text-align:right; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
+					b/*ackground: url(/images/public/separator-toolbar.png) no-repeat top right;*/ }
+#toolbar .tools_menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; /*text-transform: uppercase;*/ }
 #toolbar .tools_menu a:hover, #toolbar .menu a:active { color: #ccc; text-shadow: 2px 2px 2px #222; }
 #toolbar .tools_menu li:first-child{padding-left: 0;}
 #toolbar .tools_menu li:last-child{background: none; padding-right: 0px;}

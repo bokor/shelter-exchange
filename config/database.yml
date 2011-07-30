@@ -16,15 +16,18 @@ demo:
     database: shelterexchange-demo
     username: se_demo
     password: 
+    pool: 5
 
 staging:
     adapter: mysql2
     database: shelterexchange-staging
     username: se_staging
     password: 
+    pool: 5
 
 production:
     adapter: mysql2
     database: shelterexchange
     username: se_prod
     password: 
+    pool: 20
