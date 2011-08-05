@@ -25,7 +25,7 @@
 	<% end %>
 </ul>
 <br />
-<% if @shelter.is_kill_shelter %>
+<% if @shelter.kill_shelter? %>
 	<div class="shelter_type kill">Kill Shelter</div>
 <% else %>
 	<div class="shelter_type no_kill">No Kill Shelter</div>

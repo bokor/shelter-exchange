@@ -136,7 +136,7 @@
 			</div> 
 			<%= has_error_message?(@animal, :accommodation_id)%>
 		</li>
-		<% if @current_shelter.is_kill_shelter %>
+		<% if @current_shelter.kill_shelter? %>
 		<li class="section">
 			<section>
 				<h3>Euthanasia Details</h3>

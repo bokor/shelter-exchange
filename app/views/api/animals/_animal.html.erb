@@ -9,7 +9,7 @@
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
-		<% if @current_shelter.is_kill_shelter %>
+		<% if @current_shelter.kill_shelter? %>
 			<p><b style="color:red;"><%= days_left(animal.euthanasia_date) %></b></p>
 		<% end %>
 	</td>

@@ -3,7 +3,7 @@
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
 		$(function() {
-			Animals.formInitialize(<%=@current_shelter.is_kill_shelter%>, <%=@animal.errors[:status_history_reason].any?%>, <%= @animal.new_record? ? 0 : @animal.animal_status_id_was %>);
+			Animals.formInitialize(<%=@current_shelter.kill_shelter?%>, <%=@animal.errors[:status_history_reason].any?%>, <%= @animal.new_record? ? 0 : @animal.animal_status_id_was %>);
 		});
 	</script>
 <% end %>

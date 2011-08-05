@@ -12,7 +12,7 @@
 
 	<p>A new account has been created at Shelter Exchange.</p>
 
-	<% if @shelter.is_kill_shelter %>
+	<% if @shelter.kill_shelter? %>
 		<div id="message" class="kill">KILL</div>
 	<% else %>
 		<div id="message" class="no_kill">NO KILL</div>
