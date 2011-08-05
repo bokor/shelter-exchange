@@ -81,8 +81,8 @@ class Shelter < ActiveRecord::Base
   scope :live_search, lambda { |q| where("LOWER(name) LIKE LOWER('#{q}%') 
                                           OR LOWER(city) LIKE LOWER('#{q}%')
                                           OR LOWER(state) LIKE LOWER('#{q}%')") }
-  scope :kill_shelters, where(:is_kill_shelter => true).order(:name) }
-  scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) }
+  scope :kill_shelters, where(:is_kill_shelter => true).order(:name) 
+  scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 
   
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -98,6 +98,10 @@ class Shelter < ActiveRecord::Base
   
   def kill_shelter?
     self.is_kill_shelter
+  end
+  
+  def no_kill_shelter?
+    !self.is_kill_shelter
   end
   
   private
