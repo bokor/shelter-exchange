@@ -66,7 +66,7 @@
 			</tr>
 		</table>
 		
-		<% if @shelter.is_kill_shelter %>
+		<% if @shelter.kill_shelter? %>
 		<table class="euthanasia_info">
 			<tr>
 				<td>
@@ -106,7 +106,7 @@
 
 <%= content_for :sidebar do %>
 
-<% unless @current_shelter.is_kill_shelter %>
+<% unless @current_shelter.kill_shelter? %>
 	<div class="transfer_section">
 		<% if can?(:request_transfer, Animal) %>
 		<ul id="transfer_request_button" class="action_links">

@@ -2,8 +2,8 @@ class Admin::SheltersController < Admin::ApplicationController
   respond_to :html, :js
   
   def index
-    @kill_shelters = Shelter.where(:is_kill_shelter => true).order('name ASC').all
-    @no_kill_shelters = Shelter.where(:is_kill_shelter => false).order('name ASC').all
+    @kill_shelters = Shelter.kill_shelters.all
+    @no_kill_shelters = Shelter.no_kill_shelters.all
   end
   
   def show
@@ -17,8 +17,8 @@ class Admin::SheltersController < Admin::ApplicationController
   
   def live_search
     q = params[:q].strip
-    @kill_shelters = q.blank? ? Shelter.where(:is_kill_shelter => true).order('name ASC').all : Shelter.live_search(q).where(:is_kill_shelter => true)
-    @no_kill_shelters = q.blank? ? Shelter.where(:is_kill_shelter => false).order('name ASC').all : Shelter.live_search(q).where(:is_kill_shelter => false)
+    @kill_shelters = q.blank? ? Shelter.kill_shelters.all : Shelter.live_search(q).kill_shelters.all
+    @no_kill_shelters = q.blank? ? Shelter.no_kill_shelters.all : Shelter.live_search(q).no_kill_shelters.all
   end
   
 end

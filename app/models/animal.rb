@@ -66,12 +66,13 @@ class Animal < ActiveRecord::Base
   validate :date_of_birth_valid?
   validate :arrival_date_valid?
   validate :euthanasia_date_valid?
+
   
   # Validations - PaperClip
   #----------------------------------------------------------------------------
   validates_attachment_size :photo, :less_than => PHOTO_SIZE, :message => "needs to be #{PHOTO_SIZE_IN_TEXT} or less"
   validates_attachment_content_type :photo, :content_type => PHOTO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
-
+    
   
   # Scopes - Search
   #----------------------------------------------------------------------------
@@ -80,28 +81,35 @@ class Animal < ActiveRecord::Base
                                                                             OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
                                                                             OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
+  #----------------------------------------------------------------------------  
+  
   
   # Scopes - Statuses
   #----------------------------------------------------------------------------
   scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
   scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
-  scope :available_for_adoption, where(:animal_status_id => AnimalStatus::AVAILABLE_FOR_ADOPTION)
-  scope :adopted, where(:animal_status_id => AnimalStatus::ADOPTED)
-  scope :foster_care, where(:animal_status_id => AnimalStatus::FOSTER_CARE)
-  scope :reclaimed, where(:animal_status_id => AnimalStatus::RECLAIMED)
-  scope :euthanized, where(:animal_status_id => AnimalStatus::EUTHANIZED)
+  scope :available_for_adoption, where(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+  scope :adopted, where(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+  scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
+  scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
+  scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
+  #----------------------------------------------------------------------------  
+  
   
   # Scopes - Dashboard - Recent Activity
   #----------------------------------------------------------------------------
   def self.recent_activity(shelter_id, limit=10)
     unscoped.includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
   end
+  #----------------------------------------------------------------------------  
+  
+  
   
   # Scopes - Maps and Filters
   #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
-    scope = scope.unscoped.order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
+    scope = scope.unscoped.order("animals.euthanasia_date DESC") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
     scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
@@ -130,7 +138,8 @@ class Animal < ActiveRecord::Base
   def self.filter_animal_status(animal_status)
     where(:animal_status_id => animal_status)
   end
-
+  #----------------------------------------------------------------------------  
+  
   
   # Scopes - Reports
   #----------------------------------------------------------------------------  
@@ -163,6 +172,8 @@ class Animal < ActiveRecord::Base
 
     scope
   end
+  #----------------------------------------------------------------------------  
+  
   
   # Finalize Transfer Request
   #----------------------------------------------------------------------------
@@ -180,7 +191,7 @@ class Animal < ActiveRecord::Base
     self.tasks.delete_all
     self.alerts.delete_all
   end
-
+  #----------------------------------------------------------------------------  
                                                  
   private
   
