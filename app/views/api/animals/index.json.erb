@@ -1,5 +1,5 @@
 <% json = @animals.collect do |animal|
-{ :animal => {
+{ 
 	:id => animal.id,
     :name => animal.name,
     :type => animal.animal_type.name,
@@ -18,11 +18,10 @@
 		:euthanasia_date => format_date(:default, animal.euthanasia_date)
 	},
     :photo => {
-    	:thumbnail => animal.photo.url(:thumbnail),
-    	:small => animal.photo.url(:small),
-        :large => animal.photo.url(:large)
+    	:thumbnail => animal.photo.file? ? animal.photo.url(:thumb) : s3_url(animal.photo.url(:thumb)[1..-1]),
+    	:small => animal.photo.file? ? animal.photo.url(:small) : s3_url(animal.photo.url(:small)[1..-1]),
+        :large => animal.photo.file? ? animal.photo.url(:large) : s3_url(animal.photo.url(:large)[1..-1])
     }
-  }
 }
 end
 %>
