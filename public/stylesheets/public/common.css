@@ -4,28 +4,24 @@
 /******************************************************************/
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #F2EADA; color: #222; 
-	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; }
+body { background: url(/images/public/background-body.jpg) repeat; color: #222; 
+	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
 
-h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
-h1 {  }
+h1, h2, h3, h4, h5 { font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px dotted #bbb; text-shadow: 0px 2px 3px #fff; }
+h1 { font-size: 28px; margin-bottom: 25px; }
 h2 {  }
 h3 {  }
 h4 {  }
 h5 {  }
 
-/*h1, h2, h3, h4, h5 { font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-weight: bold; color:#000; letter-spacing: -1px; }
-h1 { font-size: 52px; color:#FFF; text-shadow: 2px 2px 2px #333; }
-h2 { font-size: 32px; padding-bottom: 10px; }
-h3 { font-size: 24px; padding-bottom: 10px; }
-h4 { font-size: 18px; }
-h5 { font-size: 16px; }*/
 
-p{ margin-bottom: 10px; }
-a, img { border: none; outline: none; }
-a:hover, a:selected { border: none; outline: none; }
+p{ margin-bottom: 20px; line-height: 1.5;}
+a, img { border: none; outline: none; -ms-interpolation-mode: bicubic;}
+a:hover, a:active, a:selected { border: none; outline: none; }
 
-code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
+.highlight{font-size: 14px; font-weight:bold; color:#cf7019; text-shadow: 0px 2px 3px white;}
+.separator{clear:both;width: 100%;height: 5px;box-shadow: inset 0px 0px 5px #cf7019;margin: 25px 0px; border-radius: 8px;}
+
 
 
 /* ClearFix */
@@ -41,45 +37,35 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 
 /* Page Layouts */   
 /******************************************************************/
-#toolbar { height: 40px; background-color: #222; position: relative;  }
-#header { height: 100px; background-color: #F2EADA; position: relative;  }/*f3f1ec*/
-#main {min-height:100%; height: auto !important; height: 100%; margin-top: 10px; padding-bottom: 220px; position: relative; }
-#main .content {width: 960px;height: 100%; background-color: #fff; padding: 20px;
-	            -webkit-box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999;  box-shadow: 0px 0px 6px #999; 
-	            -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
-#footer {width:100%;height: 200px; bottom: 0; position:absolute; background-color: #222; }
+header{height: 145px;}
+#toolbar { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
+hgroup { height: 100px;  position: relative; }/*f3f1ec*/
+#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 220px; position: relative; }
+#footer{width:100%;height: 200px; bottom: 0; position:absolute; background-color: #222; }
 
-/* REMOVE LATER */
-#toolbar { color: #fff; }
-#header { color: #fff;  }
-#footer {color: #fff; }
-/* REMOVE LATER */
 
 /* Toolbar :: Menu */   
 /******************************************************************/
-#toolbar .menu { float: left; width: 75%; list-style:none; text-align:left; }
-#toolbar .menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 15px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
-					/*background: url(/images/public/separator-toolbar.png) no-repeat top right;*/ }
-#toolbar .menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; /*text-transform: uppercase;*/ }
-#toolbar .menu a:hover, #toolbar .menu a:active { color: #ccc; text-shadow: 2px 2px 2px #222; }
-#toolbar .menu li:first-child{padding-left: 0;}
-#toolbar .menu li:last-child{background: none; padding-right: 0px;}
+#toolbar .menu { margin: 0 auto; width: 100%; list-style:none; text-align:center; }
+#toolbar li { cursor: pointer; width: auto;line-height: 45px; min-height: 45px; padding: 0 30px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
+#toolbar li:hover, #toolbar li.current { background: url(/images/public/background-body.jpg) repeat; box-shadow: inset 0px 0px 10px #888; border-radius: 10px 10px 0px 0px; }
+#toolbar li:hover a, #toolbar li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; }
+#toolbar a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
 
-/* Toolbar :: Tools Menu*/   
+/* SubMenu */   
 /******************************************************************/
-#toolbar .tools_menu { float: right; width: 25%; list-style:none;text-align:right; }
-#toolbar .tools_menu li { width: auto;line-height: 40px; min-height: 40px; padding: 0 15px; text-align:right; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 40px; 
-					b/*ackground: url(/images/public/separator-toolbar.png) no-repeat top right;*/ }
-#toolbar .tools_menu a { color:#fff; text-decoration:none; font-weight:normal; font-size: 12px; /*text-transform: uppercase;*/ }
-#toolbar .tools_menu a:hover, #toolbar .menu a:active { color: #ccc; text-shadow: 2px 2px 2px #222; }
-#toolbar .tools_menu li:first-child{padding-left: 0;}
-#toolbar .tools_menu li:last-child{background: none; padding-right: 0px;}
+.submenu{list-style: none; float:right; position: relative; line-height: 38px;}
+.submenu li{float:left; padding: 0px 20px; }
+.submenu li:last-child{padding-right: 0px;}
+.submenu a{ color: #222; text-decoration: none; font-weight: bold; font-size: 14px;}
+.submenu a.current{ color:#cf7019; text-decoration: none;}
+.submenu a:hover{ color:#f16649; text-decoration: underline;}
 
 
 /* Header :: Layout */   
 /******************************************************************/
-#header .logo {vertical-align: middle;line-height: 100px;}
-#header .logo img{ vertical-align: middle;line-height: 100px;}
+hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; }
+hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 
 
 
@@ -93,13 +79,12 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 
 /* Pagination */   
 /******************************************************************/
-/* ORANGE - #CF7019 */
-.pagination { padding: 3px; margin: 20px 0 10px 0;}
-.pagination a {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
-.pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
-.pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
-.pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
-
+.pagination { margin: 2px; padding: 10px 2px 10px 2px; } 
+.pagination a { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #bbb; text-decoration: none; color: #666; } 
+.pagination a:hover, 
+.pagination a:active { border: 1px solid #000099; color: #000; } 
+.pagination span.current { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #ccc; font-weight: bold; background-color: #bbb; color: #FFF; } 
+.pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
 
 
 /* Tooltips */   
@@ -325,7 +310,6 @@ ul.toggle_buttons{
 	border-top-color: #D4D4D4;
 	color: #555;
 	display: inline-block;
-	margin: 0 0 0 15px;
 	min-width: 24px;
 	padding: 0px;
 	vertical-align: middle;
@@ -337,6 +321,7 @@ ul.toggle_buttons li{
 	margin: 0px;
 }
 ul.toggle_buttons li a {
+	cursor: pointer;
 	border-left: 1px solid rgba(0, 0, 0, 0.199219);
 	color: #555;
 	display: block;
@@ -362,4 +347,3 @@ ul.toggle_buttons li a:hover{
 /*	color: #005188;*/
 	color: #CF7019;
 }
-

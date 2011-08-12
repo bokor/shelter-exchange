@@ -28,6 +28,10 @@ module ApplicationHelper
     request.fullpath =~ /\/#{element.to_s}/ ? "current" : ""
   end
   
+  def sub_navigation(element)
+    (element.to_s == request.fullpath[1..-1].split('/').collect!{|p| p.to_s}.last) ? "current" : ""
+  end
+  
   def format_date(type, date)
     return nil if date.blank?
     case type

@@ -1,0 +1,53 @@
+<%= title "Donate" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<h1>Donate</h1>
+	
+	<h2>Things to know before you donate</h2>
+	
+	<div class="facts">
+
+		<div class="box">
+			<p>Every year approximately 8 million animals are <span class="highlight">homeless</span> in shelters across the USA.</p>
+			<p class="caption">With your help we can provide more animals with a <span class="highlight">home</span>.</p>
+		</div>
+	
+		<div class="box">
+			<p>4 million of those animals are <span class="highlight">euthanized</span> every year.</p>
+			<p class="caption">Your donation will directly support <span class="highlight">saving</span> animals from euthanasia.</p>
+		</div>
+	
+		<div class="box">
+			<p>Shelter Exchange is a 501(c)3 organization.</p>
+			<p class="caption">This means your charitable contribution is <span class="highlight">100%</span> tax deductible.</p>
+		</div>
+		
+	</div>
+	
+	<p>Our work will not be finished until there are no more animals to be saved, this cannot be achieved without our generous donors support.  Thank you for your gift.</p>
+
+	<script type="text/javascript">
+		var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");
+		document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+	<script type="text/javascript">
+		var z7x3k7 = new WufooForm();
+		z7x3k7.initialize({
+			'userName':'shelterexchange', 
+			'formHash':'z7x3k7', 
+			'autoResize':true,
+			'height':'709',
+			'header':'hide'
+		});
+		z7x3k7.display();
+	</script>
+	
+<% end %>
+
+<%= content_for :sidebar do %><% end %>

@@ -1,7 +1,7 @@
 module Public::ApplicationHelper
   
   def page_name
-    @path.parameterize('_') unless @path.blank?
+    @path.blank? ? "home_page" : "#{@path.parameterize('_')}_page"
   end
   
 end

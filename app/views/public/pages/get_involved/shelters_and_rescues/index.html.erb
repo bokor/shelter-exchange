@@ -1,0 +1,154 @@
+<%= title "Shelters and Rescues - Get Involved" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %>
+
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render :partial => "public/pages/get_involved/shelters_and_rescues/submenu" %>
+	
+	<h1>Shelters and Rescues</h1>
+	
+	<p>Discover how our web application can support collaborative rescue efforts within the animal welfare community.</p>
+	
+	
+	<div class="separator"></div>
+	
+	<!-- feature -->
+	<div class="feature">
+		<h2>Organize day-to-day operations</h2>
+		<p>We are providing administrative features within the application that will allow shelters and rescue groups to run more efficiently and access information from a central place.</p>
+
+		<div class="screenshot">
+			<%=image_tag("public/screenshot.png", :width => "400")%>
+		</div>
+
+		<ul>
+
+			<li>
+				<h3>A quick overview</h3>
+				<p>The Dashboard provides an overview of important tasks and alerts and details the recent activity within your facility. Also view 'Transfer Requests' that have been received from other rescue groups wishing to transfer animals from your facility.</p>
+			</li>
+			<li>
+				<h3>Set a reminder</h3>
+				<p>Create a task for an animal, i.e. a spay surgery appointment, or create a shelter wide task for all staff to see. Assign a due date and choose a category such as, To-do.</p>
+			</li>
+			<li>
+				<h3>Alert the team</h3>
+				<p>Create an alert for either a specific animal or as a shelter wide notification. For example, if there was a Parvovirus outbreak within your facility. Choose the severity of the alert and add a description.</p>
+			</li>
+			<li>
+				<h3>Record results</h3>
+				<p>Reports will be automatically generated and stored for your shelter staff to view. Reports display a monthly overview of shelter activity as well as monthly and annual counts for key statistics.</p>
+			</li>
+			<li>
+				<h3>Connect with your website</h3>
+				<p>An API has been provided within the application that will allow a direct connection to be set up to your facilities website, removing the need to enter these details in again.</p>
+			</li>
+		</ul>
+
+	</div>
+	<!--// feature -->
+
+	<div class="separator"></div>
+
+	<!-- feature -->
+	<div class="feature">
+		<h2>Connecting shelters and rescues together</h2>
+		<p>Animals that need immediate rescue from euthanasia can be shared between shelters and rescue groups.</p>
+
+		<div class="screenshot">
+			<%=image_tag("public/screenshot.png", :width => "400")%>
+		</div>
+
+		<ul>
+
+			<li>
+				<h3>Search local shelters</h3>
+				<p>View animals at shelters and rescue groups under all active status, including foster care, stray hold, rescue candidate etc. Search by a city, zip code or via a map view.</p>
+			</li>
+			<li>
+				<h3>Animals scheduled for euthanasia</h3>
+				<p>View animals and sequence them in order of the animals scheduled for euthanasia, and which animals have the least time left for rescue. Also filter by animal type, breed, and sex.</p>
+			</li>
+			<li>
+				<h3>Parents</h3>
+				<p>When adopting animals out search if the person is listed. The record will display contact details, adoption and foster history, plus notes made by other shelters. Ensure animals are going to a safe adopter and not falling into the wrong hands.</p>
+			</li>
+		</ul>
+
+	</div>
+	<!--// feature -->
+
+	<div class="separator"></div>
+
+	<!-- feature -->
+	<div class="feature">
+		<h2>Save a life</h2>
+		<p>Connect with rescue groups that specialize with age-oriented animals, breed specific or special needs in to ensure animals that may normally be overlooked, can be saved. </p>
+
+		<div class="screenshot">
+			<%=image_tag("public/screenshot.png", :width => "400")%>
+		</div>
+
+		<ul>
+
+			<li>
+				<h3>Accessible information</h3>
+				<p>When looking to pull an animal from a shelter view all the information on their record to assess if they would be a good candidate for your rescue group. Know ahead of time the medical or behavioral assistance that maybe needed.</p>
+			</li>
+			<li>
+				<h3>Transfer requests</h3>
+				<p>Request to transfer an animal to your facility. This feature is designed for rescue groups or no kill shelters to transfer animals that may be scheduled for euthanasia at kill shelters. </p>
+			</li>
+			<li>
+				<h3>Copy animal record to your shelter</h3>
+				<p>If you have transferred an animal to your facility through Shelter Exchange, the animal's record will be automatically transferred from the shelter, to your facility for you to update and work with.</p>
+			</li>
+		</ul>
+
+	</div>
+	<!--// feature -->
+
+	<div class="separator"></div>
+
+	<!-- feature -->
+	<div class="feature">
+		<h2>Manage and organize your animals</h2>
+		<p>Organizing and documenting the animals within your facility provides rescue groups the information they will need to make decisions quickly to assist with rescue efforts.</p>
+
+		<div class="screenshot">
+			<%=image_tag("public/screenshot.png", :width => "400")%>
+		</div>
+
+		<ul>
+
+			<li>
+				<h3>Create a record</h3>
+				<p>For every animal you can create an individual record and detail their name, age, sex, weight, size, color, microchip number, description and photo. Easily edit and update information.</p>
+			</li>
+			<li>
+				<h3>Make a note</h3>
+				<p>Add notes to an animals record that detail specific Medical, Behavioral or General information. Filter and view the notes under those headings.</p>
+			</li>
+			<li>
+				<h3>Map out your floor plan</h3>
+				<p>Create a virtual layout of your facility detailing specific accommodations, such as crates. Optionally add a location name, such as a building or a room.</p>
+			</li>
+			<li>
+				<h3>Track progress</h3>
+				<p>Monitor all status changes to track an animal's history. Follow the animal's progress or monitor time line's between foster to adoption for example.</p>
+			</li>
+		</ul>
+
+	</div>
+	<!--// feature -->
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+	
+<% end %>
