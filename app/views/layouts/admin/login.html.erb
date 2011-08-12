@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html lang="<%= ::I18n.locale %>" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
 <head>
   
 	<!-- title -->
 	<title><%= yield(:title) %> | Shelter Exchange - Admin</title>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		
 	<!-- stylesheets -->
  	<%= include_stylesheets :admin_login, :media => "all" %>
@@ -11,6 +17,14 @@
 	<!-- javascripts -->
 	<%= include_javascripts :admin %>
 	<%= yield(:javascripts) %>
+	
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<%= javascript_include_tag "global/selectivizr-min" %>
+	<![endif]-->
+	
+	<!--[if (lt IE 9)]>
+		<%= javascript_include_tag "global/html5" %>
+	<![endif]-->
 		
 		
 	<%= csrf_meta_tag %>

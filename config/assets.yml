@@ -22,7 +22,7 @@ javascripts:
     - public/javascripts/global/jquery.qtip.min.js
     - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/selectivizr-min.js
+    # - public/javascripts/global/selectivizr-min.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
@@ -35,7 +35,7 @@ javascripts:
     - public/javascripts/global/jquery.blockUI.min.js
     # - public/javascripts/global/jquery.qtip.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/selectivizr-min.js
+    # - public/javascripts/global/selectivizr-min.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
@@ -48,7 +48,7 @@ javascripts:
     - public/javascripts/global/jquery.blockUI.min.js
     # - public/javascripts/global/jquery.qtip.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/selectivizr-min.js
+    # - public/javascripts/global/selectivizr-min.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
@@ -61,7 +61,7 @@ javascripts:
     - public/javascripts/global/jquery.blockUI.min.js
     # - public/javascripts/global/jquery.qtip.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/selectivizr-min.js
+    # - public/javascripts/global/selectivizr-min.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js

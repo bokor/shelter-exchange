@@ -49,12 +49,14 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 
 /* Pagination */   
 /******************************************************************/
-.pagination { margin: 2px; padding: 10px 2px 10px 2px; } 
-.pagination a { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #bbb; text-decoration: none; color: #666; } 
-.pagination a:hover, 
-.pagination a:active { border: 1px solid #000099; color: #000; } 
-.pagination span.current { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #ccc; font-weight: bold; background-color: #bbb; color: #FFF; } 
-.pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
+/* ORANGE - #CF7019 */
+.pagination { padding: 3px; margin: 20px 0 10px 0;}
+.pagination a {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
+.pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
+.pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
+
+
 
 /* Tooltips */   
 /******************************************************************/

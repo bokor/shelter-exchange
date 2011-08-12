@@ -21,9 +21,9 @@ xml.animals do
     		xml.euthanasia_date(format_date(:default, animal.euthanasia_date))
       end
       xml.photo do 
-        xml.thumbnail(animal.photo.url(:thumbnail))
-        xml.small(animal.photo.url(:small))
-        xml.large(animal.photo.url(:large))
+        xml.thumbnail(animal.photo.file? ? animal.photo.url(:thumb) : s3_url(animal.photo.url(:thumb)[1..-1]))
+        xml.small(animal.photo.file? ? animal.photo.url(:small) : s3_url(animal.photo.url(:small)[1..-1]))
+        xml.large(animal.photo.file? ? animal.photo.url(:large) : s3_url(animal.photo.url(:large)[1..-1]))
       end
     end
   end
