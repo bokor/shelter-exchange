@@ -18,6 +18,8 @@
 				</td>
 				<td class="action_links">
 					<%= link_to "Create new animal", new_animal_path %>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Print", "#", :onclick => "window.print();return false;"%>
 					<% if can?(:update, Animal) %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Edit", edit_animal_path(@animal)%>
