@@ -1,5 +1,9 @@
-<%= form_for(:user, :url => user_invitation_path, :remote => true, :html => { :id => "new_invitation_form"}) do |f| %>
+	<%= form_for :user, :url => { :action => :invite }, :remote => true, :html => { :method => :post, :id => "new_invitation_form" } do |f| %>
 	<ul>
+		<li>
+			<%= f.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
+	  		<div><%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's Name" %></div>
+		</li>
 		<li>
 			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div><%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Enter New User's email address" %></div>

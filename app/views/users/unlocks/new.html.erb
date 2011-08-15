@@ -1,14 +1,37 @@
-<h2>Resend unlock instructions</h2>
+<%= title "Resend unlock instructions" %>
 
-<%= render "shared/error_messages", :target => resource %>
-<%# devise_error_messages! %>
+<%= content_for :javascripts do %><% end %>
 
-<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+<%= content_for :page_content do %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+	<div class="page_heading">
+		<h2>Resend unlock instructions</h2>
+	</div>
+		
+	<div class="page_content">
+		
 
-  <p><%= f.submit "Resend unlock instructions", :disable_with => 'Submiting...' %></p>
+		<div id="reset_password_errors">
+			<%= render "shared/error_messages", :target => resource %>
+		</div>
+		<%= form_for(resource, :as => :user, :url => unlock_path(:user), :html => { :method => :post, :id => "unlock_user_form" }) do |f| %>
+			<ul>
+		  		<li class="full">
+		  			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+					<div>
+						<%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Your email address" %>
+					</div>
+					<%= has_error_message?(resource, :email)%>
+				</li>
+				<li class="buttons">
+					<%= f.submit "Send me reset password instructions", :disable_with => 'Submiting...'
+					<%= f.submit "Resend unlock instructions", :disable_with => 'Submiting...', :class => "button" %>
+				</li>
+			</ul>
+		<% end %>
+		
+	</div>
+	
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<%= content_for :sidebar do %><% end %>

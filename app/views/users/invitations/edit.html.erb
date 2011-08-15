@@ -7,31 +7,29 @@
 	<div class="page_content">
 		
 		<%= render "shared/error_messages", :target => resource %>
-		<%# devise_error_messages! %>
-		
+
 		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-			<ul class="form">
-				<li>
-					<%= f.label :name, "First and Last name" %><br />
-		  			<%= f.text_field :name %>
+			<ul>
+				<li class="full">
+					<%= f.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
+		  			<%= f.text_field :name, :class => "field text large", :maxlength => 255, :placeholder => "" %>
 				</li>
-				<li>
-					<%= f.label :title, "Title" %><br />
-		  			<%= f.text_field :title %>
+				<li class="full">
+					<%= f.label :title, "Title".html_safe, :class => "desc" %>
+		  			<%= f.text_field :title, :class => "field text large", :maxlength => 255, :placeholder => "" %>
 				</li>
-				<li>
-					<%= f.label :password, "Password" %><br />
-		  			<%= f.password_field :password %>
+				<li class="full">
+					<%= f.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+		  			<%= f.password_field :password, :class => "field text large", :maxlength => 255, :placeholder => "Create password" %>
 				</li>
-				<li>
-					<%= f.label :password_confirmation, "Password confirmation" %><br />
-		  			<%= f.password_field :password_confirmation %>
+				<li class="full">
+					<%= f.label :password_confirmation, "Password confirmation <span class='req'>*</span>".html_safe, :class => "desc" %>
+		  			<%= f.password_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Confirm password" %>
+				</li>
+				<li class="buttons">
+					<%= f.submit "Submit", :disable_with => 'Submiting...', :class => "button"  %>
 				</li>
 			</ul>
-
-		 	<div class="actions">
-				<%= f.submit "Submit", :disable_with => 'Submiting...' %>
-			</div>
 			
 			<%= f.hidden_field :invitation_token %>
 		<% end %>

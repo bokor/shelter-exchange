@@ -1,0 +1,51 @@
+<%= title "Login" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<ul class="submenu">
+		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/get_involved/shelters_and_rescues">Back to Shelters and Rescues</a></li>
+		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Signup</a></li>
+		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
+	</ul>
+
+	<h1>Sign in</h1>
+
+	<%= render "shared/flash_messages" %>
+		
+	<%= form_for(resource, :as => :user, :url => session_path(:user)) do |f| %>
+		<ul class="half">
+		  	<li>
+		  		<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+				<div>
+					<%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Your email address" %>
+				</div>
+			</li>
+			<li>
+				<%= f.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+				<div>
+				<%= f.password_field :password, :class => "field text large", :maxlength => 255, :placeholder => "Your password" %>
+				</div>
+			</li>
+			<li>
+				<% if devise_mapping.rememberable? %>
+				<div>
+					<span>
+						<%= f.check_box :remember_me, :class => "field checkbox" %>  
+						<%= f.label :remember_me, :class => "choice" %>
+					</span>
+				</div>
+				<% end %>
+			</li>
+			<li class="buttons">
+				<%= f.submit "Sign in", :disable_with => 'Submiting...', :class => "button" %>
+			</li>
+		</ul>
+		
+	<% end %>
+	
+<% end %>
+<%= content_for :sidebar do %><% end %>

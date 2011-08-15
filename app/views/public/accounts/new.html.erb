@@ -1,10 +1,16 @@
 <%= title "Create new account" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
 
 <%= content_for :javascripts do %><% end %>
 
 <%= content_for :page_content do %>
 
-	<%= render :partial => "public/pages/get_involved/shelters_and_rescues/submenu" %>
+	<ul class="submenu">
+		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/get_involved/shelters_and_rescues">Back to Shelters and Rescues</a></li>
+		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Signup</a></li>
+		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
+	</ul>
 	
 	<h1>Create a new account</h1>
 	

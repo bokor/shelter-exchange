@@ -1,14 +1,13 @@
 <%= title "New Account Registered" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading">
-		<h1>Welcome <%= @account.shelters.first.name %></h1>
-	</div>
 
-	<div class="page_content">
-		<p>Thank you for registering and joining the Shelter Exchange community!</p><br />
-		<p>Please check your email to confirm your account and to invite other staff members to join Shelter Exchange.</p>
-	</div>
+	<h1>Welcome <%= @account.shelters.first.name %></h1>
+	<p>Thank you for registering and joining the Shelter Exchange community!</p><br />
+	<p>Please check your email to confirm your account and to invite other staff members to join Shelter Exchange.</p>
+	
 <% end %>
 
 <%= content_for :sidebar do %>

@@ -8,7 +8,10 @@
 
 <%= content_for :page_content do %>
 
-	<%= render :partial => "public/pages/get_involved/shelters_and_rescues/submenu" %>
+	<ul class="submenu">
+		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Signup</a></li>
+		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
+	</ul>
 	
 	<h1>Shelters and Rescues</h1>
 	

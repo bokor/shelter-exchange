@@ -26,8 +26,8 @@ gem 'mail', '2.2.19'
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
-gem 'devise', '1.1.7'               
-gem 'devise_invitable', '0.3.5'     
+gem 'devise', '1.4.1'               
+gem 'devise_invitable', '0.5.4'     
 gem 'cancan', '1.5.1'               
 
 # HTML - JS - CSS
@@ -35,7 +35,7 @@ gem 'cancan', '1.5.1'
 # gem 'will_paginate', '3.0.pre2'     
 gem 'will_paginate', '2.3.15'
 gem 'dynamic_form', '1.1.3'         
-gem 'jquery-rails', '1.0.11'   
+gem 'jquery-rails', '1.0.13'   
 gem 'jammit', '0.6.3'
 gem 'jammit-s3', :git => 'git://github.com/kmamykin/jammit-s3.git', :branch => 'aws-s3'  
 

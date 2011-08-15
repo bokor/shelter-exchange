@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  before_save :reset_password_token?
+  
   # Constants
   #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User  
@@ -9,15 +11,16 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------------
   belongs_to :account
   
-  devise :database_authenticatable, :confirmable, :lockable, :recoverable, 
+  devise :database_authenticatable, :confirmable, :recoverable, :token_authenticatable, #:lockable 
          :rememberable, :trackable, :lockable, :invitable, :validatable, 
          :authentication_keys => [ :email, :subdomain ]
 
          
   # Getters/Setters
   #----------------------------------------------------------------------------
-  attr_accessible :name, :title, :email, :password, :password_confirmation, 
-                  :remember_me, :role, :account_id 
+  attr_accessible :name, :title, :email, :password, :password_confirmation, :authentication_token, 
+                  :remember_me, :role, :account_id
+                  
                   
   # Validations - Extra beyond devise's validations
   #----------------------------------------------------------------------------
@@ -43,6 +46,7 @@ class User < ActiveRecord::Base
   def is?(role)
     self.role == role.to_s and (ROLES.include?(role.to_s) or role.to_s == OWNER)
   end
+  
 
   # Class Methods
   #----------------------------------------------------------------------------  
@@ -50,6 +54,21 @@ class User < ActiveRecord::Base
     conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
     find(:first, :conditions => conditions, :joins => :account, :readonly => false)
   end
+  
+  def self.valid_token?(token)
+    token_user = self.where(:authentication_token => token).first
+    if token_user
+      token_user.authentication_token = nil
+      token_user.save
+    end
+    return token_user
+  end
+  
+  private
+    
+    def reset_password_token?
+      self.reset_password_sent_at = Time.zone.now
+    end
   
 end
 

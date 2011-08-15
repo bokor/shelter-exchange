@@ -47,13 +47,14 @@
 				<h3><%= @user.role.humanize %></h3>
 			<% end %>
 		</li>
-		<% if show_update_button %>
+		<%  %>
 		<li class="buttons">
-			<%= f.submit "Update user", :disable_with => 'Submiting...', :class => "button"  %>
-			&nbsp;or&nbsp;&nbsp;
+			<% if show_update_button %>
+				<%= f.submit "Update user", :disable_with => 'Submiting...', :class => "button"  %>
+				&nbsp;or&nbsp;&nbsp;
+			<% end %>
 			<%= link_to 'Cancel', '#', :onclick => "Users.cancelForm(#{@user.id});return false;"  %>
 		</li>
-		<% end %>
 	</ul>
 <% end %>
 

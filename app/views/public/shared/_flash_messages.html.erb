@@ -1,0 +1,23 @@
+<% flash.each do |key, msg| %>
+	<%  if key.to_sym == :error
+			body = "<strong>Error:</strong> #{msg}"
+			class_name = 'ui-state-error'
+			icon_name = 'ui-icon-alert'
+		else
+			body = "<strong>#{msg}</strong>"
+			class_name = 'ui-state-highlight'
+			icon_name = 'ui-icon-info'
+		end %>
+	
+	<% if msg.present? %>	
+	<div class="ui-widget">
+		<div id="<%= key %>" class="flash_message <%= class_name %> ui-corner-all"> 
+			<div><span class="icon ui-icon <%=icon_name%>"></span><%=body.html_safe%></div>
+		</div>
+	</div>
+    <script type="text/javascript">
+        $('#<%= key %>').delay(3000).fadeOut(1000);
+    </script>
+	<% end %>
+	
+<% end %>

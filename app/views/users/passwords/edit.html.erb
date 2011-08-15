@@ -1,15 +1,6 @@
 <%= title "Change your password" %>
 
-<%= content_for :javascripts do %>
-	<% if resource.errors[:password] or resource.errors[:password_confirmation] %>
-		<script type="text/javascript" charset="utf-8">
-			$(function() {
-				<%= render 'shared/ajax_form_errors.js', :target => resource, :form_id => "edit_reset_password_form" %>
-			});
-		</script>
-	<% end %>
-<% end %>
-
+<%= content_for :javascripts do %><% end %>
 
 <%= content_for :page_content do %>
 
@@ -23,7 +14,7 @@
 			<%= render "shared/error_messages", :target => resource %>
 		</div>
 		
-		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :id => "edit_reset_password_form" }) do |f| %>
+		<%= form_for(resource, :as => :user, :url => password_path(:user), :html => { :method => :put, :id => "edit_reset_password_form" }) do |f| %>
 			<ul>
 		  		<li class="full">
 		  			<%= f.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -35,7 +26,7 @@
 				<li class="full">
 		  			<%= f.label :password_confirmation, "Password Confirmation <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div>
-						<%= f.text_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Password Confirmation" %>
+						<%= f.text_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Confirm new password" %>
 					</div>
 					<%= has_error_message?(resource, :password_confirmation)%>
 				</li>
@@ -50,5 +41,4 @@
 	
 <% end %>
 
-<%= content_for :sidebar do %>
-<% end %>
+<%= content_for :sidebar do %><% end %>

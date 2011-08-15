@@ -55,6 +55,7 @@ javascripts:
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
     - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/jquery.nivo.slider.pack.js
+    - public/javascripts/global/jquery.flip.min.js
     - public/javascripts/global/modernizr.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js

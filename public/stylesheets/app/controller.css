@@ -711,7 +711,7 @@
 
 /* Index Users :: Edit Form
 -----------------------------------------------------------------------------*/
-.user_list .profile_section{float: left; width: 45%; padding-right: 2%;}
+.user_list .profile_section{float: left; width: 45%; padding-right: 2%; border-right: 1px solid #74AFE3;}
 .user_list .password_section{float: left; width: 45%; padding-left: 2%;}
 
 /* User List :: Layout

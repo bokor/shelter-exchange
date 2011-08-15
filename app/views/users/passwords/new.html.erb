@@ -1,19 +1,11 @@
 <%= title "Forgot your password" %>
 
-<%= content_for :javascripts do %>
-	<% if resource.errors.any? %>
-		<script type="text/javascript" charset="utf-8">
-			$(function() {
-				<%= render 'shared/ajax_form_errors.js', :target => resource, :form_id => "reset_password_form" %>
-			});
-		</script>
-	<% end %>
-<% end %>
+<%= content_for :javascripts do %><% end %>
 
 <%= content_for :page_content do %>
 
 	<div class="page_heading">
-		<h1>Forgot your password?</h1>
+		<h2>Forgot your password?</h2>
 	</div>
 		
 	<div class="page_content">
@@ -23,7 +15,7 @@
 			<%= render "shared/error_messages", :target => resource %>
 		</div>
 		
-		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :id => "reset_password_form" }) do |f| %>
+		<%= form_for(resource, :as => :user, :url => password_path(:user), :html => { :method => :post, :id => "reset_password_form" }) do |f| %>
 			
 			<ul>
 		  		<li class="full">
@@ -43,7 +35,6 @@
 	
 <% end %>
 
-<%= content_for :sidebar do %>
-<% end %>
+<%= content_for :sidebar do %><% end %>
 			
 
