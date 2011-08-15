@@ -5,12 +5,19 @@
 <% else %>
 	// Display Flash Message
 	$('#flash_messages').html("<%= escape_javascript(render 'shared/flash_messages', :target => flash) %>" );
+
 	// Refresh User Details
 	$('#edit_user_<%=@user.id%>').slideToggle(1000, function() { 
 		$(this).remove(); 
 	});
 	$('#user_<%=@user.id%>').replaceWith( "<%= escape_javascript( render @user ) %>" );
 	$('#user_<%=@user.id%>').show().effect("highlight", {}, 1000);
+	
+	// Reset Form  NOT NEEDED
+	// $('#update_user_errors').html("");
+	// $('#update_user_form_<%=@user.id%>').get(0).reset();
+	// $('#update_user_form_<%=@user.id%> li').removeClass("error");
+	
 <% end %>
 // Discard Flash Message
 <% flash.discard %>
