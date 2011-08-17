@@ -37,7 +37,7 @@
 
 
 
-/* About us -> Board of Directors */   
+/* About us :: Board of Directors */   
 /******************************************************************/
 .about_us_board_of_directors_page .board_member {}
 .about_us_board_of_directors_page .board_member h2{ padding-top: 20px;border-top: 1px dotted #bbb; border-bottom:none;}
@@ -85,7 +85,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endC
 
 
 
-/* Get Involved -> Shelters and Rescues */   
+/* Get Involved :: Shelters and Rescues */   
 /******************************************************************/
 .get_involved_shelters_and_rescues_page .feature{width: 100%;position: relative; }
 .get_involved_shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -96,3 +96,22 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endC
 .get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px;}
 .get_involved_shelters_and_rescues_page .feature .screenshot img{box-shadow: 0 0 6px #222;}
 
+
+
+
+/* Why Shelter Exchange */   
+/******************************************************************/
+
+
+/* Why Shelter Exchange :: FAQs */   
+/******************************************************************/
+.why_shelter_exchange_faqs_page .list h3{border:none; padding-bottom:5px; margin: 0;}
+.why_shelter_exchange_faqs_page .list{list-style: none;}
+.why_shelter_exchange_faqs_page .list li {margin-left:50px; padding-left: 20px; padding-bottom: 20px;}
+.why_shelter_exchange_faqs_page .list li span{position:absolute; left: 0px; /*border: 1px solid #CF7019;*/ color: #CF7019;font-size: 18px; width: 35px;height: 35px; line-height: 35px; text-align: center;background: #fff;-moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px;-moz-box-shadow: 0 0px 4px #000; -webkit-box-shadow: 0 0px 4px #000; box-shadow: 0 0px 4px #000; }
+
+
+/* Why Shelter Exchange :: Problems and Solutions */   
+/******************************************************************/
+.why_shelter_exchange_problems_and_solutions_page .list h3{border-bottom: none; padding-bottom: 5px; margin:0;}
+.why_shelter_exchange_problems_and_solutions_page .list{list-style:none;}

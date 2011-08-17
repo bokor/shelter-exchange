@@ -60,12 +60,10 @@ gem 'delayed_job', '2.1.4'
 
 # Proactive - Monitoring & Notification
 #----------------------------------------------------------------------------
+gem 'hoptoad_notifier', '2.4.11'
 group :production do
-  gem 'hoptoad_notifier', '2.4.11'
+	gem 'newrelic_rpm', '3.1.0'         
 end
-# group :production do
-# 	gem 'newrelic_rpm', '3.1.0'         
-# end
 
 
 

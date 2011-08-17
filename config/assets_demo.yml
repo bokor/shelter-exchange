@@ -1,0 +1,104 @@
+s3_bucket: shelterexchange-demo
+s3_access_key_id: AKIAIAYOGZBGGRGY46DA
+s3_secret_access_key: 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
+s3_permission: public_read
+s3_upload_files:
+  - public/stylesheets/global/**/**
+
+package_assets:         on           # (on, off, always)
+compress_assets:        on           # (on, off)
+gzip_assets:            on           # (on, off)
+javascript_compressor:  yui          # (yui, closure)
+#embed_assets:           on          # (on, off, datauri)
+#template_function:      _.template  # (defaults to the built-in micro-templating)
+#package_path:           packages    # (defaults to assets)
+# compressor_options:
+  # compilation_level: ADVANCED_OPTIMIZATIONS
+
+
+javascripts:
+  app:
+    - public/javascripts/global/jquery.min.js
+    - public/javascripts/global/jquery-ui.min.js
+    - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    - public/javascripts/global/jquery.qtip.min.js
+    - public/javascripts/global/jquery.blockUI.min.js
+    - public/javascripts/global/modernizr.js
+    - public/javascripts/global/forms.js
+    - public/javascripts/global/date.js
+    - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/app/*.js
+
+  admin:
+    - public/javascripts/global/jquery.min.js
+    - public/javascripts/global/jquery-ui.min.js
+    - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    - public/javascripts/global/jquery.blockUI.min.js
+    - public/javascripts/global/modernizr.js
+    - public/javascripts/global/forms.js
+    - public/javascripts/global/date.js
+    - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/admin/*.js
+
+  api:
+    - public/javascripts/global/jquery.min.js
+    - public/javascripts/global/jquery-ui.min.js
+    - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    - public/javascripts/global/jquery.blockUI.min.js
+    - public/javascripts/global/modernizr.js
+    - public/javascripts/global/forms.js
+    - public/javascripts/global/date.js
+    - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/api/*.js
+
+  public:
+    - public/javascripts/global/jquery.min.js
+    - public/javascripts/global/jquery-ui.min.js
+    - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    - public/javascripts/global/jquery.blockUI.min.js
+    - public/javascripts/global/jquery.nivo.slider.pack.js
+    - public/javascripts/global/jquery.flip.min.js
+    - public/javascripts/global/modernizr.js
+    - public/javascripts/global/forms.js
+    - public/javascripts/global/date.js
+    - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/public/*.js
+
+  reports:
+    - public/javascripts/global/highcharts.js
+
+
+stylesheets:
+  app:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/app/common.css
+    - public/stylesheets/app/controller.css
+    
+  app_login:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/app/login.css
+
+  app_print:
+      - public/stylesheets/app/print.css
+      
+  admin:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/admin/common.css
+    - public/stylesheets/admin/controller.css
+  
+  admin_login:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/admin/login.css
+  
+  api:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/api/common.css
+    - public/stylesheets/api/controller.css
+  
+  public:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/public/common.css
+    - public/stylesheets/public/controller.css
+  
+  # public_print:
+  #     - public/stylesheets/public/print.css
