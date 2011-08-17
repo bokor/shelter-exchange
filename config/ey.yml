@@ -3,14 +3,14 @@ environments:
    branch: master 
    copy_exclude:
       - .git
- # shelter_exchange_app_demo:
- #   branch: master
- #   copy_exclude:
- #     - .git
- # shelter_exchange_app_staging:
- #   branch: staging
- #   copy_exclude:
- #     - .git
+ shelter_exchange_app_demo:
+   branch: demo
+   copy_exclude:
+     - .git
+ shelter_exchange_app_staging:
+   branch: staging
+   copy_exclude:
+     - .git
 
 
      

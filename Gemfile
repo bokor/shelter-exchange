@@ -62,7 +62,7 @@ gem 'delayed_job', '2.1.4'
 #----------------------------------------------------------------------------
 gem 'hoptoad_notifier', '2.4.11'
 group :production do
-	gem 'newrelic_rpm', '3.1.0'         
+	gem 'newrelic_rpm', '3.1.1'         
 end
 
 
