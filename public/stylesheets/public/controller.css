@@ -1,18 +1,3 @@
-
-
-
-/* Home Page */   
-/******************************************************************/
-.home_page .theme-default #slider {
-    margin:20px auto 50px auto;
-    width:618px; /* Make sure your images are the same size */
-    height:246px; /* Make sure your images are the same size */
-}
-
-
-
-
-
 /******************************************************************/
 /* -------------------------- ACCOUNTS -------------------------- */
 /******************************************************************/
@@ -24,6 +9,14 @@
 .account h3{border-bottom:none;}
 
 
+
+/* Home Page */   
+/******************************************************************/
+.home_page .theme-default #slider {
+    margin:20px auto 50px auto;
+    width:618px; /* Make sure your images are the same size */
+    height:246px; /* Make sure your images are the same size */
+}
 
 
 

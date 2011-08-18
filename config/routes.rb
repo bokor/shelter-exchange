@@ -272,7 +272,7 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Public :: Pages
       #----------------------------------------------------------------------------
-      resources :pages, :only => [:index, :show]
+      resources :pages, :only => [:index, :show, :sitemap]
       match '*path' => 'pages#show'
       root :to => 'pages#index'
       

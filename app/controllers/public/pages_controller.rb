@@ -1,5 +1,5 @@
 class Public::PagesController < Public::ApplicationController
-  respond_to :html
+  respond_to :html, :xml
   
   # caches_page :index, :show
     
@@ -14,4 +14,12 @@ class Public::PagesController < Public::ApplicationController
     render :template => template rescue render :template => template_with_index rescue redirect_to "/404.html"
   end
   
+  def sitemap
+    # Dir.chdir(Rails.root.join("public/pages"))
+    # @directories = Dir.glob("*/**/")
+  end
+  
 end
+
+
+
