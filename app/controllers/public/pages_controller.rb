@@ -15,8 +15,6 @@ class Public::PagesController < Public::ApplicationController
   end
   
   def sitemap
-    # Dir.chdir(Rails.root.join("public/pages"))
-    # @directories = Dir.glob("*/**/")
   end
   
 end
