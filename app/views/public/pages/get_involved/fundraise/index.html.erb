@@ -1,0 +1,42 @@
+<%= title "Fundraise" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render :partial => "public/pages/get_involved/submenu" %>
+
+	<h1>Fundraise</h1>
+	
+	<p>Fundraising is hard, but it is also fun, and it can be a great way for friends or family to rally round for the greater good!</p>
+
+	<p>At Shelter Exchange we are trying to save animals being euthanized at shelters across the country, that is our mission and goal. We need your help and would love to hear from you with your fundraising campaigns. How can you raise money and help be part of the solution?</p>
+
+	<p>If you would like to help fundraise on behalf of Shelter Exchange please fill in the form below.</p>
+	
+	<div id="fundraise_form" class="form">
+		<script type="text/javascript">
+			var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");
+			document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+		<script type="text/javascript">
+			var p7x2z7 = new WufooForm();
+			p7x2z7.initialize({
+				'userName':'shelterexchange', 
+				'formHash':'p7x2z7', 
+				'autoResize':true,
+				'height':'100%',
+				'header':'hide',
+				'ssl':true
+			});
+			p7x2z7.display();
+		</script>
+	</div>	
+	
+	
+<% end %>
+
+<%= content_for :sidebar do %><% end %>

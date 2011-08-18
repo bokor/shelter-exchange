@@ -175,6 +175,18 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   
   
+  # Scopes - API
+  #----------------------------------------------------------------------------
+  def self.api_lookup(types, statuses)
+    scope = scoped{}
+    scope = scope.includes(:animal_type, :animal_status)
+    scope = (statuses.blank? ? scope.available_for_adoption : scope.where(:animal_status_id => statuses))
+    scope = scope.where(:animal_type_id => types) unless types.blank?
+    scope
+  end
+  #----------------------------------------------------------------------------  
+  
+  
   # Finalize Transfer Request
   #----------------------------------------------------------------------------
   def complete_transfer_request!(current_shelter, requestor_shelter)

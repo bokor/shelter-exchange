@@ -2,14 +2,13 @@ class Api::AnimalsController < Api::ApplicationController
   respond_to :html, :json, :xml
     
   def index
-    # types = params[:types].split(",").collect{|x| x.to_i } if params[:types]
-    # statuses = params[:statuses].split(",").collect{|x| x.to_i } if params[:statuses]
-    # logger.debug("ANIMAL TYPES :::: #{types}")
-    # logger.debug("ANIMAL STATUSES :::: #{statuses}")
+    types = params[:types].split(",").collect{|x| x.to_i } 
+    statuses = params[:statuses].split(",").collect{|x| x.to_i }
+    
     unless request.format.html?
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).available_for_adoption #.api_list(types, statuses)
+      @animals = @current_shelter.animals.api_lookup(types, statuses)
     else
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).available_for_adoption.paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
+      @animals = @current_shelter.animals.api_lookup(types, statuses).paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
     end
       
     respond_with(@animals)

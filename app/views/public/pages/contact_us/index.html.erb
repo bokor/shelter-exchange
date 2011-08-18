@@ -9,7 +9,7 @@
 	<h1>Contact us</h1>
 	<p>Interested in fundraising?  Are you looking to donate through your company?  Would you like to find out more about our work?  Please drop us a note!</p>
 
-	<div id="contact-details" itemscope itemtype="http://schema.org/Organization">
+	<div id="contact_details" itemscope itemtype="http://schema.org/Organization">
 		<span class="name" itemprop="name"><h3>Shelter Exchange</h3></span>
 		<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 			<p><span itemprop="streetAddress">P.O. Box 91301</span></p>
@@ -20,7 +20,7 @@
 	</div>
 
 
-	<div id="contact-form">
+	<div id="contact_form" class="form">
 		<script type="text/javascript">
 			var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");
 			document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));
@@ -32,8 +32,9 @@
 				'userName':'shelterexchange', 
 				'formHash':'s7x2p7', 
 				'autoResize':true,
-				'height':'839',
-				'header':'hide'
+				'height':'594',
+				'header':'hide',
+				'ssl':true
 			});
 			s7x2p7.display();
 		</script>

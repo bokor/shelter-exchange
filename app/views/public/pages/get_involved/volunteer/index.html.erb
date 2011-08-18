@@ -1,0 +1,43 @@
+<%= title "Volunteer" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render :partial => "public/pages/get_involved/submenu" %>
+
+	<h1>Volunteer</h1>
+	
+	<p>Are you interested in helping Shelter Exchange? The more support we receive, the more animals we can save from euthanasia, we would love to hear from you.</p>
+
+	<p>Please take a moment to fill out our volunteer form to tell us a little about yourself. </p>
+
+	<p>Thank you so much for your interest, we will be in touch soon!</p>
+	
+	<div id="volunteer_form" class="form">
+		<script type="text/javascript">
+			var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");
+			document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+
+		<script type="text/javascript">
+			var w7x2r7 = new WufooForm();
+			w7x2r7.initialize({
+				'userName':'shelterexchange', 
+				'formHash':'w7x2r7', 
+				'autoResize':true,
+				'height':'594',
+				'header':'hide',
+				'ssl':true
+			});
+			w7x2r7.display();
+		</script>
+	</div>
+	
+	
+<% end %>
+
+<%= content_for :sidebar do %><% end %>
