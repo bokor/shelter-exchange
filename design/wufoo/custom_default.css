@@ -231,8 +231,13 @@ li.leftThird small, li.middleThird small, li.rightThird small,
 
 .confirm h2{
 	font-family:inherit;
-	color:#444444;
+	font-weight: bold; color:#cf7019; letter-spacing: -1px; text-shadow: 0px 2px 3px #fff; 
 }
+/*.ie .confirm h2{
+		filter:
+	progid:DXImageTransform.Microsoft.Glow(Color=#bbbbbb,Strength=2)
+	progid:DXImageTransform.Microsoft.blur(pixelradius=5, enabled='true');
+}*/
 a.powertiny b, a.powertiny em{
 color:#1a1a1a !important;
 }

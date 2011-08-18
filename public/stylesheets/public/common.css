@@ -14,6 +14,15 @@ h3 {  }
 h4 {  }
 h5 {  }
 
+/*
+MIGHT NEED TO ADD THESE FOR IE
+
+.ie h2{
+		filter:
+	progid:DXImageTransform.Microsoft.Glow(Color=#bbbbbb,Strength=2)
+	progid:DXImageTransform.Microsoft.blur(pixelradius=5, enabled='true');
+}*/
+
 
 p{ margin-bottom: 20px; line-height: 1.5;}
 a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none; -ms-interpolation-mode: bicubic;}
