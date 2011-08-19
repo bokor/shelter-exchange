@@ -4,7 +4,7 @@ environments:
    copy_exclude:
       - .git
  shelter_exchange_app_demo:
-   branch: master
+   branch: demo
    copy_exclude:
      - .git
  shelter_exchange_app_staging:

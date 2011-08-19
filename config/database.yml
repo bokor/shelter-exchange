@@ -5,22 +5,21 @@ development:
     password: shelterexchange
 
 test:
-    adapter: mysql
+    adapter: mysql2
     database: shelterexchange_test
     username: shelterexchange
     password: shelterexchange
-    socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
 demo:
     adapter: mysql2
-    database: shelterexchange-demo
+    database: shelterexchange_demo
     username: se_demo
     password: 
     pool: 5
 
 staging:
     adapter: mysql2
-    database: shelterexchange-staging
+    database: shelterexchange_staging
     username: se_staging
     password: 
     pool: 5
