@@ -27,15 +27,9 @@ end
 #   Truncate All Database Tables data
 #
 #######################################################################################################################
-truncate_db_table("animals")
-truncate_db_table("animal_types")
-truncate_db_table("animal_statuses")
-truncate_db_table("breeds")
-truncate_db_table("notes")
-truncate_db_table("note_categories")
-truncate_db_table("alerts")
-truncate_db_table("tasks")
-truncate_db_table("task_categories")
+# truncate_db_table("animal_types")
+# truncate_db_table("animal_statuses")
+# truncate_db_table("breeds")
 
 #######################################################################################################################
 #
