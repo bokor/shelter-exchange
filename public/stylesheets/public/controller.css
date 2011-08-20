@@ -117,7 +117,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endC
 /* Why Shelter Exchange :: FAQs */   
 /******************************************************************/
 .why_shelter_exchange_faqs_page .list h3{border:none; padding-bottom:5px; margin: 0;}
-.why_shelter_exchange_faqs_page .list{list-style: none;}
+.why_shelter_exchange_faqs_page .list{list-style: none;padding-top: 30px;}
 .why_shelter_exchange_faqs_page .list li {margin-left:50px; padding-left: 20px; padding-bottom: 20px;}
 .why_shelter_exchange_faqs_page .list li span{position:absolute; left: 0px; /*border: 1px solid #CF7019;*/ color: #CF7019;font-size: 18px; width: 35px;height: 35px; line-height: 35px; text-align: center;background: #fff;-moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px;-moz-box-shadow: 0 0px 4px #000; -webkit-box-shadow: 0 0px 4px #000; box-shadow: 0 0px 4px #000; }
 
