@@ -19,6 +19,7 @@ class Account < ActiveRecord::Base
   has_attached_file :document, :whiny => true, 
                                :storage => :s3,
                                :s3_credentials => S3_CREDENTIALS,
+                               # :s3_protocol => "https",
                                :path => "/:class/:attachment/:id/:style/:basename.:extension"
     
   # Callback - Paperclip

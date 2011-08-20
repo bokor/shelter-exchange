@@ -85,7 +85,7 @@ Dog House Sides - #db8d4a
 
 /* Ajax :: Messages */   
 /******************************************************************/
-.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff;}
+.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; font-weight:bold;}
 
 
 

@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate_user!,
-                :current_account, :current_shelter, :account_blocked?,
+  before_filter :authenticate_user!, :current_account, :current_shelter, :account_blocked?,
                 :set_time_zone, :store_location
                 
   layout :current_layout
@@ -30,6 +29,15 @@ class ApplicationController < ActionController::Base
     def set_time_zone
       Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
     end
+    
+    # def force_ssl!
+    #   redirect_to :protocol => "https://" unless (request.ssl? or local_request?)
+    #   # redirect_to url_for params.merge({:protocol => 'https://'}) 
+    # end
+    # 
+    # def local_request?
+    #   Rails.env.development? or Rails.env.staging? or Rails.env.demo?
+    # end
     
     def store_location
       session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller? 

@@ -41,6 +41,7 @@ class Animal < ActiveRecord::Base
                             :default_url => "/images/default_:style_photo.jpg", 
                             :storage => :s3,
                             :s3_credentials => S3_CREDENTIALS,
+                            # :s3_protocol => "https",
                             :path => "/:class/:attachment/:id/:style/:basename.:extension",
                             :styles => { :small => ["250x150>", :jpg],
                                          :medium => ["350x250>", :jpg],
