@@ -1,7 +1,7 @@
 class Public::PagesController < Public::ApplicationController
   respond_to :html, :xml
   
-  # caches_page :index, :show
+  #caches_page :index, :show
     
   def index
     # Home Page = /

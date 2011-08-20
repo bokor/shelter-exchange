@@ -36,7 +36,16 @@
 /* About us -> Founders */   
 /******************************************************************/
 .about_us_founders_story_page h2{border: none; margin-top: 10px; font-size: 20px; }
-
+.about_us_founders_story_page #main img{
+	-webkit-box-shadow: 0px 0px 6px #222;
+	-moz-box-shadow: 0px 0px 6px #222;
+	box-shadow: 0px 0px 6px #222;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.about_us_founders_story_page #main img.left{ float:left; margin: 0px 20px 20px 0px;}
+.about_us_founders_story_page #img img.right{ float:right; margin: 0px 0px 10px 20px;}
 
 /* About us -> Mission */   
 /******************************************************************/
@@ -138,3 +147,15 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endC
 /******************************************************************/
 .why_shelter_exchange_problems_and_solutions_page .list h3{border-bottom: none; padding-bottom: 5px; margin:0;}
 .why_shelter_exchange_problems_and_solutions_page .list{list-style:none;}
+
+
+
+/* Why Shelter Exchange :: Partners */   
+/******************************************************************/
+.why_shelter_exchange_partners_page .list {list-style: none; padding-top: 20px;}
+.why_shelter_exchange_partners_page .list li{ border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 20px;}
+.why_shelter_exchange_partners_page .list li:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.why_shelter_exchange_partners_page .list li:last-child{border:none;}
+.why_shelter_exchange_partners_page .list h2{border:none; padding-bottom: 10px; margin:0;}
+.why_shelter_exchange_partners_page .list img{float:left;}
+.why_shelter_exchange_partners_page .list div{padding-left: 220px;}
