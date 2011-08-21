@@ -150,12 +150,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endC
 
 
 
-/* Why Shelter Exchange :: Partners */   
+/* Why Shelter Exchange :: Community Support */   
 /******************************************************************/
-.why_shelter_exchange_partners_page .list {list-style: none; padding-top: 20px;}
-.why_shelter_exchange_partners_page .list li{ border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 20px;}
-.why_shelter_exchange_partners_page .list li:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.why_shelter_exchange_partners_page .list li:last-child{border:none;}
-.why_shelter_exchange_partners_page .list h2{border:none; padding-bottom: 10px; margin:0;}
-.why_shelter_exchange_partners_page .list img{float:left;}
-.why_shelter_exchange_partners_page .list div{padding-left: 220px;}
+.why_shelter_exchange_community_support_page .list {list-style: none; padding-top: 20px;}
+.why_shelter_exchange_community_support_page .list li{ border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 20px;}
+.why_shelter_exchange_community_support_page .list li:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.why_shelter_exchange_community_support_page .list li:last-child{border:none;}
+.why_shelter_exchange_community_support_page .list h2{border:none; padding-bottom: 10px; margin:0;}
+.why_shelter_exchange_community_support_page .list img{float:left;}
+.why_shelter_exchange_community_support_page .list div{padding-left: 220px;}

@@ -1,7 +1,8 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
-   
-  before_filter :authenticate! if Rails.env.staging? or Rails.env.demo?
+  
+  USERS = { "shelterexchange" => "sav1ngl1ves" }
+  before_filter :authenticate! if Rails.env.demo? or Rails.env.staging?
   
   layout :current_layout
 
@@ -12,10 +13,8 @@ class Public::ApplicationController < ActionController::Base
     end
     
     def authenticate!
-      username, password = "shelterexchange", "sav1ngl1ves"
-      authenticate_or_request_with_http_basic do |user, pass|
-        u == username &&
-        Digest::SHA1.hexdigest(p) == password
+      authenticate_or_request_with_http_digest do |username|
+        USERS[username]
       end
     end
 
