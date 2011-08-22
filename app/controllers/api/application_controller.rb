@@ -25,13 +25,13 @@ class Api::ApplicationController < ActionController::Base
       respond_with_error({ :error => "Account's access has been revoked.  Reason: #{@current_account.reason_blocked}" })  if @current_account.blocked?
     end
 
-    def respond_with_error(error)
+    def respond_with_error(msg)
+      @error = msg[:error]
       respond_to do |format|
         format.html { render :html, :template => "api/error" }
-        format.json { render :json => error.to_json, :status => :forbidden }
-        format.xml { render :xml => error.to_xml, :status => :forbidden }
+        format.json { render :json => msg.to_json, :status => :forbidden }
+        format.xml { render :xml => msg.to_xml, :status => :forbidden }
       end
     end
-
 
 end

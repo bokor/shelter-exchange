@@ -2,8 +2,8 @@ class Api::AnimalsController < Api::ApplicationController
   respond_to :html, :json, :xml
     
   def index
-    types = params[:types].split(",").collect{|x| x.to_i } 
-    statuses = params[:statuses].split(",").collect{|x| x.to_i }
+    types =  params.has_key?(:types) ? params[:types].split(",").collect{|x| x.to_i } : []
+    statuses = params.has_key?(:statuses) ? params[:statuses].split(",").collect{|x| x.to_i } : []
     
     unless request.format.html?
       @animals = @current_shelter.animals.api_lookup(types, statuses)
@@ -22,6 +22,10 @@ class Api::AnimalsController < Api::ApplicationController
       @animal = @current_shelter.animals.includes(:animal_type, :animal_status).find(params[:id])
       respond_with(@animal)
     end
+  end
+  
+  rescue_from Exception do |exception|
+    respond_with_error({ :error => "Unexpected error has occurred.  Please review the API documentation to make sure everything is correct." })
   end
   
 end
