@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
   
 end
 
+
+# def update_with_password(params={})
+#   params.delete(:current_password)
+#   self.update_without_password(params)
+# end
+
 # validates :email, :uniqueness => true, :allow_blank => true,
 #                   :length => {:minimum => 3, :maximum => 254}, 
 #                   :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}

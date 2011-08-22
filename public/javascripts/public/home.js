@@ -6,6 +6,6 @@ $(window).load(function() {
     $('#slider').nivoSlider({
 		effect:'fade', // Specify sets like: 'fold,fade,sliceDown'
 	    animSpeed:800, // Slide transition speed
-        pauseTime:5000 // How long each slide will show
+        pauseTime:8000 // How long each slide will show
 	});
 });

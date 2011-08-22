@@ -4,7 +4,7 @@
  * ------------------------------------------------------------------------ */
 $(function() {
 
-	$(".menu li").bind("click", function(e){
+	$("header nav li").bind("click", function(e){
 		window.location = $("a", this).attr("href");
 	});
 	

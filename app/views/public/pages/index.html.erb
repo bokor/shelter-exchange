@@ -9,19 +9,23 @@
 	<div class="slider-wrapper theme-default">
         <div class="ribbon"></div>
         <div id="slider" class="nivoSlider">
-            <img src="/images/public/home/slider1.jpg" alt="" />
-            <a href="http://dev7studios.com">
-				<img src="/images/public/home/slider2.jpg" alt="" title="This is an example of a caption" />
-			</a>
-            <img src="/images/public/home/slider3.jpg" alt="" />
-            <img src="/images/public/home/slider4.jpg" alt="" title="#htmlcaption" />
-        </div>
-        <div id="htmlcaption" class="nivo-html-caption">
-            <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+            <%= image_tag("public/home/slider_1.png") %>
+			<%= image_tag("public/home/slider_2.png") %>
+			<%= image_tag("public/home/slider_3.png") %>
+			<%= image_tag("public/home/slider_4.png") %>
         </div>
     </div>
-<p>This is a test to see what happens</p>
 
+
+
+<% end %>
+
+<%= content_for :extra_section do %>
+<section class="homepage">
+	<div class="content">
+		<p>Shelter Exchange is a non-profit organization that offers a practical solution to the difficult and widespread problem of animal euthanasia in shelters. We provide shelters and rescue groups with collaborative technology to better manage resources, communicate and act together to save millions of animals each year. Positive change has already begun. Your support ensures it will continue.</p>
+	</div>
+</section>
 <% end %>
 
 <%= content_for :sidebar do %><% end %>

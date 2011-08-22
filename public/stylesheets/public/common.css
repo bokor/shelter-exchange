@@ -1,35 +1,43 @@
 @charset "UTF-8";
 
-/* Global */
+/* Reset */
 /******************************************************************/
 * { margin: 0; padding: 0; }
-html, body { margin:0; padding:0; height: 100%; }
-body { background: url(/images/public/background-body.jpg) repeat; color: #222; 
-	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
 
-h1, h2, h3, h4, h5 { font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px dotted #bbb; text-shadow: 0px 2px 3px #fff; }
-h1 { font-size: 28px; margin-bottom: 25px; }
+/* Global */
+/******************************************************************/
+
+html, body { margin:0; padding:0; height: 100%; }
+body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
+	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
+	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
+	
+.ie body {font-family: "Verdana", sans-serif}
+
+h1, h2, h3, h4, h5 { font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
+h1 { font-size: 28px; margin-bottom: 25px; border-bottom: 1px dotted #bbb; }
 h2 {  }
 h3 {  }
 h4 {  }
 h5 {  }
-
-/*
-MIGHT NEED TO ADD THESE FOR IE
-
-.ie h2{
-		filter:
-	progid:DXImageTransform.Microsoft.Glow(Color=#bbbbbb,Strength=2)
-	progid:DXImageTransform.Microsoft.blur(pixelradius=5, enabled='true');
-}*/
-
 
 p{ margin-bottom: 20px; line-height: 1.5;}
 a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none; -ms-interpolation-mode: bicubic;}
 a:hover, a:active { color:#f16649; text-decoration: underline;border: none; outline: none; }
 
 .highlight{font-size: 14px; font-weight:bold; color:#cf7019; text-shadow: 0px 2px 3px white;}
-.separator{clear:both;width: 100%;height: 5px;box-shadow: inset 0px 0px 5px #cf7019;margin: 25px 0px; border-radius: 8px;}
+.separator{clear:both;width: 100%;height: 5px;margin: 25px 0px; border-color:#cf7019; 
+	-moz-box-shadow: inset 0px 0px 5px #cf7019;-webkit-box-shadow: inset 0px 0px 5px #cf7019;box-shadow: inset 0px 0px 5px #cf7019;
+	-moz-border-radius: 8px;	-webkit-border-radius: 8px;	border-radius: 8px;
+}
+
+/* IE :: Separator Fix :: PIE */
+/******************************************************************/
+.ie .separator{clear:both;width: 100%; height: 1px;border: 1px solid #e0c09b;margin: 25px 0px; 
+	-moz-box-shadow: 0px 0px 4px #cf7019; -webkit-box-shadow: 0px 0px 4px #cf7019;box-shadow: 0px 0px 4px #cf7019;
+	behavior: url(/stylesheets/global/pie/PIE.htc);
+}
 
 
 
@@ -40,26 +48,32 @@ a:hover, a:active { color:#f16649; text-decoration: underline;border: none; outl
 
 /* Content Wrapper */
 /******************************************************************/ 
-#page{width: 100%; min-height: 100%; height:auto !important; height: 100%; margin: 0 auto; position: relative;}
+/*#page{}*/
 .content { width:980px; margin: 0 auto; display:block; position: relative; }
 .content:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Page Layouts */   
 /******************************************************************/
 header{height: 145px;}
-#toolbar { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
+header nav { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
 hgroup { height: 100px;  position: relative; }/*f3f1ec*/
-#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 220px; position: relative; }
-#footer{width:100%;height: 200px; bottom: 0; position:absolute; background-color: #222; }
+section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 270px; position: relative; }
+footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
 
 
 /* Toolbar :: Menu */   
 /******************************************************************/
-#toolbar .menu { margin: 0 auto; width: 100%; list-style:none; text-align:center; }
-#toolbar li { cursor: pointer; width: auto;line-height: 45px; min-height: 45px; padding: 0 30px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
-#toolbar li:hover, #toolbar li.current { background: url(/images/public/background-body.jpg) repeat; box-shadow: inset 0px 0px 10px #888; border-radius: 10px 10px 0px 0px; }
-#toolbar li:hover a, #toolbar li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; }
-#toolbar a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
+header nav ul { margin: 0 auto; width: 980px; list-style:none; text-align:center; }
+header nav li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 25px; padding: 0 25px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
+header nav li:hover, header nav li.current { background: url(/images/public/background-body.jpg) repeat; -moz-box-shadow:inset 0px 0px 10px #888; -webkit-box-shadow:inset 0px 0px 10px #888; box-shadow: inset 0px 0px 10px #888; -moz-border-radius: 10px 10px 0px 0px;-webkit-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;}
+.ie header nav li:hover, .ie header nav li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
+header nav li:hover a, header nav li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
+header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
+
+/* Header :: Layout */   
+/******************************************************************/
+hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; }
+hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 
 /* SubMenu */   
 /******************************************************************/
@@ -71,10 +85,7 @@ hgroup { height: 100px;  position: relative; }/*f3f1ec*/
 .submenu a:hover{ color:#f16649; text-decoration: underline;}
 
 
-/* Header :: Layout */   
-/******************************************************************/
-hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; }
-hgroup .logo img{ vertical-align: middle;line-height: 100px;}
+
 
 
 
@@ -143,6 +154,7 @@ hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 	
 	text-decoration: none!important;
 	text-align: center;
+	
 }
 
 .button:hover {
@@ -359,4 +371,9 @@ ul.toggle_buttons li a.current {
 ul.toggle_buttons li a:hover{
 	color: #CF7019;
 }
+
+/* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
+/******************************************************************/
+.ie7 ul.toggle_buttons, 
+.ie8 ul.toggle_buttons{behavior: url(/stylesheets/global/pie/PIE.htc);}
 

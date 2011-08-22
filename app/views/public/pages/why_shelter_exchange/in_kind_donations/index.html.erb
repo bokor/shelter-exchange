@@ -1,0 +1,62 @@
+<%= title "In-Kind Donations" %>
+<%= description "test" %>
+<%= keywords "test, test2, test4" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+	
+	<%= render :partial => "public/pages/why_shelter_exchange/submenu" %>
+
+	<h1>In-Kind Donations</h1>
+	<p>Shelter Exchange has collaborated with some amazing companies that are helping us run our organization. The companies below have either donated their products or services to us free of charge or have given us greatly discounted rates. We are so grateful to each one of them for supporting us, and we want to give them the full recognition they deserve. </p>
+	
+	<ul class="list">
+		<li>
+			<a href="http://foundation.force.com/home"><%= image_tag("public/logos/logo_salesforce.png")%></a>
+			<div>
+				<h2><a href="http://foundation.force.com/home">Salesforce Foundation</a></h2>
+				<p>Salesforce generously donated a number of licenses to Shelter Exchange so we can keep track of our contacts and better manage our day-to-day activities. Salesforce donate 1% of their resources to support organizations that are working to make the world a better place.</p>
+			</div>
+		</li>
+		<li>
+			<a href="http://wufoo.com"><%= image_tag("public/logos/logo_wufoo.png")%></a>
+			<div>
+				<h2><a href="http://wufoo.com">Wufoo</a></h2>
+				<p>The nice folks at Wufoo gave us a great discount so we can use their online forms to interface and collect data from our website, allowing us to drastically reduce time spent manually entering in data.</p>
+			</div>
+		</li>
+		<li>
+			<a href="http://tenderapp.com"><%= image_tag("public/logos/logo_tender.png")%></a>
+			<div>
+				<h2><a href="http://tenderapp.com">Tender Support</a></h2>
+				<p>Tender kindly donated their application to Shelter Exchange. This will provide us with an online knowledgebase and a support interface allowing shelters and rescues to seek assistance with the Shelter Exchange application.</p>
+			</div>
+		</li>
+		<li>
+			<a href="http://mailchimp.com"><%= image_tag("public/logos/logo_mailchimp.png")%></a>
+			<div>
+				<h2><a href="http://mailchimp.com">MailChimp</a></h2>
+				<p>Mailchimp provided us a free account to use for our email campaigns, fundraisers and newsletters. If we need additional services beyond the free account, they will provide us a great non-profit discount.</p>
+			</div>
+		</li>
+		<li>
+			<a href="http://www.google.com/nonprofits/"><%= image_tag("public/logos/logo_google.png")%></a>
+			<div>
+				<h2><a href="http://www.google.com/nonprofits/">Google for nonprofits</a></h2>
+				<p>Google granted us a wide selection of products and services to assist our online presence and help with marketing campaigns such as Google Ad words and Google Apps.</p>
+			</div>
+		</li>
+		<li>
+			<a href="http://paypal.com"><%= image_tag("public/logos/logo_paypal.png")%></a>
+			<div>
+				<h2><a href="http://paypal.com">PayPal</a></h2>
+				<p>Paypal offer us an extremely efficient system for collecting online donations. They provide us a wonderful discount on the interest rate, which means a higher percentage goes directly to us and is not spent on transaction fees.</p>
+			</div>
+		</li>
+		
+	</ul>
+	
+<% end %>
+
+<%= content_for :sidebar do %><% end %>
