@@ -8,7 +8,7 @@ environments:
    copy_exclude:
      - .git
  shelter_exchange_app_staging:
-   branch: staging
+   branch: master
    copy_exclude:
      - .git
 

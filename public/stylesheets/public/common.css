@@ -61,7 +61,7 @@ section#main {min-height:100%; height: auto !important; height: 100%; margin-top
 footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
 
 
-/* Toolbar :: Menu */   
+/* Header :: Nav */   
 /******************************************************************/
 header nav ul { margin: 0 auto; width: 980px; list-style:none; text-align:center; }
 header nav li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 25px; padding: 0 25px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
@@ -70,10 +70,35 @@ header nav li:hover, header nav li.current { background: url(/images/public/back
 header nav li:hover a, header nav li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
 header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
 
+
 /* Header :: Layout */   
 /******************************************************************/
 hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; }
 hgroup .logo img{ vertical-align: middle;line-height: 100px;}
+
+
+/* Footer :: Layout */   
+/******************************************************************/
+footer h4{ text-shadow: none; color: #eee; font-size: 18px; padding-bottom: 20px; margin:0; }
+footer h5{ text-shadow: none; color: #eee; font-size: 15px; padding-bottom: 10px; margin:0; }
+footer .button{position:absolute; top: 140px; left: 520px;}
+footer .content{padding-top: 30px;  width:980px;  list-style: none; position:relative;}
+
+footer .column{color: #eee; float:left; height: 150px;}
+footer .column ul{list-style: none;}
+footer .column a{color: #999; font-weight: normal;}
+footer .column a:hover{color: #eee; text-decoration: underline;}
+
+footer .col_1{width: 234px; padding-right: 10px; border-right: 1px #666 dotted; text-align: center;}
+footer .col_1 a{padding: 0 10px;}
+
+footer .col_2{width: 200px; padding: 0 25px;}
+footer .col_3{width: 200px; padding: 0 25px;}
+footer .col_4{width: 200px; padding-left: 25px;}
+
+footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
+
+
 
 /* SubMenu */   
 /******************************************************************/
@@ -85,21 +110,15 @@ hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 .submenu a:hover{ color:#f16649; text-decoration: underline;}
 
 
-
-
-
-
 /* Flash Messages */   
 /******************************************************************/
 .flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
 .flash_message .icon{width: 16px;float: left; margin-right: .3em;}
 
 
-
 /* Ajax :: Messages */   
 /******************************************************************/
 .ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff;}
-
 
 
 /* Pagination */   

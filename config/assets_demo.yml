@@ -16,7 +16,6 @@ javascript_compressor:  yui          # (yui, closure)
 # compressor_options:
   # compilation_level: ADVANCED_OPTIMIZATIONS
 
-
 javascripts:
   app:
     - public/javascripts/global/jquery.min.js
@@ -43,25 +42,25 @@ javascripts:
 
   api:
     - public/javascripts/global/jquery.min.js
-    - public/javascripts/global/jquery-ui.min.js
-    - public/javascripts/global/jquery.ui.autocomplete.ext.js
-    - public/javascripts/global/jquery.blockUI.min.js
+    # - public/javascripts/global/jquery-ui.min.js
+    # - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    # - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
+    # - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/api/*.js
 
   public:
     - public/javascripts/global/jquery.min.js
-    - public/javascripts/global/jquery-ui.min.js
-    - public/javascripts/global/jquery.ui.autocomplete.ext.js
-    - public/javascripts/global/jquery.blockUI.min.js
+    # - public/javascripts/global/jquery-ui.min.js
+    # - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    # - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/jquery.nivo.slider.pack.js
     - public/javascripts/global/jquery.flip.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
-    - public/javascripts/global/date.js
+    # - public/javascripts/global/forms.js
+    # - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/public/*.js
 
@@ -74,32 +73,32 @@ stylesheets:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
-    
+
   app_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/login.css
 
   app_print:
       - public/stylesheets/app/print.css
-      
+
   admin:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
-  
+
   admin_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/login.css
-  
+
   api:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
-  
+
   public:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
-  
+
   # public_print:
   #     - public/stylesheets/public/print.css

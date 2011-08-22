@@ -43,25 +43,25 @@ javascripts:
 
   api:
     - public/javascripts/global/jquery.min.js
-    - public/javascripts/global/jquery-ui.min.js
-    - public/javascripts/global/jquery.ui.autocomplete.ext.js
-    - public/javascripts/global/jquery.blockUI.min.js
+    # - public/javascripts/global/jquery-ui.min.js
+    # - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    # - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
+    # - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/api/*.js
 
   public:
     - public/javascripts/global/jquery.min.js
-    - public/javascripts/global/jquery-ui.min.js
-    - public/javascripts/global/jquery.ui.autocomplete.ext.js
-    - public/javascripts/global/jquery.blockUI.min.js
+    # - public/javascripts/global/jquery-ui.min.js
+    # - public/javascripts/global/jquery.ui.autocomplete.ext.js
+    # - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/jquery.nivo.slider.pack.js
     - public/javascripts/global/jquery.flip.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
-    - public/javascripts/global/date.js
+    # - public/javascripts/global/forms.js
+    # - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/public/*.js
 
