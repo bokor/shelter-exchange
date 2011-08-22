@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   
-  before_save :reset_password_token?
-  
   # Constants
   #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User  
@@ -63,12 +61,6 @@ class User < ActiveRecord::Base
     end
     return token_user
   end
-  
-  private
-    
-    def reset_password_token?
-      self.reset_password_sent_at = Time.zone.now
-    end
   
 end
 
