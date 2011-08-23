@@ -21,6 +21,26 @@
 <% end %>
 
 <%= content_for :extra_section do %>
+
+<section class="newsletter">
+	<div class="content">
+		<span><%=image_tag("public/home/newsletter.png")%></span>
+		<span><strong>Subscribe to Our Newsletter:</strong></span>
+		<form id="newsletter_form" name="newsletter_form" enctype="multipart/form-data" method="post" novalidate>
+			<span>
+				<input name="Field1" type="text" class="field text medium" value="Enter email address" maxlength="255" />
+			</span>
+			<span>
+				<input name="saveForm" class="button submit" type="submit" value="Subscribe" />
+			</span>
+			<span class="hide">
+				<label for="comment">Do Not Fill This Out</label>
+				<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+				<input type="hidden" id="idstamp" name="idstamp" value="kRYOaJ9l9/qOokI0ju+MykLbZsESWmBMbChxVIeU2F8=" />
+			</span>
+		</form>
+	</div>
+</section>
 <section class="homepage">
 	<div class="content">
 		<p>Shelter Exchange is a non-profit organization that offers a practical solution to the difficult and widespread problem of animal euthanasia in shelters. We provide shelters and rescue groups with collaborative technology to better manage resources, communicate and act together to save millions of animals each year. Positive change has already begun. Your support ensures it will continue.</p>

@@ -10,7 +10,7 @@
 
 /* Home Page */   
 /******************************************************************/
-.home_page #main {padding-bottom: 395px; position: relative; }
+.home_page #main {padding-bottom: 425px; position: relative; }
 
 .home_page .theme-default #slider {margin:10px auto 50px auto;
 	width:980px; /* Make sure your images are the same size */
@@ -22,11 +22,29 @@
 .ie8 .home_page .theme-default .nivoSlider{ behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
-/* Home Page :: Extra Section */   
+/* Home Page :: Homepage :: Extra Section */   
 /******************************************************************/
-section.homepage{ width:100%;height: 125px; bottom: 250px; position:absolute;background-color: #cf7019;}
+section.homepage{ width:100%;height: 125px; bottom:300px;  position:absolute;background-color: #cf7019;}
 section.homepage .content{padding: 30px 0;}
 section.homepage p{color: #eee; text-align:center; font-size: 14px;}
+
+/* Home Page :: Newsletter :: Extra Section */   
+/******************************************************************/
+section.newsletter{ width:100%;height: 50px; bottom: 250px; position:absolute;background-color: #db8d4a;}
+section.newsletter div.content{position:relative; margin: 0 auto; text-align:center;}
+section.newsletter span{color: #fff; font-size: 14px; display: inline-block; line-height: 50px; padding-right: 15px;}
+section.newsletter form{display: inline-block; line-height: 50px;}
+section.newsletter span img{ vertical-align:middle;}
+section.newsletter span input.field{ color: #999;}
+section.newsletter span input.field.error{ color: red;}
+section.newsletter span.hide {display:none;}
+
+section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px;}
+section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Home Page -> Newsletter :: IE :: PIE */   
+/******************************************************************/
+.ie7 section.newsletter .field, .ie8 section.newsletter .field{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* ----------------------------------------------------------------------------------------------------------------------*/
@@ -137,11 +155,14 @@ section.homepage p{color: #eee; text-align:center; font-size: 14px;}
 /******************************************************************/
 .get_involved_shelters_and_rescues_page .feature{width: 100%;position: relative; }
 .get_involved_shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.get_involved_shelters_and_rescues_page .feature:last-child{padding-bottom: 20px;}
+/*.get_involved_shelters_and_rescues_page .feature h2{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}*/
+.get_involved_shelters_and_rescues_page .feature h3{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}
 .get_involved_shelters_and_rescues_page .feature p{padding-bottom: 10px;}
 .get_involved_shelters_and_rescues_page .feature ul {width: 570px; float:left;}
 .get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 265px; padding-left: 17px; vertical-align:top;}
 .get_involved_shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
-.get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px;}
+.get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
 .get_involved_shelters_and_rescues_page .feature .screenshot img{box-shadow: 0 0 6px #222;}
 
 
