@@ -34,7 +34,7 @@ $(function() {
 			$.post("https://shelterexchange.wufoo.com/forms/x7x1x7/#public", $(this).serialize());  
 			$(this).find("input[type=text]").val('');
 			$(this).hide();
-			$(this).after('<span class="thank_you">Thank you for signing up</span>');
+			$(this).after('<span class="thank_you">Thank you!</span>');
 		} else {
 			$(this).find("input[type=text]").val("Enter a valid e-mail address");
 			$(this).find("input[type=text]").addClass("error");

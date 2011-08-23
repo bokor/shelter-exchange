@@ -38,7 +38,7 @@ section.newsletter span img{ vertical-align:middle;}
 section.newsletter span input.field{ color: #999;}
 section.newsletter span input.field.error{ color: red;}
 section.newsletter span.hide {display:none;}
-
+section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform: uppercase;}
 section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px;}
 section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
