@@ -2,7 +2,9 @@
  * public/home.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-$(window).load(function() {
+/* Home Page Slider
+--------------------------------------------------------------------------- */
+$(function() {
     $('#slider').nivoSlider({
 		effect:'fade', // Specify sets like: 'fold,fade,sliceDown'
 	    animSpeed:800, // Slide transition speed
@@ -10,6 +12,8 @@ $(window).load(function() {
 	});
 });
 
+/* Newsletter Form
+--------------------------------------------------------------------------- */
 $(function() {
 	$('#newsletter_form input[type=text]').bind('focus', function(e){
 		$(this).val('');
