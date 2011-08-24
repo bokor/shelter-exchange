@@ -57,7 +57,7 @@ a:hover, a:active { color:#f16649; text-decoration: underline;border: none; outl
 header{height: 145px;}
 header nav { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
 hgroup { height: 100px;  position: relative; }/*f3f1ec*/
-section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 270px; position: relative; }
+section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 290px; position: relative; }
 footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
 
 

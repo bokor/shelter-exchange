@@ -10,7 +10,7 @@
 
 /* Home Page */   
 /******************************************************************/
-.home_page #main {padding-bottom: 425px; position: relative; }
+.home_page #main {padding-bottom: 445px; position: relative; }
 
 .home_page .theme-default #slider {margin:10px auto 50px auto;
 	width:980px; /* Make sure your images are the same size */
