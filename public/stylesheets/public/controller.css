@@ -39,12 +39,12 @@ section.newsletter span input.field{ color: #999;}
 section.newsletter span input.field.error{ color: red;}
 section.newsletter span.hide {display:none;}
 section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform: uppercase;}
-section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px;}
+section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px; }
 section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Home Page -> Newsletter :: IE :: PIE */   
 /******************************************************************/
-.ie7 section.newsletter .field, .ie8 section.newsletter .field{behavior: url(/stylesheets/global/pie/PIE.htc);}
+/*.ie7 section.newsletter .field, .ie8 section.newsletter .field{behavior: url(/stylesheets/global/pie/PIE.htc); zoom: 10; z-index: 9999;}*/
 
 
 /* ----------------------------------------------------------------------------------------------------------------------*/
@@ -108,7 +108,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Donate */   
 /******************************************************************/
 .donate_page h2{text-align:center;}
-.donate_page .caption {font-size: 11px; font-style: italic;}
+.donate_page .caption {font-size: 11px;}
 .donate_page .facts{padding-bottom: 10px;}
 .donate_page .facts:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .donate_page .box {float:left; width: 30%; margin-right: 4%; height: 160px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
