@@ -13,14 +13,14 @@ unless S3_CONNECTED
                                       :secret_access_key => S3_CREDENTIALS["secret_access_key"])
 end
 
-
+#  AWS:S3 Cache Control Patch
 module AWS
   module S3
     class S3Object
       class << self
         def store_with_cache_control(key, data, bucket = nil, options = {})
           if (options['Cache-Control'].blank?)
-            options['Cache-Control'] = 'max-age=315360000'
+            options['Cache-Control'] = 'max-age=29030400'
           end
           store_without_cache_control(key, data, bucket, options)
         end
