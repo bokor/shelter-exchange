@@ -20,7 +20,7 @@ module AWS
       class << self
         def store_with_cache_control(key, data, bucket = nil, options = {})
           if (options['Cache-Control'].blank?)
-            options['Cache-Control'] = 'max-age=29030400'
+            options['Cache-Control'] = 'max-age=315360000'
           end
           store_without_cache_control(key, data, bucket, options)
         end
