@@ -97,7 +97,15 @@
 	.counts_by_status .status{display:inline-block; width: 30%; font-weight: bold;}
 	.counts_by_status .count{display:inline-block; width: 10%; }
 
+/* Counts Sections :: Dashboard
+-----------------------------------------------------------------------------*/
 
+.count_sections:after{ content:"\0020"; display:block; height:50px; clear:both; visibility:hidden; overflow:hidden; }
+.count_sections div {float:left;margin-right:4%; padding: 10px 30px;width:auto;text-align:center; 
+	-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px #ddd solid;}
+.count_sections h2 {padding-bottom: 5px; margin:0; font-weight: bold;}
+.count_sections h2.euthanized_color {color:red;}
+.count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
 
 
 
