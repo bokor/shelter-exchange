@@ -1,4 +1,6 @@
 * { margin: 0; padding: 0; }
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
+
 html, body { margin:0; padding:0; height: 100%; }
 body { background-color: #e7e7e7; color: #222; font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px; }
 

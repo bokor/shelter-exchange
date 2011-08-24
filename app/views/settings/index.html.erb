@@ -26,7 +26,7 @@
 		</div>
 		<% end %>
 		
-		<h2>Web Access -  For Developer Only</h2>
+		<h2>Web Access - API (For Developer Only)</h2>
 		<p>An api token must be generated so that <%= @current_shelter.name %> can display their animals on their website.  This access token protects your shelters' data and acts as a login to Shelter Exchange.  If you feel like someone has stole the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, like you were reseting a password.</p>
 		<div class="section">
 			<div class="separator"></div>
@@ -45,24 +45,12 @@
 				
 				<div class="separator"></div>
 				
-				<h2>Basic API - Usage</h2>
-				<h3>HTML</h3>
-				<p><code><%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
+				<h3>How to use?</h3>
+				<p>Please refer to the help documentation how the best usage of the API</p>
+
+				<h3>Available formats</h3>
+				<p>JSON, XML, HTML(IFrame)</p>
 				
-				<h4>Below is code that can be put on your website to show your list of animals.  Some of the settings of this iframe tag may need to be customized to fit into your site's layout.</h4>
-				
-				<p><code>&lt;iframe src="<%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %>" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code></p>
-				<br /><br />
-				
-				<h2>Advanced API - Usage</h2>
-				<h3>JSON</h3>
-				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
-				
-				<h3>JSONP</h3>
-				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
-				
-				<h3>XML</h3>
-				<p><code><%= api_url %>/animals.xml?access_token=<%= @current_shelter.access_token %></code></p>
 			<% end %>
 			</div>
 			

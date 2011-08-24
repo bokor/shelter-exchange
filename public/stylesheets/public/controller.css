@@ -164,7 +164,11 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 265px; padding-left: 17px; vertical-align:top;}
 .get_involved_shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
 .get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
-.get_involved_shelters_and_rescues_page .feature .screenshot img{box-shadow: 0 0 6px #222;}
+.get_involved_shelters_and_rescues_page .feature .screenshot img{-moz-box-shadow: 0 0 6px #222;-moz-box-shadow: 0 0 6px #222;box-shadow: 0 0 6px #222;}
+
+/* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
+/******************************************************************/
+.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* ----------------------------------------------------------------------------------------------------------------------*/

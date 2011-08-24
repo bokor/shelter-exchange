@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #eee; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
+body { background: url(/images/public/background-body.jpg) repeat; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
 
 /*********************************************************/
 /* ---------------------- GLOBAL ----------------------- */
@@ -56,6 +56,10 @@ body.login{background-color: #eee;}
 .login #main #flash_messages{ width: 400px; margin: 0 auto; text-align: left; }
 .login #center{width: 380px; background-color: #fff; position: relative; margin: 0 auto; text-align: center; }
 .login #center #content {box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999;text-align: left; padding: 40px 40px 20px 40px; }
+
+/* Home Page -> Newsletter :: IE :: PIE */   
+/******************************************************************/
+.ie7 .login #center #content, .ie8 .login #center #content{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 .passwords ul{list-style:none;}

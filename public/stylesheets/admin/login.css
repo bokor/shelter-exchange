@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; }
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #eee; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
+body { background: url(/images/public/background-body.jpg) repeat; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
 
 /*********************************************************/
 /* ---------------------- GLOBAL ----------------------- */

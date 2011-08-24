@@ -12,15 +12,23 @@
 	<div class="page_content">
 	
 		<div id="activities" class="activity_list">
-			<% @latest_activity.each do |object| %>
-				<div class="activity">
-					<span class="type">
-						<img class="tooltip" data-tip="<%=object.class.name%>" src="/images/icon_<%= object.class.name.downcase %>.png" />
-					</span>
+			<% unless @latest_activity.blank? %>
+				<% @latest_activity.each do |activity| %>
+					<div class="activity">
+						<span class="type">
+							<img class="tooltip" data-tip="<%=activity.class.name%>" src="/images/icon_<%= activity.class.name.downcase %>.png" />
+						</span>
+						<span class="details">
+							<span class="title"><%= activity_message_for(activity)  %></span>
+						</span>
+						<span class="created_at_date"><%= format_date(:short_full_year, activity.updated_at) %></span>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="no activity">
 					<span class="details">
-						<span class="title"><%= activity_message_for(object)  %></span>
+						<span class="title">No current activity</span>
 					</span>
-					<span class="created_at_date"><%= format_date(:short_full_year, object.updated_at) %></span>
 				</div>
 			<% end %>
 		</div>
