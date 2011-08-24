@@ -12,3 +12,21 @@ unless S3_CONNECTED
   AWS::S3::Base.establish_connection!(:access_key_id => S3_CREDENTIALS["access_key_id"],
                                       :secret_access_key => S3_CREDENTIALS["secret_access_key"])
 end
+
+
+module AWS
+  module S3
+    class S3Object
+      class << self
+        def store_with_cache_control(key, data, bucket = nil, options = {})
+          if (options['Cache-Control'].blank?)
+            options['Cache-Control'] = 'max-age=315360000'
+          end
+          store_without_cache_control(key, data, bucket, options)
+        end
+
+        alias_method_chain :store, :cache_control
+      end
+    end
+  end
+end
