@@ -10,7 +10,8 @@ var Comments = {
 		});
 		$('.close_link a').bind('click', function(e){
 			e.preventDefault();
-			Tipped.hideAll();
+			//Hide QTip
+			$('.qtip.ui-tooltip').qtip('hide');
 		});
 	},
 	updateCommentable: function(id, commentable){

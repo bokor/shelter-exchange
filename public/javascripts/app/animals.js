@@ -71,7 +71,8 @@ var Animals = {
 		$('#animal_accommodation_id').val(id);
 		$('#accommodation_search_link').html("Change");
 		$("#accommodation_remove_link").show();
-		Tipped.hideAll();
+		//Hide QTip
+		$('.qtip.ui-tooltip').qtip('hide');
   	},
 	removeAccommodation: function() {
 		$('#accommodation_selected span').html('');
