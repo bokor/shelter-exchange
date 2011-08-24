@@ -4,7 +4,7 @@ s3_secret_access_key: kP+q6d9o0eVVsOmXT2I7AnPq5PxXR57m61KBYz/P
 s3_permission: public_read
 s3_upload_files:
   - public/stylesheets/global/**/**
-  - public/design/**/**
+  - design/**/**
 
 package_assets:         on           # (on, off, always)
 compress_assets:        on           # (on, off)
@@ -15,6 +15,7 @@ javascript_compressor:  yui          # (yui, closure)
 #package_path:           packages    # (defaults to assets)
 # compressor_options:
   # compilation_level: ADVANCED_OPTIMIZATIONS
+
 
 javascripts:
   app:
