@@ -160,6 +160,7 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#D7D7D7');
+	zoom: 1;
 	
 	-webkit-border-radius: 6px; 
 	-moz-border-radius: 6px; 
@@ -178,6 +179,7 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 	
 	text-decoration: none!important;
 	text-align: center;
+	
 	
 }
 
