@@ -86,8 +86,8 @@ footer .content{padding-top: 30px;  width:980px;  list-style: none; position:rel
 
 footer .column{color: #eee; float:left; height: 150px;}
 footer .column ul{list-style: none;}
-footer .column a{color: #999; font-weight: normal;}
-footer .column a:hover{color: #eee; text-decoration: underline;}
+footer .column ul li a{color: #999; font-weight: normal;}
+footer .column ul li a:hover{color: #eee; text-decoration: underline;}
 
 footer .col_1{width: 234px; padding-right: 10px; border-right: 1px #666 dotted; text-align: center;}
 footer .col_1 a{padding: 0 10px;}
