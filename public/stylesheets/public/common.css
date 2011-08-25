@@ -153,7 +153,7 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 	border: 1px solid #999;
 	
 	background-color: #e0e0e0; 
-	/*background-size: 100% 100%;*/
+	/*background-size: 100% 100%; */
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7)); 
    	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
