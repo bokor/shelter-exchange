@@ -13,8 +13,8 @@
 .home_page #main {padding-bottom: 445px; position: relative; }
 
 .home_page .theme-default #slider {margin:10px auto 50px auto;
-	width:980px; /* Make sure your images are the same size */
-    height:400px; /* Make sure your images are the same size */
+	width:960px; /* Make sure your images are the same size */
+    height:392px; /* Make sure your images are the same size */
 }
 /* Home Page -> Slider :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
@@ -52,11 +52,11 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Contact us */   
 /******************************************************************/
-.contact_us_page #contact_details{float:left; width: 28%;}
+.contact_us_page #contact_details{float:left; width: 29%;}
 .contact_us_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
 .contact_us_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
 .contact_us_page #contact_details div{padding-bottom: 15px;}
-.contact_us_page #contact_form{float:left; border-left: 1px #bbb dotted; width: 67%; padding-left: 4%;}
+.contact_us_page #contact_form{float:left; border-left: 1px #bbb dotted; width: 66%; padding-left: 4%;}
 
 
 /* ----------------------------------------------------------------------------------------------------------------------*/
@@ -78,13 +78,14 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /******************************************************************/
 .about_us_mission_page #main ul{ padding-bottom: 25px; }
 .about_us_mission_page #main ul li{padding-bottom: 5px; margin-left: 20px; padding-left: 10px;}
-.about_us_mission_page .animals img{width: 300px; height: 190px; margin-right:35px;-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
+.about_us_mission_page .animals img{width: 300px; height: 190px; margin-right:25px;-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
 .about_us_mission_page .animals img:last-child{margin-right: 0px;}
 
 /* About us :: Mission :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
 .ie7 .about_us_mission_page .animals img,
-.ie8 .about_us_mission_page .animals img{margin-right: 20px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .about_us_mission_page .animals img{margin-right: 15px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
 .about_us_mission_page .animals img:last-child{margin-right: 0px;}
 
 
@@ -111,7 +112,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .donate_page .caption {font-size: 11px;}
 .donate_page .facts{padding-bottom: 10px;}
 .donate_page .facts:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.donate_page .box {float:left; width: 310px; margin-right: 25px; height: 160px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+.donate_page .box {float:left; width: 300px; margin-right: 25px; height: 160px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
 
 
 /* Donate :: IE :: Box Fix :: PIE */
@@ -142,7 +143,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 .get_involved_page .box a{color:#cf7019; text-decoration:none;}
 .get_involved_page .box:hover a h2{text-decoration:underline;}
-.get_involved_page p{color: #222;}
+.get_involved_page p{color: #222; text-decoration: none;}
 .get_involved_page .box:hover p{text-decoration: none;}
 
 /* Get Involved :: IE Hack :: Box Fix :: PIE */
@@ -160,8 +161,8 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /*.get_involved_shelters_and_rescues_page .feature h2{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}*/
 .get_involved_shelters_and_rescues_page .feature h3{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}
 .get_involved_shelters_and_rescues_page .feature p{padding-bottom: 10px;}
-.get_involved_shelters_and_rescues_page .feature ul {width: 570px; float:left;}
-.get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 265px; padding-left: 17px; vertical-align:top;}
+.get_involved_shelters_and_rescues_page .feature ul {width: 550px; float:left;}
+.get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 255px; padding-left: 17px; vertical-align:top;}
 .get_involved_shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
 .get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
 .get_involved_shelters_and_rescues_page .feature .screenshot img{-moz-box-shadow: 0 0 6px #222;-moz-box-shadow: 0 0 6px #222;box-shadow: 0 0 6px #222;}

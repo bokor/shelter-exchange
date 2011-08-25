@@ -133,14 +133,14 @@ blue
 	position: relative;
 	border: 1px solid #999;
 	
-	background-color: #d7d7d7; 
+	background-color: #e0e0e0; 
+	/*background-size: 100% 100%; */
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7)); 
    	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#D7D7D7');
 	
 	-webkit-border-radius: 6px; 
 	-moz-border-radius: 6px; 
@@ -173,7 +173,6 @@ blue
 	border-top-color: #888;
 	background-image: -moz-linear-gradient(top,#ccc,#f0f0f0);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ccc),color-stop(1,#f0f0f0));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc',EndColorStr='#f0f0f0');
 }
 
 .button.disabled,.button.disabled:hover,.button.disabled:active {
@@ -184,7 +183,6 @@ blue
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7))!important;
 	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%)!important;
 	background-image: linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%)!important;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#d7d7d7');
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
@@ -197,7 +195,6 @@ blue
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#6bbeff),color-stop(0.5,#2c8fff),color-stop(0.5,#1471fb),color-stop(1,#0758f1));
 	background-image: -webkit-linear-gradient(top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
 	background-image: linear-gradient(top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#6BBEFF',EndColorStr='#0758F1');
 	color: #fff;
 	text-shadow: #2b4887 0 1px 0;
 }
@@ -211,7 +208,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#8ccdff),color-stop(0.5,#2c8fff),color-stop(0.5,#1471fb),color-stop(1,#0758f1));
 	background-image: -webkit-linear-gradient(top,#8ccdff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
 	background-image: linear-gradient(top,#8ccdff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#8ccdff',EndColorStr='#0758F1');
 }
 
 .button.blue.depressed,.button.blue:active {
@@ -220,7 +216,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#0057f0),color-stop(1,#2c8fff));
 	background-image: -webkit-linear-gradient(top,#0057f0 0,#2c8fff 100%);
 	background-image: linear-gradient(top,#0057f0 0,#2c8fff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0057f0',EndColorStr='#2C8FFF');
 }
 
 .button.blue.disabled,.button.blue.disabled:hover {
@@ -228,7 +223,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#6bbeff),color-stop(0.5,#2c8fff),color-stop(0.5,#1471fb),color-stop(1,#0758f1))!important;
 	background-image: -webkit-linear-gradient(top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%)!important;
 	background-image: linear-gradient(top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%)!important;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#6BBEFF',EndColorStr='#0758F1');
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
@@ -247,7 +241,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ff6161),color-stop(0.5,#ff343c),color-stop(0.5,#e60000),color-stop(1,#be0006));
 	background-image: -webkit-linear-gradient(top,#ff6161 0,#ff343c 50%,#e60000 50%,#be0006 100%);
 	background-image: linear-gradient(top,#ff6161 0,#ff343c 50%,#e60000 50%,#be0006 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ff6161',EndColorStr='#be0006');
 }
 
 .button.red:hover {
@@ -255,7 +248,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#f88),color-stop(0.5,#ff343c),color-stop(0.5,#e60000),color-stop(1,#be0006));
 	background-image: -webkit-linear-gradient(top,#f88 0,#ff343c 50%,#e60000 50%,#be0006 100%);
 	background-image: linear-gradient(top,#f88 0,#ff343c 50%,#e60000 50%,#be0006 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ff8888',EndColorStr='#be0006');
 }
 
 .button.red.depressed,.button.red:active {
@@ -264,7 +256,6 @@ body.firefox.mac .button.default {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#b00),color-stop(1,#f00));
 	background-image: -webkit-linear-gradient(top,#b00 0,#f00 100%);
 	background-image: linear-gradient(top,#b00 0,#f00 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#bb0000',EndColorStr='#ff0000');
 }
 
 .button.red.disabled {
@@ -276,7 +267,6 @@ body.firefox.mac .button.default {
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ff7575',EndColorStr='#d10000');
 }
 
 .button.green {
@@ -286,20 +276,17 @@ body.firefox.mac .button.default {
 	border-bottom-color: #027419;
 	background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(0%,#43da62),color-stop(100%,#02901f));
 	background-image: -moz-linear-gradient(top,#43da62 0,#02901f 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#43da62',EndColorStr='#02901f');
 }
 
 .button.green:hover {
 	background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(0%,#48ea69),color-stop(100%,#02901f));
 	background-image: -moz-linear-gradient(top,#48ea69 0,#02901f 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#48ea69',EndColorStr='#02901f');
 }
 
 .button.green.depressed,.button.green:active {
 	border-top-color: #036b17;
 	background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(0%,#02901f),color-stop(100%,#43da62));
 	background-image: -moz-linear-gradient(top,#02901f 0,#43da62 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#02901f',EndColorStr='#43da62');
 }
 
 .button.green.disabled {
@@ -307,7 +294,6 @@ body.firefox.mac .button.default {
 	text-shadow: rgba(255,255,255,0.3) 0 1px 1px;
 	background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(0%,#43da62),color-stop(100%,#02901f))!important;
 	background-image: -moz-linear-gradient(top,#43da62 0,#02901f 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#43da62',EndColorStr='#02901f');
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)!important;
@@ -329,7 +315,6 @@ ul.toggle_buttons{
 	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD); 
 	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD); 
 	background-image:         linear-gradient(top,  #FEFEFE,  #DDD); 
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#DDDDDD');
 	
 	border: 1px solid #D4D4D4;
 	border-radius: 3px 3px;
@@ -375,4 +360,3 @@ ul.toggle_buttons li a.current {
 ul.toggle_buttons li a:hover{
 	color: #CF7019;
 }
-

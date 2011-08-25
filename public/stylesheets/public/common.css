@@ -24,7 +24,7 @@ h5 {  }
 
 p{ margin-bottom: 20px; line-height: 1.5;}
 a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none;}
-section#main a:hover, a:active { color:#f16649; text-decoration: underline; }
+a:hover{color:#f16649; text-decoration: underline;}
 
 .highlight{font-size: 14px; font-weight:bold; color:#cf7019; text-shadow: 0px 2px 3px white;}
 .separator{clear:both;width: 100%;height: 5px;margin: 25px 0px; border-color:#cf7019; 
@@ -49,7 +49,7 @@ section#main a:hover, a:active { color:#f16649; text-decoration: underline; }
 /* Content Wrapper */
 /******************************************************************/ 
 /*#page{}*/
-.content { width:980px; margin: 0 auto; display:block; position: relative; }
+.content { width:960px; margin: 0 auto; display:block; position: relative; }
 .content:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Page Layouts */   
@@ -63,12 +63,17 @@ footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color:
 
 /* Header :: Nav */   
 /******************************************************************/
-header nav ul { margin: 0 auto; width: 980px; list-style:none; text-align:center; }
-header nav li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 25px; padding: 0 25px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
+header nav ul { margin: 0 auto; width: auto; list-style:none; text-align:center; }
+header nav li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 25px; padding: 0 25px; text-align:center; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
 header nav li:hover, header nav li.current { background: url(/images/public/background-body.jpg) repeat; -moz-box-shadow:inset 0px 0px 10px #888; -webkit-box-shadow:inset 0px 0px 10px #888; box-shadow: inset 0px 0px 10px #888; -moz-border-radius: 10px 10px 0px 0px;-webkit-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;}
-.ie header nav li:hover, .ie header nav li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
 header nav li:hover a, header nav li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
 header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
+
+/* IE Hack :: Header :: Nav */   
+/******************************************************************/
+.ie header nav li{margin: 0 23px; padding: 0 23px;}
+.ie header nav li:hover, .ie header nav li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
+
 
 
 /* Header :: Layout */   
@@ -82,27 +87,27 @@ hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 footer h4{ text-shadow: none; color: #eee; font-size: 18px; padding-bottom: 20px; margin:0; }
 footer h5{ text-shadow: none; color: #eee; font-size: 15px; padding-bottom: 10px; margin:0; }
 footer .button{position:absolute; top: 140px; left: 520px;}
-footer .content{padding-top: 30px;  width:980px;  list-style: none; position:relative;}
+footer .content{padding-top: 30px; list-style: none; position:relative;}
 
 footer .column{color: #eee; float:left; height: 150px;}
 footer .column ul{list-style: none;}
 footer .column a{color: #999; font-weight: normal;}
 footer .column a:hover{color: #eee; text-decoration: underline;}
 
-footer .col_1{width: 234px; padding-right: 10px; border-right: 1px #666 dotted; text-align: center;}
+footer .col_1{width: 230px; padding-right: 10px; border-right: 1px #666 dotted; text-align: center;}
 footer .col_1 a{padding: 0 10px;}
 
-footer .col_2{width: 200px; padding: 0 25px;}
-footer .col_3{width: 200px; padding: 0 25px;}
-footer .col_4{width: 200px; padding-left: 25px;}
+footer .col_2{width: 200px; padding: 0 23px;}
+footer .col_3{width: 200px; padding: 0 23px;}
+footer .col_4{width: 200px; padding-left: 23px;}
 
 footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
 
 /* Footer :: IE Hacks */   
 /******************************************************************/
-.ie footer .col_2{width: 210px; padding: 0 20px;}
-.ie footer .col_3{width: 210px; padding: 0 20px;}
-.ie footer .col_4{width: 210px; padding-left: 20px;}
+.ie footer .col_2{width: 205px; padding: 0 18px;}
+.ie footer .col_3{width: 205px; padding: 0 18px;}
+.ie footer .col_4{width: 205px; padding-left: 18px;}
 
 
 /* SubMenu */   
@@ -320,7 +325,10 @@ body.firefox.mac .button.default {
 }
 
 
-
+/* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
+/******************************************************************/
+.ie7 .button, 
+.ie8 .button{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* Toggle Buttons */   
