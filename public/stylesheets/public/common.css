@@ -23,7 +23,7 @@ h4 {  }
 h5 {  }
 
 p{ margin-bottom: 20px; line-height: 1.5;}
-a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none; -ms-interpolation-mode: bicubic;}
+a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none;}
 a:hover, a:active { color:#f16649; text-decoration: underline;border: none; outline: none; }
 
 .highlight{font-size: 14px; font-weight:bold; color:#cf7019; text-shadow: 0px 2px 3px white;}
@@ -98,8 +98,6 @@ footer .col_4{width: 200px; padding-left: 25px;}
 
 footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
 
-footer .button{background-color:#222;}
-
 /* Footer :: IE Hacks */   
 /******************************************************************/
 .ie footer .col_2{width: 210px; padding: 0 20px;}
@@ -162,7 +160,6 @@ footer .button{background-color:#222;}
 	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#D7D7D7');
-	zoom: 1;
 	
 	-webkit-border-radius: 6px; 
 	-moz-border-radius: 6px; 
@@ -226,7 +223,7 @@ footer .button{background-color:#222;}
 	text-shadow: #2b4887 0 1px 0;
 }
 
-body.firefox.mac .button.default {
+.button.default {
 	font-weight: normal;
 }
 
