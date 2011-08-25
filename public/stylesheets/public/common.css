@@ -98,6 +98,8 @@ footer .col_4{width: 200px; padding-left: 25px;}
 
 footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
 
+footer .button{background-color:#222;}
+
 /* Footer :: IE Hacks */   
 /******************************************************************/
 .ie footer .col_2{width: 210px; padding: 0 20px;}
