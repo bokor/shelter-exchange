@@ -12,8 +12,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 	
 	<!-- icons -->
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" href="/shelterexchange-icon.png" />
+	<%= favicon_link_tag 'favicon.ico' %>
+	<%= favicon_link_tag 'shelterexchange_icon.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 	
 	<!-- stylesheets -->
 	<%= include_stylesheets :app_login, :media => "all" %>
