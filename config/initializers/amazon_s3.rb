@@ -19,9 +19,9 @@ module AWS
     class S3Object
       class << self
         def store_with_cache_control(key, data, bucket = nil, options = {})
-          if (options['Cache-Control'].blank?)
-            options['Cache-Control'] = 'max-age=315360000'
-          end
+          options[:cache_control] = 'max-age=315360000' if options[:cache_control].blank?
+          options[:expires]       = 315360000.from_now.httpdate if options[:expries].blank?
+          
           store_without_cache_control(key, data, bucket, options)
         end
 
