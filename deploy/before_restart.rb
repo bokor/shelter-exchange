@@ -6,7 +6,8 @@ config_file = (environment == "production") ? "config/assets.yml" : "config/asse
 run "cd #{current_path} && bundle exec jammit-s3 --config #{config_file}"
 
 # Restart Delayed Job
-sudo "monit -g dj_shelter_exchange_app restart all"
+sudo "monit restart all dj_shelter_exchange_app"
+# sudo "monit -g dj_shelter_exchange_app restart all" OLD WAY
 
 # run "cd #{current_path} && script/delayed_job restart"
 # $ RAILS_ENV=production script/delayed_job start
