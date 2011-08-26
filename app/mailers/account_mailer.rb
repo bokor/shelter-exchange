@@ -7,7 +7,7 @@ class AccountMailer < ActionMailer::Base
     @account = account
     @shelter = shelter
     @user = user
-    mail(:subject => "A new account has been created (#{shelter.name})")
+    mail(:subject => "Shelter Exchange [#{Rails.env}] - A new account has been created (#{shelter.name})")
   end
 
 

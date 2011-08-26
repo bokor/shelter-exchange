@@ -39,6 +39,15 @@ a:hover{color:#f16649; text-decoration: underline;}
 	behavior: url(/stylesheets/global/pie/PIE.htc);
 }
 
+/* Demo Message :: Added to Demo or Staging Server*/
+/******************************************************************/
+.demo_message{
+	color: red; font-size: 24px; font-weight: bold;background-color:#fff; padding: 5px 8px;
+	-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px;
+	-moz-transform: rotate(-90deg);-webkit-transform: rotate(-90deg);
+}
+.demo_message.right_side{position:fixed; right:-60px;top:200px; }
+
 
 
 /* ClearFix */

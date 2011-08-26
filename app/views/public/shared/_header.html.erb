@@ -16,3 +16,6 @@
 		</div>
 	</hgroup>
 </header>
+<% unless Rails.env.production? %>
+	<span class="demo_message right_side"><%= Rails.env %></span>
+<% end %>
