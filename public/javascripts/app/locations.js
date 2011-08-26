@@ -8,10 +8,10 @@ var Locations = {
 			e.preventDefault();
 			$('#create_location').slideToggle(800);
 		});
-		$('.close_link a').bind('click', function(e){
-			e.preventDefault();
-			$('.tooltip-dialog').qtip('hide');
-		});
+		//$('.close_link a').bind('click', function(e){
+		//	e.preventDefault();
+		//	$('.qtip.ui-tooltip').qtip('hide');
+		//});
 	},	
 	findAllLocations: function() {
 		$.get("/locations/find_all.js");

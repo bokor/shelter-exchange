@@ -6,6 +6,7 @@
 /* QTip - Tooltips
 /*----------------------------------------------------------------------------*/
 $(function() {
+	//$.fn.qtip.zindex = 100;
 	$('.tooltip').live('mouseover', function(event) {
 		$(this).qtip({
 			overwrite: false,
@@ -28,10 +29,10 @@ $(function() {
 	});
 
 	
-	$('.tooltip-dialog').live('click', function(event) {
+	$('.tooltip_dialog').live('click', function(event) {
 		event.preventDefault();
 		$(this).qtip({
-			overwrite: false,
+			overwrite: true,
 			content: {
 				text: $($(this).attr('data-dialog-element')),
 				title: {
@@ -58,6 +59,12 @@ $(function() {
 			events: {
 				blur: function(event, api) {
 					var fn = api.elements.target.attr('data-dialog-blur');
+					if (typeof fn != 'undefined' && fn.length > 0) {
+						eval(fn);
+					} 
+				},
+				show: function(event, api) {
+					var fn = api.elements.target.attr('data-dialog-show');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
 					} 

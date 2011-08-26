@@ -3,7 +3,7 @@
 	<div>
 	<%= f.collection_select :location_id, @current_shelter.locations.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" } %>
 	<% if can?(:update, Location) %>
-	<a href="#" class="tooltip-dialog" data-dialog-element="#dialog_locations" 
+	<a href="#" class="tooltip_dialog" data-dialog-element="#dialog_locations" 
 	                                   data-dialog-blur="Locations.findAllLocations()"
 									   data-dialog-title="&nbsp;">Edit</a>
 	<% end %>
