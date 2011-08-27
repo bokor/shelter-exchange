@@ -13,7 +13,7 @@ class Public::ApplicationController < ActionController::Base
     
     def authenticate!
       authenticate_or_request_with_http_basic do |username, password|
-        username == "shelterexchange" && password == "sav1ngl1ves"
+        username == "shelterexchange" && Digest::SHA1.hexdigest(password) == "sav1ngl1ves"
       end
     end
 
