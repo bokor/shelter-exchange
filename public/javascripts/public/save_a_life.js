@@ -1,5 +1,5 @@
 /*!------------------------------------------------------------------------
- * app/communities.js
+ * public/save_a_life.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var defaultZoom = 11;
@@ -13,12 +13,15 @@ var mapOverlay = null;
 var logo = null;
 var googleListener = null;
 
-var Communities = {
-	initialize: function(latitude, longitude, overlay, marker){
+var SaveALife = {
+	initialize: function(latitude, longitude, overlay, marker, zoom){
 		mapOverlay = overlay;
 		logo = marker;
 		lat = latitude;
 		lng = longitude;
+		if (zoom > 0 ) {
+			defaultZoom = zoom;
+		}
 		
 		$("#narrow_search_results").bind("click",function(e){
 			e.preventDefault();
@@ -33,12 +36,12 @@ var Communities = {
 			$("#form_city_zipcode_search").show();
 			$("#form_shelter_name_search").hide();
 			//Reset All
-			if(!first){ Communities.resetAll(); }
+			if(!first){ SaveALife.resetAll(); }
 
 			$(this).parents("ul").find("a").removeClass("current");
 			$(this).addClass("current");
 
-			Communities.searchByCityZipCode();
+			SaveALife.searchByCityZipCode();
 		});
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
@@ -48,11 +51,11 @@ var Communities = {
 			$("#form_city_zipcode_search").hide();
 			$("#form_shelter_name_search").show();
 			//Reset All
-			if(!first){ Communities.resetAll(); }
+			if(!first){ SaveALife.resetAll(); }
 
 			$(this).parents("ul").find("a").removeClass("current");
 			$(this).addClass("current");
-			Communities.searchByShelterName();
+			SaveALife.searchByShelterName();
 		});
 		
 		$("#search_by_city_zipcode").trigger("click", true);
@@ -88,26 +91,26 @@ var Communities = {
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
-			Communities.findAnimalsInBounds();
+			SaveALife.findAnimalsInBounds();
 		});
 		
 		// Set up forms
-		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
-		Communities.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
-		Communities.addressAutoComplete();
+		SaveALife.bindFilters(function(){SaveALife.findAnimalsInBounds()});
+		SaveALife.breedAutoComplete(function(){SaveALife.findAnimalsInBounds()});
+		SaveALife.addressAutoComplete();
   	},
 	searchByShelterName: function() {
 		// Set up and config
 	    myLatLng = new google.maps.LatLng(lat, lng);
 	
 		if($('#filters_shelter_id').val() != ""){
-			Communities.findAnimalsForShelter();
+			SaveALife.findAnimalsForShelter();
 		}
 	
 		// Set up forms
-		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
-		Communities.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
-		Communities.shelterNameAutoComplete();
+		SaveALife.bindFilters(function(){SaveALife.findAnimalsForShelter()});
+		SaveALife.breedAutoComplete(function(){SaveALife.findAnimalsForShelter()});
+		SaveALife.shelterNameAutoComplete();
   	},
 	findAnimalsInBounds: function(){
 		var zoomLevel = map.getZoom();
@@ -118,11 +121,11 @@ var Communities = {
 			var bounds = map.getBounds();
 			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-			$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
+			$.get("/save_a_life/find_animals_in_bounds.js", $("#form_filters").serialize());
 		}
 	},
 	findAnimalsForShelter: function(){
-		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
+		$.get("/save_a_life/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
@@ -141,7 +144,7 @@ var Communities = {
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
-			Communities.geocodeAddress();
+			SaveALife.geocodeAddress();
 		});
 		
 		$("#form_shelter_name_search").bind("submit", function(e){
@@ -231,7 +234,7 @@ var Communities = {
 			},
 			select: function(event, ui){
 				$('#filters_shelter_id').val(ui.item.id);
-				Communities.findAnimalsForShelter();
+				SaveALife.findAnimalsForShelter();
 				lat = ui.item.lat;
 				lng = ui.item.lng;
 			}	
@@ -271,8 +274,9 @@ var Communities = {
 	}
 };
 
+
 /* Scroll map with scrollbar
 /*----------------------------------------------------------------------------*/
 $(function() {
-	$("#map_canvas").jScroll({speed : "slow"});
+	$("#map_canvas").jScroll({top: 50, speed : "slow"});
 });

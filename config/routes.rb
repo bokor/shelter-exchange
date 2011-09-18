@@ -264,6 +264,22 @@ ShelterExchangeApp::Application.routes.draw do
       get "signup" => "accounts#new", :path => :signup
       post "signup" => "accounts#create", :path => :signup
       
+
+      # Public :: Save A Life
+      #----------------------------------------------------------------------------
+      resources :save_a_life do
+        collection do
+          get :filter_notes
+          get :find_animals_in_bounds
+          get :find_animals_for_shelter
+        end
+      end
+      match 'save_a_life/animal/:animal_id' => 'save_a_life#animal', :as => :animal_save_a_life
+      
+      # Public :: Help A Shelter
+      #----------------------------------------------------------------------------
+      resources :help_a_shelter
+            
       # Public :: Login
       #----------------------------------------------------------------------------
       devise_for :users, :path => "", :controllers => { :sessions => "public/users/sessions" },

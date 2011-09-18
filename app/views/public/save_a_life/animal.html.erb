@@ -1,0 +1,166 @@
+<%= title "#{@animal.name} (#{@animal.id})" %>
+
+<%= content_for :javascripts do %>
+	<script type="text/javascript">
+		$(function() {
+			Notes.filters();
+			Transfers.hasRequest(<%=@transfer_requested %>);
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading blue">
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="action_links">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
+				</td>
+				<td class="status">
+					<p><%= @animal.animal_status.name %></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		 
+		<table class="animal_details">
+			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
+						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
+						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
+						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
+						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+					</ul>
+					
+					<h3>Accommodation:</h3>
+					<ul>
+						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
+						<li><p><b>Location:</b>  <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
+					</ul>
+					
+					
+				</td>
+				<td class="image">
+			    	<%= image_tag @animal.photo.url(:medium) %>
+			    </td>
+			</tr>
+		</table>
+		
+		<table class="description">
+			<tr>
+				<td>
+					<h3>Description:</h3>
+					<p><%= @animal.description %></p>
+				</td>
+			</tr>
+		</table>
+		
+		<% if @shelter.kill_shelter? %>
+		<table class="euthanasia_info">
+			<tr>
+				<td>
+					<h3>Euthanasia Info:</h3>
+					<ul>
+						<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
+						<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
+						<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+	</div>
+	
+	<div id="notes_heading" class="section_heading orange">
+		<h2>Notes</h2>
+		<div class="links">
+			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
+			<% Note::CATEGORIES.each do |category|%>
+				&nbsp;|&nbsp;
+				<%= link_to category.humanize, filter_notes_communities_path(:filter => category, :animal_id => @animal.id), 
+				                          :remote => true, :id => "#{category}_notes_link" %>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="page_content">
+		<div id="notes" class="note_list">
+			<%= render @notes %>
+		</div>
+	</div>
+
+
+
+<% end %>
+
+<%= content_for :sidebar do %>
+
+<% unless @current_shelter.kill_shelter? %>
+	<div class="transfer_section">
+		<% if can?(:request_transfer, Animal) %>
+		<ul id="transfer_request_button" class="action_links">
+			<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button red" %></li>
+		</ul>
+		<% end %>
+		<div id="transfer_requested" class="box hide orange">
+			<h3>Request pending - awaiting approval for <%= @animal.name %></h3>
+		</div>
+
+		<div id="create_transfer" class="box hide green">
+			<h2>Create a transfer request for <%= @animal.name %></h2>
+			<div id="create_transfer_errors"></div>
+			<%= form_for (@transfer = Transfer.new), :remote => true, :html => { :id => "create_transfer_form", :class => "create_transfer_form" } do |f| %>
+			<ul>
+				<%= render "transfers/form", :f => f %>
+		    	<li class="buttons">
+					<%= f.submit "Create Transfer", :disable_with => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
+					&nbsp;or&nbsp;
+					<%= link_to "Cancel", "#", :id => "cancel_transfer" %>
+				</li>
+			</ul>
+		<% end %>
+		</div>
+	</div>
+<% end %>	
+
+	<div id="animal_shelter">
+		<h2>Shelter details</h2>
+		<div id="shelter" class="shelter_details">
+			<% if @shelter.logo.file? %>
+				<div class="logo">
+					<%= image_tag @shelter.logo.url(:thumb) %> 
+				</div>
+			<% end %>
+
+			<h2><%=@shelter.name%></h2>
+			<ul>
+				<li><%=@shelter.street%></li>
+				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+			</ul>
+			<br />
+			<ul>
+				<li>Tel: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+				<% unless @shelter.fax.blank? %>
+					<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
+				<% end %>
+				<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
+				<% unless @shelter.website.blank? %>
+					<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+<% end %>
+	

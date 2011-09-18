@@ -1,0 +1,40 @@
+<div class="right_side">
+<% if @shelter.logo.file? %>
+	<div class="logo">
+		<%= image_tag @shelter.logo.url(:thumb) %>
+	</div>
+<% end %>
+	<ul class="toggle_buttons">
+		<li><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a></li>
+	</ul>
+</div>
+<h2><%=@shelter.name%></h2>
+<ul>
+	<li><%=@shelter.street %></li>
+	<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+</ul>
+<br />
+<ul>
+	<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+	<% unless @shelter.fax.blank? %>
+		<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
+	<% end %>
+	<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
+	<% unless @shelter.website.blank? %>
+		<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
+	<% end %>
+</ul>
+<br />
+<% if @shelter.kill_shelter? %>
+	<div class="shelter_type kill">Kill Shelter</div>
+<% else %>
+	<div class="shelter_type no_kill">No Kill Shelter</div>
+<% end %>
+
+<% unless @capacities.blank? %>
+	<div class="capacities">
+		<h2>Does this shelter have space available?</h2>
+		<%= render "capacities/capacity_list" %>
+	</div>
+<% end %>
+
