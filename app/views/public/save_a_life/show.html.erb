@@ -1,12 +1,6 @@
 <%= title "#{@animal.name} (#{@animal.id})" %>
 
 <%= content_for :javascripts do %>
-	<script type="text/javascript">
-		$(function() {
-			Notes.filters();
-			Transfers.hasRequest(<%=@transfer_requested %>);
-		});
-	</script>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -82,58 +76,6 @@
 		<% end %>
 	</div>
 	
-	<div id="notes_heading" class="section_heading orange">
-		<h2>Notes</h2>
-		<div class="links">
-			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
-			<% Note::CATEGORIES.each do |category|%>
-				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_communities_path(:filter => category, :animal_id => @animal.id), 
-				                          :remote => true, :id => "#{category}_notes_link" %>
-			<% end %>
-		</div>
-	</div>
-	
-	<div class="page_content">
-		<div id="notes" class="note_list">
-			<%= render @notes %>
-		</div>
-	</div>
-
-
-
-<% end %>
-
-<%= content_for :sidebar do %>
-
-<% unless @current_shelter.kill_shelter? %>
-	<div class="transfer_section">
-		<% if can?(:request_transfer, Animal) %>
-		<ul id="transfer_request_button" class="action_links">
-			<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button red" %></li>
-		</ul>
-		<% end %>
-		<div id="transfer_requested" class="box hide orange">
-			<h3>Request pending - awaiting approval for <%= @animal.name %></h3>
-		</div>
-
-		<div id="create_transfer" class="box hide green">
-			<h2>Create a transfer request for <%= @animal.name %></h2>
-			<div id="create_transfer_errors"></div>
-			<%= form_for (@transfer = Transfer.new), :remote => true, :html => { :id => "create_transfer_form", :class => "create_transfer_form" } do |f| %>
-			<ul>
-				<%= render "transfers/form", :f => f %>
-		    	<li class="buttons">
-					<%= f.submit "Create Transfer", :disable_with => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
-					&nbsp;or&nbsp;
-					<%= link_to "Cancel", "#", :id => "cancel_transfer" %>
-				</li>
-			</ul>
-		<% end %>
-		</div>
-	</div>
-<% end %>	
-
 	<div id="animal_shelter">
 		<h2>Shelter details</h2>
 		<div id="shelter" class="shelter_details">
@@ -161,6 +103,12 @@
 			</ul>
 		</div>
 	</div>
+	
+	
+<% end %>
 
+<%= content_for :sidebar do %>
+
+	
 <% end %>
 	

@@ -6,20 +6,13 @@ class Public::SaveALifeController < Public::ApplicationController
   
   def animal
     @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:animal_id])
-    @notes = @animal.notes.all
     @shelter = @animal.shelter
-    @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists? unless @current_shelter.kill_shelter?
-    respond_with(@animal)
+    respond_with(@animal, @shelter) 
   end
   
-  def filter_notes
-    filter_param = params[:filter]
-    @animal = Animal.find(params[:animal_id])
-    if filter_param.blank?
-      @notes = @animal.notes
-    else
-      @notes = @animal.notes.where(:category => filter_param)
-    end
+  def show
+    @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
+    @shelter = @animal.shelter
   end
   
   def find_animals_in_bounds

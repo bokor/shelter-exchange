@@ -1,9 +1,9 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<%= link_to image_tag(animal.photo.url(:thumb)), animal_communities_path(animal.id), :target => "_blank"  %>
+		<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal), :target => "_blank"  %>
 	</td>
 	<td class="details">
-		<h3><%= link_to animal.name, animal_communities_path(animal.id), :target => "_blank"  %></h3>
+		<h3><%= link_to animal.name, public_save_a_life_path(animal), :target => "_blank"  %></h3>
 		<p><%= full_breed(animal) %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
 		<p><%= animal.date_of_birth.blank? ? "Age not specified".html_safe : humanize_dob(animal.date_of_birth) + " old" %></p>

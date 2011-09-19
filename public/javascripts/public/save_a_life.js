@@ -70,7 +70,6 @@ var SaveALife = {
 		$("#form_filters").unbind("keypress");
 		$("#form_city_zipcode_search").unbind("submit");
 		$("#form_shelter_name_search").unbind("submit");
-		$("#form_shelter_name_search").unbind("submit");
 		$("#filters_animal_type").unbind("change");
 		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").unbind("change");
 		

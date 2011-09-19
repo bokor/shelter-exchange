@@ -440,45 +440,45 @@
 
 /* Communities :: Animal Page
 -----------------------------------------------------------------------------*/
-.animal_communities table.animal{width:100%;}
-.animal_communities table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
-.animal_communities table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
-.animal_communities table.animal td h1 {}
-.animal_communities table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
-.animal_communities table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
-.animal_communities table.animal td.status{text-align:right;}
+.show_communities table.animal{width:100%;}
+.show_communities table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
+.show_communities table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.show_communities table.animal td h1 {}
+.show_communities table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
+.show_communities table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+.show_communities table.animal td.status{text-align:right;}
 
-.animal_communities table.animal_details{text-align:left;}
-.animal_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animal_communities table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.animal_communities table.animal_details td{vertical-align:top; }
-.animal_communities table.animal_details td.image{}
-.animal_communities table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
-.animal_communities table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.animal_communities table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.animal_communities table.animal_details td.metadata ul .red_date{color:#ee3124;}
+.show_communities table.animal_details{text-align:left;}
+.show_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_communities table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_communities table.animal_details td{vertical-align:top; }
+.show_communities table.animal_details td.image{}
+.show_communities table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
+.show_communities table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
+.show_communities table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_communities table.animal_details td.metadata ul .red_date{color:#ee3124;}
 
-.animal_communities .description{width:100%; padding: 0 0 0 0; }
-.animal_communities .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_communities .description{width:100%; padding: 0 0 0 0; }
+.show_communities .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
-.animal_communities .euthanasia_info{width:100%; padding: 0 0 0 0; }
-.animal_communities .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.animal_communities .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.animal_communities .euthanasia_info ul li {float:left; padding-right: 20px;}
-.animal_communities .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.animal_communities .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_communities .euthanasia_info{width:100%; padding: 0 0 0 0; }
+.show_communities .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_communities .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_communities .euthanasia_info ul li {float:left; padding-right: 20px;}
+.show_communities .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.show_communities .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
-.animal_communities .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
-.animal_communities .notes_heading h2{float:left;}
-.animal_communities .notes_heading .links{float:right; text-align: right;padding-top:5px;}
-.animal_communities .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_communities .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.show_communities .notes_heading h2{float:left;}
+.show_communities .notes_heading .links{float:right; text-align: right;padding-top:5px;}
+.show_communities .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Communities :: Animal Page :: Sidebar
 -----------------------------------------------------------------------------*/
-.animal_communities #sidebar .transfer_section {padding: 0 0 20px 0;}
-.animal_communities #sidebar #animal_shelter {padding: 0;}
-.animal_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
-.animal_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
+.show_communities #sidebar .transfer_section {padding: 0 0 20px 0;}
+.show_communities #sidebar #animal_shelter {padding: 0;}
+.show_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
 
 
 

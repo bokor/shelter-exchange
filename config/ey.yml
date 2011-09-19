@@ -6,16 +6,16 @@ environments:
       - .git
  
  shelter_exchange_app_staging:
-   branch: master
+   branch: staging
    migrate: false
    copy_exclude:
        - .git
  
- shelter_exchange_app_demo:
-   branch: master
-   migrate: false
-   copy_exclude:
-     - .git
+ # shelter_exchange_app_demo:
+ #   branch: master
+ #   migrate: false
+ #   copy_exclude:
+ #     - .git
 
 
      

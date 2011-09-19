@@ -14,10 +14,6 @@
 				<%= label_tag :filters_sex, "Sex", :class => "desc" %>
 				<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
 			</td>
-			<td class="status">
-				<%= label_tag :filters_animal_status, "Status", :class => "desc" %>
-				<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
-			</td>
 			<td class="euthanasia">
 				<%= label_tag :filters_euthanasia_only, "Euthanasia List", :class => "desc" %>
 				<div>
