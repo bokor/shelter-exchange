@@ -302,7 +302,7 @@ class Animal < ActiveRecord::Base
     end
     
     def delete_photo?
-      self.photo.clear if delete_photo == "1" 
+      self.photo.clear if delete_photo == "1" && !self.photo_file_name_changed?
     end
 
 end

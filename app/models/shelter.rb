@@ -137,7 +137,7 @@ class Shelter < ActiveRecord::Base
     end
     
     def delete_logo?
-      self.logo.clear if delete_logo == "1" 
+      self.logo.clear if delete_logo == "1" && !self.logo_file_name_changed?
     end
   
 end
