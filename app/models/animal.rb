@@ -110,7 +110,7 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
-    scope = scope.unscoped.order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
+    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
     scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
