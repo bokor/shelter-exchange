@@ -191,7 +191,7 @@ class Animal < ActiveRecord::Base
   # Finalize Transfer Request
   #----------------------------------------------------------------------------
   def complete_transfer_request!(current_shelter, requestor_shelter)
-    self.animal_status_id = AnimalStatus::NEW_INTAKE
+    self.animal_status_id = AnimalStatus::STATUSES[:new_intake]
     self.status_history_reason = "Transferred from #{current_shelter.name}"
     self.status_change_date = Date.today
     self.shelter_id = requestor_shelter.id
