@@ -10,12 +10,6 @@ environments:
    migrate: false
    copy_exclude:
        - .git
- 
- shelter_exchange_app_demo:
-   branch: master
-   migrate: false
-   copy_exclude:
-     - .git
 
 
      
