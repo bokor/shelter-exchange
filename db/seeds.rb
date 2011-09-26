@@ -27,9 +27,9 @@ end
 #   Truncate All Database Tables data
 #
 #######################################################################################################################
-# truncate_db_table("animal_types")
-# truncate_db_table("animal_statuses")
-# truncate_db_table("breeds")
+truncate_db_table("animal_types")
+truncate_db_table("animal_statuses")
+truncate_db_table("breeds")
 
 #######################################################################################################################
 #
@@ -90,6 +90,7 @@ Breed.create([
   { :animal_type_id => dog.id, :name => "American Eskimo Dog" },
   { :animal_type_id => dog.id, :name => "American Foxhound" },
   { :animal_type_id => dog.id, :name => "American Hairless Terrier" },
+  { :animal_type_id => dog.id, :name => "American Pit Bull Terrier" },
   { :animal_type_id => dog.id, :name => "American Staffordshire Terrier" },
   { :animal_type_id => dog.id, :name => "American Water Spaniel" },
   { :animal_type_id => dog.id, :name => "Anatolian Shepherd" },
@@ -269,7 +270,6 @@ Breed.create([
   { :animal_type_id => dog.id, :name => "Petit Basset Griffon Vendeen" },
   { :animal_type_id => dog.id, :name => "Pharaoh Hound" },
   { :animal_type_id => dog.id, :name => "Picardy Shepherd" },
-  { :animal_type_id => dog.id, :name => "Pit Bull Terrier" },
   { :animal_type_id => dog.id, :name => "Plott Hound" },
   { :animal_type_id => dog.id, :name => "Podengo Portugueso" },
   { :animal_type_id => dog.id, :name => "Pointer" },
@@ -291,7 +291,7 @@ Breed.create([
   { :animal_type_id => dog.id, :name => "Rottweiler" },
   { :animal_type_id => dog.id, :name => "Russian Spaniel" },
   { :animal_type_id => dog.id, :name => "Russian Toy" },
-  { :animal_type_id => dog.id, :name => "Saint Bernard St. Bernard" },
+  { :animal_type_id => dog.id, :name => "Saint Bernard" },
   { :animal_type_id => dog.id, :name => "Saluki" },
   { :animal_type_id => dog.id, :name => "Samoyed" },
   { :animal_type_id => dog.id, :name => "Sarplaninac" },
