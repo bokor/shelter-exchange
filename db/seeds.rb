@@ -13,7 +13,7 @@ def truncate_db_table(table)
       config = ActiveRecord::Base.configurations[Rails.env]
       ActiveRecord::Base.establish_connection
       case config["adapter"]
-        when "mysql"
+        when "mysql2"
           ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
         when "sqlite", "sqlite3"
           ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
