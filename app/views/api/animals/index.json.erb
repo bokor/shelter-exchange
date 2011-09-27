@@ -1,30 +1,31 @@
 <% json = @animals.collect do |animal|
 { 
-	:id => animal.id,
+	:animal => { 
+		:id => animal.id,
     :name => animal.name,
     :type => animal.animal_type.name,
-	:status => animal.animal_status.name,
+		:status => animal.animal_status.name,
    	:breed => full_breed(animal),
-    :age => humanize_dob(animal.date_of_birth),
-	:microchip => animal.microchip,
+   	:age => humanize_dob(animal.date_of_birth),
+		:microchip => animal.microchip,
     :color => animal.color,
     :description => animal.description,
-    :is_sterilized => animal.is_sterilized,
-    :weight => animal.weight,
+   	:is_sterilized => animal.is_sterilized,
+   	:weight => animal.weight,
     :sex => animal.sex.to_s.humanize,
     :euthanasia_info => {
-		:arrival_date => format_date(:default, animal.arrival_date),
-		:hold_time => animal.hold_time.blank? ? "" : "#{animal.hold_time} days",
-		:euthanasia_date => format_date(:default, animal.euthanasia_date)
-	},
+			:arrival_date => format_date(:default, animal.arrival_date),
+			:hold_time => animal.hold_time.blank? ? "" : "#{animal.hold_time} days",
+			:euthanasia_date => format_date(:default, animal.euthanasia_date)
+		},
     :photo => {
     	:thumbnail => animal.photo.file? ? animal.photo.url(:thumb) : s3_url(animal.photo.url(:thumb)[1..-1]),
     	:small => animal.photo.file? ? animal.photo.url(:small) : s3_url(animal.photo.url(:small)[1..-1]),
-        :large => animal.photo.file? ? animal.photo.url(:large) : s3_url(animal.photo.url(:large)[1..-1])
-    }
+     	:large => animal.photo.file? ? animal.photo.url(:large) : s3_url(animal.photo.url(:large)[1..-1])
+   	}
+	}
 }
-end
-%>
+end %>
 <% if params[:callback] %>
 <%= (params[:callback] << "(" << json.to_json << ")").html_safe %>
 <% else %>
