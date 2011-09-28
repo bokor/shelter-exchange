@@ -30,6 +30,28 @@
 						<span class="title">No current activity</span>
 					</span>
 				</div>
+				
+				<div class="getting_started">
+					<h2>Getting Started</h2>
+					<ol>
+						<li><%= link_to "Edit shelter details and create a wish list", 
+									    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list", 
+										:target => "_new" %></li>
+						<li><%= link_to "Upload shelter logo", 
+						               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo", 
+						               	:target => "_new" %></li>
+						<li><%= link_to "Set up your shelter capacity", 
+										"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity", 
+										:target => "_new" %></li>
+						<li><%= link_to "Set up accommodations", 
+										"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations", 
+										:target => "_new" %></li>
+						<li><%= link_to "Add your first animal record", 
+										"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record", 
+										:target => "_new" %></li>
+					</ol>
+				</div>
+				
 			<% end %>
 		</div>
 		
@@ -38,6 +60,28 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+	<% unless @latest_activity.blank? %>
+		<div class="getting_started">
+			<h2>Getting Started</h2>
+			<ol>
+				<li><%= link_to "Edit shelter details and create a wish list", 
+							    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list", 
+								:target => "_new" %></li>
+				<li><%= link_to "Upload shelter logo", 
+				               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo", 
+				               	:target => "_new" %></li>
+				<li><%= link_to "Set up your shelter capacity", 
+								"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity", 
+								:target => "_new" %></li>
+				<li><%= link_to "Set up accommodations", 
+								"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations", 
+								:target => "_new" %></li>
+				<li><%= link_to "Add your first animal record", 
+								"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record", 
+								:target => "_new" %></li>
+			</ol>
+		</div>
+	  <% end %>
 	<h2>Transfer Requests</h2>
 	<div id="transfers">
 		<%= render "transfers/transfer_list", :transfers => @transfers %>
