@@ -11,7 +11,7 @@ class Admin::SheltersController < Admin::ApplicationController
     @account = @shelter.account
     @capacities = @shelter.capacities
     @users = @shelter.account.users
-    @counts_by_status = @shelter.animals.unscoped.joins(:animal_status).group("animal_statuses.name").limit(nil).count
+    @counts_by_status = Animal.unscoped.joins(:animal_status).where(:shelter_id => @shelter).group("animal_statuses.name").limit(nil).count
     respond_with(@shelter)
   end
   
