@@ -2,6 +2,8 @@ class Admin::SheltersController < Admin::ApplicationController
   respond_to :html, :js
   
   def index
+    @kill_shelter_total = Shelter.kill_shelters.all.count
+    @no_kill_shelter_total = Shelter.no_kill_shelters.all.count
     @kill_shelters = Shelter.kill_shelters.all
     @no_kill_shelters = Shelter.no_kill_shelters.all
   end
