@@ -158,7 +158,7 @@
 .shelter.hover{cursor:default;}
 	.shelter .logo{display:inline-block; width: 150px;}
 		.shelter .logo img{display:inline-block; vertical-align:middle;}
-	.shelter .name{display:inline-block; width: 30%; font-weight: bold;}
+	.shelter .name{display:inline-block; width: 30%; font-weight: bold;	line-height: 1.5em;vertical-align: middle;}
 	.shelter .city_state{display:inline-block; width: 20%; }
 	.shelter .email{display:inline-block;  }
 	
