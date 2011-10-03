@@ -108,7 +108,7 @@ class Shelter < ActiveRecord::Base
   private
     def geocode_address
       if address_changed?
-        geo = Geokit::Geocoders::MultiGeocoder.geocode ([self.street, self.street_2, self.city, self.state, self.zip_code].join(" "))
+        geo = Geokit::Geocoders::MultiGeocoder.geocode ([self.street, self.city, self.state, self.zip_code].join(" "))
         errors.add(:street, "Could not Geocode address") if !geo.success
         self.lat, self.lng = geo.lat, geo.lng if geo.success
       end
