@@ -19,7 +19,7 @@ class Public::SaveALifeController < Public::ApplicationController
     @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]])
     unless @shelters.blank?
       shelter_ids = @shelters.collect(&:id)
-      @animals = Animal.community_animals(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
+      @animals = Animal.available_for_adoption.community_animals(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
   
@@ -27,7 +27,7 @@ class Public::SaveALifeController < Public::ApplicationController
     @shelter = Shelter.find(params[:filters][:shelter_id])
     @capacities = @shelter.capacities
     unless @shelter.blank?
-      @animals = Animal.community_animals(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
+      @animals = Animal.available_for_adoption.community_animals(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
   
