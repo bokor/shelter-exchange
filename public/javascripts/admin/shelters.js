@@ -3,7 +3,7 @@
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Shelters = {
-	loadMap: function(lat, lng){
+	loadMap: function(lat, lng, s3_url){
 		var myLatlng = new google.maps.LatLng(lat,lng);
 	    var myOptions = {
 	      zoom: 13,
@@ -18,7 +18,7 @@ var Shelters = {
 			center: myLatlng,
 		    position: myLatlng,
 		    map: map,
-		    icon: '/images/logo_small.png',
+		    icon: s3_url,
 			clickable: false,
 			draggable: false
 		});
