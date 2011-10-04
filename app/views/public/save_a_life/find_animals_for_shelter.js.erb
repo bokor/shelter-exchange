@@ -5,7 +5,7 @@
 <% end %>
 
 <% unless @shelter.blank? %>
-	$('#shelter_details').html( "<%= escape_javascript( render :template => 'communities/shelter_details') %>" );
+	$('#shelter_details').html( "<%= escape_javascript( render 'shelter_details') %>" );
 <% else %>
 	$('#shelter_animals').html( "<h1>No Shelter found</h1>" );
 <% end %>

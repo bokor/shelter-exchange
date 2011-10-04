@@ -8,6 +8,7 @@
 		<li><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a></li>
 	</ul>
 </div>
+
 <h2><%=@shelter.name%></h2>
 <ul>
 	<li><%=@shelter.street %></li>
@@ -24,17 +25,4 @@
 		<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
 	<% end %>
 </ul>
-<br />
-<% if @shelter.kill_shelter? %>
-	<div class="shelter_type kill">Kill Shelter</div>
-<% else %>
-	<div class="shelter_type no_kill">No Kill Shelter</div>
-<% end %>
-
-<% unless @capacities.blank? %>
-	<div class="capacities">
-		<h2>Does this shelter have space available?</h2>
-		<%= render "capacities/capacity_list" %>
-	</div>
-<% end %>
 

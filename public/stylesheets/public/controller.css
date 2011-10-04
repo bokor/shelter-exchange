@@ -378,6 +378,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a life :: Search by Shelter Name :: Shelter Details :: Layout
 -----------------------------------------------------------------------------*/
+.index_save_a_life #shelter_details{padding-bottom: 20px;}
 .index_save_a_life #shelter_details h1{color: #ccc;height: 500px; line-height: 500px; margin: 0 auto; text-align: center;}
 .index_save_a_life #shelter_details .right_side{float:right; text-align:right;}
 .index_save_a_life #shelter_details .logo{padding-bottom: 15px;}
@@ -390,7 +391,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a Life :: Animal List
 -----------------------------------------------------------------------------*/
-.index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; border-top: 1px dotted #ccc; }
 .index_save_a_life table.animal_list tr {border-bottom:1px #ccc dotted; }
 .index_save_a_life table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .index_save_a_life table.animal_list td.image { width:100px; padding-left:5px; }

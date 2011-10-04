@@ -25,7 +25,6 @@ class Public::SaveALifeController < Public::ApplicationController
   
   def find_animals_for_shelter
     @shelter = Shelter.find(params[:filters][:shelter_id])
-    @capacities = @shelter.capacities
     unless @shelter.blank?
       @animals = Animal.community_animals(@shelter.id, params[:filters]).available_for_adoption.all.paginate(:per_page => 10, :page => params[:page]) || {}
     end
