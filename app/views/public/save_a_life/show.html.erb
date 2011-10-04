@@ -4,7 +4,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_heading blue">
+	<!-- <div class="page_heading blue"> -->
 		<table class="animal">
 			<tr>
 				<td>
@@ -21,9 +21,9 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	<!-- </div> -->
 	
-	<div class="page_content">
+	<!-- <div class="page_content"> -->
 		 
 		<table class="animal_details">
 			<tr>
@@ -37,11 +37,11 @@
 						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 					</ul>
 					
-					<h3>Accommodation:</h3>
+					<!-- <h3>Accommodation:</h3>
 					<ul>
 						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
 						<li><p><b>Location:</b>  <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
-					</ul>
+					</ul> -->
 					
 					
 				</td>
@@ -74,7 +74,7 @@
 			</tr>
 		</table>
 		<% end %>
-	</div>
+	<!-- </div> -->
 	
 	<div id="animal_shelter">
 		<h2>Shelter details</h2>

@@ -1,0 +1,12 @@
+<% animal_count = capacity.animal_count(@current_shelter) %>
+<% status_class = capacity_status(capacity, animal_count) %>
+
+<div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
+	<span class="status"><div class="circle medium <%=status_class%>"><%= capacity.animal_type.name %></div></span>
+	<span class="counts">
+		<ul>
+			<li class="max"><strong>Max capacity:</strong> <%= capacity.max_capacity%></li>
+			<li class="available"><strong>Available space:</strong> <%= capacity.max_capacity - animal_count %></li>
+		</ul>
+	</span>
+</div>
