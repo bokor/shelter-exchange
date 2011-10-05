@@ -23,7 +23,7 @@
 	<%= @shelter.name %><br />
 	<%= @shelter.street %><br />
 	<%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %><br />
-	<%= @shelter.phone %><br />
+	<%= number_to_phone(@shelter.phone, :delimiter => "-") %><br />
 	<%= @shelter.email %><br />
 	<%= @shelter.website %><br />
 
