@@ -1,5 +1,5 @@
 US_STATES = { :AK => "Alaska", :AL => "Alabama", :AR => "Arkansas", :AZ => "Arizona", :CA => "California", 
-              :CO => "Colorado", :CT => "Connecticut", :DC => "Washington D.C.", :DE => "Delaware", :FL => "Florida", :GA => "Georgia", 
+              :CO => "Colorado", :CT => "Connecticut", :DC => "District Of Columbia", :DE => "Delaware", :FL => "Florida", :GA => "Georgia", 
               :HI => "Hawaii", :IA => "Iowa", :ID => "Idaho", :IL => "Illinois", :IN => "Indiana", :KS => "Kansas", :KY => "Kentucky", 
               :LA => "Louisiana", :MA => "Massachusetts", :MD => "Maryland", :ME => "Maine", :MI => "Michigan", :MN => "Minnesota", 
               :MO => "Missourri", :MS => "Mississippi", :MT => "Montana", :NC => "North Carolina", :ND => "North Dakota", 
