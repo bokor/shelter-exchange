@@ -26,7 +26,7 @@ gem 'mail', '2.2.19'
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
-gem 'devise', '1.4.1'               
+gem 'devise', '1.4.7'               
 gem 'devise_invitable', '0.5.4'     
 gem 'cancan', '1.5.1'               
 
