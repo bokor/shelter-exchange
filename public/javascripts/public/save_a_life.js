@@ -14,14 +14,11 @@ var logo = null;
 var googleListener = null;
 
 var SaveALife = {
-	initialize: function(latitude, longitude, overlay, marker, zoom){
+	initialize: function(latitude, longitude, overlay, marker){
 		mapOverlay = overlay;
 		logo = marker;
 		lat = latitude;
 		lng = longitude;
-		if (zoom > 0 ) {
-			defaultZoom = zoom;
-		}
 		
 		$("#narrow_search_results").bind("click",function(e){
 			e.preventDefault();
@@ -71,7 +68,7 @@ var SaveALife = {
 		$("#form_city_zipcode_search").unbind("submit");
 		$("#form_shelter_name_search").unbind("submit");
 		$("#filters_animal_type").unbind("change");
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").unbind("change");
+		$("#filters_sex, #filters_euthanasia_only").unbind("change");
 		
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
@@ -85,7 +82,7 @@ var SaveALife = {
 																				center: myLatLng,
 		    																	mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
-		kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+		kmlLayer = new google.maps.KmlLayer(mapOverlay); //, { preserveViewport: true }
 		kmlLayer.setMap(map);
 		
 		// Add Google Map Listener
@@ -113,15 +110,15 @@ var SaveALife = {
   	},
 	findAnimalsInBounds: function(){
 		var zoomLevel = map.getZoom();
-		if (zoomLevel < 10) {
-			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-		} else {
+		// if (zoomLevel < 10) {
+			// $('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+			// $('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
+		// } else {
 			var bounds = map.getBounds();
 			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 			$.get("/save_a_life/find_animals_in_bounds.js", $("#form_filters").serialize());
-		}
+		// }
 	},
 	findAnimalsForShelter: function(){
 		$.get("/save_a_life/find_animals_for_shelter.js", $("#form_filters").serialize());
@@ -163,7 +160,7 @@ var SaveALife = {
 			findAnimalsFunction();
 		});
 		
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").bind("change", function(e){
+		$("#filters_sex, #filters_euthanasia_only").bind("change", function(e){
 			e.preventDefault();
 			findAnimalsFunction();
 		});
