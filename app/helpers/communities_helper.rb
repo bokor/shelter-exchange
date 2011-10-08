@@ -26,7 +26,7 @@ module CommunitiesHelper
         end
       end
       output = image_tag("icon_community_alert.png") + " "
-      output += (components.blank? ? "Needs Urgent Rescue" : components.join() << " left").upcase
+      output += (components.blank? ? "Urgent!" : components.join() << " left").upcase
       output
     end
   end
