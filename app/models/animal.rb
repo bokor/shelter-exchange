@@ -180,7 +180,6 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.api_lookup(types, statuses)
     scope = scoped{}
-    scope = scope.unscoped.group("animals.euthanasia_date").order("animals.euthanasia_date ASC")
     scope = scope.includes(:animal_type, :animal_status)
     scope = (statuses.blank? ? scope.available_for_adoption : scope.where(:animal_status_id => statuses))
     scope = scope.where(:animal_type_id => types) unless types.blank?
