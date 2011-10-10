@@ -16,6 +16,14 @@ module ApplicationHelper
     content_for(:keywords) { keywords.to_s }
   end
   
+  def seo_location(seo_location)
+    content_for(:seo_location) { seo_location.to_s }
+  end
+  
+  def seo_image(seo_image)
+    content_for(:seo_image) { seo_image.to_s }
+  end
+  
   def javascripts(*files)
     content_for(:javascripts) { javascript_include_tag(*files) }
   end

@@ -1,28 +1,32 @@
-<div class="right_side">
-<% if @shelter.logo.file? %>
-	<div class="logo">
-		<%= image_tag @shelter.logo.url(:thumb) %>
+<div id="shelter_details">
+	<div class="right_side">
+	<% if @shelter.logo.file? %>
+		<div class="logo">
+			<%= image_tag @shelter.logo.url(:thumb) %>
+		</div>
+	<% end %>
+		<ul class="toggle_buttons">
+			<li><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a></li>
+		</ul>
 	</div>
-<% end %>
-	<ul class="toggle_buttons">
-		<li><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address%>&hl=en" target="_blank">Get Directions</a></li>
+
+	<h2><%=@shelter.name%></h2>
+	<ul>
+		<li><%=@shelter.street %></li>
+		<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+	</ul>
+	<br />
+	<ul>
+		<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+		<% unless @shelter.fax.blank? %>
+			<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
+		<% end %>
+		<li>
+			<%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>
+			<% unless @shelter.website.blank? %>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Visit Website", @shelter.website %>
+			<% end %>
+		</li>
 	</ul>
 </div>
-
-<h2><%=@shelter.name%></h2>
-<ul>
-	<li><%=@shelter.street %></li>
-	<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
-</ul>
-<br />
-<ul>
-	<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
-	<% unless @shelter.fax.blank? %>
-		<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
-	<% end %>
-	<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
-	<% unless @shelter.website.blank? %>
-		<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
-	<% end %>
-</ul>
 

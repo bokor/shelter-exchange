@@ -363,62 +363,68 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
 
 
-
-
 /* Save a life :: Results :: Layout
 -----------------------------------------------------------------------------*/
 .index_save_a_life .search_results {padding-top: 10px;}
 .index_save_a_life table.results{width: 100%; padding-bottom: 20px;}
-.index_save_a_life table.results td.shelter_half{width:49%; padding-right: 1%; vertical-align:top;}
+.index_save_a_life table.results td.shelter_half{width:49%; padding-right: 1%; vertical-align:top; }
 .index_save_a_life table.results td.animal_half{width:49%; padding-left: 1%; vertical-align:top;border-left: 1px dotted #ccc;}
 
 /* Save a life :: Map Canvas :: Layout
 -----------------------------------------------------------------------------*/
 .index_save_a_life #map_canvas{width:100%; height: 500px;}
 
-/* Save a life :: Search by Shelter Name :: Shelter Details :: Layout
+/* Save a life :: Shelter Details :: Layout
 -----------------------------------------------------------------------------*/
-.index_save_a_life #shelter_details{padding-bottom: 20px;}
-.index_save_a_life #shelter_details h1{color: #ccc;height: 500px; line-height: 500px; margin: 0 auto; text-align: center;}
-.index_save_a_life #shelter_details .right_side{float:right; text-align:right;}
-.index_save_a_life #shelter_details .logo{padding-bottom: 15px;}
-.index_save_a_life #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+.save_a_life #shelter_details{padding-bottom: 20px;}
+.save_a_life #shelter_details h1{color: #ccc;height: 100px; line-height: 100px; margin: 0 auto; text-align: center;}
+.save_a_life #shelter_details .right_side{float:right; text-align:right;}
+.save_a_life #shelter_details .logo{padding-bottom: 15px;}
+.save_a_life #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+.save_a_life .animal_shelter{border-top: 1px #ccc dotted; padding-top: 20px; margin-top: 10px;}
 
 /* Save a life :: Search by Shelter Name :: Animal List :: Layout
 -----------------------------------------------------------------------------*/
 .index_save_a_life .animals h1 {color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
 
 
-/* Save a Life :: Animal List
+/* Save a Life :: Layout :: Animal List 
 -----------------------------------------------------------------------------*/
-.index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; border-top: 1px dotted #ccc; }
+.index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
 .index_save_a_life table.animal_list tr {border-bottom:1px #ccc dotted; }
 .index_save_a_life table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .index_save_a_life table.animal_list td.image { width:100px; padding-left:5px; }
-.index_save_a_life table.animal_list td.details { /*width: 400px;*/width:58%;padding-left: 15px;color:#666; }
-.index_save_a_life table.animal_list td.status {/*width: 290px;*/ width:43%;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_save_a_life table.animal_list td.details { /*width: 400px;*/width:57%;padding-left: 15px;color:#666; }
+.index_save_a_life table.animal_list td.status {/*width: 290px;*/ width:44%;padding-left: 10px; padding-right: 5px; text-align:right;}
 .index_save_a_life table.animal_list .euthanisia_date{color:#DF0000;}
+
+/* Save a Life ::Search by Shelter Name :: Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.index_save_a_life #shelter_animals table.animal_list{border-top: 1px dotted #ccc;}
 
 
 /* Save a Life :: Show Page (Animal Page)
 -----------------------------------------------------------------------------*/
 .show_save_a_life table.animal{width:100%;}
-.show_save_a_life table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
-.show_save_a_life table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.show_save_a_life table.animal tr{border-top: #ccc 1px dotted;}
+.show_save_a_life table.animal td{vertical-align:top;width:50%;}
+.show_save_a_life table.animal td.action_links{text-align:right;font-size:12px;padding-top:5px; }
 .show_save_a_life table.animal td h1 {}
-.show_save_a_life table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_save_a_life table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
-.show_save_a_life table.animal td.status{text-align:right;}
+.show_save_a_life table.animal td.status{text-align:right; } /*color:#cf7019;*/
 
 .show_save_a_life table.animal_details{text-align:left;}
-.show_save_a_life table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_save_a_life table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_save_a_life table.animal_details h3{border-bottom: 1px #ccc dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
 .show_save_a_life table.animal_details td{vertical-align:top; }
 .show_save_a_life table.animal_details td.image img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
 .show_save_a_life table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
 .show_save_a_life table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.show_save_a_life table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_save_a_life table.animal_details td.metadata ul .red_date{color:#ee3124;}
+.show_save_a_life table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_save_a_life table.animal_details td.metadata ul li{ padding-bottom: 0; float:left; width: 48%;}
+.show_save_a_life table.animal_details td.metadata ul li p{padding-bottom: 5px;margin:0;}
+
+.show_save_a_life p.euthanasia_info{color: #ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
 /* Save a Life :: Show Page (Animal Page) :: IE :: Animal Img Fix :: PIE */
 /******************************************************************/

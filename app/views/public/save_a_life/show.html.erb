@@ -1,6 +1,19 @@
-<%= title "#{@animal.name} (#{@animal.id})" %>
+<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}" %>
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+
+<%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
+<%= seo_image "#{@animal.photo.url(:medium)}" %>
 
 <%= content_for :javascripts do %>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">
+		stLight.options({
+			publisher:'95fc3e87-ce6f-4899-b4e2-ad52add9d5b4',
+			onhover: false
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -8,9 +21,16 @@
 		<table class="animal">
 			<tr>
 				<td>
-					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+					<h1><%= @animal.name %></h1>
 				</td>
-				<td class="action_links">&nbsp;</td>
+				<td class="action_links">
+					<!-- Share This -->
+					<span class='st_facebook' displayText='Facebook'></span>
+					<span class='st_twitter' displayText='Tweet'></span>
+					<span class='st_email' displayText='Email'></span>
+					<span class='st_sharethis' displayText='ShareThis'></span>
+					<!--// Share This -->
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -21,87 +41,36 @@
 				</td>
 			</tr>
 		</table>
-	<!-- </div> -->
-	
-	<!-- <div class="page_content"> -->
-		 
-		<table class="animal_details">
-			<tr>
-				<td class="metadata">
-					<h3>Details:</h3>
-					<ul>
-						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
-						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
-						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
-						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
-						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
-					</ul>
-					
-					<!-- <h3>Accommodation:</h3>
-					<ul>
-						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
-						<li><p><b>Location:</b>  <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
-					</ul> -->
-					
-					
-				</td>
-				<td class="image">
-			    	<%= image_tag @animal.photo.url(:medium) %>
-			    </td>
-			</tr>
-		</table>
 		
-		<table class="description">
-			<tr>
-				<td>
+	<% if @shelter.kill_shelter? and @animal.euthanasia_date.present? %>
+		<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
+	<% end %>
+		 
+	<table class="animal_details">
+		<tr>
+			<td class="metadata">
+				<h3>Details:</h3>
+				<ul> 
+					<li><p><b>Weight:</b>  <%= @animal.weight.present? ? @animal.weight : "N/A" %></p></li>
+					<li><p><b>Size:</b>  <%= @animal.size.present? ? @animal.size : "N/A" %></p></li>
+					<li><p><b>Age (Est.):</b>  <%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></p></li>
+					<li><p><b>Color:</b>  <%= @animal.color.present? ? @animal.color : "N/A" %></p></li>
+					<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+				</ul>
+				<% if @animal.description %>
 					<h3>Description:</h3>
 					<p><%= @animal.description %></p>
-				</td>
-			</tr>
-		</table>
-		
-		<% if @shelter.kill_shelter? %>
-		<table class="euthanasia_info">
-			<tr>
-				<td>
-					<h3>Euthanasia Info:</h3>
-					<ul>
-						<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
-						<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
-						<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
-					</ul>
-				</td>
-			</tr>
-		</table>
-		<% end %>
-	<!-- </div> -->
+				<% end %>
+			</td>
+			<td class="image">
+			    <%= image_tag @animal.photo.url(:medium) %>
+			</td>
+		</tr>
+	</table>
 	
-	<div id="animal_shelter">
-		<h2>Shelter details</h2>
-		<div id="shelter" class="shelter_details">
-			<% if @shelter.logo.file? %>
-				<div class="logo">
-					<%= image_tag @shelter.logo.url(:thumb) %> 
-				</div>
-			<% end %>
-
-			<h2><%=@shelter.name%></h2>
-			<ul>
-				<li><%=@shelter.street%></li>
-				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
-			</ul>
-			<br />
-			<ul>
-				<li>Tel: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
-				<% unless @shelter.fax.blank? %>
-					<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
-				<% end %>
-				<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
-				<% unless @shelter.website.blank? %>
-					<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
-				<% end %>
-			</ul>
-		</div>
+	<div class="animal_shelter">
+		<%= render "shelter_details" %>
+		<p>Please contact <%=@shelter.name %> for more information on how to adopt <%=@animal.name %>.</p>
 	</div>
 	
 	

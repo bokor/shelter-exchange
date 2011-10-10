@@ -171,7 +171,6 @@
 /* Show Animal :: Animal Details
 -----------------------------------------------------------------------------*/
 .show_animals table.animal_details{text-align:left;}
-.show_animals table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_animals table.animal_details td{vertical-align:top; }
 .show_animals table.animal_details td.image{}

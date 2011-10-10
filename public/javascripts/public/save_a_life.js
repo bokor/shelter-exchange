@@ -28,6 +28,9 @@ var SaveALife = {
 
 		$("#search_by_city_zipcode").bind("click",function(e, first){
 			e.preventDefault();
+			
+			$("#map_canvas").stop().animate({marginTop: "0px"},0); // Fixes JScroll issue with hidden elements in the page
+			
 			$("#results_by_city_zipcode").show();
 			$("#results_by_shelter_name").hide();
 			$("#form_city_zipcode_search").show();
