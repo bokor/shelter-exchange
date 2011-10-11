@@ -406,13 +406,13 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a Life :: Show Page (Animal Page)
 -----------------------------------------------------------------------------*/
-.show_save_a_life table.animal{width:100%;}
-.show_save_a_life table.animal tr{border-top: #ccc 1px dotted;}
-.show_save_a_life table.animal td{vertical-align:top;width:50%;}
-.show_save_a_life table.animal td.action_links{text-align:right;font-size:12px;padding-top:5px; }
-.show_save_a_life table.animal td h1 {}
-.show_save_a_life table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
-.show_save_a_life table.animal td.status{text-align:right; } /*color:#cf7019;*/
+.show_save_a_life .animal{padding-bottom: 30px;}
+.show_save_a_life .animal:after{content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.show_save_a_life .animal .social{position:absolute; right:0; top: 10px;}
+.show_save_a_life .animal .type{float:left;width: 75%; text-align:left;}
+.show_save_a_life .animal .status{float:left;width: 25%; text-align:right;}
+.show_save_a_life .animal .type, .show_save_a_life .animal .status{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;}
+.show_save_a_life .animal .status{color:#f16649;}
 
 .show_save_a_life table.animal_details{text-align:left;}
 .show_save_a_life table.animal_details h3{border-bottom: 1px #ccc dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}

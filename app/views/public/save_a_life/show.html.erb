@@ -17,30 +17,22 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	<!-- <div class="page_heading blue"> -->
-		<table class="animal">
-			<tr>
-				<td>
-					<h1><%= @animal.name %></h1>
-				</td>
-				<td class="action_links">
-					<!-- Share This -->
-					<span class='st_facebook' displayText='Facebook'></span>
-					<span class='st_twitter' displayText='Tweet'></span>
-					<span class='st_email' displayText='Email'></span>
-					<span class='st_sharethis' displayText='ShareThis'></span>
-					<!--// Share This -->
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
-				</td>
-				<td class="status">
-					<p><%= @animal.animal_status.name %></p>
-				</td>
-			</tr>
-		</table>
+
+	<div class="animal">
+		<h1><%= @animal.name %></h1>
+		
+		<span class="social">
+			<!-- Share This -->
+			<span class='st_facebook' displayText='Facebook'></span>
+			<span class='st_twitter' displayText='Tweet'></span>
+			<span class='st_email' displayText='Email'></span>
+			<span class='st_sharethis' displayText='ShareThis'></span>
+			<!--// Share This -->
+		</span>
+		<span class="type"><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></span>
+		<span class="status"><%= @animal.animal_status.name %></span>
+	</div>
+
 		
 	<% if @shelter.kill_shelter? and @animal.euthanasia_date.present? %>
 		<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
