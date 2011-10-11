@@ -1,36 +1,36 @@
 /******************************************************************/
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
-.hover{background-color:#EFEBE3; cursor: pointer;}
+/*.hover{background-color:#EFEBE3; cursor: pointer;}
 .active_link {color:#888; text-decoration:none; cursor:default; }
-
+*/
 /* Hidden and Display
 -----------------------------------------------------------------------------*/
-.hide {display:none;}
-.show {display:block;}
+/*.hide {display:none;}
+.show {display:block;}*/
 
 /* Separators
 -----------------------------------------------------------------------------*/
-.link_separator{padding: 0 10px;}
-.separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}
+/*.link_separator{padding: 0 10px;}
+.separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}*/
 
 /* Sidebar :: Action Links
 -----------------------------------------------------------------------------*/
-#sidebar ul.action_links { padding: 0 0 10px 0; }
-#sidebar ul.action_links .button { min-width: 200px;}
+/*#sidebar ul.action_links { padding: 0 0 10px 0; }
+#sidebar ul.action_links .button { min-width: 200px;}*/
 
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.dialog {width: 680px; height: 425px; overflow:auto; display:none; }
+/*.dialog {width: 680px; height: 425px; overflow:auto; display:none; }
 .dialog .wrapper { padding: 15px; color: #222; }
 .dialog .title{float:left;}
-.dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }
+.dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }*/
 
 
 
 /* Box :: Layout :: Forms
 -----------------------------------------------------------------------------*/
-.box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
+/*.box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
 .box.hide{display: none;}
 .box.red{border-color: #f07280;background-color:#faced3;}
 .box.green{border-color: #90e674;background-color:#d5f6ca;}
@@ -38,12 +38,12 @@
 .box.blue{border-color: #74afe3;background-color:#c9e0f4;}
 .box h2{border: none;}
 .box h3{border: none;}
-.box:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.box:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 
 /* Sections :: Headings
 -----------------------------------------------------------------------------*/
-.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
+/*.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
 .section_heading.red{border-color: #f07280;background-color:#faced3;}
 .section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
@@ -51,39 +51,39 @@
 .section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
 .section_heading h2{float:left;}
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
-.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 /* Page Headings
 -----------------------------------------------------------------------------*/
-.page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}
+/*.page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}
 .page_heading.gray{background-color: #e7e7e7;border-bottom:1px solid #eee;}
 .page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}
 .page_heading.red{background-color:#faced3;border-bottom:1px solid #eee;}
 .page_heading h1{width:100%; }
-.page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 
 /* Section Heading
 -----------------------------------------------------------------------------*/
-.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
+/*.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
-.section_heading.red{border-color: #f07280;background-color:#faced3;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}*/
 
 /* Circles :: Capacity
 -----------------------------------------------------------------------------*/
-.circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
+/*.circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
 .circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
 .circle.medium{height: 60px; width: 60px; text-align:center; line-height: 60px;}
 .circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
 .circle.red{border-color: #f07280;background-color:#faced3;}
 .circle.yellow{border-color: #f9d36f; background-color:#fdf1d0;}
-.circle.green{border-color: #90e674;background-color:#d5f6ca;}
+.circle.green{border-color: #90e674;background-color:#d5f6ca;}*/
 
 /* Shelter Kill/No Kill Bubble
 -----------------------------------------------------------------------------*/
-.shelter_type{width: 150px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+/*.shelter_type{width: 150px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .shelter_type.kill{border-color: #f07280;background-color:#faced3;}
-.shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
+.shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}*/
 
 
 /*******************************************************************/
