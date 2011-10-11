@@ -28,12 +28,10 @@ var SaveALife = {
 
 		$("#search_by_city_zipcode").bind("click",function(e, first){
 			e.preventDefault();
-			
-			$("#map_canvas").stop().animate({marginTop: "0px"},0); // Fixes JScroll issue with hidden elements in the page
-			
+			$("#map_canvas").stop().animate({marginTop: "0px"},0); 
 			$("#results_by_city_zipcode").show();
-			$("#results_by_shelter_name").hide();
 			$("#form_city_zipcode_search").show();
+			$("#results_by_shelter_name").hide();
 			$("#form_shelter_name_search").hide();
 			//Reset All
 			if(!first){ SaveALife.resetAll(); }
@@ -46,10 +44,10 @@ var SaveALife = {
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
 			e.preventDefault();
-			$("#results_by_city_zipcode").hide();
 			$("#results_by_shelter_name").show();
-			$("#form_city_zipcode_search").hide();
 			$("#form_shelter_name_search").show();
+			$("#results_by_city_zipcode").hide();
+			$("#form_city_zipcode_search").hide();
 			//Reset All
 			if(!first){ SaveALife.resetAll(); }
 
