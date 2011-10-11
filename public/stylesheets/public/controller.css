@@ -326,11 +326,9 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a Life :: Global
 -----------------------------------------------------------------------------*/
-.save_a_life ul {list-style:none;}
-.save_a_life ul.form {padding-bottom: 0; margin-bottom:0;}
-.save_a_life input[type=text]{height:20px;width:90%;font-size:14px; }
-
-.index_save_a_life p, .index_save_a_life h3{margin-bottom: 10px; padding-bottom: 0px;}
+.save_a_life #main ul {list-style:none;}
+.save_a_life #main ul.form {padding-bottom: 0; margin-bottom:0;}
+.index_save_a_life #main p, .index_save_a_life #main h3{margin-bottom: 10px; padding-bottom: 0px;}
 
 
 /* Save a Life :: Search Section :: Search Bar */   
@@ -338,7 +336,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life .search_content {padding-bottom: 10px;padding-top: 10px;}
 .index_save_a_life .search_form{width: 70%}
 .index_save_a_life .search_form form{float:left;width: 38%;}
-.index_save_a_life .search_form form input{width: 100%;}
+.index_save_a_life .search_form form input{height:20px;width:100%;font-size:14px; }
 .index_save_a_life .narrow_search{width: 30%; text-align:right;float:right;}
 
 
@@ -432,7 +430,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .ie8 .show_save_a_life table.animal_details td.image img{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
-.show_save_a_life .description{width:100%; padding: 0 0 0 0; }
+/*.show_save_a_life .description{width:100%; padding: 0 0 0 0; }
 .show_save_a_life .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
 .show_save_a_life .euthanasia_info{width:100%; padding: 0 0 0 0; }
@@ -445,7 +443,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .show_save_a_life .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 .show_save_a_life .notes_heading h2{float:left;}
 .show_save_a_life .notes_heading .links{float:right; text-align: right;padding-top:5px;}
-.show_save_a_life .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_save_a_life .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 
 
