@@ -1,0 +1,25 @@
+<!-- metatags -->
+<meta charset="utf-8" />
+<meta name="language" content="en"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+<!-- open graph -->
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<meta property="fb:page_id" content="161458683884663" />
+<meta property="og:site_name" content="Shelter Exchange"/>
+<meta property="og:url" content="<%= yield(:canonical_url) %>"/>
+<meta property="og:title" content="<%= yield(:title) %> | Shelter Exchange"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="<%= content_for?(:seo_image) ? yield(:seo_image) : "#{full_url}/shelterexchange_icon.png" %>"/>
+<meta property="og:location" content="<%= content_for?(:seo_location) ? yield(:seo_location) : "Raleigh, NC" %>" />
+
+<meta property="og:description" content="<%= yield(:description) %>"/>
+
+<!-- icons -->
+<%= favicon_link_tag 'favicon.ico' %>
+<%= favicon_link_tag 'shelterexchange_icon.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+<!-- canonical url -->
+<% if content_for?(:canonical_url) %>
+	<link rel="canonical" href="<%= yield(:canonical_url) %>" />
+<% end %>

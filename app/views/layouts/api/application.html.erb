@@ -9,8 +9,9 @@
   	<!-- title -->
 	<title><%= yield(:title) %> | Shelter Exchange</title>
 	
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  
+	<!-- seo template -->
+	<%= render "api/shared/seo" %>
+	
 	<!-- stylesheets -->
  	<%= include_stylesheets :api_s3, :media => "all" %>
 	

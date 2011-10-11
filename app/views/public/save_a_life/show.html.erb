@@ -1,5 +1,5 @@
 <%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
-<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}" %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}. #{@animal.description}" %>
 <%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
 
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>

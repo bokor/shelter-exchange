@@ -1,4 +1,10 @@
-<%= title "#{@animal.name} (#{@animal.id}) - #{@animal.shelter.name}" %>
+<% social_url = www_url + public_save_a_life_path(@animal) %>
+
+<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@current_shelter.city}, #{@current_shelter.state}" %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@current_shelter.name} in #{@current_shelter.city}, #{@current_shelter.state}. #{@animal.description}" %>
+<%= canonical_url social_url %>
+<%= seo_location "#{@current_shelter.city}, #{@current_shelter.state}" %>
+<%= seo_image "#{@animal.photo.url(:medium)}" %>
 
 <%= content_for :javascripts do %>
 	<script type="text/javascript">var switchTo5x=true;</script>
@@ -20,10 +26,10 @@
 				</td>
 				<td class="action_links">
 					<!-- Share This -->
-					<!-- <span class='st_facebook' displayText='Facebook' onclick="alert('test');"></span>
-					<span class='st_twitter' displayText='Tweet'></span>
-					<span class='st_email' displayText='Email'></span>
-					<span class='st_sharethis' displayText='ShareThis'></span> -->
+					<span class='st_facebook' st_url="<%= social_url %>" displayText='Facebook'></span>
+					<span class='st_twitter' st_url="<%= social_url %>" displayText='Tweet'></span>
+					<span class='st_email' st_url="<%= social_url %>" displayText='Email'></span>
+					<span class='st_sharethis' st_url="<%= social_url %>" displayText='ShareThis'></span>
 					<!--// Share This -->
 					<ul class="toggle_buttons">
 						<li><%= link_to "Back to Results", url_for(:back) %></li>
@@ -54,12 +60,6 @@
 						<% unless @animal.size.blank? %><li><p><b>Size:</b>  <%= @animal.size %></p></li><% end %>
 						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
 						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
-					</ul>
-					
-					<h3>Accommodation:</h3>
-					<ul>
-						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
-						<li><p><b>Location:</b>  <%= @animal.accommodation and @animal.accommodation.location ? @animal.accommodation.location.name : "None"   %></p></li>
 					</ul>
 				</td>
 				<td class="image">

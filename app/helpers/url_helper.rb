@@ -13,12 +13,20 @@ module UrlHelper
     super
   end
   
+  def default_url
+    Rails.application.config.action_mailer.default_url_options[:host]
+  end
+  
   def full_url
     request.port != 80 ? [request.protocol, request.host, ":", request.port].join : [request.protocol, request.host].join
   end
   
   def api_url
     request.port != 80 ? [request.protocol, "api.", request.domain, ":", request.port].join : [request.protocol, "api.", request.domain].join
+  end
+  
+  def www_url
+    request.port != 80 ? [request.protocol, "www.", request.domain, ":", request.port].join : [request.protocol, "api.", request.domain].join
   end
   
 end

@@ -16,6 +16,10 @@ module ApplicationHelper
     content_for(:keywords) { keywords.to_s }
   end
   
+  def canonical_url(canonical_url)
+    content_for(:canonical_url) { canonical_url.to_s }
+  end
+  
   def seo_location(seo_location)
     content_for(:seo_location) { seo_location.to_s }
   end
