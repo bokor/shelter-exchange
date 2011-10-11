@@ -9,10 +9,10 @@
 	<%= render :partial => "public/shared/seo" %>
 
 	<!-- stylesheets -->
-	<%= include_stylesheets :public, :media => "all" %>
+	<%= include_stylesheets :public_s3, :media => "all" %>
 	
 	<!-- javascripts -->
-	<%= include_javascripts :public %>
+	<%= include_javascripts :public_s3 %>
 	<%= yield(:javascripts) %>
 	
 	<!--[if (gte IE 6)&(lte IE 8)]>

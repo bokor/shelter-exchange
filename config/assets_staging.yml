@@ -19,7 +19,7 @@ javascript_compressor:  yui          # (yui, closure)
 
 
 javascripts:
-  app:
+  app_s3:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -32,7 +32,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/app/*.js
 
-  admin:
+  admin_s3:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -43,7 +43,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/admin/*.js
 
-  api:
+  api_s3:
     - public/javascripts/global/jquery.min.js
     # - public/javascripts/global/jquery-ui.min.js
     # - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -54,7 +54,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/api/*.js
 
-  public:
+  public_s3:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -69,41 +69,41 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/public/*.js
 
-  reports1:
+  reports_s3:
     - public/javascripts/global/highcharts.js
 
 
 stylesheets:
-  app:
+  app_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     
-  app_login:
+  app_login_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/login.css
 
-  app_print:
+  app_print_s3:
       - public/stylesheets/app/print.css
       
-  admin:
+  admin_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
   
-  admin_login:
+  admin_login_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/login.css
   
-  api:
+  api_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
   
-  public:
+  public_s3:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
-  # public_print:
+  # public_print_s3:
   #     - public/stylesheets/public/print.css

@@ -1,7 +1,7 @@
 <%= title "Euthanized Monthly Total - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports1 %>
+	<%= include_javascripts :reports_s3 %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Euthanized Monthly Total', 'euthanized_monthly_total', 'Euthanized');
