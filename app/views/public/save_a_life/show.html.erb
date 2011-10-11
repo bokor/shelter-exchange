@@ -49,10 +49,9 @@
 					<li><p><b>Color:</b>  <%= @animal.color.present? ? @animal.color : "N/A" %></p></li>
 					<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 				</ul>
-				<% if @animal.description %>
-					<h3>Description:</h3>
-					<p><%= @animal.description %></p>
-				<% end %>
+				
+				<h3>Description:</h3>
+				<p><%= @animal.description.blank? "No description provided" : @animal.description %></p>
 			</td>
 			<td class="image">
 			    <%= image_tag @animal.photo.url(:medium) %>
