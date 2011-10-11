@@ -84,7 +84,7 @@ $(function() {
 			        opacity:         		 0.7
 			    }
 			});
-     	}, 400);
+     	}, 600);
  	}).ajaxStop( function() {
    		clearTimeout(timer);
        	timer = null;

@@ -140,7 +140,7 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 
 /* Ajax :: Messages */   
 /******************************************************************/
-.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff;}
+.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; -moz-text-shadow: 0px 0px 0px #fff; -webkit-text-shadow: 0px 0px 0px #fff;text-shadow: 0px 0px 0px #fff;}
 
 
 /* Pagination */   
