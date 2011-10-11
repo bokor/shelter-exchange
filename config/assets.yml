@@ -19,7 +19,7 @@ javascript_compressor:  yui          # (yui, closure)
 
 
 javascripts:
-  app1:
+  app:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -74,16 +74,16 @@ javascripts:
 
 
 stylesheets:
-  app1:
+  app:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     
-  app_login1:
+  app_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/login.css
 
-  app_print1:
+  app_print:
       - public/stylesheets/app/print.css
       
   admin1:
