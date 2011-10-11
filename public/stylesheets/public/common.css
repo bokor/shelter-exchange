@@ -83,8 +83,8 @@ header nav .sub_menu .donate{right: 0px;background: url(/images/public/tabs_dona
 
 /* IE Hack :: Header :: Nav */   
 /******************************************************************/
-.ie header nav li{margin: 0 23px; padding: 0 23px;}
-.ie header nav li:hover, .ie header nav li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
+.ie header nav .menu li{margin: 0 8px; padding: 0 18px;}
+.ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
 
 
 
