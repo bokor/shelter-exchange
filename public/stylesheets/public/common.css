@@ -69,16 +69,16 @@ header nav .menu li { position:relative;cursor: pointer; width: auto;line-height
 header nav .menu li:hover, header nav .menu li.current { background: url(/images/public/background-body.jpg) repeat; -moz-box-shadow:inset 0px 0px 10px #888; -webkit-box-shadow:inset 0px 0px 10px #888; box-shadow: inset 0px 0px 10px #888; -moz-border-radius: 10px 10px 0px 0px;-webkit-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;}
 header nav .menu li:hover a, header nav .menu li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
 
-header nav .sub_menu{list-style:none;}
-header nav .sub_menu li{ position:absolute;cursor: pointer;width: 123px;height: 75px; line-height: 65px;  margin: -15px 0; padding: -10px 0; text-align:center; }
+header nav .side_menu{list-style:none;}
+header nav .side_menu li{ position:absolute;cursor: pointer;width: 123px;height: 75px; line-height: 65px;  margin: -15px 0; padding: -10px 0; text-align:center; }
 
-header nav .sub_menu li a{ }
-header nav .sub_menu li a span{margin-top: -20px;height: 1;line-height:1em; display:block;text-transform: none; font-size: 9px;}
+header nav .side_menu li a{ }
+header nav .side_menu li a span{margin-top: -20px;height: 1;line-height:1em; display:block;text-transform: none; font-size: 9px;}
 
-header nav .sub_menu li:hover, header nav .sub_menu li.current { margin:-5px 0;color:#fff;text-decoration: none;}
-header nav .sub_menu li:hover a, header nav .sub_menu li.current a{ color:#fff;text-decoration: none;}
-header nav .sub_menu .save_a_life{right: 125px;background: url(/images/public/tabs_save_a_life_header.png) no-repeat;}
-header nav .sub_menu .donate{right: 0px;background: url(/images/public/tabs_donate_header.png) no-repeat;}
+header nav .side_menu li:hover, header nav .side_menu li.current { margin:-5px 0;color:#fff;text-decoration: none;}
+header nav .side_menu li:hover a, header nav .side_menu li.current a{ color:#fff;text-decoration: none;}
+header nav .side_menu .save_a_life{right: 125px;background: url(/images/public/tabs_save_a_life_header.png) no-repeat;}
+header nav .side_menu .donate{right: 0px;background: url(/images/public/tabs_donate_header.png) no-repeat;}
 
 
 /* IE Hack :: Header :: Nav */   
@@ -145,12 +145,12 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 
 /* Pagination */   
 /******************************************************************/
-.pagination { margin: 2px; padding: 10px 2px 10px 2px; } 
-.pagination a { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #bbb; text-decoration: none; color: #666; } 
-.pagination a:hover, 
-.pagination a:active { border: 1px solid #000099; color: #000; } 
-.pagination span.current { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #ccc; font-weight: bold; background-color: #bbb; color: #FFF; } 
-.pagination span.disabled { padding: 2px 3px 2px 3px; margin: 2px; border: 1px solid #eee; color: #ddd; }
+/* ORANGE - #CF7019 */
+.pagination { padding: 3px; margin: 20px 0 10px 0;}
+.pagination a {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
+.pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
+.pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
 
 
 /* Tooltips */   
