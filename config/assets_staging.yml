@@ -25,6 +25,7 @@ javascripts:
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
     - public/javascripts/global/jquery.qtip.min.js
     - public/javascripts/global/jquery.blockUI.min.js
+    - public/javascripts/global/jquery.jscroll.min.js
     - public/javascripts/global/modernizr.js
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
@@ -55,15 +56,16 @@ javascripts:
 
   public:
     - public/javascripts/global/jquery.min.js
-    - public/javascripts/global/jquery-ui.min.js  
+    - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
-    - public/javascripts/global/jquery.blockUI.min.js
+    # - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/jquery.nivo.slider.pack.js
     - public/javascripts/global/jquery.flip.min.js
     - public/javascripts/global/jquery.fancybox-1.3.4.pack.js
+    - public/javascripts/global/jquery.jscroll.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
-    - public/javascripts/global/date.js
+    # - public/javascripts/global/forms.js
+    # - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/public/*.js
 
