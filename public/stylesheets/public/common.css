@@ -146,9 +146,8 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 /* Pagination */   
 /******************************************************************/
 /* ORANGE - #CF7019 */
-.pagination { padding: 3px; margin: 0px 0 10px 0; }
-.pagination span{white-space:nowrap;height: 60px;line-height: 60px; }
-.pagination a {padding: 4px 7px 4px 7px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination { padding: 3px; margin: 10px 0 10px 0; }
+.pagination a {height: 60px;line-height: 40px; padding: 4px 7px 4px 7px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
 .pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
 .pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
 .pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
