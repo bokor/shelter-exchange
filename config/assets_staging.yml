@@ -32,7 +32,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/app/*.js
 
-  admin1:
+  admin:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -43,7 +43,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/admin/*.js
 
-  api1:
+  api:
     - public/javascripts/global/jquery.min.js
     # - public/javascripts/global/jquery-ui.min.js
     # - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -54,7 +54,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/api/*.js
 
-  public1:
+  public:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -86,24 +86,24 @@ stylesheets:
   app_print:
       - public/stylesheets/app/print.css
       
-  admin1:
+  admin:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
   
-  admin_login1:
+  admin_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/login.css
   
-  api1:
+  api:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
   
-  public1:
+  public:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
-  # public_print1:
+  # public_print:
   #     - public/stylesheets/public/print.css
