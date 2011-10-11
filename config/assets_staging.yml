@@ -2,7 +2,7 @@ s3_bucket: shelterexchange-staging
 s3_access_key_id: AKIAIAYOGZBGGRGY46DA
 s3_secret_access_key: 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
 s3_permission: public_read
-s3_cache_control: public, max-age=3600 #<% 365 * 24 * 60 * 60 %>
+s3_cache_control: public, max-age=<%= 365 * 24 * 60 * 60 %>
 s3_upload_files:
   - public/stylesheets/global/**/**
   - public/design/**/**
