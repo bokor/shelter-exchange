@@ -4,7 +4,9 @@
 <!-- metatags -->
 <meta charset="utf-8" />
 <meta name="language" content="en"/>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+<!--[if IE 8 ]>    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!--> <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> <!--<![endif]-->
 
 <meta name="robots" content="<%= Rails.env.production? ? "index,follow,archive" : "noindex,nofollow,noarchive" %>" />
 
