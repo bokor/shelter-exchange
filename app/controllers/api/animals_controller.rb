@@ -6,9 +6,9 @@ class Api::AnimalsController < Api::ApplicationController
     statuses = params.has_key?(:statuses) ? params[:statuses].split(",").collect{|x| x.to_i } : []
     
     unless request.format.html?
-      @animals = @current_shelter.animals.api_lookup(types, statuses)
+      @animals = Animal.api_lookup(types, statuses, @current_shelter)
     else
-      @animals = @current_shelter.animals.api_lookup(types, statuses).paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
+      @animals = Animal.api_lookup(types, statuses, @current_shelter).paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
     end
       
     respond_with(@animals)

@@ -110,7 +110,7 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
     scope = scoped{}
-    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)") # Order all animals by euthanasia date then default scope
+    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)").order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
     scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
@@ -178,9 +178,11 @@ class Animal < ActiveRecord::Base
   
   # Scopes - API
   #----------------------------------------------------------------------------
-  def self.api_lookup(types, statuses)
+  def self.api_lookup(types, statuses, current_shelter)
     scope = scoped{}
+    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)").order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status)
+    scope = scope.where(:shelter_id => current_shelter)
     scope = (statuses.blank? ? scope.available_for_adoption : scope.where(:animal_status_id => statuses))
     scope = scope.where(:animal_type_id => types) unless types.blank?
     scope
