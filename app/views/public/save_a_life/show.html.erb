@@ -51,7 +51,7 @@
 				</ul>
 				
 				<h3>Description:</h3>
-				<p><%= @animal.description.blank? "No description provided" : @animal.description %></p>
+				<p><%= @animal.description.blank? ? "No description provided" : @animal.description %></p>
 			</td>
 			<td class="image">
 			    <%= image_tag @animal.photo.url(:medium) %>
