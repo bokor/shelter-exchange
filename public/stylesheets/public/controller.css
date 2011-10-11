@@ -43,7 +43,7 @@
 
 /* Sections :: Headings
 -----------------------------------------------------------------------------*/
-/*.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
+.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
 .section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
 .section_heading.red{border-color: #f07280;background-color:#faced3;}
 .section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
@@ -51,7 +51,7 @@
 .section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
 .section_heading h2{float:left;}
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
-.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
+.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Page Headings
 -----------------------------------------------------------------------------*/

@@ -11,11 +11,6 @@ package_assets:         on           # (on, off, always)
 compress_assets:        on           # (on, off)
 gzip_assets:            on           # (on, off)
 javascript_compressor:  yui          # (yui, closure)
-#embed_assets:           on          # (on, off, datauri)
-#template_function:      _.template  # (defaults to the built-in micro-templating)
-#package_path:           packages    # (defaults to assets)
-# compressor_options:
-  # compilation_level: ADVANCED_OPTIMIZATIONS
 
 
 javascripts:
