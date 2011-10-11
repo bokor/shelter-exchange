@@ -1,0 +1,75 @@
+<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}" %>
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+
+<%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
+<%= seo_image "#{@animal.photo.url(:medium)}" %>
+
+<%= content_for :javascripts do %>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">
+		stLight.options({
+			publisher:'95fc3e87-ce6f-4899-b4e2-ad52add9d5b4',
+			onhover: false
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="animal">
+		<h1><%= @animal.name %></h1>
+		
+		<span class="social">
+			<!-- Share This -->
+			<span class='st_facebook' displayText='Facebook'></span>
+			<span class='st_twitter' displayText='Tweet'></span>
+			<span class='st_email' displayText='Email'></span>
+			<span class='st_sharethis' displayText='ShareThis'></span>
+			<!--// Share This -->
+		</span>
+		<span class="type"><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></span>
+		<span class="status"><%= @animal.animal_status.name %></span>
+	</div>
+
+		
+	<% if @shelter.kill_shelter? and @animal.euthanasia_date.present? %>
+		<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
+	<% end %>
+		 
+	<table class="animal_details">
+		<tr>
+			<td class="metadata">
+				<h3>Details:</h3>
+				<ul> 
+					<li><p><b>Weight:</b>  <%= @animal.weight.present? ? @animal.weight : "N/A" %></p></li>
+					<li><p><b>Size:</b>  <%= @animal.size.present? ? @animal.size : "N/A" %></p></li>
+					<li><p><b>Age (Est.):</b>  <%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></p></li>
+					<li><p><b>Color:</b>  <%= @animal.color.present? ? @animal.color : "N/A" %></p></li>
+					<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+				</ul>
+				<% if @animal.description %>
+					<h3>Description:</h3>
+					<p><%= @animal.description %></p>
+				<% end %>
+			</td>
+			<td class="image">
+			    <%= image_tag @animal.photo.url(:medium) %>
+			</td>
+		</tr>
+	</table>
+	
+	<div class="animal_shelter">
+		<%= render "shelter_details" %>
+		<p>Please contact <%=@shelter.name %> for more information on how to adopt <%=@animal.name %>.</p>
+	</div>
+	
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+
+	
+<% end %>
+	

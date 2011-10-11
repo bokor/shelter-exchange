@@ -19,10 +19,12 @@
 	<% unless @shelter.fax.blank? %>
 		<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
 	<% end %>
-	<li><a href="mailto:<%=@shelter.email %>?subject=From Shelter Exchange"><%=@shelter.email %></a></li>
-	<% unless @shelter.website.blank? %>
-		<li><a href="<%=@shelter.website%>" target="_new"><%=@shelter.website%></a></li>
-	<% end %>
+	<li>
+		<%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>
+		<% unless @shelter.website.blank? %>
+			&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Visit Website", @shelter.website %>
+		<% end %>
+	</li>
 </ul>
 <br />
 <% if @shelter.kill_shelter? %>

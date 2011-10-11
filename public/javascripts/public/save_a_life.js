@@ -1,5 +1,5 @@
 /*!------------------------------------------------------------------------
- * app/communities.js
+ * public/save_a_life.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var defaultZoom = 11;
@@ -13,7 +13,7 @@ var mapOverlay = null;
 var logo = null;
 var googleListener = null;
 
-var Communities = {
+var SaveALife = {
 	initialize: function(latitude, longitude, overlay, marker){
 		mapOverlay = overlay;
 		logo = marker;
@@ -36,12 +36,12 @@ var Communities = {
 			$("#form_city_zipcode_search").show();
 			$("#form_shelter_name_search").hide();
 			//Reset All
-			if(!first){ Communities.resetAll(); }
+			if(!first){ SaveALife.resetAll(); }
 
 			$(this).parents("ul").find("a").removeClass("current");
 			$(this).addClass("current");
 
-			Communities.searchByCityZipCode();
+			SaveALife.searchByCityZipCode();
 		});
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
@@ -51,11 +51,11 @@ var Communities = {
 			$("#form_city_zipcode_search").hide();
 			$("#form_shelter_name_search").show();
 			//Reset All
-			if(!first){ Communities.resetAll(); }
+			if(!first){ SaveALife.resetAll(); }
 
 			$(this).parents("ul").find("a").removeClass("current");
 			$(this).addClass("current");
-			Communities.searchByShelterName();
+			SaveALife.searchByShelterName();
 		});
 		
 		$("#search_by_city_zipcode").trigger("click", true);
@@ -71,7 +71,7 @@ var Communities = {
 		$("#form_city_zipcode_search").unbind("submit");
 		$("#form_shelter_name_search").unbind("submit");
 		$("#filters_animal_type").unbind("change");
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").unbind("change");
+		$("#filters_sex, #filters_euthanasia_only").unbind("change");
 		
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
@@ -85,46 +85,46 @@ var Communities = {
 																				center: myLatLng,
 		    																	mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
-		kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+		kmlLayer = new google.maps.KmlLayer(mapOverlay); //, { preserveViewport: true }
 		kmlLayer.setMap(map);
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
-			Communities.findAnimalsInBounds();
+			SaveALife.findAnimalsInBounds();
 		});
 		
 		// Set up forms
-		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
-		Communities.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
-		Communities.addressAutoComplete();
+		SaveALife.bindFilters(function(){SaveALife.findAnimalsInBounds()});
+		SaveALife.breedAutoComplete(function(){SaveALife.findAnimalsInBounds()});
+		SaveALife.addressAutoComplete();
   	},
 	searchByShelterName: function() {
 		// Set up and config
 	    myLatLng = new google.maps.LatLng(lat, lng);
 	
 		if($('#filters_shelter_id').val() != ""){
-			Communities.findAnimalsForShelter();
+			SaveALife.findAnimalsForShelter();
 		}
 	
 		// Set up forms
-		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
-		Communities.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
-		Communities.shelterNameAutoComplete();
+		SaveALife.bindFilters(function(){SaveALife.findAnimalsForShelter()});
+		SaveALife.breedAutoComplete(function(){SaveALife.findAnimalsForShelter()});
+		SaveALife.shelterNameAutoComplete();
   	},
 	findAnimalsInBounds: function(){
 		var zoomLevel = map.getZoom();
-		if (zoomLevel < 10) {
-			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-		} else {
+		// if (zoomLevel < 10) {
+			// $('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+			// $('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
+		// } else {
 			var bounds = map.getBounds();
 			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-			$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
-		}
+			$.get("/save_a_life/find_animals_in_bounds.js", $("#form_filters").serialize());
+		// }
 	},
 	findAnimalsForShelter: function(){
-		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
+		$.get("/save_a_life/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
@@ -143,7 +143,7 @@ var Communities = {
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
-			Communities.geocodeAddress();
+			SaveALife.geocodeAddress();
 		});
 		
 		$("#form_shelter_name_search").bind("submit", function(e){
@@ -163,7 +163,7 @@ var Communities = {
 			findAnimalsFunction();
 		});
 		
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").bind("change", function(e){
+		$("#filters_sex, #filters_euthanasia_only").bind("change", function(e){
 			e.preventDefault();
 			findAnimalsFunction();
 		});
@@ -233,7 +233,7 @@ var Communities = {
 			},
 			select: function(event, ui){
 				$('#filters_shelter_id').val(ui.item.id);
-				Communities.findAnimalsForShelter();
+				SaveALife.findAnimalsForShelter();
 				lat = ui.item.lat;
 				lng = ui.item.lng;
 			}	
@@ -273,8 +273,9 @@ var Communities = {
 	}
 };
 
+
 /* Scroll map with scrollbar
 /*----------------------------------------------------------------------------*/
 $(function() {
-	$("#map_canvas").jScroll({speed : "slow"});
+	$("#map_canvas").jScroll({top: 50, speed : "slow"});
 });

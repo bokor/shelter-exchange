@@ -2,7 +2,7 @@ module AnimalsHelper
   
   def full_breed(animal)
     if animal.is_mix_breed
-      animal.secondary_breed.blank? ? animal.primary_breed << " Mix" : animal.primary_breed << " & " << animal.secondary_breed << " Mix"
+      animal.secondary_breed.blank? ? animal.primary_breed + " Mix" : animal.primary_breed + " & " + animal.secondary_breed + " Mix"
     else
       animal.primary_breed
     end

@@ -1,7 +1,11 @@
 module Public::ApplicationHelper
   
   def page_name
-    @path.blank? ? "home_page" : "#{@path.parameterize('_')}_page"
+    if controller_name != "pages"
+      "#{action_name}_#{controller_name}"
+    else
+      @path.blank? ? "home_page" : "#{@path.parameterize('_')}_page"
+    end
   end
   
 end

@@ -80,11 +80,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :find_animals_in_bounds
         get :find_animals_for_shelter
       end
-      # member do
-      #   get :animal
-      # end
     end
-    match 'communities/animal/:animal_id' => 'communities#animal', :as => :animal_communities
   
     # Maps
     #----------------------------------------------------------------------------
@@ -255,7 +251,6 @@ ShelterExchangeApp::Application.routes.draw do
   #----------------------------------------------------------------------------
   constraints(PublicSubdomain) do
     
-        
     namespace :public, :path => "/" do
       
       # Public :: Accounts
@@ -264,6 +259,32 @@ ShelterExchangeApp::Application.routes.draw do
       get "signup" => "accounts#new", :path => :signup
       post "signup" => "accounts#create", :path => :signup
       
+      # Public :: Breeds
+      #----------------------------------------------------------------------------
+      resources :breeds, :only => [:auto_complete] do
+        get :auto_complete, :on => :collection
+      end
+
+      # Public :: Shelters
+      #----------------------------------------------------------------------------
+      resources :shelters, :only => [:auto_complete] do
+        get :auto_complete, :on => :collection
+      end
+      
+
+      # Public :: Save A Life
+      #----------------------------------------------------------------------------
+      resources :save_a_life do
+        collection do
+          get :find_animals_in_bounds
+          get :find_animals_for_shelter
+        end
+      end
+      
+      # Public :: Help A Shelter
+      #----------------------------------------------------------------------------
+      resources :help_a_shelter
+            
       # Public :: Login
       #----------------------------------------------------------------------------
       devise_for :users, :path => "", :controllers => { :sessions => "public/users/sessions" },

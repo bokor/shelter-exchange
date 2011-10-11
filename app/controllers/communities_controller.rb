@@ -4,12 +4,11 @@ class CommunitiesController < ApplicationController
   def index
   end
   
-  def animal
-    @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:animal_id])
+  def show
+    @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
     @notes = @animal.notes.all
     @shelter = @animal.shelter
     @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists? unless @current_shelter.kill_shelter?
-    respond_with(@animal)
   end
   
   def filter_notes

@@ -1,0 +1,79 @@
+<%= title "Save a life - Adopt an animal today" %>
+<%= description "Search your local shelters and rescue groups for animals available for adoption." %>
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+
+<%= content_for :javascripts do %>
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+	<script type="text/javascript">
+		$(function() {
+			SaveALife.initialize(38.6,-98,"<%=s3_url('maps/overlay.kmz')%>","<%=s3_url('images/logo_small.png')%>");
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+
+	<div class="search_content">
+		<span class="search_form">
+			<form action="#" id="form_city_zipcode_search">
+			    <%= text_field_tag :city_zipcode, "" %> <!-- #{city_zipcode_default} -->
+			</form>
+			<form action="#" id="form_shelter_name_search">
+			   	<%= text_field_tag :shelter_name, "" %>
+			</form>
+			<ul class="toggle_buttons">
+				<li><a id="search_by_city_zipcode" href="#">City or Zip code</a></li>
+				<li><a id="search_by_shelter_name" href="#">Shelter Name</a></li>
+			</ul>
+		</span>
+		<span class="narrow_search">
+			<ul class="toggle_buttons">
+				<li><a id="narrow_search_results" href="#">Narrow your search results?</a></li>
+			</ul>
+		</span>
+	</div>
+		
+	<div class="map_separator"></div>
+		
+	<div id="filters" class="section_heading no_borders blue">
+		<%= render "form_filters" %>
+	</div>
+	
+	<div class="search_results">	
+			
+		<table id="results_by_city_zipcode" class="results">
+			<tr>
+				<td class="shelter_half">
+					<div id="map_canvas"></div>
+				</td>
+				<td class="animal_half">
+					<div id="map_animals" class="animals">
+						<h1>Animal List Loading</h1>
+					</div>
+				</td>
+			</tr>
+		</table>
+			
+		<table id="results_by_shelter_name" class="results">
+			<tr>
+				<td class="shelter_section">
+					<div id="shelter_details">
+						<h1>Please search for a shelter</h1>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="animal_section">
+					<div id="shelter_animals" class="animals">
+						
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>

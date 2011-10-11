@@ -13,6 +13,7 @@
 	
 	<!-- javascripts -->
 	<%= include_javascripts :public %>
+	<%= yield(:javascripts) %>
 	
 	<!--[if (gte IE 6)&(lte IE 8)]>
 		<%= javascript_include_tag "global/selectivizr-min" %>
@@ -25,7 +26,7 @@
 	<%= csrf_meta_tag %>
 
 </head>
-<body class="<%= controller_name.singularize %> <%= page_name %>">
+<body class="<%= controller_name %> <%= page_name %>">
 	
 	<%= render :partial => "public/shared/header" %>
         

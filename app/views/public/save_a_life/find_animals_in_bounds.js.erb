@@ -1,0 +1,5 @@
+<% unless @animals.blank? %>
+	$('#map_animals').html( "<%= escape_javascript( render 'animal_list', :animals => @animals) %>" );
+<% else %>
+	$('#map_animals').html( "<h1 style='color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;'>No Animals found</h1>" );
+<% end %>
