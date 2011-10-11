@@ -402,6 +402,6 @@ ul.toggle_buttons li a:hover{
 
 /* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
 /******************************************************************/
-.ie7 ul.toggle_buttons, 
-.ie8 ul.toggle_buttons{behavior: url(/stylesheets/global/pie/PIE.htc);}
+/*.ie7 ul.toggle_buttons, 
+.ie8 ul.toggle_buttons{behavior: url(/stylesheets/global/pie/PIE.htc);}*/
 
