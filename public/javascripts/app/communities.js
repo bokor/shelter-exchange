@@ -112,16 +112,16 @@ var Communities = {
 		Communities.shelterNameAutoComplete();
   	},
 	findAnimalsInBounds: function(){
-		var zoomLevel = map.getZoom();
-		if (zoomLevel < 10) {
-			$('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-			$('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-		} else {
+		// var zoomLevel = map.getZoom();
+		// if (zoomLevel < 10) {
+			// $('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
+			// $('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
+		// } else {
 			var bounds = map.getBounds();
 			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 			$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
-		}
+		// }
 	},
 	findAnimalsForShelter: function(){
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
