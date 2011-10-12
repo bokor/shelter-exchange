@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   private
   
     def current_account
-      @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless RESERVED_SUBDOMAINS.include?(request.subdomains.last)
+      @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
     end
     
     def current_shelter
