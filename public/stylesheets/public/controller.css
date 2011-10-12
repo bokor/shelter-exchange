@@ -397,6 +397,11 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life table.animal_list td.status {/*width: 290px;*/ width:44%;padding-left: 10px; padding-right: 5px; text-align:right;}
 .index_save_a_life table.animal_list .euthanisia_date{color:#DF0000;}
 
+/* Save a Life :: Layout :: Animal List 
+-----------------------------------------------------------------------------*/
+.ie .index_save_a_life table.animal_list td.details { width:55%; padding-left: 10px;}
+.ie .index_save_a_life table.animal_list td.status { width:46%;padding-left: 5px;}
+
 /* Save a Life ::Search by Shelter Name :: Animal List :: Layout
 -----------------------------------------------------------------------------*/
 .index_save_a_life #shelter_animals table.animal_list{border-top: 1px dotted #ccc;}
