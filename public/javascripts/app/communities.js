@@ -85,7 +85,8 @@ var Communities = {
 																				center: myLatLng,
 		    																	mapTypeId: google.maps.MapTypeId.ROADMAP});
 		
-		kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+		// kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+		kmlLayer = new google.maps.KmlLayer(mapOverlay); // removed zoom in
 		kmlLayer.setMap(map);
 		
 		// Add Google Map Listener
