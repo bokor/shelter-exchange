@@ -12,7 +12,7 @@ class Shelter < ActiveRecord::Base
   
   # Constants
   #----------------------------------------------------------------------------
-  LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
+  LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"].freeze
   LOGO_SIZE = 4.megabytes
   LOGO_SIZE_IN_TEXT = "4 MB"
   

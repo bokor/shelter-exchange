@@ -19,7 +19,7 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   PER_PAGE = 25
   PER_PAGE_API = 25
-  PHOTO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjepg", "image/x-png"].freeze
+  PHOTO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"].freeze
   PHOTO_SIZE = 4.megabytes
   PHOTO_SIZE_IN_TEXT = "4 MB"
   
