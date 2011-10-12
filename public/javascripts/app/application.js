@@ -112,7 +112,7 @@ $(function() {
 			        opacity:         		 0.7
 			    }
 			});
-     	}, 400);
+     	}, 600); //changed from 400
  	}).ajaxStop( function() {
    		clearTimeout(timer);
        	timer = null;
