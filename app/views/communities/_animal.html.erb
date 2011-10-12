@@ -4,17 +4,18 @@
 	</td>
 	<td class="details">
 		<h3><%= link_to animal.name, community_path(animal), :target => "_blank"  %></h3>
-		<p><%= full_breed(animal) %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
+		<p><%= full_breed(animal) %></p>
 		<p><%= animal.date_of_birth.blank? ? "Age not specified".html_safe : humanize_dob(animal.date_of_birth) + " old" %></p>
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
 		<p><%= animal.shelter.name %></p>
+		<p><%= animal.shelter.city %>, <%= animal.shelter.state %></p>
 		<% if animal.shelter.kill_shelter? %>
 			<p class="euthanisia_date"><b><%= days_left(animal.euthanasia_date) %></b></p>
 		<% end %>
-		<div class="action_links"></div>
+		<!-- <div class="action_links"></div> -->
 	</td>
 </tr>
 
