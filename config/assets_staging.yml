@@ -14,7 +14,7 @@ javascript_compressor:  yui          # (yui, closure)
 
 
 javascripts:
-  app_s3:
+  app:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -27,7 +27,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/app/*.js
 
-  admin_s3:
+  admin:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -38,7 +38,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/admin/*.js
 
-  api_s3:
+  api:
     - public/javascripts/global/jquery.min.js
     # - public/javascripts/global/jquery-ui.min.js
     # - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -49,7 +49,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/api/*.js
 
-  public_s3:
+  public:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/jquery-ui.min.js
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
@@ -59,46 +59,46 @@ javascripts:
     - public/javascripts/global/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/global/jquery.jscroll.min.js
     - public/javascripts/global/modernizr.js
-    # - public/javascripts/global/forms.js
+    - public/javascripts/global/forms.js
     # - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/public/*.js
 
-  reports_s3:
+  reports:
     - public/javascripts/global/highcharts.js
 
 
 stylesheets:
-  app_s3:
+  app:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     
-  app_login_s3:
+  app_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/app/login.css
 
-  app_print_s3:
+  app_print:
       - public/stylesheets/app/print.css
       
-  admin_s3:
+  admin:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
   
-  admin_login_s3:
+  admin_login:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/admin/login.css
   
-  api_s3:
+  api:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
   
-  public_s3:
+  public:
     - public/stylesheets/global/**/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
-  # public_print_s3:
+  # public_print:
   #     - public/stylesheets/public/print.css

@@ -1,7 +1,7 @@
 <%= title "Foster Care Monthly Total - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports_s3 %>
+	<%= include_javascripts :reports %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Foster Care Monthly Total', 'foster_care_monthly_total', 'Foster Care');

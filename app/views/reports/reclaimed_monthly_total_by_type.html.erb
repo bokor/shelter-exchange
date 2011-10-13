@@ -1,7 +1,7 @@
 <%= title "Reclaimed Monthly Total by Animal Type - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports_s3 %>
+	<%= include_javascripts :reports %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Reclaimed Monthly Total By Type', 'reclaimed_monthly_total_by_type', 'Reclaimed');
