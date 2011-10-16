@@ -41,7 +41,7 @@
 					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
 				</td>
 				<td class="status">
-					<p><%= @animal.animal_status.name %></p>
+					<p><%= @animal.animal_status.name %><%= adoption_date(@animal) %></p>
 				</td>
 			</tr>
 		</table>
