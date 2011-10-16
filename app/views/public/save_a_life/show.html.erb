@@ -30,7 +30,7 @@
 			<!--// Share This -->
 		</span>
 		<span class="type"><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></span>
-		<span class="status"><%= @animal.animal_status.name %></span>
+		<span class="status"><%= @animal.animal_status.name %><%= adoption_date(@animal) %></span>
 	</div>
 
 		

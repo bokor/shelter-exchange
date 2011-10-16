@@ -53,5 +53,13 @@ module AnimalsHelper
     end
     format_date(type, animal.euthanasia_date)
   end
+  
+  def adoption_date(animal)
+    nil
+    if animal.animal_status_id == 2
+      adoption_date = animal.status_histories.where(:animal_status_id  => animal.animal_status).last.created_at
+      " on #{format_date(:short_full_year, adoption_date)}" 
+    end
+  end
 
 end
