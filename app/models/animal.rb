@@ -239,19 +239,23 @@ class Animal < ActiveRecord::Base
     end
     
     def date_of_birth_valid?
+      self.date_of_birth = nil
       unless self.date_of_birth_year.blank? and self.date_of_birth_month.blank? and self.date_of_birth_day.blank?
         begin
+          raise ArgumentError if self.date_of_birth_year.length < 4
           self.date_of_birth = Date.civil(self.date_of_birth_year.to_i, self.date_of_birth_month.to_i, self.date_of_birth_day.to_i)
         rescue ArgumentError
-           errors.add(:date_of_birth, "is an invalid date format")
+          errors.add(:date_of_birth, "is an invalid date format")
         end
       end
     end
     
     def arrival_date_valid?
       if is_kill_shelter?
+        self.arrival_date = nil
         unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
           begin
+            raise ArgumentError if self.arrival_date_year.length < 4
             self.arrival_date = Date.civil(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i)
           rescue ArgumentError
             errors.add(:arrival_date, "is an invalid date format")
@@ -264,8 +268,10 @@ class Animal < ActiveRecord::Base
     
     def euthanasia_date_valid?
       if is_kill_shelter?
+        self.euthanasia_date = nil
         unless self.euthanasia_date_year.blank? and self.euthanasia_date_month.blank? and self.euthanasia_date_day.blank?
           begin
+            raise ArgumentError if self.euthanasia_date_year.length < 4
             self.euthanasia_date = Date.civil(self.euthanasia_date_year.to_i, self.euthanasia_date_month.to_i, self.euthanasia_date_day.to_i)
           rescue ArgumentError
             errors.add(:euthanasia_date, "is an invalid date format")

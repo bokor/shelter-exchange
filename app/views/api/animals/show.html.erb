@@ -77,7 +77,7 @@
 			</tr>
 		</table>
 		
-		<% if @current_shelter.kill_shelter? %>
+		<% if @current_shelter.kill_shelter? and AnimalStatus::ACTIVE.include?(@animal.animal_status_id) %>
 		<table class="euthanasia_info">
 			<tr>
 				<td>

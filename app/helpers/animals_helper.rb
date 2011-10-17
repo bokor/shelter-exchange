@@ -9,10 +9,7 @@ module AnimalsHelper
   end
   
   def humanize_dob(dob)
-    unless dob.blank?
-      return time_diff_in_natural_language(dob, current_time)
-    end
-    ""
+    time_diff_in_natural_language(dob, current_time) unless dob.blank?
   end
   
   def date_of_birth_value(type, animal)
@@ -55,7 +52,6 @@ module AnimalsHelper
   end
   
   def adoption_date(animal)
-    nil
     if animal.animal_status_id == 2
       adoption_date = animal.status_histories.where(:animal_status_id  => animal.animal_status).last.created_at
       " on #{format_date(:short_full_year, adoption_date)}" 
