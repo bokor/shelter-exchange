@@ -15,8 +15,22 @@
 			<%= image_tag("public/home/slider_4.png") %>
         </div>
     </div>
+	
+	<h2>Latest adoptions</h2>
 
-
+	<div class="adoptions">
+		<% @animals.each_with_index do |animal, index|%>
+			<div class="box col_<%=index+1%>">
+				<div class="photo">
+					<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal)  %>
+				</div>
+				<div class="animal">
+					<h3>Congratulations <%= animal.name %>!</h3>
+					<p>Adopted on <%= format_date(:short_no_year, animal.status_change_date) %> from <%=animal.shelter.name %>, <%=animal.shelter.city%>, <%=animal.shelter.state%></p>
+				</div>
+			</div>
+		<% end %>
+	</div>
 
 <% end %>
 

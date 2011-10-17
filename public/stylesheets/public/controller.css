@@ -105,6 +105,8 @@
 
 /* Home Page */   
 /******************************************************************/
+.home_page h2{text-align:center;margin: 0 auto;padding: 20px 0;}
+
 .home_page #main {padding-bottom: 445px; position: relative; }
 
 .home_page .theme-default #slider {margin:10px auto 50px auto;
@@ -115,6 +117,34 @@
 /******************************************************************/
 .ie7 .home_page .theme-default .nivoSlider, 
 .ie8 .home_page .theme-default .nivoSlider{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+/* Home Page :: Adoptions */   
+/******************************************************************/
+.home_page .adoptions{ text-align:center; padding-bottom: 20px;}
+.home_page .adoptions:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.home_page .adoptions .box {height: 200px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+.home_page .adoptions .box.col_1{ width: 300px; float:left;}
+.home_page .adoptions .box.col_2{ width: 300px; float:left; margin: 0 26px;}
+.home_page .adoptions .box.col_3{ width: 300px; float:left;}
+
+
+/* Home Page :: Adoptions :: IE :: Box Fix :: PIE */
+/******************************************************************/
+.ie7 .home_page .adoptions .box, 
+.ie8 .home_page .adoptions .box{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.home_page .adoptions .box:last-child{margin-right: 0px;}	
+
+.home_page .photo{padding-top: 20px;}
+.home_page .photo img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
+
+/* About us :: Mission :: IE :: Board Member Img Fix :: PIE */
+/******************************************************************/
+.ie7 .home_page .photo img,
+.ie8 .home_page .photo img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.home_page .animal p{text-align:center; padding: 0px 20px;}
+.home_page .animal h3{border:none;padding:15px 0 10px 0; margin:0;text-align:center;}
 
 
 /* Home Page :: Homepage :: Extra Section */   

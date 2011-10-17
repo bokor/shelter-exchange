@@ -4,7 +4,7 @@ class Public::PagesController < Public::ApplicationController
   # caches_page :index, :show, :sitemap
     
   def index
-    # Home Page = /
+    @animals = Animal.includes(:shelter).adopted.order(:status_change_date).limit(3)
   end
   
   def show
