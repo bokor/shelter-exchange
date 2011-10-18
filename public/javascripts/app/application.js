@@ -125,7 +125,7 @@ $(function() {
 /*----------------------------------------------------------------------------*/
 $(function(){
 	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(e) {
-	  if (e.type == 'mouseenter') {
+	  if (e.type == 'mouseover') {
 	    $(this).addClass("hover");
 	  } else {
 	    $(this).removeClass("hover");

@@ -187,13 +187,10 @@
 /* Show Animal :: Euthanasia Info Layout
 -----------------------------------------------------------------------------*/
 .show_animals .euthanasia_info{width:100%; padding: 0 0 0 0; }
-.show_animals .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_animals .euthanasia_info ul li {float:left; padding-right: 20px;}
 .show_animals .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-
-/*.show_animals #animal_alerts .edit_note h2 {border: 0;}*/
 
 /* Show Animals :: Section Headings
 -----------------------------------------------------------------------------*/
