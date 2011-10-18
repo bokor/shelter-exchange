@@ -1,7 +1,8 @@
 Dir.chdir(Rails.root.join("app/views/public/pages"))
-xml.instruct!
- 
-xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+xml.instruct! 
+xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
+           "xsi:schemaLocation" => "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd",
+           "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9"  do
   # Home Page --------------------------------------------
   xml.url do
    xml.loc "#{full_url}/"
@@ -17,5 +18,16 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   end
   #-Community :: Shelters--------------------------------------------
   #-Community :: Animals--------------------------------------------
+  xml.url do
+   xml.loc "#{full_url}/save_a_life"
+   xml.lastmod @save_a_life_last_updated
+  end
+  @animals.each do |animal|
+    xml.url do
+     xml.loc "#{full_url}/save_a_life/#{animal.id}"
+     xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
+     xml.changefreq "hourly"
+    end
+  end
 end
 

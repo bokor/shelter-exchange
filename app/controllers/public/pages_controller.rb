@@ -15,6 +15,8 @@ class Public::PagesController < Public::ApplicationController
   end
   
   def sitemap
+    @save_a_life_last_updated = Animal.order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
+    @animals = Animal.select("id, updated_at").available_for_adoption.all
   end
   
 end
