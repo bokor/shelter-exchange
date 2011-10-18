@@ -142,7 +142,7 @@
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;}
 .show_animals table.animal td.action_links{text-align:right;font-size:12px;padding-top:5px;}
-.show_animals table.animal td.action_links .toggle_buttons{margin-top: -4px;}
+.show_animals table.animal td.action_links .toggle_buttons{margin: -4px 0 0 15px;}
 .show_animals table.animal td.status{text-align:right;}
 .show_animals table.animal td h1 {}
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
@@ -152,41 +152,31 @@
 /* Show Animal :: Animal Details
 -----------------------------------------------------------------------------*/
 .show_animals table.animal_details{text-align:left;}
-.show_animals table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_animals table.animal_details h3{border-bottom: 1px #ccc dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
 .show_animals table.animal_details td{vertical-align:top; }
-.show_animals table.animal_details td.image{}
+/*.show_animals table.animal_details td.image img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}*/
 .show_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
+.show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
+.show_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.show_animals table.animal_details td.metadata ul li{ padding-bottom: 0; float:left; width: 48%;}
+.show_animals table.animal_details td.metadata ul li p{padding-bottom: 5px;margin:0;}
 
-.show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 15px;}
-.show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
+.show_animals p.euthanasia_info{color: #ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 
 /* Show Animal :: Shelter Details
 -----------------------------------------------------------------------------*/
-.show_animals table.shelter_details{width:100%; padding: 20px 0 0 0;}
-.show_animals table.shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_animals table.shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_animals table.shelter_details td{vertical-align:top; }
-.show_animals table.shelter_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
-.show_animals table.shelter_details td.metadata .logo{float:right;}
-.show_animals table.shelter_details td.metadata ul {text-align:left;padding-bottom: 15px;}
-.show_animals table.shelter_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_animals table.shelter_details td.metadata ul .red_date{color:#ee3124;}
+.show_animals .animal_shelter{border-top: 1px #ccc dotted; padding-top: 20px; margin-top: 10px;}
+.show_animals #shelter_details{padding-bottom: 20px;}
+.show_animals #shelter_details h1{color: #ccc;height: 100px; line-height: 100px; margin: 0 auto; text-align: center;}
+.show_animals #shelter_details .right_side{float:right; text-align:right;}
+.show_animals #shelter_details .logo{padding-bottom: 15px;}
+.show_animals #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
 
 
 /* Show Animal :: Description Layout
 -----------------------------------------------------------------------------*/
-.show_animals .description{width:100%; padding: 0 0 0 0; }
-.show_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
-/* Show Animal :: Euthanasia Info Layout
------------------------------------------------------------------------------*/
-.show_animals .euthanasia_info{width:100%; padding: 0 0 0 0; }
-.show_animals .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_animals .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_animals .euthanasia_info ul li {float:left; padding-right: 20px;}
-.show_animals .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_animals .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+
+
 
 

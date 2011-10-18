@@ -10,9 +10,7 @@ class Api::AnimalsController < Api::ApplicationController
     else
       @animals = Animal.api_lookup(types, statuses, @current_shelter).paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
     end
-      
     respond_with(@animals)
-
   end
   
   def show

@@ -371,6 +371,7 @@
 /* Commmunities :: Search Section :: Search Bar */   
 /******************************************************************/
 .communities .search_content {padding-bottom: 0px;padding-top: 10px;}
+.communities .search_content .toggle_buttons{margin: 0 0 0 15px;}
 .communities .search_form{width: 70%}
 .communities .search_form form{float:left;width: 38%;}
 .communities .search_form form input{width: 100%;}

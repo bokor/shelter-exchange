@@ -53,8 +53,7 @@ module AnimalsHelper
   
   def adoption_date(animal)
     if animal.animal_status_id == 2
-      adoption_date = animal.status_histories.where(:animal_status_id  => animal.animal_status).last.created_at
-      " on #{format_date(:short_full_year, adoption_date)}" 
+      " on #{format_date(:short_full_year, animal.status_change_date)}" 
     end
   end
 

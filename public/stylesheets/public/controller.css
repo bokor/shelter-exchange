@@ -364,6 +364,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Save a Life :: Search Section :: Search Bar */   
 /******************************************************************/
 .index_save_a_life .search_content {padding-bottom: 10px;padding-top: 10px;}
+.index_save_a_life .search_content .toggle_buttons{margin: 0 0 0 15px;}
 .index_save_a_life .search_form{width: 70%}
 .index_save_a_life .search_form form{float:left;width: 38%;}
 .index_save_a_life .search_form form input{height:20px;width:100%;font-size:14px; }
@@ -464,21 +465,6 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .ie7 .show_save_a_life table.animal_details td.image img,
 .ie8 .show_save_a_life table.animal_details td.image img{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
-
-/*.show_save_a_life .description{width:100%; padding: 0 0 0 0; }
-.show_save_a_life .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-
-.show_save_a_life .euthanasia_info{width:100%; padding: 0 0 0 0; }
-.show_save_a_life .euthanasia_info:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_save_a_life .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.show_save_a_life .euthanasia_info ul li {float:left; padding-right: 20px;}
-.show_save_a_life .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_save_a_life .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-
-.show_save_a_life .notes_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
-.show_save_a_life .notes_heading h2{float:left;}
-.show_save_a_life .notes_heading .links{float:right; text-align: right;padding-top:5px;}
-.show_save_a_life .notes_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 
 

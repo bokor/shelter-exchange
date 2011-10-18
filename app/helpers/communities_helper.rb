@@ -4,8 +4,8 @@ module CommunitiesHelper
     "#{@current_shelter.city}, #{@current_shelter.state} #{@current_shelter.zip_code}"
   end
   
-  def get_directions_address
-    [@shelter.street, @shelter.street_2, @shelter.city, @shelter.state, @shelter.zip_code].join('+')
+  def get_directions_address(shelter)
+    [shelter.street, shelter.street_2, shelter.city, shelter.state, shelter.zip_code].join('+')
   end
   
   def days_left(from_time, to_time = Date.today)
