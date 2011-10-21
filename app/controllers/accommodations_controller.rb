@@ -27,7 +27,7 @@ class AccommodationsController < ApplicationController
         flash[:notice] = "#{@accommodation.name} accommodation has been created."
         format.html { redirect_to accommodations_path }
       else
-        format.html { render :action => :index }
+        format.html { render :action => :new }
       end
     end
   end
