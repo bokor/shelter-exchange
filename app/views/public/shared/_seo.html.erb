@@ -12,17 +12,33 @@
 <meta name="description" content="<%= yield(:description) %>">
 <meta name="keywords" content="<%= yield(:keywords) %>">
 
+
+<!-- FIX THIS SECTION -->
+<!-- FIX THIS SECTION -->
+<!-- FIX THIS SECTION -->
+
 <!-- open graph -->
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <meta property="fb:page_id" content="161458683884663" />
 <meta property="og:site_name" content="Shelter Exchange"/>
 <meta property="og:url" content="<%= request.url %>"/>
 <meta property="og:title" content="<%= yield(:title) %> | Shelter Exchange"/>
-<meta property="og:type" content="website"/>
-<meta property="og:image" content="<%= content_for?(:seo_image) ? yield(:seo_image) : "#{full_url}/shelterexchange_icon.png" %>"/>
-<meta property="og:location" content="<%= content_for?(:seo_location) ? yield(:seo_location) : "Raleigh, NC" %>" />
-
+<meta property="og:type" content="<%= content_for?(:og_type) ? yield(:og_type) : "website" %>"/>
+<meta property="og:image" content="<%= content_for?(:og_image) ? yield(:og_image) : "#{full_url}/shelterexchange_icon.png" %>"/>
+<meta property="og:location" content="<%= content_for?(:og_location) ? yield(:og_location) : "Raleigh, NC" %>" />
 <meta property="og:description" content="<%= yield(:description) %>"/>
+<% if content_for?(:og_updated_time) %>
+	<meta property="og:updated_time" content="<%= yield(:og_updated_time) %>" />
+<% end %>
+
+<!-- canonical url -->
+<% if content_for?(:canonical_url) %>
+	<link rel="canonical" href="<%= yield(:canonical_url) %>" />
+<% end %>
+
+<!-- FIX THIS SECTION -->
+<!-- FIX THIS SECTION -->
+<!-- FIX THIS SECTION -->
 
 <!-- icons -->
 <%= favicon_link_tag 'favicon.ico' %>
