@@ -236,7 +236,7 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Api :: Animals
       #----------------------------------------------------------------------------
-      resources :animals, :only => [:index, :show]
+      resources :animals, :only => [:index]
       
     end
     

@@ -24,10 +24,10 @@
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Edit", edit_animal_path(@animal)%>
 					<% end %>
-					<% if can?(:destroy, Animal) %>
+					<!-- <% if can?(:destroy, Animal) %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete %>
-					<% end %>
+					<% end %> -->
 				</td>
 			</tr>
 			<tr>
@@ -35,7 +35,7 @@
 					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
 				</td>
 				<td class="status">
-					<p><%= @animal.animal_status.name %></p>
+					<p><%= @animal.animal_status.name %><%= adoption_date(@animal) %></p>
 				</td>
 			</tr>
 		</table>

@@ -1,9 +1,9 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<%= link_to image_tag(animal.photo.url(:thumb)), api_animal_path(animal, :access_token => @access_token)  %>
+		<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %>
 	</td>
 	<td class="details">
-		<h3><%= link_to animal.name, api_animal_path(animal, :access_token => @access_token) %></h3>		
+		<h3><%= link_to animal.name, public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></h3>		
 		<p><%= full_breed(animal) %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
 	</td>

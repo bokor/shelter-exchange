@@ -51,10 +51,33 @@ module AnimalsHelper
     format_date(type, animal.euthanasia_date)
   end
   
-  def adoption_date(animal)
-    if animal.animal_status_id == 2
-      " on #{format_date(:short_full_year, animal.status_change_date)}" 
+  def community_animal_status(animal)
+    if [:adopted, :reclaim, :deceased, :euthanized].any?{ |key| AnimalStatus::STATUSES[key] == animal.animal_status_id }
+      animal.animal_status.name + humanize_status_change_date(animal)
+    else 
+      animal.animal_status.name
     end
+  end
+  
+  def public_animal_status(animal)
+    case animal.animal_status_id
+      when AnimalStatus::STATUSES[:adopted]
+        animal.animal_status.name + humanize_status_change_date(animal)
+      when AnimalStatus::STATUSES[:available_for_adoption]
+        animal.animal_status.name
+      when AnimalStatus::STATUSES[:foster_care]
+        animal.animal_status.name
+      else 
+        "No longer available for adoption"
+    end
+  end
+  
+  def adoption_date(animal)
+    AnimalStatus::STATUSES[:adopted] == animal.animal_status_id ? humanize_status_change_date(animal) : nil
+  end
+  
+  def humanize_status_change_date(animal)
+    " on #{format_date(:short_full_year, animal.status_change_date)}" 
   end
 
 end

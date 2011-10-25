@@ -13,15 +13,6 @@ class Api::AnimalsController < Api::ApplicationController
     respond_with(@animals)
   end
   
-  def show
-    unless request.format.html?
-      respond_with_error({ :error => "URL is incorrect format.  Only HTML type works for this link" })
-    else
-      @animal = @current_shelter.animals.includes(:animal_type, :animal_status).find(params[:id])
-      respond_with(@animal)
-    end
-  end
-  
   rescue_from Exception do |exception|
     respond_with_error({ :error => "Unexpected error has occurred.  Please review the API documentation to make sure everything is correct." })
   end

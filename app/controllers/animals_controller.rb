@@ -2,7 +2,7 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     respond_with(@animals)
   end
   
@@ -67,12 +67,12 @@ class AnimalsController < ApplicationController
     type = params[:animal_type_id]
     status = params[:animal_status_id] 
     if type.blank? and status.blank?
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif is_integer?(type) and status.blank?
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_type_id => type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif type.blank? and is_integer?(status)
+      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    elsif type and status.blank?
+      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).where(:animal_type_id => type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    elsif type.blank? and status
       @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif is_integer?(type) and is_integer?(status)
+    elsif type and status
       @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_type_id => type, :animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     end
   end

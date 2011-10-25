@@ -1,4 +1,4 @@
-<%= title "#{@animal.name} (#{@animal.id})" %>
+<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
 
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
@@ -23,7 +23,7 @@
 					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
 				</td>
 				<td class="status">
-					<p><%= @animal.animal_status.name %></p>
+					<p><%= community_animal_status(@animal) %></p>
 				</td>
 			</tr>
 		</table>
@@ -106,7 +106,7 @@
 
 <%= content_for :sidebar do %>
 
-<% unless @current_shelter.kill_shelter? %>
+<% unless @shelter.kill_shelter? %>
 	<div class="transfer_section">
 		<% if can?(:request_transfer, Animal) %>
 		<ul id="transfer_request_button" class="action_links">

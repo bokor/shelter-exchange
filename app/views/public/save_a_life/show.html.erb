@@ -1,5 +1,7 @@
 <%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
+
 <%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}. #{@animal.description}" %>
+
 <%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
 
 <%= canonical_url public_save_a_life_url(@animal) %>
@@ -32,10 +34,10 @@
 			<!--// Share This -->
 		</span>
 		<span class="type"><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></span>
-		<span class="status"><%= @animal.animal_status.name %><%= adoption_date(@animal) %></span>
+		<span class="status"><%= public_animal_status(@animal) %></span>
 	</div>
 
-	<% if @shelter.kill_shelter? and AnimalStatus::ACTIVE.include?(@animal.animal_status_id) %>
+	<% if @shelter.kill_shelter? and (AnimalStatus::STATUSES[:available_for_adoption] == @animal.animal_status_id) %>
 		<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
 	<% end %>
 		 

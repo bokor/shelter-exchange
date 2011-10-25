@@ -157,6 +157,10 @@
 
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
+/* Index Animals :: Help Text
+-----------------------------------------------------------------------------*/
+.index_animals .help_text{width: 100%; padding: 15px 0; text-align:center;border-top: 1px dotted #ccc;}
+
 /* Show Animals :: Page Layout
 -----------------------------------------------------------------------------*/
 /*.show_animals .page_heading{border-bottom:1px solid #eee; }*/
