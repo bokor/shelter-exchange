@@ -82,6 +82,18 @@ class Animal < ActiveRecord::Base
                                                                             OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
                                                                             OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
   scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
+  
+  def self.filter_by_type_status(type, status)
+    scope = scoped{}
+    scope = scope.includes(:animal_type, :animal_status)
+    scope = scope.where(:animal_type_id => type) unless type.blank?
+    unless status.blank?
+      scope = (status == "active" or status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status) 
+    end
+    
+    scope
+  end
+  
   #----------------------------------------------------------------------------  
   
   

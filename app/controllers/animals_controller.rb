@@ -64,17 +64,7 @@ class AnimalsController < ApplicationController
   end
 
   def filter_by_type_status
-    type = params[:animal_type_id]
-    status = params[:animal_status_id] 
-    if type.blank? and status.blank?
-      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif type and status.blank?
-      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).where(:animal_type_id => type).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif type.blank? and status
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    elsif type and status
-      @animals = @current_shelter.animals.includes(:animal_type, :animal_status).where(:animal_type_id => type, :animal_status_id => status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
-    end
+    @animals = @current_shelter.animals.filter_by_type_status(params[:animal_type_id], params[:animal_status_id]).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
   end
   
   def find_animals_by_name

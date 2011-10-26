@@ -9,6 +9,8 @@ class AnimalStatus < ActiveRecord::Base
   ACTIVE = [1,3,4,5,6,7,8,9,10,11].freeze
   NON_ACTIVE = [2,12,13,14].freeze
   
+  EXTRA_STATUS_FILTERS = [["All Active", :active], ["All Non-Active", :non_active]]
+  
   # Associations
   #----------------------------------------------------------------------------
   has_many :animals, :readonly => true

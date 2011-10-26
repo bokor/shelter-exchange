@@ -8,6 +8,10 @@ module AnimalsHelper
     end
   end
   
+  def filter_by_animal_statuses
+    AnimalStatus::EXTRA_STATUS_FILTERS + AnimalStatus.all.map {|s| [s.name,s.id]}
+  end
+  
   def humanize_dob(dob)
     time_diff_in_natural_language(dob, current_time) unless dob.blank?
   end

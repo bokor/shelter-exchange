@@ -34,8 +34,8 @@
 							</tr>
 							<tr>
 								<td><%= label_tag :animal_status_id, "Status" %></td>
-								<td><%= collection_select(:animal, :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, 
-								       { :name => "animal_status_id", :onchange => "Animals.filterByTypeStatus();" } ) %>
+								<td><%= select(:animal, :animal_status_id, filter_by_animal_statuses, {},
+								        {:name => "animal_status_id", :onchange => "Animals.filterByTypeStatus();"} ) %>
 								</td>
 							</tr>
 						</table>
