@@ -1,15 +1,49 @@
-<%= title "Help a shelter" %>
-<%= description "" %>
-<%= keywords "" %>
+<%= title "Help a Shelter - Support the community" %>
+<%= description "Search your local shelters and rescue groups for animals available for adoption." %>
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
 
 <%= content_for :javascripts do %>
-
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+	<script type="text/javascript">
+		$(function() {
+			HelpAShelter.initialize(38.6,-98,"<%=s3_url('maps/overlay.kmz')%>","<%=s3_url('images/logo_small.png')%>");
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
 
 
-	<h1>testing</h1>
+	<div class="search_content">
+		<span class="search_form">
+			<form action="#" id="form_city_zipcode_search">
+			    <%= text_field_tag :city_zipcode, "" %> 
+				<%= hidden_field_tag "filters[sw]" %>
+				<%= hidden_field_tag "filters[ne]" %>
+			</form>
+			<ul class="toggle_buttons">
+				<li><a id="search_by_city_zipcode" href="#" class="current">City or Zip code</a></li>
+			</ul>
+		</span>
+		<span class="helper_links">
+			<ul class="toggle_buttons">
+				<li><a id="needs_help" href="#">?</a></li>
+			</ul>
+		</span>
+	</div>
+	
+	<div class="map_separator"></div>
+		
+	<div id="help_text" class="section_heading no_borders blue">
+		<p>testing testing 12</p>
+	</div>
+	
+	<div class="map">	
+		<div id="map_canvas"></div>
+		<div class="ways_to_help"></div>
+	</div>
+	
+	<div id="shelters"></div>
 		
 <% end %>
 

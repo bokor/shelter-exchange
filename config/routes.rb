@@ -283,7 +283,11 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Public :: Help A Shelter
       #----------------------------------------------------------------------------
-      resources :help_a_shelter
+      resources :help_a_shelter do
+        collection do
+          get :find_shelters_in_bounds
+        end
+      end
             
       # Public :: Login
       #----------------------------------------------------------------------------

@@ -1,0 +1,5 @@
+<% unless @shelters.blank? %>
+	$('#shelters').html( "<%= escape_javascript( render 'shelter_list', :shelters => @shelters) %>" );
+<% else %>
+	$('#shelters').html( "<h1 style='color: #ccc;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;'>No shelters found</h1>" );
+<% end %>

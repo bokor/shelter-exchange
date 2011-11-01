@@ -3,3 +3,4 @@ Allow: /
 Disallow: /images
 Disallow: /javascripts
 Disallow: /stylesheets
+Sitemap: http://www.shelterexchange.org/sitemap.xml

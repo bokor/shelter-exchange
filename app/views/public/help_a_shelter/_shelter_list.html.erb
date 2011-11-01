@@ -1,0 +1,28 @@
+<style type="text/css" media="screen">
+	.index_help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb;text-align: center;}
+/*	.index_help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}*/
+	.index_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
+
+	.index_help_a_shelter .shelter{/*float:left;*/ 
+				display: inline-block; *display: inline; vertical-align: middle; margin: 0 5px 15px 5px;width: 300px; text-align:center;height: 160px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #db8d4a;}
+.index_help_a_shelter .shelter.hover{-moz-box-shadow: 0px 0px 3px #333;-webkit-box-shadow: 0px 0px 3px #333; box-shadow: 0px 0px 3px #333;}	
+	
+
+
+	/* Donate :: IE :: Box Fix :: PIE */
+	/******************************************************************/
+/*	.ie7 .donate_page .box, .ie8 .donate_page .box{ margin-right: 15px; background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+	.donate_page .box
+	.donate_page .box p:first-child{padding-top: 25px;}
+	.donate_page .box p{text-align:center; padding: 0px 20px;}
+
+	.donate_page h3{border:none;padding:0; margin:0;text-align:center;}*/
+	
+</style>
+
+<div class="shelter_list">
+	<%= render :partial => "shelter", :collection => shelters %>
+</div>
+
+<%= will_paginate shelters %>

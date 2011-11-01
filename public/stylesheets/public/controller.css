@@ -368,7 +368,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life .search_form{width: 70%}
 .index_save_a_life .search_form form{float:left;width: 38%;}
 .index_save_a_life .search_form form input{height:20px;width:100%;font-size:14px; }
-.index_save_a_life .narrow_search{width: 30%; text-align:right;float:right;}
+.index_save_a_life .helper_links{width: 30%; text-align:right;float:right;}
 
 
 
@@ -464,6 +464,53 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /******************************************************************/
 .ie7 .show_save_a_life table.animal_details td.image img,
 .ie8 .show_save_a_life table.animal_details td.image img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+
+
+/************************************************************************/
+/* -------------------------- Help a Shelter -------------------------- */
+/************************************************************************/
+
+
+/* Help a Shelter :: Global
+-----------------------------------------------------------------------------*/
+.help_a_shelter #main ul {list-style:none;}
+.help_a_shelter #main ul.form {padding-bottom: 0; margin-bottom:0;}
+.index_help_a_shelter #main p, .index_help_a_shelter #main h3{margin-bottom: 10px; padding-bottom: 0px;}
+
+
+/* Help a Shelter :: Search Section :: Search Bar */   
+/******************************************************************/
+.index_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.index_help_a_shelter .search_content .toggle_buttons{margin: 0 0 0 15px;}
+.index_help_a_shelter .search_form{width: 70%}
+.index_help_a_shelter .search_form form{float:left;width: 38%;}
+.index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
+
+
+/* Help a Shelter :: Help Text */   
+/******************************************************************/
+.index_help_a_shelter .helper_links{width: 30%; text-align:right;float:right;}
+.index_help_a_shelter #help_text{display:none; height: 65px;}
+
+
+/* Help a Shelter :: Map Section :: Layout */   
+/******************************************************************/
+.index_help_a_shelter .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
+
+
+/* Help a Shelter :: Map :: Layout
+-----------------------------------------------------------------------------*/
+.index_help_a_shelter .map {padding: 10px 0;}
+.index_help_a_shelter .map #map_canvas{width:675px; padding-right: 15px; height: 400px;}
+.index_help_a_shelter .map .ways_to_help{ width: 270px;}
+
+
+
+
+
 
 
 
