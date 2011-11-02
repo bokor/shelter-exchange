@@ -6,10 +6,9 @@
 
 <%= content_for :page_content do %>
 
-
 	<ul class="submenu">
-		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Sign Up</a></li>
-		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
+		<li><%= link_to "Sign Up", public_signup_path, :class=> "#{sub_navigation(:signup)} button" %></li>
+		<li><%= link_to "Login", "/login", :class=> "#{sub_navigation(:login)} button" %></li>
 	</ul>
 	
 	<h1>Shelters and Rescues</h1>
@@ -156,6 +155,13 @@
 
 	</div>
 	<!--// feature -->
+	
+	<div class="separator"></div>
+	
+	<div class="center">
+		<p>Sign up your shelter or rescue group to benefit from our free application and be part of the growing community working together to saving more lives.</p>
+		<%= link_to "Sign Up", public_signup_path, :class=> "#{sub_navigation(:signup)} button" %>
+	</div>
 	
 <% end %>
 

@@ -1,3 +1,9 @@
 <div class="shelter">
-	<%= shelter.name %>
+	<a href="<%=public_help_a_shelter_path(shelter)%>" target="_new">
+		<div class="logo"><%= image_tag(shelter.logo.url(:thumb)) %></div>
+		<h3><%= shelter.name %></h3>
+		<ul>
+			<li><%= shelter.city %>, <%= shelter.state %></li>
+		</ul>
+	</a>
 </div>

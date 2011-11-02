@@ -13,7 +13,7 @@ body { width: 100%; min-height: 100%; height:auto !important; height: 100%; posi
 	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
 	
-.ie body {font-family: "Verdana", sans-serif}
+.ie body {font: normal 12px "Verdana", sans-serif;}
 
 h1, h2, h3, h4, h5 { font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 h1 { font-size: 28px; margin-bottom: 25px; border-bottom: 1px dotted #bbb; }
@@ -85,10 +85,9 @@ header nav .side_menu .donate{right: 0px;background: url(/images/public/tabs_don
 
 /* IE Hack :: Header :: Nav */   
 /******************************************************************/
-.ie header nav .menu li{margin: 0 8px; padding: 0 18px;}
+.ie header nav .menu li{margin: 0 8px; padding: 0 12px;}
 .ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
-
-
+.ie .side_menu{font: normal 9px Tahoma;}
 
 
 /* Header :: Layout */   

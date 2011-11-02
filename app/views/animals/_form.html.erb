@@ -96,6 +96,24 @@
 			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :date_of_birth)%>
 		</li>
+		<!-- WORK MORE TOMORROW -->
+		<li>
+			<div id="has_special_needs_field">
+				<span>
+					<%= f.check_box :has_special_needs, :class =>"field checkbox" %>
+					<%= f.label :has_special_needs, "Has special needs?", :class => "desc choice" %>
+				</span>
+				<%= has_error_message?(@animal, :has_special_needs)%>
+			</div>
+			<div id="special_needs_details_field">
+				<%= f.label :special_needs_details, "List the special needs description", :class => "desc" %>
+				<div>
+				<%= f.text_field :special_needs_details, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+				</div>
+				<%= has_error_message?(@animal, :special_needs_details)%>
+			</div>
+		</li>
+		<!-- WORK MORE TOMORROW -->
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
 			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110812191119) do
+ActiveRecord::Schema.define(:version => 20111102014556) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(:version => 20110812191119) do
     t.date     "euthanasia_date"
     t.integer  "accommodation_id"
     t.string   "size"
+    t.boolean  "has_special_needs",     :default => false, :null => false
+    t.string   "special_needs_details"
   end
 
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
