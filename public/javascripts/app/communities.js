@@ -20,10 +20,11 @@ var Communities = {
 		lat = latitude;
 		lng = longitude;
 		
-		$("#narrow_search_results").bind("click",function(e){
+		$(".helper_links .toggle_buttons a").bind("click",function(e){
 			e.preventDefault();
-			$('#filters').slideToggle('slow');
-			$(this).toggleClass('current');
+			$(this).toggleClass("current");
+			var div = $(this).attr('href');
+			$(div).slideToggle('slow');
 		}); 
 
 		$("#search_by_city_zipcode").bind("click",function(e, first){

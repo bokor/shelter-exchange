@@ -6,6 +6,7 @@ class Public::HelpAShelterController < Public::ApplicationController
   
   def show
     @shelter = Shelter.find(params[:id])
+    @items = @shelter.items.select(:name)
   end
   
   def find_shelters_in_bounds

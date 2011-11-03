@@ -20,10 +20,11 @@ var HelpAShelter = {
 		lat = latitude;
 		lng = longitude;
 		
-		$("#needs_help").bind("click",function(e){
+		$(".helper_links .toggle_buttons a").bind("click",function(e){
 			e.preventDefault();
-			$('#help_text').slideToggle('slow');
-			$(this).toggleClass('current');
+			$(this).toggleClass("current");
+			var div = $(this).attr('href');
+			$(div).slideToggle('slow');
 		});
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){

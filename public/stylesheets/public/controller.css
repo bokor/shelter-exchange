@@ -376,11 +376,15 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life .search_form form input{height:20px;width:100%;font-size:14px; }
 .index_save_a_life .helper_links{width: 30%; text-align:right;float:right;}
 
+/* Save a Life :: Search Section :: Help Text */   
+/******************************************************************/
+.index_save_a_life #help_text{display:none;margin-bottom:5px;}
+.index_save_a_life #help_text h3{color:#000; text-shadow:none;}
 
 
 /* Save a Life :: Search Section :: Filters */   
 /******************************************************************/
-.index_save_a_life #filters{display:none; height: 65px;}
+.index_save_a_life #narrow_search_results{display:none; height: 65px;}
 .index_save_a_life #form_filters table {vertical-align: top; width:100%;}
 .index_save_a_life #form_filters table tr{vertical-align: top; width:100%;}
 .index_save_a_life #form_filters table td{padding-left:40px;}
@@ -411,13 +415,14 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a life :: Shelter Details :: Layout
 -----------------------------------------------------------------------------*/
-.save_a_life #shelter_details{padding-bottom: 20px;}
-.save_a_life #shelter_details h1{color: #ccc;height: 100px; line-height: 100px; margin: 0 auto; text-align: center;}
-.save_a_life #shelter_details .right_side{float:right; text-align:right;}
-.save_a_life #shelter_details .logo{padding-bottom: 15px;}
-.save_a_life #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
-
-.save_a_life .animal_shelter{border-top: 1px #ccc dotted; padding-top: 20px; margin-top: 10px;}
+.show_save_a_life #shelter_details{padding-bottom: 20px;/*border-bottom: 1px #ccc dotted; padding-bottom: 20px; margin-bottom: 10px;*/}
+.show_save_a_life #shelter_details .logo{float:right; width: 100px;text-align:right;}
+.show_save_a_life #shelter_details .address_info{width: 860px;}
+.show_save_a_life #shelter_details .action_links span,
+.show_save_a_life #shelter_details .action_links a{padding-right: 8px;}
+.show_save_a_life #shelter_details{}
+.show_save_a_life .animal_shelter{border-top: 1px #ccc dotted; padding-top: 20px; margin-top: 10px;
+border-bottom: 1px #ccc dotted;  margin-bottom: 10px;}
 
 /* Save a life :: Search by Shelter Name :: Animal List :: Layout
 -----------------------------------------------------------------------------*/
@@ -487,7 +492,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_help_a_shelter #main p{margin-bottom: 10px; padding-bottom: 0px;}
 
 
-/* Help a Shelter :: Search Section :: Search Bar */   
+/* Index Help a Shelter :: Search Section :: Search Bar */   
 /******************************************************************/
 .index_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
 .index_help_a_shelter .search_content .toggle_buttons{margin: 0 0 0 15px;}
@@ -496,24 +501,35 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
 
 
-/* Help a Shelter :: Help Text */   
+/* Index Help a Shelter :: Help Text */   
 /******************************************************************/
 .index_help_a_shelter .helper_links{width: 30%; text-align:right;float:right;}
-.index_help_a_shelter #help_text{display:none; height: 65px;}
+.index_help_a_shelter #help_text{display:none; }
+.index_help_a_shelter #help_text h3{color:#000; text-shadow:none;}
 
 
-/* Help a Shelter :: Map Section :: Layout */   
+/* Index Help a Shelter :: Map Section :: Layout */   
 /******************************************************************/
 .index_help_a_shelter .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
 
 
-/* Help a Shelter :: Map :: Layout
+/* Index Help a Shelter :: Map :: Layout
 -----------------------------------------------------------------------------*/
 .index_help_a_shelter .map {padding: 10px 0;}
-.index_help_a_shelter .map #map_canvas{width:675px; padding-right: 15px; height: 400px;}
-.index_help_a_shelter .map .ways_to_help{ width: 270px;}
+.index_help_a_shelter .map:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.index_help_a_shelter .map #map_canvas{float:left;width:620px; height: 400px;}
+.index_help_a_shelter .map .ways_to_help{ float:left; padding-left: 15px;width: 325px;}
+.index_help_a_shelter .map .ways_to_help h2{ text-align:center;}
+.index_help_a_shelter .map .ways_to_help h4{letter-spacing:0px; padding-bottom:0; margin-bottom:0;}
+.index_help_a_shelter .map .ways_to_help p {line-height:1.25;}
+.index_help_a_shelter .map .ways_to_help ul li{/*list-style-type:disc; margin-left: 20px;padding: 0 0 5px 5px;*/padding-bottom: 10px;}
 
-/* Help a Shelter :: Shelter List :: Layout
+/* IE Hack :: Index Help a Shelter :: Map Canvas */   
+/******************************************************************/
+.ie8 .index_help_a_shelter .map #map_canvas{ height: 380px;}
+
+
+/* Index Help a Shelter :: Shelter List :: Layout
 -----------------------------------------------------------------------------*/
 .index_help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb;text-align: center;}
 .index_help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
@@ -526,11 +542,23 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_help_a_shelter .shelter a:hover{text-decoration:none;}
 
 
-/* Help a Shelter :: Shelter List :: Layout :: IE ::  PIE */
+/* Index Help a Shelter :: Shelter List :: Layout :: IE ::  PIE */
 /******************************************************************/
 .ie7 .index_help_a_shelter .shelter,
 .ie8 .index_help_a_shelter .shelter{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
 
+
+/* Show Help a Shelter :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.show_help_a_shelter #shelter_details{border-top: 1px #ccc dotted; border-bottom: 1px #ccc dotted;padding: 15px 0 5px 0; margin: 20px 0;}
+.show_help_a_shelter #shelter_details .logo{width:100px;padding-right: 15px; float:left;}
+.show_help_a_shelter #shelter_details .address_info{width: 475px; padding-right: 25px; float:left;}
+.show_help_a_shelter #shelter_details .wish_list{width: 345px; float:left; font-weight:bold;}
+.show_help_a_shelter #shelter_details .wish_list p{margin-bottom:0px; padding-bottom:5px;}
+.show_help_a_shelter #shelter_details .wish_list ol li{margin-left:20px; padding:0 0 5px 5px;}
+.show_help_a_shelter #shelter_details .action_links span,
+.show_help_a_shelter #shelter_details .action_links a{padding-right: 8px;}
+.show_help_a_shelter #shelter_details:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
 
 
 

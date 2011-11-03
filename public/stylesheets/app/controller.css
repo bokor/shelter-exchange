@@ -376,13 +376,18 @@
 .communities .search_form{width: 70%}
 .communities .search_form form{float:left;width: 38%;}
 .communities .search_form form input{width: 100%;}
-.communities .narrow_search{width: 30%; text-align:right;float:right;}
 
 
-
-/* Commmunities :: Search Section :: Filters */   
+/* Commmunities :: Helper Links :: Layout */   
 /******************************************************************/
-.communities #filters{display:none; height: 75px;}
+.communities .helper_links{width: 30%; text-align:right;float:right;}
+.communities #help_text{display:none; margin-bottom: 5px;}
+.communities #help_text h3{color:#000; text-shadow:none;}
+.communities #narrow_search_results{display:none;}
+
+
+/* Commmunities :: Helper Links :: Narrow your Search results*/   
+/******************************************************************/
 .communities #form_filters table {vertical-align: top; width:100%;}
 .communities #form_filters table tr{vertical-align: top; width:100%;}
 .communities #form_filters table td{padding-right:20px;}

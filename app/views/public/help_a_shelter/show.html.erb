@@ -1,0 +1,63 @@
+<%= title "#{@shelter.name} | #{@shelter.city}, #{@shelter.state}" %>
+
+<%= description "#{@shelter.name} is located in #{@shelter.city}, #{@shelter.state}." %>
+
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+
+<%# canonical_url public_save_a_life_url(@animal) %>
+<%# seo_location "#{@shelter.city}, #{@shelter.state}" %>
+<%# seo_image "#{@animal.photo.url(:medium)}" %>
+
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div id="shelter_details">
+		<div class="logo">
+			<%= image_tag @shelter.logo.url(:thumb) %>
+		</div>
+		
+		<div class="address_info">
+			<h2><%=@shelter.name%></h2>
+			<ul>
+				<li><%=@shelter.street %></li>
+				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+			</ul>
+			<br />
+			<ul>
+				<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+				<li class="action_links">
+					<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
+					<% unless @shelter.website.blank? %>
+						<span><%= link_to "Visit Website", @shelter.website %>|</span>
+					<% end %>
+					<span><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="wish_list">
+			<h2>Wish List</h2>
+			<% unless @items.blank? %>
+				<ol id="items">
+					<% @items.each do |item| %>
+						<% unless item.name.blank? %><li><%= item.name %></li><% end %>
+					<% end %>
+				</ol>
+			<% else %>
+				<p>Shelter has not provided a wish list</p>
+			<% end %>
+		</div>
+		
+	</div>
+	
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+
+	
+<% end %>
+	
