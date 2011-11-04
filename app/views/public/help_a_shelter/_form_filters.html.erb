@@ -1,0 +1,27 @@
+<form action="#" id="form_filters">
+	<table class="filters">
+		<tr>
+			<td class="type">
+				<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
+				<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
+			</td>
+			<td class="breed">
+				<%= label_tag :filters_breed, "Breed", :class => "desc" %>
+				<div><%= text_field_tag "filters[breed]", "", :disabled => true, :autocomplete => :off, :class => "field text large", :maxlength => 255, :placeholder => "Please select type first" %>
+				</div>
+			</td>
+			<td class="sex">
+				<%= label_tag :filters_sex, "Sex", :class => "desc" %>
+				<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
+			</td>
+			<td class="euthanasia">
+				<%= label_tag :filters_euthanasia_only, "Euthanasia List", :class => "desc" %>
+				<div>
+					<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
+					<%= label_tag :filters_euthanasia_only, "Animals with 14 days or less", :class => "choice" %>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<%= hidden_field_tag "filters[shelter_id]", @shelter.id %>
+</form>

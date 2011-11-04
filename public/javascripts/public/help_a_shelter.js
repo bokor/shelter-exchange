@@ -20,13 +20,6 @@ var HelpAShelter = {
 		lat = latitude;
 		lng = longitude;
 		
-		$(".helper_links .toggle_buttons a").bind("click",function(e){
-			e.preventDefault();
-			$(this).toggleClass("current");
-			var div = $(this).attr('href');
-			$(div).slideToggle('slow');
-		});
-		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
 			HelpAShelter.geocodeAddress();
@@ -118,6 +111,13 @@ var HelpAShelter = {
 /* Other Initial functionss
 /*----------------------------------------------------------------------------*/
 $(function() {
+	$(".helper_links .toggle_buttons a").bind("click",function(e){
+		e.preventDefault();
+		$(this).toggleClass("current");
+		var div = $(this).attr('href');
+		$(div).slideToggle('slow');
+	});
+	
 	$(".shelter").live('hover', function(e) {
 	  if (e.type == 'mouseenter') {
 	    $(this).addClass("hover");

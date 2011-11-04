@@ -11,7 +11,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 html, body { margin:0; padding:0; height: 100%; }
 body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
 	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
-	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
+	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; -webkit-text-size-adjust:none;}
 	
 .ie body {font: normal 12px "Verdana", sans-serif;}
 

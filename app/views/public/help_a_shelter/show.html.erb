@@ -1,12 +1,12 @@
 <%= title "#{@shelter.name} | #{@shelter.city}, #{@shelter.state}" %>
 
-<%= description "#{@shelter.name} is located in #{@shelter.city}, #{@shelter.state}." %>
+<%= description "#{@shelter.name} currently has #{@types.collect{|type| type.name.pluralize.downcase}.to_sentence} available for ddoption, and is located in #{@shelter.city}, #{@shelter.state}" %>
 
-<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+<%= keywords "" %>
 
-<%# canonical_url public_save_a_life_url(@animal) %>
-<%# seo_location "#{@shelter.city}, #{@shelter.state}" %>
-<%# seo_image "#{@animal.photo.url(:medium)}" %>
+<%= canonical_url public_help_a_shelter_url(@shelter) %>
+<%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
+<%= seo_image "#{@shelter.logo.url(:medium)}" %>
 
 
 <%= content_for :javascripts do %>
@@ -52,6 +52,32 @@
 		</div>
 		
 	</div>
+
+	<div class="search_content">
+		<span class="helper_links">
+			<ul class="toggle_buttons">
+				<li><a href="#narrow_search_results">Narrow your search results</a></li>
+			</ul>
+			<ul class="toggle_buttons">
+				<li><a href="#help_text">?</a></li>
+			</ul>
+		</span>
+	</div>
+	
+	<div class="map_separator"></div>
+	
+	<div id="help_text" class="section_heading no_borders blue">
+		<h3>Help</h3>
+		<p>Use the interactive map below to find adoptable animals in your area.
+		Click  ‘Narrow your search results’ to easily filter animals by their type, breed, sex and to view those with the greatest needs.
+		Drag your curser over the map to find the area you wish to search in, zoom in and out using the + and – buttons, or simply type in a city, State or zip code, or search by a specific shelter name.</p>
+	</div>
+		
+	<div id="narrow_search_results" class="section_heading no_borders blue">
+		<%= render "form_filters" %>
+	</div>
+	
+	<div id="animals"></div>
 	
 	
 <% end %>

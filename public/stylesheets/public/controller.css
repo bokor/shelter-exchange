@@ -384,7 +384,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a Life :: Search Section :: Filters */   
 /******************************************************************/
-.index_save_a_life #narrow_search_results{display:none; height: 65px;}
+.index_save_a_life #narrow_search_results{display:none;}
 .index_save_a_life #form_filters table {vertical-align: top; width:100%;}
 .index_save_a_life #form_filters table tr{vertical-align: top; width:100%;}
 .index_save_a_life #form_filters table td{padding-left:40px;}
@@ -392,7 +392,6 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .index_save_a_life #form_filters table td.breed {width: 25%;}
 	.index_save_a_life #form_filters table td.breed input {width: 99%;}
 .index_save_a_life #form_filters table td.sex {width: 10%;}
-.index_save_a_life #form_filters table td.status {width: 20%;}
 .index_save_a_life #form_filters table td.euthanasia {width: 30%;}
 	.index_save_a_life #form_filters table td.euthanasia label{color:#DF0000;}
 
@@ -559,6 +558,32 @@ border-bottom: 1px #ccc dotted;  margin-bottom: 10px;}
 .show_help_a_shelter #shelter_details .action_links span,
 .show_help_a_shelter #shelter_details .action_links a{padding-right: 8px;}
 .show_help_a_shelter #shelter_details:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Show Help a Shelter :: Search Section :: Search Bar */   
+/******************************************************************/
+.show_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.show_help_a_shelter .search_content .toggle_buttons{margin: 0 0 0 15px;}
+.show_help_a_shelter .helper_links{width: 30%; text-align:right;float:right;}
+
+/* Show Help a Shelter :: Search Section :: Help Text */   
+/******************************************************************/
+.show_help_a_shelter #help_text{display:none;margin-bottom:5px;}
+.show_help_a_shelter #help_text h3{color:#000; text-shadow:none;}
+
+
+/* Show Help a Shelter :: Search Section :: Filters */   
+/******************************************************************/
+.show_help_a_shelter #narrow_search_results{display:none; height: 65px;}
+.show_help_a_shelter #form_filters table {vertical-align: top; width:100%;}
+.show_help_a_shelter #form_filters table tr{vertical-align: top; width:100%;}
+.show_help_a_shelter #form_filters table td{padding-left:40px;}
+.show_help_a_shelter #form_filters table td.type {width: 15%;}
+.show_help_a_shelter #form_filters table td.breed {width: 25%;}
+	.show_help_a_shelter #form_filters table td.breed input {width: 99%;}
+.show_help_a_shelter #form_filters table td.sex {width: 10%;}
+.show_help_a_shelter #form_filters table td.euthanasia {width: 30%;}
+	.show_help_a_shelter #form_filters table td.euthanasia label{color:#DF0000;}
 
 
 

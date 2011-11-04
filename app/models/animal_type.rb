@@ -17,6 +17,7 @@ class AnimalType < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
+  scope :available_for_adoption_types, lambda { |shelter_id| joins(:animals).select("distinct animal_types.name").where("animals.shelter_id = ?", shelter_id).where("animals.animal_status_id" => AnimalStatus::STATUSES[:available_for_adoption]).order("animal_types.id") }
 
   
 end
