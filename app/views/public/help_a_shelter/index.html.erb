@@ -17,7 +17,7 @@
 	<div class="search_content">
 		<span class="search_form">
 			<form action="#" id="form_city_zipcode_search">
-			    <%= text_field_tag :city_zipcode, "" %> 
+			    <%= text_field_tag :city_zipcode, "", :placeholder => "Please type a city or zipcode" %> 
 				<%= hidden_field_tag "filters[sw]" %>
 				<%= hidden_field_tag "filters[ne]" %>
 			</form>

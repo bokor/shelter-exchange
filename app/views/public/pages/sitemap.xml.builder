@@ -9,6 +9,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
    xml.lastmod File.ctime("index.html.erb").strftime("%Y-%m-%d")
   end
   #---------------------------------------------
+  
   #-Web Pages--------------------------------------------
   Dir.glob("*/**/").each do |d|
     xml.url do
@@ -16,19 +17,34 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
      xml.lastmod File.ctime(File.absolute_path("index.html.erb", d)).strftime("%Y-%m-%d")
     end
   end
+  #---------------------------------------------
+  
   #-Community :: Shelters--------------------------------------------
+  xml.url do
+   xml.loc "#{full_url}/help_a_shelter"
+   xml.lastmod @help_a_shelter_last_updated
+  end
+  @shelters.each do |shelter|
+    xml.url do
+     xml.loc "#{full_url}/help_a_shelter/#{shelter.id}"
+     # xml.lastmod shelter.updated_at.strftime("%Y-%m-%d")
+     xml.changefreq "weekly"
+    end
+  end
+  #---------------------------------------------
+  
   #-Community :: Animals--------------------------------------------
   xml.url do
    xml.loc "#{full_url}/save_a_life"
    xml.lastmod @save_a_life_last_updated
-   xml.changefreq "daily"
   end
   @animals.each do |animal|
     xml.url do
      xml.loc "#{full_url}/save_a_life/#{animal.id}"
-     xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
-     xml.changefreq "daily"
+     # xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
+     xml.changefreq "weekly"
     end
   end
+  #---------------------------------------------
 end
 

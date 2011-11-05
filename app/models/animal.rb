@@ -59,6 +59,7 @@ class Animal < ActiveRecord::Base
   validates :sex, :presence => true
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :hold_time, :presence => { :if => :is_kill_shelter? }
+  validates :special_needs_details, :presence => { :if => :special_needs? }
   
   validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
   
@@ -125,7 +126,8 @@ class Animal < ActiveRecord::Base
     scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)").order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
-    scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
+    scope = scope.filter_euthanasia_only unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
+    scope = scope.filter_special_needs_only unless filters[:special_needs_only].blank? or !filters[:special_needs_only]
     scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
     scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
     scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
@@ -134,6 +136,14 @@ class Animal < ActiveRecord::Base
     scope = scope.active unless filters[:animal_status].present?
     
     scope
+  end
+  
+  def self.filter_euthanasia_only
+    joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks)
+  end
+  
+  def self.filter_special_needs_only
+    where("animals.has_special_needs = ?", true)
   end
     
   def self.filter_animal_type(animal_type)
@@ -218,6 +228,16 @@ class Animal < ActiveRecord::Base
     self.tasks.delete_all
     self.alerts.delete_all
   end
+  #----------------------------------------------------------------------------  
+  
+  # Instance Methods
+  #----------------------------------------------------------------------------
+  
+  def special_needs?
+    self.has_special_needs
+  end
+  
+  
   #----------------------------------------------------------------------------  
                                                  
   private

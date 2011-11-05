@@ -373,17 +373,18 @@
 /******************************************************************/
 .communities .search_content {padding-bottom: 0px;padding-top: 10px;}
 .communities .search_content .toggle_buttons{margin: 0 0 0 15px;}
-.communities .search_form{width: 70%}
+.communities .search_form{width: 69%}
 .communities .search_form form{float:left;width: 38%;}
 .communities .search_form form input{width: 100%;}
 
 
 /* Commmunities :: Helper Links :: Layout */   
 /******************************************************************/
-.communities .helper_links{width: 30%; text-align:right;float:right;}
+.communities .helper_links{width: 31%; text-align:right;float:right;}
+.communities .helper_links .toggle_buttons{margin-left: 5px;}
 .communities #help_text{display:none; margin-bottom: 5px;}
 .communities #help_text h3{color:#000; text-shadow:none;}
-.communities #narrow_search_results{display:none;}
+.communities #narrow_search_results{display:none; height: 75px;}
 
 
 /* Commmunities :: Helper Links :: Narrow your Search results*/   
@@ -396,8 +397,9 @@
 	.communities #form_filters table td.breed input {width: 99%;}
 .communities #form_filters table td.sex {width: 10%;}
 .communities #form_filters table td.status {width: 20%;}
-.communities #form_filters table td.euthanasia {width: 30%;}
-	.communities #form_filters table td.euthanasia label{color:#DF0000;}
+.communities #form_filters table td.extra_options {width: 30%;}
+	.communities #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
+    .communities #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 
 
 /* Commmunities :: Search Section :: Layout */   

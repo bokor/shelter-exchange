@@ -277,7 +277,6 @@ ShelterExchangeApp::Application.routes.draw do
       resources :save_a_life do
         collection do
           get :find_animals_in_bounds
-          get :find_animals_for_shelter
         end
       end
       
@@ -286,6 +285,7 @@ ShelterExchangeApp::Application.routes.draw do
       resources :help_a_shelter do
         collection do
           get :find_shelters_in_bounds
+          get :find_animals_for_shelter
         end
       end
             

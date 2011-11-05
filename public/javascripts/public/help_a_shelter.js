@@ -25,13 +25,19 @@ var HelpAShelter = {
 			HelpAShelter.geocodeAddress();
 		});
 		
-		$("#search_by_city_zipcode").bind("click", function(e){
+		$("#search_by_city_zipcode").bind("click",function(e, first){
 			e.preventDefault();
 		});
 		
 		HelpAShelter.searchByCityZipCode();
 
 	},	
+	filterInitialize: function(){
+		HelpAShelter.bindFilters();
+		HelpAShelter.breedAutoComplete();
+		HelpAShelter.findAnimalsForShelter();
+		
+	},
 	searchByCityZipCode: function() {
 		// Map setup and config
 		myLatLng = new google.maps.LatLng(lat, lng);
@@ -64,6 +70,9 @@ var HelpAShelter = {
 			$.get("/help_a_shelter/find_shelters_in_bounds.js", $("#form_city_zipcode_search").serialize());
 		// }
 	},
+	findAnimalsForShelter: function(){
+		$.get("/help_a_shelter/find_animals_for_shelter.js", $("#form_filters").serialize());
+	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
@@ -73,6 +82,63 @@ var HelpAShelter = {
 	        	alert("Geocode was not successful for the following reason: " + status);
 	      	}
 	    });
+	},
+	bindFilters: function(){
+		$("#form_filters").bind("keypress", function(e){
+			return !(window.event && window.event.keyCode == 13); 
+		});
+		
+		$("#filters_animal_type").bind("change", function(e){
+			e.preventDefault();
+			$("#filters_breed").val("");
+			if($(this).val() == ""){
+				$("#filters_breed").attr("disabled", true);
+				$("#filters_breed").attr("placeholder", "Please select type first");
+			} else {
+				$("#filters_breed").attr("disabled", false);
+				$("#filters_breed").attr("placeholder", "Enter Breed Name");
+			}
+			HelpAShelter.findAnimalsForShelter();
+		});
+		
+		$("#filters_sex, #filters_euthanasia_only, #filters_special_needs_only").bind("change", function(e){
+			e.preventDefault();
+			HelpAShelter.findAnimalsForShelter();
+		});
+		
+	},
+	breedAutoComplete: function(){
+		$("#filters_breed").autocomplete({
+			minLength: 0,
+			selectFirst: true,
+			html: true,
+			delay: 500,
+			source: function( request, response ) {
+				$.ajax({
+					url: "/breeds/auto_complete.json",
+					dataType: "json",
+					data: {
+						q: request.term,
+						animal_type_id: $("#filters_animal_type").val()
+					},
+					success: function( data ) {
+						response( $.map( data, function( item ) {
+							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
+							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
+							return {
+								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								value: item.name,
+								id: item.id
+							}  
+						}));
+					}
+				});
+			},
+			close: function(event, ui) { 
+				event.preventDefault();
+				HelpAShelter.findAnimalsForShelter();
+			}			
+		});
 	},
 	addressAutoComplete: function(){
 		$("#city_zipcode").autocomplete({
@@ -107,22 +173,3 @@ var HelpAShelter = {
 		});
 	}
 };
-
-/* Other Initial functionss
-/*----------------------------------------------------------------------------*/
-$(function() {
-	$(".helper_links .toggle_buttons a").bind("click",function(e){
-		e.preventDefault();
-		$(this).toggleClass("current");
-		var div = $(this).attr('href');
-		$(div).slideToggle('slow');
-	});
-	
-	$(".shelter").live('hover', function(e) {
-	  if (e.type == 'mouseenter') {
-	    $(this).addClass("hover");
-	  } else {
-	    $(this).removeClass("hover");
-	  }
-	});
-});

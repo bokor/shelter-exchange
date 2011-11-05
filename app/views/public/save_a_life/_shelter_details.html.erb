@@ -2,9 +2,10 @@
 	<div class="logo">
 		<%= image_tag @shelter.logo.url(:thumb) %>
 	</div>
-	
 	<div class="address_info">
-		<h2><%= link_to @shelter.name, public_help_a_shelter_path(@shelter) %></h2>
+		<h2><%= link_to @shelter.name, public_help_a_shelter_path(@shelter) %>
+			<span><%= link_to "View all animals at this location", public_help_a_shelter_path(@shelter), :class => "button" %></span></h2>
+		
 		<ul>
 			<li><%=@shelter.street %></li>
 			<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>

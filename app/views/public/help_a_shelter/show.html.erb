@@ -1,7 +1,7 @@
 <%= title "#{@shelter.name} | #{@shelter.city}, #{@shelter.state}" %>
 
-<%= description "#{@shelter.name} currently has #{@types.collect{|type| type.name.pluralize.downcase}.to_sentence} available for ddoption, and is located in #{@shelter.city}, #{@shelter.state}" %>
-
+<%= description "#{@shelter.name} currently has  available for ddoption, and is located in #{@shelter.city}, #{@shelter.state}" %>
+<!-- #{@types.collect{|type| type.name.pluralize.downcase}.to_sentence} -->
 <%= keywords "" %>
 
 <%= canonical_url public_help_a_shelter_url(@shelter) %>
@@ -10,6 +10,12 @@
 
 
 <%= content_for :javascripts do %>
+	<script type="text/javascript">
+		$(function() {
+			HelpAShelter.filterInitialize();
+		});
+	</script>
+
 <% end %>
 
 <%= content_for :page_content do %>

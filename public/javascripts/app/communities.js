@@ -72,7 +72,7 @@ var Communities = {
 		$("#form_city_zipcode_search").unbind("submit");
 		$("#form_shelter_name_search").unbind("submit");
 		$("#filters_animal_type").unbind("change");
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").unbind("change");
+		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only, #filters_special_needs_only").unbind("change");
 		
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
@@ -165,7 +165,7 @@ var Communities = {
 			findAnimalsFunction();
 		});
 		
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only").bind("change", function(e){
+		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only, #filters_special_needs_only").bind("change", function(e){
 			e.preventDefault();
 			findAnimalsFunction();
 		});

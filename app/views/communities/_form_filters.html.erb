@@ -18,12 +18,15 @@
 				<%= label_tag :filters_animal_status, "Status", :class => "desc" %>
 				<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
 			</td>
-			<td class="euthanasia">
-				<%= label_tag :filters_euthanasia_only, "Euthanasia List", :class => "desc" %>
-				<div>
+			<td class="extra_options">
+				<span>
+					<%= check_box_tag "filters[special_needs_only]", true, false, :class => "field checkbox" %>
+					<%= label_tag :filters_special_needs_only, "Special needs animals", :class => "choice special_needs" %>
+				</span>
+				<span>
 					<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-					<%= label_tag :filters_euthanasia_only, "Animals with 14 days or less", :class => "choice" %>
-				</div>
+					<%= label_tag :filters_euthanasia_only, "Euthanasia List (14 days or less)", :class => "choice euthanasia_list" %>
+				</span>
 			</td>
 		</tr>
 	</table>

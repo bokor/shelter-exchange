@@ -1,0 +1,5 @@
+<% unless @animals.blank? %>
+	$('#animals').html( "<%= escape_javascript( render 'animal_list', :animals => @animals) %>" );
+<% else %>
+	$('#animals').html( "<h1>No Animals found</h1>" );
+<% end %>

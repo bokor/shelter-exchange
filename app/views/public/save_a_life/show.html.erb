@@ -64,7 +64,7 @@
 	
 	<div class="animal_shelter">
 		<%= render "shelter_details" %>
-		<p>Please contact <%= link_to @shelter.name, public_help_a_shelter_path(@shelter) %> for more information on how to adopt <%=@animal.name %>.</p>
+		<p>Please contact <%= @shelter.name %> for more information on how to adopt <%=@animal.name %>.</p>
 	</div>
 	
 	

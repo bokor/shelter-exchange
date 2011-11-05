@@ -10,12 +10,11 @@
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
-		<p><%= link_to animal.shelter.name, public_help_a_shelter_path(animal.shelter), :target => "_blank" %></p>
-		<p><%= animal.shelter.city %>, <%= animal.shelter.state %></p>
+		<!-- <p><%# animal.shelter.name %></p>
+		<p><%# animal.shelter.city %>, <%# animal.shelter.state %></p> -->
 		<% if animal.shelter.kill_shelter? %>
 			<p class="euthanisia_date"><b><%= days_left(animal.euthanasia_date) %></b></p>
 		<% end %>
 		<div class="action_links"></div>
 	</td>
 </tr>
-

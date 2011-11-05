@@ -7,21 +7,16 @@ class Public::HelpAShelterController < Public::ApplicationController
   def show
     @shelter = Shelter.find(params[:id])
     @items = @shelter.items.select(:name)
-    @types = AnimalType.available_for_adoption_types(@shelter.id)
+    # @types = AnimalType.available_for_adoption_types(@shelter.id)
   end
   
   def find_shelters_in_bounds
     @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:per_page => 15, :page => params[:page])
   end
   
-  def animals_by_type
-    # filter_param = params[:filter]
-    # @animal = @current_shelter.animals.find(params[:id])
-    # if filter_param.blank?
-    #   @notes = @animal.notes
-    # else
-    #   @notes = @animal.notes.where(:category => filter_param)
-    # end
+  def find_animals_for_shelter
+    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
+    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.all.paginate(:per_page => 15, :page => params[:page]) || {}
   end
 
 end
