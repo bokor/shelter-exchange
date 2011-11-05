@@ -166,7 +166,9 @@
 		  		<div><%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org</div>
 				<%= has_error_message?(@account, :subdomain)%>
 			</li>
+
 			<li class="buttons">
+				<!-- <p>By clicking the create new account button, you agree to the <a href="/terms_of_use">Terms of Use</a> and <a href="/privacy">Privacy</a> policies.</p> -->
 				<div>
 					<%= account_form.submit "Create new account", :disable_with => 'Submiting...', :class => 'button' %>
 				</div>
