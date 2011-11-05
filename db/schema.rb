@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(:version => 20111102014556) do
     t.date     "euthanasia_date"
     t.integer  "accommodation_id"
     t.string   "size"
-    t.boolean  "has_special_needs",     :default => false, :null => false
-    t.string   "special_needs_details"
+    t.boolean  "has_special_needs",  :default => false, :null => false
+    t.text     "special_needs"
   end
 
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"

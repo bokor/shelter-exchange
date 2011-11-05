@@ -347,7 +347,6 @@ body.firefox.mac .button.default {
 
 /* Toggle Buttons */   
 /******************************************************************/
-
 ul.toggle_buttons{
 	background-color: #FEFEFE; 
 	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD)); 

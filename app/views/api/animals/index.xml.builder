@@ -11,6 +11,8 @@ xml.animals do
       xml.microchip(animal.microchip)
       xml.age(humanize_dob(animal.date_of_birth))
       xml.color(animal.color)
+      xml.has_special_needs(animal.has_special_needs)
+      xml.special_needs(animal.special_needs)
       xml.description(animal.description)
       xml.is_sterilized(animal.is_sterilized)
       xml.weight(animal.weight)

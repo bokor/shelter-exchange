@@ -105,12 +105,12 @@
 				</span>
 				<%= has_error_message?(@animal, :has_special_needs)%>
 			</div>
-			<div id="special_needs_details_field">
-				<%= f.label :special_needs_details, "List the special needs description", :class => "desc" %>
+			<div id="special_needs_field">
+				<%= f.label :special_needs, "List the special needs description", :class => "desc" %>
 				<div>
-				<%= f.text_field :special_needs_details, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+				<%= f.text_area :special_needs, :class => "field textarea medium", :maxlength => 255, :placeholder => "Enter the animal's specific special needs" %>
 				</div>
-				<%= has_error_message?(@animal, :special_needs_details)%>
+				<%= has_error_message?(@animal, :special_needs)%>
 			</div>
 		</li>
 		<!-- WORK MORE TOMORROW -->

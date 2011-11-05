@@ -59,8 +59,7 @@ class Animal < ActiveRecord::Base
   validates :sex, :presence => true
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :hold_time, :presence => { :if => :is_kill_shelter? }
-  validates :special_needs_details, :presence => { :if => :special_needs? }
-  
+  validates :special_needs, :presence => { :if => :special_needs? }
   validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
   
   validate :primary_breed_valid?

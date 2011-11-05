@@ -84,11 +84,14 @@
 .circle.yellow{border-color: #f9d36f; background-color:#fdf1d0;}
 .circle.green{border-color: #90e674;background-color:#d5f6ca;}
 
+
 /* Shelter Kill/No Kill Bubble
 -----------------------------------------------------------------------------*/
 .shelter_type{width: 150px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .shelter_type.kill{border-color: #f07280;background-color:#faced3;}
 .shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}
+
+
 
 
 
@@ -182,6 +185,11 @@
 .show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
 .show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
+
+/* Show Animal :: Special Needs Layout
+-----------------------------------------------------------------------------*/
+.show_animals .special_needs{width:100%; padding: 0 0 0 0; }
+.show_animals .special_needs h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
 /* Show Animal :: Description Layout
 -----------------------------------------------------------------------------*/
@@ -398,6 +406,7 @@
 .communities #form_filters table td.sex {width: 10%;}
 .communities #form_filters table td.status {width: 20%;}
 .communities #form_filters table td.extra_options {width: 30%;}
+.communities #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.communities #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
     .communities #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 
@@ -466,6 +475,9 @@
 .show_communities table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_communities table.animal_details td.metadata ul .red_date{color:#ee3124;}
 
+.show_communities .special_needs{width:100%; padding: 0 0 0 0; }
+.show_communities .special_needs h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+
 .show_communities .description{width:100%; padding: 0 0 0 0; }
 .show_communities .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
@@ -487,8 +499,8 @@
 .show_communities #sidebar #animal_shelter {padding: 0;}
 .show_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
-
-
+.show_communities #sidebar #animal_shelter .shelter_details .action_links span,
+.show_communities #sidebar #animal_shelter .shelter_details .action_links a{padding-right: 8px;}
 
 
 

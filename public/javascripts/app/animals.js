@@ -30,9 +30,9 @@ var Animals = {
 		var hasSpecialNeeds = $('#animal_has_special_needs').is(':checked');
 
 		if (hasSpecialNeeds) {
-			$('#special_needs_details_field').show();
+			$('#special_needs_field').show();
 		} else {
-			$('#special_needs_details_field').hide();
+			$('#special_needs_field').hide();
 		}
 	},
 	showSecondaryBreed: function() {

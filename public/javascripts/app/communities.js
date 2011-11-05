@@ -69,10 +69,9 @@ var Communities = {
 
 		// Unbind All Form Filters
 		$("#form_filters").unbind("keypress");
-		$("#form_city_zipcode_search").unbind("submit");
-		$("#form_shelter_name_search").unbind("submit");
-		$("#filters_animal_type").unbind("change");
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only, #filters_special_needs_only").unbind("change");
+		$("#form_city_zipcode_search, #form_shelter_name_search").unbind("submit");
+		$("#filters_sex, #filters_animal_status, #filters_animal_type").unbind("change");
+		$("#filters_euthanasia_only, #filters_special_needs_only").unbind($.browser.msie? "propertychange" : "change");
 		
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
@@ -165,8 +164,13 @@ var Communities = {
 			findAnimalsFunction();
 		});
 		
-		$("#filters_sex, #filters_animal_status, #filters_euthanasia_only, #filters_special_needs_only").bind("change", function(e){
+		$("#filters_sex, #filters_animal_status").bind("change", function(e){
 			e.preventDefault();
+			findAnimalsFunction();
+		});
+		
+		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
+		  	e.preventDefault();
 			findAnimalsFunction();
 		});
 		

@@ -104,8 +104,13 @@ var SaveALife = {
 			SaveALife.findAnimalsInBounds();
 		});
 		
-		$("#filters_sex, #filters_euthanasia_only, #filters_special_needs_only").bind("change", function(e){
+		$("#filters_sex").bind("change", function(e){
 			e.preventDefault();
+			SaveALife.findAnimalsInBounds();
+		});
+		
+		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
+		  	e.preventDefault();
 			SaveALife.findAnimalsInBounds();
 		});
 		

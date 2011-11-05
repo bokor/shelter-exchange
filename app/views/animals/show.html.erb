@@ -69,7 +69,16 @@
 			    </td>
 			</tr>
 		</table>
-		
+		<% if @animal.special_needs? %>
+			<table class="special_needs">
+				<tr>
+					<td>
+						<h3>Special Needs:</h3>
+						<p><%= @animal.special_needs %></p>
+					</td>
+				</tr>
+			</table>
+		<% end %>
 		<table class="description">
 			<tr>
 				<td>

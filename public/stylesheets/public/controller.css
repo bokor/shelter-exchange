@@ -393,6 +393,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 	.index_save_a_life #form_filters table td.breed input {width: 99%;}
 .index_save_a_life #form_filters table td.sex {width: 10%;}
 .index_save_a_life #form_filters table td.extra_options {width: 30%;}
+.index_save_a_life #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.index_save_a_life #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
     .index_save_a_life #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 
@@ -580,6 +581,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 	.show_help_a_shelter #form_filters table td.breed input {width: 99%;}
 .show_help_a_shelter #form_filters table td.sex {width: 10%;}
 .show_help_a_shelter #form_filters table td.extra_options {width: 30%;}
+.show_help_a_shelter #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.show_help_a_shelter #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
 	.show_help_a_shelter #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 	

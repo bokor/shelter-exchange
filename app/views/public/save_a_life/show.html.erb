@@ -44,6 +44,7 @@
 	<table class="animal_details">
 		<tr>
 			<td class="metadata">
+				
 				<h3>Details:</h3>
 				<ul> 
 					<li><p><b>Weight:</b>  <%= @animal.weight.present? ? @animal.weight : "N/A" %></p></li>
@@ -52,6 +53,11 @@
 					<li><p><b>Color:</b>  <%= @animal.color.present? ? @animal.color : "N/A" %></p></li>
 					<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 				</ul>
+				
+				<% if @animal.special_needs? %>
+					<h3>Special Needs:</h3>
+					<p><%= @animal.special_needs %></p>
+				<% end %>
 				
 				<h3>Description:</h3>
 				<p><%= @animal.description.blank? ? "No description provided" : @animal.description %></p>
