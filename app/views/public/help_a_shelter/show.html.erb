@@ -3,7 +3,6 @@
 <%= description "Help the #{@shelter.name}, located in #{@shelter.city}, #{@shelter.state}, by adopting an animal or donating items most needed at this shelter." %>
 <%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
 
-<%= canonical_url public_help_a_shelter_url(@shelter) %>
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
 <%= seo_image "#{@shelter.logo.url(:medium)}" %>
 

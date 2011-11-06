@@ -23,11 +23,6 @@
 <meta property="og:location" content="<%= content_for?(:seo_location) ? yield(:seo_location) : "Raleigh, NC" %>" />
 <meta property="og:description" content="<%= yield(:description) %>"/>
 
-<!-- canonical url -->
-<% if content_for?(:canonical_url) %>
-	<link rel="canonical" href="<%= yield(:canonical_url) %>" />
-<% end %>
-
 <!-- icons -->
 <%= favicon_link_tag 'favicon.ico' %>
 <%= favicon_link_tag 'shelterexchange_icon.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>

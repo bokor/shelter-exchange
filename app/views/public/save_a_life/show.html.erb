@@ -4,7 +4,6 @@
 
 <%= keywords "Adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet, adopt a #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}" %>
 
-<%= canonical_url public_save_a_life_url(@animal) %>
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
 <%= seo_image "#{@animal.photo.url(:medium)}" %>
 
