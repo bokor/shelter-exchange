@@ -1,8 +1,7 @@
 <%= title "#{@shelter.name} | #{@shelter.city}, #{@shelter.state}" %>
 
-<%= description "#{@shelter.name} currently has  available for ddoption, and is located in #{@shelter.city}, #{@shelter.state}" %>
-<!-- #{@types.collect{|type| type.name.pluralize.downcase}.to_sentence} -->
-<%= keywords "" %>
+<%= description "Help the #{@shelter.name}, located in #{@shelter.city}, #{@shelter.state}, by adopting an animal or donating items most needed at this shelter." %>
+<%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
 
 <%= canonical_url public_help_a_shelter_url(@shelter) %>
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
@@ -10,6 +9,14 @@
 
 
 <%= content_for :javascripts do %>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">
+		stLight.options({
+			publisher:'d7bacbc7-2f1f-42dc-a606-db2a54f70db5',
+			onhover: false
+		});
+	</script>
 	<script type="text/javascript">
 		$(function() {
 			HelpAShelter.filterInitialize();
@@ -19,6 +26,15 @@
 <% end %>
 
 <%= content_for :page_content do %>
+
+	<div class="social">
+		<!-- Share This -->
+		<span class='st_facebook' displayText='Facebook'></span>
+		<span class='st_twitter' displayText='Tweet'></span>
+		<span class='st_email' displayText='Email'></span>
+		<span class='st_sharethis' displayText='ShareThis'></span>
+		<!--// Share This -->
+	</div>
 
 	<div id="shelter_details">
 		<div class="logo">
@@ -45,7 +61,7 @@
 		</div>
 		
 		<div class="wish_list">
-			<h2>Wish List</h2>
+			<h2>Our wish list</h2>
 			<% unless @items.blank? %>
 				<ol id="items">
 					<% @items.each do |item| %>
@@ -74,9 +90,7 @@
 	
 	<div id="help_text" class="section_heading no_borders blue">
 		<h3>Help</h3>
-		<p>Use the interactive map below to find adoptable animals in your area.
-		Click  ‘Narrow your search results’ to easily filter animals by their type, breed, sex and to view those with the greatest needs.
-		Drag your curser over the map to find the area you wish to search in, zoom in and out using the + and – buttons, or simply type in a city, State or zip code, or search by a specific shelter name.</p>
+		<p>Use the interactive map below to find adoptable animals in your area. Click 'Narrow your search results' to easily filter animals by their type, breed, sex and to view animals scheduled for euthanasia or with special needs. Drag your curser over the map to find the area you wish to search in and zoom in and out using the + and – buttons. Alternatively you can type the city, state or zip code of where you wish to view animals in the search box above.</p>
 	</div>
 		
 	<div id="narrow_search_results" class="section_heading no_borders blue">

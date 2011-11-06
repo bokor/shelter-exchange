@@ -1,6 +1,6 @@
 <%= title "Save a life - Adopt an animal today" %>
-<%= description "Search your local shelters and rescue groups for animals available for adoption." %>
-<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, adopt a pet, adopt a dog, Cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, breeds, types, location of shelter or rescue group" %>
+<%= description "Search animals available for adoption at local shelters or rescue groups. Save a life today by adopting an animal." %>
+<%= keywords "Adopt animals, save animals, animal adoptions, animals in need, save a life, adopt a pet, adopt a dog, cat, bird, kitten, puppy, horse, pony, hamster, guinia pig, rabbit, reptile, mouse, rat, snake, location of shelter or rescue group, " %>
 
 <%= content_for :javascripts do %>
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
@@ -17,7 +17,7 @@
 	<div class="search_content">
 		<span class="search_form">
 			<form action="#" id="form_city_zipcode_search">
-			    <%= text_field_tag :city_zipcode, "", :placeholder => "Please type a city or zipcode" %> <!-- #{city_zipcode_default} -->
+			    <%= text_field_tag :city_zipcode, "", :placeholder => "Please type a city, state or zipcode" %> <!-- #{city_zipcode_default} -->
 			</form>
 			<ul class="toggle_buttons">
 				<li><a id="search_by_city_zipcode" href="#" class="current">City or Zip code</a></li>
@@ -37,7 +37,7 @@
 	
 	<div id="help_text" class="section_heading no_borders blue">
 		<h3>Help</h3>
-		<p>Use the interactive map below to find adoptable animals in your area.  Click <strong>'Narrow your search results'</strong> to easily filter animals by their type, breed, sex and to view those with the greatest needs.  Drag your curser over the map to find the area you wish to search in, zoom in and out using the + and – buttons, or simply type in a city, State or zip code, or search by a specific shelter name.</p>
+		<p>Use the interactive map below to find adoptable animals in your area. Click 'Narrow your search results' to easily filter animals by their type, breed, sex and to view animals scheduled for euthanasia or with special needs. Drag your curser over the map to find the area you wish to search in and zoom in and out using the + and – buttons. Alternatively you can type the city, state or zip code of where you wish to view animals in the search box above.</p>
 	</div>
 		
 	<div id="narrow_search_results" class="section_heading no_borders blue">

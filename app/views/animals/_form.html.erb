@@ -23,7 +23,7 @@
 			<div id="is_mixed_breed_field">
 				<span>
 					<%= f.check_box :is_mix_breed, :class =>"field checkbox" %>
-					<%= f.label :is_mix_breed, "Mixed Breed?", :class => "choice" %>
+					<%= f.label :is_mix_breed, "Mixed Breed?", :class => "desc choice" %>
 				</span>
 				<%= has_error_message?(@animal, :is_mixed_breed)%>
 			</div>
@@ -96,7 +96,6 @@
 			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :date_of_birth)%>
 		</li>
-		<!-- WORK MORE TOMORROW -->
 		<li>
 			<div id="has_special_needs_field">
 				<span>
@@ -106,14 +105,13 @@
 				<%= has_error_message?(@animal, :has_special_needs)%>
 			</div>
 			<div id="special_needs_field">
-				<%= f.label :special_needs, "List the special needs description", :class => "desc" %>
+				<%= f.label :special_needs, "Special needs description", :class => "desc" %>
 				<div>
-				<%= f.text_area :special_needs, :class => "field textarea medium", :maxlength => 255, :placeholder => "Enter the animal's specific special needs" %>
+				<%= f.text_area :special_needs, :class => "field textarea medium", :maxlength => 255, :placeholder => "Provide details of the animal's special needs." %>
 				</div>
 				<%= has_error_message?(@animal, :special_needs)%>
 			</div>
 		</li>
-		<!-- WORK MORE TOMORROW -->
 		<li>
 			<%= f.label :weight, "Weight", :class => "desc" %>
 			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>
