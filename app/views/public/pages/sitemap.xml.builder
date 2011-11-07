@@ -41,8 +41,8 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
   @animals.each do |animal|
     xml.url do
      xml.loc "#{full_url}/save_a_life/#{animal.id}"
-     # xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
-     xml.changefreq "daily"
+     xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
+     xml.changefreq "weekly"
     end
   end
   #---------------------------------------------
