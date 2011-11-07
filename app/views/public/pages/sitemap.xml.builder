@@ -21,12 +21,12 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
   
   #-Community :: Shelters--------------------------------------------
   xml.url do
-   xml.loc "#{full_url}/help_a_shelter"
+   xml.loc public_help_a_shelter_index_url
    xml.lastmod @help_a_shelter_last_updated
   end
   @shelters.each do |shelter|
     xml.url do
-     xml.loc "#{full_url}/help_a_shelter/#{shelter.id}"
+     xml.loc public_help_a_shelter_url(shelter)
      # xml.lastmod shelter.updated_at.strftime("%Y-%m-%d")
      xml.changefreq "weekly"
     end
@@ -35,12 +35,12 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
   
   #-Community :: Animals--------------------------------------------
   xml.url do
-   xml.loc "#{full_url}/save_a_life"
+   xml.loc public_save_a_life_index_url
    xml.lastmod @save_a_life_last_updated
   end
   @animals.each do |animal|
     xml.url do
-     xml.loc "#{full_url}/save_a_life/#{animal.id}"
+     xml.loc public_save_a_life_url(animal)
      xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
      xml.changefreq "weekly"
     end

@@ -19,7 +19,7 @@ class Public::PagesController < Public::ApplicationController
     @save_a_life_last_updated = Animal.order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
     
     @shelters = Shelter.select([:id, :updated_at]).all
-    @help_a_shelter_last_updated = Shelter.order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
+    @help_a_shelter_last_updated = Shelter.order("updated_at DESC").first.updated_at.strftime("%Y-%m-%d")
   end
   
 end
