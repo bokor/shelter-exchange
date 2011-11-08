@@ -94,10 +94,10 @@
 	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
-			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id), :remote => true, :id => "all_notes_link" %>
+			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
 			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_communities_path(:filter => category, :animal_id => @animal.id), 
+				<%= link_to category.humanize, filter_notes_communities_path(:filter => category, :animal_id => @animal.id, :format => :js), 
 				                          :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>

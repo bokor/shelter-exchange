@@ -16,7 +16,7 @@
 				<% @latest_activity.each do |activity| %>
 					<div class="activity">
 						<span class="type">
-							<img class="tooltip" data-tip="<%=activity.class.name%>" src="/images/icon_<%= activity.class.name.downcase %>.png" />
+							<%= image_tag "icon_#{activity.class.name.downcase}.png", :class =>"tooltip", "data-tip" => activity.class.name %>
 						</span>
 						<span class="details">
 							<span class="title"><%= activity_message_for(activity)  %></span>
