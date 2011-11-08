@@ -5,6 +5,4 @@ sudo "rm -rf #{current_path}/public/assets/*"
 sudo "monit -g dj_shelter_exchange_app restart all"
 
 # Ping Search Engines - Updated Sitemap.xml
-# if environment == "production"
-#   ping
-# end
+run "cd #{current_path} && bundle exec rake sitemaps:ping" if environment == "production"
