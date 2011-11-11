@@ -13,7 +13,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
   #-Web Pages--------------------------------------------
   Dir.glob("*/**/").each do |d|
     xml.url do
-     xml.loc "#{full_url}/#{d}"
+     xml.loc "#{full_url}/#{d.chomp('/')}"
      xml.lastmod File.ctime(File.absolute_path("index.html.erb", d)).strftime("%Y-%m-%d")
     end
   end

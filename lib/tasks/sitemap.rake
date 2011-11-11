@@ -4,7 +4,7 @@ search_engines = ["http://www.google.com/webmasters/tools/ping?sitemap=",
                   "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="]
                   
 
-namespace :sitemaps do
+namespace :sitemap do
   
   desc "ping search engines about a change in sitemap"
   task :ping do
