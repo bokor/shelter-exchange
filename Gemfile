@@ -53,9 +53,9 @@ gem 'rmagick', '2.12.2'
 gem 'geokit', '1.5.0'				
 gem 'rails3-generators', '0.14.0'  
 
-# Delayed Jobs - Asyc Transactions
+# Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
-gem 'delayed_job', '2.1.4'         
+gem 'delayed_job', '2.1.4'    
 
 
 # Proactive - Monitoring & Notification
@@ -70,7 +70,6 @@ gem 'hoptoad_notifier', '2.4.11'
 
 
 ##TESTING THESE GEMS/Plugins
-# gem 'whenever', '0.6.7'             # Cron Jobs
 # gem 'geokit-rails3', '0.1.3'        # Geocoding
 
 
