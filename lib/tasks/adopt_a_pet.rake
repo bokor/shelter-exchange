@@ -1,4 +1,5 @@
-require "CSV"
+require 'csv'
+
 namespace :adopt_a_pet do
   desc "Creating Adopt a Pet CSV files"
   task :generate_csv_files => :environment do
