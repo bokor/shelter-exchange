@@ -1,4 +1,4 @@
-# Remove Jammit-S3 - Generated Assets
+# Remove Jammit-S3 - Generated Assets  SEEMS TO CAUSE ISSUES WITH THE ?date not to be added on the urls
 # on_app_master(){ sudo "rm -rf #{current_path}/public/assets/*" }
 
 # Restart Delayed Job
