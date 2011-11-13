@@ -9,7 +9,6 @@ namespace :sitemap do
   desc "ping search engines about a change in sitemap"
   task :ping do
     search_engines.each do |url|
-      # Update with HTTP Party, Rest Client or Event Machine
       sh "curl #{url}"
     end
   end
