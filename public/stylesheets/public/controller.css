@@ -418,7 +418,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 -----------------------------------------------------------------------------*/
 .show_save_a_life #shelter_details{padding-bottom: 20px;/*border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 10px;*/}
 .show_save_a_life #shelter_details h2 span{position:absolute;letter-spacing: 0px; margin-top: -2px;font-size: 14px;padding-left: 20px;}
-.show_save_a_life #shelter_details .logo{float:right; width: 100px;text-align:right;}
+.show_save_a_life #shelter_details .logo{float:right; text-align:right;}
 .show_save_a_life #shelter_details .address_info{width: 860px;}
 .show_save_a_life #shelter_details .action_links span,
 .show_save_a_life #shelter_details .action_links a{padding-right: 8px;}
