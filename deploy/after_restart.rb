@@ -1,5 +1,5 @@
 # Remove Jammit-S3 - Generated Assets
-# sudo "rm -rf #{current_path}/public/assets/*"
+sudo "rm -rf #{current_path}/public/assets/*"
 
 # Restart Delayed Job
 if environment == "production"
