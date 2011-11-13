@@ -27,7 +27,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
   @shelters.each do |shelter|
     xml.url do
      xml.loc public_help_a_shelter_url(shelter)
-     # xml.lastmod shelter.updated_at.strftime("%Y-%m-%d")
+     xml.lastmod shelter.updated_at.strftime("%Y-%m-%d")
      xml.changefreq "weekly"
     end
   end
@@ -42,7 +42,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
     xml.url do
      xml.loc public_save_a_life_url(animal)
      xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
-     xml.changefreq "weekly"
+     xml.changefreq "daily"
     end
   end
   #---------------------------------------------
