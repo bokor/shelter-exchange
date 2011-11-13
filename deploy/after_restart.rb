@@ -2,7 +2,13 @@
 sudo "rm -rf #{current_path}/public/assets/*"
 
 # Restart Delayed Job
-sudo "monit -g dj_shelter_exchange_app restart all"
-
+if environment == "production"
+  on_utilities("shelter_exchange_util"){ sudo "monit -g dj_shelter_exchange_app restart all" }
+elsif ["staging"].include?(environment)
+  sudo "monit -g dj_shelter_exchange_app restart all"
+end
+  
 # Ping Search Engines - Updated Sitemap.xml
-# run "cd #{current_path} && bundle exec rake sitemap:ping" if environment == "production"
+if environment == "production"
+  on_utilities("shelter_exchange_util"){ run "cd #{current_path} && bundle exec rake sitemap:ping" }
+end
