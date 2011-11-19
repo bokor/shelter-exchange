@@ -1,3 +1,0 @@
-module Public::SaveALifeHelper
-  
-end
