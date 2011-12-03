@@ -1,7 +1,7 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate! if Rails.env.demo? or Rails.env.staging?  
+  before_filter :authenticate! if Rails.env.demo? or Rails.env.staging?
     
   layout :current_layout
 
@@ -13,7 +13,8 @@ class Public::ApplicationController < ActionController::Base
     
     def authenticate!   
       authenticate_or_request_with_http_basic do |username, password|
-        username == "shelterexchange" && password == "sav1ngl1ves"
+        (username == "shelterexchange" && password == "sav1ngl1ves") || 
+        (username == "testaccount" && password == "shelterexchange2011")
       end
     end
 
