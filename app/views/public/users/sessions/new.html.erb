@@ -17,11 +17,12 @@
 	<%= render "shared/flash_messages" %>
 		
 	<%= form_for(resource, :as => :user, :url => session_path(:user)) do |f| %>
+
 		<ul class="half">
 		  	<li>
 		  		<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
-					<%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Your email address" %>
+					<%= f.text_field :email, :class => "field text large", :maxlength => 255, :placeholder => "Your email address", :value => (params[:user][:email] if params.has_key?(:user)) %>
 				</div>
 			</li>
 			<li>
