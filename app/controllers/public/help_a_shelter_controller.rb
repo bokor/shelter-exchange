@@ -18,5 +18,11 @@ class Public::HelpAShelterController < Public::ApplicationController
     shelter_id = Shelter.find(params[:filters][:shelter_id]).id
     @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.all.paginate(:per_page => 15, :page => params[:page]) || {}
   end
+  
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    logger.error(":::Attempt to access invalid shelter => #{params[:id]}")
+    flash[:error] = "You have requested an invalid shelter!"
+    redirect_to public_help_a_shelter_index_path
+  end
 
 end

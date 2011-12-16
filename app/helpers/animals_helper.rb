@@ -67,12 +67,10 @@ module AnimalsHelper
     case animal.animal_status_id
       when AnimalStatus::STATUSES[:adopted]
         animal.animal_status.name + humanize_status_change_date(animal)
-      when AnimalStatus::STATUSES[:available_for_adoption]
-        animal.animal_status.name
-      when AnimalStatus::STATUSES[:foster_care]
-        animal.animal_status.name
-      else 
+      when AnimalStatus::STATUSES[:deceased] || AnimalStatus::STATUSES[:euthanized]
         "No longer available for adoption"
+      else 
+        animal.animal_status.name
     end
   end
   

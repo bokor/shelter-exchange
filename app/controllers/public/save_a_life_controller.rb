@@ -16,4 +16,10 @@ class Public::SaveALifeController < Public::ApplicationController
     end
   end
   
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    logger.error(":::Attempt to access invalid animal => #{params[:id]}")
+    flash[:error] = "You have requested an invalid animal!"
+    redirect_to public_save_a_life_index_path
+  end
+  
 end

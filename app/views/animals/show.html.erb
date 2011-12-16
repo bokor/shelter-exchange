@@ -83,7 +83,7 @@
 			<tr>
 				<td>
 					<h3>Description:</h3>
-					<p><%= @animal.description %></p>
+					<p><%= auto_link(@animal.description, :all, :target => "_blank").html_safe %></p>
 				</td>
 			</tr>
 		</table>
