@@ -98,6 +98,8 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   
   
+  
+  
   # Scopes - Statuses
   #----------------------------------------------------------------------------
   scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
@@ -108,6 +110,12 @@ class Animal < ActiveRecord::Base
   scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
   scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
   #----------------------------------------------------------------------------  
+  
+  
+  # Scopes - Public
+  #----------------------------------------------------------------------------
+  scope :latest_adoptions, lambda { |limit| unscoped.includes(:shelter).reorder("status_change_date DESC").adopted.limit(limit) }
+  #----------------------------------------------------------------------------
   
   
   # Scopes - Dashboard - Recent Activity

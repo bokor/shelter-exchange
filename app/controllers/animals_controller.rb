@@ -50,7 +50,11 @@ class AnimalsController < ApplicationController
   
   def search
     q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    if q.blank?
+      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    else
+      @animals = @current_shelter.animals.search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    end
   end
   
   def filter_notes
