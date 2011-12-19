@@ -6,26 +6,13 @@
 		<span class="col_2">
 			<span><%=current_owner.name%></span>	
 			<span class="link_separator">|</span>
-			<!-- <span><%= link_to "Settings", "#", :class => "settings_link" %></span>
-			<span class="link_separator">|</span>
-			<span><%= link_to "Help", "http://shelterexchange.uservoice.com/", :target => "_new" %></span>
-			<span class="link_separator">|</span> -->
 			<span><%= link_to "Logout", destroy_owner_session_path, :confirm => "Are you sure?" %></span>
-			<!-- <ul class="settings_menu">
-		      	<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
-				<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
-				<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
-				<li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
-		    </ul> -->
 		</span>
 	</div>
 	<ul id="menu">
-		<li class="<%= selected_navigation(:dashboard) %>"><%= link_to "Dashboard", admin_dashboard_path %></li>
+		<li class="<%= selected_navigation(:dashboard) %>"><%= link_to "Dashboard", admin_dashboard_index_path %></li>
 		<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelters", admin_shelters_path %></li>
 		<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", admin_reports_path %></li>
-		<!-- <li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
-		<li class="<%= selected_navigation(:parents) %>"><%= link_to "Parents", parents_path %></li>
-		<li class="<%= selected_navigation(:communities) %>"><%= link_to "Community", communities_path %></li>
-		<li class="<%= selected_navigation(:reports) %>"><%= link_to "Reports", reports_path %></li> -->
+		<li class="<%= selected_navigation(:exports) %>"><%= link_to "Exports", admin_exports_path %></li>
 	</ul>
 </div>

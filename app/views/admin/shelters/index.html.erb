@@ -1,7 +1,6 @@
 <%= title "Shelter List" %>
 
-<%= content_for :javascripts do %>
-<% end %>
+<%= content_for :javascripts do %><% end %>
 
 <%= content_for :page_content do %>
 
@@ -18,18 +17,23 @@
 	
 	<div class="page_content">
 
-
-		<div class="no_kill_shelters_section">
-			<h2>No Kill Shelters (<%=@no_kill_shelter_total%>)</h2>
+		<div class="shelters_section">
+			<h2>No Kill Shelters</h2>
 			<div id="no_kill_shelters" class="shelter_list">
 				<%= render @no_kill_shelters %>
 			</div>
+			<div id="no_kill_paginate">
+				<%= will_paginate @no_kill_shelters, :param_name => :no_kill_shelters_page %>
+			</div>
 		</div>
 		
-		<div class="kill_shelters_section">
-			<h2>Kill Shelters (<%=@kill_shelter_total%>)</h2>
+		<div class="shelters_section kill">
+			<h2>Kill Shelters</h2>
 			<div id="kill_shelters" class="shelter_list">
 				<%= render @kill_shelters %>
+			</div>
+			<div id="kill_paginate">
+				<%= will_paginate @kill_shelters, :param_name => :kill_shelters_page %>
 			</div>
 		</div>
 		
@@ -37,7 +41,5 @@
 		
 <% end %>
 
-<%= content_for :sidebar do %>
-	
-<% end %>
+<%= content_for :sidebar do %><% end %>
 

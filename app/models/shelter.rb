@@ -80,11 +80,13 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
-  scope :live_search, lambda { |q| where("LOWER(name) LIKE LOWER('#{q}%') 
-                                          OR LOWER(city) LIKE LOWER('#{q}%')
-                                          OR LOWER(state) LIKE LOWER('#{q}%')") }
+  scope :live_search, lambda { |q| where("name LIKE LOWER('%#{q}%') OR city LIKE LOWER('%#{q}%') OR 
+                                          state LIKE LOWER('%#{q}%') OR zip_code LIKE LOWER('%#{q}%') OR 
+                                          facebook LIKE LOWER('%#{q}%') OR email LIKE LOWER('%#{q}%')") }
   scope :kill_shelters, where(:is_kill_shelter => true).order(:name) 
   scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 
+  scope :latest, lambda {|limit| order("created_at desc").limit(limit) }
+
   
   # Instance Methods
   #----------------------------------------------------------------------------

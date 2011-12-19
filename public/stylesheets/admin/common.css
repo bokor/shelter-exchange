@@ -192,6 +192,7 @@ blue
 .button.blue {
 	border-color: #2b4887;
 	border-bottom-color: #1447a1;
+	background-color:#2c8fff;
 	background-image: -moz-linear-gradient(center top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#6bbeff),color-stop(0.5,#2c8fff),color-stop(0.5,#1471fb),color-stop(1,#0758f1));
 	background-image: -webkit-linear-gradient(top,#6bbeff 0,#2c8fff 50%,#1471fb 50%,#0758f1 100%);
@@ -238,6 +239,7 @@ body.firefox.mac .button.default {
 	text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
 	border: 1px solid #b5180c;
 	border-bottom-color: #7d0d05;
+	background-color:#ff343c;
 	background-image: -moz-linear-gradient(center top,#ff6161 0,#ff343c 50%,#e60000 50%,#be0006 100%);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ff6161),color-stop(0.5,#ff343c),color-stop(0.5,#e60000),color-stop(1,#be0006));
 	background-image: -webkit-linear-gradient(top,#ff6161 0,#ff343c 50%,#e60000 50%,#be0006 100%);
@@ -275,6 +277,7 @@ body.firefox.mac .button.default {
 	text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
 	border: 1px solid #02901f;
 	border-bottom-color: #027419;
+	background-color:#02901f;
 	background-image: -webkit-gradient(linear,0% 0,0% 100%,color-stop(0%,#43da62),color-stop(100%,#02901f));
 	background-image: -moz-linear-gradient(top,#43da62 0,#02901f 100%);
 }
@@ -307,7 +310,6 @@ body.firefox.mac .button.default {
 
 /* Toggle Buttons */   
 /******************************************************************/
-
 ul.toggle_buttons{
 	background-color: #FEFEFE; 
 	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD)); 
@@ -352,12 +354,25 @@ ul.toggle_buttons li a {
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
 	text-transform: uppercase;
 }
+
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/******************************************************************/
+.ie7 ul.toggle_buttons,
+.ie8 ul.toggle_buttons {background-color: #F3F3F3; }
+.ie7 ul.toggle_buttons li a,
+.ie8 ul.toggle_buttons li a  {border-left: 1px solid #bbb;}
+
 ul.toggle_buttons li:first-child a{border-left: 0px;}
 ul.toggle_buttons li a.current {
 	background-color: rgba(0, 111, 187, 0.0976562);
 	border-left-color: rgba(0, 111, 187, 0.296875);
 	color: #006FBB;
 }
-ul.toggle_buttons li a:hover{
-	color: #CF7019;
-}
+
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/******************************************************************/
+.ie7 ul.toggle_buttons li a.current,
+.ie8 ul.toggle_buttons li a.current  {background-color: #dde7ef;}
+
+
+ul.toggle_buttons li a:hover{color: #CF7019;}

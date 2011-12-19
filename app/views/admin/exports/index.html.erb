@@ -1,0 +1,24 @@
+<%= title "Exports" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1>Exports</h1>
+	</div>
+	
+	<div class="page_content">
+		
+		<div>
+			<span><%= link_to "All Shelter and User Email Addresses", all_emails_admin_exports_path(:csv), :class => "button" %></span>
+		</div>
+		
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %>
+<% end %>
+

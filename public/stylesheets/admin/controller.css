@@ -147,20 +147,22 @@
 
 /* Shelters Section :: Index :: Layout
 -----------------------------------------------------------------------------*/
-.no_kill_shelters_section h2{font-weight: bold;}
-.kill_shelters_section h2{color: red;font-weight: bold;}
+.shelters_section{padding-bottom: 75px;}
+.shelters_section h2{font-weight: bold;}
+.shelters_section.kill h2{color: red;}
 
 /* Shelter List :: Layout
 -----------------------------------------------------------------------------*/
-.shelter_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 75px;}
+.shelter_list { width: 100%; border-top: 1px #bbb dotted;}
 
-.shelter{clear:both;width: 100%; display:inline-block; line-height: 75px; text-align:left;border-bottom: 1px dotted #bbb;}
+.shelter{clear:both;width: 100%; display:inline-block; line-height: 75px; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
 .shelter.hover{cursor:default;}
-	.shelter .logo{display:inline-block; width: 150px;}
+	.shelter .logo{display:inline-block; width: 150px; vertical-align:middle;}
 		.shelter .logo img{display:inline-block; vertical-align:middle;}
-	.shelter .name{display:inline-block; width: 30%; font-weight: bold;	line-height: 1.5em;vertical-align: middle;}
+	.shelter .name{display:inline-block; width: 25%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
 	.shelter .city_state{display:inline-block; width: 20%; }
-	.shelter .email{display:inline-block;  }
+	.shelter .email{display:inline-block; }
+	.shelter .created_at{display:inline-block; float:right; font-weight: bold; }
 	
 	
 /* User List :: Layout
@@ -263,6 +265,24 @@
 .reports #main { margin: 1em 3em 0 3em; }
 .reports #left{ width: 100%;}
 .reports #sidebar { display: none;width: 0; }
+
+
+
+
+/*****************************************************************/
+/* -------------------------- EXPORTS -------------------------- */
+/*****************************************************************/
+
+/* Exports :: Global
+-----------------------------------------------------------------------------*/
+.exports ul {list-style:none;}
+
+/* Exports :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.exports #main { margin: 1em 3em 0 3em; }
+.exports #left{ width: 100%;}
+.exports #sidebar { display: none;width: 0; }
+
 
 
 

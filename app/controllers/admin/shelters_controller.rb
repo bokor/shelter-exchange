@@ -2,10 +2,8 @@ class Admin::SheltersController < Admin::ApplicationController
   respond_to :html, :js
   
   def index
-    @kill_shelter_total = Shelter.kill_shelters.all.count
-    @no_kill_shelter_total = Shelter.no_kill_shelters.all.count
-    @kill_shelters = Shelter.kill_shelters.all
-    @no_kill_shelters = Shelter.no_kill_shelters.all
+    @kill_shelters = Shelter.kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page])
+    @no_kill_shelters = Shelter.no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page])
   end
   
   def show
@@ -19,8 +17,8 @@ class Admin::SheltersController < Admin::ApplicationController
   
   def live_search
     q = params[:q].strip
-    @kill_shelters = q.blank? ? Shelter.kill_shelters.all : Shelter.live_search(q).kill_shelters.all
-    @no_kill_shelters = q.blank? ? Shelter.no_kill_shelters.all : Shelter.live_search(q).no_kill_shelters.all
+    @kill_shelters = q.blank? ? Shelter.kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page]) : Shelter.live_search(q).kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page])
+    @no_kill_shelters = q.blank? ? Shelter.no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page]) : Shelter.live_search(q).no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page])
   end
   
 end

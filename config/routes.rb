@@ -189,7 +189,13 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Admin :: Dashboard
       #----------------------------------------------------------------------------
-      match "/dashboard", :to => "dashboard#index"
+      resources :dashboard, :only => [:index]
+      
+      # Admin :: Export
+      #----------------------------------------------------------------------------
+      resources :exports, :only => [:index] do
+        get :all_emails, :on => :collection
+      end
       
       # Admin :: Shelters
       #----------------------------------------------------------------------------

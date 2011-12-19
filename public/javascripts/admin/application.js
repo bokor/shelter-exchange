@@ -16,6 +16,14 @@ $(function(){
 	  }
 	});
 	
+	/* Pagination Links :: AJAX Searches
+	/*----------------------------------------------------------------------------*/
+	$('.pagination a').live('click',function (e){  
+		$.getScript(this.href);  
+	    // return false;  
+		e.preventDefault();
+	});
+	
 	// $(".alert, .note").live("click", function(e){
 	// 	var target = $(e.target);
 	//         if(target.is("a") || target.is("input")) { //checks if other things are clicked first
