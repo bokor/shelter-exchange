@@ -145,6 +145,12 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :settings, :only => [:index] 
     resources :token_authentications, :only => [:create, :destroy]
+    
+    # Announcements
+    #----------------------------------------------------------------------------
+    resources :announcements, :only => [:destroy] # do
+    #       delete :hide, :on => :collection
+    #     end
   
     # Users
     #----------------------------------------------------------------------------

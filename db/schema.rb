@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102014556) do
+ActiveRecord::Schema.define(:version => 20111217063246) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -121,6 +121,20 @@ ActiveRecord::Schema.define(:version => 20111102014556) do
   add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
   add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
+
+  create_table "announcements", :force => true do |t|
+    t.string   "title"
+    t.text     "message"
+    t.string   "category"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "announcements", ["starts_at", "ends_at", "updated_at"], :name => "index_announcements_on_starts_at_and_ends_at_and_updated_at"
+  add_index "announcements", ["starts_at", "ends_at"], :name => "index_announcements_on_starts_at_and_ends_at"
+  add_index "announcements", ["starts_at", "updated_at"], :name => "index_announcements_on_starts_at_and_updated_at"
 
   create_table "breeds", :force => true do |t|
     t.string   "name"

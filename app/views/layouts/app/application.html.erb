@@ -44,6 +44,17 @@
 		
 		<div id="flash_messages"><%= render :partial => "shared/flash_messages" %></div>
 		
+		<% unless current_announcements.empty? %>
+			<div id="announcement">
+		  		<% for announcement in current_announcements %>
+					<h2><%= announcement.title %></h2>
+					<h4><%= announcement.category %></h4>
+		    		<p><%= announcement.message %></p>
+		  		<% end %>
+		  		<p><%= link_to "Hide this message", announcement, :method => :delete, :confirm => "Are you sure you want to hide this message?", :remote => true %></p>
+			</div>
+		<% end %>
+		
 		<div id="left">
 			
 			<div id="content">

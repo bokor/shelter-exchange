@@ -20,6 +20,11 @@ module ApplicationHelper
     (element.to_s == request.fullpath[1..-1].split('/').collect!{|p| p.to_s}.last) ? "current" : ""
   end
   
+  def current_announcements
+    hide_time =  session[:announcement_hide_time] || cookies[:announcement_hide_time]
+    @current_announcements ||= Announcement.current_announcements(hide_time)
+  end
+  
   def format_date(type, date)
     return nil if date.blank?
     case type
