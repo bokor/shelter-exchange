@@ -1,0 +1,5 @@
+$('#announcement_<%=@announcement.id%>').hide();
+$('#announcement_<%=@announcement.id%>').after( "<%= escape_javascript(render 'edit_announcement', :collection => @announcement) %>" );
+$('#edit_announcement_<%=@announcement.id%>').show();
+
+<% flash.discard %>

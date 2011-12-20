@@ -268,6 +268,49 @@
 
 
 
+/************************************************************************/
+/* -------------------------- ANNOUNCEMENTS  -------------------------- */
+/************************************************************************/
+
+/* Announcements :: Global */
+/******************************************************************/
+.announcements ul { list-style:none ;}
+
+/* New/Create Announcements :: Layout */
+/******************************************************************/
+.new_announcements #main, .create_announcements #main { margin: 1em 3em 0 3em; }
+.new_announcements #left, .create_announcements #left{ width: 100%;}
+.new_announcements #sidebar, .create_announcements #sidebar { display: none;width: 0; }
+
+/* Announcements :: Help
+-----------------------------------------------------------------------------*/
+.announcements ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
+.announcements ul.help li{margin-left: 20px;padding-bottom: 10px;}
+
+
+/* Alert List :: Layout */
+/******************************************************************/
+.announcement_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.announcement{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.announcement .category{display:inline-block; padding: 0 5px; }
+	.announcement .category div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
+	.announcement .category div.web_update{background-color:#ee3124; }
+	.announcement .category div.help{background-color:#f39500;}
+	.announcement .category div.general{background-color:gray;}
+
+.announcement .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+
+.announcement .details{display:inline-block; width: 57%; vertical-align:top; }
+	.announcement .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top:5px; padding-left: 5px;}
+
+.announcement .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.announcement .message { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em; }
+
+
+
 
 /*****************************************************************/
 /* -------------------------- EXPORTS -------------------------- */

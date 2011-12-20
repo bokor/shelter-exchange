@@ -611,8 +611,15 @@
 
 
 
+/* Announcement List :: Layout
+-----------------------------------------------------------------------------*/
+.announcement_list{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 0 2% 20px 0; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;border-color: #f9d36f; background-color:#fdf1d0;}
+.announcement_list .hide_announcement_link{position:absolute; top: 15px; right: 20px;}
+.announcement_list:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-
+.announcement{border-top: 1px #bbb dotted; padding-top: 20px; margin-top:20px;}
+.announcement:first-child{border-top: none; padding-top: 0px; margin-top:0px;}
+	.announcement p{line-height: 1.5em;}
 
 
 

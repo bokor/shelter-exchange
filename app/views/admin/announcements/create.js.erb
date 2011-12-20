@@ -1,0 +1,17 @@
+<% if @announcement.errors.any? %>
+	$('#create_announcement_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @announcement) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @announcement, :form_id => "create_announcement_form" %>
+<% else %>
+	$('#announcements').prepend("<%= escape_javascript(render @announcement) %>"); 
+	$("#announcements .announcement").first().effect("highlight", {}, 1500);
+	
+	// Clear Form
+	$('#create_announcement_form').get(0).reset();
+	
+	// Remove Errors
+	$('#create_announcement_errors_<%=@announcement.id %>').html("");
+	$('#create_announcement_form p.error').remove();
+	$('#create_announcement_form li').removeClass("error");
+	
+<% end %>
+<% flash.discard %>

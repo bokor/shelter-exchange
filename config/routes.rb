@@ -145,6 +145,12 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :settings, :only => [:index] 
     resources :token_authentications, :only => [:create, :destroy]
+    
+    # Announcements
+    #----------------------------------------------------------------------------
+    resources :announcements do
+      post :hide, :on => :collection
+    end
   
     # Users
     #----------------------------------------------------------------------------
@@ -190,22 +196,26 @@ ShelterExchangeApp::Application.routes.draw do
       # Admin :: Dashboard
       #----------------------------------------------------------------------------
       resources :dashboard, :only => [:index]
-      
-      # Admin :: Export
-      #----------------------------------------------------------------------------
-      resources :exports, :only => [:index] do
-        get :all_emails, :on => :collection
-      end
-      
+            
       # Admin :: Shelters
       #----------------------------------------------------------------------------
       resources :shelters, :only => [:index, :show] do
         get :live_search, :on => :collection
       end
       
+      # Admin :: Announcements
+      #----------------------------------------------------------------------------
+      resources :announcements, :except => [:new]
+      
       # Admin :: Accounts
       #----------------------------------------------------------------------------
       resources :accounts, :only => [:edit, :update]
+      
+      # Admin :: Export
+      #----------------------------------------------------------------------------
+      resources :exports, :only => [:index] do
+        get :all_emails, :on => :collection
+      end
       
       # Admin :: Reports
       #----------------------------------------------------------------------------

@@ -1,0 +1,5 @@
+$('#announcement_<%= @announcement.id %>').fadeOut(1000, function() { 
+	$(this).remove(); 
+});
+
+<% flash.discard %>

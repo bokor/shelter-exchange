@@ -1,0 +1,11 @@
+<% unless controller_name != "dashboard" or current_announcements.empty? %>
+	<div id="announcements" class="announcement_list">
+  		<% for announcement in current_announcements %>
+			<div id="announcement_<%= announcement.id %>" class="announcement">
+				<h2><%= announcement.title %></h2>
+    			<p><%= auto_link(announcement.message, :all, :target => "_blank").html_safe %></p>
+			</div>
+  		<% end %>
+  		<%= link_to "Hide all messages", hide_announcements_path, :method => :post, :confirm => "Are you sure you want to hide all messages?", :remote => true, :class => "hide_announcement_link" %>
+	</div>
+<% end %>
