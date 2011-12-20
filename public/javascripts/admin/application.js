@@ -4,11 +4,11 @@
  * ------------------------------------------------------------------------ */
 
 
-/* ------------------------------------------------------------------------
- * Live - Hover, Click Events
- * ------------------------------------------------------------------------ */
+
+/* Live - Hover, Click Events
+/*----------------------------------------------------------------------------*/
 $(function(){
-	$(".counts_by_status, .users, .capacity_details tbody tr").live('hover', function(e) {
+	$(".announcement, .counts_by_status, .users, .capacity_details tbody tr").live('hover', function(e) {
 	  if (e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {
@@ -16,22 +16,13 @@ $(function(){
 	  }
 	});
 	
-	// $(".alert, .note").live("click", function(e){
-	// 	var target = $(e.target);
-	//         if(target.is("a") || target.is("input")) { //checks if other things are clicked first
-	//             return;
-	//         } else {
-	// 		$(".description", this).slideToggle();
-	// 	}
-	// });
-	// $(".user").live("click", function(e){
-	// 	var target = $(e.target);
-	//         if(target.is("a") || target.is("input")) { //checks if other things are clicked first
-	//             return;
-	//         } else {
-	// 		// alert("select user");
-	// 		// Users.selectUser(<%=user.id%>);
-	// 	}
-	// });
+	$(".announcement").live("click", function(e){
+		var target = $(e.target);
+	    if(target.is("a") || target.is("input")) { //checks if other things are clicked first
+	        return;
+	    } else {
+			$(".message", this).slideToggle();
+		}
+	});
 	
 });

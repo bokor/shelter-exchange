@@ -148,9 +148,9 @@ ShelterExchangeApp::Application.routes.draw do
     
     # Announcements
     #----------------------------------------------------------------------------
-    resources :announcements, :only => [:destroy] # do
-    #       delete :hide, :on => :collection
-    #     end
+    resources :announcements do
+      post :hide, :on => :collection
+    end
   
     # Users
     #----------------------------------------------------------------------------
@@ -202,6 +202,11 @@ ShelterExchangeApp::Application.routes.draw do
       resources :shelters, :only => [:index, :show] do
         get :live_search, :on => :collection
       end
+      
+      
+      # Admin :: Announcements
+      #----------------------------------------------------------------------------
+      resources :announcements, :except => [:new]
       
       # Admin :: Accounts
       #----------------------------------------------------------------------------

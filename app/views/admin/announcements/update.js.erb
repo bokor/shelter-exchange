@@ -1,0 +1,16 @@
+<% if @announcement.errors.any? %>
+	$('#edit_announcement_errors_<%=@announcement.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @announcement) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @announcement, :form_id => "edit_announcement_form_#{@announcement.id}" %>	
+<% else %>
+	$('#edit_announcement_<%=@announcement.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
+	$('#announcement_<%=@announcement.id%>').replaceWith( "<%= escape_javascript(render @announcement) %>" );
+	$('#announcement_<%=@announcement.id%>').show().effect("highlight", {}, 1000);
+	
+	// Remove Errors
+	$('#edit_announcement_errors_<%=@announcement.id %>').html("");
+	$('#edit_announcement_form_<%=@announcement.id %> p.error').remove();
+	$('#edit_announcement_form_<%=@announcement.id %> li').removeClass("error");
+<% end %>
+<% flash.discard %>

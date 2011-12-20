@@ -1,8 +1,10 @@
 class Announcement < ActiveRecord::Base
+  default_scope :order => 'created_at DESC'
   
   # Constants
   #----------------------------------------------------------------------------
-  CATEGORIES = %w[software_update general_notification].freeze
+  CATEGORIES = %w[general web_update help].freeze
+ 
  
   # Validations
   #----------------------------------------------------------------------------
@@ -12,10 +14,12 @@ class Announcement < ActiveRecord::Base
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
 
+
   # Scopes
   #----------------------------------------------------------------------------
   scope :active, where("starts_at <= ? AND ends_at >= ?", Time.now.utc, Time.now.utc)
   scope :since, lambda { |hide_time| where("updated_at > ? OR starts_at > ?", hide_time.to_time.utc, hide_time.to_time.utc) if hide_time }
+  
   
   # Class Methods
   #---------------------------------------------------------------------------- 

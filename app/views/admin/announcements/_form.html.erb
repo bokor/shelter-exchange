@@ -1,0 +1,27 @@
+<li>
+	<%= f.label :title, "Title <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_field :title, :class => "field text large" %></div>
+	<%= has_error_message?(@announcement, :title)%>
+</li>
+<li>
+	<%= f.label :category, "Category <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div>
+	<%= f.collection_select :category, Announcement::CATEGORIES, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
+	</div>
+	<%= has_error_message?(@announcement, :category)%>
+</li>
+<li class="full">
+	<%= f.label :message, "Message <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.text_area :message, :class => "field textarea medium" %></div>
+	<%= has_error_message?(@announcement, :message)%>
+</li>	
+<li>
+	<%= f.label :starts_at, "Starts at <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.datetime_select :starts_at, :ampm => true, :start_year => current_year, :order => [:month, :day, :year], :class => "field text large"  %></div>
+	<%= has_error_message?(@announcement, :starts_at)%>
+</li>
+<li>
+	<%= f.label :ends_at, "Ends at <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div><%= f.datetime_select :ends_at, :ampm => true, :start_year => current_year, :order => [:month, :day, :year], :class => "field text large"  %></div>
+	<%= has_error_message?(@announcement, :ends_at)%>
+</li>

@@ -1,21 +1,17 @@
 class AnnouncementsController < ApplicationController
   respond_to :js
 
-  def destroy
-    @announcement = Announcement.find(params[:id]) #last announcement in the list
-    set_session(Time.now.utc)
-    set_cookies(Time.now.utc)
+  def hide
+    session[:announcement_hide_time] = time
+    cookies.permanent[:announcement_hide_time] = time
   end
   
-  private
-    
-    def set_session(time)
-      session[:announcement_hide_time] = time
-    end
-
-    def set_cookies(time)
-      cookies[:announcement_hide_time] = { :value => time.to_datetime.to_s, :expires => @announcement.ends_at }
-    end
-  
 end
+
+# @announcement = Announcement.find(params[:id]) #last announcement in the list
+# hide_time =  session[:announcement_hide_time] || cookies[:announcement_hide_time] || nil
+# current = Announcement.current_announcements(hide_time).order("ends_at desc").limit(1)
+
+
+#cookies[:announcement_hide_time] = { :value => time, :expires => SOMETIME IN THE FUTURE }
   
