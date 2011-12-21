@@ -2,7 +2,7 @@
 
 <%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}." %>
 
-<%= keywords "Adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet, adopt a #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}" %>
+<%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
 
 <%= robots "noindex,follow" if @animal.animal_status_id != AnimalStatus::STATUSES[:available_for_adoption] %>
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
