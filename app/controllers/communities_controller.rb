@@ -8,7 +8,7 @@ class CommunitiesController < ApplicationController
     @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
     @notes = @animal.notes.all
     @shelter = @animal.shelter
-    @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists? unless @current_shelter.kill_shelter?
+    @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id)
   end
   
   def filter_notes
