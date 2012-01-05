@@ -42,14 +42,6 @@
 						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
 						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
 					</ul>
-					
-					<h3>Accommodation:</h3>
-					<ul>
-						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
-						<li><p><b>Location:</b>  <%= @animal.accommodation.location.name if @animal.accommodation && @animal.accommodation.location %></p></li>
-					</ul>
-					
-					
 				</td>
 				<td class="image">
 			    	<%= image_tag @animal.photo.url(:medium) %>
