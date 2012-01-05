@@ -12,7 +12,7 @@
 		<% else %>
 			<h3><%= link_to animal.name, animal %></h3>		
 		<% end %>
-		<p><%= full_breed(animal) %></p>
+		<p><%= animal.full_breed %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
 	</td>
 	<td class="status">

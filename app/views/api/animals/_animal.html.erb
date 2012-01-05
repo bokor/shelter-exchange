@@ -4,7 +4,7 @@
 	</td>
 	<td class="details">
 		<h3><%= link_to animal.name, public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></h3>		
-		<p><%= full_breed(animal) %></p>
+		<p><%= animal.full_breed %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
 	</td>
 	<td class="status">

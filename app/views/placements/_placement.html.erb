@@ -1,6 +1,8 @@
+<% animal = placement.animal %>
+
 <tr id="<%= "placement_#{placement.id}" %>" class="placement">
 	<td class="image">
-		<%= image_tag placement.animal.photo.url(:thumb) %>
+		<%= image_tag animal.photo.url(:thumb) %>
 		<div class="action_links">
 			<% if placement.shelter.id == @current_shelter.id %>
 				<% if can?(:destroy, Placement) %>
@@ -19,10 +21,10 @@
 		</div>
 	</td>
 	<td class="details">
-		<h3><%= placement.animal.name %></h3>
+		<h3><%= animal.name %></h3>
 		<h3><%= placement.status.humanize%> (<%= format_date(:long, placement.created_at) %>)</h3>
-		<p><%= full_breed(placement.animal) %></p>
-		<p><%= placement.animal.animal_type.name %><% if placement.animal.sex %>: <%= placement.animal.sex.humanize %> <% end %><% if placement.animal.is_sterilized %>(Sterilized)<% end %></p>
+		<p><%= animal.full_breed %></p>
+		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %><% if animal.is_sterilized %>(Sterilized)<% end %></p>
 	</td>
 	<td class="status">
 		<p><%= placement.shelter.name %></p>

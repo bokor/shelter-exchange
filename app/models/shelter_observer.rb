@@ -5,7 +5,3 @@ class ShelterObserver < ActiveRecord::Observer
   end
 
 end
-
-
-
-

@@ -1,13 +1,5 @@
 module AnimalsHelper
   
-  def full_breed(animal)
-    if animal.is_mix_breed
-      animal.secondary_breed.blank? ? animal.primary_breed + " Mix" : animal.primary_breed + " & " + animal.secondary_breed + " Mix"
-    else
-      animal.primary_breed
-    end
-  end
-  
   def filter_by_animal_statuses
     AnimalStatus::EXTRA_STATUS_FILTERS + AnimalStatus.all.map {|s| [s.name,s.id]}
   end
@@ -56,7 +48,8 @@ module AnimalsHelper
   end
   
   def community_animal_status(animal)
-    if [:adopted, :reclaim, :deceased, :euthanized].any?{ |key| AnimalStatus::STATUSES[key] == animal.animal_status_id }
+    if animal.adopted? or animal.reclaimed? or animal.deceased? or animal.euthanized?
+      # [:adopted, :reclaim, :deceased, :euthanized].any?{ |key| AnimalStatus::STATUSES[key] == animal.animal_status_id }
       animal.animal_status.name + humanize_status_change_date(animal)
     else 
       animal.animal_status.name
@@ -64,18 +57,17 @@ module AnimalsHelper
   end
   
   def public_animal_status(animal)
-    case animal.animal_status_id
-      when AnimalStatus::STATUSES[:adopted]
-        animal.animal_status.name + humanize_status_change_date(animal)
-      when AnimalStatus::STATUSES[:deceased] || AnimalStatus::STATUSES[:euthanized]
-        "No longer available for adoption"
-      else 
-        animal.animal_status.name
+    if animal.adopted?
+      animal.animal_status.name + humanize_status_change_date(animal)
+    elsif animal.deceased? or animal.euthanized?
+      "No longer available for adoption"
+    else 
+      animal.animal_status.name
     end
   end
   
   def adoption_date(animal)
-    AnimalStatus::STATUSES[:adopted] == animal.animal_status_id ? humanize_status_change_date(animal) : nil
+    humanize_status_change_date(animal) if animal.adopted?
   end
   
   def humanize_status_change_date(animal)

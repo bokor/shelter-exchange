@@ -5,7 +5,7 @@
 	<td class="details">
 		<h3><%= link_to animal.name, public_save_a_life_path(animal), :target => "_blank"  %></h3>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
-		<p><%= full_breed(animal) %></p>
+		<p><%= animal.full_breed %></p>
 		<p><%= animal.date_of_birth.blank? ? "Age not specified".html_safe : humanize_dob(animal.date_of_birth) + " old" %></p>
 	</td>
 	<td class="status">

@@ -1,10 +1,10 @@
-<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
+<%= title "#{@animal.name} - #{@animal.full_breed} | #{@shelter.city}, #{@shelter.state}" %>
 
-<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}." %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}." %>
 
-<%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{full_breed(@animal)}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
+<%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
 
-<%= robots "noindex,follow" if @animal.animal_status_id != AnimalStatus::STATUSES[:available_for_adoption] %>
+<%= robots "noindex,follow" if !@animal.available_for_adoption? %>
 <%= seo_location "#{@shelter.city}, #{@shelter.state}" %>
 <%= seo_image "#{@animal.photo.url(:medium)}" %>
 
@@ -33,7 +33,7 @@
 			<span class='st_sharethis' displayText='ShareThis'></span>
 			<!--// Share This -->
 		</span>
-		<span class="type"><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></span>
+		<span class="type"><%= @animal.animal_type.name %>:  <%= @animal.full_breed %></span>
 		<span class="status"><%= public_animal_status(@animal) %></span>
 	</div>
 

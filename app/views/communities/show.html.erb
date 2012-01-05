@@ -1,4 +1,4 @@
-<%= title "#{@animal.name} - #{full_breed(@animal)} | #{@shelter.city}, #{@shelter.state}" %>
+<%= title "#{@animal.name} - #{@animal.full_breed} | #{@shelter.city}, #{@shelter.state}" %>
 
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>
-					<p><%= @animal.animal_type.name %>:  <%= full_breed(@animal) %></p>
+					<p><%= @animal.animal_type.name %>:  <%= @animal.full_breed %></p>
 				</td>
 				<td class="status">
 					<p><%= community_animal_status(@animal) %></p>

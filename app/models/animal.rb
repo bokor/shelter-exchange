@@ -240,11 +240,48 @@ class Animal < ActiveRecord::Base
   
   # Instance Methods
   #----------------------------------------------------------------------------
+  def full_breed
+    if mix_breed?
+      self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"
+    else
+      self.primary_breed
+    end
+  end
   
   def special_needs?
     self.has_special_needs
   end
   
+  def mix_breed?
+    self.is_mix_breed
+  end
+  
+  def sterilized?
+    self.is_sterilized
+  end
+  
+  def available_for_adoption?
+    self.animal_status_id == AnimalStatus::STATUSES[:available_for_adoption]
+  end
+  
+  def adopted?
+    self.animal_status_id == AnimalStatus::STATUSES[:adopted]
+  end
+  
+  def reclaimed?
+    self.animal_status_id == AnimalStatus::STATUSES[:reclaim]
+  end
+  
+  def deceased?
+    self.animal_status_id == AnimalStatus::STATUSES[:deceased]
+  end
+  
+  def euthanized?
+    self.animal_status_id == AnimalStatus::STATUSES[:euthanized]
+  end
+  
+  
+  # define_method(:available_for_adoption?) { self.animal_status_id == AnimalStatus::STATUSES[:available_for_adoption] }
   
   #----------------------------------------------------------------------------  
                                                  
