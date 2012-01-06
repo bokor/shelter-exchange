@@ -238,6 +238,8 @@ class Animal < ActiveRecord::Base
   end
   #----------------------------------------------------------------------------  
   
+  
+  
   # Instance Methods
   #----------------------------------------------------------------------------
   def full_breed
@@ -259,7 +261,7 @@ class Animal < ActiveRecord::Base
   def sterilized?
     self.is_sterilized
   end
-  
+
   def available_for_adoption?
     self.animal_status_id == AnimalStatus::STATUSES[:available_for_adoption]
   end
@@ -279,12 +281,48 @@ class Animal < ActiveRecord::Base
   def euthanized?
     self.animal_status_id == AnimalStatus::STATUSES[:euthanized]
   end
+
+  def dog?
+    self.animal_type_id == AnimalType::TYPES[:dog]
+  end
   
+  def cat?
+    self.animal_type_id == AnimalType::TYPES[:cat]
+  end
   
+  def horse?
+    self.animal_type_id == AnimalType::TYPES[:horse]
+  end
+  
+  def rabbit?
+    self.animal_type_id == AnimalType::TYPES[:rabbit]
+  end
+  
+  def bird?
+    self.animal_type_id == AnimalType::TYPES[:rabbit]
+  end
+  
+  def bird?
+    self.animal_type_id == AnimalType::TYPES[:bird]
+  end
+  
+  def reptile?
+    self.animal_type_id == AnimalType::TYPES[:reptile]
+  end
+  
+  def other?
+    self.animal_type_id == AnimalType::TYPES[:other]
+  end
+   
   # define_method(:available_for_adoption?) { self.animal_status_id == AnimalStatus::STATUSES[:available_for_adoption] }
-  
   #----------------------------------------------------------------------------  
-                                                 
+       
+       
+       
+       
+  # Private Methods
+  #----------------------------------------------------------------------------
+                                            
   private
   
     def is_kill_shelter?

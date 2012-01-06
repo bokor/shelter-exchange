@@ -58,13 +58,13 @@
 		<%= has_error_message?(@shelter, :website)%>
 	</li>
 	<li>
-		<%= f.label :twitter, "Twitter", :class => "desc" %>
-		<div><%= f.text_field :twitter, :class => "field text medium url_formatter", :maxlength => 255 %></div>
+		<%= f.label :twitter, "Twitter username", :class => "desc" %>
+		<div><%= f.text_field :twitter, :class => "field text medium twitter_formatter", :maxlength => 255, :placeholder => "Example @shelterexchange" %></div>
 		<%= has_error_message?(@shelter, :twitter)%>
 	</li>
 	<li>
 		<%= f.label :facebook, "Facebook Page", :class => "desc" %>
-		<div><%= f.text_field :facebook, :class => "field text medium url_formatter", :maxlength => 255 %></div>
+		<div><%= f.text_field :facebook, :class => "field text medium url_formatter", :maxlength => 255, :placeholder => "Example http://www.facebook.com/shelterexchange" %></div>
 		<%= has_error_message?(@shelter, :facebook)%>
 	</li>
 	<li>

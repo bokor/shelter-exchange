@@ -15,18 +15,27 @@ module ShelterExchangeApp
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W( #{ config.root }/lib/ )
     config.autoload_paths += %W( #{ config.root }/lib/middleware )
-    %w(observers sweepers).each do |dir|
-      config.autoload_paths += %W( #{ config.root }/app/#{dir} )
-    end
-
-
-    # Only load the plugins named here, in the order given (default is alphabetical).
-    # :all can be used as a placeholder for all plugins not explicitly named.
-    # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    # config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :status_history_observer
+    config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :status_history_observer
+    
+    
+    
+    # If you want to move observers and sweepers into their own directory
+    # %w(observers sweepers).each do |dir|
+    #   config.autoload_paths += %W( #{ config.root }/app/#{dir} )
+    # end
+    #
+    # OR 
+    #
+    # config/environment.rb
+    # config.load_paths += %W{ #{Rails.root}/app/observers }
+    # Dir.chdir("#{Rails.root}/app/observers") do
+    #   config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
+    # end
+    
+    
+    
     
     # Remove Timestamps from migrations and use version numbers
     # config.active_record.timestamped_migrations = false

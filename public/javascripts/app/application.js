@@ -219,3 +219,17 @@ $(function(){
 	});
 });
 
+$(function(){
+	$('.twitter_formatter').bind('focus', function(e){
+	    $(this).val('@' + $(this).val().replace('@', ''));
+	}).bind('blur', function(e){
+		var testStr = $(this).val();
+		if (testStr.replace('@', '') == ''){
+			$(this).val("");
+		} else {
+	    	$(this).val('@' + $(this).val().replace('@', ''));
+		}
+	});
+});
+
+

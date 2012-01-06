@@ -49,7 +49,6 @@ module AnimalsHelper
   
   def community_animal_status(animal)
     if animal.adopted? or animal.reclaimed? or animal.deceased? or animal.euthanized?
-      # [:adopted, :reclaim, :deceased, :euthanized].any?{ |key| AnimalStatus::STATUSES[key] == animal.animal_status_id }
       animal.animal_status.name + humanize_status_change_date(animal)
     else 
       animal.animal_status.name
