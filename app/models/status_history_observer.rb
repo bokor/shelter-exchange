@@ -7,7 +7,7 @@ class StatusHistoryObserver < ActiveRecord::Observer
   private
   
     def send_tweet(animal, shelter)
-      Delayed::Job.enqueue TweetJob.new(animal, shelter) if animal.available_for_adoption?
+      Delayed::Job.enqueue(TweetJob.new(animal, shelter)) if animal.available_for_adoption?
     end
 
 end
