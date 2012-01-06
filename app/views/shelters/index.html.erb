@@ -66,7 +66,7 @@
 					<% end %>
 					
 					<% unless @shelter.twitter.blank? %>
-						<li>Twitter:  <a href="<%= @shelter.twitter %>" target="_blank"><%= @shelter.twitter %></a></li>
+						<li>Twitter:  <a href="http://twitter.com/#!/<%= @shelter.twitter.slice(1..-1) %>" target="_blank"><%= @shelter.twitter %></a></li>
 					<% end %>
 					
 					<% unless @shelter.facebook.blank? %>
