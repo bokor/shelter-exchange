@@ -65,8 +65,10 @@ class Shelter < ActiveRecord::Base
                     :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!    
-  validates :website, :facebook, :twitter, :format => { :with => URL_FORMAT,  :message => "format is incorrect" },
+  validates :website, :facebook, :format => { :with => URL_FORMAT,  :message => "format is incorrect" },
                                            :allow_blank => true
+  validates :twitter, :format => { :with => TWITTER_USERNAME_FORMAT,  :message => "format is incorrect. Example @shelterexchange" },
+                      :allow_blank => true
         
   validate :address_valid?         
 

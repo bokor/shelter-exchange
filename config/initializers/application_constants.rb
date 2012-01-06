@@ -12,6 +12,7 @@ SEX = %w[male female].freeze
 
 EMAIL_FORMAT = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i  #old one - /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i             
 URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+TWITTER_USERNAME_FORMAT = /@(?:[a-z0-9]_?)*\z/
 PASSWORD_FORMAT = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 
 
 SUBDOMAIN_FORMAT = /^[A-Za-z0-9-]+$/
