@@ -334,7 +334,7 @@ class Animal < ActiveRecord::Base
         if self.primary_breed.blank?
           errors.add_on_blank(:primary_breed)
         else
-          unless self.animal_type_id == 7  # Bypass Type = Other
+          unless self.other?  # Bypass Type = Other
             if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
               errors.add(:primary_breed, "must contain a valid breed from the list")
             end
@@ -344,7 +344,7 @@ class Animal < ActiveRecord::Base
     end
 
     def secondary_breed_valid?
-      unless self.animal_type_id == 7 # Bypass Type = Other
+      unless self.other? # Bypass Type = Other
         if self.is_mix_breed and self.secondary_breed.present?
           if Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
             errors.add(:secondary_breed, "must contain a valid breed from the list")
