@@ -69,13 +69,13 @@ var HelpAShelter = {
 			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 			$.get("/help_a_shelter/find_shelters_in_bounds.js", $("#form_city_zipcode_search").serialize());
 			// Update Google Analytics
-			if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/find_shelters_on_map/"+$("#city_zipcode").val()]); }
+			if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#city_zipcode").val()]); }
 		// }
 	},
 	findAnimalsForShelter: function(){
 		$.get("/help_a_shelter/find_animals_for_shelter.js", $("#form_filters").serialize());
 		// Update Google Analytics 
-		if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/find_animals_for_shelter/"+$("#filters_shelter_id").val()]); }
+		if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#filters_shelter_id").val()]); }
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {

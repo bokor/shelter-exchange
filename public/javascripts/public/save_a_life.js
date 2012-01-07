@@ -67,7 +67,7 @@ var SaveALife = {
 			$.get("/save_a_life/find_animals_in_bounds.js", $("#form_filters").serialize());
 			
 			// Update Google Analytics - AJAX Call
-			if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/find_animals/"+$("#city_zipcode").val()]); } 
+			if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/search/"+$("#city_zipcode").val()]); } 
 		// }
 	},
 	geocodeAddress: function(){
