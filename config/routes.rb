@@ -1,7 +1,7 @@
 ShelterExchangeApp::Application.routes.draw do
 
 
-  # Application - Routes for *subdomain*.domain.com
+  # Application - Routes for *subdomain*.shelterexchange.org
   #----------------------------------------------------------------------------
   constraints(AppSubdomain) do
   
@@ -187,7 +187,7 @@ ShelterExchangeApp::Application.routes.draw do
   
   
 
-  # Admin - Routes for manage.domain.com
+  # Admin - Routes for manage.shelterexchange.org
   #----------------------------------------------------------------------------
   constraints(AdminSubdomain) do
         
@@ -244,7 +244,7 @@ ShelterExchangeApp::Application.routes.draw do
 
 
   
-  # Api - Routes for api.domain.com
+  # Api - Routes for api.shelterexchange.org
   #----------------------------------------------------------------------------
   constraints(ApiSubdomain) do
         
@@ -263,7 +263,7 @@ ShelterExchangeApp::Application.routes.draw do
   
   
   
-  # Public - Routes for www.domain.com or domain.com
+  # Public - Routes for www.shelterexchange.org or shelterexchange.org
   #----------------------------------------------------------------------------
   constraints(PublicSubdomain) do
     
