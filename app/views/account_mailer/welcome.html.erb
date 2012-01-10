@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css" media="screen">
+		#email_logo { width: 100%; text-align:center; margin:0 auto;}
+		#email_logo img{text-align:center; margin:0 auto;}
+		h3{letter-spacing: -1px;padding:10px 0 0 0; margin:0;}
+		ul{list-style-type:none;padding:0;margin:0;}
+		li{padding-bottom: 0;}
+		.additional_notes{padding: 10px 0;}
+		.closing{padding-top:5px;}
+		.closing p{padding-bottom: 10px;}
+	</style>
+</head>
+<body>
+
+	<div id="email_logo">
+		<%= image_tag attachments['logo_email.jpg'].url -%>
+	</div>
+	
+	<p>Hi <%= @user.first_name %>,</p>
+
+	<p>Thank you so much for signing up to use Shelter Exchange. I hope our application brings your organization many benefits and much success with saving the lives of animals in need.</p>
+
+	<p>Please note that the adoptable animals you enter into the Shelter Exchange application will be available on our public website <a href="http://www.shelterexchange.org">www.shelterexchange.org</a> under the heading Save a Life. Here you can gain additional exposure from the public to promote adoptions at your facility.</p>
+
+	<p>You will notice in the application there is a button called Community. Here you can view all shelters and rescue groups currently using Shelter Exchange and the animals that they have available under every different status. This information is only available to shelters and rescue groups to view. We encourage you to visit this section often if you can help take in other animals at your facility as this is where we display animals with the greatest needs or the shortest time to live. Additionally if you have animals that you need to share with other groups please ensure you enter them in under the correct status. For example, a hard behavioral case would be best served as a 'Rescue Candidate.' This informs other rescues that the animal needs assistance and would make an ideal candidate for a rescue group.</p>
+
+	We have various help documents that can be found by clicking the Help button at the top right section of the application window. Here is our Getting Started section to assist with setting up - <a href="http://help.shelterexchange.org/help/kb/getting-started">http://help.shelterexchange.org/help/kb/getting-started</a>
+
+	<p>We will be setting up informational & education sessions in the coming weeks to assist you to maximize the benefits of Shelter Exchange.  If you have any questions before then please drop me a note!</p>
+
+
+	<div class="closing">
+		<p>Kind regards,</p>
+		<br />
+		Claire Bokor<br />
+		Founder & President<br />
+		Shelter Exchange<br />
+		Tel: 919-725-7173<br />
+		Email: <a href="mailto:claire.bokor@shelterexchange.org?subject=Welcome Email">claire.bokor@shelterexchange.org</a><br />
+		<a href="http://www.shelterexchange.org">www.shelterexchange.org</a><br />
+		<a href="http://www.facebook.com/shelterexchange">http://www.facebook.com/shelterexchange</a><br />
+	</div>
+</body>
+</html>

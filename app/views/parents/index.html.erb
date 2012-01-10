@@ -10,6 +10,20 @@
 	</div>
 		
 	<div class="page_content">
+		
+		<div class="help_text">
+			<p>A Parent is a person who may have a history of <strong>adopting or fostering animals</strong> from either your facility or another shelter or rescue group. If you are considering adopting an animal to a person through your facility, you can check their background by searching for their record here, which allows shelters and rescues to share information about who is adopting or fostering.</p>
+
+			<p>Get started by typing in the person's <strong>telephone number</strong> or <strong>email address</strong> and:</p>
+
+			<ul>
+				<li>If their record is found, you may view their adoption or foster history and use this information to guide your decision if they would make a good adopter.</li>
+				<li>If their record is not found, please add them to the database as this will benefit other shelters and rescues and assist you by keeping concise records of adoptive parents.</li>
+			</ul>
+		</div>
+		
+		<div class="separator"></div>
+		
 		<div id="parent_search">
 			<h3>Lookup by Email address or Phone number:</h3>
 			<%= form_for :parents, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>

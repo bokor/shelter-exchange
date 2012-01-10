@@ -641,6 +641,10 @@
 
 .edit_parents .page_heading h1{width:100%;}
 
+.index_parents .help_text ul{list-style: disc;}
+.index_parents .help_text ul li {margin-left: 20px; padding-bottom: 10px;}
+
+
 /* Show Parents :: Sidebar
 -----------------------------------------------------------------------------*/
 /*.show_parents .create_comment{height: 350px;}*/
