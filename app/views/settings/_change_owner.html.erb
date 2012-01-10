@@ -1,0 +1,12 @@
+<% if can?(:change_owner, User) %>
+	<!-- <h2>Change Owner</h2> -->
+	<p>The Owner is the main contact for your organization. If you change this authority to another individual you cannot revert this back without permission from the newly nominated Owner.</p>
+	<div class="section">
+		<%=form_for(@owner, :url => change_owner_user_path(@owner), :html => {:method => :post, :id => "change_owner_user_#{@owner.id}", :class => "change_owner_user" }) do |f| %>
+			<%= collection_select(nil, :new_owner_id, @users, :id, :name, {:selected => @owner.id } ) %>
+			<%= f.submit "Change", :disable_with => '...', :confirm => "Are you sure?" %>
+		<% end %>
+	</div>
+<% else %>
+		<p>You don't have permission to change the owner.  Please ask the current owner, <%= link_to @owner.name, "mailto:#{@owner.email}?subject=Shelter Exchange - Change Owner" %>, for permission.</p>
+<% end %>

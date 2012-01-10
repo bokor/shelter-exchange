@@ -1,79 +1,29 @@
 <%= title "Account Settings"  %>
 
-<%= content_for :javascripts do %>
-<% end %>
+<%= content_for :javascripts do %><% end %>
+
 
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
 		<h1>Account Settings</h1>
+		
+		<ul class="tabs blue">
+			<li class="<%= "current" if @tab.blank? %>"><%= link_to "Info", settings_path %></li>
+			<li class="<%= selected_navigation(:change_owner) %>"><%= link_to "Change Owner", change_owner_settings_path %></li>
+			<li class="<%= selected_navigation(:web_access) %>"><%= link_to "Web Access", web_access_settings_path %></li>
+			<li class="<%= selected_navigation(:connect) %>"><%= link_to "Connect", connect_settings_path %></li>
+		</ul>
+		
 	</div>
 	
 	<div class="page_content">
-		<h2>Account URL</h2>
-		<p>Below is your organization's main access URL. Please remember to Bookmark this URL as it will be required each time your Log in.</p>
-		<div class="section">
-			<p><code><%= full_url %></code></p>
-		</div>
-		<% if can?(:change_owner, User) %>
-		<h2>Change Owner</h2>
-		<p>The Owner is the main contact for your organization. If you change this authority to another individual you cannot revert this back without permission from the newly nominated Owner.</p>
-		<div class="section">
-			<%=form_for(@owner, :url => change_owner_user_path(@owner), :html => {:method => :post, :id => "change_owner_user_#{@owner.id}", :class => "change_owner_user" }) do |f| %>
-				<%= collection_select(nil, :new_owner_id, @users, :id, :name, {:selected => @owner.id } ) %>
-				<%= f.submit "Change", :disable_with => '...', :confirm => "Are you sure?" %>
-			<% end %>
-		</div>
-		<% end %>
-		
-		<h2>Web Access - API (For Developer Only)</h2>
-		<p>An api token must be generated so that <%= @current_shelter.name %> can display their animals on their website.  This access token protects your shelters' data and acts as a login to Shelter Exchange.  If you feel like someone has stole the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, like you were reseting a password.  Please provide this token to a Web Developer!</p>
-		<div class="section">
-			<div class="separator"></div>
-			<!-- <p><%= label_tag :access_token, "Access Token" %></p> -->
-			<p><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %>
-			&nbsp;|&nbsp;
-			<%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></p>
-			<div class="separator"></div>
-			
-			<div>
-			<% if @current_shelter.access_token.blank? %>
-				<h3>Web Access is currently not enabled.  Please Generate a Token so you can access your animals.</h3>
-			<% else %>
-				<%= label_tag "token", "API Token".html_safe, :class => "desc" %>
-				<div><%= text_field_tag "token", @current_shelter.access_token, :readonly => true, :class => "field text medium" %></div>
-				
-				<div class="separator"></div>
-				
-				<!-- <h2>Basic API - Usage</h2>
-				<h3>HTML</h3>
-				<p><code><%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
-
-				<h4>Below is code that can be put on your website to show your list of animals.  Some of the settings of this iframe tag may need to be customized to fit into your site's layout.</h4>
-
-				<p><code>&lt;iframe src="<%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %>" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code></p>
-				<br /><br />
-
-				<h2>Advanced API - Usage</h2>
-				<h3>JSON</h3>
-				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
-
-				<h3>JSONP</h3>
-				<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
-
-				<h3>XML</h3>
-				<p><code><%= api_url %>/animals.xml?access_token=<%= @current_shelter.access_token %></code></p> -->
-				
-				<h3><%=link_to "How can I display animals on my shelter or rescue's website?", "http://help.shelterexchange.org/help/kb/website-integration-api/how-can-i-display-animals-on-my-shelter-or-rescues-website", :target => "_new" %></h3>
-				<h3><%=link_to "Can I display different animal types and statuses?", "http://help.shelterexchange.org/help/kb/website-integration-api/can-i-display-different-animal-types-and-statuses",:target => "_new" %></h3>
-				
-			<% end %>
-			</div>
-			
+		<div class="tab_content">
+			<%= render @tab || "info" %>
 		</div>
 	</div>
 
 <% end %>
 
-<%= content_for :sidebar do %>
-<% end %>
+
+<%= content_for :sidebar do %><% end %>

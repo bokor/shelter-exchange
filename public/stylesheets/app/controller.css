@@ -61,7 +61,7 @@
 /* Page Headings
 -----------------------------------------------------------------------------*/
 .page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}
-.page_heading.gray{background-color: #e7e7e7;border-bottom:1px solid #eee;}
+.page_heading.gray{background-color: #f5f5f5;border-bottom:1px solid #eee;}
 .page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}
 .page_heading.red{background-color:#faced3;border-bottom:1px solid #eee;}
 .page_heading h1{width:100%; }
@@ -549,16 +549,22 @@
 -----------------------------------------------------------------------------*/
 .settings ul {list-style:none;}
 
-/* Index Settings :: Page Layout
------------------------------------------------------------------------------*/
-.index_settings #main { margin: 1em 3em 0 3em; }
-.index_settings #left { width: 100%;}
-.index_settings #sidebar { display: none;width: 0; }
 
-/* Index Settings :: Section
+
+/* Settings :: Page Layout
 -----------------------------------------------------------------------------*/
-.index_settings  h2 { border-bottom: 1px #bbb solid; }
-.index_settings .section { padding-bottom: 25px;}
+.settings #main { margin: 1em 3em 0 3em; }
+.settings #left { width: 100%;}
+.settings #sidebar { display: none;width: 0; }
+.settings #left #content .page_heading{padding-bottom:0;border-bottom: none;}
+.settings #left #content .page_heading h1{padding-bottom: 10px;}
+
+.settings .tab_content{margin-top: 15px;}
+
+/* Settings :: Section
+-----------------------------------------------------------------------------*/
+.settings  h2 { border-bottom: 1px #bbb solid; }
+.settings .section { padding-bottom: 25px;}
 
 
 

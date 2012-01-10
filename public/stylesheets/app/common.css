@@ -371,5 +371,31 @@ ul.toggle_buttons li a.current {
 .ie7 ul.toggle_buttons li a.current,
 .ie8 ul.toggle_buttons li a.current  {background-color: #dde7ef;}
 
-
 ul.toggle_buttons li a:hover{color: #CF7019;}
+
+
+
+/* Application Tabs */   
+/******************************************************************/
+.tabs {position: relative; bottom: 0; left:0; margin: 0; padding: 0 0 0 0;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
+.tabs li {float: left; font-size: 13px;list-style: none;margin: 0px 10px 0px 0px; }
+.tabs li.current a{font-weight: bold; text-shadow: 1px 1px 1px #fff; }
+.tabs a:link, .tabs a:visited {float: left;padding: 6px 18px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
+
+/* Application Tabs - Default Color */   
+/******************************************************************/
+/* default */
+.tabs li.current a{background: #fff; color: #cf7019; }
+.tabs a:link, .tabs a:visited {color:#2D76B9;}
+.tabs a:hover,.tabs a:link.active, .tabs a:visited.active {background: #bbb;color: #fff; }
+
+/* blue */
+.tabs.blue li.current a{background: #fff; color: #cf7019; }
+.tabs.blue a:link, .tabs.blue a:visited {background: #0c3561;color: #fff;}
+.tabs.blue a:hover,.tabs.blue a:link.active, .tabs.blue a:visited.active {background: #218db8;color: #fff; }
+
+/* orange */
+.tabs.orange li.current a{background: #fff; color: #cf7019; }
+.tabs.orange a:link, .tabs.orange a:visited {background: #762f0e;color: #fff;}
+.tabs.orange a:hover,.tabs.orange a:link.active, .tabs.orange a:visited.active {background: #dc7327;color: #eee; }
+

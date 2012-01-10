@@ -143,7 +143,15 @@ ShelterExchangeApp::Application.routes.draw do
   
     # Account Settings
     #----------------------------------------------------------------------------
-    resources :settings, :only => [:index] 
+    resources :settings, :only => [:index] do
+      collection do
+        get :change_owner
+        get :web_access
+        get :connect
+      end
+    end
+    # match '/settings/:tab' => 'settings#index', :as => :setting
+    
     resources :token_authentications, :only => [:create, :destroy]
     
     # Announcements
