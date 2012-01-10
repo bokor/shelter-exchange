@@ -641,6 +641,8 @@
 
 .edit_parents .page_heading h1{width:100%;}
 
+/* Index Parents :: Help Text
+-----------------------------------------------------------------------------*/
 .index_parents .help_text ul{list-style: disc;}
 .index_parents .help_text ul li {margin-left: 20px; padding-bottom: 10px;}
 
