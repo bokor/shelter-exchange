@@ -36,6 +36,7 @@ class Shelter < ActiveRecord::Base
   has_many :capacities, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
+  has_many :integrations, :dependent => :destroy
   
   has_attached_file :logo, :whiny => true, 
                            :default_url => "/images/default_:style_logo.jpg", 

@@ -1,23 +1,12 @@
 class SettingsController < ApplicationController
-  before_filter :authorize_settings!, :set_tab_action
+  before_filter :authorize_settings!
   respond_to :html, :js
   
   def index
+    @tab = params[:tab]
+    send(@tab) unless @tab.blank?
   end
   
-  def change_owner
-    @users = @current_account.users.all
-    @owner = @current_account.users.owner.first
-    render :index
-  end
-  
-  def web_access
-    render :index
-  end
-  
-  def connect
-    render :index
-  end
   
   private
   
@@ -25,8 +14,20 @@ class SettingsController < ApplicationController
       authorize!(:view_settings, User)
     end
     
-    def set_tab_action
-      @tab = action_name=="index" ? nil : "#{action_name}"
+    # Tab Actions
+    #----------------------------------------------------------------------------
+    def change_owner
+      @users = @current_account.users.all
+      @owner = @current_account.users.owner.first
     end
+
+    def web_access
+    end
+
+    def connect
+      @integration = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 
+                     Integration::AdoptAPet.new(:shelter_id => @current_shelter)
+    end
+    
   
 end

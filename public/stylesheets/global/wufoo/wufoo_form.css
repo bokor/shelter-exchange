@@ -32,6 +32,8 @@ span.leftPadded{padding-left: 10px;}
 span.rightPadded{padding-right: 10px;}
 
 /*#sidebar li.focused{background: none;}*/
+/* Added for extra errors that we might want to display in the form tag */
+.custom_form_errors{display:none;}
 
 /* END Customizations
 ##############################################################*/
