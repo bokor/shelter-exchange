@@ -80,8 +80,9 @@ var HelpAShelter = {
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
-	        	map.setCenter(results[0].geometry.location);
-				map.setZoom(defaultZoom);
+	        	// map.setCenter(results[0].geometry.location);
+				// map.setZoom(defaultZoom);
+				map.fitBounds(results[0].geometry.viewport);
 	      	} else {
 	        	alert("Geocode was not successful for the following reason: " + status);
 	      	}
@@ -165,7 +166,8 @@ var HelpAShelter = {
 							label: address.replace(matcher,'<strong>$1</strong>'),
 				            value: address,
 				            latitude: item.geometry.location.lat(),
-				            longitude: item.geometry.location.lng()
+				            longitude: item.geometry.location.lng(),
+							viewport: item.geometry.viewport
 						}  
 					}));
 		        })
@@ -174,8 +176,10 @@ var HelpAShelter = {
 		      select: function(e, ui) {
 				e.preventDefault();
 			    $(this).val(ui.item.value);
-				map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
-				map.setZoom(defaultZoom);
+				// Removed because this will focus in at the level of the search instead of centering and zooming to a manual level
+				// map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
+				// map.setZoom(defaultZoom);
+				map.fitBounds(ui.item.viewport);
 				lat = ui.item.latitude; 
 				lng = ui.item.longitude;
 		      }	
