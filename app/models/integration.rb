@@ -26,25 +26,10 @@ class Integration < ActiveRecord::Base
   
 end
 
+#avoid type field warnings like:
+# http://www.tatvartha.com/2009/08/rails-single-table-inheritance-changing-inheritance_column-name/
+# warning: Object#type is deprecated; use Object#class
+# self.inheritance_column = :task_type
+
+
 # @integration.becomes(params[:integration][:type].constantize)
-
-  # def self.factory(type, params = nil)
-  
-
-# def self.select_options
-#   descendants.map{ |c| c.to_s }.sort
-# end
-
-# Object.const_get(type).new(params) 
-
-#http://code.alexreisner.com/articles/single-table-inheritance-in-rails.html
-# avoid errors like:
-# NoMethodError (undefined method `ftp_task_url' for #<TasksController:0x1035e4760>):
-# def self.inherited(child)
-#   child.instance_eval do
-#     def model_name
-#       Task.model_name
-#     end
-#   end
-#   super
-# end
