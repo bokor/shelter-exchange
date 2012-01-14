@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220200603) do
+ActiveRecord::Schema.define(:version => 20120110231259) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -189,6 +189,19 @@ ActiveRecord::Schema.define(:version => 20111220200603) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "integrations", :force => true do |t|
+    t.string   "type"
+    t.string   "username"
+    t.string   "password"
+    t.integer  "shelter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "integrations", ["id", "type"], :name => "index_integrations_on_id_and_type"
+  add_index "integrations", ["shelter_id"], :name => "index_integrations_on_shelter_id"
+  add_index "integrations", ["type"], :name => "index_integrations_on_type"
 
   create_table "items", :force => true do |t|
     t.integer  "shelter_id"

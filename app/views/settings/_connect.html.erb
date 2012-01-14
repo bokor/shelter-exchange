@@ -1,0 +1,16 @@
+<%= content_for :javascripts do %>
+	
+<% end %>
+<div id="integration_adopt_a_pet" class="integration">
+	<h2><%= link_to image_tag("partners/logo_adopt_a_pet_large.gif"), "http://www.adoptapet.com", :target => "_new"  %></h2>
+	<p>Web-based calendar that manages your schedule and shared resources. Sync appointments with friends and colleagues, schedule appointments with local businesses, and much more.Web-based calendar that manages your schedule and shared resources. Sync appointments with friends and colleagues, scheduleappointments with local businesses, and much more.Web-based calendar that manages your schedule andsharedresources. Sync appointments with friends and colleagues, scheduleappointments with local businesses, and much more.</p>
+
+	<div id="adopt_a_pet_connection">
+		<% if @integration.new_record? %>
+			<%= render "integrations/#{@integration.type.demodulize.underscore}/form", :integration => @integration %>
+		<% else %>
+			<%= render "integrations/#{@integration.type.demodulize.underscore}/connected", :integration => @integration %>
+		<% end %>
+	</div>
+	
+</div>

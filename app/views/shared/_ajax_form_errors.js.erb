@@ -3,8 +3,13 @@ $("#<%= form_id %> p.error").replaceWith("");
 
 <% target.errors.each do |field, msg| %>
 	// Hack to fix nested forms but still not 100% correct
-	var elementName = "#<%= form_id %> #<%= target.class.name.downcase %>_<%= field %>".replace(".","_attributes_0_");
+	var elementName = "#<%= form_id %> #<%= target.class.model_name.downcase %>_<%= field %>".replace(".","_attributes_0_");
 	var element = $(elementName).parents("li");
 	element.addClass("error");
 	element.append("<%= escape_javascript(create_error_message(msg)) %>");
 <% end %>
+
+// Custom Form Errors are extra errors not nesessarily tied with a field.  They can be added to a <li class="custom_form_error">
+if ($(".custom_form_errors p.error").length) {
+	$(".custom_form_errors").show();
+}

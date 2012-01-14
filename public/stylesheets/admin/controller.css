@@ -155,7 +155,7 @@
 -----------------------------------------------------------------------------*/
 .shelter_list { width: 100%; border-top: 1px #bbb dotted;}
 
-.shelter{clear:both;width: 100%; display:inline-block; line-height: 75px; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
+.shelter{clear:both;width: 100%; display:inline-block; line-height: 75px; padding: 2px 0 4px 0; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
 .shelter.hover{cursor:default;}
 	.shelter .logo{display:inline-block; width: 150px; vertical-align:middle;}
 		.shelter .logo img{display:inline-block; vertical-align:middle;}
@@ -200,6 +200,34 @@
 .show_shelters #sidebar .account_details table td{padding:5px; border: 1px solid #bbb;}
 .show_shelters #sidebar .account_details table td.key{width: 35%;}
 .show_shelters #sidebar .account_details table td.value{width: 65%;}
+
+
+
+/*****************************************************************/
+/* -------------------------- ANIMALS -------------------------- */
+/*****************************************************************/
+
+
+/* Animals Section :: Index :: Layout
+-----------------------------------------------------------------------------*/
+.animals_section{padding-bottom: 75px;}
+.animals_section h2{font-weight: bold;}
+
+/* Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.animal_list { width: 100%; border-top: 1px #bbb dotted;}
+
+.animal{clear:both;width: 100%; display:inline-block; line-height: 75px; padding: 2px 0 4px 0; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
+.animal.hover{cursor:default;}
+	.animal .photo{display:inline-block; width: 125px; vertical-align:middle;}
+		.animal .photo img{display:inline-block; vertical-align:top;}
+	.animal .name{display:inline-block; width: 20%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
+	.animal .breed{display:inline-block; width: 40%; }
+	.animal .created_at{display:inline-block; float:right; font-weight: bold; }
+
+
+
+
 
 
 

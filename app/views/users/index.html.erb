@@ -11,7 +11,7 @@
 		
 	<div class="page_content">
 		<% if can?(:invite, User) %>
-			<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);", :class => "button" %><br /><br />
+			<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);return false;", :class => "button" %><br /><br />
 			<div class="box hide blue" id="new_invitation">
 				<div id="new_invitation_errors"></div>
 				<%= render "form_invitation" %>

@@ -1,0 +1,6 @@
+<div id="<%= "animal_#{animal.id}" %>" class="animal">
+	<span class="photo"><%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
+	<span class="name"><%= link_to animal.name, public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
+	<span class="breed"><%= animal.full_breed %></span>
+	<span class="created_at"><%= format_date(:short, animal.created_at) %></span>
+</div>

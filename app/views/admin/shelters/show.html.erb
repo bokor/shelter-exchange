@@ -58,7 +58,7 @@
 					<% end %>
 
 					<% unless @shelter.twitter.blank? %>
-						<li>Twitter:  <a href="<%= @shelter.twitter %>" target="_blank"><%= @shelter.twitter %></a></li>
+						<li>Twitter:  <a href="http://twitter.com/#!/<%= @shelter.twitter.slice(1..-1) %>" target="_blank"><%= @shelter.twitter %></a></li>
 					<% end %>
 
 					<% unless @shelter.facebook.blank? %>
@@ -68,6 +68,9 @@
 			</div>
 		</div>
 		
+		<div class="separator"></div>
+		<%= link_to "Help a Shelter", public_help_a_shelter_url(@shelter, :subdomain => "www"), :target => "_blank" %>
+		<div class="separator"></div>
 		
 		<div class="stats">
 			<h2>Counts by status</h2>

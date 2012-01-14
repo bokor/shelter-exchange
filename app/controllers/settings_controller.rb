@@ -3,12 +3,31 @@ class SettingsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @users = @current_account.users.all
-    @owner = @current_account.users.owner.first
+    @tab = params[:tab]
+    send(@tab) unless @tab.blank?
   end
   
-  def authorize_settings!
-    authorize!(:view_settings, User)
-  end
+  
+  private
+  
+    def authorize_settings!
+      authorize!(:view_settings, User)
+    end
+    
+    # Tab Actions
+    #----------------------------------------------------------------------------
+    def change_owner
+      @users = @current_account.users.all
+      @owner = @current_account.users.owner.first
+    end
+
+    def web_access
+    end
+
+    def connect
+      @integration = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 
+                     Integration::AdoptAPet.new(:shelter_id => @current_shelter)
+    end
+    
   
 end

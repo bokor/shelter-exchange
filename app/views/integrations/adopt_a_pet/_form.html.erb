@@ -1,0 +1,27 @@
+<div id="create_adopt_a_pet_errors"></div>
+	
+<%= form_for (integration), :remote => true, :html => { :id => "create_adopt_a_pet_form", :class => "create_adopt_a_pet_form" } do |f| %>
+	<ul>
+		<li>
+			<%= f.label :username, "FTP Username <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.text_field :username, :class => "field text medium" %>
+			</div>
+			<%= has_error_message?(integration, :username)%>
+		</li>
+		<li>
+			<%= f.label :password, "FTP Password <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.password_field :password, :class => "field text medium" %>
+			</div>
+			<%= has_error_message?(integration, :password)%>
+		</li>
+		<li class="custom_form_errors">
+			<div id="integration_connection_failed"></div>
+		</li>
+		<li class="buttons">
+			<%= f.submit "Save", :disable_with => "Submitting...", :class => 'button' %>
+		</li>
+	</ul>
+	<%= f.hidden_field :type %>
+<% end %>
