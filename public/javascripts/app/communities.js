@@ -20,6 +20,8 @@ var Communities = {
 		lat = latitude;
 		lng = longitude;
 		
+		Communities.createMap();
+		
 		$(".helper_links .toggle_buttons a").bind("click",function(e){
 			e.preventDefault();
 			$(this).toggleClass("current");
@@ -43,6 +45,8 @@ var Communities = {
 			$(this).addClass("current");
 
 			Communities.searchByCityZipCode();
+			if($("#city_zipcode").val()){ Communities.geocodeAddress(); }
+			
 		});
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
@@ -76,7 +80,7 @@ var Communities = {
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
 	},	
-	searchByCityZipCode: function() {
+	createMap: function(){
 		// Map setup and config
 		myLatLng = new google.maps.LatLng(lat, lng);
 		geocoder = new google.maps.Geocoder();
@@ -88,6 +92,8 @@ var Communities = {
 		// kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
 		kmlLayer = new google.maps.KmlLayer(mapOverlay); // removed zoom in
 		kmlLayer.setMap(map);
+	},
+	searchByCityZipCode: function() {
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
@@ -101,7 +107,7 @@ var Communities = {
   	},
 	searchByShelterName: function() {
 		// Set up and config
-	    myLatLng = new google.maps.LatLng(lat, lng);
+	    //myLatLng = new google.maps.LatLng(lat, lng);
 	
 		if($('#filters_shelter_id').val() != ""){
 			Communities.findAnimalsForShelter();
@@ -130,11 +136,9 @@ var Communities = {
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
-	        	// map.setCenter(results[0].geometry.location);
-				// map.setZoom(defaultZoom);
 				map.fitBounds(results[0].geometry.viewport);
 	      	} else {
-	        	alert("Geocode was not successful for the following reason: " + status);
+	        	alert("Your search was unsuccessful.  Please enter a valid City or Zip Code");
 	      	}
 	    });
 	},
@@ -272,9 +276,6 @@ var Communities = {
 		      select: function(e, ui) {
 				e.preventDefault();
 			    $(this).val(ui.item.value);
-				// Removed because this will focus in at the level of the search instead of centering and zooming to a manual level
-				// map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
-				// map.setZoom(defaultZoom);
 				map.fitBounds(ui.item.viewport);
 				lat = ui.item.latitude; 
 				lng = ui.item.longitude;

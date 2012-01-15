@@ -16,7 +16,7 @@ class Integration::AdoptAPet < Integration
   #----------------------------------------------------------------------------
   validates :username, :presence => true
   validates :password, :presence => true
-  validate :connection_successful?
+  validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
   
   # Scopes
   #----------------------------------------------------------------------------

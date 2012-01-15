@@ -20,6 +20,8 @@ var HelpAShelter = {
 		lat = latitude;
 		lng = longitude;
 		
+		HelpAShelter.createMap();
+		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
 			HelpAShelter.geocodeAddress();
@@ -38,7 +40,7 @@ var HelpAShelter = {
 		HelpAShelter.findAnimalsForShelter();
 		
 	},
-	searchByCityZipCode: function() {
+	createMap: function(){
 		// Map setup and config
 		myLatLng = new google.maps.LatLng(lat, lng);
 		geocoder = new google.maps.Geocoder();
@@ -49,6 +51,8 @@ var HelpAShelter = {
 		
 		kmlLayer = new google.maps.KmlLayer(mapOverlay); //, { preserveViewport: true }
 		kmlLayer.setMap(map);
+	},
+	searchByCityZipCode: function() {
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
@@ -80,11 +84,9 @@ var HelpAShelter = {
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
-	        	// map.setCenter(results[0].geometry.location);
-				// map.setZoom(defaultZoom);
 				map.fitBounds(results[0].geometry.viewport);
 	      	} else {
-	        	alert("Geocode was not successful for the following reason: " + status);
+	        	alert("Your search was unsuccessful.  Please enter a valid City or Zip Code");
 	      	}
 	    });
 	},
@@ -176,9 +178,6 @@ var HelpAShelter = {
 		      select: function(e, ui) {
 				e.preventDefault();
 			    $(this).val(ui.item.value);
-				// Removed because this will focus in at the level of the search instead of centering and zooming to a manual level
-				// map.setCenter(new google.maps.LatLng(ui.item.latitude, ui.item.longitude));
-				// map.setZoom(defaultZoom);
 				map.fitBounds(ui.item.viewport);
 				lat = ui.item.latitude; 
 				lng = ui.item.longitude;

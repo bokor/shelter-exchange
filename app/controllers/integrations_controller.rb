@@ -21,7 +21,7 @@ class IntegrationsController < ApplicationController
     # Create a new Integration for the type of the old one
     @integration = Integration.factory(:shelter => @current_shelter, :type => @old_integration.type)
     # Destroy the old one
-    flash[:notice] = "#{@integration.type.demodulize.underscore.humanize} has been deleted." if @old_integration.destroy
+    flash[:notice] = "#{@old_integration.type.demodulize.underscore.humanize} has been deleted." if @old_integration.destroy
   end
   
 end
