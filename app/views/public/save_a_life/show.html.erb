@@ -37,7 +37,7 @@
 		<span class="status"><%= public_animal_status(@animal) %></span>
 	</div>
 
-	<% if @shelter.kill_shelter? and @animal.available_for_adoption? %>
+	<% if @shelter.kill_shelter? and @animal.available_for_adoption? and @animal.euthanasia_date.present? %>
 		<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
 	<% end %>
 		 

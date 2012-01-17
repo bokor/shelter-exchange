@@ -9,7 +9,7 @@ class Admin::SheltersController < Admin::ApplicationController
   def show
     @shelter = Shelter.find(params[:id])
     @account = @shelter.account
-    @capacities = @shelter.capacities
+    @capacities = @shelter.capacities.includes(:animal_type).all
     @users = @shelter.account.users
     @counts_by_status = Animal.unscoped.joins(:animal_status).where(:shelter_id => @shelter).group("animal_statuses.name").limit(nil).count
     respond_with(@shelter)

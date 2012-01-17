@@ -5,7 +5,7 @@ class TokenAuthenticationsController < ApplicationController
     @shelter = @current_shelter
     authorize!(:generate_access_token, @shelter)
     @shelter.generate_access_token!
-    redirect_to settings_path
+    redirect_to setting_path(:tab => :web_access)
   end
 
   def destroy
@@ -13,7 +13,7 @@ class TokenAuthenticationsController < ApplicationController
     authorize!(:generate_access_token, @shelter)
     @shelter.access_token = nil
     @shelter.save
-    redirect_to settings_path
+    redirect_to setting_path(:tab => :web_access)
   end
   
 end

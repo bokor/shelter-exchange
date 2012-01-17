@@ -2,11 +2,13 @@
 <%= description "Shelter Exchange was founded to effect positive and lasting change to the challenging issue of animal euthanasia in shelters across the country." %>
 <%= keywords "Shelter Exchange, animal shelters, animal rescue groups, animal rescue, homeless animals, create a new account, animal euthanasia, shelter exchange, animal welfare community, euthanized, euthanized animals, find animals, search shelters, local shelters, adoptive parents, animals by euthanasia date, saving lives, age-oriented, breed-specific, special needs animals, shelter management software, shelter management application" %>
 
+<%= robots "noindex,follow" %>
+
 <%= content_for :page_content do %>
 
-	<h1>Welcome <%= @account.shelters.first.name %></h1>
+	<h1>Welcome <%= @shelter.name %></h1>
 	<p>Thank you for registering and joining the Shelter Exchange community!</p><br />
-	<p>Please check your email to confirm your account and to invite other staff members to join Shelter Exchange.</p>
+	<p>Please <strong>check your email to confirm your account</strong> and to invite other staff members to join Shelter Exchange.</p>
 	
 <% end %>
 

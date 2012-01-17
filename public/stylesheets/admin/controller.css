@@ -184,6 +184,8 @@
 .show_shelters .shelter_details ul {padding-bottom: 20px;}
 .show_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
 .show_shelters .shelter_details #contact_details {float:left; width: 50%;}
+.show_shelters .shelter_details #contact_details .action_links span,
+.show_shelters .shelter_details #contact_details .action_links a{padding-right: 8px;}
 .show_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 

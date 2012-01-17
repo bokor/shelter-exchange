@@ -53,24 +53,22 @@
 				
 				<h3>Website Details:</h3>
 				<ul>
-					<% unless @shelter.website.blank? %>
-						<li>Website:  <a href="<%= @shelter.website %>" target="_blank"><%= @shelter.website %></a></li>
-					<% end %>
-
-					<% unless @shelter.twitter.blank? %>
-						<li>Twitter:  <a href="http://twitter.com/#!/<%= @shelter.twitter.slice(1..-1) %>" target="_blank"><%= @shelter.twitter %></a></li>
-					<% end %>
-
-					<% unless @shelter.facebook.blank? %>
-						<li>Facebook Page:  <a href="<%= @shelter.facebook %>" target="_blank"><%= @shelter.facebook %></a></li>
-					<% end %>
+					<li class="action_links">
+						<% unless @shelter.website.blank? %>
+						<span><%= link_to "Website", @shelter.website, :target => "_new" %>|</span>
+						<% end %>
+						<% unless @shelter.twitter.blank? %>
+						<span><%= link_to "Twitter", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_new" %>|</span>
+						<% end %>
+						<% unless @shelter.facebook.blank? %>
+						<span><%= link_to "Facebook", @shelter.facebook, :target => "_new" %>|</span>
+						<% end %>
+						<span><%= link_to "Help a Shelter", public_help_a_shelter_url(@shelter, :subdomain => "www"), :target => "_blank" %></span>
+					</li>
 				</ul>
 			</div>
 		</div>
-		
-		<div class="separator"></div>
-		<%= link_to "Help a Shelter", public_help_a_shelter_url(@shelter, :subdomain => "www"), :target => "_blank" %>
-		<div class="separator"></div>
+
 		
 		<div class="stats">
 			<h2>Counts by status</h2>

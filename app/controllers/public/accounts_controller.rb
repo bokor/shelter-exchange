@@ -1,6 +1,11 @@
 class Public::AccountsController < Public::ApplicationController
   respond_to :html
   
+  # Add if the error has been fixed so that every one would get redirected to the signup page
+  # def index
+  #   redirect_to public_signup_path
+  # end
+  
   def new
     @account = Account.new
     @shelter = @account.shelters.build
@@ -14,10 +19,16 @@ class Public::AccountsController < Public::ApplicationController
     respond_with(@account) do |format|
       if @account.save
         flash[:notice] = "Account registered!"
-        format.html { render :action => :registered }
+        format.html { redirect_to registered_public_account_path(@account) }
       else
         format.html { render :action => :new }
       end
     end
   end
+  
+  def registered
+    @account = Account.find(params[:id])
+    @shelter = @account.shelters.first
+  end
+  
 end

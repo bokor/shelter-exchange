@@ -6,7 +6,7 @@
 		<h1>Account Settings</h1>
 		
 		<ul class="tabs blue">
-			<li class="<%= "current" if @tab.blank? %>"><%= link_to "Info", settings_path %></li>
+			<li class="<%= "current" if @tab.blank? %>"><%= link_to "Overview", settings_path %></li>
 			<li class="<%= selected_navigation(:change_owner) %>"><%= link_to "Change Owner", setting_path(:tab => :change_owner) %></li>
 			<li class="<%= selected_navigation(:web_access) %>"><%= link_to "Web Access", setting_path(:tab => :web_access) %></li>
 			<li class="<%= selected_navigation(:connect) %>"><%= link_to "Connect", setting_path(:tab => :connect) %></li>
@@ -16,7 +16,7 @@
 	
 	<div class="page_content">
 		<div class="tab_content">
-			<%= render @tab || "info" %>
+			<%= render @tab || "overview" %>
 		</div>
 	</div>
 
