@@ -6,6 +6,6 @@ elsif ["staging"].include?(environment)
 end
 
 # Ping Search Engines - Updated Sitemap.xml
-if environment == "production"
-  on_utilities("shelter_exchange_util"){ run "cd #{current_path} && bundle exec rake sitemap:ping" }
-end
+# if environment == "production"
+#   on_utilities("shelter_exchange_util"){ run "cd #{current_path} && bundle exec rake sitemap:ping" }
+# end
