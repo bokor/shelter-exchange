@@ -82,7 +82,7 @@ var HelpAShelter = {
 		if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#filters_shelter_id").val()]); }
 	},
 	geocodeAddress: function(){
-		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
+		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 				map.fitBounds(results[0].geometry.viewport);
 	      	} else {

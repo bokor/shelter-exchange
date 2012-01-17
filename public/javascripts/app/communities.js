@@ -134,7 +134,7 @@ var Communities = {
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
 	},
 	geocodeAddress: function(){
-		geocoder.geocode( { address: $("#city_zipcode").val() }, function(results, status) {
+		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 				map.fitBounds(results[0].geometry.viewport);
 	      	} else {
