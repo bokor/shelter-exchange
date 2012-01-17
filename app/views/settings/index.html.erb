@@ -9,7 +9,7 @@
 			<li class="<%= "current" if @tab.blank? %>"><%= link_to "Overview", settings_path %></li>
 			<li class="<%= selected_navigation(:change_owner) %>"><%= link_to "Change Owner", setting_path(:tab => :change_owner) %></li>
 			<li class="<%= selected_navigation(:web_access) %>"><%= link_to "Web Access", setting_path(:tab => :web_access) %></li>
-			<li class="<%= selected_navigation(:connect) %>"><%= link_to "Connect", setting_path(:tab => :connect) %></li>
+			<!-- <li class="<%= selected_navigation(:connect) %>"><%= link_to "Connect", setting_path(:tab => :connect) %></li> -->
 		</ul>
 		
 	</div>

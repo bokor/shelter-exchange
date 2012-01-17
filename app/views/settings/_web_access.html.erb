@@ -3,7 +3,9 @@
 <% end %>
 
 <h2>Web Access - API (For Developer Only)</h2>
-<p>An api token must be generated so that <%= @current_shelter.name %> can display their animals on their website.  This access token protects your shelters' data and acts as a login to Shelter Exchange.  If you feel like someone has stole the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, like you were reseting a password.  Please provide this token to a Web Developer!</p>
+
+<p>An api token must be generated so that <%= @current_shelter.name %> can display their animals on their website. This access token protects your shelters' data and acts as a login to Shelter Exchange. If you suspect that someone has stolen the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, as if you were reseting a password. Please provide this token to a Web Developer.</p>
+
 <div class="section">
 	<div class="separator"></div>
 	<ul class="toggle_buttons">
@@ -26,9 +28,9 @@
 		<h3><%= link_to "How can I display animals on my shelter or rescue's website?", "http://help.shelterexchange.org/help/kb/website-integration-api/how-can-i-display-animals-on-my-shelter-or-rescues-website", :target => "_new" %></h3>
 		<h3><%= link_to "Can I display different animal types and statuses?", "http://help.shelterexchange.org/help/kb/website-integration-api/can-i-display-different-animal-types-and-statuses",:target => "_new" %></h3>
 		
-		<br /><br />
+		<br /><br /><br /><br />
 		
-		<h2>Basic API - Usage</h2>
+		<h2>Basic API - URL</h2>
 		<h3>HTML</h3>
 		<p><code><%= api_url %>/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
 
@@ -38,7 +40,7 @@
 		
 		<br /><br />
 
-		<h2>Advanced API - Usage</h2>
+		<h2>Advanced API - URL</h2>
 		<h3>JSON</h3>
 		<p><code><%= api_url %>/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
 
