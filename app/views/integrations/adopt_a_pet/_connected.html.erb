@@ -1,5 +1,4 @@
-<span>connected</span>
-<p><%= @integration.type%></p>
-<span class="delete_link">
-	<%= link_to "Revoke Access", @integration, :confirm => "Are you sure you want to delete? This alert will no longer appear in the list.", :method => :delete, :remote => true, :class => "button" %>	
+<span class="connection_status">Success! You are now connected.</span>
+<span class="revoke_access">
+	<%= link_to "Revoke Access", integration, :confirm => "This action will disconnect you from the Adopt a Pet integration, but you can reconnect later.  Would you like to proceed?", :method => :delete, :remote => true, :class => "button" %>	
 </span>

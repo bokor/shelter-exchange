@@ -1,18 +1,4 @@
-<%= content_for :javascripts do %>
-	
-<% end %>
-<div id="integration_adopt_a_pet" class="integration">
-	<h2><%= link_to image_tag("partners/logo_adopt_a_pet_large.gif"), "http://www.adoptapet.com", :target => "_new"  %></h2>
-	<p>Adopt a Pet "AutoUpload" is a feature that allows us to automatically upload your animal data, saving you the time of uploading every animal to Adopt a Pet.  Within a few hours, we automatically import those pets directly into your pet listings, so all your animal are listed on Adopt-a-Pet.com!</p>
-	
-	<p>Through the Adopt a Pet tool, under <strong>Shelter/Rescue</strong> and <strong>Manage My AutoUpload Account</strong>, there will be an <strong>FTP Username and FTP Password</strong>.  Please enter those values and Save, and we take care of the rest.</p>
+<%= content_for :javascripts do %><% end %>
 
-	<div id="adopt_a_pet_connection">
-		<% if @integration.new_record? %>
-			<%= render "integrations/#{@integration.type.demodulize.underscore}/form", :integration => @integration %>
-		<% else %>
-			<%= render "integrations/#{@integration.type.demodulize.underscore}/connected", :integration => @integration %>
-		<% end %>
-	</div>
-	
-</div>
+<%= render @adopt_a_pet %>
+

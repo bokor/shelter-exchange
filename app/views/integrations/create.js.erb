@@ -7,21 +7,25 @@
 	
 	// Display Flash Message
 	$('#flash_messages').html("<%= escape_javascript(render 'shared/flash_messages', :target => flash) %>" );
-	
-	// NOT NEEDED NOW BECAUSE WE REPLACE THE FORM WITH THE CONNECTED TEXT
-	// Clear Form
-	// $('#create_<%=integration_type%>_form').get(0).reset();
-	
-	// Remove Errors
-	// $('#create_<%=integration_type%>_errors').html("");
-	// $('#create_<%=integration_type%>_form p.error').remove();
-	// $('#create_<%=integration_type%>_form li').removeClass("error");
-	
-	// Remove Form
-	// $('#create_<%=integration_type%>_form').fadeOut(1000);
 	 
 	// Show Connected
-	$('#<%=integration_type%>_connection').html( '<%= escape_javascript(render "integrations/#{integration_type}/connected", :integration => @adopt_a_pet) %>' );
+	$('#<%=integration_type%>_connection').html( '<%= escape_javascript(render "integrations/#{integration_type}/connected", :integration => @integration) %>' );
 	
 <% end %>
 <% flash.discard %>
+
+
+
+
+
+// NOT NEEDED NOW BECAUSE WE REPLACE THE FORM WITH THE CONNECTED TEXT
+// Clear Form
+// $('#create_<%=integration_type%>_form').get(0).reset();
+
+// Remove Errors
+// $('#create_<%=integration_type%>_errors').html("");
+// $('#create_<%=integration_type%>_form p.error').remove();
+// $('#create_<%=integration_type%>_form li').removeClass("error");
+
+// Remove Form
+// $('#create_<%=integration_type%>_form').fadeOut(1000);

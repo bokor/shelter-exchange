@@ -1018,3 +1018,14 @@
 
 
 
+/**********************************************************************/
+/* -------------------------- INTEGRATIONS -------------------------- */
+/**********************************************************************/
+.integration{}
+.integration:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.integration .connection .connection_status{color: #209000; /*#CF7019*/ font-size: 18px; font-weight: bold;padding-right: 20px;}
+.integration .connection .revoke_access{}
+.integration .connection:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+

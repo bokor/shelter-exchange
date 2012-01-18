@@ -31,7 +31,7 @@ class Integration::AdoptAPet < Integration
   
     def connection_successful?
       begin
-        Net::FTP.new(FTP_URL, self.username, self.password)
+        Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
       rescue
         errors.add(:connection_failed, "Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
       end

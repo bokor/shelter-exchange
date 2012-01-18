@@ -1,4 +1,4 @@
-class MapOverlayJob
+class Jobs::MapOverlayJob
   
   def initialize
     @s3_filename ||= "maps/overlay.kmz"

@@ -25,7 +25,7 @@ class SettingsController < ApplicationController
     end
 
     def connect
-      @integration = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 
+      @adopt_a_pet = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 
                      Integration::AdoptAPet.new(:shelter_id => @current_shelter)
     end
     
