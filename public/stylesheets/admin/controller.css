@@ -225,7 +225,7 @@
 		.animal .photo img{display:inline-block; vertical-align:top;}
 	.animal .name{display:inline-block; width: 20%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
 	.animal .breed{display:inline-block; width: 40%; }
-	.animal .created_at{display:inline-block; float:right; font-weight: bold; }
+	.animal .status_change_date{display:inline-block; float:right; font-weight: bold; }
 
 
 
