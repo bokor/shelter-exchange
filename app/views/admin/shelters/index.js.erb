@@ -1,6 +1,6 @@
 <% unless @kill_shelters.blank? %>
 	$('#kill_shelters').html( "<%= escape_javascript( render @kill_shelters ) %>" );
-	$('#kill_paginate').html( "<%= escape_javascript( will_paginate @kill_shelters, :param_name => :no_kill_shelters_page ) %>");
+	$('#kill_paginate').html( "<%= escape_javascript( will_paginate @kill_shelters, :param_name => :kill_shelters_page ) %>");
 <% else %>
 	$('#kill_shelters').html( "" );
 <% end %>

@@ -83,14 +83,20 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
-  scope :live_search, lambda { |q| where("name LIKE LOWER('%#{q}%') OR city LIKE LOWER('%#{q}%') OR 
-                                          state LIKE LOWER('%#{q}%') OR zip_code LIKE LOWER('%#{q}%') OR 
-                                          facebook LIKE LOWER('%#{q}%') OR email LIKE LOWER('%#{q}%')") }
   scope :kill_shelters, where(:is_kill_shelter => true).order(:name) 
   scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 
   scope :latest, lambda {|limit| order("created_at desc").limit(limit) }
-
   
+  def self.live_search (q, state)
+    scope = self.scoped
+    scope = scope.where(:state => state) unless state.blank?
+    scope = scope.where("name LIKE LOWER('%#{q}%') OR city LIKE LOWER('%#{q}%') OR 
+                         zip_code LIKE LOWER('%#{q}%') OR facebook LIKE LOWER('%#{q}%') OR 
+                         twitter LIKE LOWER('%#{q}%') or email LIKE LOWER('%#{q}%')") unless q.blank?
+    scope
+  end
+
+    
   # Instance Methods
   #----------------------------------------------------------------------------
   def generate_access_token!

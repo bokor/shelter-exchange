@@ -8,8 +8,14 @@
 		<%= form_for :shelters, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 			<ul>
 				<li class="full">
-					<%= label_tag "q", "Search Shelter List", :class => "desc" %>
-					<%= text_field_tag "q", "", :class => "field text medium", :onkeyup =>"Shelters.liveSearch(this);"  %>
+					<span class="left half">
+						<%= label_tag "q", "Search Shelter List", :class => "desc" %>
+						<%= text_field_tag "q", "", :class => "field text large", :onkeyup =>"Shelters.liveSearch(this);"  %>
+					</span>
+					<span class="leftPadded half">
+						<%= label_tag "search_by_state", "By state", :class => "desc" %>
+						<%= select nil, "search_by_state", US_STATES.map {|k,v| [ v, k ] }, {:prompt => "Select State"}, {:class => "field select addr", :onchange =>"Shelters.liveSearch(this);"}  %>
+					</span>
 				</li>
 			</ul>
 		<% end %>

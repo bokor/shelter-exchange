@@ -25,10 +25,10 @@ var Shelters = {
 
 	},
 	liveSearch: function(element){
-		var q = $(element);
+		// var q = $(element);
 		clearTimeout($.data(element, "search_timer"));
 		var wait = setTimeout(function() { 
-			$.get("/admin/shelters/live_search.js", { q: q.val() });
+			$.get("/admin/shelters/live_search.js", $("#form_search").serialize());
 			clearTimeout($.data(element, "search_timer"));  
 		}, 500);
 		$.data(element, "search_timer", wait);

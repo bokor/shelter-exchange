@@ -14,7 +14,7 @@ class Integration::AdoptAPet < Integration
   
   # Validations
   #----------------------------------------------------------------------------
-  validates :username, :presence => true
+  validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
   

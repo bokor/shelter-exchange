@@ -75,6 +75,20 @@ class Animal < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => PHOTO_SIZE, :message => "needs to be #{PHOTO_SIZE_IN_TEXT} or less"
   validates_attachment_content_type :photo, :content_type => PHOTO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
     
+    
+  # Scopes - Statuses
+  #----------------------------------------------------------------------------
+  scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
+  scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
+  scope :available_for_adoption, where(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+  scope :adopted, where(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+  scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
+  scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
+  scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
+  scope :latest, lambda { |limit| unscoped.includes(:shelter).reorder("status_change_date DESC").limit(limit) }
+  #----------------------------------------------------------------------------
+  
+  
   
   # Scopes - Search
   #----------------------------------------------------------------------------
@@ -94,29 +108,8 @@ class Animal < ActiveRecord::Base
     
     scope
   end
-  
   #----------------------------------------------------------------------------  
-  
-  
-  
-  
-  # Scopes - Statuses
-  #----------------------------------------------------------------------------
-  scope :active, where(:animal_status_id => AnimalStatus::ACTIVE)
-  scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
-  scope :available_for_adoption, where(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
-  scope :adopted, where(:animal_status_id => AnimalStatus::STATUSES[:adopted])
-  scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
-  scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
-  scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
-  #----------------------------------------------------------------------------  
-  
-  
-  # Scopes - Public
-  #----------------------------------------------------------------------------
-  scope :latest_adoptions, lambda { |limit| unscoped.includes(:shelter).reorder("status_change_date DESC").adopted.limit(limit) }
-  #----------------------------------------------------------------------------
-  
+    
   
   # Scopes - Dashboard - Recent Activity
   #----------------------------------------------------------------------------

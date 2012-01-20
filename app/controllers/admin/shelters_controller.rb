@@ -16,9 +16,10 @@ class Admin::SheltersController < Admin::ApplicationController
   end
   
   def live_search
-    q = params[:q].strip
-    @kill_shelters = q.blank? ? Shelter.kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page]) : Shelter.live_search(q).kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page])
-    @no_kill_shelters = q.blank? ? Shelter.no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page]) : Shelter.live_search(q).no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page])
+    q     = params[:q].strip 
+    state = params[:search_by_state]
+    @kill_shelters    = Shelter.live_search(q, state).kill_shelters.paginate(:per_page => 25, :page => params[:kill_shelters_page])
+    @no_kill_shelters = Shelter.live_search(q, state).no_kill_shelters.paginate(:per_page => 25, :page => params[:no_kill_shelters_page])
   end
   
 end
