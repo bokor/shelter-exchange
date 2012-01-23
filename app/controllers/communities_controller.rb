@@ -15,9 +15,9 @@ class CommunitiesController < ApplicationController
     filter_param = params[:filter]
     @animal = Animal.find(params[:animal_id])
     if filter_param.blank?
-      @notes = @animal.notes
+      @notes = @animal.notes.all
     else
-      @notes = @animal.notes.where(:category => filter_param)
+      @notes = @animal.notes.where(:category => filter_param).all
     end
   end
   
@@ -25,7 +25,7 @@ class CommunitiesController < ApplicationController
     @shelters = Shelter.find(:all, :conditions =>["shelters.id != ?", @current_shelter.id], :bounds => [params[:filters][:sw],params[:filters][:ne]])
     unless @shelters.blank?
       shelter_ids = @shelters.collect(&:id)
-      @animals = Animal.community_animals(shelter_ids, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
+      @animals = Animal.community_animals(shelter_ids, params[:filters]).paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
   
@@ -33,7 +33,7 @@ class CommunitiesController < ApplicationController
     @shelter = Shelter.find(params[:filters][:shelter_id])
     @capacities = @shelter.capacities.includes(:animal_type).all
     unless @shelter.blank?
-      @animals = Animal.community_animals(@shelter.id, params[:filters]).all.paginate(:per_page => 10, :page => params[:page]) || {}
+      @animals = Animal.community_animals(@shelter.id, params[:filters]).paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
   

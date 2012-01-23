@@ -4,7 +4,7 @@ class Public::PagesController < Public::ApplicationController
   # caches_page :index, :show, :sitemap
     
   def index
-    @animals = Animal.latest(3).adopted.all
+    @animals = Animal.latest(:adopted, 3).all
   end
   
   def show

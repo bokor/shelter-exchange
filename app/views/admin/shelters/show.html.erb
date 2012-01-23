@@ -48,7 +48,7 @@
 						<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
 					<% end %>
 					
-					<li>Email:  <%= @shelter.email %></li>
+					<li>Email:  <%= link_to @shelter.email, "mailto:#{@shelter.email}" %></li>
 				</ul>
 				
 				<h3>Website Details:</h3>
@@ -85,13 +85,7 @@
 		<div class="stats">
 			<h2>Shelter Users</h2>
 			<div class="user_list">
-				<% @users.each do |user| %>
-					<div id="<%= "user_#{user.id}" %>" class="user">
-						<span class="name"><%= user.name %></span>
-						<span class="role"><%= user.role.humanize %></span>
-						<span class="email"><%= user.email %></span>
-					</div>
-				<% end %>
+				<%= render @users %>
 			</div>
 		</div>
 		

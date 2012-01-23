@@ -9,7 +9,7 @@ class Api::AnimalsController < Api::ApplicationController
     raise Exceptions::ApiIncorrectStatus if statuses.include?(AnimalStatus::STATUSES[:deceased]) or statuses.include?(AnimalStatus::STATUSES[:euthanized])
     
     unless request.format.html?
-      @animals = Animal.api_lookup(types, statuses, @current_shelter)
+      @animals = Animal.api_lookup(types, statuses, @current_shelter).all
     else
       @animals = Animal.api_lookup(types, statuses, @current_shelter).paginate(:per_page => Animal::PER_PAGE_API, :page => params[:page])
     end

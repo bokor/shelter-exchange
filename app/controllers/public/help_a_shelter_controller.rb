@@ -6,7 +6,7 @@ class Public::HelpAShelterController < Public::ApplicationController
   
   def show
     @shelter = Shelter.find(params[:id])
-    @items = @shelter.items.select(:name)
+    @items = @shelter.items.select(:name).all
     # @types = AnimalType.available_for_adoption_types(@shelter.id)
   end
   
@@ -15,8 +15,9 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
   
   def find_animals_for_shelter
-    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
-    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.all.paginate(:per_page => 15, :page => params[:page]) || {}
+    # Removed because it was redundant    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
+    shelter_id = params[:filters][:shelter_id]
+    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.paginate(:per_page => 15, :page => params[:page]) || {}
   end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|

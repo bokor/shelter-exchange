@@ -11,51 +11,51 @@ class ReportsController < ApplicationController
   end
 
   def status_by_current_month
-    pie_chart(@current_shelter.animals.count_by_status.current_month)
+    pie_chart(@current_shelter.animals.count_by_status.current_month.all)
   end
   
   def type_by_current_month
-    pie_chart(@current_shelter.animals.active.count_by_type.current_month)
+    pie_chart(@current_shelter.animals.active.count_by_type.current_month.all)
   end
     
   def adoptions_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).adopted)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).adopted.all)
   end
   
   def adoptions_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).adopted)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).adopted.all)
   end
   
   def euthanized_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).euthanized)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).euthanized.all)
   end
   
   def euthanized_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).euthanized)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).euthanized.all)
   end
   
   def foster_care_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).foster_care)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).foster_care.all)
   end
   
   def foster_care_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).foster_care)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).foster_care.all)
   end
   
   def reclaimed_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).reclaimed)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date, true).reclaimed.all)
   end
   
   def reclaimed_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).reclaimed)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :status_change_date).reclaimed.all)
   end
   
   def intake_monthly_total_by_type
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :created_at, true).active)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :created_at, true).active.all)
   end
   
   def intake_monthly_total
-    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :created_at).active)
+    bar_chart(@current_shelter.animals.totals_by_month(params[:selected_year], :created_at).active.all)
   end
   
   def pie_chart(results)

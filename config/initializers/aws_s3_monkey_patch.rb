@@ -17,3 +17,10 @@
 #     end
 #   end
 # end
+# 
+# class String
+#   def tap
+#     yield(self)
+#     self
+#   end unless ''.respond_to?(:tap)
+# end 

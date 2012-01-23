@@ -61,9 +61,9 @@ class AnimalsController < ApplicationController
     filter_param = params[:filter]
     @animal = @current_shelter.animals.find(params[:id])
     if filter_param.blank?
-      @notes = @animal.notes
+      @notes = @animal.notes.all
     else
-      @notes = @animal.notes.where(:category => filter_param)
+      @notes = @animal.notes.where(:category => filter_param).all
     end
   end
 
