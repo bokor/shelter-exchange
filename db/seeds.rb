@@ -84,7 +84,6 @@ Breed.create([
   { :animal_type_id => dog.id, :name => "Airedale Terrier" },
   { :animal_type_id => dog.id, :name => "Akbash" },
   { :animal_type_id => dog.id, :name => "Akita" },
-  { :animal_type_id => dog.id, :name => "Aidi" },
   { :animal_type_id => dog.id, :name => "Alaskan Malamute" },
   { :animal_type_id => dog.id, :name => "American Bulldog" },
   { :animal_type_id => dog.id, :name => "American Eskimo Dog" },
@@ -249,7 +248,6 @@ Breed.create([
   { :animal_type_id => dog.id, :name => "Miniature Schnauzer" },
   { :animal_type_id => dog.id, :name => "Miniature Siberian Husky" },
   { :animal_type_id => dog.id, :name => "Mountain Cur" },
-  { :animal_type_id => dog.id, :name => "Mountain Dog" },
   { :animal_type_id => dog.id, :name => "Munsterlander" },
   { :animal_type_id => dog.id, :name => "Neapolitan Mastiff" },
   { :animal_type_id => dog.id, :name => "New Guinea Singing Dog" },
@@ -366,7 +364,6 @@ Breed.create([
   { :animal_type_id => cat.id, :name => "Canadian Hairless" },
   { :animal_type_id => cat.id, :name => "Chartreux" },
   { :animal_type_id => cat.id, :name => "Chausie" },
-  { :animal_type_id => cat.id, :name => "Chinchilla" },
   { :animal_type_id => cat.id, :name => "Cornish Rex" },
   { :animal_type_id => cat.id, :name => "Cymric" },
   { :animal_type_id => cat.id, :name => "Devon Rex" },
@@ -402,7 +399,6 @@ Breed.create([
   { :animal_type_id => cat.id, :name => "Selkirk Rex" },
   { :animal_type_id => cat.id, :name => "Siamese" },
   { :animal_type_id => cat.id, :name => "Siberian" },
-  { :animal_type_id => cat.id, :name => "Silver" },
   { :animal_type_id => cat.id, :name => "Singapura" },
   { :animal_type_id => cat.id, :name => "Snowshoe" },
   { :animal_type_id => cat.id, :name => "Somali" },
@@ -568,7 +564,7 @@ Breed.create([
   { :animal_type_id => bird.id, :name => "Rhea" },
   { :animal_type_id => bird.id, :name => "Ringneck (Psittacula)" },
   { :animal_type_id => bird.id, :name => "Rosella" },
-  { :animal_type_id => bird.id, :name => "Softbill " },
+  { :animal_type_id => bird.id, :name => "Softbill" },
   { :animal_type_id => bird.id, :name => "Swan" },
   { :animal_type_id => bird.id, :name => "Toucan" },
   { :animal_type_id => bird.id, :name => "Turkey" }
@@ -577,7 +573,6 @@ Breed.create([
 ### REPTILE ###########################################################################################################
 Breed.create([
   { :animal_type_id => reptile.id, :name => "Chameleon" },
-  { :animal_type_id => reptile.id, :name => "Dragon" },
   { :animal_type_id => reptile.id, :name => "Gecko" },
   { :animal_type_id => reptile.id, :name => "Iguana" },
   { :animal_type_id => reptile.id, :name => "Lizard" },
@@ -591,7 +586,6 @@ Breed.create([
   { :animal_type_id => other.id, :name => "Alpaca" },
   { :animal_type_id => other.id, :name => "Chinchilla" },
   { :animal_type_id => other.id, :name => "Cow" },
-  { :animal_type_id => other.id, :name => "Crab" },
   { :animal_type_id => other.id, :name => "Ferret" },
   { :animal_type_id => other.id, :name => "Fish" },
   { :animal_type_id => other.id, :name => "Frog" },
@@ -604,5 +598,5 @@ Breed.create([
   { :animal_type_id => other.id, :name => "Pig" },
   { :animal_type_id => other.id, :name => "Rat" },
   { :animal_type_id => other.id, :name => "Sheep" },
-  { :animal_type_id => other.id, :name => "Spider" }
+  { :animal_type_id => other.id, :name => "Tarantula" }
 ])
