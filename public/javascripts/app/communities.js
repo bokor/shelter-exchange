@@ -82,15 +82,19 @@ var Communities = {
 	},	
 	createMap: function(){
 		// Map setup and config
-		myLatLng = new google.maps.LatLng(lat, lng);
-		geocoder = new google.maps.Geocoder();
-		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-	 																		    zoom: defaultZoom,
-																				center: myLatLng,
-		    																	mapTypeId: google.maps.MapTypeId.ROADMAP});
-		
+		// myLatLng = new google.maps.LatLng(lat, lng);
+		// geocoder = new google.maps.Geocoder();
+		// map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
+		// 	 																		    zoom: defaultZoom,
+		// 																		center: myLatLng,
+		//     																	mapTypeId: google.maps.MapTypeId.ROADMAP});
+		// To preseve the viewport you have to set the lat and long with the center and default zoom or set the bounds on the map
+		// or those fields aren't needed. 
 		// kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
-		kmlLayer = new google.maps.KmlLayer(mapOverlay); // removed zoom in
+		
+		geocoder = new google.maps.Geocoder();
+		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
+		kmlLayer = new google.maps.KmlLayer(mapOverlay); 
 		kmlLayer.setMap(map);
 	},
 	searchByCityZipCode: function() {
@@ -119,16 +123,13 @@ var Communities = {
 		Communities.shelterNameAutoComplete();
   	},
 	findAnimalsInBounds: function(){
-		// var zoomLevel = map.getZoom();
-		// if (zoomLevel < 10) {
-			// $('#all_animals').html( "<p>Please zoom in to search for animals</p>" );
-			// $('#urgent_needs_animals').html( "<p>Please zoom in to search for animals</p>" );
-		// } else {
-			var bounds = map.getBounds();
-			$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
-			$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-			$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
-		// }
+		var bounds = map.getBounds();
+		
+		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
+		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
+		
+		$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
+
 	},
 	findAnimalsForShelter: function(){
 		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
@@ -138,7 +139,7 @@ var Communities = {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 				map.fitBounds(results[0].geometry.viewport);
 	      	} else {
-	        	alert("Your search was unsuccessful.  Please enter a valid City or Zip Code");
+	        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
 	      	}
 	    });
 	},
