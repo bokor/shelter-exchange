@@ -116,8 +116,8 @@ end
 def description_mapping(animal)
   tmp = animal.description
   tmp << "<br /><br /> "
-  tmp << "View <a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a> full profile, "
-  tmp << "shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
+  tmp << "<a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a> full profile "
+  tmp << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
   tmp << "<link rel='canonical' href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}' />"
   tmp
 end
