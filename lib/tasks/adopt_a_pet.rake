@@ -45,7 +45,7 @@ namespace :adopt_a_pet do
   task :generate_csv_files => :environment do
     
     @integrations = Integration::AdoptAPet.all
-
+    
     @integrations.each do |integration|
       SHELTER_START_TIME = Time.now
       
@@ -115,9 +115,9 @@ end
 
 def description_mapping(animal)
   tmp = animal.description
-  tmp << "<br /><br />Click here for more information on "
-  tmp << "<a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a>. "
-  tmp << "Information shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
+  tmp << "<br /><br /> "
+  tmp << "View <a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a> full profile, "
+  tmp << "shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
   tmp << "<link rel='canonical' href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}' />"
   tmp
 end
