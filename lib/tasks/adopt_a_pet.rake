@@ -32,9 +32,9 @@ ADOPT_A_PET_TYPES = { "Other" => {
 
 TASK_START_TIME = Time.now
 SHELTER_START_TIME = 0
-LOG_FILENAME = "log/adopt_a_pet_rake_task.log"
-CSV_FILENAME = "tmp/pets.csv"
-CFG_FILENAME = "public/integrations/adopt_a_pet/import.cfg"
+LOG_FILENAME = Rails.root.join("log/adopt_a_pet_rake_task.log")
+CSV_FILENAME = Rails.root.join("tmp/pets.csv")
+CFG_FILENAME = Rails.root.join("public/integrations/adopt_a_pet/import.cfg")
 
 
 # Tasks
