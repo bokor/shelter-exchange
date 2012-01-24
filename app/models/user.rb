@@ -48,10 +48,10 @@ class User < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------  
-  def self.find_for_authentication(conditions={})
-    conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-    find(:first, :conditions => conditions, :joins => :account, :readonly => false)
-  end
+  # def self.find_for_authentication(conditions={})
+  #   conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
+  #   find(:first, :conditions => conditions, :joins => :account, :readonly => false)
+  # end
   
   def self.valid_token?(token)
     token_user = self.where(:authentication_token => token).first
@@ -62,21 +62,9 @@ class User < ActiveRecord::Base
     return token_user
   end
   
+  def self.find_for_database_authentication(conditions)
+    subdomain = conditions.delete(:subdomain)
+    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
+  end
+  
 end
-
-
-# def update_with_password(params={})
-#   params.delete(:current_password)
-#   self.update_without_password(params)
-# end
-
-# validates :email, :uniqueness => true, :allow_blank => true,
-#                   :length => {:minimum => 3, :maximum => 254}, 
-#                   :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
-
-#:token_authenticatable, 
-#, :auth_token
-# def self.find_for_token_authentication(conditions={})
-#   subdomain = User.where(:authentication_token => conditions[:auth_token]).first.account.subdomain
-#   where("users.authentication_token = ? and accounts.subdomain = ?", conditions[token_authentication_key], subdomain).joins(:account).readonly(false).first
-# end
