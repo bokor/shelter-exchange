@@ -48,10 +48,11 @@ class User < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------  
-  # def self.find_for_authentication(conditions={})
-  #   conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-  #   find(:first, :conditions => conditions, :joins => :account, :readonly => false)
-  # end
+  def self.find_for_authentication(conditions={})  
+    subdomain = conditions.delete(:subdomain)
+    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).limit(1).first
+    super
+  end
   
   def self.valid_token?(token)
     token_user = self.where(:authentication_token => token).first
@@ -60,11 +61,6 @@ class User < ActiveRecord::Base
       token_user.save
     end
     return token_user
-  end
-  
-  def self.find_for_database_authentication(conditions)
-    subdomain = conditions.delete(:subdomain)
-    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
   end
   
 end

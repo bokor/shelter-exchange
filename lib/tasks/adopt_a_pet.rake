@@ -74,6 +74,7 @@ namespace :adopt_a_pet do
   desc "Creating Adopt a Pet CSV files"
   task :all => [:generate_csv_files] do 
     logger.info("Time elapsed: #{Time.now - TASK_START_TIME} seconds.")
+    logger.close
   end
   
 end
