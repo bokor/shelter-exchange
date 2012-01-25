@@ -50,14 +50,8 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   def self.find_for_authentication(conditions={})  
     subdomain = conditions.delete(:subdomain)
-    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).limit(1).first
+    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
   end
-  
-  # OLD WAY
-  # def self.find_for_authentication(conditions={})
-  #   conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
-  #   find(:first, :conditions => conditions, :joins => :account, :readonly => false)
-  # end
   
   def self.valid_token?(token)
     token_user = self.where(:authentication_token => token).first
@@ -69,6 +63,11 @@ class User < ActiveRecord::Base
   end
   
 end
+# OLD WAY
+# def self.find_for_authentication(conditions={})
+#   conditions[:accounts] = { :subdomain => conditions.delete(:subdomain) }
+#   find(:first, :conditions => conditions, :joins => :account, :readonly => false)
+# end
 # def self.find_for_database_authentication(conditions)
 #   subdomain = conditions.delete(:subdomain)
 #   self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
