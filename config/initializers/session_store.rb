@@ -7,7 +7,7 @@ elsif Rails.env.production?
   domain_session_store = ".shelterexchange.org"
 end
 
-ShelterExchangeApp::Application.config.session_store :cookie_store, :key => '_shelterexchange_session', :domain => domain_session_store
+ShelterExchangeApp::Application.config.session_store :cookie_store, :key => '_shelterexchange_session' #, :domain => domain_session_store
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
