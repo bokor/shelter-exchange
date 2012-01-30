@@ -64,6 +64,9 @@
 			</td>
 			<td class="image">
 			    <%= image_tag @animal.photo.url(:medium) %>
+				<% unless @animal.video_url.blank? %>
+				<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player right", :title => "Video of #{@animal.name}" %>
+				<% end %>
 			</td>
 		</tr>
 	</table>

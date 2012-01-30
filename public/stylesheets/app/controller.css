@@ -181,6 +181,7 @@
 .show_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_animals table.animal_details td{vertical-align:top; }
 .show_animals table.animal_details td.image{}
+.show_animals table.animal_details td.image .video_player{ margin-top: 10px;}
 .show_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
 .show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
 .show_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
@@ -433,6 +434,8 @@
 .communities #shelter_details h1{color: #ccc;height: 500px; line-height: 500px; margin: 0 auto; text-align: center;}
 .communities #shelter_details .right_side{float:right; text-align:right;}
 .communities #shelter_details .logo{padding-bottom: 15px;}
+.communities #shelter_details .action_links span,
+.communities #shelter_details .action_links a{padding-right: 8px;}
 .communities #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Search by Shelter Name Communities :: Animal List :: Layout
@@ -449,6 +452,7 @@
 .communities table.animal_list tr {border-bottom:1px #ccc dotted; }
 .communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .communities table.animal_list td.image { width:100px; padding-left:5px; }
+.communities table.animal_list td.image .video_player{ margin-top: 10px;}
 .communities table.animal_list td.details { /*width: 400px;*/width:58%;padding-left: 15px;color:#666; }
 .communities table.animal_list td.status {/*width: 290px;*/ width:43%;padding-left: 10px; padding-right: 5px; text-align:right;}
 .communities table.animal_list .euthanisia_date{color:#DF0000;}
@@ -806,6 +810,8 @@
 /******************************************************************/
 .index_shelters .shelter_details {padding-bottom: 20px;}
 .index_shelters .shelter_details ul {padding-bottom: 20px;}
+.index_shelters .shelter_details .action_links span,
+.index_shelters .shelter_details .action_links a{padding-right: 8px;}
 .index_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
 .index_shelters .shelter_details #contact_details {float:left; width: 50%;}
 .index_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}

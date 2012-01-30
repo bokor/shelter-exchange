@@ -11,7 +11,7 @@ xml.animals do
       xml.primary_breed(animal.primary_breed)
   		xml.secondary_breed(animal.secondary_breed)
   		xml.full_breed_in_text(animal.full_breed)
-  		xml.sterilized(animal.is_sterilized)
+  		xml.sterilized(animal.sterilized? ? true : false)
   		xml.date_of_birth(animal.date_of_birth)
      	xml.date_of_birth_text(humanize_dob(animal.date_of_birth))
       xml.size(animal.size)
@@ -32,6 +32,8 @@ xml.animals do
         xml.small(animal.photo.file? ? animal.photo.url(:small) : "")
         xml.large(animal.photo.file? ? animal.photo.url(:large) : "")
       end
+      xml.video(animal.video_url || "")
+      xml.url(public_save_a_life_url(animal, :subdomain => "www"))
     end
   end
 end

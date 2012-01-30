@@ -62,6 +62,8 @@ class Animal < ActiveRecord::Base
   validates :hold_time, :presence => { :if => :is_kill_shelter? }
   validates :special_needs, :presence => { :if => :special_needs? }
   validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
+  validates :video_url, :format => { :with => ANIMAL_VIDEO_URL_FORMAT,  #Regexp.union(ANIMAL_VIDEO_URL_FORMAT)
+                                     :allow_blank => true, :message => "incorrect You Tube URL format" }
   
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
@@ -114,7 +116,7 @@ class Animal < ActiveRecord::Base
   # Scopes - Dashboard - Recent Activity
   #----------------------------------------------------------------------------
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).reorder("animals.updated_at DESC").limit(limit)
   end
   #----------------------------------------------------------------------------  
   
@@ -123,8 +125,7 @@ class Animal < ActiveRecord::Base
   # Scopes - Maps and Filters
   #----------------------------------------------------------------------------
   def self.community_animals(shelter_ids, filters={})
-    scope = scoped{}
-    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)").order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
+    scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :shelter)
     scope = scope.where(:shelter_id => shelter_ids)
     scope = scope.filter_euthanasia_only unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
@@ -136,7 +137,7 @@ class Animal < ActiveRecord::Base
     scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
     scope = scope.active unless filters[:animal_status].present?
     
-    scope
+    scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC") #.limit(nil)
   end
   
   def self.filter_euthanasia_only
@@ -202,13 +203,12 @@ class Animal < ActiveRecord::Base
   # Scopes - API
   #----------------------------------------------------------------------------
   def self.api_lookup(types, statuses, current_shelter)
-    scope = scoped{}
-    scope = scope.unscoped.order("ISNULL(animals.euthanasia_date)").order("animals.euthanasia_date ASC") # Order all animals by euthanasia date then default scope
+    scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status)
     scope = scope.where(:shelter_id => current_shelter)
     scope = (statuses.blank? ? scope.available_for_adoption : scope.where(:animal_status_id => statuses))
     scope = scope.where(:animal_type_id => types) unless types.blank?
-    scope
+    scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC").limit(nil)
   end
   #----------------------------------------------------------------------------  
   

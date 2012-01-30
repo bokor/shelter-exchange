@@ -1,7 +1,8 @@
 class StatusHistoryObserver < ActiveRecord::Observer
   
   def after_save(status_history)
-    send_tweet(status_history.animal, status_history.shelter) if Rails.env.production?
+    # Removed because of the massive amounts of tweets
+    # send_tweet(status_history.animal, status_history.shelter) if Rails.env.production?
   end
   
   private

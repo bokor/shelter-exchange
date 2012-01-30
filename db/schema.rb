@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120110231259) do
+ActiveRecord::Schema.define(:version => 20120123210834) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20120110231259) do
     t.string   "size"
     t.boolean  "has_special_needs",  :default => false, :null => false
     t.text     "special_needs"
+    t.string   "video_url"
   end
 
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
@@ -248,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20120110231259) do
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -402,10 +404,15 @@ ActiveRecord::Schema.define(:version => 20120110231259) do
   add_index "transfers", ["shelter_id"], :name => "index_transfers_on_from_shelter"
 
   create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "role"
+    t.integer  "account_id"
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -420,10 +427,6 @@ ActiveRecord::Schema.define(:version => 20120110231259) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.integer  "account_id"
-    t.string   "name"
-    t.string   "title"
-    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",       :limit => 60

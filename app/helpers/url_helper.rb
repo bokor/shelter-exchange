@@ -26,7 +26,7 @@ module UrlHelper
   end
   
   def www_url
-    request.port != 80 ? [request.protocol, "www.", request.domain, ":", request.port].join : [request.protocol, "api.", request.domain].join
+    request.port != 80 ? [request.protocol, "www.", request.domain, ":", request.port].join : [request.protocol, "www.", request.domain].join
   end
   
 end

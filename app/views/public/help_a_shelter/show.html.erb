@@ -44,6 +44,9 @@
 			<h2><%=@shelter.name%></h2>
 			<ul>
 				<li><%=@shelter.street %></li>
+				<% unless @shelter.street_2.blank? %>
+				<li><%=@shelter.street_2 %></li>
+				<% end %>
 				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
 			</ul>
 			<br />
@@ -54,8 +57,18 @@
 					<% unless @shelter.website.blank? %>
 						<span><%= link_to "Visit Website", @shelter.website, :target => "_blank" %>|</span>
 					<% end %>
-					<span><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
+					<span class="get_directions_link"><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
 				</li>
+				<% unless @shelter.twitter.blank? and @shelter.facebook.blank? %>
+				<li class="action_links">
+					<% unless @shelter.twitter.blank? %>
+						<span><%= link_to "Follow #{@shelter.twitter}", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
+					<% end %>
+					<% unless @shelter.facebook.blank? %>
+						<span><%= link_to "Facebook Page", @shelter.facebook, :target => "_blank" %></span>
+					<% end %>
+				</li>
+				<% end %>
 			</ul>
 		</div>
 		

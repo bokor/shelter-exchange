@@ -25,7 +25,7 @@ class Alert < ActiveRecord::Base
   # Class Methods
   #----------------------------------------------------------------------------
   def self.recent_activity(shelter_id, limit=10)
-    unscoped.includes(:alertable).where(:shelter_id => shelter_id).order("updated_at DESC").limit(limit)
+    includes(:alertable).where(:shelter_id => shelter_id).reorder("alerts.updated_at DESC").limit(limit)
   end
   
   # Instance Methods

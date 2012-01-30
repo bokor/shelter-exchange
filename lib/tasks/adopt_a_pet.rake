@@ -54,7 +54,7 @@ namespace :adopt_a_pet do
       
       CSV.open(CSV_FILENAME, "w+") do |csv|
         
-        csv << ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","PhotoURL","Purebred","SpecialNeeds","Size","Age"]
+        csv << ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","YouTubeVideoURL"]
       
         @animals.each do |animal|
           csv << csv_animal_row(animal)
@@ -104,15 +104,16 @@ def csv_animal_row(animal)
   sex           = animal.sex == "male" ? "M" : "F"
   description   = description_mapping(animal)
   status        = "Available"
-  photo         = animal.photo.url(:large) unless animal.photo.url(:large).include?("default_large_photo")
   purebred      = if animal.dog? || animal.rabbit? || animal.horse?
                     animal.mix_breed? ? "N" : "Y"
                   end
   special_needs = animal.special_needs?  ? "Y" : "N"
   size          = size_mapping(animal.size) unless animal.size.blank?
   age           = age_mapping(animal.animal_type.name, animal.date_of_birth) unless animal.date_of_birth.blank?
+  photo         = animal.photo.url(:large) unless animal.photo.url(:large).include?("default_large_photo")
+  you_tube_url  = animal.video_url unless animal.video_url.blank?
   
-  [id, type, breed, breed2, name, sex, description, status, photo, purebred, special_needs, size, age]
+  [id, type, breed, breed2, name, sex, description, status, purebred, special_needs, size, age, photo, you_tube_url]
 end
 
 def description_mapping(animal)

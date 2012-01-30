@@ -107,7 +107,7 @@
 			<div id="special_needs_field">
 				<%= f.label :special_needs, "Special needs description", :class => "desc" %>
 				<div>
-				<%= f.text_area :special_needs, :class => "field textarea medium", :maxlength => 255, :placeholder => "Provide details of the animal's special needs." %>
+				<%= f.text_area :special_needs, :class => "field textarea medium", :placeholder => "Provide details of the animal's special needs." %>
 				</div>
 				<%= has_error_message?(@animal, :special_needs)%>
 			</div>
@@ -240,6 +240,17 @@
 			<%= has_error_message?(@animal, :photo_content_type)%>
 			<%= has_error_message?(@animal, :photo_file_size) %>
 			
+		</li>
+		<li class="section">
+			<section>
+				<h3><%= image_tag("partners/logo_you_tube.png")%></h3>
+				<div>Paste in a YouTube URL (Example: <strong>http://www.youtube.com/watch?v=mmdPQp6Jcdk</strong> or <strong>http://youtu.be/mmdPQp6Jcdk</strong>)</div>
+			</section>
+		</li>
+		<li>
+			<%# f.label :video_url, "You Tube URL <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :video_url, :class => "field text medium" %></div>
+			<%= has_error_message?(@animal, :video_url)%>
 		</li>
 		<li class="section">
 			<section>

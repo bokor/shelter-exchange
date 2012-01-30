@@ -204,6 +204,36 @@ $(function () {
  * ------------------------------------------------------------------------ */
 
 
+/* You Tube Link Fancybox
+/*----------------------------------------------------------------------------*/
+$(function() {
+
+	$(".video_player").fancybox({
+		transitionIn : 'fade',
+		transitionOut : 'fade',
+		titlePosition : 'inside',
+		autoScale : true,
+		autoDimensions : true,
+		centerOnScroll : true,
+		type : 'swf'
+	});
+
+});
+
+// href : youtube_url_parser($(this).attr("href")),
+// title : $(this).attr("title"),
+
+	// function youtube_url_parser(url){
+	// 	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\??v?=?))([^#\&\?]*).*/;
+	//    	var match = url.match(regExp);
+	//    	if (match&&match[7].length==11) {
+	//    		return "http://www.youtube.com/v/" + match[7];
+	//    	} else {
+	//     	return url;
+	//     }
+	// }
+
+
 /* URL Formatter :: Prepends http:// to url input fields
 /*----------------------------------------------------------------------------*/
 $(function(){

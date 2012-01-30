@@ -9,7 +9,7 @@
 		:primary_breed => animal.primary_breed,
 		:secondary_breed => animal.secondary_breed,
 		:full_breed_in_text => animal.full_breed,
-		:sterilized => animal.is_sterilized,
+		:sterilized => animal.sterilized? ? true : false,
 		:date_of_birth => animal.date_of_birth,
    		:date_of_birth_text => humanize_dob(animal.date_of_birth),
 		:size => animal.size,
@@ -29,7 +29,9 @@
     		:thumbnail => animal.photo.file? ? animal.photo.url(:thumb) : "",
     		:small => animal.photo.file? ? animal.photo.url(:small) : "",
      		:large => animal.photo.file? ? animal.photo.url(:large) : ""
-   		}
+   		},
+		:video => animal.video_url || "",
+		:url => public_save_a_life_url(animal, :subdomain => "www")
 	}
 }
 end %>
