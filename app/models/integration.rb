@@ -1,5 +1,8 @@
 class Integration < ActiveRecord::Base
   
+  # Callbacks
+  #----------------------------------------------------------------------------  
+  before_validation :clean_data!
 
   # Associations
   #----------------------------------------------------------------------------
@@ -23,6 +26,12 @@ class Integration < ActiveRecord::Base
     end
     super
   end
+  
+  private
+  
+    def clean_data!
+      attributes.each_value { |v| v.strip! if v.respond_to?(:strip!) }
+    end
   
 end
 
