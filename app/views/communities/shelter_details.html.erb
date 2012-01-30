@@ -20,18 +20,18 @@
 		<li>Fax: <%=number_to_phone(@shelter.fax, :delimiter => "-")%></li>
 	<% end %>
 	<li class="action_links">
-		<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
+		<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %></span>
 		<% unless @shelter.website.blank? %>
-			<span><%= link_to "Visit Website", @shelter.website, :target => "_blank" %></span>
+			<span>|<%= link_to "Visit Website", @shelter.website, :target => "_blank" %></span>
 		<% end %>
 	</li>
 	<% unless @shelter.twitter.blank? and @shelter.facebook.blank? %>
 	<li class="action_links">
 		<% unless @shelter.twitter.blank? %>
-			<span><%= link_to "Follow #{@shelter.twitter}", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
+			<span><%= link_to "Follow #{@shelter.twitter}", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %></span>
 		<% end %>
 		<% unless @shelter.facebook.blank? %>
-			<span><%= link_to "Facebook Page", @shelter.facebook, :target => "_blank" %></span>
+			<span>|<%= link_to "Facebook Page", @shelter.facebook, :target => "_blank" %></span>
 		<% end %>
 	</li>
 	<% end %>

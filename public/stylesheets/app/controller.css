@@ -435,7 +435,9 @@
 .communities #shelter_details .right_side{float:right; text-align:right;}
 .communities #shelter_details .logo{padding-bottom: 15px;}
 .communities #shelter_details .action_links span,
-.communities #shelter_details .action_links a{padding-right: 8px;}
+.communities #shelter_details .action_links a{padding-left: 8px;}
+.communities #shelter_details .action_links span:first-child,
+.communities #shelter_details .action_links span:first-child a:first-child{padding-left:0;}
 .communities #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
 
 /* Search by Shelter Name Communities :: Animal List :: Layout
