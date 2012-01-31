@@ -454,7 +454,6 @@
 .communities table.animal_list tr {border-bottom:1px #ccc dotted; }
 .communities table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .communities table.animal_list td.image { width:100px; padding-left:5px; }
-.communities table.animal_list td.image .video_player{ margin-top: 10px;}
 .communities table.animal_list td.details { /*width: 400px;*/width:58%;padding-left: 15px;color:#666; }
 .communities table.animal_list td.status {/*width: 290px;*/ width:43%;padding-left: 10px; padding-right: 5px; text-align:right;}
 .communities table.animal_list .euthanisia_date{color:#DF0000;}
@@ -472,10 +471,11 @@
 .show_communities table.animal td.status{text-align:right;}
 
 .show_communities table.animal_details{text-align:left;}
-.show_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+/*.show_communities table.animal_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 .show_communities table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_communities table.animal_details td{vertical-align:top; }
 .show_communities table.animal_details td.image{}
+.show_communities table.animal_details td.image .video_player{ margin-top: 10px;}
 .show_communities table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
 .show_communities table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
 .show_communities table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
