@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------------
   belongs_to :account
   
-  devise :database_authenticatable, :confirmable, :recoverable, :token_authenticatable, #:lockable 
+  devise :database_authenticatable, :recoverable, :token_authenticatable, #:confirmable, :lockable 
          :rememberable, :trackable, :lockable, :invitable, :validatable, 
          :authentication_keys => [ :email, :subdomain ]
 

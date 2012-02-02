@@ -19,14 +19,14 @@
 		  		<li class="full">
 		  			<%= f.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div>
-						<%= f.text_field :password, :class => "field text large", :maxlength => 255, :placeholder => "New password" %>
+						<%= f.password_field :password, :class => "field text large", :maxlength => 255, :placeholder => "New password" %>
 					</div>
 					<%= has_error_message?(resource, :password)%>
 				</li>
 				<li class="full">
 		  			<%= f.label :password_confirmation, "Password Confirmation <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div>
-						<%= f.text_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Confirm new password" %>
+						<%= f.password_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Confirm new password" %>
 					</div>
 					<%= has_error_message?(resource, :password_confirmation)%>
 				</li>

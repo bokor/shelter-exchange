@@ -1,5 +1,6 @@
 class TransferMailer < ActionMailer::Base
-  default :from => "ShelterExchange <do-not-reply@shelterexchange.org>"
+  default :from => "ShelterExchange <do-not-reply@shelterexchange.org>",
+          :content_type => "text/html"
   
   def requestor_new_request(transfer)
     @transfer = transfer

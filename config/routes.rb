@@ -316,7 +316,7 @@ ShelterExchangeApp::Application.routes.draw do
             
       # Public :: Login
       #----------------------------------------------------------------------------
-      devise_for :users, :path => "", :controllers => { :sessions => "public/users/sessions" },
+      devise_for :users, :path => "", :controllers => { :sessions => "public/users/sessions", :passwords => "public/users/passwords" },
                           :path_names => { :sign_in => "login", :sign_out => "logout" }
                           
       
