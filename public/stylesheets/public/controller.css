@@ -147,6 +147,20 @@
 .home_page .animal h3{border:none;padding:15px 0 10px 0; margin:0;text-align:center;}
 
 
+
+/* Home Page :: RSS-Feed */   
+/******************************************************************/
+.home_page #rss-feed ul {list-style:none; padding: 25px 5px 15px 5px; margin-bottom: 20px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+.home_page #rss-feed ul li {padding-bottom: 15px; text-align:center;}
+.home_page #rss-feed ul li h3{ padding-bottom: 5px;}
+
+/* Home Page :: RSS-Feed :: PIE */
+/******************************************************************/
+.ie7 .home_page #rss-feed ul, 
+.ie8 .home_page #rss-feed ul{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
 /* Home Page :: Homepage :: Extra Section */   
 /******************************************************************/
 section.homepage{ width:100%;height: 125px; bottom:300px;  position:absolute;background-color: #cf7019;}

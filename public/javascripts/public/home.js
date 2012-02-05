@@ -46,3 +46,17 @@ var validateEmail = function(value) {
 	var regExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])","");
 	return regExp.test(value);
 }
+
+
+
+/* Latest News - RSS Feed from Blog
+--------------------------------------------------------------------------- */
+$(function() {
+	$("#rss-feed").rss("http://blog.shelterexchange.org/feed/", {
+		limit: 4,
+		template: "<ul>{entry}<li><h3><a href='{url}' target='_new'>{title} - {formattedDate}</a></h3>{shortBodyPlain}</li>{/entry}</ul>",	
+  	  	tokens: {
+	    	formattedDate: function(entry, tokens) { return Date.parse(tokens.date).toString("MMM d, yyyy"); }
+	  	}
+	});
+});

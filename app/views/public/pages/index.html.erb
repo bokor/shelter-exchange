@@ -9,10 +9,11 @@
 	<div class="slider-wrapper theme-default">
         <div class="ribbon"></div>
         <div id="slider" class="nivoSlider">
-            <%= image_tag("public/home/slider_1.png") %>
+            <a href="http://blog.shelterexchange.org/2012/02/05/shelter-exchange-and-adopt-a-pet-com-partner-to-help-homeless-animals" target="_blank"><%= image_tag("public/home/slider_1.png") %></a>
 			<%= image_tag("public/home/slider_2.png") %>
 			<%= image_tag("public/home/slider_3.png") %>
 			<%= image_tag("public/home/slider_4.png") %>
+			<%= image_tag("public/home/slider_5.png") %>
         </div>
     </div>
 
@@ -26,13 +27,17 @@
 						<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal)  %>
 					</div>
 					<div class="animal">
-						<h3>Congratulations <%= animal.name %>!</h3>
-						<p>Adopted on <%= format_date(:short_no_year, animal.status_change_date) %> from <%=animal.shelter.name %>, <%=animal.shelter.city%>, <%=animal.shelter.state%></p>
+						<h3>Congratulations <%= link_to animal.name, public_save_a_life_path(animal) %>!</h3>
+						<p>Adopted on <%= format_date(:short_no_year, animal.status_change_date) %> from <%=link_to animal.shelter.name, public_help_a_shelter_path(animal.shelter) %>, <%=animal.shelter.city%>, <%=animal.shelter.state%></p>
 					</div>
 				</div>
 			<% end %>
 		</div>
 	<% end %>
+	
+	<h2>Latest news</h2>
+	
+	<div id="rss-feed"></div>
 
 <% end %>
 
