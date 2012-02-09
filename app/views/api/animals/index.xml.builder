@@ -18,8 +18,8 @@ xml.animals do
       xml.color(animal.color)
       xml.microchip(animal.microchip)
       xml.has_special_needs(animal.special_needs?)
-      xml.special_needs(animal.special_needs)
-      xml.description(animal.description)
+      xml.special_needs(auto_link(simple_format(animal.special_needs), :all, :target => "_blank"))
+      xml.description(auto_link(simple_format(animal.description), :all, :target => "_blank"))
       xml.weight(animal.weight)
       xml.sex(animal.sex.to_s.humanize)
       xml.euthanasia_info do

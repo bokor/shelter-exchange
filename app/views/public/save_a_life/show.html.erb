@@ -56,11 +56,11 @@
 				
 				<% if @animal.special_needs? %>
 					<h3>Special Needs:</h3>
-					<p><%= @animal.special_needs %></p>
+					<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
 				<% end %>
 				
 				<h3>Description:</h3>
-				<p><%= @animal.description.blank? ? "No description provided" : auto_link(@animal.description, :all, :target => "_blank").html_safe %></p>
+				<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 			</td>
 			<td class="image">
 			    <%= image_tag @animal.photo.url(:medium) %>

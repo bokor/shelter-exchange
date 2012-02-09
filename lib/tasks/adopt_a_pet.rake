@@ -117,12 +117,12 @@ def csv_animal_row(animal)
 end
 
 def description_mapping(animal)
-  tmp = animal.description
-  tmp << "<br /><br /> "
-  tmp << "<a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a> full profile "
-  tmp << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
-  tmp << "<link rel='canonical' href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}' />"
-  tmp
+  s = animal.description.blank? ? "No description provided" : animal.description #auto_link( simple_format(animal.description), :all, :target => "_blank")
+  s << "<br /><br />"
+  s << "<a href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}'>#{animal.name}, #{animal.full_breed}</a> full profile "
+  s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
+  s << "<link rel='canonical' href='#{public_save_a_life_url(animal, :host=> "www.shelterexchange.org")}' />"
+  s
 end
 
 def size_mapping(size)

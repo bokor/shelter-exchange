@@ -77,7 +77,7 @@
 				<tr>
 					<td>
 						<h3>Special Needs:</h3>
-						<p><%= @animal.special_needs %></p>
+						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
 					</td>
 				</tr>
 			</table>
@@ -86,7 +86,7 @@
 			<tr>
 				<td>
 					<h3>Description:</h3>
-					<p><%= auto_link(@animal.description, :all, :target => "_blank").html_safe %></p>
+					<p><%= auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 				</td>
 			</tr>
 		</table>
