@@ -9,6 +9,7 @@ var map = null;
 var kmlLayer = null;
 var lat = null;
 var lng = null;
+var mapCenter = null;
 var mapOverlay = null;
 var logo = null;
 var googleListener = null;
@@ -56,7 +57,12 @@ var SaveALife = {
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
+			mapCenter = map.getCenter();
 			SaveALife.findAnimalsInBounds();
+		});
+		
+		google.maps.event.addDomListener(window, 'resize', function() {
+		  	map.setCenter(mapCenter);
 		});
 		
 		// Set up forms
@@ -78,6 +84,7 @@ var SaveALife = {
 		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 				map.fitBounds(results[0].geometry.viewport);
+				// map.setCenter(results[0].geometry.viewport);
 	      	} else {
 	        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
 	      	}

@@ -376,6 +376,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 
 /* Save a Life :: Global
 -----------------------------------------------------------------------------*/
+.index_save_a_life #main .content { width: 95%;} /* Remove if you want to use the .content parent size of 960px;*/
 .save_a_life #main ul {list-style:none;}
 .save_a_life #main ul.form {padding-bottom: 0; margin-bottom:0;}
 .index_save_a_life #main p, .index_save_a_life #main h3{margin-bottom: 10px; padding-bottom: 0px;}
@@ -448,6 +449,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Save a Life :: Layout :: Animal List 
 -----------------------------------------------------------------------------*/
 .index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.index_save_a_life table.animal_list h3,
+.index_save_a_life table.animal_list p{ padding-bottom: 10px; margin:0; }
 .index_save_a_life table.animal_list tr {border-bottom:1px #bbb dotted; }
 .index_save_a_life table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .index_save_a_life table.animal_list td.image { width:100px; padding-left:5px; }
@@ -504,6 +507,9 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
 /* Help a Shelter :: Global
 -----------------------------------------------------------------------------*/
+.index_help_a_shelter #main .content { width: 95%;} /* Remove if you want to use the .content parent size of 960px;*/
+/*.show_help_a_shelter #main .content { width: 80%;}*/ /* Remove if you want to use the .content parent size of 960px;*/
+
 .help_a_shelter #main ul {list-style:none;}
 .help_a_shelter #main ul.form {padding-bottom: 0; margin-bottom:0;}
 .help_a_shelter #main p{margin-bottom: 10px; padding-bottom: 0px;}
@@ -527,10 +533,10 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
 /* Index Help a Shelter :: Map :: Layout
 -----------------------------------------------------------------------------*/
-.index_help_a_shelter .map {padding: 10px 0;}
+.index_help_a_shelter .map {padding: 10px 0;margin-right: 355px;}
 .index_help_a_shelter .map:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.index_help_a_shelter .map #map_canvas{float:left;width:620px; height: 400px;}
-.index_help_a_shelter .map .ways_to_help{ float:left; padding-left: 15px;width: 325px;}
+.index_help_a_shelter .map #map_canvas{float:left;width:100%; height: 400px;}
+.index_help_a_shelter .map .ways_to_help{ float:right;margin-right: -355px;padding-right: 10px;width: 325px; /*padding-left: 15px;width: 325px;*/}
 .index_help_a_shelter .map .ways_to_help h2{ text-align:center;}
 .index_help_a_shelter .map .ways_to_help h4{letter-spacing:0px; padding-bottom:0; margin-bottom:0;}
 .index_help_a_shelter .map .ways_to_help p {line-height:1.25;}
@@ -547,7 +553,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .index_help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 .index_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
 
-.index_help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px;width: 290px; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}
+.index_help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; width: 30%; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}
 .index_help_a_shelter .shelter .logo{height:75px; line-height:75px; vertical-align:middle;}
 .index_help_a_shelter .shelter .logo img{vertical-align:middle;}
 .index_help_a_shelter .shelter.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
@@ -615,6 +621,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Save a Life :: Layout :: Animal List 
 -----------------------------------------------------------------------------*/
 .show_help_a_shelter table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.show_help_a_shelter table.animal_list h3,
+.show_help_a_shelter table.animal_list p{ padding-bottom: 10px; margin:0; }
 .show_help_a_shelter table.animal_list tr {border-bottom:1px #bbb dotted; }
 .show_help_a_shelter table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
 .show_help_a_shelter table.animal_list td.image { width:100px; padding-left:5px; }

@@ -10,6 +10,7 @@ var kmlLayer = null;
 var lat = null;
 var lng = null;
 var mapOverlay = null;
+var mapCenter = null;
 var logo = null;
 var googleListener = null;
 
@@ -61,7 +62,12 @@ var HelpAShelter = {
 		
 		// Add Google Map Listener
 		googleListener = google.maps.event.addListener(map, 'idle', function(e){
+			mapCenter = map.getCenter();
 			HelpAShelter.findSheltersInBounds();
+		});
+		
+		google.maps.event.addDomListener(window, 'resize', function() {
+		  map.setCenter(mapCenter);
 		});
 		
 		// Set up forms
@@ -86,6 +92,7 @@ var HelpAShelter = {
 		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
 	     	if (status == google.maps.GeocoderStatus.OK) {
 				map.fitBounds(results[0].geometry.viewport);
+				// map.setCenter(results[0].geometry.viewport);
 	      	} else {
 	        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
 	      	}

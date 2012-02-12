@@ -54,6 +54,7 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 /******************************************************************/
 /* ORANGE - #CF7019 */
 .pagination { padding: 3px; margin: 10px 0 10px 0;}
+.pagination a, .pagination span{white-space: nowrap;}
 .pagination a {height: 60px;line-height: 40px;padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
 .pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
 .pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
