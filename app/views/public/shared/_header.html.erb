@@ -1,25 +1,26 @@
 <header>
 	<nav role="navigation">
 		<div class="content">
-			
-		
-		<ul class="menu">
-			<li class="<%=selected_navigation(:about_us)%>"><a href="/about_us">About us</a></li>
-			<li class="<%=selected_navigation(:why_shelter_exchange)%>"><a href="/why_shelter_exchange">Why Shelter Exchange?</a></li>
-			<li class="<%=selected_navigation(:get_involved)%>"><a href="/get_involved">Get involved</a></li>
-			<!-- <li class="<%=selected_navigation(:blog)%>"><a href="/blog">Blog</a></li> -->
-			<li class="<%=selected_navigation(:contact_us)%>"><a href="/contact_us">Contact us</a></li>
-		</ul>
-		<ul class="side_menu">
-			<li class="save_a_life <%=selected_navigation(:save_a_life)%>"><a href="/save_a_life">Save a life<span>Adopt an animal</span></a></li>
-			<li class="help_a_shelter <%=selected_navigation(:help_a_shelter)%>"><a href="/help_a_shelter">Help a shelter<span>Support the community</span></a></li>
-			<li class="donate <%=selected_navigation(:donate)%>"><a href="/donate">Donate Now<span>Support our cause</span></a></li>
-		</ul>
+			<ul class="menu">
+				<li class="<%=selected_navigation(:about_us)%>"><a href="/about_us">About us</a></li>
+				<li class="<%=selected_navigation(:why_shelter_exchange)%>"><a href="/why_shelter_exchange">Why Shelter Exchange?</a></li>
+				<li class="<%=selected_navigation(:get_involved)%>"><a href="/get_involved">Get involved</a></li>
+				<li class="<%=selected_navigation(:contact_us)%>"><a href="/contact_us">Contact us</a></li>
+			</ul>
+			<ul class="side_menu">
+				<li class="save_a_life <%=selected_navigation(:save_a_life)%>"><a href="/save_a_life">Save a life<span>Adopt an animal</span></a></li>
+				<li class="help_a_shelter <%=selected_navigation(:help_a_shelter)%>"><a href="/help_a_shelter">Help a shelter<span>Support the community</span></a></li>
+				<li class="donate <%=selected_navigation(:donate)%>"><a href="/donate">Donate Now<span>Support our cause</span></a></li>
+			</ul>
 		</div>
 	</nav>
-
-	<hgroup role="banner">
-		<div class="content logo">
+	<hgroup role="banner" class="content">
+		<% if !Rails.env.production? %>
+		<div class="rails_env left">
+			<%= Rails.env.humanize %> Server
+		</div>
+		<% end %>
+		<div class="logo">
 			<%= link_to image_tag("public/logo-shelterexchange.png"), "/" %>
 		</div>
 	</hgroup>
