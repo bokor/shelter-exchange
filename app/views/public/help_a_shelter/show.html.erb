@@ -37,7 +37,7 @@
 
 	<div id="shelter_details">
 		<div class="logo">
-			<%= image_tag @shelter.logo.url(:thumb) %>
+			<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo" %>
 		</div>
 		
 		<div class="address_info">

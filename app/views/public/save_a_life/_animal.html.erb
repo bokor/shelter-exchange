@@ -1,6 +1,6 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal), :target => "_blank"  %>
+		<%= link_to image_tag(animal.photo.url(:thumb), :alt => "#{animal.name} - #{animal.full_breed}"), public_save_a_life_path(animal), :target => "_blank"  %>
 	</td>
 	<td class="details">
 		<h3><%= link_to animal.name, public_save_a_life_path(animal), :target => "_blank"  %></h3>

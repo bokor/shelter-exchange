@@ -63,7 +63,7 @@
 				<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 			</td>
 			<td class="image">
-			    <%= image_tag @animal.photo.url(:medium) %>
+			    <%= image_tag @animal.photo.url(:medium), :alt => "#{@animal.name} - #{@animal.full_breed}" %>
 				<% unless @animal.video_url.blank? %>
 				<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player right", :title => "Video of #{@animal.name}" %>
 				<% end %>

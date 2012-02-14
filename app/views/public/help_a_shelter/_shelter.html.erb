@@ -1,6 +1,6 @@
 <div class="shelter">
 	<a href="<%=public_help_a_shelter_path(shelter)%>" target="_blank">
-		<div class="logo"><%= image_tag(shelter.logo.url(:thumb)) %></div>
+		<div class="logo"><%= image_tag(shelter.logo.url(:thumb), :alt => "#{shelter.name} Logo") %></div>
 		<h3><%= shelter.name %></h3>
 		<ul>
 			<li><%= shelter.city %>, <%= shelter.state %></li>
