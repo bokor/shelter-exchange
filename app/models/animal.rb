@@ -274,6 +274,10 @@ class Animal < ActiveRecord::Base
   def euthanized?
     self.animal_status_id == AnimalStatus::STATUSES[:euthanized]
   end
+  
+  def transferred?
+    self.animal_status_id == AnimalStatus::STATUSES[:transferred]
+  end
 
   def dog?
     self.animal_type_id == AnimalType::TYPES[:dog]

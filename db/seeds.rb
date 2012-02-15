@@ -66,7 +66,8 @@ AnimalStatus.create([
   { :name => "On Hold - Custody" },
   { :name => "Reclaim" },
   { :name => "Deceased" },
-  { :name => "Euthanized" }
+  { :name => "Euthanized" },
+  { :name => "Transferred" }
 ])
 
 
