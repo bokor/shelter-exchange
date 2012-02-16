@@ -87,6 +87,7 @@ class Animal < ActiveRecord::Base
   scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
   scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
   scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
+  scope :transferred, where(:animal_status_id => AnimalStatus::STATUSES[:transferred])
   scope :latest, lambda { |status, limit| includes(:shelter).send(status).reorder("status_change_date DESC").limit(limit) }
   #----------------------------------------------------------------------------
   

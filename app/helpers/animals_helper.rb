@@ -48,7 +48,7 @@ module AnimalsHelper
   end
   
   def community_animal_status(animal)
-    if animal.adopted? or animal.reclaimed? or animal.deceased? or animal.euthanized?
+    if animal.adopted? or animal.reclaimed? or animal.deceased? or animal.euthanized? or animal.transferred?
       animal.animal_status.name + humanize_status_change_date(animal)
     else 
       animal.animal_status.name
@@ -56,7 +56,7 @@ module AnimalsHelper
   end
   
   def public_animal_status(animal)
-    if animal.adopted?
+    if animal.adopted? or animal.reclaimed? or animal.transferred?
       animal.animal_status.name + humanize_status_change_date(animal)
     elsif animal.deceased? or animal.euthanized?
       "No longer available for adoption"
