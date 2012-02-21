@@ -10,7 +10,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 
 html, body { margin:0; padding:0; height: 100%; }
 body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
-	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
+	   background:#fff; color: #222;
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; -webkit-text-size-adjust:none;}
 	
 .ie body {font: normal 12px "Verdana", sans-serif;}
@@ -52,12 +52,11 @@ a:hover{color:#f16649; text-decoration: underline;}
 
 /* Page Layouts */   
 /******************************************************************/
-header{height: 145px;}
+header{height:110px;}
 header nav { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
 hgroup { height: 100px;  position: relative; }/*f3f1ec*/
-section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 290px; position: relative; }
+section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom:20px; position: relative; }
 footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
-
 
 
 /* Header :: Nav */   
@@ -91,9 +90,14 @@ header nav .side_menu .donate{right: 0px;background: url(/images/public/tabs_don
 
 /* Header :: Layout */   
 /******************************************************************/
-hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; clear:left;}
+hgroup .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:left; clear:left;}
 hgroup .logo img{ vertical-align: middle;line-height: 100px;}
 
+
+/* Header :: Print Link */   
+/******************************************************************/
+hgroup .print_link.left{position: absolute; top: 40px; left: 0px;}
+hgroup .print_link.right{position: absolute; top: 40px; right: 0px;}
 
 /* Footer :: Layout */   
 /******************************************************************/
@@ -115,8 +119,6 @@ footer .col_3{width: 200px; padding: 0 23px;}
 footer .col_4{width: 200px; padding-left: 23px;}
 
 footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
-footer .copyright a{font-weight: normal; color: #999;}
-footer .copyright a:hover{color:#fff;}
 
 /* Footer :: IE Hacks */   
 /******************************************************************/
@@ -421,4 +423,3 @@ ul.toggle_buttons li a.current {
 
 
 ul.toggle_buttons li a:hover{color: #CF7019;}
-

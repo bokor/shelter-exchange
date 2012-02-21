@@ -8,7 +8,11 @@ class Public::ApplicationController < ActionController::Base
   private
       
     def current_layout
-      'public/application'
+      if params[:layout].present? && template_exists?(params[:layout], "layouts/public")
+        "public/#{params[:layout]}"
+      else
+        "public/application"
+      end
     end
     
     def authenticate!   

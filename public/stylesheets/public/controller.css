@@ -675,3 +675,20 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .index_save_a_life .capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
 .index_save_a_life .capacities h2{padding-bottom: 10px; /*border-bottom: 1px solid #ddd;*/}
 
+
+
+/*****************************************************************/
+/* -------------------------- PRIVACY -------------------------- */
+/*****************************************************************/
+.privacy_page h2{border-top: 1px #bbb dotted; padding-top: 10px;}
+.privacy_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
+.privacy_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
+.privacy_page #contact_details div{padding-bottom: 15px;}
+
+/**************************************************************************/
+/* -------------------------- TERMS OF SERVICE -------------------------- */
+/**************************************************************************/
+.terms_of_service_page h2{border-top: 1px #bbb dotted; padding-top: 10px;}
+.terms_of_service_page ol{padding-bottom: 20px;}
+.terms_of_service_page ol li{margin-left: 20px; padding-left: 20px; padding-bottom: 10px;}
+

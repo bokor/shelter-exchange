@@ -138,6 +138,14 @@ $(function() {
 		centerOnScroll : true,
 		type : 'swf'
 	});
+	
+	$(".popup_fancybox").fancybox({
+		width : 980,
+		height: 550,
+		transitionIn : 'elastic',
+		transitionOut : 'elastic',
+		type : 'iframe'
+	});
 
 });
 

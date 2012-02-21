@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="<%= ::I18n.locale %>" class="no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
+<head>
+	
+	<%= render :partial => "public/shared/seo" %>
+
+	<!-- stylesheets -->
+	<%= include_stylesheets :public_popup, :media => "all" %>
+	
+	<!-- javascripts -->
+	<%# include_javascripts :public %>
+	
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<%# javascript_include_tag "global/selectivizr-min" %>
+	<![endif]-->
+	
+	<!--[if (lt IE 9)]>
+		<%= javascript_include_tag "global/html5" %>
+	<![endif]-->	
+	
+	<%= yield(:javascripts) %>
+	
+	<%= csrf_meta_tag %>
+
+</head>
+<body class="<%= controller_name %> <%= page_name %>">
+	
+	<header>
+		<hgroup role="banner" class="content">
+			<div class="logo">
+				<%= link_to image_tag("public/logo-shelterexchange.png", :alt => "Shelter Exchange Logo"), "/" %>
+			</div>
+			<div class="print_link right">
+				<%= link_to "Print", "#", :class => "button", :onclick => "window.print();return false;" %>
+			</div>
+		</hgroup>
+	</header>
+        
+	<section id="main">
+		<div class="content">
+			<%= yield(:page_content) %>
+		</div>
+	</section>
+
+	<%= render :partial => "public/shared/analytics"  if Rails.env.production? %>
+    
+</body>
+</html>

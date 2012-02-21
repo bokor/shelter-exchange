@@ -98,5 +98,7 @@ stylesheets:
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
-  # public_print:
-  #     - public/stylesheets/public/print.css
+  public_popup:
+    - public/stylesheets/global/**/*.css
+    - public/stylesheets/public/popup.css
+    - public/stylesheets/public/controller.css
