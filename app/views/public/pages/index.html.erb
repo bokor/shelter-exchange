@@ -6,6 +6,7 @@
 
 <%= content_for :page_content do %>
 
+	<!-- Slider Images -->
 	<div class="slider-wrapper theme-default">
         <div class="ribbon"></div>
         <div id="slider" class="nivoSlider">
@@ -16,13 +17,17 @@
 			<%= image_tag("public/home/slider_5.png", :alt => "Connecting shelters to save lives") %>
         </div>
     </div>
+	<!-- Slider Images -->
+	
+		
 
+	<!-- Section :: Latest Adoptions -->
 	<% unless @animals.blank? %>
 		<h2>Latest adoptions</h2>
 
 		<div class="adoptions">
-			<% @animals.each_with_index do |animal, index|%>
-				<div class="box col_<%=index+1%>">
+			<% @animals.each do |animal|%>
+				<div class="box">
 					<div class="photo">
 						<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal)  %>
 					</div>
@@ -34,10 +39,16 @@
 			<% end %>
 		</div>
 	<% end %>
+	<!-- Section :: Latest Adoptions-->
 	
+	
+	
+	<!-- Section :: Latest News -->
 	<h2>Latest news</h2>
 	
 	<div id="rss-feed"></div>
+	
+	<!-- Section :: Latest News -->
 
 <% end %>
 
