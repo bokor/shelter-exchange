@@ -1,6 +1,6 @@
 <%= title "Financials" %>
-<%= description "" %>
-<%= keywords "" %>
+<%= description "The financial statements for Shelter Exchange along with our Articles of Incorporation and 501(c)(3) determination letter." %>
+<%= keywords "financials, financial statements, articles of incorporation, 501c3 determination letter" %>
 
 <%= content_for :javascripts do %><% end %>
 
@@ -10,13 +10,13 @@
 
 	<h1>Financials</h1>
 	
-	<p>Blah blah blah blah</p>
+	<p>Below are the financial statements for Shelter Exchange along with our Articles of Incorporation and 501(c)(3) determination letter.</p>
 	
 	<div class="documents">
 		<div class="general">
 			<h2>General</h2>
 			<ul>
-				<li><%= link_to "501(c)(3) Approval Letter", public_document_link("financials/501c3_approval.pdf") %></li>
+				<li><%= link_to "501(c)(3) Determination Letter", public_document_link("financials/501c3_determination.pdf") %></li>
 				<li><%= link_to "Articles of Incorporation", public_document_link("financials/articles_of_incorporation.pdf") %></li>
 			</ul>
 		</div>
