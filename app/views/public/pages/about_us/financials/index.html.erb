@@ -1,0 +1,42 @@
+<%= title "Financials" %>
+<%= description "" %>
+<%= keywords "" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render :partial => "public/pages/about_us/submenu" %>
+
+	<h1>Financials</h1>
+	
+	<p>Blah blah blah blah</p>
+	
+	<div class="documents">
+		<div class="general">
+			<h2>General</h2>
+			<ul>
+				<li><%= link_to "501(c)(3) Approval Letter", public_document_link("financials/501c3_approval.pdf") %></li>
+				<li><%= link_to "Articles of Incorporation", public_document_link("financials/articles_of_incorporation.pdf") %></li>
+			</ul>
+		</div>
+		
+		<div class="year">
+			<h2>2011</h2>
+			<ul>
+				<li><%= link_to "2011 Form 990", public_document_link("financials/2011/2011_990_N.pdf") %></li>
+			</ul>
+		</div>
+
+		<div class="year">
+			<h2>2010</h2>
+			<ul>
+				<li><%= link_to "2010 Form 990", public_document_link("financials/2010/2010_990_N.pdf") %></li>
+			</ul>
+		</div>
+	</div>
+	
+	
+<% end %>
+
+<%= content_for :sidebar do %><% end %>

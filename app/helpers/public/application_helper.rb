@@ -31,4 +31,8 @@ module Public::ApplicationHelper
     end
   end
   
+  def public_document_link(filename)
+    compute_public_path(filename, "documents/public") unless filename.blank?
+  end
+  
 end
