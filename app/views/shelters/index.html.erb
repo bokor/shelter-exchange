@@ -19,7 +19,7 @@
 				<%= image_tag @shelter.logo.url(:small) %>
 			</div>
 		<% else %>
-			<h1>Shelter</h1>
+			<h1><%= @shelter.name %></h1>
 		<% end %>
 		<div class="action_links">
 			<% if can?(:update, Shelter) %>
