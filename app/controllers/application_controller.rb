@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_account, :current_shelter, :account_blocked?,
+  before_filter :authenticate_user!, :current_account, :current_shelter, :shelter_suspended?,
                 :set_time_zone, :store_location
                 
   layout :current_layout
@@ -14,16 +14,16 @@ class ApplicationController < ActionController::Base
       @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
     end
     
-    def current_shelter
-      @current_shelter ||= @current_account.shelters.first if @current_account and user_signed_in?
+    def current_shelter #added unscoped so that it won't search for active 
+      @current_shelter ||= @current_account.shelters.unscoped.first if @current_account and user_signed_in?
     end
     
     def current_layout
       user_signed_in? ? 'app/application' : 'app/login'
     end
     
-    def account_blocked?
-      raise Exceptions::AccountBlocked if @current_account and @current_account.blocked?
+    def shelter_suspended?
+      raise Exceptions::ShelterSuspended if @current_shelter and @current_shelter.suspended?
     end
     
     def set_time_zone
@@ -77,8 +77,8 @@ class ApplicationController < ActionController::Base
       nil
     end
     
-    rescue_from Exceptions::AccountBlocked do |exception|
-      render :template => 'errors/account_blocked'
+    rescue_from Exceptions::ShelterSuspended do |exception|
+      render :template => 'errors/shelter_suspended'
     end
     
     rescue_from CanCan::AccessDenied do |exception|

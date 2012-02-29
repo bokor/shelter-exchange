@@ -1,0 +1,16 @@
+<% if @shelter.errors.any? %>
+	$('#edit_shelter_errors_<%=@shelter.id %>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @shelter) %>" );
+	<%= render 'shared/ajax_form_errors', :target => @shelter, :form_id => "edit_shelter_form_#{@shelter.id}" %>	
+<% else %>
+	$('#edit_shelter_<%=@shelter.id%>').slideToggle(1000, function() { 
+		$(this).remove(); 
+	});
+	$('#account_<%=@account.id%>').replaceWith( "<%= escape_javascript(render @account) %>" );
+	$('#account_<%=@account.id%>').show().effect("highlight", {}, 1000);
+	
+	// Remove Errors
+	$('#edit_shelter_errors_<%=@shelter.id %>').html("");
+	$('#edit_shelter_form_<%=@shelter.id %> p.error').remove();
+	$('#edit_shelter_form_<%=@shelter.id %> li').removeClass("error");
+<% end %>
+<% flash.discard %>

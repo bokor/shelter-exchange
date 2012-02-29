@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123210834) do
+ActiveRecord::Schema.define(:version => 20120228013027) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "blocked",               :default => false
-    t.text     "reason_blocked"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
@@ -249,7 +247,6 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -320,7 +317,7 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter",                                   :default => false, :null => false
+    t.boolean  "is_kill_shelter",                                   :default => false,    :null => false
     t.decimal  "lat",               :precision => 15, :scale => 10
     t.decimal  "lng",               :precision => 15, :scale => 10
     t.string   "email"
@@ -332,6 +329,8 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
     t.string   "time_zone"
     t.string   "access_token"
     t.string   "street_2"
+    t.string   "status",                                            :default => "active"
+    t.text     "status_reason"
   end
 
   add_index "shelters", ["access_token"], :name => "index_shelters_on_access_token", :unique => true
@@ -404,15 +403,10 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
   add_index "transfers", ["shelter_id"], :name => "index_transfers_on_from_shelter"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
-    t.string   "role"
-    t.integer  "account_id"
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -427,6 +421,10 @@ ActiveRecord::Schema.define(:version => 20120123210834) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
+    t.integer  "account_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",       :limit => 60

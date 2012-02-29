@@ -1,27 +1,19 @@
-<div id="<%= "account_#{account.id}" %>" class="account">
+<div id="account_<%=account.id%>" class="account">
 	<h2>Account Information</h2>
-	
 	<div class="account_details">
 		<table>
 			<tr>
 				<td class="key"><strong>Subdomain:</strong></td>
 				<td class="value"><%= account.subdomain %></td>
 			</tr>
-		<% if account.blocked? %>
 			<tr>
 				<td class="key"><strong>Status:</strong></td>
-				<td class="value">Blocked</td>
+				<td class="value"><%= @shelter.status.humanize%></td>
 			</tr>
 			<tr>
-				<td class="key">Reason Blocked:</td>
-				<td class="value"><%= account.reason_blocked %></td>
+				<td class="key"><strong>Status Reason:</strong></td>
+				<td class="value"><%=@shelter.status_reason %></td>
 			</tr>
-		<% else %>
-			<tr>
-				<td class="key"><strong>Status:</strong></td>
-				<td class="value">Approved</td>
-			</tr>
-		<% end %>
 		<% unless account.document_type.blank? %>
 			<tr>
 				<td class="key"><strong>Document type:</strong></td>
@@ -38,6 +30,6 @@
 	</div>
 
 	<ul class="action_links">
-		<li><%= link_to "Edit Account", edit_admin_account_path(account), :remote => true, :class => "button" %></li>
+		<li><%= link_to "Edit Shelter", edit_admin_shelter_path(@current_shelter), :remote => true, :class => "button" %></li>
 	</ul>
 </div>

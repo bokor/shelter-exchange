@@ -1,0 +1,5 @@
+$('#account_<%=@account.id%>').hide();
+$('#account_<%=@account.id%>').after( "<%= escape_javascript(render 'edit_shelter', :collection => @shelter) %>" );
+$('#edit_shelter_<%=@shelter.id%>').show();
+
+<% flash.discard %>

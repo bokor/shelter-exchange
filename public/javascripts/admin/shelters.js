@@ -32,6 +32,12 @@ var Shelters = {
 			clearTimeout($.data(element, "search_timer"));  
 		}, 500);
 		$.data(element, "search_timer", wait);
+	},	
+	cancelForm: function(id){
+		$("#edit_shelter_"+id).slideToggle(800,function() { 
+			$(this).remove();
+		});
+		$("#account_"+id).fadeIn(1000);
 	}
 
 };

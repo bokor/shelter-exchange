@@ -1,5 +1,6 @@
 class Shelter < ActiveRecord::Base
-
+  # default_scope where(:status => "active")
+  
   # Plugins
   #----------------------------------------------------------------------------
   acts_as_mappable
@@ -12,6 +13,7 @@ class Shelter < ActiveRecord::Base
   
   # Constants
   #----------------------------------------------------------------------------
+  STATUSES = ["active", "suspended"].freeze
   LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"].freeze
   LOGO_SIZE = 4.megabytes
   LOGO_SIZE_IN_TEXT = "4 MB"
@@ -86,6 +88,8 @@ class Shelter < ActiveRecord::Base
   scope :kill_shelters, where(:is_kill_shelter => true).order(:name) 
   scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 
   scope :latest, lambda {|limit| order("created_at desc").limit(limit) }
+  scope :active, where(:status => "active")
+  scope :suspended, where(:status => "suspended")
   
   def self.live_search (q, state)
     scope = self.scoped
@@ -115,6 +119,14 @@ class Shelter < ActiveRecord::Base
   
   def no_kill_shelter?
     !self.is_kill_shelter
+  end
+  
+  def active?
+    self.status == "active"
+  end
+  
+  def suspended?
+    self.status == "suspended"
   end
   
   private

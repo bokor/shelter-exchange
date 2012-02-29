@@ -1,0 +1,14 @@
+<div class="box blue" id="edit_shelter_<%=@shelter.id %>">
+	<h2>Update shelter</h2>
+	<div id="edit_shelter_errors_<%=@shelter.id %>"></div>
+	<%= form_for ([:admin, @shelter]), :remote => true, :html => { :id => "edit_shelter_form_#{@shelter.id}", :class => "edit_shelter_form"} do |f| %>
+		<ul>
+			<%= render "form", :f => f  %>
+	    	<li class="buttons">
+				<%= f.submit "Update shelter", :disable_with => "Submitting...", :class => "button" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to 'Cancel', '#', :onclick => "Shelters.cancelForm(#{@shelter.id});return false;"  %>
+			</li>
+		</ul>
+	<% end %>
+</div>

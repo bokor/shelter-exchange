@@ -15,6 +15,17 @@ class Admin::SheltersController < Admin::ApplicationController
     respond_with(@shelter)
   end
   
+  def edit
+    @shelter = Shelter.find(params[:id])
+    @account = @shelter.account
+  end
+  
+  def update
+    @shelter = Shelter.find(params[:id])
+    @account = @shelter.account
+    flash[:notice] = "#{@shelter.name} is now #{@shelter.status.humanize}." if @shelter.update_attributes(params[:shelter])
+  end
+  
   def live_search
     q     = params[:q].strip 
     state = params[:search_by_state]

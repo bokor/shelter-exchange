@@ -1,7 +1,7 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_access_token, :shelter_lookup, :account_blocked?
+  before_filter :set_access_token, :shelter_lookup, :shelter_suspended?
   layout :current_layout
   
 
@@ -20,9 +20,8 @@ class Api::ApplicationController < ActionController::Base
       respond_with_error({ :error => "Not Authorized to perform this action" })  if @current_shelter.blank?
     end 
     
-    def account_blocked?
-      @current_account = @current_shelter.account
-      respond_with_error({ :error => "Account's access has been revoked.  Reason: #{@current_account.reason_blocked}" })  if @current_account.blocked?
+    def shelter_suspended?
+      respond_with_error({ :error => "#{@current_shelter.name}'s access has been suspended" })  if @current_shelter.suspended?
     end
 
     def respond_with_error(msg)

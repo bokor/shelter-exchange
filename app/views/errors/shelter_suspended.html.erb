@@ -1,4 +1,4 @@
-<%= title "Error - Account Blocked" %>
+<%= title "Error - Shelter Suspended" %>
 
 <%= content_for :javascripts do %>
 <% end %>
@@ -6,11 +6,11 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading red">
-		<h1>Account Blocked</h1>
+		<h1>Shelter Suspended</h1>
 	</div>
 		
 	<div class="page_content red">
-		<p><%=@current_account.reason_blocked%></p>
+		<p><%= @current_shelter.name %>'s access has been suspended.  Reason: <%= @current_shelter.status_reason%></p>
 	</div>
 		
 <% end %>

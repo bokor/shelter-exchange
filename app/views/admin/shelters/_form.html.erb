@@ -1,0 +1,13 @@
+<li>
+	<%= f.label :status, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
+	<div>
+	<%= f.collection_select :status, Shelter::STATUSES, :to_s, :humanize, :prompt => "Select one", :class => "field select medium" %>
+	</div>
+	<%= has_error_message?(@shelter, :status)%>
+</li>
+
+<li class="full">
+	<%= f.label :status_reason, "Status Reason", :class => "desc" %>
+	<div><%= f.text_area :status_reason, :class => "field textarea medium" %></div>
+	<%= has_error_message?(@shelter, :status_reason)%>
+</li>
