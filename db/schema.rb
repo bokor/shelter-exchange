@@ -247,6 +247,7 @@ ActiveRecord::Schema.define(:version => 20120228013027) do
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -403,10 +404,15 @@ ActiveRecord::Schema.define(:version => 20120228013027) do
   add_index "transfers", ["shelter_id"], :name => "index_transfers_on_from_shelter"
 
   create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "role"
+    t.integer  "account_id"
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
@@ -421,10 +427,6 @@ ActiveRecord::Schema.define(:version => 20120228013027) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.integer  "account_id"
-    t.string   "name"
-    t.string   "title"
-    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",       :limit => 60

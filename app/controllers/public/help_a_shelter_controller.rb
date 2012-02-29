@@ -5,13 +5,12 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
   
   def show
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.active.find(params[:id])
     @items = @shelter.items.select(:name).all
-    # @types = AnimalType.available_for_adoption_types(@shelter.id)
   end
   
   def find_shelters_in_bounds
-    @shelters = Shelter.find(:all, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:per_page => 15, :page => params[:page])
+    @shelters = Shelter.find(:all, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:per_page => 15, :page => params[:page])
   end
   
   def find_animals_for_shelter
@@ -27,3 +26,6 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
 
 end
+
+
+# @types = AnimalType.available_for_adoption_types(@shelter.id)

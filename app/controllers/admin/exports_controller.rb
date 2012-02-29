@@ -6,7 +6,8 @@ class Admin::ExportsController < Admin::ApplicationController
   end
   
   def all_emails
-    results = Shelter.select('DISTINCT email') + User.select('DISTINCT email')
+    results = Shelter.select('DISTINCT email').active + 
+              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active"})
     respond_to do |format|       
       format.csv{ send_data(all_emails_csv(results),:filename => "shelters_and_users_emails.csv") }
     end

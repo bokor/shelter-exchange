@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
       @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
     end
     
-    def current_shelter #added unscoped so that it won't search for active 
-      @current_shelter ||= @current_account.shelters.unscoped.first if @current_account and user_signed_in?
+    def current_shelter 
+      @current_shelter ||= @current_account.shelters.first if @current_account and user_signed_in?
     end
     
     def current_layout

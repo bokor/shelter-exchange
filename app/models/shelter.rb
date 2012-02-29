@@ -1,5 +1,4 @@
 class Shelter < ActiveRecord::Base
-  # default_scope where(:status => "active")
   
   # Plugins
   #----------------------------------------------------------------------------
@@ -91,9 +90,9 @@ class Shelter < ActiveRecord::Base
   scope :active, where(:status => "active")
   scope :suspended, where(:status => "suspended")
   
-  def self.live_search (q, state)
+  def self.live_search (q, shelter)
     scope = self.scoped
-    scope = scope.where(:state => state) unless state.blank?
+    scope = scope.where(shelter)
     scope = scope.where("name LIKE LOWER('%#{q}%') OR city LIKE LOWER('%#{q}%') OR 
                          zip_code LIKE LOWER('%#{q}%') OR facebook LIKE LOWER('%#{q}%') OR 
                          twitter LIKE LOWER('%#{q}%') or email LIKE LOWER('%#{q}%')") unless q.blank?

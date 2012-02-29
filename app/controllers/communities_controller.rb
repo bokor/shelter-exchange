@@ -22,17 +22,16 @@ class CommunitiesController < ApplicationController
   end
   
   def find_animals_in_bounds
-    @shelters = Shelter.find(:all, :conditions =>["shelters.id != ?", @current_shelter.id], :bounds => [params[:filters][:sw],params[:filters][:ne]])
-    unless @shelters.blank?
-      shelter_ids = @shelters.collect(&:id)
+    shelter_ids = Shelter.find(:all, :conditions => ["shelters.status = ? and shelters.id != ?", "active", @current_shelter.id], :bounds => [params[:filters][:sw],params[:filters][:ne]]).collect(&:id)
+    unless shelter_ids.blank?
       @animals = Animal.community_animals(shelter_ids, params[:filters]).paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
   
   def find_animals_for_shelter
-    @shelter = Shelter.find(params[:filters][:shelter_id])
-    @capacities = @shelter.capacities.includes(:animal_type).all
+    @shelter = Shelter.active.find(params[:filters][:shelter_id])
     unless @shelter.blank?
+      @capacities = @shelter.capacities.includes(:animal_type).all
       @animals = Animal.community_animals(@shelter.id, params[:filters]).paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end

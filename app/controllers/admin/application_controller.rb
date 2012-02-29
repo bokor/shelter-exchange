@@ -16,19 +16,6 @@ class Admin::ApplicationController < ActionController::Base
     end
             
   protected
-  
-    # def is_integer?(value)
-    #   value =~ /\A-?\d+\Z/
-    # end
-    # 
-    # def find_polymorphic_class
-    #   params.each do |name, value|
-    #     if name =~ /(.+)_id$/
-    #       return $1.classify.constantize.find(value)
-    #     end
-    #   end
-    #   nil
-    # end
     
     rescue_from ActiveRecord::RecordNotFound do |exception|
       redirect_to "/404.html"
