@@ -8,7 +8,7 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   before_validation :delete_logo?
   after_validation :revert_logo?
-  before_save :geocode_address, :format_phone_numbers
+  before_save :geocode_address, :format_phone_numbers, :clear_status_reason
   
   # Constants
   #----------------------------------------------------------------------------
@@ -142,6 +142,10 @@ class Shelter < ActiveRecord::Base
       self.fax = self.fax.gsub(/[^0-9]/, "") unless self.fax.blank?
     end
     
+    def clear_status_reason
+      self.status_reason = "" if self.status_changed? && self.active?
+    end
+    
     def address_valid?
       errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
@@ -162,6 +166,7 @@ class Shelter < ActiveRecord::Base
     def delete_logo?
       self.logo.clear if delete_logo == "1" && !self.logo_file_name_changed?
     end
+    
   
 end
       #unless delete_logo.to_i.zero?
