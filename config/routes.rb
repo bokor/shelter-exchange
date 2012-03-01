@@ -337,6 +337,6 @@ ShelterExchangeApp::Application.routes.draw do
 
   # Catch All - If route isn't found then Four oh Four
   #----------------------------------------------------------------------------
-  match "*path" => redirect("/404.html")   
+  match "*path", :to => 'errors#routing', :status_code => 404
   
 end

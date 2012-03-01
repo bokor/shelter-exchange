@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228013027) do
+ActiveRecord::Schema.define(:version => 20120301031356) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -336,7 +336,10 @@ ActiveRecord::Schema.define(:version => 20120228013027) do
 
   add_index "shelters", ["access_token"], :name => "index_shelters_on_access_token", :unique => true
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
+  add_index "shelters", ["id", "status", "is_kill_shelter"], :name => "index_shelters_on_id_and_status_and_is_kill_shelter"
+  add_index "shelters", ["id", "status"], :name => "index_shelters_on_id_and_status"
   add_index "shelters", ["lat", "lng"], :name => "index_shelters_on_lat_and_lng"
+  add_index "shelters", ["status", "lat", "lng"], :name => "index_shelters_on_status_and_lat_and_lng"
 
   create_table "status_histories", :force => true do |t|
     t.integer  "shelter_id"

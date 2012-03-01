@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
     end
     
     rescue_from ActiveRecord::RecordNotFound do |exception|
-      redirect_to "/404.html"
+      render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
     end
 
 end

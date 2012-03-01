@@ -6,7 +6,8 @@ class Public::SaveALifeController < Public::ApplicationController
   
   def show
     @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
-    @shelter = @animal.shelter.suspended? ? raise ActiveRecord::RecordNotFound : @animal.shelter
+    @shelter = @animal.shelter
+    raise ActiveRecord::RecordNotFound if @shelter.suspended?
   end
   
   def find_animals_in_bounds
@@ -18,8 +19,8 @@ class Public::SaveALifeController < Public::ApplicationController
   
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
-    flash[:error] = "You have requested an invalid animal!"
-    redirect_to public_save_a_life_index_path
+    flash[:error] = "You have requested an animal that is no longer listed!"
+    redirect_to public_save_a_life_index_path, :status => 301
   end
   
 end
