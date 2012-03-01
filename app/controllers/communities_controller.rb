@@ -6,8 +6,8 @@ class CommunitiesController < ApplicationController
   
   def show
     @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
+    @shelter = @animal.shelter.suspended? ? raise ActiveRecord::RecordNotFound : @animal.shelter
     @notes = @animal.notes.all
-    @shelter = @animal.shelter
     @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists?
   end
   
@@ -35,5 +35,12 @@ class CommunitiesController < ApplicationController
       @animals = Animal.community_animals(@shelter.id, params[:filters]).paginate(:per_page => 10, :page => params[:page]) || {}
     end
   end
+  
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    logger.error(":::Attempt to access invalid animal => #{params[:id]}")
+    flash[:error] = "You have requested an invalid animal!"
+    redirect_to communties_path
+  end
+  
   
 end
