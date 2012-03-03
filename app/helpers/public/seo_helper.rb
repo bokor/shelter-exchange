@@ -13,20 +13,30 @@ module Public::SeoHelper
   def robots(robots)
     content_for(:robots) { robots.to_s }
   end
-
-  def seo_location(seo_location)
-    content_for(:seo_location) { seo_location.to_s }
-  end
   
-  def seo_image(seo_image)
-    content_for(:seo_image) { seo_image.to_s }
-  end
+
   #----------------------------------------------------------------------------
   
   
-  # Open Graph Helpers
+  # Social Media - Open Graph Helpers
   #----------------------------------------------------------------------------
-
+  def open_graph_image(open_graph_image)
+    content_for(:open_graph_image) { open_graph_image.to_s }
+  end
+  
+  def open_graph_title(open_graph_title)
+    content_for(:open_graph_title) { open_graph_title.to_s }
+  end
+  
+  def open_graph_title_status(animal)
+    if animal.foster_care?
+      "In #{animal.animal_status.name}! ".upcase
+    elsif animal.deceased? or animal.euthanized?
+      "Not available! ".upcase
+    elsif animal.adopted? or animal.reclaimed?
+      "#{animal.animal_status.name}! ".upcase
+    end
+  end
   #----------------------------------------------------------------------------
 
   

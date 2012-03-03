@@ -3,9 +3,10 @@
 <%= description "Help the #{@shelter.name}, located in #{@shelter.city}, #{@shelter.state}, by adopting an animal or donating items most needed at this shelter or rescue group." %>
 <%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
 
-<%= seo_image "#{@shelter.logo.url(:medium)}" %>
+<%= open_graph_image "#{@shelter.logo.url(:medium)}" %>
 
 <%= content_for :open_graph_meta do %>
+<!-- CURRENTLY NOT USING -->
     <meta property="og:latitude" content="<%= @shelter.lat %>"/>
     <meta property="og:longitude" content="<%= @shelter.lng %>"/>
     <meta property="og:street-address" content="<%= @shelter.street %>"/>

@@ -57,6 +57,7 @@ gem 'rails3-generators', '0.14.0'
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
+gem 'rest-client', '1.6.7'
 gem 'delayed_job', '2.1.4'    
 
 

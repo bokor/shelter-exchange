@@ -1,4 +1,6 @@
-<%= title "#{@animal.name} - #{@animal.full_breed} - #{@shelter.city}, #{@shelter.state}" %>
+<% page_title = "#{@animal.name} - #{@animal.full_breed} - #{@shelter.city}, #{@shelter.state}" %>
+
+<%= title page_title  %>
 
 <%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}." %>
 
@@ -6,10 +8,12 @@
 
 <%= robots "noindex,follow" if !@animal.available_for_adoption? %>
 
-<%= seo_image "#{@animal.photo.url(:medium)}" %>
+<%= open_graph_image "#{@animal.photo.url(:medium)}" %>
+<%= open_graph_title "#{open_graph_title_status(@animal)}#{page_title}" %>
 
 
 <%= content_for :open_graph_meta do %>
+<!-- CURRENTLY NOT USING -->
 	<% if @animal.video_url %>
 		<meta property="og:video" content="<% @animal.video_url %>" />
 	<% end %>

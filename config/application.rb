@@ -17,7 +17,7 @@ module ShelterExchangeApp
     config.autoload_paths += %W( #{ config.root }/lib/middleware )
 
     # Activate observers that should always be running.
-    config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :status_history_observer
+    config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :animal_observer, :status_history_observer
     
     
     

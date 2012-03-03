@@ -268,6 +268,10 @@ class Animal < ActiveRecord::Base
     self.animal_status_id == AnimalStatus::STATUSES[:reclaim]
   end
   
+  def foster_care?
+    self.animal_status_id == AnimalStatus::STATUSES[:foster_care]
+  end
+  
   def deceased?
     self.animal_status_id == AnimalStatus::STATUSES[:deceased]
   end
