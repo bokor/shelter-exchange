@@ -29,18 +29,20 @@
 </head>
 <body class="<%= controller_name %> <%= page_name %>">
 	
+	<div id="fb-root"></div>
+	
 	<%= render :partial => "public/shared/ie6_warning" %>
 	
 	<%= render :partial => "public/shared/header" %>
-        
+      
 	<section id="main">
 		<div class="content">
 			<%= yield(:page_content) %>
 		</div>
 	</section>
 	
-	<%= yield(:extra_section) %>
-
+	<%= render :partial => "public/shared/newsletter" %>
+	
 	<%= render :partial => "public/shared/footer" %>
 
 	<%= render :partial => "public/shared/analytics"  if Rails.env.production? %>

@@ -2,7 +2,16 @@
 <%= description "Shelter Exchange is a non-profit organization working to reduce the number of animals being euthanized in shelters." %>
 <%= keywords "animal shelters, animal rescue groups, animal rescue, adopt animals, animal euthanasia, animal welfare, adopt a dog, adopt a cat, donate, animal welfare community, euthanized, euthanized animals" %>
 
-<%= content_for :javascripts do %><% end %>
+<%= content_for :javascripts do %>
+
+	<script type="text/javascript">
+		var mission_statement_images = ['<%= image_path("public/home/mission_statement_puppies.png")%>', '<%= image_path("public/home/mission_statement_kittens.png")%>', '<%= image_path("public/home/mission_statement_bunnies.png")%>'];
+		$(function() {
+			HomePage.randomizeImages(mission_statement_images);
+		});
+	</script>
+	
+<% end %>
 
 <%= content_for :page_content do %>
 
@@ -19,8 +28,17 @@
     </div>
 	<!-- Slider Images -->
 	
-		
-
+	<!-- Section :: Mission Statement -->
+	<section class="mission_statement">
+	    <div class="message">
+	    	<p>Shelter Exchange is a non-profit organization that offers a practical solution to the difficult and widespread problem of animal euthanasia in shelters. We provide shelters and rescue groups with collaborative technology to better manage resources, communicate and act together to save millions of animals each year. Positive change has already begun. Your support ensures it will continue.</p>
+	    </div>
+		<div class="social">
+    		<span><div class="fb-like" data-send="false" data- data-layout="button_count"data-show-faces="false"></div></span>
+    	</div>
+	</section>
+	<!-- Section :: Mission Statement -->
+	
 	<!-- Section :: Latest Adoptions -->
 	<% unless @animals.blank? %>
 		<h2>Latest adoptions</h2>
@@ -41,43 +59,12 @@
 	<% end %>
 	<!-- Section :: Latest Adoptions-->
 	
-	
-	
 	<!-- Section :: Latest News -->
 	<h2>Latest news</h2>
 	
 	<div id="rss-feed"></div>
-	
 	<!-- Section :: Latest News -->
 
 <% end %>
 
-<%= content_for :extra_section do %>
 
-<section class="newsletter">
-	<div class="content">
-		<span><%=image_tag("public/home/newsletter.png", :alt => "Sign up for the Shelter Exchange Newsletter")%></span>
-		<span><strong>Subscribe to Our Newsletter:</strong></span>
-		<form id="newsletter_form" name="newsletter_form" enctype="multipart/form-data" method="post" novalidate>
-			<span>
-				<input name="Field1" type="text" class="field text medium" value="Enter email address" maxlength="255" />
-			</span>
-			<span>
-				<input name="saveForm" class="button submit" type="submit" value="Subscribe" />
-			</span>
-			<span class="hide">
-				<label for="comment">Do Not Fill This Out</label>
-				<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
-				<input type="hidden" id="idstamp" name="idstamp" value="kRYOaJ9l9/qOokI0ju+MykLbZsESWmBMbChxVIeU2F8=" />
-			</span>
-		</form>
-	</div>
-</section>
-<section class="homepage">
-	<div class="content">
-		<p>Shelter Exchange is a non-profit organization that offers a practical solution to the difficult and widespread problem of animal euthanasia in shelters. We provide shelters and rescue groups with collaborative technology to better manage resources, communicate and act together to save millions of animals each year. Positive change has already begun. Your support ensures it will continue.</p>
-	</div>
-</section>
-<% end %>
-
-<%= content_for :sidebar do %><% end %>

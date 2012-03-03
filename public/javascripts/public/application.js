@@ -125,6 +125,42 @@ $(function() {
 });
 
 
+/* Newsletter Form
+--------------------------------------------------------------------------- */
+$(function() {
+	$('#newsletter_form input[type=text]').bind('focus', function(e){
+		$(this).val('');
+		$(this).removeClass("error");
+	}).bind('blur', function(e){
+		var blurStr = $(this).val();
+		if (blurStr == ''){
+			$(this).val("Enter email address");
+		} 
+	});
+	
+	$("#newsletter_form").submit(function(e){  
+		e.preventDefault();
+
+		var email = $(this).find("input[type=text]").val();
+		var valid = validateEmail(email);
+		if (valid){
+			$.post("https://shelterexchange.wufoo.com/forms/x7x1x7/#public", $(this).serialize());  
+			$(this).find("input[type=text]").val('');
+			$(this).hide();
+			$(this).after('<span class="thank_you">Thank you!</span>');
+		} else {
+			$(this).find("input[type=text]").val("Enter a valid e-mail address");
+			$(this).find("input[type=text]").addClass("error");
+		}
+	});
+});
+
+var validateEmail = function(value) {  
+	var regExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])","");
+	return regExp.test(value);
+}
+
+
 /* You Tube Link Fancybox
 /*----------------------------------------------------------------------------*/
 $(function() {
@@ -161,4 +197,43 @@ $(function() {
 	//     	return url;
 	//     }
 	// }
+	
+/* Social Media - Facebook Like
+/*----------------------------------------------------------------------------*/
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+/* Social Media - Pintrest Pin it
+/*----------------------------------------------------------------------------*/
+(function() {
+    window.PinIt = window.PinIt || { loaded:false };
+    if (window.PinIt.loaded) return;
+    window.PinIt.loaded = true;
+    function async_load(){
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        if (window.location.protocol == "https:")
+            s.src = "https://assets.pinterest.com/js/pinit.js";
+        else
+            s.src = "http://assets.pinterest.com/js/pinit.js";
+        var x = document.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+    }
+    if (window.attachEvent)
+        window.attachEvent("onload", async_load);
+    else
+        window.addEventListener("load", async_load, false);
+})();
+
+
+/* Social Media - Twitter Tweet
+/*----------------------------------------------------------------------------*/
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 

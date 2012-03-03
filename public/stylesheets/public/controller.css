@@ -1,44 +1,30 @@
 /******************************************************************/
 /* -------------------------- COMMON  -------------------------- */
 /******************************************************************/
-/*.hover{background-color:#EFEBE3; cursor: pointer;}
-.active_link {color:#888; text-decoration:none; cursor:default; }
-*/
-/* Hidden and Display
------------------------------------------------------------------------------*/
-/*.hide {display:none;}
-.show {display:block;}*/
 
-/* Separators
------------------------------------------------------------------------------*/
-/*.link_separator{padding: 0 10px;}
-.separator{margin: 20px 0 20px 0;height: 1px;border-bottom: 1px dotted #bbb;}*/
+/* Social buttons */   
+/*************************************************************************************************************************************/
 
-/* Sidebar :: Action Links
------------------------------------------------------------------------------*/
-/*#sidebar ul.action_links { padding: 0 0 10px 0; }
-#sidebar ul.action_links .button { min-width: 200px;}*/
+/* Global :: Social buttons */   
+/******************************************************************/
+.pages .social, 
+.accounts .social, 
+.index_help_a_shelter .social{display:inline-block; margin-left: 5px; width: 65px;}
 
-/* Dialog :: Layout
------------------------------------------------------------------------------*/
-/*.dialog {width: 680px; height: 425px; overflow:auto; display:none; }
-.dialog .wrapper { padding: 15px; color: #222; }
-.dialog .title{float:left;}
-.dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }*/
+.pages .social iframe, 
+.accounts .social iframe,
+.index_help_a_shelter .social iframe{vertical-align:middle;}
+
+.pages .social span, 
+.accounts .social span,
+.index_help_a_shelter .social span {display:inline-block;}
+
+.pages .social .pin-it-button, 
+.accounts .social .pin-it-button,
+.index_help_a_shelter .social .pin-it-button{font-size: 12px;}
 
 
-
-/* Box :: Layout :: Forms
------------------------------------------------------------------------------*/
-/*.box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
-.box.hide{display: none;}
-.box.red{border-color: #f07280;background-color:#faced3;}
-.box.green{border-color: #90e674;background-color:#d5f6ca;}
-.box.orange{border-color: #f9d36f; background-color:#fdf1d0;}
-.box.blue{border-color: #74afe3;background-color:#c9e0f4;}
-.box h2{border: none;}
-.box h3{border: none;}
-.box:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
+/*************************************************************************************************************************************/
 
 
 /* Sections :: Headings
@@ -53,37 +39,21 @@
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
 .section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* Page Headings
------------------------------------------------------------------------------*/
-/*.page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}
-.page_heading.gray{background-color: #e7e7e7;border-bottom:1px solid #eee;}
-.page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}
-.page_heading.red{background-color:#faced3;border-bottom:1px solid #eee;}
-.page_heading h1{width:100%; }
-.page_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }*/
 
 
-/* Section Heading
------------------------------------------------------------------------------*/
-/*.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; }
-.section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
-.section_heading.red{border-color: #f07280;background-color:#faced3;}*/
-
-/* Circles :: Capacity
------------------------------------------------------------------------------*/
-/*.circle{ border-style: solid; border-width: 1px;-moz-border-radius:75px;-webkit-border-radius: 75px; border-radius: 75px;}
-.circle.large{height: 100px; width: 100px; text-align:center; line-height: 100px;}
-.circle.medium{height: 60px; width: 60px; text-align:center; line-height: 60px;}
-.circle.small{height: 15px; width: 15px;text-align:center; line-height: 15px;}
-.circle.red{border-color: #f07280;background-color:#faced3;}
-.circle.yellow{border-color: #f9d36f; background-color:#fdf1d0;}
-.circle.green{border-color: #90e674;background-color:#d5f6ca;}*/
-
-/* Shelter Kill/No Kill Bubble
------------------------------------------------------------------------------*/
-/*.shelter_type{width: 150px; text-align: center;color: #000; font-size:12px;letter-spacing:0px; font-weight: bold;padding:10px; border-style: solid; border-width: 1px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
-.shelter_type.kill{border-color: #f07280;background-color:#faced3;}
-.shelter_type.no_kill{border-color: #90e674;background-color:#d5f6ca;}*/
+/* Newsletter :: Signup */   
+/******************************************************************/
+section.newsletter{ width:100%;height: 50px; bottom: 250px; position:absolute;background-color: #db8d4a;}
+section.newsletter div.content{position:relative; margin: 0 auto; text-align:center;}
+section.newsletter span{color: #fff; font-size: 14px; display: inline-block; line-height: 50px; padding-right: 15px;}
+section.newsletter form{display: inline-block; line-height: 50px;}
+section.newsletter span img{ vertical-align:middle;}
+section.newsletter span input.field{ color: #999;}
+section.newsletter span input.field.error{ color: red;}
+section.newsletter span.hide {display:none;}
+section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform: uppercase;}
+section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px; }
+section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
 /*******************************************************************/
@@ -97,6 +67,10 @@
 .accounts li:first-child h3{border-top:none; padding-top: 0px; margin-top: 0px;}
 .accounts h3{border-bottom:none;}
 
+/* Accounts :: Social buttons */   
+/******************************************************************/
+.create_accounts .social{display:none;}
+
 
 /*******************************************************************/
 /* -------------------------- HOME PAGE -------------------------- */
@@ -106,8 +80,6 @@
 /* Home Page */   
 /******************************************************************/
 .home_page h2{text-align:center;margin: 0 auto;padding: 20px 0;}
-
-.home_page #main {padding-bottom: 445px; position: relative; }
 
 .home_page .theme-default #slider {margin:10px auto 50px auto;
 	width:960px; /* Make sure your images are the same size */
@@ -179,29 +151,16 @@
 
 
 
-/* Home Page :: Homepage :: Extra Section */   
+/* Home Page :: Homepage :: Mission Statement */   
 /******************************************************************/
-section.homepage{ width:100%;height: 125px; bottom:300px;  position:absolute;background-color: #cf7019;}
-section.homepage .content{padding: 30px 0;}
-section.homepage p{color: #eee; text-align:center; font-size: 14px;}
+section.mission_statement{clear:both;width: 960px; height: 292px; margin-bottom: 10px; position:relative;}
+section.mission_statement .message{position:relative; padding-top: 200px;}
+section.mission_statement p{width: 900px; text-align:center; margin: 0 auto; color: #eee; text-align:center; font-size: 13px;}
+section.mission_statement .social{display:block;position:absolute; bottom:20px;right: 35px;}
 
-/* Home Page :: Newsletter :: Extra Section */   
+/* IE :: Home Page :: Homepage :: Mission Statement */     
 /******************************************************************/
-section.newsletter{ width:100%;height: 50px; bottom: 250px; position:absolute;background-color: #db8d4a;}
-section.newsletter div.content{position:relative; margin: 0 auto; text-align:center;}
-section.newsletter span{color: #fff; font-size: 14px; display: inline-block; line-height: 50px; padding-right: 15px;}
-section.newsletter form{display: inline-block; line-height: 50px;}
-section.newsletter span img{ vertical-align:middle;}
-section.newsletter span input.field{ color: #999;}
-section.newsletter span input.field.error{ color: red;}
-section.newsletter span.hide {display:none;}
-section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform: uppercase;}
-section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px; }
-section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-/* Home Page -> Newsletter :: IE :: PIE */   
-/******************************************************************/
-/*.ie7 section.newsletter .field, .ie8 section.newsletter .field{behavior: url(/stylesheets/global/pie/PIE.htc); zoom: 10; z-index: 9999;}*/
+.ie section.mission_statement p{font-size:12px;}
 
 
 /********************************************************************/
@@ -469,6 +428,13 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .show_save_a_life .animal_shelter{border-top: 1px #bbb dotted; padding-top: 20px; margin-top: 10px;
 border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
+/* Show Save a life :: Social buttons */   
+/******************************************************************/
+.show_save_a_life .social {display:inline-block; height: 30px;margin-left: 20px;}
+.show_save_a_life .social iframe{vertical-align:middle;}
+.show_save_a_life .social span {display:inline-block;}
+.show_save_a_life .social .pin-it-button{font-size: 12px;}
+
 /* Save a life :: Search by Shelter Name :: Animal List :: Layout
 -----------------------------------------------------------------------------*/
 .index_save_a_life .animals h1 {color: #bbb;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
@@ -500,7 +466,6 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 -----------------------------------------------------------------------------*/
 .show_save_a_life .animal{padding-bottom: 30px;}
 .show_save_a_life .animal:after{content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.show_save_a_life .animal .social{position:absolute; right:0; top: 10px;}
 .show_save_a_life .animal .type{float:left;width: 75%; text-align:left;}
 .show_save_a_life .animal .status{float:left;width: 25%; text-align:right;}
 .show_save_a_life .animal .type, .show_save_a_life .animal .status{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;}
@@ -596,11 +561,6 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .ie8 .index_help_a_shelter .shelter{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
-/* Show Help a Shelter :: Social Media Links :: Layout
------------------------------------------------------------------------------*/
-.show_help_a_shelter .social{width: 100%; height: 10px;text-align:right;}
-
-
 /* Show Help a Shelter :: Shelter Details :: Layout
 -----------------------------------------------------------------------------*/
 .show_help_a_shelter #shelter_details{border-top: 1px #bbb dotted; border-bottom: 1px #bbb dotted;padding: 15px 0 5px 0; margin: 20px 0 5px 0;}
@@ -612,6 +572,11 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .show_help_a_shelter #shelter_details .action_links span,
 .show_help_a_shelter #shelter_details .action_links a{padding-right: 8px;}
 .show_help_a_shelter #shelter_details:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Show Help a Shelter :: Social buttons */   
+/******************************************************************/
+.show_help_a_shelter .social {padding-top: 10px;margin-left: 0px;}
+.show_help_a_shelter .social span {display:block;text-align:left;height: 25px; line-height: 25px;}
 
 
 /* Show Help a Shelter :: Search Section :: Search Bar */   
