@@ -26,9 +26,7 @@ module Public::SeoHelper
   
   # Open Graph Helpers
   #----------------------------------------------------------------------------
-  def open_graph_type
-    page_name == "home_page" ? "website" : "article"
-  end
+
   #----------------------------------------------------------------------------
 
   
