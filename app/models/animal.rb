@@ -85,7 +85,7 @@ class Animal < ActiveRecord::Base
   scope :available_for_adoption, where(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
   scope :adopted, where(:animal_status_id => AnimalStatus::STATUSES[:adopted])
   scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
-  scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaim])
+  scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])
   scope :euthanized, where(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
   scope :transferred, where(:animal_status_id => AnimalStatus::STATUSES[:transferred])
   scope :latest, lambda { |status, limit| includes(:shelter).send(status).reorder("status_change_date DESC").limit(limit) }
@@ -265,7 +265,7 @@ class Animal < ActiveRecord::Base
   end
   
   def reclaimed?
-    self.animal_status_id == AnimalStatus::STATUSES[:reclaim]
+    self.animal_status_id == AnimalStatus::STATUSES[:reclaimed]
   end
   
   def foster_care?
