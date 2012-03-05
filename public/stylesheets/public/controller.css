@@ -28,12 +28,12 @@
 
 /* Search - Not Found Error */   
 /******************************************************************/
-.search_not_found {}	
-.search_not_found h2{margin: 0 auto; text-align: center;height: 50px; line-height:50px;border:none; margin-top: 25px; }
-.search_not_found p,
-.search_not_found a{font-size: 14px; margin: 0 auto; text-align: center;}	
+#search_not_found {}	
+#search_not_found h2{margin: 0 auto; text-align: center;height: 50px; line-height:50px;border:none; margin-top: 25px; }
+#search_not_found p,
+#search_not_found a{font-size: 14px; margin: 0 auto; text-align: center;}	
 
-.index_help_a_shelter .search_not_found {border-top: 1px #ccc dotted;}
+.index_help_a_shelter #search_not_found {border-top: 1px #ccc dotted;}
 
 
 /* Sections :: Headings

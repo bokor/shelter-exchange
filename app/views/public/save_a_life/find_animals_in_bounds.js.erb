@@ -1,5 +1,7 @@
 <% unless @animals.blank? %>
 	$('#map_animals').html( "<%= escape_javascript( render 'animal_list', :animals => @animals) %>" );
 <% else %>
-	$('#map_animals').html("<%= escape_javascript( render 'not_found_error') %>");
+	if ($('#search_not_found').length == 0) {
+		$('#map_animals').html("<%= escape_javascript( render 'not_found_error') %>");
+	}
 <% end %>

@@ -1,5 +1,7 @@
 <% unless @shelters.blank? %>
 	$('#shelters').html( "<%= escape_javascript( render 'shelter_list', :shelters => @shelters) %>" );
 <% else %>
-	$('#shelters').html("<%= escape_javascript( render 'not_found_error') %>");
+	if ($('#search_not_found').length == 0) {
+		$('#shelters').html("<%= escape_javascript( render 'not_found_error') %>");
+	}
 <% end %>
