@@ -42,70 +42,47 @@
 			</div>
 			<%= has_error_message?(@animal, :animal_status_id)%>
 			<div id="reason_field">
-				<%= f.label :status_history_reason, "Reason for the status change <span class='req'>*</span>".html_safe, :class => "desc" %>
-				<%= f.text_field :status_history_reason, :class => "field text medium", :maxlength => 255 %>
+				<%= f.label :status_history_reason, "Reason for the status change".html_safe, :class => "desc" %>
+				<%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
 			</div>
 			<%= has_error_message?(@animal, :status_history_reason)%>
 		</li>		
 		<li>
 			<%= f.label :sex, "Sex <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div>
+			<!-- <div> -->
 				<% SEX.each_with_index do |value, index| %>
-					<span>
+					<span class="left<%= "Padded" if index==1 %>">
 						<%= f.radio_button :sex, value, :class => "field radio" %>
 						<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
 					</span>
 				<% end %>
-			</div>
+			<!-- </div> -->
 			<%= has_error_message?(@animal, :sex)%>
 		</li>
 		<li>
-			<%= f.label :is_sterilized, "Has the Animal been Sterilized?", :class => "desc" %>
-			<div>
-				<span>
+			<%= f.label :is_sterilized, "Sterilized?", :class => "desc" %>
+			<!-- <div> -->
+				<span class="left">
 					<%= f.radio_button :is_sterilized, true, :class => "field radio" %>
 					<%= f.label :is_sterilized, "Yes", :class => "choice" %>
 				</span>
-				<span>
+				<span class="leftPadded">
 					<%= f.radio_button :is_sterilized, false, :class => "field radio" %>
 					<%= f.label :is_sterilized, "No", :class => "choice" %>
 				</span>
-			</div>
+			<!-- </div> -->
 			<%= has_error_message?(@animal, :is_sterilized)%>
-		</li>
-		<li class="date">
-			<%= f.label :date_of_birth, "Date of Birth (Est.)", :class => "desc" %>
-			
-			<span>
-				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
-				<%= f.label :date_of_birth, "MM" %>
-			</span> 
-			<span class="symbol">/</span>
-			<span>
-				<%= f.text_field :date_of_birth_day, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:day, @animal) %>
-				<%= f.label :date_of_birth, "DD" %>
-			</span>
-			<span class="symbol">/</span>
-			<span>
-				<%= f.text_field :date_of_birth_year, :class => "field text", :maxlength => 4, :size => 4, :value => date_of_birth_value(:year, @animal) %>
-				<%= f.label :date_of_birth, "YYYY" %>
-			</span>
-			<span>
-				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
-			</span>
-			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
-			<%= has_error_message?(@animal, :date_of_birth)%>
 		</li>
 		<li>
 			<div id="has_special_needs_field">
 				<span>
 					<%= f.check_box :has_special_needs, :class =>"field checkbox" %>
-					<%= f.label :has_special_needs, "Has special needs?", :class => "desc choice" %>
+					<%= f.label :has_special_needs, "Special needs?", :class => "desc choice" %>
 				</span>
 				<%= has_error_message?(@animal, :has_special_needs)%>
 			</div>
 			<div id="special_needs_field">
-				<%= f.label :special_needs, "Special needs description", :class => "desc" %>
+				<%= f.label :special_needs, "Special needs description <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
 				<%= f.text_area :special_needs, :class => "field textarea medium", :placeholder => "Provide details of the animal's special needs." %>
 				</div>
@@ -132,35 +109,31 @@
 			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
-		<li class="section">
-			<section>
-				<h3>Accommodation Info</h3>
-				<div>Select the location where the animal is being kept.</div>
-			</section>
-		</li>
-		<li>
-			<div id="accommodation_info">
-				<div id="accommodation_selected">
-					<span><% if @animal.accommodation %><b><%= @animal.accommodation.name %></b><% end %></span>
-					<a href="#" id="accommodation_search_link" class="tooltip_dialog" 
-								data-dialog-element="#dialog_accommodation_search" 
-								data-dialog-title="&nbsp;"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>
-					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();return false;">Remove</a>
-
-				</div>
-				<%= f.hidden_field :accommodation_id %>
-			</div> 
-			<%= has_error_message?(@animal, :accommodation_id)%>
-		</li>
-		<% if @current_shelter.kill_shelter? %>
-		<li class="section">
-			<section>
-				<h3>Euthanasia Details</h3>
-				<div>Enter the animals arrival date, hold time, and the scheduled euthanasia date.</div>
-			</section>
+		<li class="date">
+			<%= f.label :date_of_birth, "Date of Birth (Est.)", :class => "desc" %>
+			
+			<span>
+				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
+				<%= f.label :date_of_birth, "MM" %>
+			</span> 
+			<span class="symbol">/</span>
+			<span>
+				<%= f.text_field :date_of_birth_day, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:day, @animal) %>
+				<%= f.label :date_of_birth, "DD" %>
+			</span>
+			<span class="symbol">/</span>
+			<span>
+				<%= f.text_field :date_of_birth_year, :class => "field text", :maxlength => 4, :size => 4, :value => date_of_birth_value(:year, @animal) %>
+				<%= f.label :date_of_birth, "YYYY" %>
+			</span>
+			<span>
+				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
+			</span>
+			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
+			<%= has_error_message?(@animal, :date_of_birth)%>
 		</li>
 		<li class="date">
-			<%= f.label :arrival_date, "Arrival date <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :arrival_date, "Arrival/Intake Date".html_safe, :class => "desc" %>
 			
 			<span>
 				<%= f.text_field :arrival_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => arrival_date_value(:month, @animal)  %>
@@ -182,10 +155,32 @@
 			<span id="animal_arrival_date_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :arrival_date)%>
 		</li>
-		<li>
-			<%= f.label :hold_time, "Hold time <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :hold_time, :class => "field text",  :maxlength => 3 %> days</div>
-			<%= has_error_message?(@animal, :hold_time)%>
+		<li class="section accommodation_info">
+			<section>
+				<h3>Accommodation Info</h3>
+				<div>Select the location where the animal is being kept.</div>
+			</section>
+		</li>
+		<li class="accommodation_info">
+			<div>
+				<div id="accommodation_selected">
+					<span><% if @animal.accommodation %><b><%= @animal.accommodation.name %></b><% end %></span>
+					<a href="#" id="accommodation_search_link" class="tooltip_dialog" 
+								data-dialog-element="#dialog_accommodation_search" 
+								data-dialog-title="&nbsp;"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>
+					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();return false;">Remove</a>
+
+				</div>
+				<%= f.hidden_field :accommodation_id %>
+			</div> 
+			<%= has_error_message?(@animal, :accommodation_id)%>
+		</li>
+		<% if @current_shelter.kill_shelter? %>
+		<li class="section">
+			<section>
+				<h3>Euthanasia Details</h3>
+				<div>Enter the animals arrival date, hold time, and the scheduled euthanasia date.</div>
+			</section>
 		</li>
 		<li class="date">
 			<%= f.label :euthanasia_date, "Euthanasia date <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -210,7 +205,11 @@
 			<span id="animal_euthanasia_date_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :euthanasia_date)%>
 		</li>
-		
+		<li>
+			<%= f.label :hold_time, "Hold time".html_safe, :class => "desc" %>
+			<div><%= f.text_field :hold_time, :class => "field text",  :maxlength => 3 %> days</div>
+			<%= has_error_message?(@animal, :hold_time)%>
+		</li>
 		<% end %>
 		<li class="section">
 			<section>
@@ -248,8 +247,7 @@
 			</section>
 		</li>
 		<li>
-			<%# f.label :video_url, "You Tube URL <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :video_url, :class => "field text medium" %></div>
+			<div><%= f.text_field :video_url, :class => "field text large" %></div>
 			<%= has_error_message?(@animal, :video_url)%>
 		</li>
 		<li class="section">
@@ -258,8 +256,7 @@
 				<div>Enter a description of the animal below.</div>
 			</section>
 		</li>
-		<li>
-			<%# f.label :description, "Description", :class => "desc" %>
+		<li class="full">
 			<div><%= f.text_area :description, :class => "field textarea medium" %></div>
 			<%= has_error_message?(@animal, :description)%>
 		</li>

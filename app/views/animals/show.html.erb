@@ -10,6 +10,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
+
 	<div class="page_heading blue">
 		<table class="animal">
 			<tr>
@@ -18,6 +19,8 @@
 				</td>
 				<td class="action_links">
 					<%= link_to "Create new animal", new_animal_path %>
+					<!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www")%> -->
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Print", "#", :onclick => "window.print();return false;"%>
 					<% if can?(:update, Animal) %>
@@ -42,6 +45,25 @@
 	</div>
 	
 	<div class="page_content">
+		
+		<% if @animal.available_for_adoption? %>
+			<div class="social">
+				<span>
+					<div class="fb-like" data-send="false" 
+										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+										 data-layout="button_count"
+										 data-show-faces="false"></div>
+				</span>
+				<span>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" 
+					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					   data-text="<%="#{@animal.name} - #{@animal.full_breed} - #{@current_shelter.city}, #{@current_shelter.state}" %>">Tweet</a>
+				</span>
+				<span>
+					<a href="http://pinterest.com/pin/create/button/?url=<%= public_save_a_life_url(@animal, :subdomain => "www")%>&media=<%=@animal.photo.url(:large) %>&description=<%=pinterest_animal_description(@animal, @current_shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+				</span>
+			</div>	
+		<% end %>
 		 
 		<table class="animal_details">
 			<tr>
@@ -54,6 +76,9 @@
 						<% unless @animal.size.blank? %><li><p><b>Size:</b>  <%= @animal.size %></p></li><% end %>
 						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
 						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
+						<% unless @current_shelter.kill_shelter? %>
+							<li><p><b>Arrival/Intake Date:</b>  <%= format_date(:default, @animal.arrival_date) %></p></li>
+						<% end %>
 					</ul>
 					
 					<h3>Accommodation:</h3>

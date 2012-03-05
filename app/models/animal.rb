@@ -59,9 +59,9 @@ class Animal < ActiveRecord::Base
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
   validates :sex, :presence => true
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
-  validates :hold_time, :presence => { :if => :is_kill_shelter? }
+  # validates :hold_time, :presence => { :if => :is_kill_shelter? }
   validates :special_needs, :presence => { :if => :special_needs? }
-  validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
+  # validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
   validates :video_url, :format => { :with => ANIMAL_VIDEO_URL_FORMAT,  #Regexp.union(ANIMAL_VIDEO_URL_FORMAT)
                                      :allow_blank => true, :message => "incorrect You Tube URL format" }
   
@@ -368,17 +368,13 @@ class Animal < ActiveRecord::Base
     end
     
     def arrival_date_valid?
-      if is_kill_shelter?
-        self.arrival_date = nil
-        unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
-          begin
-            raise ArgumentError if self.arrival_date_year.length < 4
-            self.arrival_date = Date.civil(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i)
-          rescue ArgumentError
-            errors.add(:arrival_date, "is an invalid date format")
-          end
-        else
-          errors.add_on_blank(:arrival_date)
+      self.arrival_date = nil
+      unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
+        begin
+          raise ArgumentError if self.arrival_date_year.length < 4
+          self.arrival_date = Date.civil(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i)
+        rescue ArgumentError
+          errors.add(:arrival_date, "is an invalid date format")
         end
       end 
     end

@@ -8,18 +8,18 @@ var Animals = {
 
 		if (animal_type_id == '') {
 			$('#breed_fields').hide();
-			$('#accommodation_info').hide();
+			$('.accommodation_info').hide();
 		} else {
 			$('#breed_fields').show();
 			$('#primary_breed_field').show();
-			$('#accommodation_info').show();
+			$('.accommodation_info').show();
 		}
 	},
 	animalStatusSelected: function(changed, animal_status_was) {
 		var animal_status_id = $('#animal_animal_status_id').val();
 		var has_value = $('#animal_status_history_reason').val() != "";
  
-		if ((changed || has_value) && (animal_status_id != animal_status_was)) {
+		if (animal_status_id != animal_status_was) { //(changed || has_value) && (animal_status_id != animal_status_was)
 			$('#reason_field').show();
 		} else {
 			$('#reason_field').hide();
@@ -64,13 +64,14 @@ var Animals = {
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
 		
-		//Check if a kill shelter
-		if(is_kill_shelter) {
-			// Arrival Date initialize
-			Animals.datePicker("#animal_arrival_date");
-			Animals.setDatePickerDate('#animal_arrival_date');
-			$('#arrival_date_trigger').bind("click", function(event) { $('#animal_arrival_date_datepicker').slideToggle(); });
+		// Arrival Date initialize
+		Animals.datePicker("#animal_arrival_date");
+		Animals.setDatePickerDate('#animal_arrival_date');
+		$('#arrival_date_trigger').bind("click", function(event) { $('#animal_arrival_date_datepicker').slideToggle(); });
 		
+		
+		//Check if a kill shelter
+		if(is_kill_shelter) {		
 			// Euthanasia Date initialize
 			Animals.datePicker("#animal_euthanasia_date");
 			Animals.setDatePickerDate('#animal_euthanasia_date');

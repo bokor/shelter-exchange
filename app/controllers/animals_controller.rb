@@ -2,6 +2,7 @@ class AnimalsController < ApplicationController
   respond_to :html, :js
   
   def index
+    @total_animals = @current_shelter.animals.count
     @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     respond_with(@animals)
   end

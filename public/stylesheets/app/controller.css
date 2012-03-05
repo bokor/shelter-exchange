@@ -175,6 +175,13 @@
 .show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
 
+/* Show Animals :: Social Media Icons
+-----------------------------------------------------------------------------*/
+.show_animals .social {height: 30px;margin-left: 0px; border-bottom: 1px #ccc dotted; margin-bottom: 10px;}
+.show_animals .social iframe{vertical-align:middle;}
+.show_animals .social span {display:inline-block; width: 80px;margin-right: 10px;}
+.show_animals .social .pin-it-button{font-size: 12px;}
+
 /* Show Animal :: Animal Details
 -----------------------------------------------------------------------------*/
 .show_animals table.animal_details{text-align:left;}

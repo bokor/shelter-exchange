@@ -5,7 +5,7 @@
 
 <%= content_for :page_content do %>
 
-	<% if @animals.size > 0 %>
+	<% if @total_animals > 0 %>
 	
 		<div class="print_heading">
 			<h1>Animals</h1>
@@ -48,7 +48,11 @@
 			</div>
 			
 			<div id="animals">
-				<%= render "animal_list", :animals => @animals %>
+				<% unless @animals.blank? %>
+					<%= render "animal_list", :animals => @animals %>
+				<% else %>
+					<div class='no_results'><h2>Currently, No active animals</h2></div>
+				<% end %>
 			</div>
 
 		</div>
