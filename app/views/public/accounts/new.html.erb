@@ -2,7 +2,34 @@
 <%= description "Shelters and rescue groups can create an account to utilize the free service from Shelter Exchange." %>
 <%= keywords "Shelter Exchange, animal shelters, animal rescue groups, animal rescue, homeless animals, create a new account, animal euthanasia, shelter exchange, animal welfare community, euthanized, euthanized animals, find animals, search shelters, local shelters, adoptive parents, animals by euthanasia date, saving lives, age-oriented, breed-specific, special needs animals, shelter management software, shelter management application" %>
 
-<%= content_for :javascripts do %><% end %>
+<%= content_for :javascripts do %>
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			/* Signup - Subdomain Autofill
+			/*----------------------------------------------------------------------------*/
+			var formatSubdomain = function(value) { return value.replace(/[^a-zA-Z]+/g, '').toLowerCase().substr(0,50); }
+			
+			$("#account_shelters_attributes_0_name").keyup(function() {
+				var subdomain = formatSubdomain($(this).val());
+				$("#account_subdomain").val(subdomain);
+				$(".subdomain_highlight").text(subdomain);
+			});
+			$("#account_subdomain").keyup(function() {
+				var subdomain = formatSubdomain($(this).val());
+				$(".subdomain_highlight").text(subdomain);
+				$(this).val(subdomain);
+			});
+			
+			if ($("#account_subdomain").val() != "") {
+				$(".subdomain_highlight").text($("#account_subdomain").val());
+			}
+			
+			// if (subdomain.substring(subdomain.length-1) == "-"){ 
+			// 	subdomain = subdomain.substring(0, subdomain.length-1);
+			// }
+		});
+	</script>
+<% end %>
 
 <%= content_for :page_content do %>
 
@@ -158,16 +185,21 @@
 			<% end %>
 				
 			<li><p></p></li>
-				
+
 			<li class="section">
 				<section>
 					<h3>Step 4: Organization URL</h3>
-					<div>Please create a personalized subdomain for your organization - for example johnsrescuedogs</div>
+					<div>Below is a personalized subdomain for your organization.  You are welcome to edit if you want a different name.  Please note: You can only use lowercase letters, no numbers or dashes</div>
 				</section>
 			</li>
 			<li class="full">
 				<%= account_form.label :subdomain, "Subdomain <span class='req'>*</span>".html_safe, :class => "desc" %>
-		  		<div><%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org</div>
+		  		<div>
+					<span>
+						<%= account_form.text_field :subdomain, :class => "field text medium" %>.shelterexchange.org
+						<%= account_form.label :subdomain, 'Your URL: http://<span class="subdomain_highlight">johnsrescuedogs</span>.shelterexchange.org'.html_safe, :class => "subdomain_example" %>
+					</span>
+				</div>
 				<%= has_error_message?(@account, :subdomain)%>
 			</li>
 

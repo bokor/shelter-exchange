@@ -75,6 +75,8 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .accounts ul {list-style:none;}
 .accounts li:first-child h3{border-top:none; padding-top: 0px; margin-top: 0px;}
 .accounts h3{border-bottom:none;}
+.accounts .subdomain_highlight {padding: .1em .2em;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;-khtml-border-radius: 2px;background-color: #E1F1FA;color: #39C;text-shadow: 0 1px 0 white;}
+
 
 /* Accounts :: Social buttons */   
 /******************************************************************/
