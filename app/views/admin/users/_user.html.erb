@@ -1,5 +1,10 @@
 <div id="<%= "user_#{user.id}" %>" class="user">
 	<span class="name"><%= user.name %></span>
-	<span class="role"><%= user.role.humanize %></span>
+	<% if !defined?(hide_role) or !hide_role %>
+		<span class="role"><%= user.role.humanize %></span>
+	<% end %>
 	<span class="email"><%= user.email %></span>
+	<% if defined?(shelter_link) and shelter_link %>
+		<span class="shelter_link"><%= link_to user.shelter_name, admin_shelter_path(user.shelter_id), :target => "_blank" %></span>
+	<% end %>		
 </div>

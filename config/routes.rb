@@ -210,6 +210,12 @@ ShelterExchangeApp::Application.routes.draw do
         get :live_search, :on => :collection
       end
       
+      # Admin :: Users
+      #----------------------------------------------------------------------------
+      resources :users, :only => [:index] do
+        get :live_search, :on => :collection
+      end
+      
       # Admin :: Announcements
       #----------------------------------------------------------------------------
       resources :announcements, :except => [:new]

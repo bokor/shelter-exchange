@@ -1,0 +1,7 @@
+<% unless @users.blank? %>
+	$('#users').html( "<%= escape_javascript( render @users, :hide_role => true, :shelter_link => true ) %>" );
+	$('#users_paginate').html( "<%= escape_javascript( will_paginate @users ) %>");
+<% else %>
+	$('#users').html( "" );
+	$('#users_paginate').html( "" );
+<% end %>

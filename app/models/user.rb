@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
   scope :owner, where(:role => :owner)
   scope :admin, where(:role => :admin)
   scope :default, where(:role => :user)
+  scope :admin_list, joins(:account => :shelters).
+                     select("users.name as name, users.email as email, shelters.id as shelter_id, shelters.name as shelter_name").
+                     order("shelters.name").limit(250)
   
   # Instance Methods
   #----------------------------------------------------------------------------  
@@ -60,6 +63,13 @@ class User < ActiveRecord::Base
       token_user.save
     end
     return token_user
+  end
+  
+  def self.admin_live_search(q)
+    scope = self.scoped
+    scope = scope.admin_list
+    scope = scope.where("users.name LIKE LOWER('%#{q}%') or users.email LIKE LOWER('%#{q}%')") unless q.blank?
+    scope
   end
   
 end

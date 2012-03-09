@@ -1,0 +1,37 @@
+<%= title "Shelter List" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<%= form_for :users, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+			<ul>
+				<li class="full">
+					<span class="left half">
+						<%= label_tag "q", "Search Users", :class => "desc" %>
+						<%= text_field_tag "q", "", :class => "field text large", :onkeyup =>"Users.liveSearch(this);"  %>
+					</span>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+	
+	<div class="page_content">
+
+		<div class="users_section">
+			<h2>Users</h2>
+			<div id="users" class="user_list">
+				<%= render @users, :hide_role => true, :shelter_link => true %>
+			</div>
+			<div id="users_paginate">
+				<%= will_paginate @users %>
+			</div>
+		</div>
+		
+	</div>
+		
+<% end %>
+
+<%= content_for :sidebar do %><% end %>
+

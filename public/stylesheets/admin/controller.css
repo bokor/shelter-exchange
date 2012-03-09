@@ -163,20 +163,7 @@
 	.shelter .city_state{display:inline-block; width: 20%; }
 	.shelter .email{display:inline-block; }
 	.shelter .created_at{display:inline-block; float:right; font-weight: bold; }
-	
-	
-/* User List :: Layout
------------------------------------------------------------------------------*/
-.user_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
 
-.user{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
-.user.hover{cursor:default;}
-
-	.user .name{display:inline-block; width: 25%; font-weight: bold;}
-	.user .role{display:inline-block; width: 20%; font-size : 11px;}
-	.user .email{display:inline-block; width: 45%; }
-
-	
 
 /* Shelter Details :: Show :: Layout
 -----------------------------------------------------------------------------*/
@@ -202,6 +189,32 @@
 .show_shelters #sidebar .account_details table td{padding:5px; border: 1px solid #bbb;}
 .show_shelters #sidebar .account_details table td.key{width: 35%;}
 .show_shelters #sidebar .account_details table td.value{width: 65%;}
+
+
+/***************************************************************/
+/* -------------------------- USERS -------------------------- */
+/***************************************************************/
+
+
+/* Users :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.users #main { margin: 1em 3em 0 3em; }
+.users #left{ width: 100%;}
+.users #sidebar { display: none;width: 0; }
+	
+/* User List :: Layout
+-----------------------------------------------------------------------------*/
+.user_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.user{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.user.hover{cursor:default;}
+
+	.user .name{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
+	.user .role{display:inline-block; width: 15%; font-size : 11px;}
+	.user .email{display:inline-block; width: 30%;font-size : 11px; }
+	.user .shelter_link{display:inline-block; width: 30%; font-size : 11px;font-weight: bold;}
+	
+
 
 
 
