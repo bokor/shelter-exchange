@@ -1,7 +1,7 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_access_token, :shelter_lookup, :shelter_suspended?
+  before_filter :set_access_token, :shelter_lookup, :shelter_inactive?
   layout :current_layout
   
 
@@ -20,8 +20,8 @@ class Api::ApplicationController < ActionController::Base
       respond_with_error({ :error => "Not Authorized to perform this action" })  if @current_shelter.blank?
     end 
     
-    def shelter_suspended?
-      respond_with_error({ :error => "#{@current_shelter.name}'s access has been suspended" })  if @current_shelter.suspended?
+    def shelter_inactive?
+      respond_with_error({ :error => "#{@current_shelter.name}'s access has been #{@current_shelter.status}" })  if @current_shelter.inactive?
     end
 
     def respond_with_error(msg)

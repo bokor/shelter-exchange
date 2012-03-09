@@ -50,7 +50,7 @@ class AnimalsController < ApplicationController
   end
   
   def search
-    q = params[:q].strip
+    q = params[:q].strip.split.join("%")
     if q.blank?
       @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
     else

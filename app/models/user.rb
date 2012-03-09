@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :account
+  has_many :shelters, :through => :account
   
   devise :database_authenticatable, :recoverable, :token_authenticatable, #:confirmable, :lockable 
          :rememberable, :trackable, :lockable, :invitable, :validatable, 
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
   scope :owner, where(:role => :owner)
   scope :admin, where(:role => :admin)
   scope :default, where(:role => :user)
-  scope :admin_list, joins(:account => :shelters).
+  scope :admin_list, joins(:shelters).
                      select("users.name as name, users.email as email, shelters.id as shelter_id, shelters.name as shelter_name").
                      order("shelters.name").limit(250)
   
@@ -68,7 +69,7 @@ class User < ActiveRecord::Base
   def self.admin_live_search(q)
     scope = self.scoped
     scope = scope.admin_list
-    scope = scope.where("users.name LIKE LOWER('%#{q}%') or users.email LIKE LOWER('%#{q}%')") unless q.blank?
+    scope = scope.where("users.name LIKE ? or users.email LIKE ?", "%#{q}%", "%#{q}%") unless q.blank?
     scope
   end
   

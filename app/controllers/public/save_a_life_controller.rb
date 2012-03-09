@@ -7,7 +7,7 @@ class Public::SaveALifeController < Public::ApplicationController
   def show
     @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
     @shelter = @animal.shelter
-    raise ActiveRecord::RecordNotFound if @shelter.suspended?
+    raise ActiveRecord::RecordNotFound if @shelter.inactive?
   end
   
   def find_animals_in_bounds

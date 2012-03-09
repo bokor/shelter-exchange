@@ -65,7 +65,25 @@
 				<h2><%=@total_suspended_shelters_count%></h2>
 				<p>Total Shelters</p>
 			</div>
-		</div>		
+		</div>	
+		
+		<h2>Cancelled Shelter Counts</h2>
+		
+		<div class="count_sections">
+			<div>
+				<h2><%=@cancelled_no_kill_shelters_count%></h2>
+				<p>Total No-Kill Shelters</p>
+			</div>
+			<div>
+				<h2><%=@cancelled_kill_shelters_count%></h2>
+				<p>Total Kill Shelters</p>
+			</div>
+			<div>
+				<h2><%=@total_cancelled_shelters_count%></h2>
+				<p>Total Shelters</p>
+			</div>
+		</div>
+			
 		<div class="shelters_section">
 			<h2>Latest Shelters</h2>
 			<div id="latest_shelters" class="shelter_list"><%= render @latest_shelters %></div>

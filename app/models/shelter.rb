@@ -12,7 +12,7 @@ class Shelter < ActiveRecord::Base
   
   # Constants
   #----------------------------------------------------------------------------
-  STATUSES = ["active", "suspended"].freeze
+  STATUSES = ["active", "suspended", "cancelled"].freeze
   LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"].freeze
   LOGO_SIZE = 4.megabytes
   LOGO_SIZE_IN_TEXT = "4 MB"
@@ -24,6 +24,7 @@ class Shelter < ActiveRecord::Base
   # Assocations
   #----------------------------------------------------------------------------
   belongs_to :account
+  has_many :users, :through => :account
 
   has_many :locations, :dependent => :destroy
   has_many :accommodations, :dependent => :destroy
@@ -88,14 +89,16 @@ class Shelter < ActiveRecord::Base
   scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 
   scope :latest, lambda {|limit| order("created_at desc").limit(limit) }
   scope :active, where(:status => "active")
+  scope :inactive, where("status != 'active'")
   scope :suspended, where(:status => "suspended")
+  scope :cancelled, where(:status => "cancelled")
   
   def self.live_search (q, shelter)
     scope = self.scoped
     scope = scope.where(shelter)
-    scope = scope.where("name LIKE LOWER('%#{q}%') OR city LIKE LOWER('%#{q}%') OR 
-                         zip_code LIKE LOWER('%#{q}%') OR facebook LIKE LOWER('%#{q}%') OR 
-                         twitter LIKE LOWER('%#{q}%') or email LIKE LOWER('%#{q}%')") unless q.blank?
+    scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ? OR 
+                         facebook LIKE ? OR twitter LIKE ? or email LIKE ?", 
+                         "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%") unless q.blank?
     scope
   end
 
@@ -124,8 +127,16 @@ class Shelter < ActiveRecord::Base
     self.status == "active"
   end
   
+  def inactive?
+    self.suspended? || self.cancelled?
+  end
+  
   def suspended?
     self.status == "suspended"
+  end
+  
+  def cancelled?
+    self.status == "cancelled"
   end
   
   private

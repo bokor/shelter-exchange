@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate_user!, :current_account, :current_shelter, :shelter_suspended?,
+  before_filter :authenticate_user!, :current_account, :current_shelter, :shelter_inactive?,
                 :set_time_zone, :store_location
                 
   layout :current_layout
@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
       user_signed_in? ? 'app/application' : 'app/login'
     end
     
-    def shelter_suspended?
-      raise Exceptions::ShelterSuspended if @current_shelter and @current_shelter.suspended?
+    def shelter_inactive?
+      raise Exceptions::ShelterInactive if @current_shelter and @current_shelter.inactive?
     end
     
     def set_time_zone
@@ -77,8 +77,8 @@ class ApplicationController < ActionController::Base
       nil
     end
     
-    rescue_from Exceptions::ShelterSuspended do |exception|
-      render :template => 'errors/shelter_suspended'
+    rescue_from Exceptions::ShelterInactive do |exception|
+      render :template => "errors/shelter_#{@current_shelter.status}"
     end
     
     rescue_from CanCan::AccessDenied do |exception|

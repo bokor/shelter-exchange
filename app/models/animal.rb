@@ -95,11 +95,11 @@ class Animal < ActiveRecord::Base
   
   # Scopes - Search
   #----------------------------------------------------------------------------
-  scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(name) LIKE LOWER('%#{q}%')") }
-  scope :search, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%') OR LOWER(description) LIKE LOWER('%#{q}%')
-                                                                            OR LOWER(microchip) LIKE LOWER('%#{q}%') OR LOWER(color) LIKE LOWER('%#{q}%') OR LOWER(weight) LIKE LOWER('%#{q}%')
-                                                                            OR LOWER(primary_breed) LIKE LOWER('%#{q}%') OR LOWER(secondary_breed) LIKE LOWER('%#{q}%')") }
-  scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("LOWER(id) LIKE LOWER('%#{q}%') OR LOWER(name) LIKE LOWER('%#{q}%')") }                                              
+  scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
+  scope :search, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE ? OR name LIKE ? OR description LIKE ? OR microchip LIKE ? OR
+                                                                            color LIKE ? OR weight LIKE ? OR primary_breed LIKE ? OR secondary_breed LIKE ?",
+                                                                            "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%") }
+  scope :search_by_name, lambda { |q| includes(:animal_type, :animal_status).where("id LIKE ? OR name LIKE ?", "%#{q}%", "%#{q}%") }                                              
   
   def self.filter_by_type_status(type, status)
     scope = scoped{}

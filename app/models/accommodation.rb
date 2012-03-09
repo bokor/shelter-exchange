@@ -21,7 +21,7 @@ class Accommodation < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
-  scope :search, lambda { |q| includes(:animal_type, :animals, :location).where("LOWER(name) LIKE LOWER('%#{q}%')") }
+  scope :search, lambda { |q| includes(:animal_type, :animals, :location).where("name LIKE ?", "%#{q}%") }
   
   
 end
