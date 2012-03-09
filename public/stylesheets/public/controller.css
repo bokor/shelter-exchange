@@ -439,6 +439,10 @@ section.mission_statement .social{display:block;position:absolute; bottom:20px;r
 .show_save_a_life .animal_shelter{border-top: 1px #bbb dotted; padding-top: 20px; margin-top: 10px;
 border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
+/* Index Save a life :: Social buttons */   
+/******************************************************************/
+.index_save_a_life .social {margin-top: 15px;}
+
 /* Show Save a life :: Social buttons */   
 /******************************************************************/
 .show_save_a_life .social {display:inline-block; height: 30px;margin-left: 20px;}

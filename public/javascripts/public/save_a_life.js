@@ -23,7 +23,7 @@ var SaveALife = {
 		
 		SaveALife.createMap();
 		
-		$("#map_canvas").jScroll({top: 50, speed : "slow"});
+		$("#map_auto_scroll").jScroll({top: 50, speed : "slow"});
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
