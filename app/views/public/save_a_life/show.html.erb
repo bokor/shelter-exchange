@@ -8,7 +8,7 @@
 
 <%= robots "noindex,follow" if !@animal.available_for_adoption? %>
 
-<%= open_graph_image image_path(@animal.photo.url(:medium) %>
+<%= open_graph_image image_path(@animal.photo.url(:medium)) %>
 <%= open_graph_title "#{open_graph_title_status(@animal)}#{page_title}" %>
 
 
