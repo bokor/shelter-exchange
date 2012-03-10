@@ -208,8 +208,8 @@ section.mission_statement .social{display:block;position:absolute; bottom:20px;r
 
 /* About us :: Mission */   
 /******************************************************************/
-.about_us_mission_page #main ul{ padding-bottom: 25px; }
-.about_us_mission_page #main ul li{padding-bottom: 5px; margin-left: 20px; padding-left: 10px;}
+.about_us_mission_page .mission_list ul{ padding-bottom: 25px; }
+.about_us_mission_page .mission_list ul li{padding-bottom: 5px; margin-left: 20px; padding-left: 10px;}
 .about_us_mission_page .animals img{width: 300px; height: 190px; margin-right:25px;-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
 .about_us_mission_page .animals img:last-child{margin-right: 0px;}
 
