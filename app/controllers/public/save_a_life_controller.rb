@@ -20,7 +20,7 @@ class Public::SaveALifeController < Public::ApplicationController
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
     flash[:error] = "You have requested an animal that is no longer listed!"
-    redirect_to public_save_a_life_index_path, :status => 301
+    redirect_to public_save_a_life_index_path, :status => :moved_permanently
   end
   
 end

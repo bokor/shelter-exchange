@@ -22,7 +22,7 @@ class Public::HelpAShelterController < Public::ApplicationController
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid shelter => #{params[:id]}")
     flash[:error] = "You have requested a shelter that is no longer listed!"
-    redirect_to public_help_a_shelter_index_path, :status => 301
+    redirect_to public_help_a_shelter_index_path, :status => :moved_permanently
   end
 
 end
