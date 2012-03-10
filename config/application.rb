@@ -19,7 +19,9 @@ module ShelterExchangeApp
     # Activate observers that should always be running.
     config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :animal_observer, :status_history_observer
     
-    
+    # %w(sweepers).each do |dir|
+    #   config.autoload_paths += %W( #{ config.root }/app/#{dir} )
+    # end  
     
     # If you want to move observers and sweepers into their own directory
     # %w(observers sweepers).each do |dir|

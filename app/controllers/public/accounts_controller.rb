@@ -1,12 +1,7 @@
 class Public::AccountsController < Public::ApplicationController
   respond_to :html
   
-  caches_action :new, :expires_in => 1.hour
-  
-  # Add if the error has been fixed so that every one would get redirected to the signup page
-  # def index
-  #   redirect_to public_signup_path
-  # end
+  # caches_action :new, :expires_in => 1.hour
   
   def new
     @account = Account.new
@@ -34,3 +29,9 @@ class Public::AccountsController < Public::ApplicationController
   end
   
 end
+
+  
+  # Add if the error has been fixed so that every one would get redirected to the signup page
+  # def index
+  #   redirect_to public_signup_path
+  # end

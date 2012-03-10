@@ -1,8 +1,8 @@
 class Public::PagesController < Public::ApplicationController
   respond_to :html, :xml
   
-  caches_action :index, :expires_in => 1.hour
-  caches_action :show
+  # caches_action :index, :expires_in => 1.hour
+  # caches_action :show
     
   def index
     @animals = Animal.latest(:adopted, 3).all

@@ -1,8 +1,8 @@
 class Public::SaveALifeController < Public::ApplicationController
   respond_to :html, :js
   
-  caches_action :index, :expires_in => 1.hour
-  # caches_action :show, :expires_in => 2.minutes
+  # caches_action :index
+  # caches_action :show, :cache_path => Proc.new {|c| "save_a_life/#{c.params[:id]}" }
   
   def index
   end

@@ -1,7 +1,7 @@
 class Public::HelpAShelterController < Public::ApplicationController
   respond_to :html, :js
 
-  caches_action :index, :expires_in => 1.hour
+  # caches_action :index
   # caches_action :show, :expires_in => 2.minutes
   
   def index
@@ -17,7 +17,6 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
   
   def find_animals_for_shelter
-    # Removed because it was redundant    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
     shelter_id = params[:filters][:shelter_id]
     @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.paginate(:per_page => 15, :page => params[:page]) || {}
   end
@@ -30,5 +29,7 @@ class Public::HelpAShelterController < Public::ApplicationController
 
 end
 
+# def find_animals_for_shelter
+  # Removed because it was redundant    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
 
 # @types = AnimalType.available_for_adoption_types(@shelter.id)
