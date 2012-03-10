@@ -41,7 +41,7 @@
 	
 	<style type="text/css" media="screen">
 	.stats{width: 100%;display:block;margin: 0 auto; text-align: center;}
-	.stat{display:block; margin: 0 auto; text-align: center;padding-right: 20px;}
+	.stat{padding-right: 20px;}
 		.lives_saved{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 		.lives_saved_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
 	</style>
@@ -53,8 +53,12 @@
 			<span class="lives_saved_text">Lives saved</span>
 		</span>
 		<span class="stat">
-			<span class="lives_saved"><%= @lives_saved %></span>
-			<span class="lives_saved_text">Lives saved</span>
+			<span class="lives_saved"><%= @active_shelters %></span>
+			<span class="lives_saved_text">Active Shelters and Rescues</span>
+		</span>
+		<span class="stat">
+			<span class="lives_saved"><%= @success_rate %></span>
+			<span class="lives_saved_text">Success Rate</span>
 		</span>
 	</div>
 	<div class="separator"></div>

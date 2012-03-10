@@ -6,6 +6,8 @@ class Public::PagesController < Public::ApplicationController
   def index
     @animals = Animal.latest(:adopted, 3).all
     @lives_saved = Animal.adopted.count + Animal.transferred.count + Transfer.completed.count
+    @active_shelters = Shelter.active.count
+    @success_rate = (@lives_saved/Animal.euthanized.count) * 100
   end
   
   def show
