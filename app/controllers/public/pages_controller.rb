@@ -5,6 +5,7 @@ class Public::PagesController < Public::ApplicationController
     
   def index
     @animals = Animal.latest(:adopted, 3).all
+    @lives_saved = Animal.adopted.count + Animal.transferred.count + Transfer.completed.count
   end
   
   def show
