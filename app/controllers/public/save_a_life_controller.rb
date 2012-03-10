@@ -1,6 +1,9 @@
 class Public::SaveALifeController < Public::ApplicationController
   respond_to :html, :js
   
+  # caches_action :index, :expires_in => 2.minutes
+  # caches_action :show, :expires_in => 2.minutes
+  
   def index
   end
   

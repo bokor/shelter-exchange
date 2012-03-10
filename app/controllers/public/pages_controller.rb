@@ -1,13 +1,13 @@
 class Public::PagesController < Public::ApplicationController
   respond_to :html, :xml
   
-  # caches_page :index, :show, :sitemap
+  # caches_action :index, :expires_in => Rails.env.production? ? 1.hour : 2.minutes
+  # caches_action :show, :expires_in => Rails.env.production? ? 1.hour : 2.minutes
     
   def index
     @animals = Animal.latest(:adopted, 3).all
-    @lives_saved = Animal.adopted.count + Animal.transferred.count + Transfer.completed.count
+    @lives_saved = Animal.adopted.limit(nil).count + Animal.transferred.limit(nil).count + Transfer.completed.limit(nil).count
     @active_shelters = Shelter.active.count
-    @success_rate = (@lives_saved/Animal.euthanized.count) * 100
   end
   
   def show

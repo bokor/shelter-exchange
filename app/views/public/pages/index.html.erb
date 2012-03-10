@@ -39,34 +39,27 @@
 	</section>
 	<!-- Section :: Mission Statement -->
 	
-	<style type="text/css" media="screen">
-	.stats{width: 100%;display:block;margin: 0 auto; text-align: center;}
-	.stat{padding-right: 20px;}
-		.lives_saved{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
-		.lives_saved_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
-	</style>
-	
-	<div class="separator"></div>
-	<div class"stats">
-		<span class="stat">
-			<span class="lives_saved"><%= @lives_saved %></span>
-			<span class="lives_saved_text">Lives saved</span>
-		</span>
-		<span class="stat">
-			<span class="lives_saved"><%= @active_shelters %></span>
-			<span class="lives_saved_text">Active Shelters and Rescues</span>
-		</span>
-		<span class="stat">
-			<span class="lives_saved"><%= @success_rate %></span>
-			<span class="lives_saved_text">Success Rate</span>
-		</span>
+	<!-- Section :: Stats -->
+	<div class="stats">
+		<h2>Our progress so far</h2>
+		<div class="separator"></div>
+		<ul>
+			<li>
+				<span class="stat_count"><%= @lives_saved %></span>
+				<span class="stat_text">Lives saved</span>
+			</li>
+			<li>
+				<span class="stat_count"><%= @active_shelters %></span>
+				<span class="stat_text">Active Shelters and Rescues</span>
+			</li>
+		</ul>
+		<div class="separator"></div>
 	</div>
-	<div class="separator"></div>
+	<!-- Section :: Stats -->
 	
 	<!-- Section :: Latest Adoptions -->
 	<% unless @animals.blank? %>
 		<h2>Latest adoptions</h2>
-
 		<div class="adoptions">
 			<% @animals.each do |animal|%>
 				<div class="box">
