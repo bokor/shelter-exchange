@@ -1,6 +1,9 @@
 class Public::PagesController < Public::ApplicationController
   respond_to :html, :xml
   
+  caches_action :index, :expires_in => 2.minutes
+  caches_action :show, :expires_in => 2.minutes
+  
   # caches_action :index, :expires_in => Rails.env.production? ? 1.hour : 2.minutes
   # caches_action :show, :expires_in => Rails.env.production? ? 1.hour : 2.minutes
     
