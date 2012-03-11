@@ -133,7 +133,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 .home_page .stats{width: 100%;display:block;margin: 0 auto; text-align: center;}
 .home_page .stats h2{width:225px;padding-bottom:0px; position:relative; margin-bottom:-38px; background: url(/images/public/background-body.jpg) repeat;}
 .home_page .stats ul{list-style:none; text-align:center; margin: 0 auto;}
-.home_page .stats ul li{padding-right: 30px; text-align:center; margin: 0 auto; display: inline-block; zoom: 1; *display: inline;}
+.home_page .stats ul li{padding: 0 50px; text-align:center; margin: 0 auto; display: inline-block; zoom: 1; *display: inline;}
 	.home_page .stat_count{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 	.home_page .stat_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
 	
