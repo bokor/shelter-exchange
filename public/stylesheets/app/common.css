@@ -86,6 +86,13 @@ Dog House Sides - #db8d4a
 #footer h5{float:left;padding-left:5px;line-height:65px;}
 #footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
+
+/* IE6 Warning Box
+-----------------------------------------------------------------------------*/
+.ie6_warning{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 5px 0; border-top-style: solid; 
+	border-bottom: 1px solid #f9d36f; border-top: 1px solid #f9d36f; background-color:#fdf1d0;}
+.ie6_warning p{line-height: 1.5em;}
+
 /* Ajax :: Messages */   
 /******************************************************************/
 .ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; font-weight:bold;}
