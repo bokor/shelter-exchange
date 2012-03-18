@@ -20,10 +20,10 @@ class Public::PagesController < Public::ApplicationController
   def sitemap
     # Move to models
     @animals = Animal.select("animals.id, animals.updated_at").joins(:shelter).where(:shelters => { :status => "active"}).available_for_adoption.limit(nil).all
-    @save_a_life_last_updated = Animal.order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
+    @save_a_life_last_updated = Animal.select(:updated_at).order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
     
     @shelters = Shelter.select([:id, :updated_at]).active.all
-    @help_a_shelter_last_updated = Shelter.active.order("updated_at DESC").first.updated_at.strftime("%Y-%m-%d")
+    @help_a_shelter_last_updated = Shelter.select(:updated_at).active.order("updated_at DESC").first.updated_at.strftime("%Y-%m-%d")
   end
   
 end
