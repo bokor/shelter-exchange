@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  before_create :hide_announcements_by_default
+  
   # Constants
   #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User  
@@ -72,6 +74,12 @@ class User < ActiveRecord::Base
     scope = scope.where("users.name LIKE ? or users.email LIKE ?", "%#{q}%", "%#{q}%") unless q.blank?
     scope
   end
+  
+  private
+  
+    def hide_announcements_by_default
+      self.announcement_hide_time = Time.now.utc
+    end
   
 end
 # OLD WAY
