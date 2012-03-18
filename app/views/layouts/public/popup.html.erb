@@ -6,7 +6,17 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
 <head>
 	
-	<%= render :partial => "public/shared/seo" %>
+	<!-- title -->
+	<title><%= yield(:title) %> | Shelter Exchange</title>
+
+	<!-- metatags -->
+	<meta charset="utf-8" />
+	<meta name="language" content="en"/>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+	<meta name="robots" content="noindex, follow">
+	<link rel="canonical" href="<%=request.url.split("?")[0] %>" />
 
 	<!-- stylesheets -->
 	<%= include_stylesheets :public_popup, :media => "all" %>
