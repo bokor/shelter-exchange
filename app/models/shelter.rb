@@ -83,7 +83,7 @@ class Shelter < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
-  scope :auto_complete, lambda { |q|  where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
+  scope :auto_complete, lambda { |q|  where("name LIKE ?", "%#{q}%") }
   scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
   scope :kill_shelters, where(:is_kill_shelter => true).order(:name) 
   scope :no_kill_shelters, where(:is_kill_shelter => false).order(:name) 

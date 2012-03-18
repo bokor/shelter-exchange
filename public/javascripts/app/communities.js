@@ -189,7 +189,7 @@ var Communities = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term,
@@ -223,7 +223,7 @@ var Communities = {
 			// highlight: true, MAKE EXT LATER
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shelters/auto_complete.json",
+					url: "/shared/shelters/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term

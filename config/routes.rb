@@ -1,4 +1,22 @@
 ShelterExchangeApp::Application.routes.draw do
+  
+  # Shared Functions
+  #----------------------------------------------------------------------------
+  namespace :shared do
+    
+    # Shared :: Breeds
+    #----------------------------------------------------------------------------
+    resources :breeds, :only => [:auto_complete] do
+      get :auto_complete, :on => :collection
+    end
+
+    # Shared :: Shelters
+    #----------------------------------------------------------------------------
+    resources :shelters, :only => [:auto_complete] do
+      get :auto_complete, :on => :collection
+    end
+  end
+  #----------------------------------------------------------------------------
 
 
   # Application - Routes for *subdomain*.shelterexchange.org
@@ -114,17 +132,9 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
   
-    # Breeds
-    #----------------------------------------------------------------------------
-    resources :breeds, :only => [:auto_complete] do
-      get :auto_complete, :on => :collection
-    end
-  
     # Shelters
     #----------------------------------------------------------------------------
-    resources :shelters, :only => [:index, :edit, :update, :auto_complete] do
-      get :auto_complete, :on => :collection
-    end 
+    resources :shelters, :only => [:index, :edit, :update] 
   
     # Wish Lists
     #----------------------------------------------------------------------------    
@@ -290,19 +300,7 @@ ShelterExchangeApp::Application.routes.draw do
       get "signup" => "accounts#new", :path => :signup
       # post "signup" => "accounts#create", :path => :signup
       
-      # Public :: Breeds
-      #----------------------------------------------------------------------------
-      resources :breeds, :only => [:auto_complete] do
-        get :auto_complete, :on => :collection
-      end
-
-      # Public :: Shelters
-      #----------------------------------------------------------------------------
-      resources :shelters, :only => [:auto_complete] do
-        get :auto_complete, :on => :collection
-      end
       
-
       # Public :: Save A Life
       #----------------------------------------------------------------------------
       resources :save_a_life do

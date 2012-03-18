@@ -1,4 +1,4 @@
-class Public::BreedsController < Public::ApplicationController
+class Shared::BreedsController < ActionController::Base
   respond_to :json
    
   def auto_complete

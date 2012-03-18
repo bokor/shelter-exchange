@@ -7,7 +7,7 @@ class Breed < ActiveRecord::Base
   # Scopes
   #----------------------------------------------------------------------------
   scope :valid_for_animal, lambda { |breed, type|  where(:name => breed, :animal_type_id => type) }
-  scope :auto_complete, lambda { |type, q|  where(:animal_type_id => type).where("LOWER(name) LIKE LOWER(?)", "%#{q}%") }
+  scope :auto_complete, lambda { |type, q|  where(:animal_type_id => type).where("name LIKE ?", "%#{q}%") }
   
   scope :dogs, where(:animal_type_id => AnimalType::TYPES[:dog])
   scope :cats, where(:animal_type_id => AnimalType::TYPES[:cat])

@@ -126,7 +126,7 @@ var Animals = {
 			// highlight: true, MAKE EXT LATER
 			source: function( request, response ) {
 				$.ajax({
-					url: "/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term,
