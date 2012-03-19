@@ -7,7 +7,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 
 /* Global */
 /******************************************************************/
-
+html{ display: block !important; }
 html, body { margin:0; padding:0; height: 100%; }
 body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
 	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
