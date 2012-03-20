@@ -422,3 +422,8 @@ ul.toggle_buttons li a.current {
 
 ul.toggle_buttons li a:hover{color: #CF7019;}
 
+
+/* JQuery UI Fixes */   
+/******************************************************************/
+a.ui-corner-all{font-weight: normal;}
+
