@@ -120,10 +120,8 @@ var Animals = {
 	autoComplete: function(){
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,
-			selectFirst: true,
-			html: true,
-			delay: 500, //maybe 400
-			// highlight: true, MAKE EXT LATER
+			// autoFocus: true,
+			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
 					url: "/shared/breeds/auto_complete.json",
@@ -134,10 +132,8 @@ var Animals = {
 					},
 					success: function( data ) {
 						response( $.map( data, function( item ) {
-							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 							return {
-								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								label: item.name,
 								value: item.name,
 								id: item.id
 							}  

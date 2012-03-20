@@ -425,5 +425,5 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 /* JQuery UI Fixes */   
 /******************************************************************/
-a.ui-corner-all{font-weight: normal;}
+.ui-autocomplete a.ui-corner-all{font-weight: normal;}
 

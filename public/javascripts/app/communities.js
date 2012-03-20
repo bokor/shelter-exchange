@@ -184,8 +184,7 @@ var Communities = {
 	breedAutoComplete: function(findAnimalsFunction){
 		$("#filters_breed").autocomplete({
 			minLength: 0,
-			selectFirst: true,
-			html: true,
+			// autoFocus: true,
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
@@ -197,10 +196,8 @@ var Communities = {
 					},
 					success: function( data ) {
 						response( $.map( data, function( item ) {
-							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 							return {
-								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								label: item.name,
 								value: item.name,
 								id: item.id
 							}  
@@ -217,10 +214,8 @@ var Communities = {
 	shelterNameAutoComplete: function(){
 		$("#shelter_name").autocomplete({
 			minLength: 3,
-			selectFirst: true,
-			html: true,
-			delay: 500, //maybe 400
-			// highlight: true, MAKE EXT LATER
+			// autoFocus: true,
+			delay: 500, 
 			source: function( request, response ) {
 				$.ajax({
 					url: "/shared/shelters/auto_complete.json",
@@ -230,12 +225,10 @@ var Communities = {
 					},
 					success: function( data ) {
 						response( $.map( data, function( item ) {
-							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 							return {
 								lat: item.lat,
 								lng: item.lng,
-								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								label: item.name,
 								value: item.name,
 								id: item.id
 							}  
@@ -254,17 +247,14 @@ var Communities = {
 	addressAutoComplete: function(){
 		$("#city_zipcode").autocomplete({
 			minLength: 3,
-			selectFirst: true,
-			html: true,
+			autoFocus: true,
 			delay: 400, 
 			source: function(request, response) {
 		        geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
 				  	response( $.map( results, function( item ) {
-						var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 						var address = item.formatted_address.replace(", USA", "");
 						return {
-							label: address.replace(matcher,'<strong>$1</strong>'),
+							label: address,
 				            value: address,
 				            latitude: item.geometry.location.lat(),
 				            longitude: item.geometry.location.lng(),

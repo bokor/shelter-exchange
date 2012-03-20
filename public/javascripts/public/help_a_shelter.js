@@ -130,8 +130,7 @@ var HelpAShelter = {
 	breedAutoComplete: function(){
 		$("#filters_breed").autocomplete({
 			minLength: 0,
-			selectFirst: true,
-			html: true,
+			// autoFocus: true,
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
@@ -143,10 +142,8 @@ var HelpAShelter = {
 					},
 					success: function( data ) {
 						response( $.map( data, function( item ) {
-							var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-							var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 							return {
-								label: item.name.replace(matcher,'<strong>$1</strong>'),
+								label: item.name,
 								value: item.name,
 								id: item.id
 							}  
@@ -163,17 +160,14 @@ var HelpAShelter = {
 	addressAutoComplete: function(){
 		$("#city_zipcode").autocomplete({
 			minLength: 3,
-			selectFirst: true,
-			html: true,
+			autoFocus: true,
 			delay: 400, 
 			source: function(request, response) {
 		        geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
 				  	response( $.map( results, function( item ) {
-						var terms = request.term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1");
-						var matcher = new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + terms + ")(?![^<>]*>)(?![^&;]+;)", "gi");
 						var address = item.formatted_address.replace(", USA", "");
 						return {
-							label: address.replace(matcher,'<strong>$1</strong>'),
+							label: address,
 				            value: address,
 				            latitude: item.geometry.location.lat(),
 				            longitude: item.geometry.location.lng(),
