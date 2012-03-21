@@ -174,13 +174,13 @@ class Animal < ActiveRecord::Base
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
   
-  def self.type_by_month_year(month, year, shelter_id=nil)
+  def self.type_by_month_year(month, year)
     start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
     range = start_date.beginning_of_month..start_date.end_of_month    
     scope = scoped{}
     scope = scope.select("count(*) count, animal_types.name")
     scope = scope.joins(:status_histories, :animal_type)
-    scope = scope.where(:status_histories => {:id => StatusHistory.by_month(range, shelter_id).all, :animal_status_id => AnimalStatus::ACTIVE})
+    scope = scope.where(:status_histories => {:id => StatusHistory.by_month(range), :animal_status_id => AnimalStatus::ACTIVE})
     scope = scope.group(:animal_type_id).limit(nil)
     scope
   end
