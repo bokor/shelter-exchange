@@ -26,7 +26,7 @@ class StatusHistory < ActiveRecord::Base
   end
   
   def self.by_month(range)
-    self.where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id)
+    self.select([:id, :animal_id]).where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id)
   end
 
 end
