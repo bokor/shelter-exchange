@@ -181,7 +181,8 @@ class Animal < ActiveRecord::Base
     scope = scoped{}
     scope = scope.select("count(*) count, animal_types.name")
     scope = scope.joins(:status_histories, :animal_type)
-    scope = scope.where(:status_histories => {:id => status_histories, :animal_status_id => AnimalStatus::ACTIVE})
+    scope = scope.where(:status_histories => {:id => status_histories})
+    scope = scope.where(:animal_status_id => AnimalStatus::ACTIVE)
     scope = scope.group(:animal_type_id).limit(nil)
     scope
   end

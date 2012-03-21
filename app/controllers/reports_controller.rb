@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
   end
   
   def type_by_month_year
-    pie_chart(@current_shelter.animals.type_by_month_year(params[:selected_month], params[:selected_year]).all)
+    pie_chart(@current_shelter.animals.type_by_month_year(params[:selected_month], params[:selected_year], @current_shelter.id).all)
   end
     
   def adoptions_monthly_total_by_type
