@@ -29,9 +29,9 @@
 			</span>
 			<% end %>
 			<% if can?(:destroy, Animal) %>
-			<!-- <span class="delete_link">&nbsp;|&nbsp;
-		   		<%= link_to "Delete", animal, :confirm => "Are you sure?", :method => :delete %>
-			</span> -->
+			<span class="delete_link">&nbsp;|&nbsp;
+				<%= link_to "Delete", animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true %>
+			</span>
 			<% end %>
 		</div>
 	</td>

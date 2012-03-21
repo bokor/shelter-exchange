@@ -27,10 +27,10 @@
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Edit", edit_animal_path(@animal)%>
 					<% end %>
-					<!-- <% if can?(:destroy, Animal) %>
+					<% if can?(:destroy, Animal) %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Delete", @animal, :confirm => "Are you sure?", :method => :delete %>
-					<% end %> -->
+					<%= link_to "Delete", @animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete %>
+					<% end %>
 				</td>
 			</tr>
 			<tr>
