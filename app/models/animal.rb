@@ -178,18 +178,9 @@ class Animal < ActiveRecord::Base
     start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
     range = start_date.beginning_of_month..start_date.end_of_month    
     scope = scoped{}
-    
-    if shelter_id.blank?
-      status_histories_order = StatusHistory.select(:id).where(:created_at => range).order("animal_id, created_at DESC").all
-      status_histories_group = StatusHistory.select(:id).where(:id => status_histories_order).group(:animal_id).all
-    else
-      status_histories_order = StatusHistory.select(:id).where(:created_at => range).where(:shelter_id => shelter_id).order("animal_id, created_at DESC").all
-      status_histories_group = StatusHistory.select(:id).where(:id => status_histories_order).where(:shelter_id => shelter_id).group(:animal_id).all
-    end 
-
     scope = scope.select("count(*) count, animal_types.name")
     scope = scope.joins(:status_histories, :animal_type)
-    scope = scope.where(:status_histories => {:id => status_histories_group, :animal_status_id => AnimalStatus::ACTIVE})
+    scope = scope.where(:status_histories => {:id => StatusHistory.by_month(range, shelter_id).all, :animal_status_id => AnimalStatus::ACTIVE})
     scope = scope.group(:animal_type_id).limit(nil)
     scope
   end
