@@ -1,18 +1,13 @@
-<tr id="<%= "animal_#{animal.id}" %>">
-	<td class="image">
-		<%= link_to image_tag(animal.photo.url(:thumb), :alt => "#{animal.name} - #{animal.full_breed}"), public_save_a_life_path(animal), :target => "_blank"  %>
-	</td>
-	<td class="details">
-		<h3><%= link_to animal.name, public_save_a_life_path(animal), :target => "_blank"  %></h3>
-		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %>
-		<p><%= animal.full_breed %></p>
-		<p><%= animal.date_of_birth.blank? ? "Age not specified".html_safe : humanize_dob(animal.date_of_birth) + " old" %></p>
-	</td>
-	<td class="status">
-		<p><b><%= animal.animal_status.name %></b></p>
-		<% if animal.shelter.kill_shelter? %>
-			<p class="euthanisia_date"><b><%= days_left(animal.euthanasia_date) %></b></p>
-		<% end %>
-		<div class="action_links"></div>
-	</td>
-</tr>
+<div id="<%= "animal_#{animal.id}" %>" class="animal">
+	<a href="<%=public_save_a_life_path(animal)%>" target="_blank">
+		<div class="logo"><%= image_tag(animal.photo.url(:small), :alt => "#{animal.name} - #{animal.full_breed}") %></div>
+		<h3><%= animal.name %></h3>
+		<ul>
+			<li><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %></li>
+			<li><%= animal.full_breed %></li>
+			<% if animal.shelter.kill_shelter? %>
+				<li class="euthanisia_date"><%= days_left(animal.euthanasia_date) %></li>
+			<% end %>
+		</ul>
+	</a>
+</div>

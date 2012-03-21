@@ -115,7 +115,7 @@ $(function() {
 /* Check application for classes that needs hovered
 /*----------------------------------------------------------------------------*/
 $(function() {
-	$(".shelter").live('hover', function(e) {
+	$(".shelter, .animal").live('hover', function(e) {
 	  if (e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {

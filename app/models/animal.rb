@@ -412,8 +412,8 @@ class Animal < ActiveRecord::Base
           rescue ArgumentError
             errors.add(:euthanasia_date, "is an invalid date format")
           end
-        else
-          errors.add_on_blank(:euthanasia_date)
+        # else
+          # errors.add_on_blank(:euthanasia_date)
         end
       end
     end

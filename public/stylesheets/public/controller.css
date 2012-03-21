@@ -582,6 +582,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .show_help_a_shelter #shelter_details{border-top: 1px #bbb dotted; border-bottom: 1px #bbb dotted;padding: 15px 0 5px 0; margin: 20px 0 5px 0;}
 .show_help_a_shelter #shelter_details .logo{padding-right: 15px; float:left;}
 .show_help_a_shelter #shelter_details .address_info{width: 40%; padding-right: 25px; float:left;}
+.show_help_a_shelter #shelter_details .address_info h1{font-size: 20px; border-bottom: none; padding-bottom: 10px; margin:0px;}
 .show_help_a_shelter #shelter_details .wish_list{width: 40%; float:left; font-weight:bold;}
 .show_help_a_shelter #shelter_details .wish_list p{margin-bottom:0px; padding-bottom:5px;}
 .show_help_a_shelter #shelter_details .wish_list ol li{margin-left:20px; padding:0 0 5px 5px;}
@@ -593,6 +594,11 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /******************************************************************/
 .show_help_a_shelter .social {padding-top: 10px;margin-left: 0px;}
 .show_help_a_shelter .social span {display:block;text-align:left;height: 25px; line-height: 25px;}
+
+/* IE Fix :: Show Help a Shelter :: Social buttons */   
+/******************************************************************/
+.ie7 .show_help_a_shelter .social,
+.ie8 .show_help_a_shelter .social{position:absolute;}
 
 
 /* Show Help a Shelter :: Search Section :: Search Bar */   
@@ -622,27 +628,37 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 	.show_help_a_shelter #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
 	.show_help_a_shelter #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 	
-/* Save a Life :: Animals :: Layout
+
+
+/* Show Help a Shelter :: Layout :: Animal List 
 -----------------------------------------------------------------------------*/
-.show_help_a_shelter #animals h1 {color: #CCC;height: 100px;line-height: 100px;margin: 0 auto;text-align: center;}
+.show_help_a_shelter #animals p.no_results{color: #CCC;height: 200px;line-height: 200px;margin: 0 auto;text-align: center; font-weight: bold; border-bottom: 1px dotted #bbb;letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;font-size:28px;}
+
+.show_help_a_shelter .animal_list{margin:5px 0;padding: 10px 0; /*border-top: 1px dotted #bbb;*/ border-bottom: 1px dotted #bbb;text-align: center;}
+.show_help_a_shelter .animal_list h2{text-align:center;padding-bottom: 20px;}
+.show_help_a_shelter .animal_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.show_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
+
+.show_help_a_shelter .animal{width: 30%; min-height: 240px; display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; text-align:center; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #ccc;}
+.show_help_a_shelter .animal .logo{height:150px; line-height:150px; vertical-align:middle; padding-bottom: 5px;}
+.show_help_a_shelter .animal .logo img{vertical-align:middle; -webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
+.show_help_a_shelter .animal.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
+.show_help_a_shelter .animal a{color: #222; font-weight:normal;}
+.show_help_a_shelter .animal h3{margin-bottom:0;padding:5px 0;}
+.show_help_a_shelter .animal a:hover{text-decoration:none;}
+.show_help_a_shelter .animal ul{padding-top: 5px;}
+.show_help_a_shelter .animal ul li{color:#222;font-size:12px;padding-bottom:9px;}
+.show_help_a_shelter .animal ul li.euthanisia_date{color:#DF0000; font-weight: bold;height:18px;}
 
 
-/* Save a Life :: Layout :: Animal List 
------------------------------------------------------------------------------*/
-.show_help_a_shelter table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
-.show_help_a_shelter table.animal_list h3,
-.show_help_a_shelter table.animal_list p{ padding-bottom: 10px; margin:0; }
-.show_help_a_shelter table.animal_list tr {border-bottom:1px #bbb dotted; }
-.show_help_a_shelter table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
-.show_help_a_shelter table.animal_list td.image { width:100px; padding-left:5px; }
-.show_help_a_shelter table.animal_list td.details { /*width: 400px;*/width:57%;padding-left: 15px;color:#666; }
-.show_help_a_shelter table.animal_list td.status {/*width: 290px;*/ width:44%;padding-left: 10px; padding-right: 5px; text-align:right;}
-.show_help_a_shelter table.animal_list .euthanisia_date{color:#DF0000;}
+/* Show Help a Shelter :: Animal List :: Layout :: IE ::  PIE */
+/******************************************************************/
+.ie7 .show_help_a_shelter .animal .logo img,
+.ie8 .show_help_a_shelter .animal .logo img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .show_help_a_shelter .animal,
+.ie8 .show_help_a_shelter .animal{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
-/* Save a Life ::Search by Shelter Name :: Animal List :: Layout
------------------------------------------------------------------------------*/
-/*.index_save_a_life #shelter_animals table.animal_list{border-top: 1px dotted #bbb;}*/
 
 
 
