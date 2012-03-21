@@ -3,6 +3,23 @@
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Reports = {
+	initialize: function(){
+		// Load Report
+		Reports.loadReports();
+		
+		// Reload Report after Submit
+		$('#submit_report').bind('click', function(){
+			Reports.loadReports();
+		});
+	},
+	loadReports: function(){
+		var date_title = $("#date_report_selected_month option:selected").html() + " " + $("#date_report_selected_year option:selected").html();
+		var status_by_month_year_title = 'Animals by Status Monthly Total - ' + date_title;
+		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
+		
+		var type_by_month_year_title = 'Active Animals by Type Monthly Total - ' + date_title;
+		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
+	},	
 	pieChart: function(title, url_function){
 		$.get('/admin/reports/' + url_function + '.json', { selected_month: $("#date_report_selected_month").val(), selected_year: $("#date_report_selected_year").val() },
 			function(data) {
@@ -41,16 +58,5 @@ var Reports = {
 					
 				new Highcharts.Chart(options);
 		 });
-	}, 
-	initialize: function(){
-		// Load Report
-		var title = 'Animals by Status Monthly Total - ' + $("#date_report_selected_month option:selected").html() + " " + $("#date_report_selected_year option:selected").html();
-		Reports.pieChart(title, 'status_by_month_year');
-		
-		// Reload Report after Submit
-		$('#submit_report').bind('click', function(){
-			var title = 'Animals by Status Monthly Total - ' + $("#date_report_selected_month option:selected").html() + " " + $("#date_report_selected_year option:selected").html();
-			Reports.pieChart(title, 'status_by_month_year');
-		});
 	}
 };

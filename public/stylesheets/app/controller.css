@@ -530,8 +530,10 @@
 
 /* Reports :: Page Layout
 -----------------------------------------------------------------------------*/
-.reports .page_heading h1{width:50%; float:left; }
-.reports .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.reports .page_heading h1{width:25%; float:left; }
+.reports .page_heading .action_links{width:75%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.reports .page_heading .action_links label {padding-left: 15px;}
+.reports .page_heading .action_links input {margin-left: 15px;}
 
 /* Reports :: Layout
 -----------------------------------------------------------------------------*/

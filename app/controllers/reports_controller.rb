@@ -10,12 +10,12 @@ class ReportsController < ApplicationController
     @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
   end
 
-  def status_by_current_month
-    pie_chart(@current_shelter.animals.count_by_status.current_month.all)
+  def status_by_month_year
+    pie_chart(@current_shelter.animals.count_by_month_year(:status, params[:selected_month], params[:selected_year], @current_shelter.id).all)
   end
   
-  def type_by_current_month
-    pie_chart(@current_shelter.animals.active.count_by_type.current_month.all)
+  def type_by_month_year
+    pie_chart(@current_shelter.animals.count_by_month_year(:type, params[:selected_month], params[:selected_year], @current_shelter.id).all)
   end
     
   def adoptions_monthly_total_by_type

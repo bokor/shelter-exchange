@@ -10,17 +10,7 @@
 	</div>
 	
 	<div class="page_content">
-		
-		<div class="count_sections">
-			<div>
-				<h2><%= @counts_by_transfer_with_app %></h2>
-				<p>Total Completed Transfers with App</p>
-			</div>
-			<div>
-				<h2><%= @counts_by_transfer_without_app %></h2>
-				<p>Total Completed Transfers w/o App</p>
-			</div>
-		</div>
+
 
 		<h2>Counts by Animal Status - Lifetime Totals</h2>
 		
@@ -32,7 +22,7 @@
 				</div>
 			<% end %>
 		</div>
-		
+				
 		<h2>Active Shelter Counts</h2>
 		
 		<div class="count_sections">
@@ -83,6 +73,20 @@
 				<p>Total Shelters</p>
 			</div>
 		</div>
+		
+		<h2>Transfers</h2>
+		
+		<div class="count_sections">
+			<div>
+				<h2><%= @counts_by_transfer_with_app %></h2>
+				<p>Total Completed Transfers with App</p>
+			</div>
+			<div>
+				<h2><%= @counts_by_transfer_without_app %></h2>
+				<p>Total Completed Transfers w/o App</p>
+			</div>
+		</div>
+		
 			
 		<div class="shelters_section">
 			<h2>Latest Shelters</h2>

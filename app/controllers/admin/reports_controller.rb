@@ -5,7 +5,15 @@ class Admin::ReportsController < Admin::ApplicationController
   end
   
   def status_by_month_year  
-    pie_chart(Animal.count_by_status_by_month_year(params[:selected_month], params[:selected_year]))
+    pie_chart(Animal.count_by_month_year(:status, params[:selected_month], params[:selected_year]).all)
+  end
+  
+  def status_by_month_year  
+    pie_chart(Animal.count_by_month_year(:status, params[:selected_month], params[:selected_year]).all)
+  end
+  
+  def type_by_month_year  
+    pie_chart(Animal.count_by_month_year(:type, params[:selected_month], params[:selected_year]).all)
   end
   
   def pie_chart(results)

@@ -174,10 +174,33 @@ class Animal < ActiveRecord::Base
   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year) 
   
-  def self.count_by_status_by_month_year(month, year)
+  def self.count_by_month_year(kind, month, year, shelter_id=nil)
     start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
-    range = start_date.beginning_of_month..start_date.end_of_month
-    select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id).where(:status_change_date => range)
+    range = start_date.beginning_of_month..start_date.end_of_month    
+    scope = scoped{}
+    
+    if shelter_id.blank?
+      status_histories_order = StatusHistory.select(:id).where(:created_at => range).order("animal_id, created_at DESC").all
+      status_histories_group = StatusHistory.select(:id).where(:id => status_histories_order).group(:animal_id).all
+    else
+      status_histories_order = StatusHistory.select(:id).where(:created_at => range).where(:shelter_id => shelter_id).order("animal_id, created_at DESC").all
+      status_histories_group = StatusHistory.select(:id).where(:id => status_histories_order).where(:shelter_id => shelter_id).group(:animal_id).all
+    end 
+    
+    if kind == :status
+      scope = scope.select("count(*) count, animal_statuses.name")
+      scope = scope.joins(:status_histories, :animal_status)
+      scope = scope.where(:status_histories => { :id => status_histories_group})
+      scope = scope.group("animals.animal_status_id").limit(nil)
+    elsif kind == :type
+      scope = scope.select("count(*) count, animal_types.name")
+      scope = scope.joins(:status_histories, :animal_type)
+      scope = scope.where(:status_histories => {:id => status_histories_group, :animal_status_id => AnimalStatus::ACTIVE})
+      scope = scope.group(:animal_type_id).limit(nil)
+      # scope = scope.select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id).where(:status_change_date => range).limit(nil)
+    end
+    
+    scope
   end
   
   def self.totals_by_month(year, date_type, with_type=false)

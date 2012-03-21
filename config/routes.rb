@@ -39,8 +39,8 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------    
     resources :reports do
       collection do
-        get :status_by_current_month
-        get :type_by_current_month
+        get :status_by_month_year
+        get :type_by_month_year
         get :adoptions_monthly_total
         get :adoptions_monthly_total_by_type
         get :euthanized_monthly_total
@@ -245,6 +245,7 @@ ShelterExchangeApp::Application.routes.draw do
       resources :reports do
         collection do 
           get :status_by_month_year
+          get :type_by_month_year
         end
       end
       
