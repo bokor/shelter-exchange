@@ -235,7 +235,7 @@ class Animal < ActiveRecord::Base
     self.touch(:updated_at)
     self.save(:validate => false)
     self.notes.update_all({:shelter_id => requestor_shelter.id})
-    self.status_histories.update_all({:shelter_id => requestor_shelter.id})
+    self.status_histories.where(:shelter_id => current_shelter.id).delete_all
     self.tasks.delete_all
     self.alerts.delete_all
   end
