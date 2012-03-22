@@ -1,6 +1,7 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
   
+  before_filter :default_response_format
   before_filter :authenticate! if Rails.env.demo? or Rails.env.staging?
     
   layout :current_layout
@@ -13,6 +14,11 @@ class Public::ApplicationController < ActionController::Base
       else
         "public/application"
       end
+    end
+    
+    # Force HTML format when it comes in as a generic request
+    def default_response_format
+      request.format = :html if request.format.to_s.include?('*/*;q=') or params[:format].blank?
     end
     
     def authenticate!   

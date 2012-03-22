@@ -21,7 +21,9 @@ var Reports = {
 		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
 	},	
 	pieChart: function(title, url_function){
-		$.get('/admin/reports/' + url_function + '.json', { selected_month: $("#date_report_selected_month").val(), selected_year: $("#date_report_selected_year").val() },
+		$.get('/admin/reports/' + url_function + '.json', { selected_month: $("#date_report_selected_month").val(), 
+															selected_year: $("#date_report_selected_year").val(),
+															selected_state: $("#report_selected_state").val() },
 			function(data) {
 				var options = {
 			    	chart: { renderTo: url_function },

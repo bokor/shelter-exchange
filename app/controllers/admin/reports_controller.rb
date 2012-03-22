@@ -1,15 +1,15 @@
 class Admin::ReportsController < Admin::ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :json
   
   def index
   end
   
   def status_by_month_year  
-    pie_chart(StatusHistory.status_by_month_year(params[:selected_month], params[:selected_year]).all)
+    pie_chart(StatusHistory.status_by_month_year(params[:selected_month], params[:selected_year], params[:selected_state]).all)
   end
   
   def type_by_month_year  
-    pie_chart(Animal.type_by_month_year(params[:selected_month], params[:selected_year]).all)
+    pie_chart(Animal.type_by_month_year(params[:selected_month], params[:selected_year], nil, params[:selected_state]).all)
   end
   
   def pie_chart(results)

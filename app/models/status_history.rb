@@ -13,13 +13,17 @@ class StatusHistory < ActiveRecord::Base
     create!(:shelter_id => shelter_id, :animal_id => animal_id, :animal_status_id => animal_status_id, :reason => reason)
   end
   
-  def self.status_by_month_year(month, year)
+  def self.status_by_month_year(month, year, state=nil)
     start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
     range = start_date.beginning_of_month..start_date.end_of_month    
     
     scope = scoped{}
     scope = scope.select("count(*) count, animal_statuses.name")
     scope = scope.joins(:animal_status)
+    unless state.blank?
+      scope = scope.joins(:shelter) 
+      scope = scope.where(:shelters => { :state => state })
+    end
     scope = scope.where(:status_histories => { :id => self.by_month(range) })
     scope = scope.group("status_histories.animal_status_id").reorder(nil).limit(nil)
     scope
