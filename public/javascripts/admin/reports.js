@@ -60,5 +60,41 @@ var Reports = {
 					
 				new Highcharts.Chart(options);
 		 });
+	},
+	barChart: function(title, url_function, yaxis_title){
+		$.get('/admin/reports/' + url_function + '.json', { selected_year: $("#date_report_selected_year").val() },
+			function(data) {
+				var options = {
+					chart: { renderTo: url_function, defaultSeriesType: 'column' },
+				    title: { text: title + ' - ' + $("#date_report_selected_year").val() },
+				    xAxis: {
+				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				    },
+				    yAxis: {
+				    	min: 0,
+				        title: { text: yaxis_title }
+				    },
+				    legend: { floating: false, shadow: false },
+				    tooltip: {
+				    	formatter: function() {
+				        	return this.series.name + ': '+ this.y;
+				        }
+				   	},
+				  	plotOptions: {
+				   		column: { pointPadding: 0.2, borderWidth: 0 }
+				   	},
+				    series: []
+				};
+				
+				$.each(data, function(i, item) {
+					var series = {
+						name: item.type,
+						data: [item.jan,item.feb,item.mar,item.apr,item.may,item.jun,item.jul,item.aug,item.sep,item.oct,item.nov,item.dec]
+					};
+					options.series.push(series);
+				});
+				
+				new Highcharts.Chart(options);
+		 	});
 	}
 };

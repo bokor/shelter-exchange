@@ -192,7 +192,7 @@ class Animal < ActiveRecord::Base
     scope
   end
   
-  def self.totals_by_month(year, date_type, with_type=false)
+  def self.intake_totals_by_month(year, with_type=false)
     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
     scope = scoped{}
@@ -204,24 +204,12 @@ class Animal < ActiveRecord::Base
     end
     
     start_date.month.upto(end_date.month) do |month|
-      scope = scope.select("COUNT(CASE WHEN animals.#{date_type.to_s} BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
+      scope = scope.select("COUNT(CASE WHEN animals.created_at BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
       start_date = start_date.next_month
     end
-
+    scope = scope.reorder(nil).limit(nil)
     scope
   end
-  
-  # SELECT id, animal_id 
-  # FROM `status_histories` 
-  # WHERE (`status_histories`.`created_at` BETWEEN '2012-03-01' AND '2012-03-31') 
-  # ORDER BY animal_id, created_at DESC
-  # 
-  # SELECT count(*) count, animal_types.name 
-  # FROM `animals` 
-  # INNER JOIN `status_histories` ON `status_histories`.`animal_id` = `animals`.`id` 
-  # INNER JOIN `animal_types` ON `animal_types`.`id` = `animals`.`animal_type_id` 
-  # WHERE `status_histories`.`id` IN (69) 
-  # GROUP BY animal_type_id ORDER BY animals.updated_at DESC  
   #----------------------------------------------------------------------------  
   
   

@@ -305,9 +305,15 @@
 
 /* Reports :: Index/Edit/Update/New/Create :: Layout
 -----------------------------------------------------------------------------*/
-.reports #main { margin: 1em 3em 0 3em; }
+/*.reports #main { margin: 1em 3em 0 3em; }
 .reports #left{ width: 100%;}
-.reports #sidebar { display: none;width: 0; }
+.reports #sidebar { display: none;width: 0; }*/
+
+
+/* Reports :: Layout
+-----------------------------------------------------------------------------*/
+.reports #sidebar .box ul {list-style:none; padding-left: 15px;}
+
 
 
 

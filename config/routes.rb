@@ -246,6 +246,16 @@ ShelterExchangeApp::Application.routes.draw do
         collection do 
           get :status_by_month_year
           get :type_by_month_year
+          get :adoptions_monthly_total
+          get :adoptions_monthly_total_by_type
+          get :euthanized_monthly_total
+          get :euthanized_monthly_total_by_type
+          get :intake_monthly_total
+          get :intake_monthly_total_by_type
+          get :foster_care_monthly_total
+          get :foster_care_monthly_total_by_type
+          get :reclaimed_monthly_total
+          get :reclaimed_monthly_total_by_type
         end
       end
       

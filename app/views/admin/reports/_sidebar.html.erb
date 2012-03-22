@@ -1,0 +1,15 @@
+<div class="box blue">
+	<h2>Monthly Totals</h2>
+	<ul>
+		<li><%= link_to_unless_current "Adoptions", adoptions_monthly_total_admin_reports_path %></li>
+		<li><%= link_to_unless_current "Adoptions by Animal Type", adoptions_monthly_total_by_type_admin_reports_path %></li><br />
+		<li><%= link_to_unless_current "Intake", intake_monthly_total_admin_reports_path %></li>
+		<li><%= link_to_unless_current "Intake by Animal Type", intake_monthly_total_by_type_admin_reports_path %></li><br />
+		<li><%= link_to_unless_current "Foster Care", foster_care_monthly_total_admin_reports_path %></li>
+		<li><%= link_to_unless_current "Foster Care by Animal Type", foster_care_monthly_total_by_type_admin_reports_path %></li><br />
+		<li><%= link_to_unless_current "Reclaimed", reclaimed_monthly_total_admin_reports_path %></li>
+		<li><%= link_to_unless_current "Reclaimed by Animal Type", reclaimed_monthly_total_by_type_admin_reports_path %></li><br />
+		<li><%= link_to_unless_current "Euthanized", euthanized_monthly_total_admin_reports_path %></li>
+		<li><%= link_to_unless_current "Euthanized by Animal Type", euthanized_monthly_total_by_type_admin_reports_path %></li>
+	</ul>
+</div>

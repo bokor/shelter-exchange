@@ -1,0 +1,30 @@
+<%= title "Intake Monthly Total - Reports"  %>
+
+<%= content_for :javascripts do %>
+	<%= include_javascripts :reports %>
+	<script type="text/javascript">
+		$(function() {
+			Reports.barChart('Intake Monthly Total', 'intake_monthly_total', 'Intake');
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+	
+	<div class="page_heading blue">
+		<h1>Reports</h1>
+		<div class="action_links">
+			<%= label_tag :report_selected_year, "Select year" %>
+			<%= select_year(Date.today, {:field_name => :report_selected_year, :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.barChart('Intake Monthly Total', 'intake_monthly_total', 'Intake');"})%>
+		</div>
+	</div>
+	
+	<div class="page_content">
+		<div id="intake_monthly_total" class="report"></div>
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<%= render "sidebar" %>
+<% end %>

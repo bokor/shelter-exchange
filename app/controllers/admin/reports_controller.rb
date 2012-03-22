@@ -12,6 +12,46 @@ class Admin::ReportsController < Admin::ApplicationController
     pie_chart(Animal.type_by_month_year(params[:selected_month], params[:selected_year], nil, params[:selected_state]).all)
   end
   
+  def adoptions_monthly_total_by_type
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :adopted, true).all)
+  end
+  
+  def adoptions_monthly_total
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :adopted).all)
+  end
+  
+  def euthanized_monthly_total_by_type
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :euthanized, true).all)
+  end
+  
+  def euthanized_monthly_total
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :euthanized).all)
+  end
+  
+  def foster_care_monthly_total_by_type
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :foster_care, true).all)
+  end
+  
+  def foster_care_monthly_total
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :foster_care).all)
+  end
+  
+  def reclaimed_monthly_total_by_type
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :reclaimed, true).all)
+  end
+  
+  def reclaimed_monthly_total
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :reclaimed).all)
+  end
+  
+  def intake_monthly_total_by_type
+    bar_chart(Animal.intake_totals_by_month(params[:selected_year], true).all)
+  end
+  
+  def intake_monthly_total
+    bar_chart(Animal.intake_totals_by_month(params[:selected_year]).all)
+  end
+  
   def pie_chart(results)
     respond_to do |format|
       format.html
