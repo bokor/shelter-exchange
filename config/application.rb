@@ -13,29 +13,18 @@ module ShelterExchangeApp
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W( #{ config.root }/lib/ )
-    config.autoload_paths += %W( #{ config.root }/lib/middleware )
-
+    # config.autoload_paths += Dir["#{config.root}/lib/"]
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    
+    # Load application folder extras
+    %w(observers sweepers).each do |dir|
+      config.autoload_paths += %W( #{ config.root }/app/#{dir} )
+    end
+    
     # Activate observers that should always be running.
-    config.active_record.observers = :account_observer, :transfer_observer, :shelter_observer, :animal_observer, :status_history_observer
-    
-    # %w(sweepers).each do |dir|
-    #   config.autoload_paths += %W( #{ config.root }/app/#{dir} )
-    # end  
-    
-    # If you want to move observers and sweepers into their own directory
-    # %w(observers sweepers).each do |dir|
-    #   config.autoload_paths += %W( #{ config.root }/app/#{dir} )
-    # end
-    #
-    # OR 
-    #
-    # config/environment.rb
-    # config.load_paths += %W{ #{Rails.root}/app/observers }
-    # Dir.chdir("#{Rails.root}/app/observers") do
-    #   config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
-    # end
-    
+    Dir.chdir("#{Rails.root}/app/observers") do
+      config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
+    end
     
     
     
