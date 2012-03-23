@@ -54,13 +54,17 @@
 				</ul>
 				<br />
 				<ul>
-					<li itemprop="telephone">Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+					<li>Phone: <span itemprop="telephone"><%=number_to_phone(@shelter.phone, :delimiter => "-")%></span></li>
 					<li class="action_links">
-						<span itemprop="emailAddress"><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
+						<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange", :itemprop => "emailAddress" %>|</span>
 						<% unless @shelter.website.blank? %>
-							<span itemprop="url"><%= link_to "Visit Website", @shelter.website, :target => "_blank" %>|</span>
+							<span><%= link_to "Visit Website", @shelter.website, :target => "_blank", :itemprop => "url" %>|</span>
 						<% end %>
-						<span class="get_directions_link" itemprop="maps"><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
+						<span class="get_directions_link">
+							<a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" 
+							   target="_blank" 
+							   itemprop="maps">Get Directions</a>
+						</span>
 					</li>
 					<% unless @shelter.twitter.blank? and @shelter.facebook.blank? %>
 					<li class="action_links">
