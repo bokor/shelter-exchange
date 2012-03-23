@@ -29,9 +29,9 @@
 
 <%= content_for :page_content do %>
 
-	<div id="shelter_details">
+	<div id="shelter_details" itemscope itemtype="http://schema.org/AnimalShelter">
 		<div class="logo">
-			<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo" %>
+			<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo", :itemprop => "image" %>
 			<div class="social">
 				<span><div class="fb-like" data-send="false" data-layout="button_count"data-show-faces="false"></div></span>
 				<span><a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="<%=@shelter.twitter.slice(1..-1) if @shelter.twitter %>">Tweet</a></span>
@@ -40,35 +40,40 @@
 		</div>
 		
 		<div class="address_info">
-			<h2><%=@shelter.name%></h2>
-			<ul>
-				<li><%=@shelter.street %></li>
-				<% unless @shelter.street_2.blank? %>
-				<li><%=@shelter.street_2 %></li>
-				<% end %>
-				<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
-			</ul>
-			<br />
-			<ul>
-				<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
-				<li class="action_links">
-					<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
-					<% unless @shelter.website.blank? %>
-						<span><%= link_to "Visit Website", @shelter.website, :target => "_blank" %>|</span>
+			<h2 itemprop="name"><%=@shelter.name%></h2>
+			<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+				<ul>
+					<li itemprop="streetAddress"><%=@shelter.street %></li>
+					<% unless @shelter.street_2.blank? %>
+					<li><%=@shelter.street_2 %></li>
 					<% end %>
-					<span class="get_directions_link"><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
-				</li>
-				<% unless @shelter.twitter.blank? and @shelter.facebook.blank? %>
-				<li class="action_links">
-					<% unless @shelter.twitter.blank? %>
-						<span><%= link_to "Follow #{@shelter.twitter}", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
+					<li>
+						<span itemprop="addressLocality"><%=@shelter.city%></span>,  
+						<span itemprop="addressRegion"><%=@shelter.state%></span>  <span itemprop="postalCode"><%=@shelter.zip_code%></span>
+					</li>
+				</ul>
+				<br />
+				<ul>
+					<li itemprop="telephone">Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+					<li class="action_links">
+						<span itemprop="emailAddress"><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
+						<% unless @shelter.website.blank? %>
+							<span itemprop="url"><%= link_to "Visit Website", @shelter.website, :target => "_blank" %>|</span>
+						<% end %>
+						<span class="get_directions_link" itemprop="maps"><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
+					</li>
+					<% unless @shelter.twitter.blank? and @shelter.facebook.blank? %>
+					<li class="action_links">
+						<% unless @shelter.twitter.blank? %>
+							<span><%= link_to "Follow #{@shelter.twitter}", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
+						<% end %>
+						<% unless @shelter.facebook.blank? %>
+							<span><%= link_to "Facebook Page", @shelter.facebook, :target => "_blank" %></span>
+						<% end %>
+					</li>
 					<% end %>
-					<% unless @shelter.facebook.blank? %>
-						<span><%= link_to "Facebook Page", @shelter.facebook, :target => "_blank" %></span>
-					<% end %>
-				</li>
-				<% end %>
-			</ul>
+				</ul>
+			</div>
 		</div>
 		
 		<div class="wish_list">
