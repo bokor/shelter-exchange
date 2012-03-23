@@ -23,6 +23,9 @@ class SettingsController < ApplicationController
 
     def web_access
     end
+    
+    def exports
+    end
 
     def connect
       @adopt_a_pet = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 

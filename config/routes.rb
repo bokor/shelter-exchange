@@ -158,6 +158,15 @@ ShelterExchangeApp::Application.routes.draw do
     
     resources :token_authentications, :only => [:create, :destroy]
     
+    
+    # Exports
+    #----------------------------------------------------------------------------
+    resources :exports do
+      collection do
+        get :all_animals
+      end
+    end
+    
     # Integrations
     #----------------------------------------------------------------------------
     resources :integrations

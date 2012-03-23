@@ -1,0 +1,10 @@
+<%= content_for :javascripts do %>
+	
+<% end %>
+
+<p>The page allows you to export your data in a CSV format.</p>
+
+<div class="section">
+	<h2>Animals</h2>
+	<%= link_to "Export all animals", all_animals_exports_path(:format => :csv), :class => "button red" %>
+</div>

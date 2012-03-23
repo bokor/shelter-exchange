@@ -5,7 +5,7 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   before_validation :delete_photo?
   after_validation :revert_photo?
-  before_save :change_status_date!, :clean_description
+  before_save :change_status_date!, :clean_fields
   after_save :create_status_history!
 
   # Getters/Setters
@@ -248,6 +248,12 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   
   
+  # CSV Exports
+  #----------------------------------------------------------------------------
+
+  #----------------------------------------------------------------------------
+  
+  
   
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -441,6 +447,12 @@ class Animal < ActiveRecord::Base
       self.photo.clear if delete_photo == "1" && !self.photo_file_name_changed?
     end
     
+    def clean_fields
+      clean_description
+      clean_secondary_breed
+      clean_special_needs
+    end
+    
     def clean_description
       # Remove Microsoft Extra Smart Formatting
       unless self.description.blank?
@@ -462,6 +474,14 @@ class Animal < ActiveRecord::Base
         self.description.gsub!(/\u00BE/, '&frac34;')
         self.description.gsub!(/[\u02DC\u00A0]/, " ")
       end
+    end
+    
+    def clean_secondary_breed
+      self.secondary_breed = nil unless self.mix_breed?
+    end
+    
+    def clean_special_needs
+      self.special_needs = nil unless self.special_needs?
     end
 
 end
