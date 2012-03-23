@@ -41,18 +41,17 @@
 		
 		<div class="address_info">
 			<h2 itemprop="name"><%=@shelter.name%></h2>
-			<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-				<ul>
-					<li itemprop="streetAddress"><%=@shelter.street %></li>
-					<% unless @shelter.street_2.blank? %>
-					<li><%=@shelter.street_2 %></li>
-					<% end %>
-					<li>
-						<span itemprop="addressLocality"><%=@shelter.city%></span>,  
-						<span itemprop="addressRegion"><%=@shelter.state%></span>  <span itemprop="postalCode"><%=@shelter.zip_code%></span>
-					</li>
-				</ul>
-			</div>
+			
+			<ul itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+				<li itemprop="streetAddress"><%=@shelter.street %></li>
+				<% unless @shelter.street_2.blank? %>
+				<li><%=@shelter.street_2 %></li>
+				<% end %>
+				<li>
+					<span itemprop="addressLocality"><%=@shelter.city%></span>,  
+					<span itemprop="addressRegion"><%=@shelter.state%></span>  <span itemprop="postalCode"><%=@shelter.zip_code%></span>
+				</li>
+			</ul>
 			<br />
 			<ul>
 				<li>Phone: <span itemprop="telephone"><%=number_to_phone(@shelter.phone, :delimiter => "-")%></span></li>
@@ -77,8 +76,7 @@
 					<% end %>
 				</li>
 				<% end %>
-				</ul>
-			</div>
+			</ul>
 		</div>
 		
 		<div class="wish_list">
