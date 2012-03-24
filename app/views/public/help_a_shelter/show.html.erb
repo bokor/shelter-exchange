@@ -1,7 +1,7 @@
 <%= title "#{@shelter.name} - #{@shelter.city}, #{@shelter.state}" %>
 
-<%= description "#{@shelter.name}, located in #{@shelter.city}, #{@shelter.state}, needs help by adopting an animal or donating items most needed at this shelter or rescue group." %>
-<%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
+<%= description "#{@shelter.name}, located in #{@shelter.city}, #{US_STATES[@shelter.state.to_sym]}, needs help by adopting an animal or donating items most needed at this shelter or rescue group." %>
+<%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state.to_sym]}, find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
 
 <%= open_graph_image image_path(@shelter.logo.url(:medium)) %>
 
