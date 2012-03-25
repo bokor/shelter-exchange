@@ -75,10 +75,17 @@ var SaveALife = {
 		
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-		$.get("/save_a_life/find_animals_in_bounds.js", $("#form_filters").serialize());
-			
-		// Update Google Analytics - AJAX Call
-		if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/search/"+$("#city_zipcode").val()]); } 
+		
+		$.ajax({
+			url: "/save_a_life/find_animals_in_bounds",
+			type: "get",
+			dataType: 'script',
+			data: $("#form_filters").serialize(),
+			success: function( data ) {
+				// Update Google Analytics if production
+				if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/search/"+$("#city_zipcode").val()]); } 
+			}
+		});
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
@@ -135,12 +142,9 @@ var SaveALife = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete",
 					dataType: "json",
-					data: {
-						q: request.term,
-						animal_type_id: $("#filters_animal_type").val()
-					},
+					data: { q: request.term, animal_type_id: $("#filters_animal_type").val() },
 					success: function( data ) {
 						response( $.map( data, function( item ) {
 							return {

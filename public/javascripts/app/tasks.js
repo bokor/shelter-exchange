@@ -68,7 +68,11 @@ var Tasks = {
 	complete: function(element, id){
 		$(element).attr("disabled", true);
 		if (confirm("Are you sure you want to complete this task? This task will no longer appear in the list.")) { 
-			$.post("/tasks/"+id+"/complete.js");
+			$.ajax({
+				url: "/tasks/"+id+"/complete",
+				type: "post",
+				dataType: 'script'
+			});
 		} else {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);

@@ -14,7 +14,11 @@ var Locations = {
 		//});
 	},	
 	findAllLocations: function() {
-		$.get("/locations/find_all.js");
+		$.ajax({
+			url: "/locations/find_all",
+			type: "get",
+			dataType: 'script'
+		});
   	},
 	cancelForm: function(id){
 		$('#edit_location_'+id).slideToggle(800,function() {

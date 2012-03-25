@@ -78,15 +78,29 @@ var HelpAShelter = {
 		
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-		$.get("/help_a_shelter/find_shelters_in_bounds.js", $("#form_city_zipcode_search").serialize());
 		
-		// Update Google Analytics
-		if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#city_zipcode").val()]); }
+		$.ajax({
+			url: "/help_a_shelter/find_shelters_in_bounds",
+			type: "get",
+			dataType: 'script',
+			data: $("#form_city_zipcode_search").serialize(),
+			success: function( data ) {
+				// Update Google Analytics if production
+				if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#city_zipcode").val()]); }
+			}
+		});
 	},
 	findAnimalsForShelter: function(){
-		$.get("/help_a_shelter/find_animals_for_shelter.js", $("#form_filters").serialize());
-		// Update Google Analytics 
-		if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#filters_shelter_id").val()]); }
+		$.ajax({
+			url: "/help_a_shelter/find_animals_for_shelter",
+			type: "get",
+			dataType: 'script',
+			data: $("#form_filters").serialize(),
+			success: function( data ) {
+				// Update Google Analytics if production
+				if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#filters_shelter_id").val()]); }
+			}
+		});
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
@@ -134,12 +148,9 @@ var HelpAShelter = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete",
 					dataType: "json",
-					data: {
-						q: request.term,
-						animal_type_id: $("#filters_animal_type").val()
-					},
+					data: { q: request.term, animal_type_id: $("#filters_animal_type").val() },
 					success: function( data ) {
 						response( $.map( data, function( item ) {
 							return {

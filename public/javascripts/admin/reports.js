@@ -21,10 +21,16 @@ var Reports = {
 		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
 	},	
 	pieChart: function(title, url_function){
-		$.get('/admin/reports/' + url_function + '.json', { selected_month: $("#date_report_selected_month").val(), 
-															selected_year: $("#date_report_selected_year").val(),
-															selected_state: $("#report_selected_state").val() },
-			function(data) {
+		$.ajax({
+			url: "/admin/reports/" + url_function,
+			type: "get",
+			dataType: "json",
+			data: { 
+				selected_month: $("#date_report_selected_month").val(), 
+				selected_year: $("#date_report_selected_year").val(),
+				selected_state: $("#report_selected_state").val()
+			},
+			success: function(data) {
 				var options = {
 			    	chart: { renderTo: url_function },
 			      	title: { text: title },
@@ -59,11 +65,18 @@ var Reports = {
 				});
 					
 				new Highcharts.Chart(options);
-		 });
+			}
+		});
 	},
 	barChart: function(title, url_function, yaxis_title){
-		$.get('/admin/reports/' + url_function + '.json', { selected_year: $("#date_report_selected_year").val() },
-			function(data) {
+		$.ajax({
+			url: "/admin/reports/" + url_function,
+			type: "get",
+			dataType: "json",
+			data: { 
+				selected_year: $("#date_report_selected_year").val()
+			},
+			success: function(data) {
 				var options = {
 					chart: { renderTo: url_function, defaultSeriesType: 'column' },
 				    title: { text: title + ' - ' + $("#date_report_selected_year").val() },
@@ -95,6 +108,7 @@ var Reports = {
 				});
 				
 				new Highcharts.Chart(options);
-		 	});
+		 	}
+		});
 	}
 };

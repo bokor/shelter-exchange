@@ -14,7 +14,11 @@ var Alerts = {
 	stop: function(element, id){
 		$(element).attr("disabled", true);
 		if (confirm("Are you sure you want to stop this alert? This alert will no longer appear in the list.")) { 
-			$.post("/alerts/"+id+"/stop.js");
+			$.ajax({
+				url: "/alerts/"+id+"/stop",
+				type: "post",
+				dataType: 'script'
+			});
 		} else {
 			$(element).attr("disabled", false);
 			$(element).attr("checked", false);

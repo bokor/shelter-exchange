@@ -101,9 +101,14 @@ var Animals = {
 		}
 	},
 	filterByTypeStatus: function(){
-		$.get("/animals/filter_by_type_status.js", { 
-			animal_type_id: $('#animal_animal_type_id').val(), 
-			animal_status_id: $('#animal_animal_status_id').val() 
+		$.ajax({
+			url: "/animals/filter_by_type_status",
+			type: "get",
+			dataType: 'script',
+			data: { 
+				animal_type_id: $('#animal_animal_type_id').val(), 
+				animal_status_id: $('#animal_animal_status_id').val()
+			}
 		});
 	},
 	// liveSearch: function(element){
@@ -124,7 +129,7 @@ var Animals = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete",
 					dataType: "json",
 					data: {
 						q: request.term,
