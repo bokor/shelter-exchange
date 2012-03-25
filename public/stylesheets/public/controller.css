@@ -530,19 +530,28 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .index_help_a_shelter .search_content .toggle_buttons{margin: 0 0 0 15px;}
 .index_help_a_shelter .search_form{width: 70%}
 .index_help_a_shelter .search_form form{float:left;width: 38%;}
-.index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
+	.index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
+
+/* Search by name Help a Shelter :: Search Section :: Search Bar */   
+/******************************************************************/
+.search_by_name_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.search_by_name_help_a_shelter .search_content:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.search_by_name_help_a_shelter .search_form{float:left;width: 95%;}
+.search_by_name_help_a_shelter .search_form form{float:left;width: 59%;}
+	.search_by_name_help_a_shelter .search_form input.medium{ width: 62%;}
+.search_by_name_help_a_shelter .search_content .toggle_buttons{float:right; margin: 0 0 0 15px;}
 
 
 /* Index Help a Shelter :: Help Text */   
 /******************************************************************/
-.index_help_a_shelter .helper_links{width: 30%; text-align:right;float:right;}
-.index_help_a_shelter #help_text{display:none; }
-.index_help_a_shelter #help_text h3{color:#000; text-shadow:none;}
+.help_a_shelter .helper_links{width: 5%; text-align:right;float:right;}
+.help_a_shelter #help_text{display:none; }
+.help_a_shelter #help_text h3{color:#000; text-shadow:none;}
 
 
 /* Index Help a Shelter :: Map :: Layout
 -----------------------------------------------------------------------------*/
-.index_help_a_shelter .map {padding: 10px 0;margin-right: 355px;}
+.index_help_a_shelter .map {padding: 10px 0;margin-right: 355px; }
 .index_help_a_shelter .map:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 .index_help_a_shelter .map #map_canvas{float:left;width:100%; height: 400px;}
 .index_help_a_shelter .map .ways_to_help{ float:right;margin-right: -355px;padding-right: 10px;width: 325px; /*padding-left: 15px;width: 325px;*/}
@@ -556,25 +565,26 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .ie8 .index_help_a_shelter .map #map_canvas{ height: 380px;}
 
 
-/* Index Help a Shelter :: Shelter List :: Layout
+/* Help a Shelter :: Shelter List :: Layout
 -----------------------------------------------------------------------------*/
-.index_help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb;text-align: center;}
-.index_help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.index_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
-
-.index_help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; width: 30%; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}
-.index_help_a_shelter .shelter .logo{height:75px; line-height:75px; vertical-align:middle;}
-.index_help_a_shelter .shelter .logo img{vertical-align:middle;}
-.index_help_a_shelter .shelter.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
-.index_help_a_shelter .shelter a{color: #222; font-weight:normal;}
-.index_help_a_shelter .shelter h3{margin-bottom:0;padding:5px 0;}
-.index_help_a_shelter .shelter a:hover{text-decoration:none;}
+.help_a_shelter #shelters{border-top: 1px dotted #bbb;}
+.help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-bottom: 1px dotted #bbb;text-align: center;}
+.help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
+ 
+.help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; width: 30%; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}
+.help_a_shelter .shelter .logo{height:75px; line-height:75px; vertical-align:middle;}
+.help_a_shelter .shelter .logo img{vertical-align:middle;}
+.help_a_shelter .shelter.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
+.help_a_shelter .shelter a{color: #222; font-weight:normal;}
+.help_a_shelter .shelter h3{margin-bottom:0;padding:5px 0;}
+.help_a_shelter .shelter a:hover{text-decoration:none;}
 
 
 /* Index Help a Shelter :: Shelter List :: Layout :: IE ::  PIE */
 /******************************************************************/
-.ie7 .index_help_a_shelter .shelter,
-.ie8 .index_help_a_shelter .shelter{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .help_a_shelter .shelter,
+.ie8 .help_a_shelter .shelter{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* Show Help a Shelter :: Shelter Details :: Layout

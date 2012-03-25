@@ -23,7 +23,8 @@
 				<%= hidden_field_tag "filters[ne]" %>
 			</form>
 			<ul class="toggle_buttons">
-				<li><a id="search_by_city_zipcode" href="#" class="current">City or Zip code</a></li>
+				<li><a href="#" class="current">By City or Zip code</a></li>
+				<li><%= link_to "By Shelter or Rescue Group", search_by_name_public_help_a_shelter_index_path %></li>
 			</ul>
 		</span>
 		<span class="helper_links">
