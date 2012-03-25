@@ -84,7 +84,7 @@ module AnimalsHelper
   
   def find_you_tube_id(url)
     # url.scan(Regexp.union(ANIMAL_VIDEO_URL_FORMAT)){|m| return m.join.strip unless m.blank?}
-    url.match(ANIMAL_VIDEO_URL_FORMAT)[5]
+    url.match(VIDEO_URL_REGEX)[5]
   end
 
 

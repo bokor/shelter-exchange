@@ -13,20 +13,18 @@ module ShelterExchangeApp
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += Dir["#{config.root}/lib/"]
+    config.autoload_paths += %W(
+          #{config.root}/lib/
+          #{config.root}/app/sweepers
+          #{config.root}/app/observers
+          #{config.root}/app/models/concerns
+    )
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
-    
-    # Load application folder extras
-    %w(observers sweepers).each do |dir|
-      config.autoload_paths += %W( #{ config.root }/app/#{dir} )
-    end
     
     # Activate observers that should always be running.
     Dir.chdir("#{Rails.root}/app/observers") do
       config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
     end
-    
-    
     
     # Remove Timestamps from migrations and use version numbers
     # config.active_record.timestamped_migrations = false

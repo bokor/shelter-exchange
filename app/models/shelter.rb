@@ -1,4 +1,5 @@
 class Shelter < ActiveRecord::Base
+  include Logoable
   
   # Plugins
   #----------------------------------------------------------------------------
@@ -6,20 +7,11 @@ class Shelter < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_validation :delete_logo?
-  after_validation :revert_logo?
   before_save :geocode_address, :format_phone_numbers, :clear_status_reason
   
   # Constants
   #----------------------------------------------------------------------------
   STATUSES = ["active", "suspended", "cancelled"].freeze
-  LOGO_TYPES = ["image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png"].freeze
-  LOGO_SIZE = 4.megabytes
-  LOGO_SIZE_IN_TEXT = "4 MB"
-  
-  # Getter/Setter
-  #----------------------------------------------------------------------------  
-  attr_accessor :delete_logo
   
   # Assocations
   #----------------------------------------------------------------------------
@@ -39,21 +31,6 @@ class Shelter < ActiveRecord::Base
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
   has_many :integrations, :dependent => :destroy
-  
-  has_attached_file :logo, :whiny => true, 
-                           :default_url => "/images/default_:style_logo.jpg", 
-                           :storage => :s3,
-                           :s3_credentials => S3_CREDENTIALS,
-                           :s3_headers => { 'Cache-Control' => 'max-age=31536000', 
-                                            'Expires' => 1.year.from_now.httpdate }, # 1 year
-                           :path => "/:class/:attachment/:id/:style/:basename.:extension",
-                           :styles => { :small => ["250x150>", :jpg],
-                                        :medium => ["350x250>", :jpg],
-                                        :large => ["500x400>", :jpg], 
-                                        :thumb => ["150x75>", :jpg] }
-  # Callback - Paperclip
-  #----------------------------------------------------------------------------
-  before_post_process :logo_valid?
 
   # Nested Attributes
   #----------------------------------------------------------------------------  
@@ -63,23 +40,14 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :phone, :presence => true
-  validates :email, :presence => true,
-                    :uniqueness => true, :allow_blank => true,
-                    :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+  validates :email, :presence => true, :uniqueness => true, :allow_blank => true, :email_format => true
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!    
-  validates :website, :facebook, :format => { :with => URL_FORMAT,  :message => "format is incorrect" },
-                                           :allow_blank => true
-  validates :twitter, :format => { :with => TWITTER_USERNAME_FORMAT,  :message => "format is incorrect. Example @shelterexchange" },
-                      :allow_blank => true
+  validates :website, :facebook, :allow_blank => true, :url_format => true
+  validates :twitter, :twitter_format => true, :allow_blank => true
         
   validate :address_valid?         
 
-  # Validations - Paperclip
-  #---------------------------------------------------------------------------- 
-  validates_attachment_size :logo, :less_than => LOGO_SIZE, :message => "needs to be #{LOGO_SIZE_IN_TEXT} or less"
-  validates_attachment_content_type :logo, :content_type => LOGO_TYPES, :message => "needs to be a JPG, PNG, or GIF file"
-  
   
   # Scopes
   #----------------------------------------------------------------------------
@@ -160,23 +128,7 @@ class Shelter < ActiveRecord::Base
     def address_valid?
       errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
-        
-    def logo_valid?
-      LOGO_TYPES.include?(self.logo_content_type) and self.logo_file_size < LOGO_SIZE
-    end
-    
-    def revert_logo?
-      if self.errors.present? and self.logo.file? and self.logo_file_name_changed?
-        self.logo.instance_write(:file_name, self.logo_file_name_was) 
-        self.logo.instance_write(:file_size, self.logo_file_size_was) 
-        self.logo.instance_write(:content_type, self.logo_content_type_was)
-        errors.add(:upload_logo_again, "please re-upload the logo")
-      end
-    end
-    
-    def delete_logo?
-      self.logo.clear if delete_logo == "1" && !self.logo_file_name_changed?
-    end
+
     
   
 end

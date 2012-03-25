@@ -13,14 +13,12 @@ class Parent < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :name, :presence => true
-  validates :home_phone, :presence => true, :uniqueness => true
-  validates :mobile_phone, :uniqueness => true, :allow_blank => true
+  validates :home_phone, :presence => true,  :uniqueness => true
+  validates :mobile_phone, :uniqueness => true,  :allow_blank => true
   validates :email, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."}, 
-                    :allow_blank => true,
-                    :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+                    :allow_blank => true, :email_format => true
   validates :email_2, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."}, 
-                              :allow_blank => true,
-                              :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+                      :allow_blank => true, :email_format => true
                     
   validate :address_valid?
                     

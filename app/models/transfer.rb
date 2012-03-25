@@ -26,8 +26,7 @@ class Transfer < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :requestor, :presence => true
   validates :phone, :presence => true
-  validates :email, :presence => true,
-                    :format => {:with => EMAIL_FORMAT, :message => "format is incorrect"}
+  validates :email, :presence => true, :email_format => true
   
   validates :transfer_history_reason, :presence => { :if => :transfer_history_reason_required? }
   
