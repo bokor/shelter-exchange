@@ -4,7 +4,11 @@
  * ------------------------------------------------------------------------ */
 var Users = {
 	selectUser: function(id) {
-		$.get("/users/"+id+"/edit.js");
+		$.ajax({
+			url: "/users/"+id+"/edit",
+			type: "get",
+			dataType: 'script'
+		});
 	},
 	cancelForm: function(id){
 		$("#edit_user_"+id).slideToggle(800,function() {

@@ -4,7 +4,11 @@
  * ------------------------------------------------------------------------ */
 var Placements = {
 	findComments: function(id){
-		$.get("/placements/"+id+"/find_comments.js");
+		$.ajax({
+			url: "/placements/"+id+"/find_comments",
+			type: "get",
+			dataType: 'script'
+		});
 	},
 	cancelForm: function(id){
 		$("#placement_"+id).slideToggle(800,function() {

@@ -128,11 +128,21 @@ var Communities = {
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 		
-		$.get("/communities/find_animals_in_bounds.js", $("#form_filters").serialize());
+		$.ajax({
+			url: "/communities/find_animals_in_bounds",
+			type: "get",
+			dataType: 'script',
+			data: $("#form_filters").serialize()
+		});
 
 	},
 	findAnimalsForShelter: function(){
-		$.get("/communities/find_animals_for_shelter.js", $("#form_filters").serialize());
+		$.ajax({
+			url: "/communities/find_animals_for_shelter",
+			type: "get",
+			dataType: 'script',
+			data: $("#form_filters").serialize()
+		});
 	},
 	geocodeAddress: function(){
 		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
@@ -188,7 +198,7 @@ var Communities = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
+					url: "/shared/breeds/auto_complete",
 					dataType: "json",
 					data: {
 						q: request.term,
@@ -218,7 +228,7 @@ var Communities = {
 			delay: 500, 
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/shelters/auto_complete.json",
+					url: "/shared/shelters/auto_complete",
 					dataType: "json",
 					data: {
 						q: request.term

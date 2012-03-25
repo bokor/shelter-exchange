@@ -4,9 +4,14 @@
  * ------------------------------------------------------------------------ */
 var Accommodations = {
 	filterByTypeLocation: function() {
-		$.get("/accommodations/filter_by_type_location.js", { 
-			animal_type_id: $('#animal_animal_type_id').val(), 
-			location_id: $('#location_location_id').val() 
+		$.ajax({
+			url: "/accommodations/filter_by_type_location",
+			type: "get",
+			dataType: 'script',
+			data: { 
+				animal_type_id: $('#animal_animal_type_id').val(), 
+				location_id: $('#location_location_id').val() 
+			}
 		});
 	},
 	cancelForm: function(id){
