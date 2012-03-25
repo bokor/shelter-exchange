@@ -1,5 +1,5 @@
 class Parent < ActiveRecord::Base
-  include StreetAddress
+  include StreetAddressable
   
   default_scope :order => 'created_at DESC' #, :limit => 25
 

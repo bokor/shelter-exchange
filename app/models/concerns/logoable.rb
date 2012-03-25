@@ -1,4 +1,4 @@
-module Logo
+module Logoable
   extend ActiveSupport::Concern
   
   included do

@@ -2,7 +2,7 @@ module Geocodeable
   extend ActiveSupport::Concern
   
   included do
-    include StreetAddress
+    include StreetAddressable
     
     # Plugins
     #----------------------------------------------------------------------------

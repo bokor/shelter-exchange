@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  include Photo
+  include Photoable
   
   default_scope :order => 'animals.updated_at DESC', :limit => 250
 

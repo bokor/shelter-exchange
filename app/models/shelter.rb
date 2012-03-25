@@ -1,5 +1,5 @@
 class Shelter < ActiveRecord::Base
-  include Logo, Geocodeable
+  include Logoable, Geocodeable
   
 
   # Callbacks

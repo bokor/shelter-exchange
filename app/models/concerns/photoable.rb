@@ -1,4 +1,4 @@
-module Photo
+module Photoable
   extend ActiveSupport::Concern
   
   included do

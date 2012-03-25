@@ -1,4 +1,4 @@
-module Document
+module Documentable
   extend ActiveSupport::Concern
   
   included do

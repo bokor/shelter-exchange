@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  include Document
+  include Documentable
   
   # Callbacks
   #----------------------------------------------------------------------------

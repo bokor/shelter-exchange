@@ -1,4 +1,4 @@
-module StreetAddress
+module StreetAddressable
   extend ActiveSupport::Concern
   
   included do
