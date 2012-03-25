@@ -1,4 +1,4 @@
-module Logoable
+module Logo
   extend ActiveSupport::Concern
   
   included do
@@ -45,31 +45,25 @@ module Logoable
 
   end
   
-  module ClassMethods
-    # ...
-  end
 
-  module InstanceMethods
 
-    private
+  private
 
-      def logo_valid?
-        LOGO_TYPES.include?(self.logo_content_type) and self.logo_file_size < LOGO_SIZE
+    def logo_valid?
+      LOGO_TYPES.include?(self.logo_content_type) and self.logo_file_size < LOGO_SIZE
+    end
+
+    def revert_logo?
+      if self.errors.present? and self.logo.file? and self.logo_file_name_changed?
+        self.logo.instance_write(:file_name, self.logo_file_name_was) 
+        self.logo.instance_write(:file_size, self.logo_file_size_was) 
+        self.logo.instance_write(:content_type, self.logo_content_type_was)
+        errors.add(:upload_logo_again, "please re-upload the logo")
       end
+    end
 
-      def revert_logo?
-        if self.errors.present? and self.logo.file? and self.logo_file_name_changed?
-          self.logo.instance_write(:file_name, self.logo_file_name_was) 
-          self.logo.instance_write(:file_size, self.logo_file_size_was) 
-          self.logo.instance_write(:content_type, self.logo_content_type_was)
-          errors.add(:upload_logo_again, "please re-upload the logo")
-        end
-      end
-
-      def delete_logo?
-        self.logo.clear if delete_logo == "1" && !self.logo_file_name_changed?
-      end
-    
-  end
+    def delete_logo?
+      self.logo.clear if delete_logo == "1" && !self.logo_file_name_changed?
+    end
 
 end

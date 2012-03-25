@@ -1,13 +1,10 @@
 class Shelter < ActiveRecord::Base
-  include Logoable
+  include Logo, Geocodeable
   
-  # Plugins
-  #----------------------------------------------------------------------------
-  acts_as_mappable
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :geocode_address, :format_phone_numbers, :clear_status_reason
+  before_save :format_phone_numbers, :clear_status_reason
   
   # Constants
   #----------------------------------------------------------------------------
@@ -44,9 +41,7 @@ class Shelter < ActiveRecord::Base
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!    
   validates :website, :facebook, :allow_blank => true, :url_format => true
-  validates :twitter, :twitter_format => true, :allow_blank => true
-        
-  validate :address_valid?         
+  validates :twitter, :twitter_format => true, :allow_blank => true        
 
   
   # Scopes
@@ -79,10 +74,6 @@ class Shelter < ActiveRecord::Base
     save!
   end
   
-  def address_changed?
-    (self.new_record?) or (self.street_changed? or self.street_2_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
-  end
-  
   def kill_shelter?
     self.is_kill_shelter
   end
@@ -108,13 +99,6 @@ class Shelter < ActiveRecord::Base
   end
   
   private
-    def geocode_address
-      if address_changed?
-        geo = Geokit::Geocoders::MultiGeocoder.geocode ([self.street, self.city, self.state, self.zip_code].join(" "))
-        errors.add(:street, "Could not Geocode address") if !geo.success
-        self.lat, self.lng = geo.lat, geo.lng if geo.success
-      end
-    end
 
     def format_phone_numbers
       self.phone = self.phone.gsub(/[^0-9]/, "") unless self.phone.blank?
@@ -124,13 +108,6 @@ class Shelter < ActiveRecord::Base
     def clear_status_reason
       self.status_reason = "" if self.status_changed? && self.active?
     end
-    
-    def address_valid?
-      errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
-    end
-
-    
   
 end
-      #unless delete_logo.to_i.zero?
-      # %w(street city state zip_code).all? { |attr| self.send(attr).blank? }
+      

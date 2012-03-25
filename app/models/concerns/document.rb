@@ -1,4 +1,4 @@
-module Documentable
+module Document
   extend ActiveSupport::Concern
   
   included do
@@ -36,26 +36,20 @@ module Documentable
   
   end
   
-  module ClassMethods
-    # ...
-  end
+  private
 
-  module InstanceMethods
+    def document_valid?
+      self.document_file_size < DOCUMENT_SIZE
+    end
 
-    private
-
-      def document_valid?
-        self.document_file_size < DOCUMENT_SIZE
+    def revert_document?
+      if self.errors.present? and self.document.file? and self.document_file_name_changed?
+        self.document.instance_write(:file_name, self.document_file_name_was) 
+        self.document.instance_write(:file_size, self.document_file_size_was) 
+        self.document.instance_write(:content_type, self.document_content_type_was)
+        errors.add(:upload_document_again, "please re-upload the document")
       end
+    end
 
-      def revert_document?
-        if self.errors.present? and self.document.file? and self.document_file_name_changed?
-          self.document.instance_write(:file_name, self.document_file_name_was) 
-          self.document.instance_write(:file_size, self.document_file_size_was) 
-          self.document.instance_write(:content_type, self.document_content_type_was)
-          errors.add(:upload_document_again, "please re-upload the document")
-        end
-      end
-  end
 
 end

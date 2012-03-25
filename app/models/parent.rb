@@ -1,4 +1,6 @@
 class Parent < ActiveRecord::Base
+  include StreetAddress
+  
   default_scope :order => 'created_at DESC' #, :limit => 25
 
   # Callbacks
@@ -20,8 +22,6 @@ class Parent < ActiveRecord::Base
   validates :email_2, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."}, 
                       :allow_blank => true, :email_format => true
                     
-  validate :address_valid?
-                    
   # Scopes
   #----------------------------------------------------------------------------
   def self.search(q)
@@ -29,16 +29,11 @@ class Parent < ActiveRecord::Base
     where("home_phone = '#{phone}' OR mobile_phone = '#{phone}' OR email = '#{q}' OR email_2 = '#{q}'").limit(10)
   end
 
-  
   private 
   
     def format_phone_numbers
       self.home_phone.gsub!(/\D/, "") unless self.home_phone.blank?
       self.mobile_phone.gsub!(/\D/, "") unless self.mobile_phone.blank?
-    end
-    
-    def address_valid?
-      errors.add(:address, "Street, City, State and Zip code are all required") if self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
     end
         
 end
