@@ -226,9 +226,20 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------  
   
   
+  
+  # CSV Exports
+  #----------------------------------------------------------------------------
+
+  #----------------------------------------------------------------------------
+  
+  
+  
+  # Instance Methods
+  #----------------------------------------------------------------------------
+  
   # Finalize Transfer Request
   #----------------------------------------------------------------------------
-  def self.complete_transfer_request!(current_shelter, requestor_shelter)
+  def complete_transfer_request!(current_shelter, requestor_shelter)
     self.animal_status_id = AnimalStatus::STATUSES[:new_intake]
     self.status_history_reason = "Transferred from #{current_shelter.name}"
     self.status_change_date = Date.today
@@ -247,16 +258,6 @@ class Animal < ActiveRecord::Base
   end
   #----------------------------------------------------------------------------  
   
-  
-  # CSV Exports
-  #----------------------------------------------------------------------------
-
-  #----------------------------------------------------------------------------
-  
-  
-  
-  # Instance Methods
-  #----------------------------------------------------------------------------
   def full_breed
     if mix_breed?
       self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"
