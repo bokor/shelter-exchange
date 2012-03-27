@@ -11,7 +11,6 @@ module Documentable
     #----------------------------------------------------------------------------
     DOCUMENT_SIZE = 5.megabytes
     DOCUMENT_SIZE_IN_TEXT = "5 MB"
-    DOCUMENT_TYPE = ["501(c)(3) determination letter", "990 tax form", "Your adoption contract"]
     
     # Associations
     #----------------------------------------------------------------------------
@@ -23,11 +22,6 @@ module Documentable
     # Callback - Paperclip
     #----------------------------------------------------------------------------
     before_post_process :document_valid?
-    
-    # Validations
-    #----------------------------------------------------------------------------
-    validates :document_type, :presence => { :in => DOCUMENT_TYPE }
-    
 
     # Validations - PaperClip
     #----------------------------------------------------------------------------

@@ -1,9 +1,9 @@
 module Geocodeable
   extend ActiveSupport::Concern
+  include StreetAddressable
   
   included do
-    include StreetAddressable
-    
+      
     # Plugins
     #----------------------------------------------------------------------------
     acts_as_mappable

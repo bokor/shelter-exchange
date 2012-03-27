@@ -4,6 +4,10 @@ class Account < ActiveRecord::Base
   # Callbacks
   #----------------------------------------------------------------------------
   before_validation :downcase_subdomain, :assign_owner_role
+  
+  # Constants
+  #----------------------------------------------------------------------------
+  DOCUMENT_TYPE = ["501(c)(3) determination letter", "990 tax form", "Your adoption contract"]
       
   # Associations
   #----------------------------------------------------------------------------
@@ -17,6 +21,7 @@ class Account < ActiveRecord::Base
   
   # Validations
   #----------------------------------------------------------------------------
+  validates :document_type, :presence => { :in => DOCUMENT_TYPE }
   validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true, :subdomain_exclusion => true
 
   # Class Methods
