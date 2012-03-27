@@ -51,6 +51,7 @@ class Animal < ActiveRecord::Base
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
   validate :date_of_birth_valid?
+  # validates :date_of_birth, :date_format => true
   validate :arrival_date_valid?
   validate :euthanasia_date_valid?
     
@@ -357,8 +358,7 @@ class Animal < ActiveRecord::Base
       self.date_of_birth = nil
       unless self.date_of_birth_year.blank? and self.date_of_birth_month.blank? and self.date_of_birth_day.blank?
         begin
-          raise ArgumentError if self.date_of_birth_year.length < 4
-          self.date_of_birth = Date.civil(self.date_of_birth_year.to_i, self.date_of_birth_month.to_i, self.date_of_birth_day.to_i)
+          self.date_of_birth = Date.parse("#{self.date_of_birth_year}/#{self.date_of_birth_month}/#{self.date_of_birth_day}")
         rescue ArgumentError
           errors.add(:date_of_birth, "is an invalid date format")
         end
@@ -369,12 +369,11 @@ class Animal < ActiveRecord::Base
       self.arrival_date = nil
       unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
         begin
-          raise ArgumentError if self.arrival_date_year.length < 4
-          self.arrival_date = Date.civil(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i)
+          self.arrival_date = Date.parse("#{self.arrival_date_year}/#{self.arrival_date_month}/#{self.arrival_date_day}")
         rescue ArgumentError
           errors.add(:arrival_date, "is an invalid date format")
         end
-      end 
+      end
     end
     
     def euthanasia_date_valid?
@@ -382,8 +381,7 @@ class Animal < ActiveRecord::Base
         self.euthanasia_date = nil
         unless self.euthanasia_date_year.blank? and self.euthanasia_date_month.blank? and self.euthanasia_date_day.blank?
           begin
-            raise ArgumentError if self.euthanasia_date_year.length < 4
-            self.euthanasia_date = Date.civil(self.euthanasia_date_year.to_i, self.euthanasia_date_month.to_i, self.euthanasia_date_day.to_i)
+            self.euthanasia_date = Date.parse("#{self.euthanasia_date_year}/#{self.euthanasia_date_month}/#{self.euthanasia_date_day}")
           rescue ArgumentError
             errors.add(:euthanasia_date, "is an invalid date format")
           end
