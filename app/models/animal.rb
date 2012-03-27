@@ -51,7 +51,6 @@ class Animal < ActiveRecord::Base
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
   validate :date_of_birth_valid?
-  # validates :date_of_birth, :date_format => true
   validate :arrival_date_valid?
   validate :euthanasia_date_valid?
     
@@ -206,7 +205,7 @@ class Animal < ActiveRecord::Base
   
   # Finalize Transfer Request
   #----------------------------------------------------------------------------
-  def self.complete_transfer_request!(current_shelter, requestor_shelter)
+  def complete_transfer_request!(current_shelter, requestor_shelter)
     self.animal_status_id = AnimalStatus::STATUSES[:new_intake]
     self.status_history_reason = "Transferred from #{current_shelter.name}"
     self.status_change_date = Date.today
