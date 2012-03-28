@@ -43,16 +43,15 @@ class Animal < ActiveRecord::Base
   validates :animal_status_id, :presence => { :message => 'needs to be selected' }
   validates :sex, :presence => true
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
-  # validates :hold_time, :presence => { :if => :is_kill_shelter? }
   validates :special_needs, :presence => { :if => :special_needs? }
-  # validates :status_history_reason, :presence => { :if => :status_history_reason_required? }
   validates :video_url, :video_url_format => true, :allow_blank => true
+  validates :date_of_birth, :date_format => true, :allow_blank => true
+  validates :arrival_date, :date_format => true
+  validates :euthanasia_date, :date_format => true
   
   validate :primary_breed_valid?
   validate :secondary_breed_valid? 
-  validate :date_of_birth_valid?
-  validate :arrival_date_valid?
-  validate :euthanasia_date_valid?
+
     
     
   # Scopes - Statuses
@@ -352,44 +351,7 @@ class Animal < ActiveRecord::Base
         end
       end
     end
-    
-    def date_of_birth_valid?
-      self.date_of_birth = nil
-      unless self.date_of_birth_year.blank? and self.date_of_birth_month.blank? and self.date_of_birth_day.blank?
-        begin
-          self.date_of_birth = Date.parse("#{self.date_of_birth_year}/#{self.date_of_birth_month}/#{self.date_of_birth_day}")
-        rescue ArgumentError
-          errors.add(:date_of_birth, "is an invalid date format")
-        end
-      end
-    end
-    
-    def arrival_date_valid?
-      self.arrival_date = nil
-      unless self.arrival_date_year.blank? and self.arrival_date_month.blank? and self.arrival_date_day.blank?
-        begin
-          self.arrival_date = Date.parse("#{self.arrival_date_year}/#{self.arrival_date_month}/#{self.arrival_date_day}")
-        rescue ArgumentError
-          errors.add(:arrival_date, "is an invalid date format")
-        end
-      end
-    end
-    
-    def euthanasia_date_valid?
-      if is_kill_shelter?
-        self.euthanasia_date = nil
-        unless self.euthanasia_date_year.blank? and self.euthanasia_date_month.blank? and self.euthanasia_date_day.blank?
-          begin
-            self.euthanasia_date = Date.parse("#{self.euthanasia_date_year}/#{self.euthanasia_date_month}/#{self.euthanasia_date_day}")
-          rescue ArgumentError
-            errors.add(:euthanasia_date, "is an invalid date format")
-          end
-        # else
-          # errors.add_on_blank(:euthanasia_date)
-        end
-      end
-    end
-        
+            
     def change_status_date!
       if self.new_record? or self.animal_status_id_changed?
         self.status_change_date = Date.today
