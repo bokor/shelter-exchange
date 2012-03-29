@@ -27,8 +27,8 @@ class Task < ActiveRecord::Base
   
   # Scopes - Dashboard Only - Recent Activity
   #----------------------------------------------------------------------------
-  def self.recent_activity(shelter_id, limit=10)
-    includes(:taskable).where(:shelter_id => shelter_id).reorder("tasks.updated_at DESC").limit(limit)
+  def self.recent_activity(limit=10)
+    includes(:taskable).reorder("tasks.updated_at DESC").limit(limit)
   end
 
   # Instance Methods

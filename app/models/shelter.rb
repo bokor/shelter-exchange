@@ -1,10 +1,10 @@
 class Shelter < ActiveRecord::Base
-  include Logoable, Geocodeable
+  include Logoable, Geocodeable, Phoneable
   
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :format_phone_numbers, :clear_status_reason
+  before_save :clear_status_reason
   
   # Constants
   #----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class Shelter < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :name, :presence => true
-  validates :phone, :presence => true
+  validates :phone, :presence => true, :phone_format => true
   validates :email, :presence => true, :uniqueness => true, :allow_blank => true, :email_format => true
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :access_token, :uniqueness => true, :on => :generate_access_token!    
@@ -99,11 +99,6 @@ class Shelter < ActiveRecord::Base
   end
   
   private
-
-    def format_phone_numbers
-      self.phone = self.phone.gsub(/[^0-9]/, "") unless self.phone.blank?
-      self.fax = self.fax.gsub(/[^0-9]/, "") unless self.fax.blank?
-    end
     
     def clear_status_reason
       self.status_reason = "" if self.status_changed? && self.active?

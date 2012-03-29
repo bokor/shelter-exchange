@@ -92,8 +92,8 @@ class Animal < ActiveRecord::Base
   
   # Scopes - Dashboard - Recent Activity
   #----------------------------------------------------------------------------
-  def self.recent_activity(shelter_id, limit=10)
-    includes(:animal_type, :animal_status).where(:shelter_id => shelter_id).reorder("animals.updated_at DESC").limit(limit)
+  def self.recent_activity(limit=10)
+    includes(:animal_type, :animal_status).reorder("animals.updated_at DESC").limit(limit)
   end
   #----------------------------------------------------------------------------  
   

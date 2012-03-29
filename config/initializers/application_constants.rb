@@ -11,6 +11,7 @@ US_STATES = { :AK => "Alaska", :AL => "Alabama", :AR => "Arkansas", :AZ => "Ariz
 SEX = %w[male female].freeze
 
 EMAIL_REGEX = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i  
+PHONE_REGEX = /^\+?\d+(-\d+)*$/  # or /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
 URL_REGEX = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
 TWITTER_USERNAME_REGEX = /@(?:[a-z0-9]_?)*\z/
 PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 

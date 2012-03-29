@@ -32,20 +32,20 @@
 			<%= has_error_message?(@parent, :address)%>
 		</li>
 		<li>
-			<%= f.label :home_phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
-				<%= f.text_field :home_phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.home_phone, :delimiter => "-") %>
-				<%= f.label :home_phone, "###-###-####" %>
+				<%= f.text_field :phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.phone, :delimiter => "-") %>
+				<%= f.label :phone, "###-###-####" %>
 			</div>
-			<%= has_error_message?(@parent, :home_phone)%>
+			<%= has_error_message?(@parent, :phone)%>
 		</li>
 		<li>
-			<%= f.label :mobile_phone, "Mobile", :class => "desc" %>
+			<%= f.label :mobile, "Mobile", :class => "desc" %>
 			<div>
-				<%= f.text_field :mobile_phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.mobile_phone, :delimiter => "-") %>
-				<%= f.label :mobile_phone, "###-###-####" %>
+				<%= f.text_field :mobile, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@parent.mobile, :delimiter => "-") %>
+				<%= f.label :mobile, "###-###-####" %>
 			</div>
-			<%= has_error_message?(@parent, :mobile_phone)%>
+			<%= has_error_message?(@parent, :mobile)%>
 		</li>
 		<li>
 			<%= f.label :email, "Email", :class => "desc" %>

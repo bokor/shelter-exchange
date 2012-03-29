@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321214911) do
+ActiveRecord::Schema.define(:version => 20120329185233) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -278,8 +278,8 @@ ActiveRecord::Schema.define(:version => 20120321214911) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
+    t.string   "phone"
+    t.string   "mobile"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(:version => 20120321214911) do
   end
 
   add_index "parents", ["created_at"], :name => "index_parents_on_created_at"
-  add_index "parents", ["home_phone", "mobile_phone", "email"], :name => "full_search"
+  add_index "parents", ["phone", "mobile", "email", "email_2"], :name => "full_search"
 
   create_table "placements", :force => true do |t|
     t.integer  "animal_id"
@@ -350,7 +350,6 @@ ActiveRecord::Schema.define(:version => 20120321214911) do
     t.datetime "updated_at"
   end
 
-  add_index "status_histories", ["animal_id", "created_at"], :name => "index_status_histories_on_animal_id_and_created_at"
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
   add_index "status_histories", ["created_at", "animal_id"], :name => "index_status_histories_on_created_at_and_animal_id"

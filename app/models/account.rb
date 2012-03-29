@@ -41,7 +41,7 @@ class Account < ActiveRecord::Base
   private
 
     def downcase_subdomain
-      self.subdomain.downcase! if attribute_present?(:subdomain)
+      self.subdomain.downcase! #if attribute_present?(:subdomain) I DON'T THINK THIS IS NEEDED
     end
    
     def assign_owner_role

@@ -8,9 +8,9 @@
 				<p><%= parent.city %>, <%= parent.state %> <%= parent.zip_code %></p>
 			</td>
 			<td class="status">
-				<p><%=number_to_phone(parent.home_phone, :delimiter => "-")%>(h)</p>
-				<% unless parent.mobile_phone.blank? %>
-					<p><%=number_to_phone(parent.mobile_phone, :delimiter => "-")%>(m)</p>
+				<p><%=number_to_phone(parent.phone, :delimiter => "-")%>(h)</p>
+				<% unless parent.mobile.blank? %>
+					<p><%=number_to_phone(parent.mobile, :delimiter => "-")%>(m)</p>
 				<% end %>
 				<p><%= parent.email %></p>
 				<% unless parent.email_2.blank? %>

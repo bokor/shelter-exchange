@@ -36,9 +36,9 @@
 			<div id="contact_details">
 				<h3>Contact details:</h3>
 				<ul>
-					<li>Phone:  <%=number_to_phone(@parent.home_phone, :delimiter => "-")%></li>
-					<% unless @parent.mobile_phone.blank? %>
-						<li>Mobile: <%=number_to_phone(@parent.mobile_phone, :delimiter => "-")%></li>
+					<li>Phone:  <%=number_to_phone(@parent.phone, :delimiter => "-")%></li>
+					<% unless @parent.mobile.blank? %>
+						<li>Mobile: <%=number_to_phone(@parent.mobile, :delimiter => "-")%></li>
 					<% end %>
 					<li>Email:  <a href="mailto:<%=@parent.email %>"><%=@parent.email %></a></li>
 					<% unless @parent.email_2.blank? %>
