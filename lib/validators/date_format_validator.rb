@@ -8,8 +8,8 @@ class DateFormatValidator < ActiveModel::EachValidator
     # if options[:allow_blank] or options[:allow_nil]
       unless year.blank? and month.blank? and day.blank?
         begin
-          raise ArgumentError if year.length < 4 
-          record[attribute] = Date.civil(year.to_i, month.to_i, day.to_i)
+          # raise ArgumentError if year.length < 4 
+          record[attribute] = Date.parse("#{year.to_i}/#{month.to_i}/#{day.to_i}") #Date.civil(year.to_i, month.to_i, day.to_i)
         rescue ArgumentError
           record.errors.add(attribute, options[:message] || "is an invalid date format")
         end
