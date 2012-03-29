@@ -2,9 +2,9 @@
 
 <%= title page_title  %>
 
-<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, located at #{@shelter.name} in #{@shelter.city}, #{@shelter.state}." %>
+<%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, located at #{@shelter.name} in #{@shelter.city}, #{US_STATES[@shelter.state.to_sym]}." %>
 
-<%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
+<%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state.to_sym]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
 
 <%= robots "noindex,follow" if !@animal.available_for_adoption? %>
 
