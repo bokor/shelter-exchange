@@ -1,7 +1,11 @@
 class Parent < ActiveRecord::Base
-  include StreetAddressable, Phoneable
+  include StreetAddressable
   
   default_scope :order => 'created_at DESC' #, :limit => 25
+  
+  # Callbacks
+  #----------------------------------------------------------------------------
+  before_save :clean_phone_numbers
   
   # Associations
   #----------------------------------------------------------------------------
@@ -22,7 +26,16 @@ class Parent < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.search(q)
     phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
-    where("phone = '#{phone}' OR mobile = '#{phone}' OR email = '#{q}' OR email_2 = '#{q}'").limit(10)
+    where("phone = ? OR mobile = ? OR email = ? OR email_2 = ?", phone, phone, q, q).limit(10)
   end
+  
+  private
+  
+    def clean_phone_numbers
+      [:phone, :mobile].each do |type|
+        # self.send("#{type}=", self.send(type).gsub(/\D/, "")) if self.respond_to?(type) and self.send(type).present?
+        self[type] = self.send(type).gsub(/\D/, "") if self.respond_to?(type) and self.send(type).present?
+      end
+    end
         
 end

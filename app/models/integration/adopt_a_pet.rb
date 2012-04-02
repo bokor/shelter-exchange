@@ -2,12 +2,6 @@ class Integration::AdoptAPet < Integration
   
   require 'net/ftp'
   
-  # Callbacks
-  #----------------------------------------------------------------------------  
-  
-  # Getter/Setter
-  #----------------------------------------------------------------------------  
-
   # Constants
   #----------------------------------------------------------------------------  
   FTP_URL = "autoupload.adoptapet.com"
@@ -17,15 +11,6 @@ class Integration::AdoptAPet < Integration
   validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
-  
-  # Scopes
-  #----------------------------------------------------------------------------
-
-  # Class Methods
-  #----------------------------------------------------------------------------
-  
-  # Instance Methods
-  #----------------------------------------------------------------------------
   
   private
   
@@ -38,5 +23,3 @@ class Integration::AdoptAPet < Integration
     end
 
 end
-
-  # validates :type, :uniqueness => { :scope => :shelter_id, :message => "has already been created" }

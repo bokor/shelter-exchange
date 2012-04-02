@@ -15,9 +15,5 @@ class Note < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :title, :presence => true
   validates :category, :presence => { :in => CATEGORIES, :message => "needs to be selected" }
-
-  # Scopes
-  #----------------------------------------------------------------------------
-  # scope :animal_filter, lambda {|name| where("category = ?", name) }
   
 end
