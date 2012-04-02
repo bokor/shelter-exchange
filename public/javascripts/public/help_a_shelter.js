@@ -12,7 +12,8 @@ var lng = null;
 var mapOverlay = null;
 var mapCenter = null;
 var logo = null;
-var googleListener = null;
+var idleListener = null;
+var resizeListener = null;
 
 var HelpAShelter = {
 	initialize: function(latitude, longitude, overlay, marker){
@@ -61,12 +62,12 @@ var HelpAShelter = {
 	searchByCityZipCode: function() {
 		
 		// Add Google Map Listener
-		googleListener = google.maps.event.addListener(map, 'idle', function(e){
+		idleListener = google.maps.event.addListener(map, 'idle', function(e){
 			mapCenter = map.getCenter();
 			HelpAShelter.findSheltersInBounds();
 		});
 		
-		google.maps.event.addDomListener(window, 'resize', function() {
+		resizeListener = google.maps.event.addDomListener(window, 'resize', function() {
 		  map.setCenter(mapCenter);
 		});
 		
@@ -143,8 +144,8 @@ var HelpAShelter = {
 	},
 	breedAutoComplete: function(){
 		$("#filters_breed").autocomplete({
-			minLength: 0,
-			// autoFocus: true,
+			minLength: 3,
+			autoFocus: true,
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({

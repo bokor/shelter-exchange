@@ -112,20 +112,24 @@ var Animals = {
 		});
 	},
 	// liveSearch: function(element){
-	// 		var q = $(element);
-	// 		if (q.val().length >= 3) {
-	// 			clearTimeout($.data(element, "search_timer"));
-	// 			var wait = setTimeout(function() { 
-	// 				$.get("/animals/live_search.js", { q: q.val() });
-	// 				clearTimeout($.data(element, "search_timer"));  
-	// 			}, 500);
-	// 			$.data(element, "search_timer", wait);
-	// 		}
-	// 	},
+	// 	var q = $(element);
+	// 	if (q.val().length >= 3) {
+	// 		clearTimeout($.data(element, "search_timer"));
+	// 		var wait = setTimeout(function() { 
+	// 			$.ajax({
+	// 				url: "/animals/search",
+	// 				dataType: "script",
+	// 				data: { q: q.val() }
+	// 			});
+	// 			clearTimeout($.data(element, "search_timer"));  
+	// 		}, 500);
+	// 		$.data(element, "search_timer", wait);
+	// 	}		
+	// },
 	autoComplete: function(){
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,
-			// autoFocus: true,
+			autoFocus: true,
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({

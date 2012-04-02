@@ -11,7 +11,8 @@ var lat = null;
 var lng = null;
 var mapOverlay = null;
 var logo = null;
-var googleListener = null;
+var idleListener = null;
+var resizeListener = null;
 
 var Communities = {
 	initialize: function(latitude, longitude, overlay, marker){
@@ -60,9 +61,8 @@ var Communities = {
 	},
 	resetAll: function() {
 		//Remove Listener
-		if(googleListener != null){
-			google.maps.event.removeListener(googleListener);
-		}
+		if(idleListener != null){ google.maps.event.removeListener(idleListener); }
+		if(resizeListener != null){ google.maps.event.removeListener(resizeListener); }
 
 		// Unbind All Form Filters
 		$("#form_filters").unbind("keypress");
@@ -91,10 +91,15 @@ var Communities = {
 		kmlLayer.setMap(map);
 	},
 	searchByCityZipCode: function() {
-		
+
 		// Add Google Map Listener
-		googleListener = google.maps.event.addListener(map, 'idle', function(e){
+		idleListener = google.maps.event.addListener(map, 'idle', function(e){
+			mapCenter = map.getCenter();
 			Communities.findAnimalsInBounds();
+		});
+		
+		resizeListener = google.maps.event.addDomListener(window, 'resize', function() {
+		  map.setCenter(mapCenter);
 		});
 		
 		// Set up forms
@@ -186,8 +191,8 @@ var Communities = {
 	},
 	breedAutoComplete: function(findAnimalsFunction){
 		$("#filters_breed").autocomplete({
-			minLength: 0,
-			// autoFocus: true,
+			minLength: 3,
+			autoFocus: true,
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
@@ -217,7 +222,7 @@ var Communities = {
 	shelterNameAutoComplete: function(){
 		$("#shelter_name").autocomplete({
 			minLength: 3,
-			// autoFocus: true,
+			autoFocus: true,
 			delay: 500, 
 			source: function( request, response ) {
 				$.ajax({

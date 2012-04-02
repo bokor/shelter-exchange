@@ -22,34 +22,32 @@ module Animal::Mappable
     
       scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC") #.limit(nil)
     end
-  
-  end
-  
-  private
-  
+    
     def filter_euthanasia_only
       joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks)
     end
-  
+
     def filter_special_needs_only
-      where("animals.has_special_needs = ?", true)
+      where(:has_special_needs => true)
     end
-    
+
     def filter_animal_type(animal_type)
       where(:animal_type_id => animal_type)
     end
-  
+
     def filter_breed(breed)
       where("animals.primary_breed = ? OR animals.secondary_breed = ?", breed, breed)
     end
-  
+
     def filter_sex(sex)
       where(:sex => sex.downcase)
     end
-  
+
     def filter_animal_status(animal_status)
       where(:animal_status_id => animal_status)
     end
+  
+  end
 
 end
 
