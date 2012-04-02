@@ -12,6 +12,21 @@ class Public::HelpAShelterController < Public::ApplicationController
     @items = @shelter.items.select(:name).all
   end
   
+  def search_by_name
+    q = params[:q]
+    unless q.blank?
+      q.strip.split.join("%")
+      shelter_params = params[:shelters].delete_if{|k,v| v.blank?} if params[:shelters]
+      @shelters = q.blank? ? {} : Shelter.live_search(q, shelter_params).paginate(:per_page => 15, :page => params[:page])
+    end
+  end
+  
+  # def live_search
+  #   q = params[:q].strip.split.join("%")
+  #   shelter_params = params[:shelters].delete_if{|k,v| v.blank?} if params[:shelters]
+  #   @shelters = q.blank? ? {} : Shelter.live_search(q, shelter_params).paginate(:per_page => 15, :page => params[:page])
+  # end
+  
   def find_shelters_in_bounds
     @shelters = Shelter.find(:all, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:per_page => 15, :page => params[:page])
   end

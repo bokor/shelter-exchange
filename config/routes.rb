@@ -331,8 +331,9 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Public :: Help A Shelter
       #----------------------------------------------------------------------------
-      resources :help_a_shelter do
+      resources :help_a_shelter, :only => [:index, :show] do
         collection do
+          get :search_by_name
           get :find_shelters_in_bounds
           get :find_animals_for_shelter
         end
