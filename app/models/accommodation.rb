@@ -1,4 +1,6 @@
 class Accommodation < ActiveRecord::Base
+  include Searchable
+  
   default_scope :order => 'name ASC', :limit => 250
   
   # Constants
@@ -18,10 +20,6 @@ class Accommodation < ActiveRecord::Base
   validates :animal_type_id, :presence => {:message => "needs to be selected"}
   validates :name, :presence => true
   validates :max_capacity, :numericality => true
-  
-  # Scopes
-  #----------------------------------------------------------------------------
-  scope :search, lambda { |q| includes(:animal_type, :animals, :location).where("name LIKE ?", "%#{q}%") }
   
   
 end

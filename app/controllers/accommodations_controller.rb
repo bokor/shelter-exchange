@@ -3,7 +3,7 @@ class AccommodationsController < ApplicationController
   
   def index
     @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-  
+
     if @accommodations.blank?
       redirect_to new_accommodation_path
     end
@@ -51,17 +51,7 @@ class AccommodationsController < ApplicationController
   end
   
   def filter_by_type_location
-    type = params[:animal_type_id]
-    location = params[:location_id]
-    if type.empty? and location.empty?
-      @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-    elsif is_integer?(type) and location.empty?
-      @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).where(:animal_type_id => type).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-    elsif type.empty? and is_integer?(location)
-      @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).where(:location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-    elsif is_integer?(type) and is_integer?(location)
-      @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).where(:animal_type_id => type, :location_id => location).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
-    end
+    @accommodations = @current_shelter.accommodations.filter_by_type_location(params[:animal_type_id], params[:location_id]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
   end
 
 end

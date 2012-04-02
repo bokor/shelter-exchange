@@ -17,6 +17,7 @@ module ShelterExchangeApp
           #{config.root}/lib/
           #{config.root}/app/sweepers
           #{config.root}/app/observers
+          #{config.root}/app/presenters
           #{config.root}/app/models/concerns
     )
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
