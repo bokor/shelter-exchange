@@ -12,7 +12,7 @@ class Public::HelpAShelterController < Public::ApplicationController
     @items = @shelter.items.select(:name).all
   end
   
-  def search_by_name
+  def search_by_shelter_or_rescue_group
     q = params[:q]
     unless q.blank?
       q.strip.split.join("%")

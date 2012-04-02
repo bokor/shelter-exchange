@@ -318,7 +318,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :registered, :on => :member
       end
       get "signup" => "accounts#new", :path => :signup
-      # post "signup" => "accounts#create", :path => :signup
+      post "signup" => "accounts#create", :path => :signup
       
       
       # Public :: Save A Life
@@ -333,7 +333,7 @@ ShelterExchangeApp::Application.routes.draw do
       #----------------------------------------------------------------------------
       resources :help_a_shelter, :only => [:index, :show] do
         collection do
-          get :search_by_name
+          get :search_by_shelter_or_rescue_group
           get :find_shelters_in_bounds
           get :find_animals_for_shelter
         end

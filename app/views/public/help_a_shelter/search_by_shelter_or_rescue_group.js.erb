@@ -1,5 +1,7 @@
 <% unless @shelters.blank? %>
 	$('#shelters').html( "<%= escape_javascript( render 'shelter_list', :shelters => @shelters) %>" );
+	// Update Google Analytics if production
+	if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search_by_shelter_or_rescue_group/"+$("#q").val()]); }
 <% else %>
 	if ($('#search_not_found').length == 0) {
 		$('#shelters').html("<%= escape_javascript( render 'not_found_error') %>");

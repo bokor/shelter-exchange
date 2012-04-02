@@ -517,7 +517,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Help a Shelter :: Global
 -----------------------------------------------------------------------------*/
 .index_help_a_shelter #main .content { width: 95%;} /* Remove if you want to use the .content parent size of 960px;*/
-/*.show_help_a_shelter #main .content { width: 80%;}*/ /* Remove if you want to use the .content parent size of 960px;*/
+.search_by_shelter_or_rescue_group_help_a_shelter #main .content { width: 95%;}/* Remove if you want to use the .content parent size of 960px;*/
 
 .help_a_shelter #main ul {list-style:none;}
 .help_a_shelter #main ul.form {padding-bottom: 0; margin-bottom:0;}
@@ -532,14 +532,14 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .index_help_a_shelter .search_form form{float:left;width: 38%;}
 	.index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
 
-/* Search by name Help a Shelter :: Search Section :: Search Bar */   
+/* Search by Shelter or Rescue Group Help a Shelter :: Search Section :: Search Bar */   
 /******************************************************************/
-.search_by_name_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
-.search_by_name_help_a_shelter .search_content:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
-.search_by_name_help_a_shelter .search_form{float:left;width: 95%;}
-.search_by_name_help_a_shelter .search_form form{float:left;width: 59%;}
-	.search_by_name_help_a_shelter .search_form input.medium{ width: 62%;}
-.search_by_name_help_a_shelter .search_content .toggle_buttons{float:right; margin: 0 0 0 15px;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_form{float:left;width: 95%;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_form form{float:left;width: 59%;}
+	.search_by_shelter_or_rescue_group_help_a_shelter .search_form input[type=text]{ width: 65%; height:20px;font-size:14px;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content .toggle_buttons{float:left; margin: 0;}
 
 
 /* Index Help a Shelter :: Help Text */   

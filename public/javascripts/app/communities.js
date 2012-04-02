@@ -20,14 +20,7 @@ var Communities = {
 		lat = latitude;
 		lng = longitude;
 		
-		Communities.createMap();
-		
-		$(".helper_links .toggle_buttons a").bind("click",function(e){
-			e.preventDefault();
-			$(this).toggleClass("current");
-			var div = $(this).attr('href');
-			$(div).slideToggle('slow');
-		}); 
+		Communities.createMap(); 
 
 		$("#search_by_city_zipcode").bind("click",function(e, first){
 			e.preventDefault();

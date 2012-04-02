@@ -47,6 +47,10 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
     xml.lastmod @help_a_shelter_last_updated
     xml.priority "0.8"
   end
+  xml.url do
+    xml.loc search_by_shelter_or_rescue_group_public_help_a_shelter_index_url
+    xml.priority "0.8"
+  end
   @shelters.each do |shelter|
     xml.url do
       xml.loc public_help_a_shelter_url(shelter)

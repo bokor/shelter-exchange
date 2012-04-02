@@ -1,4 +1,4 @@
-<%= title "Search - Help a Shelter - Support the community" %>
+<%= title "Search by Shelter or Rescue Group - Help a Shelter - Support the community" %>
 <%= description "Ways to help your local animal shelter or rescue group includes volunteer, adopt, foster and donate.  Also, search to find animals available for adoption." %>
 <%= keywords "Ways to help a animal shelter, how to help a animals shelter, volunteer at animal shelter, donate to animal shelter, donate items to a animal shelter, donate food to animal shelter, adopt animals from a shelter, foster an animal, how to foster a animal, temporary foster home, search for animals, find an animal, find a pet" %>
 
@@ -18,9 +18,9 @@
 	
 	<div class="search_content">
 		<span class="search_form">
-			<%= form_for :shelters, :url => { :action => :search_by_name }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
-				<span><%= text_field_tag "q", "", :class => "field text medium", :placeholder => "Please type a shelter or rescue group name" %> </span>
-				<span><%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All States"}, {:class => "field select addr" }  %></span>
+			<%= form_for :shelters, :url => { :action => :search_by_shelter_or_rescue_group }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+				<span><%= text_field_tag "q", "", :placeholder => "Please type a shelter or rescue group name" %> </span>
+				<span><%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All States"}  %></span>
 				<span><%= f.submit "Go", :disable_with => '...' %></span>
 			<% end %>
 			<ul class="toggle_buttons">

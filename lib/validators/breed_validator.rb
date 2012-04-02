@@ -4,12 +4,14 @@ class BreedValidator < ActiveModel::EachValidator
   end
   
   def validate_primary_breed(record, attribute, value)
-    if record.primary_breed.blank?
-      record.errors.add_on_blank(attribute)
-    else
-      unless record.other?  # Bypass Type = Other
-        if find_breed(value, record.animal_type_id).blank?
-          record.errors.add(attribute, options[:message] || "must contain a valid breed from the list")
+    unless record.animal_type_id.blank?
+      if record.primary_breed.blank?
+        record.errors.add_on_blank(attribute)
+      else
+        unless record.other?  # Bypass Type = Other
+          if find_breed(value, record.animal_type_id).blank?
+            record.errors.add(attribute, options[:message] || "must contain a valid breed from the list")
+          end
         end
       end
     end

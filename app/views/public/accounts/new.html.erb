@@ -47,7 +47,7 @@
 	
 	<%= render "shared/error_messages", :target => @account %>
 		
-	<%= form_for (@account), :url => public_accounts_path, :html => { :multipart => true } do |account_form| %>
+	<%= form_for (@account), :url => public_signup_path, :html => { :multipart => true } do |account_form| %>
 
 		<%= account_form.fields_for :shelters do |shelter_fields| %>
 		<ul>
