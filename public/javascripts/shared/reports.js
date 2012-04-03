@@ -1,19 +1,19 @@
 /*!------------------------------------------------------------------------
- * app/reports.js
+ * shared/reports.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
+var ajaxUrl = (/\/admin\//.test(window.location.pathname)) ? "/admin/reports/" : "/reports/";
+
 var Reports = {
 	initialize: function(){
-		// Load Report
-		Reports.loadReports();
-		
 		// Reload Report after Submit
 		$('#submit_report').bind('click', function(){
 			Reports.loadReports();
 		});
+		$('#submit_report').trigger('click');
 	},
 	loadReports: function(){
-		var date_title = $("#date_report_selected_month option:selected").html() + " " + $("#date_report_selected_year option:selected").html();
+		var date_title = $("#_selected_month option:selected").html() + " " + $("#_selected_year option:selected").html();
 		var status_by_month_year_title = 'Animals by Status Monthly Total - ' + date_title;
 		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
 		
@@ -22,12 +22,13 @@ var Reports = {
 	},
 	pieChart: function(title, url_function){
 		$.ajax({
-			url: "/reports/" + url_function,
+			url: ajaxUrl + url_function,
 			type: "get",
 			dataType: 'json',
 			data: { 
-				selected_month: $("#date_report_selected_month").val(), 
-				selected_year: $("#date_report_selected_year").val() 
+				selected_month: $("#_selected_month").val(), 
+				selected_year: $("#_selected_year").val(),
+				selected_state: $("#_selected_state").val()  
 			},
 			success: function(data) {
 				var options = {
@@ -57,22 +58,26 @@ var Reports = {
 						data: []
 					}]
 			   	};
-			
+
 				$.each(data, function(i, item) {
 					var data = [item.name, item.count];
 					options.series[0].data.push(data);
 				});
-					
+
 				new Highcharts.Chart(options);
 		 	}
 		});
 	},
 	barChart: function(title, url_function, yaxis_title){
 		$.ajax({
-			url: "/reports/" + url_function,
+			url: ajaxUrl + url_function,
 			type: "get",
 			dataType: 'json',
-			data: { selected_year: $("#date_report_selected_year").val() },
+			data: { 
+				selected_month: $("#_selected_month").val(), 
+				selected_year: $("#_selected_year").val(),
+				selected_state: $("#_selected_state").val()  
+			},
 			success: function(data) {
 				var options = {
 					chart: { renderTo: url_function, defaultSeriesType: 'column' },
@@ -95,7 +100,7 @@ var Reports = {
 				   	},
 				    series: []
 				};
-				
+
 				$.each(data, function(i, item) {
 					var series = {
 						name: item.type,
@@ -103,10 +108,10 @@ var Reports = {
 					};
 					options.series.push(series);
 				});
-				
+
 				new Highcharts.Chart(options);
 		 	}
-			
+
 		});
 	}
 };

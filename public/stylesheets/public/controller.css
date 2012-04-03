@@ -544,7 +544,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
 /* Index Help a Shelter :: Help Text */   
 /******************************************************************/
-.help_a_shelter .helper_links{width: 5%; text-align:right;float:right;}
+.help_a_shelter .helper_links{/*width: 5%;*/ text-align:right;float:right;}
 .help_a_shelter #help_text{display:none; }
 .help_a_shelter #help_text h3{color:#000; text-shadow:none;}
 
