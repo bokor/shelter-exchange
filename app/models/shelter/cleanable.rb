@@ -3,7 +3,7 @@ module Shelter::Cleanable
   
   included do
     
-    before_validation :clean_fields
+    before_save :clean_fields
     
   end
   

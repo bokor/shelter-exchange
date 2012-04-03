@@ -3,7 +3,7 @@ module Parent::Cleanable
   
   included do
     
-    before_validation :clean_fields
+    before_save :clean_fields
     
   end
   
@@ -14,7 +14,7 @@ module Parent::Cleanable
     
     def clean_phone_numbers
       [:phone, :mobile].each do |type|
-        self.send(type).gsub!(/\D/, "") if self.respond_to?(type) and self.send(type).present?
+        self.send(type).gsub(/\D/, "") if self.respond_to?(type) and self.send(type).present?
       end
     end
 
