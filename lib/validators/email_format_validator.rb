@@ -1,7 +1,5 @@
 class EmailFormatValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
-    unless value =~ EMAIL_REGEX
-      object.errors[attribute] << (options[:message] || "format is incorrect") unless value.blank?
-    end
+    object.errors[attribute] << (options[:message] || "format is incorrect") unless value =~ EMAIL_REGEX
   end
 end

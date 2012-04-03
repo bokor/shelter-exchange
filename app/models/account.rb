@@ -22,7 +22,7 @@ class Account < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :document_type, :presence => { :in => DOCUMENT_TYPE }
-  validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true, :subdomain_exclusion => true
+  validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true
 
   # Class Methods
   #----------------------------------------------------------------------------
