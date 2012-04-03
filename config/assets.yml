@@ -27,8 +27,8 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
-    - public/javascripts/shared/*.js
-    - public/javascripts/app/*.js
+    - public/javascripts/shared/**/*.js
+    - public/javascripts/app/**/*.js
 
   admin:
     - public/javascripts/global/jquery.min.js
@@ -39,16 +39,16 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
-    - public/javascripts/shared/*.js
-    - public/javascripts/admin/*.js
+    - public/javascripts/shared/**/*.js
+    - public/javascripts/admin/**/*.js
 
   api:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/modernizr.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
-    - public/javascripts/shared/*.js
-    - public/javascripts/api/*.js
+    - public/javascripts/shared/**/*.js
+    - public/javascripts/api/**/*.js
 
   public:
     - public/javascripts/global/jquery.min.js
@@ -64,8 +64,8 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
-    - public/javascripts/shared/*.js
-    - public/javascripts/public/*.js
+    - public/javascripts/shared/**/*.js
+    - public/javascripts/public/**/*.js
 
   reports:
     - public/javascripts/global/highcharts.js
