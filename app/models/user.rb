@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   belongs_to :account
   has_many :shelters, :through => :account
   
-  devise :database_authenticatable, :recoverable, :token_authenticatable, #:confirmable, :lockable 
-         :rememberable, :trackable, :lockable, :invitable, :validatable, 
+  devise :database_authenticatable, :recoverable, :token_authenticatable, 
+         :rememberable, :trackable, :lockable, :invitable, 
          :authentication_keys => [ :email, :subdomain ]
-
+         #:confirmable, :lockable :validatable, 
          
   # Getters/Setters
   #----------------------------------------------------------------------------
@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
                   
   # Validations - Extra beyond devise's validations
   #----------------------------------------------------------------------------
-  validates :name, :presence => true
-  validates :role, :presence => { :message => "needs to be selected" }
+  validates :name , :presence => true
   
   # Scopes
   #----------------------------------------------------------------------------
