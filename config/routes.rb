@@ -144,13 +144,6 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :capacities
   
-    # API
-    #----------------------------------------------------------------------------
-    # resources :api, :only => [:animals, :animal]
-    # match '/api/animals' => 'api#animals', :as => :api_animals
-    # match '/api/animal' => 'api#animal', :as => :api_animal
-    # # match '/api/:version/animals' => 'api#animals'
-  
     # Account Settings
     #----------------------------------------------------------------------------
     resources :settings, :only => [:index] 
@@ -295,7 +288,9 @@ ShelterExchangeApp::Application.routes.draw do
       
       # Api :: Animals
       #----------------------------------------------------------------------------
-      resources :animals, :only => [:index]
+      resources :animals, :only => [:index, :show]
+      match '/:version/animals' => 'animals#index'
+      match '/:version/animals/:id' => 'animals#show'
       
     end
     

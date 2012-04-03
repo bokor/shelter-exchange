@@ -39,6 +39,7 @@ body { background-color: #fff; color:#000; }
 .show_animals h3{font-size: 24px;}
 .show_animals p{font-size:14px;}*/
 .show_animals .page_heading.blue{border-bottom:0px; background-color: #fff;}
+.show_animals .social{display:none;}
 .show_animals #notes_heading, .show_animals #status_history_heading {display:none;}
 .show_animals #notes, .show_animals .note_filters {display:none;}
 .show_animals #status_histories{display:none;}
