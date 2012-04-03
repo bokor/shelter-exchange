@@ -38,17 +38,6 @@ var SaveALife = {
 		SaveALife.searchByCityZipCode();
 	},	
 	createMap: function(){
-		// Map setup and config
-		// myLatLng = new google.maps.LatLng(lat, lng);
-		// geocoder = new google.maps.Geocoder();
-		// map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false,
-		// 	 																		    zoom: defaultZoom,
-		// 																		center: myLatLng,
-		//     																	mapTypeId: google.maps.MapTypeId.ROADMAP});
-		// To preseve the viewport you have to set the lat and long with the center and default zoom or set the bounds on the map
-		// or those fields aren't needed. 
-		// kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
-		
 		geocoder = new google.maps.Geocoder();
 		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
 		kmlLayer = new google.maps.KmlLayer(mapOverlay); 

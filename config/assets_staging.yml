@@ -27,6 +27,7 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/shared/*.js
     - public/javascripts/app/*.js
 
   admin:
@@ -38,6 +39,7 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/shared/*.js
     - public/javascripts/admin/*.js
 
   api:
@@ -45,6 +47,7 @@ javascripts:
     - public/javascripts/global/modernizr.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/shared/*.js
     - public/javascripts/api/*.js
 
   public:
@@ -61,6 +64,7 @@ javascripts:
     - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
+    - public/javascripts/shared/*.js
     - public/javascripts/public/*.js
 
   reports:
