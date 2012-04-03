@@ -1,7 +1,7 @@
 class Animal < ActiveRecord::Base
-  # Shared
+  # Concerns
   include Photoable, Statusable, Typeable
-  # Animal
+  # Animal Namespaced
   include Reportable, Searchable, Mappable, Transferrable, Apiable
   
   default_scope :order => 'animals.updated_at DESC', :limit => 250

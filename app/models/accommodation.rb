@@ -1,4 +1,5 @@
 class Accommodation < ActiveRecord::Base
+  # Accommodation Namespaced
   include Searchable
   
   default_scope :order => 'name ASC', :limit => 250

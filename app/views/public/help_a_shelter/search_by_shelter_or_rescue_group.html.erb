@@ -7,12 +7,6 @@
 <% end %>
 
 <%= content_for :page_content do %>
-
-	<!-- <h1>Search by Shelter
-		<span class="social">
-			<span><div class="fb-like" data-send="false" data-layout="button_count"data-show-faces="false"></div></span>
-		</span>
-	</h1> -->
 	
 	<%= render :partial => "shared/flash_messages" %>
 	
@@ -42,7 +36,10 @@
 	
 	<div id="shelters">
 		<div class="shelter_list">
-			<span style="font-size: 28px;line-height: 200px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;">Please search by shelter or rescue group name</span>
+			<span class="help_text">Search to find a shelter or rescue group near you.<span class="social">
+				<span><div class="fb-like" data-send="false" data-layout="button_count"data-show-faces="false"></div></span>
+			</span></span>
+			
 		</div>
 	</div>
 		

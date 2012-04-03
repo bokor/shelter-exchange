@@ -1,7 +1,7 @@
 class Shelter < ActiveRecord::Base
-  # Shared
+  # Concerns
   include Logoable, Geocodeable
-  # Shelter
+  # Shelter Namespaced
   include Cleanable, Searchable, Tokenable
   
   # Constants

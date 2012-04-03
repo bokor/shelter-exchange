@@ -18,6 +18,7 @@
 .pages .social span, 
 .accounts .social span,
 .index_help_a_shelter .social span {display:inline-block;}
+.search_by_shelter_or_rescue_group_help_a_shelter .social span {width: 100px;display:inline-block; padding-left: 10px; top: -5px;}
 
 .pages .social .pin-it-button, 
 .accounts .social .pin-it-button,
@@ -570,6 +571,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .help_a_shelter #shelters{border-top: 1px dotted #bbb;}
 .help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-bottom: 1px dotted #bbb;text-align: center;}
 .help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.help_a_shelter .shelter_list .help_text{font-size: 28px;line-height: 200px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
 .help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
  
 .help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; width: 30%; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}

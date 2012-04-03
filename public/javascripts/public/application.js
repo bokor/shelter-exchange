@@ -54,10 +54,7 @@ $(function() {
 	});
 });
 
-var validateEmail = function(value) {  
-	var regExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])","");
-	return regExp.test(value);
-}
+var validateEmail = function(value) { return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(value); }
 
 
 

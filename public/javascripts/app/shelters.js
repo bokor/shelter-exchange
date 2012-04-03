@@ -3,7 +3,6 @@
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Shelters = {
-	
 	initialize: function(lat, lng, s3_url){
 		Shelters.loadMap(lat, lng, s3_url);
 		Shelters.bindWishList();
