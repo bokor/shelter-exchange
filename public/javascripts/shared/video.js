@@ -6,23 +6,26 @@
 /* You Tube Link Fancybox
 /*----------------------------------------------------------------------------*/
 $(function() {
+	
+	if(typeof $.fancybox == 'function') {
+		$(".video_player").fancybox({
+			transitionIn : 'fade',
+			transitionOut : 'fade',
+			titlePosition : 'inside',
+			autoScale : true,
+			autoDimensions : true,
+			centerOnScroll : true,
+			type : 'swf'
+		});
 
-	$(".video_player").fancybox({
-		transitionIn : 'fade',
-		transitionOut : 'fade',
-		titlePosition : 'inside',
-		autoScale : true,
-		autoDimensions : true,
-		centerOnScroll : true,
-		type : 'swf'
-	});
-
-	$(".popup_fancybox").fancybox({
-		width : 980,
-		height: 550,
-		transitionIn : 'elastic',
-		transitionOut : 'elastic',
-		type : 'iframe'
-	});
+		$(".popup_fancybox").fancybox({
+			width : 980,
+			height: 550,
+			transitionIn : 'elastic',
+			transitionOut : 'elastic',
+			type : 'iframe'
+		});
+		
+	}
 
 });

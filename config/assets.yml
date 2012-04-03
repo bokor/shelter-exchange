@@ -74,11 +74,13 @@ javascripts:
 stylesheets:
   app:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     
   app_login:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/app/login.css
 
   app_print:
@@ -86,24 +88,29 @@ stylesheets:
       
   admin:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
   
   admin_login:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/admin/login.css
   
   api:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
   
   public:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
   public_popup:
     - public/stylesheets/global/**/*.css
+    - public/stylesheets/shared/*.css
     - public/stylesheets/public/popup.css
     - public/stylesheets/public/controller.css

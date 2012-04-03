@@ -2,19 +2,6 @@
  * public/save_a_life.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-var defaultZoom = 11;
-var myLatLng = null;
-var geocoder = null;
-var map = null;
-var kmlLayer = null;
-var lat = null;
-var lng = null;
-var mapCenter = null;
-var mapOverlay = null;
-var logo = null;
-var idleListener = null;
-var resizeListener = null;
-
 var SaveALife = {
 	initialize: function(latitude, longitude, overlay, marker){
 		mapOverlay = overlay;
@@ -22,13 +9,13 @@ var SaveALife = {
 		lat = latitude;
 		lng = longitude;
 		
-		SaveALife.createMap();
+		Maps.createMap();
 		
 		$("#map_auto_scroll").jScroll({top: 50, speed : "slow"});
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
-			SaveALife.geocodeAddress();
+			Maps.geocodeAddress();
 		});
 		
 		$("#search_by_city_zipcode").bind("click",function(e, first){
@@ -37,12 +24,6 @@ var SaveALife = {
 
 		SaveALife.searchByCityZipCode();
 	},	
-	createMap: function(){
-		geocoder = new google.maps.Geocoder();
-		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
-		kmlLayer = new google.maps.KmlLayer(mapOverlay); 
-		kmlLayer.setMap(map);
-	},
 	searchByCityZipCode: function() {
 		
 		// Add Google Map Listener
@@ -57,8 +38,8 @@ var SaveALife = {
 		
 		// Set up forms
 		SaveALife.bindFilters();
-		SaveALife.breedAutoComplete();
-		SaveALife.addressAutoComplete();
+		Maps.breedAutoComplete(function(){SaveALife.findAnimalsInBounds});
+		Maps.addressAutoComplete();
   	},
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
@@ -77,16 +58,6 @@ var SaveALife = {
 			}
 		});
 	},
-	geocodeAddress: function(){
-		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
-	     	if (status == google.maps.GeocoderStatus.OK) {
-				map.fitBounds(results[0].geometry.viewport);
-				// map.setCenter(results[0].geometry.viewport);
-	      	} else {
-	        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
-	      	}
-	    });
-	},
 	bindFilters: function(){
 		$("#form_filters").bind("keypress", function(e){
 			return !(window.event && window.event.keyCode == 13); 
@@ -94,7 +65,7 @@ var SaveALife = {
 		
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
-			SaveALife.geocodeAddress();
+			Maps.geocodeAddress();
 		});
 		
 		$("#form_shelter_name_search").bind("submit", function(e){
@@ -122,62 +93,6 @@ var SaveALife = {
 		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
 		  	e.preventDefault();
 			SaveALife.findAnimalsInBounds();
-		});
-		
-	},
-	breedAutoComplete: function(){
-		$("#filters_breed").autocomplete({
-			minLength: 3,
-			autoFocus: true,
-			delay: 500,
-			source: function( request, response ) {
-				$.ajax({
-					url: "/shared/breeds/auto_complete",
-					dataType: "json",
-					data: { q: request.term, animal_type_id: $("#filters_animal_type").val() },
-					success: function( data ) {
-						response( $.map( data, function( item ) {
-							return {
-								label: item.name, 
-								value: item.name
-							}  
-						}));
-					}
-				});
-			},
-			close: function(event, ui) { 
-				event.preventDefault();
-				SaveALife.findAnimalsInBounds();
-			}			
-		});
-	},
-	addressAutoComplete: function(){
-		$("#city_zipcode").autocomplete({
-			minLength: 3,
-			autoFocus: true,
-			delay: 400, 
-			source: function(request, response) {
-		        geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
-				  	response( $.map( results, function( item ) {
-						var address = item.formatted_address.replace(", USA", "");
-						return {
-							label: address,
-				            value: address,
-				            latitude: item.geometry.location.lat(),
-				            longitude: item.geometry.location.lng(),
-							viewport: item.geometry.viewport
-						}  
-					}));
-		        })
-		      },
-		      //This bit is executed upon selection of an address
-		      select: function(e, ui) {
-				e.preventDefault();
-			    $(this).val(ui.item.value);
-				map.fitBounds(ui.item.viewport);
-				lat = ui.item.latitude; 
-				lng = ui.item.longitude;
-		      }	
 		});
 	}
 };
