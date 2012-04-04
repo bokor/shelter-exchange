@@ -74,15 +74,14 @@ javascripts:
 stylesheets:
   app:
     - public/stylesheets/global/**/*.css
-    - public/stylesheets/app/common.css
-    - public/stylesheets/app/controller.css
-    
+    - public/stylesheets/app/*.css
+
   app_login:
     - public/stylesheets/global/**/*.css
-    - public/stylesheets/app/login.css
+    - public/stylesheets/app/login/*.css
 
   app_print:
-      - public/stylesheets/app/print.css
+    - public/stylesheets/app/print/*.css
       
   admin:
     - public/stylesheets/global/**/*.css

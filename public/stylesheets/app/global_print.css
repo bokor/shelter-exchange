@@ -1,0 +1,129 @@
+@media print {
+	
+	body { background-color: #fff; color:#000; }
+
+	/******************************************************************/
+	#header { display:none; }
+
+	/******************************************************************/
+	#main { margin: 0em 0em 0em 0em; }
+
+	/******************************************************************/
+	#left { width: 100%; background-color: #fff; }
+	#left #content {box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }
+	#left #content .page_heading{padding: 0em 0em 1em 0em;}
+	#left #content .page_content{padding: 0em 0em 1em 0em;}
+
+	/******************************************************************/
+	#right { display:none; }
+
+	/******************************************************************/
+	#footer { /*display:none;*/ padding:0; margin:0;background-color: #fff;}
+
+	/******************************************************************/
+	.pagination { display: none; }
+
+	/******************************************************************/
+	.action_links {display:none;}
+	.help_text {display:none;}
+
+
+	/******************************************************************/
+	/* -------------------------- ANIMALS  -------------------------- */
+	/******************************************************************/
+
+	/* -- INDEX --*/
+	.index_animals .print_heading {display:block;}
+	.index_animals table.search {display:none;}
+
+	/* -- SHOW --*/
+	/*.show_animals h1{font-size: 32px;}
+	.show_animals h2{font-size: 28px;}
+	.show_animals h3{font-size: 24px;}
+	.show_animals p{font-size:14px;}*/
+	.show_animals .page_heading.blue{border-bottom:0px; background-color: #fff;}
+	.show_animals .social{display:none;}
+	.show_animals #notes_heading, .show_animals #status_history_heading {display:none;}
+	.show_animals #notes, .show_animals .note_filters {display:none;}
+	.show_animals #status_histories{display:none;}
+	.show_animals .euthanasia_info{display:none;}
+
+
+	/*************************************************************************/
+	/* -------------------------- ACCOMMODATIONS  -------------------------- */
+	/*************************************************************************/
+	/* -- INDEX --*/
+	.index_accommodations .print_heading {display:block;}
+	.index_accommodations table.search {display:none;}
+	.index_accommodations .accommodation_details {clear:both; display:block; padding-top: 20px;}
+
+
+	/******************************************************************/
+	/* -------------------------- PARENTS --------------------------- */
+	/******************************************************************/
+	/* -- INDEX --*/
+	.parents .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+	/* -- SHOW --*/
+	.show_parents #notes_heading{ display: none; }
+	.show_parents #notes{ display: none; }
+	.show_parents #comments{ display: none; }
+
+
+	/******************************************************************/
+	/* -------------------------- REPORTS --------------------------- */
+	/******************************************************************/
+	.reports .page_heading.blue{border-bottom:0px; background-color: #fff;}
+	
+
+	/****************************************************************/
+	/* -------------------------- TASKS --------------------------- */
+	/****************************************************************/
+	.task .complete input{display:none;}
+	.task .action_links {display:none;}
+	
+
+	/*****************************************************************/
+	/* -------------------------- ALERTS --------------------------- */
+	/*****************************************************************/
+	.alert .stop input{display:none;}
+	.alert .action_links {display:none;}
+	.alert .description {display:block;}
+
+
+	/*******************************************************************/
+	/* -------------------------- SHELTERS --------------------------- */
+	/*******************************************************************/
+	.shelters .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+
+	/****************************************************************/
+	/* -------------------------- USERS --------------------------- */
+	/****************************************************************/
+	.users .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+
+	/********************************************************************/
+	/* -------------------------- DASHBOARD --------------------------- */
+	/********************************************************************/
+	.dashboard .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+
+	/*******************************************************************/
+	/* -------------------------- CAPACITY --------------------------- */
+	/*******************************************************************/
+	.capacities .page_heading.blue{border-bottom:0px; background-color: #fff;}
+
+
+	/**********************************************************************/
+	/* -------------------------- COMMUNITIES  -------------------------- */
+	/**********************************************************************/
+	.communities .page_heading.blue{border-bottom:0px; background-color: #fff;}
+	.communities #notes_heading, .show_animals #status_history_heading {display:none;}
+	.communities #notes, .show_animals .note_filters {display:none;}
+	.communities #right {display:block; width: 100%;padding: 0 0 0 0; margin:0 0 0 0;}
+	.communities #right #sidebar { padding: 0 0 0 0; }
+	.communities #transfer_request_button {display:none;}
+	.communities #transfer_requested {display:none;}
+
+}/* Media Print */

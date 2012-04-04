@@ -8,21 +8,16 @@
   
 	<!-- title -->
 	<title><%= yield(:title) %> | Shelter Exchange</title>
-	
-  	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-	
+		
 	<!-- icons -->
 	<%= favicon_link_tag 'favicon.ico' %>
 	<%= favicon_link_tag 'shelterexchange_icon.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 	<!-- stylesheets -->
- 	<%= include_stylesheets :app, :media => "all" %>
-
-	<!-- javascripts -->
-	<%= include_javascripts :app %>
+ 	<%= include_stylesheets :app_print, :media => "all" %>
 	
 	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
+		<%# javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
 	
 	<!--[if (lt IE 9)]>
@@ -36,43 +31,19 @@
 
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
-	
-	<div id="fb-root"></div>
-	
-	<%= render :partial => "shared/ie6_warning" %>
-	<%= render :partial => "shared/header" %>
-
+		
 	<div id="main">
 		
-		<%= render :partial => "shared/flash_messages" %>
-		<%= render :partial => "shared/announcements" %>
-
 		<div id="left">
-			
 			<div id="content">
 				<% if content_for?(:page_content) %>
-			  		<%= yield(:page_content) %>
+		  			<%= yield(:page_content) %>
 				<% end %>
 			</div>
-			<!--//end screen -->
-			
-			<%= render :partial => "shared/footer" %>
-			
+			<!--//end left -->
 		</div>
-		<!--//end left -->
 		
-		<div id="right">
-			
-			<div id="sidebar">
-				<% if content_for?(:sidebar) %>
-			  		<%= yield(:sidebar) %>
-				<% end %>
-			</div>
-			<!--//end sidebar -->
-			
-		</div>
-		<!--//end right -->
-		
+		<!--//end content -->
 	</div>
 	<!--//end main -->
 	

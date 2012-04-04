@@ -40,14 +40,14 @@
 <body class="<%= controller_name %> <%= page_name %>">
 	
 	<header>
-		<hgroup role="banner" class="content">
+		<div id="banner" class="content">
 			<div class="logo">
 				<%= link_to image_tag("public/logo-shelterexchange.png", :alt => "Shelter Exchange Logo"), "/" %>
 			</div>
 			<div class="print_link right">
 				<%= link_to "Print", "#", :class => "button", :onclick => "window.print();return false;" %>
 			</div>
-		</hgroup>
+		</div>
 	</header>
         
 	<section id="main">

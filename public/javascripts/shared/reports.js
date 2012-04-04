@@ -81,7 +81,7 @@ var Reports = {
 			success: function(data) {
 				var options = {
 					chart: { renderTo: url_function, defaultSeriesType: 'column' },
-				    title: { text: title + ' - ' + $("#date_report_selected_year").val() },
+				    title: { text: title + ' - ' + $("#_selected_year").val() },
 				    xAxis: {
 				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 				    },

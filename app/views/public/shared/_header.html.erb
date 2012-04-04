@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 	</nav>
-	<hgroup role="banner" class="content">
+	<div id="banner" class="content">
 		<% if !Rails.env.production? %>
 		<div class="rails_env left">
 			<%= Rails.env.humanize %> Server
@@ -23,5 +23,5 @@
 		<div class="logo">
 			<%= link_to image_tag("public/logo-shelterexchange.png", :alt => "Shelter Exchange Logo"), "/" %>
 		</div>
-	</hgroup>
+	</div>
 </header>
