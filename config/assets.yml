@@ -29,6 +29,12 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/shared/**/*.js
     - public/javascripts/app/**/*.js
+    
+  app_print:
+    - public/javascripts/global/jquery.min.js
+    - public/javascripts/global/modernizr.js
+    - public/javascripts/global/forms.js
+    - public/javascripts/app/animals.js
 
   admin:
     - public/javascripts/global/jquery.min.js
@@ -83,6 +89,7 @@ stylesheets:
     - public/stylesheets/app/login/*.css
   
   app_print:
+    - public/stylesheets/global/**/*.css
     - public/stylesheets/app/print/*.css
       
   admin:

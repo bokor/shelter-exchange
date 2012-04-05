@@ -181,6 +181,23 @@ var Animals = {
 			formatDate = new Date().toString("yyyy-MM-dd");
 		}
 		$(element+'_datepicker').datepicker("setDate", formatDate);
+	},
+	printInitialize: function(printLayout){
+		$("input[name='print_layout']:radio").change(function(e){
+			if($(this).val() == 'animal_with_notes'){
+				$("#note_categories").find("input").prop("disabled","");
+				$("#note_categories").find("label").css("color", "#222");
+			} else {
+				$("#note_categories").find("input").prop("disabled","disabled");
+				$("#note_categories").find("label").css("color", "#bbb");
+			}
+		});
+		$("input[name='print_layout']:radio:[value='"+printLayout+"']").trigger("change").prop("checked", "checked");
+			
+		$('.print_format_options a').bind("click", function (e) {
+			e.preventDefault();
+			$("#print_format_options").slideToggle(800);			
+	   	});
 	}
 	
 };

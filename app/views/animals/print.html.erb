@@ -1,0 +1,114 @@
+<%= title "#{@animal.name} (#{@animal.id})" %>
+
+<% print_layout = params[:print_layout] || "animal_with_notes" %>
+
+<%= content_for :javascripts do %>
+	<script type="text/javascript" charset="utf-8" async defer>
+		$(function(){
+			Animals.printInitialize("<%=print_layout%>");
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render "print_options", :print_layout => print_layout %>
+
+	<div class="page_heading blue">
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="action_links"></td>
+			</tr>
+			<tr>
+				<td>
+					<p><%= @animal.animal_type.name %>:  <%= @animal.full_breed %></p>
+				</td>
+				<td class="status">
+					<p><%= @animal.animal_status.name %><%= adoption_date(@animal) %></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		
+		 
+		<table class="animal_details">
+			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
+						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
+						<% unless @animal.size.blank? %><li><p><b>Size:</b>  <%= @animal.size %></p></li><% end %>
+						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
+						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
+						<% unless @current_shelter.kill_shelter? %>
+							<li><p><b>Arrival/Intake Date:</b>  <%= format_date(:default, @animal.arrival_date) %></p></li>
+						<% end %>
+					</ul>
+					
+					
+				</td>
+				<td class="image">
+			    	<%= image_tag @animal.photo.url(:medium) %>
+			    </td>
+			</tr>
+		</table>
+		<% if @animal.special_needs? %>
+			<table class="special_needs">
+				<tr>
+					<td>
+						<h3>Special Needs:</h3>
+						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<table class="description">
+			<tr>
+				<td>
+					<h3>Description:</h3>
+					<p><%= auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
+				</td>
+			</tr>
+		</table>
+		
+		<% if @current_shelter.kill_shelter? %>
+		<!-- <table class="euthanasia_info">
+					<tr>
+						<td>
+							<h3>Euthanasia Info:</h3>
+							<ul>
+								<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
+								<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
+								<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
+							</ul>
+						</td>
+					</tr>
+				</table> -->
+		<% end %>
+
+		
+	</div>
+	<% if @notes.present? and print_layout == "animal_with_notes" %>
+	
+		<% @note_categories.each do |category| %>
+			<div id="notes_heading" class="section_heading orange">
+				<h2><%=category.humanize%> Notes</h2>
+			</div>
+			
+			<div class="page_content">
+				<div id="notes" class="note_list">
+					<%= render @notes.select{|n| n.category == category} %>
+				</div>
+			</div>
+		<% end %>
+		
+	<% end %>
+
+<% end %>

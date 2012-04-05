@@ -123,6 +123,10 @@ ShelterExchangeApp::Application.routes.draw do
       resources :notes
       resources :alerts 
       resources :tasks 
+      member do
+        # match :print, :via => [:get, :post]
+        get :print
+      end
       collection do
         get :search
         get :filter_notes

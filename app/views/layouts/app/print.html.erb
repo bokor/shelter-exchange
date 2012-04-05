@@ -16,17 +16,19 @@
 	<!-- stylesheets -->
  	<%= include_stylesheets :app_print, :media => "all" %>
 	
+	<!-- javascripts -->
+	<%= include_javascripts :app_print %>
+	
 	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%# javascript_include_tag "global/selectivizr-min" %>
+		<%= javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
 	
 	<!--[if (lt IE 9)]>
 		<%= javascript_include_tag "global/html5" %>
 	<![endif]-->
-
-	<%= yield(:javascripts) %>
-
-		
+	
+	<%= yield(:javascripts) %>		
+	
 	<%= csrf_meta_tag %>
 
 </head>
@@ -34,16 +36,13 @@
 		
 	<div id="main">
 		
-		<div id="left">
-			<div id="content">
-				<% if content_for?(:page_content) %>
-		  			<%= yield(:page_content) %>
-				<% end %>
-			</div>
-			<!--//end left -->
+		<div id="content">
+			<% if content_for?(:page_content) %>
+		  		<%= yield(:page_content) %>
+			<% end %>
 		</div>
-		
 		<!--//end content -->
+		<%= render :partial => "shared/footer" %>
 	</div>
 	<!--//end main -->
 	

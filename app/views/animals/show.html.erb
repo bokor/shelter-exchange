@@ -22,7 +22,7 @@
 					<!-- &nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www")%> -->
 					&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Print", "#", :onclick => "window.print();return false;"%>
+					<%= link_to "Print", print_animal_path(@animal)%>
 					<% if can?(:update, Animal) %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Edit", edit_animal_path(@animal)%>

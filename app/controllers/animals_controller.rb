@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   respond_to :html, :js
-  
+
   # cache_sweeper :animal_sweeper, :only => [:create, :update, :destroy]
   
   def index
@@ -18,8 +18,13 @@ class AnimalsController < ApplicationController
   	@today_tasks = @animal.tasks.today.active.all
   	@tomorrow_tasks = @animal.tasks.tomorrow.active.all
   	@later_tasks = @animal.tasks.later.active.all
-  	
-    respond_with(@animal)
+  end
+  
+  def print
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
+    @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
+    @notes = @animal.notes.where(:category => @note_categories).all
+    render :layout => "app/print"
   end
   
   def edit

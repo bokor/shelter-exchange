@@ -1,0 +1,59 @@
+<div class="print_options">
+	<div class="links">
+		<span class="print_format_options link">
+			<%= link_to "Print format options", "#", :class => "button"  %>
+		</span>
+		<span class="generate_pdf link">
+			<%= link_to "Print", "#", :class => "button", :onclick => "window.print(); return false;"  %>
+		</span>
+		<span class="generate_pdf link">
+			<%= link_to "Generate PDF", "#", :class => "button"  %>
+		</span>	
+		<span class="back_to_animal_record link">
+			<%= link_to "Back to #{@animal.name}", animal_path(@animal), :class => "button"  %>
+		</span>
+	</div>
+	<div id="print_format_options" class="box blue hide">
+		<%= form_for :animals, :url => { :action => :print }, :html => { :id => "form_printer_options", :method => :get } do |f| %>
+			<ul>
+				<!-- <li>
+					<span>
+						<%= radio_button_tag :print_layout, :animal_only, (print_layout == "animal_only"), :class => "field radio" %>
+						<%= label_tag :print_layout, "Animal Record", :class => "desc choice" %>
+					</span>
+				</li> -->
+				<li>	
+					<div>
+						<span>
+							<%= radio_button_tag :print_layout, :animal_with_notes, (print_layout == "animal_with_notes"), :class => "field radio" %>
+							<%= label_tag :print_layout, "Animal Record", :class => "desc choice" %>
+						</span>
+					</div>
+					<span id="note_categories">
+						<span class="left">
+							<br>
+							<%= label_tag "", "Print notes?", :class => "desc choice" %>
+						</span>
+						<% Note::CATEGORIES.each_with_index do |value, index| %>
+							<span class="leftPadded">
+								<%= check_box_tag value, true, (params[value.to_s].present?), :class => "field checkbox" %>
+								<%= label_tag value, value.humanize, :class => "desc choice" %>
+							</span>
+						<% end %>
+					</span>
+				</li>
+				<li>
+					<span>
+						<%= radio_button_tag :print_layout, :kennel_card, (print_layout == "kennel_card"), :class => "field radio" %>
+						<%= label_tag :print_layout, "Kennel Card", :class => "desc choice" %>
+					</span>
+				</li>
+			   	<li class="buttons">
+					<%= submit_tag "Reformat Print Page", :disable_with => "Submitting...", :class => "button" %>
+					&nbsp;&nbsp;or&nbsp;&nbsp;
+					<%= link_to 'Close', '#', :class => "button", :onclick => "$('.print_format_options a').trigger('click'); return false;"  %>
+				</li>
+			</ul>
+			<% end %>
+	</div>
+</div>
