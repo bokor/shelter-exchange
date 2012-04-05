@@ -1,5 +1,7 @@
 class Integration::AdoptAPetPresenter
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::TagHelper
 
   ADOPT_A_PET_TYPES = { 
                         "Other" => { 
@@ -41,9 +43,9 @@ class Integration::AdoptAPetPresenter
   end
   
   def description
-    s = @animal.description.blank? ? "No description provided" : @animal.description #auto_link( simple_format(animal.description), :all, :target => "_blank")
-    s << "<br /><br />"
-    s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> full profile "
+    s = @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank")
+    s << "<br>"
+    s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> "
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
     s
