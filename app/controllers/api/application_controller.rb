@@ -1,13 +1,13 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_access_token, :shelter_lookup, :shelter_inactive?
+  before_filter :access_token, :shelter_lookup, :shelter_inactive?
   layout :current_layout
   
 
   private
   
-    def set_access_token
+    def access_token
       @access_token ||= params[:access_token]
     end
       
@@ -16,8 +16,7 @@ class Api::ApplicationController < ActionController::Base
     end
 
     def shelter_lookup
-      @current_shelter = Shelter.by_access_token(params[:access_token]).first
-      respond_with_error({ :error => "Not Authorized to perform this action" })  if @current_shelter.blank?
+      @current_shelter = access_token ? Shelter.by_access_token(params[:access_token]).first : respond_with_error({ :error => "Not Authorized to perform this action" })
     end 
     
     def shelter_inactive?
