@@ -10,7 +10,7 @@
 			<%= link_to "Generate PDF", print_animal_path(@animal, params.except(:authenticity_token,:commit, :utf8).merge!(:format => :pdf)), :class => "button"  %>
 		</span>	 -->
 		<span class="back_to_animal_record link">
-			<%= link_to "Back to #{@animal.name}", animal_path(@animal), :class => "button"  %>
+			<%= link_to "Back to #{possessive(@animal.name)} record", animal_path(@animal), :class => "button"  %>
 		</span>
 	</div>
 	<div id="print_format_options" class="box blue hide">
