@@ -52,14 +52,14 @@
 	<table class="animal_details">
 		<tr>
 			<td class="metadata">
-				
+
 				<h3>Details:</h3>
-				<ul> 
-					<li><p><b>Weight:</b>  <%= @animal.weight.present? ? @animal.weight : "N/A" %></p></li>
-					<li><p><b>Size:</b>  <%= @animal.size.present? ? @animal.size : "N/A" %></p></li>
-					<li><p><b>Age (Est.):</b>  <%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></p></li>
-					<li><p><b>Color:</b>  <%= @animal.color.present? ? @animal.color : "N/A" %></p></li>
-					<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+				<ul>
+					<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
+					<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
+					<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
+					<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
+					<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
 				</ul>
 				
 				<% if @animal.special_needs? %>

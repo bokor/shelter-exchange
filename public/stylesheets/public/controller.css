@@ -488,6 +488,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .show_save_a_life .animal .type, .show_save_a_life .animal .status{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;}
 .show_save_a_life .animal .status{color:#f16649;}
 
+.show_save_a_life ul p span{padding-left: 8px;}
+
 .show_save_a_life table.animal_details{text-align:left;}
 .show_save_a_life table.animal_details h3{border-bottom: 1px #bbb dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
 .show_save_a_life table.animal_details td{vertical-align:top; }
