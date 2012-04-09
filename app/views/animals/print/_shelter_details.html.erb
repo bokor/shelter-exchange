@@ -1,0 +1,22 @@
+<div id="shelter_details">
+	<div class="logo">
+		<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo" %>
+	</div>
+	<div class="address_info">
+		<h2><%=@shelter.name %></h2>
+		
+		<ul>
+			<li><%=@shelter.street %></li>
+			<li><%=@shelter.city%>, <%=@shelter.state%> <%=@shelter.zip_code%></li>
+		</ul>
+		<br />
+		<ul>
+			<li>Phone: <%=number_to_phone(@shelter.phone, :delimiter => "-")%></li>
+			<li>Email: <%=@shelter.email%></li>
+			<li>Website: <%=@shelter.website%></li>
+		</ul>
+	</div>
+</div>
+
+
+

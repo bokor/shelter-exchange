@@ -19,14 +19,7 @@ class AnimalsController < ApplicationController
   	@tomorrow_tasks = @animal.tasks.tomorrow.active.all
   	@later_tasks = @animal.tasks.later.active.all
   end
-  
-  def print
-    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
-    @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
-    @notes = @animal.notes.where(:category => @note_categories).all
-    render :layout => "app/print"
-  end
-  
+    
   def edit
     @animal = @current_shelter.animals.find(params[:id])
     respond_with(@animal)
@@ -55,6 +48,26 @@ class AnimalsController < ApplicationController
      flash[:notice] = "#{@animal.name} has been deleted."
      respond_with(@animal)
   end
+  
+  def print
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
+    @shelter = @current_shelter
+    @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
+    @notes = @animal.notes.where(:category => @note_categories).all
+    @print_layout = params[:print_layout] || "animal_with_notes"
+    
+    respond_to do |format|
+      format.html { 
+        # flash[:notice] = "Print format options have been update.  Please review the new print document." if params[:print_layout].present? # means that it was resubmitted with options
+        render :template => "animals/print/#{@print_layout}", :layout => "app/print" 
+      }
+      format.pdf { 
+        pdf = AnimalPdf.new(@animal, @notes, @shelter, params, view_context)
+        send_data pdf.render, filename: "animal_#{@animal.id}.pdf", type: Mime::PDF, disposition: "inline"
+      }
+    end
+  end
+  
   
   def search
     q = params[:q].strip.split.join("%")

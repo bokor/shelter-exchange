@@ -48,6 +48,7 @@
 		
 		<% if @animal.available_for_adoption? %>
 			<div class="social">
+				<!-- <span style="width: 150px;font-weight: bold;">Share and promote:</span> -->
 				<span>
 					<div class="fb-like" data-send="false" 
 										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
@@ -68,26 +69,23 @@
 		<table class="animal_details">
 			<tr>
 				<td class="metadata">
+					
 					<h3>Details:</h3>
 					<ul>
-						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
-						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
-						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
-						<% unless @animal.size.blank? %><li><p><b>Size:</b>  <%= @animal.size %></p></li><% end %>
-						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
-						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
-						<% unless @current_shelter.kill_shelter? %>
-							<li><p><b>Arrival/Intake Date:</b>  <%= format_date(:default, @animal.arrival_date) %></p></li>
-						<% end %>
+						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
+						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
+						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
+						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
+						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
+						<li><p><b>MicroChip:</b><span><%= @animal.microchip.present? ? @animal.microchip : "Unknown" %></span></p></li>
+						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date(:default, @animal.arrival_date) : "Unknown" %></span></p></li>
 					</ul>
 					
 					<h3>Accommodation:</h3>
 					<ul>
-						<li><p><b>Name:</b>  <%= @animal.accommodation.name unless @animal.accommodation.blank? %></p></li>
-						<li><p><b>Location:</b>  <%= @animal.accommodation and @animal.accommodation.location ? @animal.accommodation.location.name : "None"   %></p></li>
+						<li><p><b>Name:</b><span><%= @animal.accommodation.present? ? @animal.accommodation.name : "N/A" %></span></p></li>
+						<li><p><b>Location:</b><span><%= @animal.accommodation.present? && @animal.accommodation.location.present? ? @animal.accommodation.location.name : "None"   %></span></p></li>
 					</ul>
-					
-					
 				</td>
 				<td class="image">
 			    	<%= image_tag @animal.photo.url(:medium) %>

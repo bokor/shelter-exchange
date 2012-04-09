@@ -155,6 +155,8 @@
 			<span id="animal_arrival_date_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :arrival_date)%>
 		</li>
+
+		<% if @current_shelter.accommodations.count > 0 %>
 		<li class="section accommodation_info">
 			<section>
 				<h3>Accommodation Info</h3>
@@ -175,6 +177,8 @@
 			</div> 
 			<%= has_error_message?(@animal, :accommodation_id)%>
 		</li>
+		<% end %>
+		
 		<% if @current_shelter.kill_shelter? %>
 		<li class="section">
 			<section>

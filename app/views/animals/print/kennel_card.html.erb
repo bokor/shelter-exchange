@@ -1,0 +1,62 @@
+<%= title "#{@animal.name} (#{@animal.id})" %>
+
+<%= content_for :javascripts do %>
+	<script type="text/javascript" charset="utf-8" async defer>
+		$(function(){
+			Animals.printInitialize("<%=@print_layout%>");
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<%= render "animals/print/print_options", :print_layout => @print_layout %>
+	
+	<div class="page_heading blue">
+	
+		<table class="animal">
+			<tr>
+				<td>
+					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
+				</td>
+				<td class="shelter">
+					<p><%= @shelter.name%></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="page_content">
+		
+		 
+		<table class="animal_details">
+			<tr>
+				<td class="metadata">
+					<h3>Details:</h3>
+					<ul>
+						<li><p><b><%= @animal.animal_type.name %>:</b><span><%= @animal.full_breed %></span></p></li>
+						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
+						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
+						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
+						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
+						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
+					</ul>
+					
+					<h3>Description:</h3>
+					<p><%= auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
+					<br>
+					
+					<% if @animal.special_needs? %>
+						<h3>Special Needs:</h3>
+						<p><%= simple_format(@animal.special_needs) %></p>
+					<% end %>
+				</td>
+				<td class="image">
+				    <%= image_tag @animal.photo.url(:large), :alt => "#{@animal.name} - #{@animal.full_breed}" %>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+
+<% end %>

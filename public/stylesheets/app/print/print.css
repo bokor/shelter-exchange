@@ -1,3 +1,5 @@
 @media print {
 	.print_animals .print_options{display:none;}
+	.page_break{page-break-after:always;}
+	.page_break span{display:none;}
 }

@@ -55,6 +55,11 @@ Dog House Sides - #db8d4a
 -----------------------------------------------------------------------------*/
 .tooltip{display:none;}
 
+/* Flash Messages */   
+/******************************************************************/
+.flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
+.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
+
 /* Button */   
 /******************************************************************/
 .button {
@@ -310,6 +315,12 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 
 
+/* Print Layout :: Page Break
+-----------------------------------------------------------------------------*/
+.page_break{}
+.page_break span{ display:block; border-bottom: 1px #bbb dotted; height:1px; width: 100%; padding-bottom: 10px;margin: 10px 0; font-size: 10px; color: #999; text-align:center;}
+
+
 /* Box :: Layout :: Forms
 -----------------------------------------------------------------------------*/
 .box{padding: 15px; margin-bottom: 15px; border-style: solid; border-width: 1px;border-color: #ccc;background-color: none;}
@@ -377,9 +388,11 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 /******************************************************************/
 /******************************************************************/
 
-/* Animals :: Page Layout
+/* Print Animals :: General Page Layout
 -----------------------------------------------------------------------------*/
-.animals ul{list-style:none;}
+.print_animals ul{list-style:none;}
+.print_animals ul li{padding-bottom: 10px;}
+.print_animals .page_content { font-size: 14px;}
 
 /* Print Animals :: Print Options Layout
 -----------------------------------------------------------------------------*/
@@ -392,9 +405,9 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 /* Print Animals :: Page Layout
 -----------------------------------------------------------------------------*/
 .print_animals table.animal{width:100%;}
-.print_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
-.print_animals table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
+.print_animals table.animal td{vertical-align:top;width:50%;}
 .print_animals table.animal td.status{text-align:right;}
+.print_animals table.animal td.shelter{text-align:right;padding-top:8px;}
 .print_animals table.animal td h1 {}
 .print_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .print_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
@@ -402,24 +415,26 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 /* Print Animal :: Animal Details
 -----------------------------------------------------------------------------*/
 .print_animals table.animal_details{text-align:left;}
+.print_animals table.animal_details li p span{padding-left: 8px;}
 .print_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .print_animals table.animal_details td{vertical-align:top; }
-.print_animals table.animal_details td.image{}
-.print_animals table.animal_details td.image .video_player{ margin-top: 10px;}
+.print_animals table.animal_details td.image img{-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
 .print_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
 .print_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.print_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.print_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}
+.print_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
+.print_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
+.print_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.print_animals table.animal_details td.metadata ul li{ float:left; width: 48%;}
+/*.print_animals table.animal_details td.metadata ul li p{padding-bottom: 5px;margin:0;}*/
+/*.print_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+.print_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}*/
 
-/* Print Animal :: Special Needs Layout
------------------------------------------------------------------------------*/
-.print_animals .special_needs{width:100%; padding: 0 0 0 0; }
-.print_animals .special_needs h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 
 /* Print Animal :: Description Layout
 -----------------------------------------------------------------------------*/
-.print_animals .description{width:100%; padding: 0 0 0 0; }
+.print_animals .description{width:100%; padding: 10px 0 0 0; }
 .print_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.print_animals .description p{line-height: 1.5em;}
 
 /* Print Animal :: Euthanasia Info Layout
 -----------------------------------------------------------------------------*/
@@ -437,6 +452,20 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 
 
+/* Print Animals :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.print_animals #shelter_details{padding-bottom: 20px;}
+.print_animals #shelter_details li{padding-bottom: 5px;}
+.print_animals #shelter_details h2 span{position:absolute;letter-spacing: 0px; margin-top: -2px;font-size: 14px;padding-left: 20px;}
+.print_animals #shelter_details .logo{float:right; text-align:right;}
+.print_animals #shelter_details .address_info{width: 860px;}
+.print_animals #shelter_details .action_links span,
+.print_animals #shelter_details .action_links a{padding-right: 8px;}
+.save_a_life #shelter_details h1 {color: #CCC;height: 100px;line-height: 100px;margin: 0 auto;text-align: center;}
+.print_animals .animal_shelter{border-top: 1px #bbb dotted; padding-top: 20px; margin-top: 10px;
+border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
+
+
 
 /******************************************************************/
 /* -------------------------- NOTES  -------------------------- */
@@ -445,16 +474,17 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 /* Notes List :: Layout */
 /******************************************************************/
-.note_list {border-top: 1px dotted #ccc;}
+.note_list {border-top: 1px dotted #ccc; padding-bottom: 20px;}
+.note_list h3{}
 .note {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
 
 .note .created_date {display:inline-block; width: 5%;color:#666; font-size: 10px; letter-spacing: -1px;  }
 .note .details{display:inline-block; width: 90%; vertical-align:top; padding-left: 5px;}
-	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:8px;}
+	.note .title {display:inline-block;font-weight: bold;font-size: 15px; line-height: 1.75em; padding-top:8px;}
 
 .note .action_links {display:none;}
 
-.note .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em;}
+.note .description { clear:both; padding: 0 6%; width: 92%; line-height: 2em;}
 
 
 

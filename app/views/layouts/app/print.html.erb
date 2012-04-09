@@ -32,7 +32,7 @@
 	<%= csrf_meta_tag %>
 
 </head>
-<body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
+<body class="<%= controller_name %> <%= action_name %>_<%= controller_name %> <%=@print_layout%>_<%= controller_name %>">
 		
 	<div id="main">
 		
@@ -42,9 +42,9 @@
 			<% end %>
 		</div>
 		<!--//end content -->
-		<%= render :partial => "shared/footer" %>
 	</div>
 	<!--//end main -->
+	<%= render :partial => "shared/footer" %>
 	
 </body>
 

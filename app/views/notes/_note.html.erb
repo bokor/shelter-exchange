@@ -19,5 +19,5 @@
 			<% end %>
 		<% end %>
 	</span>
-	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description %></p> 
+	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description.blank? ? "No description provided" : note.description %></p> 
 </div>

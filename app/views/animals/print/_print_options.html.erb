@@ -6,22 +6,16 @@
 		<span class="generate_pdf link">
 			<%= link_to "Print", "#", :class => "button", :onclick => "window.print(); return false;"  %>
 		</span>
-		<span class="generate_pdf link">
-			<%= link_to "Generate PDF", "#", :class => "button"  %>
-		</span>	
+		<!-- <span class="generate_pdf link">
+			<%= link_to "Generate PDF", print_animal_path(@animal, params.except(:authenticity_token,:commit, :utf8).merge!(:format => :pdf)), :class => "button"  %>
+		</span>	 -->
 		<span class="back_to_animal_record link">
 			<%= link_to "Back to #{@animal.name}", animal_path(@animal), :class => "button"  %>
 		</span>
 	</div>
 	<div id="print_format_options" class="box blue hide">
-		<%= form_for :animals, :url => { :action => :print }, :html => { :id => "form_printer_options", :method => :get } do |f| %>
+		<%= form_for :animals, :url => { :action => :print }, :html => { :id => "form_printer_options", :method => :post } do |f| %>
 			<ul>
-				<!-- <li>
-					<span>
-						<%= radio_button_tag :print_layout, :animal_only, (print_layout == "animal_only"), :class => "field radio" %>
-						<%= label_tag :print_layout, "Animal Record", :class => "desc choice" %>
-					</span>
-				</li> -->
 				<li>	
 					<div>
 						<span>
