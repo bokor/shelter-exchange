@@ -156,7 +156,7 @@
 			<%= has_error_message?(@animal, :arrival_date)%>
 		</li>
 
-		<% if @current_shelter.accommodations.count > 0 %>
+		<%# if @current_shelter.accommodations.count > 0 %>
 		<li class="section accommodation_info">
 			<section>
 				<h3>Accommodation Info</h3>
@@ -177,7 +177,7 @@
 			</div> 
 			<%= has_error_message?(@animal, :accommodation_id)%>
 		</li>
-		<% end %>
+		<%# end %>
 		
 		<% if @current_shelter.kill_shelter? %>
 		<li class="section">

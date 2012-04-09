@@ -13,10 +13,9 @@
 	<div class="page_heading blue">
 		<table class="animal">
 			<tr>
-				<td>
+				<td colspan="2">
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
-				<td class="action_links">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>
@@ -36,12 +35,27 @@
 				<td class="metadata">
 					<h3>Details:</h3>
 					<ul>
-						<li><p><b>Weight:</b>  <%= @animal.weight %></p></li>
-						<li><p><b>Age (Est.):</b>  <%= humanize_dob(@animal.date_of_birth) %></p></li>
-						<li><p><b>MicroChip:</b>  <%= @animal.microchip %></p></li>
-						<li><p><b>Color:</b>  <%= @animal.color %></p></li>
-						<li><p><b>Sex:</b>  <%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></p></li>
+						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
+						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
+						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
+						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
+						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
+						<li><p><b>MicroChip:</b><span><%= @animal.microchip.present? ? @animal.microchip : "Unknown" %></span></p></li>
+						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date(:default, @animal.arrival_date) : "Unknown" %></span></p></li>
 					</ul>
+					
+					<% if @animal.special_needs? %>
+						<h3>Special Needs:</h3>
+						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
+					<% end %>
+					<% if @shelter.kill_shelter? %>
+						<h3>Euthanasia Info:</h3>
+						<ul>
+							<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? @animal.hold_time + " days" : "Unknown" %></span></p></li>
+							<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "Unknown" %></span></p></li>
+						</ul>
+					<% end %>
+					
 				</td>
 				<td class="image">
 			    	<%= image_tag @animal.photo.url(:medium) %>
@@ -51,16 +65,7 @@
 			    </td>
 			</tr>
 		</table>
-		<% if @animal.special_needs? %>
-			<table class="special_needs">
-				<tr>
-					<td>
-						<h3>Special Needs:</h3>
-						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
-					</td>
-				</tr>
-			</table>
-		<% end %>
+
 		<table class="description">
 			<tr>
 				<td>
@@ -70,20 +75,7 @@
 			</tr>
 		</table>
 		
-		<% if @shelter.kill_shelter? %>
-		<table class="euthanasia_info">
-			<tr>
-				<td>
-					<h3>Euthanasia Info:</h3>
-					<ul>
-						<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
-						<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
-						<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
-					</ul>
-				</td>
-			</tr>
-		</table>
-		<% end %>
+		
 	</div>
 	
 	<div id="notes_heading" class="section_heading orange">

@@ -120,9 +120,8 @@
 				<td>
 					<h3>Euthanasia Info:</h3>
 					<ul>
-						<li><p><b>Arrival Date:</b>  <span class="date"><%= format_date(:default, @animal.arrival_date) %></span></p></li>
-						<li><p><b>Hold time:</b>  <span class="date"><%= @animal.hold_time %> days</span></p></li>
-						<li><p><b>Euthanasia Date:</b>  <span class="red_date"><%= format_date(:default, @animal.euthanasia_date) %></span></p></li>
+						<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? @animal.hold_time + " days" : "Unknown" %></span></p></li>
+						<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "Unknown" %></span></p></li>
 					</ul>
 				</td>
 			</tr>
