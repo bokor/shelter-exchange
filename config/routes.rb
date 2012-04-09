@@ -124,8 +124,8 @@ ShelterExchangeApp::Application.routes.draw do
       resources :alerts 
       resources :tasks 
       member do
-        # match :print, :via => [:get, :post]
-        get :print
+        match :print, :via => [:get, :post]
+        # get :print
       end
       collection do
         get :search
@@ -361,6 +361,7 @@ ShelterExchangeApp::Application.routes.draw do
 
   # Catch All - If route isn't found then Four oh Four
   #----------------------------------------------------------------------------
-  match "*path", :to => 'errors#routing', :status_code => 404
+  match "*path", :to => 'errors#routing', :status => 404
+  # match "*path" => redirect("/404.html")   OLD WAY TO DO IT
   
 end
