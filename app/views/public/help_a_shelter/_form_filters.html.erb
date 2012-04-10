@@ -15,14 +15,16 @@
 				<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
 			</td>
 			<td class="extra_options">
-				<span>
+				<span class="<%= "only_one_checkbox" if @shelter.no_kill_shelter? %>">
 					<%= check_box_tag "filters[special_needs_only]", true, false, :class => "field checkbox" %>
 					<%= label_tag :filters_special_needs_only, "Special needs animals", :class => "choice special_needs" %>
 				</span>
+				<% if @shelter.kill_shelter? %>
 				<span>
 					<%= check_box_tag "filters[euthanasia_only]", true, false, :class => "field checkbox" %>
-					<%= label_tag :filters_euthanasia_only, "Euthanasia List Only (14 days or less)", :class => "choice euthanasia_list" %>
+					<%= label_tag :filters_euthanasia_only, "Euthanasia List (14 days or less)", :class => "choice euthanasia_list" %>
 				</span>
+				<% end %>
 			</td>
 		</tr>
 	</table>
