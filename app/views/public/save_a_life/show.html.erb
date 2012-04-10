@@ -36,7 +36,7 @@
 	<div class="animal">
 		<h1><%= @animal.name %>
 			<span class="social">
-				<span><div class="fb-like" data-send="false" data-layout="button_count"data-show-faces="false"></div></span>
+				<span><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
 				<span><a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="shelterexchange<%=",#{@shelter.twitter.slice(1..-1)}" if @shelter.twitter %>">Tweet</a></span>
 				<span><a href="http://pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=@animal.photo.url(:large) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a></span>
 			</span>
