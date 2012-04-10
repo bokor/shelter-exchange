@@ -11,6 +11,7 @@ class Ability
 
   def admin
     can :manage, :all
+    cannot :destroy, Animal
     cannot :change_owner, User
   end
     
