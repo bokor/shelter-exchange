@@ -142,6 +142,10 @@ class Integration::AdoptAPetPresenter
     [id, type, breed, breed2, name, sex, description, status, purebred, special_needs, size, age, photo, you_tube_url]
   end
   
+  def self.csv_header
+      ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","YouTubeVideoURL"]
+  end
+  
   private
 
     def months_between(from_time, to_time)

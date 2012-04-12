@@ -25,7 +25,7 @@ namespace :adopt_a_pet do
       
       CSV.open(CSV_FILENAME, "w+") do |csv|
         
-        csv << ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","YouTubeVideoURL"]
+        csv << Integration::AdoptAPetPresenter.csv_header
       
         @animals.each do |animal|
           csv << Integration::AdoptAPetPresenter.new(animal).to_csv
