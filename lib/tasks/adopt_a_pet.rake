@@ -6,6 +6,7 @@ LOG_FILENAME = Rails.root.join("log/adopt_a_pet_rake_task.log")
 CSV_FILENAME = Rails.root.join("tmp/adopt_a_pet/pets.csv")
 CFG_FILENAME = Rails.root.join("public/integrations/adopt_a_pet/import.cfg")
 
+Dir.mkdir(Rails.root.join("tmp/adopt_a_pet")) unless File.exists?(Rails.root.join("tmp/adopt_a_pet"))
 
 # Tasks
 #----------------------------------------------------------------------------
