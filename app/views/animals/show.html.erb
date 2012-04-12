@@ -120,7 +120,7 @@
 				<td>
 					<h3>Euthanasia Info:</h3>
 					<ul>
-						<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? @animal.hold_time + " days" : "Unknown" %></span></p></li>
+						<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? "#{@animal.hold_time} days" : "Unknown" %></span></p></li>
 						<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "Unknown" %></span></p></li>
 					</ul>
 				</td>
