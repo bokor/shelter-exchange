@@ -29,7 +29,7 @@ class Api::V1::AnimalPresenter < BasePresenter
         :microchip => @animal.microchip,
         :has_special_needs => @animal.special_needs?,
         :special_needs => auto_link(simple_format(@animal.special_needs), :all, :target => "_blank"),
-        :description => auto_link( simple_format(@animal.description), :all, :target => "_blank"),
+        :description => @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank"),
         :weight => @animal.weight,
         :sex => @animal.sex.to_s.humanize,
         :euthanasia_info => {

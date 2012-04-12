@@ -1,7 +1,7 @@
 <div class="print_options">
 	<div class="links">
 		<span class="print_format_options link">
-			<%= link_to "Print format options", "#", :class => "button"  %>
+			<%= link_to "Print Options", "#", :class => "button"  %>
 		</span>
 		<span class="generate_pdf link">
 			<%= link_to "Print", "#", :class => "button", :onclick => "window.print(); return false;"  %>
@@ -43,9 +43,9 @@
 					</span>
 				</li>
 			   	<li class="buttons">
-					<%= submit_tag "Reformat Print Page", :disable_with => "Submitting...", :class => "button" %>
+					<%= submit_tag "Ok", :disable_with => "Submitting...", :class => "button" %>
 					&nbsp;&nbsp;or&nbsp;&nbsp;
-					<%= link_to 'Close', '#', :class => "button", :onclick => "$('.print_format_options a').trigger('click'); return false;"  %>
+					<%= link_to 'Cancel', '#', :class => "button", :onclick => "$('.print_format_options a').trigger('click'); return false;"  %>
 				</li>
 			</ul>
 			<% end %>

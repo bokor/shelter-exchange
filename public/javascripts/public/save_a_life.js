@@ -38,7 +38,7 @@ var SaveALife = {
 		
 		// Set up forms
 		SaveALife.bindFilters();
-		Maps.breedAutoComplete(function(){SaveALife.findAnimalsInBounds});
+		Maps.breedAutoComplete(function(){SaveALife.findAnimalsInBounds()});
 		Maps.addressAutoComplete();
   	},
 	findAnimalsInBounds: function(){

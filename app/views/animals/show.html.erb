@@ -109,7 +109,7 @@
 			<tr>
 				<td>
 					<h3>Description:</h3>
-					<p><%= auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
+					<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 				</td>
 			</tr>
 		</table>

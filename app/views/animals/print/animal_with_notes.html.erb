@@ -12,7 +12,7 @@
 
 	<%= render "animals/print/print_options", :print_layout => @print_layout %>
 	
-	<div class="page_heading blue">
+	<div class="page_heading">
 		<table class="animal">
 			<tr>
 				<td colspan="2">
@@ -69,7 +69,7 @@
 			<tr>
 				<td>
 					<h3>Description:</h3>
-					<p><%= auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
+					<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 				</td>
 			</tr>
 		</table>
