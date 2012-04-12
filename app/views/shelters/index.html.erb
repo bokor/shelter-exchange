@@ -92,11 +92,9 @@
 			<% end %>
 		</h2>
 		<p>List below the 5 items most needed as donations to your facility. This list will be displayed on the Shelter Exchange website so please keep this list up to date!</p>
-		<% unless @shelter.items.blank? %>
 		<ol id="items">
-			<%= render @shelter.items %>
+			<%= render @shelter.items unless @shelter.items.blank? %>
 		</ol>
-		<% end %>
 	</div>
 	
 <% end %>
