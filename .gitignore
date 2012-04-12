@@ -3,4 +3,3 @@
 .DS_Store
 *.tmproj
 tmp/pets.csv
-tmp/adopt_a_pet/pets.csv
