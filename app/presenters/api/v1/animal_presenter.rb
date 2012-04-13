@@ -34,7 +34,7 @@ class Api::V1::AnimalPresenter < BasePresenter
         :sex => @animal.sex.to_s.humanize,
         :euthanasia_info => {
           :arrival_date => format_date(:default, @animal.arrival_date),
-          :hold_time => @animal.hold_time.blank? ? "" : "#{@animal.hold_time} days",
+          :hold_time => @animal.hold_time.present? ? "#{@animal.hold_time} days" : "",
           :euthanasia_date => format_date(:default, @animal.euthanasia_date)
         },
         :photo => {
