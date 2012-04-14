@@ -23,14 +23,17 @@ var Maps = {
 		kmlLayer.setMap(map);
 	},
 	geocodeAddress: function(){
-		geocoder.geocode( { address: $("#city_zipcode").val() + ", USA", region: 'US' }, function(results, status) {
-	     	if (status == google.maps.GeocoderStatus.OK) {
-				map.fitBounds(results[0].geometry.viewport);
-				// map.setCenter(results[0].geometry.viewport);
-	      	} else {
-	        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
-	      	}
-	    });
+		var city_zipcode = $("#city_zipcode").val();
+		if (city_zipcode != "") {
+			geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
+		     	if (status == google.maps.GeocoderStatus.OK) {
+					map.fitBounds(results[0].geometry.viewport);
+					// map.setCenter(results[0].geometry.viewport);
+		      	} else {
+		        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
+		      	}
+		    });
+		}
 	},
 	breedAutoComplete: function(closeFunction){
 		$("#filters_breed").autocomplete({
@@ -64,27 +67,27 @@ var Maps = {
 			autoFocus: true,
 			delay: 400, 
 			source: function(request, response) {
-		        geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
-				  	response( $.map( results, function( item ) {
+		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
+					response( $.map( results, function( item ) {
 						var address = item.formatted_address.replace(", USA", "");
 						return {
 							label: address,
-				            value: address,
-				            latitude: item.geometry.location.lat(),
-				            longitude: item.geometry.location.lng(),
+			    		value: address,
+ 							latitude: item.geometry.location.lat(),
+							longitude: item.geometry.location.lng(),
 							viewport: item.geometry.viewport
 						}  
 					}));
-		        })
-		      },
-		      //This bit is executed upon selection of an address
-		      select: function(e, ui) {
+		 		})
+			},
+			//This bit is executed upon selection of an address
+			select: function(e, ui) {
 				e.preventDefault();
-			    $(this).val(ui.item.value);
+				$(this).val(ui.item.value);
 				map.fitBounds(ui.item.viewport);
 				lat = ui.item.latitude; 
 				lng = ui.item.longitude;
-		      }	
+			}	
 		});
 	},
 	shelterNameAutoComplete: function(selectFunction){
