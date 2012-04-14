@@ -403,7 +403,7 @@
 
 /* Commmunities :: Helper Links :: Layout */   
 /******************************************************************/
-.communities .helper_links{width: 31%; text-align:right;float:right;}
+.communities .helper_links{text-align:right;float:right;}
 .communities .helper_links .toggle_buttons{margin-left: 5px;}
 .communities #help_text{display:none; margin-bottom: 5px;}
 .communities #help_text h3{color:#000; text-shadow:none;}
