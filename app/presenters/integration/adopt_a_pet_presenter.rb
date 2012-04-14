@@ -2,6 +2,7 @@ class Integration::AdoptAPetPresenter
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::UrlHelper
 
   ADOPT_A_PET_TYPES = { 
                         "Other" => { 
@@ -161,6 +162,10 @@ class Integration::AdoptAPetPresenter
 
       delta.blank? ? 0 : delta.to_i
 
+    end
+    
+    def controller
+      nil #included this method because of the action view helpers
     end
 
 end
