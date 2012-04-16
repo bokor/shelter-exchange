@@ -137,7 +137,7 @@ class Integration::AdoptAPetPresenter
   
   def you_tube_url
     unless @animal.video_url.blank?
-      you_tube_id = .match(VIDEO_URL_REGEX)[5]
+      you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5]
       "http://www.youtube.com/watch?v=#{you_tube_id}" unless you_tube_id.blank?
     end
   end 
