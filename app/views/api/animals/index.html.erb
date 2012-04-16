@@ -6,7 +6,11 @@
 <%= content_for :page_content do %>
 	<div class="page_content">
 		<div id="animals">
-			<%= render 'api/animals/animal_list', :animals => @animals %>
+			<% unless @animals.blank? %>
+				<%= render 'api/animals/animal_list', :animals => @animals %>
+			<% else %>
+				<h2>Currently, No animals available!</h2>
+			<% end %>
 		</div>
 	</div>
 <% end %>
