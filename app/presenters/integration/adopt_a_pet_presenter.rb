@@ -136,7 +136,10 @@ class Integration::AdoptAPetPresenter
   end
   
   def you_tube_url
-    @animal.video_url unless @animal.video_url.blank?
+    unless @animal.video_url.blank?
+      you_tube_id = .match(VIDEO_URL_REGEX)[5]
+      "http://www.youtube.com/watch?v=#{you_tube_id}" unless you_tube_id.blank?
+    end
   end 
 
   def to_csv
