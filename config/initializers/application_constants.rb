@@ -13,7 +13,7 @@ SEX = %w[male female].freeze
 EMAIL_REGEX = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i  
 PHONE_REGEX = /^\+?\d+(-\d+)*$/  # or /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
 URL_REGEX = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-TWITTER_USERNAME_REGEX = /@(?:[a-z0-9]_?)*\z/
+TWITTER_USERNAME_REGEX = /@(?:[A-Za-z0-9]_?)*\z/
 PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)$/ 
 VIDEO_URL_REGEX = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"'>]+)/
 # ANIMAL_VIDEO_URL_FORMAT = [/^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/,
