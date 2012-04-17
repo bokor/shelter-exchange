@@ -5,25 +5,23 @@
 
 /* URL Formatter :: Prepends http:// to url input fields
 /*----------------------------------------------------------------------------*/
+
 $(function(){
-	$('.url_formatter').bind('focus', function(e){
-	    $(this).val('http://' + $(this).val().replace('http://', ''));
-	}).bind('blur', function(e){
-		var testStr = $(this).val();
-		if (testStr.replace('http://', '') == ''){
+	$('.url_formatter').bind('blur', function(e){
+	    var urlPattern = /(http|https):\/\//;
+		var str = $(this).val();
+		if (str.replace(urlPattern, '') == ''){
 			$(this).val("");
 		} else {
-	    	$(this).val('http://' + $(this).val().replace('http://', ''));
+	    	$(this).val('http://' + $(this).val().replace(urlPattern, ''));
 		}
 	});
 });
 
 $(function(){
-	$('.twitter_formatter').bind('focus', function(e){
-	    $(this).val('@' + $(this).val().replace('@', ''));
-	}).bind('blur', function(e){
-		var testStr = $(this).val();
-		if (testStr.replace('@', '') == ''){
+	$('.twitter_formatter').bind('blur', function(e){
+		var str = $(this).val();
+		if (str.replace('@', '') == ''){
 			$(this).val("");
 		} else {
 	    	$(this).val('@' + $(this).val().replace('@', ''));
