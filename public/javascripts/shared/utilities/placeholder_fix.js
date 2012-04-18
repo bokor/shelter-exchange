@@ -6,9 +6,7 @@
 /* Placeholder Text for older browsers
 /*----------------------------------------------------------------------------*/ 
 $(function(){
-    if(!Modernizr.input.placeholder){
-        $('input, textarea').placeholder();
-    }
+    $('input, textarea').placeholder();
 });
 
 
