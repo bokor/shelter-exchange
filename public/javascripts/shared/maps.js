@@ -24,14 +24,8 @@ var Maps = {
 	},
 	geocodeAddress: function(){
 		var city_zipcode = $("#city_zipcode").val();
-<<<<<<< HEAD
         // var city_zipcode_placeholder = $("#city_zipcode").attr("placeholder");
 		if (city_zipcode != ""){ // && city_zipcode != city_zipcode_placeholder) {
-=======
-		var city_zipcode_placeholder = $("#city_zipcode").attr("placeholder");
-
-		if (city_zipcode != "" && city_zipcode != city_zipcode_placeholder) {
->>>>>>> a69a8a3c2379753a9317172e409e8e1f67d88536
 			geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
 		     	if (status == google.maps.GeocoderStatus.OK) {
 					map.fitBounds(results[0].geometry.viewport);
