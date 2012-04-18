@@ -24,7 +24,8 @@ var Maps = {
 	},
 	geocodeAddress: function(){
 		var city_zipcode = $("#city_zipcode").val();
-		if (city_zipcode != "") {
+		var city_zipcode_placeholder = $("#city_zipcode").attr("placeholder");
+		if (city_zipcode != "" || city_zipcode != city_zipcode_placeholder) {
 			geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
 		     	if (status == google.maps.GeocoderStatus.OK) {
 					map.fitBounds(results[0].geometry.viewport);
