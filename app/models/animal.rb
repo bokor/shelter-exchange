@@ -33,7 +33,7 @@ class Animal < ActiveRecord::Base
   has_many :transfers, :dependent => :destroy
   
   has_many :photos, :as => :attachable, :dependent => :destroy
-  # accepts_nested_attributes_for :photos, :limit => 4, :allow_destroy => true, :reject_if => proc { |attributes| attributes['image'].blank? }
+  accepts_nested_attributes_for :photos, :limit => Photo::MAX_TOTAL, :allow_destroy => true, :reject_if => proc { |attributes| attributes['image'].blank? }
   
   # Validations
   #----------------------------------------------------------------------------
