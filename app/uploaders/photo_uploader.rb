@@ -1,6 +1,4 @@
 class PhotoUploader < CarrierWave::Uploader::Base
-  include Rails.application.routes.url_helpers
-  
   include CarrierWave::MiniMagick  
   include CarrierWave::MimeTypes
   
