@@ -4,7 +4,7 @@
 
 <%= keywords "#{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state.to_sym]}, #{@shelter.name} in #{@shelter.city}, #{@shelter.name} in #{@shelter.state},  find a animal shelter, find a rescue group, shelters, rescue groups, wish list, help a shelter, help a rescue group, adoptable animals, available for adoption" %>
 
-<%= open_graph_image image_path(@shelter.logo.url(:medium)) %>
+<%= open_graph_image image_path(@shelter.logo.url) %>
 
 <%= content_for :open_graph_meta do %>
 <!-- CURRENTLY NOT USING -->
@@ -34,9 +34,15 @@
 		<div class="logo">
 			<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo", :itemprop => "image" %>
 			<div class="social">
-				<span><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
-				<span><a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="<%=@shelter.twitter.slice(1..-1) if @shelter.twitter %>">Tweet</a></span>
-				<span><a href="http://pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=@shelter.logo.url(:large)%>&description=<%=pinterest_shelter_description(@shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a></span>
+				<span class="facebook">
+					<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
+				</span>
+				<span class="twitter">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="<%=@shelter.twitter.slice(1..-1) if @shelter.twitter %>">Tweet</a>
+				</span>
+				<span class="pinterest">
+					<a href="http://pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=@shelter.logo.url%>&description=<%=pinterest_shelter_description(@shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+				</span>
 			</div>
 		</div>
 		

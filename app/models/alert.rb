@@ -19,13 +19,15 @@ class Alert < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :active, where(:stopped => false)
   scope :stopped, where(:stopped => true)
+  scope :with_alertable, includes(:alertable)
   scope :for_shelter, where(:alertable_type => nil)
-  scope :for_animals, includes(:alertable).where(:alertable_type => Animal)
+  scope :for_animals, with_alertable.where(:alertable_type => Animal)
+  
   
   # Class Methods
   #----------------------------------------------------------------------------
   def self.recent_activity(limit=10)
-    includes(:alertable).reorder("alerts.updated_at DESC").limit(limit)
+    with_alertable.reorder("alerts.updated_at DESC").limit(limit)
   end
   
   # Instance Methods
@@ -36,6 +38,10 @@ class Alert < ActiveRecord::Base
   
   def active?
     !self.stopped
+  end
+  
+  def alertable?
+    !!self.alertable
   end
   
 end

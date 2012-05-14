@@ -41,7 +41,7 @@
 	
 	<h1>Create a new account 
 		<span class="social">
-			<span><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
+			<span class="facebook"><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
 		</span>
 	</h1>
 	
@@ -144,13 +144,14 @@
 				<%= has_error_message?(@account, :document_type)%>
 			</li>
 			<li class="full">
-				<%= account_form.label :document, "Upload document", :class => "desc" %>
+				<%= account_form.label :document, (@account.document? ? "Document has already been attached" : "Upload document"), :class => "desc" %>
+				<% unless @account.document? %>
 				<div>
 					<%= account_form.file_field :document, :class => "field file" %>
 				</div>
-				<%= has_error_message?(@account, :upload_document_again)%>
-				<%= has_error_message?(@account, :document_file_size) %>
-				<%= has_error_message?(@account, :document_file_name)%>
+				<% end %>
+				<%= account_form.hidden_field :document_cache, :class => "field file" %>
+				<%= has_error_message?(@account, :document)%>
 			</li>
 				
 			<li><p></p></li>

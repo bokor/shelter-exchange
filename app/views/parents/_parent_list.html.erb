@@ -1,29 +1,12 @@
-<% if @parents.size > 0 %>
+<% unless parents.blank? %>
 	<table class="parent_list">
-		<% @parents.each do |parent| %>
-		<tr id="<%= "parent_#{parent.id}" %>">
-			<td class="details">
-				<h2><%= link_to parent.name, parent %></h2>
-				<p><%= parent.street %></p>
-				<p><%= parent.city %>, <%= parent.state %> <%= parent.zip_code %></p>
-			</td>
-			<td class="status">
-				<p><%=number_to_phone(parent.phone, :delimiter => "-")%>(h)</p>
-				<% unless parent.mobile.blank? %>
-					<p><%=number_to_phone(parent.mobile, :delimiter => "-")%>(m)</p>
-				<% end %>
-				<p><%= parent.email %></p>
-				<% unless parent.email_2.blank? %>
-					<p><%= parent.email_2 %></p>
-				<% end %>
-			</td>
-		</tr>
-		<% end %>
+		<%= render parents %>
 	</table>
-<% else %>
-	<div class="no_results">
-		<h2>Didn't find your results?  Try looking up with a different email address or phone number</h2>
-		<p>-- or --</p>
-		<p>Would you like to <%= link_to "create a new parent", new_parent_path %>?</p>
-	</div>
+	<%= will_paginate parents %>
 <% end %>
+
+<div class="no_results">
+	<h3>Didn't find your results?  Try looking up with a different name, email address or phone number</h3>
+	<p>-- or --</p>
+	<p><%= link_to "create a new parent?", new_parent_path, :class => "button red" %></p>
+</div>

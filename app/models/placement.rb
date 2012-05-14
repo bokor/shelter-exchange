@@ -24,7 +24,7 @@ class Placement < ActiveRecord::Base
   
   # Scopes
   #----------------------------------------------------------------------------
-  scope :adopted, includes([:animal, :shelter]).where(:status => "adopted")
-  scope :foster_care, includes([:animal, :shelter]).where(:status => "foster_care")
+  scope :adopted, includes(:shelter, :animal => [:photos, :animal_type]).where(:status => "adopted")
+  scope :foster_care, includes(:shelter, :animal => [:photos, :animal_type]).where(:status => "foster_care")
   
 end

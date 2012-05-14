@@ -6,7 +6,9 @@
 /* Placeholder Text for older browsers
 /*----------------------------------------------------------------------------*/ 
 $(function(){
-    $('input, textarea').placeholder();
+    if ($("[placeholder]").length > 0){
+        $('input, textarea').placeholder();
+    }
 });
 
 

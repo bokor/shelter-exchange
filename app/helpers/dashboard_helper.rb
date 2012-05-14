@@ -8,9 +8,9 @@ module DashboardHelper
     if animal.updated_at == animal.created_at
       "A new animal record for #{link_to animal.name, animal} has been created."
     elsif animal.status_change_date == animal.updated_at.to_date
-      "#{link_to possessive(animal.name), animal} status was changed to <strong>'#{animal.animal_status.name}'</strong>"
+      "#{link_to animal.name.possessive, animal} status was changed to <strong>'#{animal.animal_status.name}'</strong>"
     else
-      "#{link_to possessive(animal.name), animal} record has been updated."
+      "#{link_to animal.name.possessive, animal} record has been updated."
     end.html_safe
   end
   

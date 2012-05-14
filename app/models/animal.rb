@@ -1,10 +1,10 @@
 class Animal < ActiveRecord::Base
   # Concerns
-  include Photoable, Statusable, Typeable
+  include Statusable, Typeable, Guidable
   # Animal Namespaced
   include Reportable, Searchable, Mappable, Transferrable, Apiable
   
-  default_scope :order => 'animals.updated_at DESC', :limit => 250
+  default_scope :order => 'animals.updated_at DESC'
 
   # Callbacks
   #----------------------------------------------------------------------------  
@@ -17,13 +17,7 @@ class Animal < ActiveRecord::Base
                 :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
-  
-  # Constants
-  #----------------------------------------------------------------------------
-  PER_PAGE = 25
-  PER_PAGE_API = 25
 
-  
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :animal_type, :readonly => true
@@ -38,7 +32,9 @@ class Animal < ActiveRecord::Base
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
   
-
+  has_many :photos, :as => :attachable, :dependent => :destroy
+  # accepts_nested_attributes_for :photos, :limit => 4, :allow_destroy => true, :reject_if => proc { |attributes| attributes['image'].blank? }
+  
   # Validations
   #----------------------------------------------------------------------------
   validates :name, :presence => true
@@ -54,10 +50,14 @@ class Animal < ActiveRecord::Base
   validates :arrival_date, :date_format => true
   validates :euthanasia_date, :date_format => true
   
-    
+  
   # Scopes 
   #----------------------------------------------------------------------------
-  scope :latest, lambda { |status, limit| includes(:shelter).send(status).reorder("status_change_date DESC").limit(limit) }
+  # scope :with_shelter, includes(:shelter)
+  # scope :with_photos, includes(:photos)
+  # scope :with_animal_type, includes(:animal_type)
+  # scope :with_animal_status, includes(:animal_status)
+  scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).order("status_change_date DESC").limit(limit) }
       
   
   # Scopes - Dashboard - Recent Activity
@@ -89,6 +89,10 @@ class Animal < ActiveRecord::Base
   def sterilized?
     self.is_sterilized
   end       
+  
+  # def photos?
+  #   self.photos.present?
+  # end
        
        
   # Private Methods

@@ -5,12 +5,17 @@ class AnimalsController < ApplicationController
   
   def index
     @total_animals = @current_shelter.animals.count
-    @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
     respond_with(@animals)
   end
   
   def show
-    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
+    # Photos
+    @photos = @animal.photos
+    @gallery_photos = PhotoPresenter.as_gallery(@photos)
+    @uploader_photos = PhotoPresenter.as_uploader(@photos)
+    
     @notes = @animal.notes.all
     @status_histories = @animal.status_histories.includes(:animal_status).all
     @alerts = @animal.alerts.active.all
@@ -50,7 +55,7 @@ class AnimalsController < ApplicationController
   end
   
   def print
-    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :accommodation => [:location]).find(params[:id])
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
     @shelter = @current_shelter
     @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
     @notes = @animal.notes.where(:category => @note_categories).all
@@ -72,9 +77,9 @@ class AnimalsController < ApplicationController
   def search
     q = params[:q].strip.split.join("%")
     if q.blank?
-      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
     else
-      @animals = @current_shelter.animals.search(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+      @animals = @current_shelter.animals.search(q).paginate(:page => params[:page]).all
     end
   end
   
@@ -89,13 +94,13 @@ class AnimalsController < ApplicationController
   end
 
   def filter_by_type_status
-    @animals = @current_shelter.animals.filter_by_type_status(params[:animal_type_id], params[:animal_status_id]).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = @current_shelter.animals.filter_by_type_status(params[:animal_type_id], params[:animal_status_id]).paginate(:page => params[:page]).all
   end
   
   def find_animals_by_name
     q = params[:q].strip
     @from_controller = params[:from_controller]
-    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:per_page => Animal::PER_PAGE, :page => params[:page])
+    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:page => params[:page]).all
   end
   
   def auto_complete

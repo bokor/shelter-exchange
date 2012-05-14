@@ -106,18 +106,20 @@ Dog House Sides - #db8d4a
 
 /* Placeholder Text */
 /******************************************************************/
-.placeholder { color: #999; }
-
+input.placeholder { color: #999; }
+textarea.placeholder { color: #999; }
+:-moz-placeholder{color:#999999;}
+::-webkit-input-placeholder{color:#999999;}
 
 
 /* Pagination */   
 /******************************************************************/
 /* ORANGE - #CF7019 */
-.pagination { padding: 3px; margin: 10px 0 10px 0;}
-.pagination a, .pagination span{white-space: nowrap;}
-.pagination a {height: 60px;line-height: 40px;padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination { padding: 3px; margin: 10px 0 10px 0; }
+.pagination a, .pagination span{white-space: nowrap; font-weight:bold;}
+.pagination a {height: 60px;line-height: 40px; padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
 .pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
-.pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
+.pagination em.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;font-style: normal;background-color: #555;color: #fff;}
 .pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
 
 
@@ -314,7 +316,10 @@ body.firefox.mac .button.default {
 }
 
 
-
+/* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
+/******************************************************************/
+.ie7 .button, 
+.ie8 .button{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* Toggle Buttons */   
@@ -363,6 +368,7 @@ ul.toggle_buttons li a {
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
 	text-transform: uppercase;
 }
+
 
 /* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
 /******************************************************************/

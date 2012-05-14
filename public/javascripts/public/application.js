@@ -54,7 +54,7 @@ $(function() {
 	});
 });
 
-var validateEmail = function(value) { return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(value); }
+var validateEmail = function(value) { return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i.test(value); };
 
 
 

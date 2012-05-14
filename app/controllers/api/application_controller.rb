@@ -1,22 +1,22 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :access_token, :shelter_lookup, :shelter_inactive?
+  before_filter :shelter_lookup, :shelter_inactive?
   layout :current_layout
   
 
   private
+
+    def current_layout
+      (request.format.html? or request.format.js?) ? 'api/application' : false
+    end  
   
     def access_token
       @access_token ||= params[:access_token]
     end
-      
-    def current_layout
-      (request.format.html? or request.format.js?) ? 'api/application' : false
-    end
 
     def shelter_lookup
-      @current_shelter = access_token ? Shelter.by_access_token(params[:access_token]).first : respond_with_error({ :error => "Not Authorized to perform this action" })
+      @current_shelter = Shelter.by_access_token(access_token).first || respond_with_error({ :error => "Not Authorized to perform this action" })
     end 
     
     def shelter_inactive?

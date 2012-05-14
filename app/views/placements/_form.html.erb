@@ -10,7 +10,7 @@
 	</div>
 	<%= has_error_message?(@parent, :status)%>
 </li>
-<%= f.fields_for :comments, @comment do |comment_fields| %>
+<%= f.fields_for :comments, @placement.comments.build do |comment_fields| %>
 	<li>
 		<%= comment_fields.label :comment, "Comment", :class => "desc" %>
 		<div><%= comment_fields.text_area :comment, :class => "field textarea medium" %></div>

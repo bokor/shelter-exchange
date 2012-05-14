@@ -5,9 +5,12 @@
 <%= content_for :javascripts do %>
 
 	<script type="text/javascript">
-		var mission_statement_images = ['<%= image_path("public/home/mission_statement_puppies.png")%>', '<%= image_path("public/home/mission_statement_kittens.png")%>', '<%= image_path("public/home/mission_statement_bunnies.png")%>'];
 		$(function() {
-			HomePage.randomizeImages(mission_statement_images);
+			HomePage.initialize([
+				'<%= image_path("public/home/mission_statement_puppies.png")%>', 
+				'<%= image_path("public/home/mission_statement_kittens.png")%>', 
+				'<%= image_path("public/home/mission_statement_bunnies.png")%>'
+			]);
 		});
 	</script>
 	
@@ -34,7 +37,9 @@
 	    	<p>Shelter Exchange is a non-profit organization that offers a practical solution to the difficult and widespread problem of animal euthanasia in shelters. We provide shelters and rescue groups with collaborative technology to better manage resources, communicate and act together to save millions of animals each year. Positive change has already begun. Your support ensures it will continue.</p>
 	    </div>
 		<div class="social">
-    		<span><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
+    		<span class="facebook">
+				<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
+			</span>
     	</div>
 	</section>
 	<!-- Section :: Mission Statement -->
@@ -64,7 +69,7 @@
 			<% @animals.each do |animal|%>
 				<div class="box">
 					<div class="photo">
-						<%= link_to image_tag(animal.photo.url(:thumb)), public_save_a_life_path(animal)  %>
+						<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), public_save_a_life_path(animal)  %>
 					</div>
 					<div class="animal">
 						<h3>Congratulations <%= link_to animal.name, public_save_a_life_path(animal) %>!</h3>

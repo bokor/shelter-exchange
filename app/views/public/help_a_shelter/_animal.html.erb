@@ -1,6 +1,6 @@
 <div id="<%= "animal_#{animal.id}" %>" class="animal">
 	<a href="<%=public_save_a_life_path(animal)%>" target="_blank">
-		<div class="logo"><%= image_tag(animal.photo.url(:small), :alt => "#{animal.name} - #{animal.full_breed}") %></div>
+		<div class="logo"><%= image_tag(polymorphic_photo_url(animal.photos.first, :small), :alt => "#{animal.name} - #{animal.full_breed}") %></div>
 		<h3><%= animal.name %></h3>
 		<ul>
 			<li><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.is_sterilized %>(Sterilized)<% end %></li>

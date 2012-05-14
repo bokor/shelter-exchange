@@ -4,13 +4,17 @@ class Parent < ActiveRecord::Base
   # Parent Namespaced
   include Searchable, Cleanable
   
-  default_scope :order => 'created_at DESC' #, :limit => 25
+  default_scope :order => 'created_at DESC'
   
   
   # Associations
   #----------------------------------------------------------------------------
   has_many :placements, :dependent => :destroy
   has_many :notes, :as => :notable, :dependent => :destroy
+  
+  has_many :animals, :through => :placements
+  has_many :shelters, :through => :placements
+  
   
   # Validations
   #----------------------------------------------------------------------------

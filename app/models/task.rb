@@ -33,6 +33,10 @@ class Task < ActiveRecord::Base
 
   # Instance Methods
   #----------------------------------------------------------------------------  
+  def taskable?
+    !!self.taskable
+  end
+  
   def completed?
     self.completed
   end

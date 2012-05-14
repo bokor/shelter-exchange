@@ -212,7 +212,7 @@
 	.user .name{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
 	.user .role{display:inline-block; width: 15%; font-size : 11px;}
 	.user .email{display:inline-block; width: 30%;font-size : 11px; }
-	.user .shelter_link{display:inline-block; width: 30%; font-size : 11px;font-weight: bold;}
+	.user .shelter_link{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
 	
 
 

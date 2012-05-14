@@ -5,6 +5,7 @@
 		$(function() {
 			Notes.filters();
 			Transfers.hasRequest(<%=@transfer_requested %>);
+			Photos.initGallery(<%=raw @gallery_photos %>);
 		});
 	</script>
 <% end %>
@@ -29,43 +30,63 @@
 	</div>
 	
 	<div class="page_content">
+		
+		<% if @animal.available_for_adoption? %>
+			<div class="social">
+				<span class="text_label">Share and promote:</span>
+				<span class="facebook">
+					<div class="fb-like" data-send="false" 
+										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+										 data-layout="button_count"
+										 data-show-faces="false"></div>
+				</span>
+				<span class="twitter">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" 
+					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					   data-text="<%="#{@animal.name} - #{@animal.full_breed} - #{@shelter.city}, #{@shelter.state}" %>">Tweet</a>
+				</span>
+				<span class="pinterest">
+					<a href="http://pinterest.com/pin/create/button/?url=<%= public_save_a_life_url(@animal, :subdomain => "www")%>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+				</span>
+				<!-- <span><%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www") %></span> -->
+			</div>	
+		<% end %>
 		 
 		<table class="animal_details">
 			<tr>
 				<td class="metadata">
+					
 					<h3>Details:</h3>
 					<ul>
-						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
+						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></span></p></li>
 						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
-						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
-						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
-						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
-						<li><p><b>MicroChip:</b><span><%= @animal.microchip.present? ? @animal.microchip : "Unknown" %></span></p></li>
-						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date(:default, @animal.arrival_date) : "Unknown" %></span></p></li>
+						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "N/A" %></span></p></li>
+						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "N/A" %></span></p></li>
+						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "N/A" %></span></p></li>
+						<li><p><b>MicroChip:</b><span><%= @animal.microchip.present? ? @animal.microchip : "N/A" %></span></p></li>
+						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date(:default, @animal.arrival_date) : "N/A" %></span></p></li>
 					</ul>
-					
-					<% if @animal.special_needs? %>
-						<h3>Special Needs:</h3>
-						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
-					<% end %>
-					<% if @shelter.kill_shelter? %>
-						<h3>Euthanasia Info:</h3>
-						<ul>
-							<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? "#{@animal.hold_time} days" : "Unknown" %></span></p></li>
-							<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "Unknown" %></span></p></li>
-						</ul>
-					<% end %>
-					
 				</td>
 				<td class="image">
-			    	<%= image_tag @animal.photo.url(:medium) %>
+					
+			    	<div id="photo_gallery"></div>
+			
 					<% unless @animal.video_url.blank? %>
 					<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player right", :title => "Video of #{@animal.name}" %>
 					<% end %>
 			    </td>
 			</tr>
 		</table>
-
+		<% if @animal.special_needs? %>
+			<table class="special_needs">
+				<tr>
+					<td>
+						<h3>Special Needs:</h3>
+						<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
+					</td>
+				</tr>
+			</table>
+		<% end %>
 		<table class="description">
 			<tr>
 				<td>
@@ -75,16 +96,30 @@
 			</tr>
 		</table>
 		
+		<% if @shelter.kill_shelter? %>
+		<table class="euthanasia_info">
+			<tr>
+				<td>
+					<h3>Euthanasia Info:</h3>
+					<ul>
+						<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? "#{@animal.hold_time} days" : "N/A" %></span></p></li>
+						<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "N/A" %></span></p></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+
 		
 	</div>
 	
 	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
-			<%= link_to 'All', filter_notes_communities_path(:animal_id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
+			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
 			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_communities_path(:filter => category, :animal_id => @animal.id, :format => :js), 
+				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js), 
 				                          :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>
@@ -102,7 +137,7 @@
 
 <%= content_for :sidebar do %>
 
-	<% unless @current_shelter.kill_shelter? %>
+	<% unless @shelter.kill_shelter? %>
 		<div class="transfer_section">
 			<% if can?(:request_transfer, Animal) %>
 			<ul id="transfer_request_button" class="action_links">
@@ -133,7 +168,7 @@
 	<div id="animal_shelter">
 		<h2>Shelter details</h2>
 		<div id="shelter" class="shelter_details">
-			<% if @shelter.logo.file? %>
+			<% if @shelter.logo? %>
 				<div class="logo">
 					<%= image_tag @shelter.logo.url(:thumb) %> 
 				</div>

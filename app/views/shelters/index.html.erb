@@ -14,7 +14,7 @@
 
 	<div class="page_heading blue">
 		
-		<% if @shelter.logo.file? %>
+		<% if @shelter.logo? %>
 			<div class="logo">
 				<%= image_tag @shelter.logo.url(:small) %>
 			</div>

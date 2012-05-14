@@ -26,6 +26,8 @@ ShelterExchangeApp::Application.configure do
 
   # Use a different cache store in production
   config.cache_store = :dalli_store, "127.0.0.1:11211"
+  
+  Rails.application.routes.default_url_options = { :host => "shelterexchange.org" } # Fixes issue with Presenters not allowing Routes and Url Helper
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -42,7 +44,7 @@ ShelterExchangeApp::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
-  # config.threadsafe!
+  # config.threadsafe! unless $rails_rake_task
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

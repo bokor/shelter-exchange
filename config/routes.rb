@@ -21,7 +21,7 @@ ShelterExchangeApp::Application.routes.draw do
 
   # Application - Routes for *subdomain*.shelterexchange.org
   #----------------------------------------------------------------------------
-  constraints(AppSubdomain) do
+  constraints(ShelterExchange::Subdomains::App) do
   
     # Notes
     #----------------------------------------------------------------------------
@@ -116,6 +116,10 @@ ShelterExchangeApp::Application.routes.draw do
         get :search
       end
     end
+    
+    # Photos
+    #----------------------------------------------------------------------------
+    resources :photos, :only => [:destroy]
   
     # Animals
     #----------------------------------------------------------------------------
@@ -123,6 +127,9 @@ ShelterExchangeApp::Application.routes.draw do
       resources :notes
       resources :alerts 
       resources :tasks 
+      resources :photos, :only => [:create, :destroy] do
+        get :refresh_gallery, :on => :collection
+      end 
       member do
         match :print, :via => [:get, :post]
         # get :print
@@ -212,7 +219,7 @@ ShelterExchangeApp::Application.routes.draw do
 
   # Admin - Routes for manage.shelterexchange.org
   #----------------------------------------------------------------------------
-  constraints(AdminSubdomain) do
+  constraints(ShelterExchange::Subdomains::Admin) do
         
     namespace :admin do
       
@@ -286,7 +293,7 @@ ShelterExchangeApp::Application.routes.draw do
   
   # Api - Routes for api.shelterexchange.org
   #----------------------------------------------------------------------------
-  constraints(ApiSubdomain) do
+  constraints(ShelterExchange::Subdomains::Api) do
         
     namespace :api, :path => "/" do
       
@@ -307,7 +314,7 @@ ShelterExchangeApp::Application.routes.draw do
   
   # Public - Routes for www.shelterexchange.org or shelterexchange.org
   #----------------------------------------------------------------------------
-  constraints(PublicSubdomain) do
+  constraints(ShelterExchange::Subdomains::Public) do
     
     namespace :public, :path => "/" do
       

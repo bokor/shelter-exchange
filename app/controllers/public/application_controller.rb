@@ -1,7 +1,6 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :default_response_format
   before_filter :authenticate! if Rails.env.demo? or Rails.env.staging?
     
   layout :current_layout
@@ -14,11 +13,6 @@ class Public::ApplicationController < ActionController::Base
       else
         "public/application"
       end
-    end
-    
-    # REMOVE WHEN History JS fixed = Force HTML format when it comes in as a generic request curl (curl -v -H "Accept: */*;q=0.1" http://www.lvh.me:3000/save_a_life/4)
-    def default_response_format
-      request.format = :html if request.format.to_s.include?('*/*;q=')
     end
     
     def authenticate!   

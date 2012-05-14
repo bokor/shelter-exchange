@@ -1,12 +1,6 @@
-class Api::V1::AnimalPresenter < BasePresenter
-  include Rails.application.routes.url_helpers
-  include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::TagHelper
-  include ApplicationHelper
-  include AnimalsHelper
-  include UrlHelper
+class Api::V1::AnimalPresenter < Presenter
   
-  def initialize( animal )
+  def initialize(animal)
     @animal = animal
   end
 
@@ -23,35 +17,48 @@ class Api::V1::AnimalPresenter < BasePresenter
         :full_breed_in_text => @animal.full_breed,
         :sterilized => @animal.sterilized? ? true : false,
         :date_of_birth => @animal.date_of_birth,
-        :date_of_birth_in_text => humanize_dob(@animal.date_of_birth),
+        :date_of_birth_in_text => help.humanize_dob(@animal.date_of_birth),
         :size => @animal.size,
         :color => @animal.color,
         :microchip => @animal.microchip,
         :has_special_needs => @animal.special_needs?,
-        :special_needs => auto_link(simple_format(@animal.special_needs), :all, :target => "_blank"),
-        :description => @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank"),
+        :special_needs => help.auto_link(help.simple_format(@animal.special_needs), :all, :target => "_blank"),
+        :description => @animal.description.blank? ? "No description provided" : help.auto_link( help.simple_format(@animal.description), :all, :target => "_blank"),
         :weight => @animal.weight,
         :sex => @animal.sex.to_s.humanize,
         :euthanasia_info => {
-          :arrival_date => format_date(:default, @animal.arrival_date),
+          :arrival_date => help.format_date(:default, @animal.arrival_date),
           :hold_time => @animal.hold_time.present? ? "#{@animal.hold_time} days" : "",
-          :euthanasia_date => format_date(:default, @animal.euthanasia_date)
+          :euthanasia_date => help.format_date(:default, @animal.euthanasia_date)
         },
-        :photo => {
-          :thumbnail => photo(:thumbnail),
-          :small => photo(:small),
-          :large => photo(:large)
-        },
-        :video => @animal.video_url,
-        :url => public_save_a_life_url(@animal, :subdomain => "www")
-  	  }
+        :photos => photos,
+        :video => you_tube_url,
+        :url => public_save_a_life_url(@animal)
+      }
     }
   end
   
   private
   
-    def photo(size)
-      @animal.photo.url(size).include?("default_#{size.to_s}_photo") ? "" : @animal.photo.url(size)
+    def you_tube_url
+      unless @animal.video_url.blank?
+        you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5]
+        "http://www.youtube.com/watch?v=#{you_tube_id}" unless you_tube_id.blank?
+      end
+    end
+  
+    def photos
+      unless @animal.photos.blank?
+        @animal.photos.collect do |photo| 
+          { 
+            :photo => {
+              :thumbnail => photo.image.thumb.url, 
+              :small => photo.image.small.url, 
+              :large => photo.image.url
+            }
+          }
+        end
+      end
     end
 
 end

@@ -13,7 +13,6 @@
 	<%= render "animals/print/print_options", :print_layout => @print_layout %>
 	
 	<div class="page_heading">
-	
 		<table class="animal">
 			<tr>
 				<td>
@@ -28,34 +27,32 @@
 	
 	<div class="page_content">
 		
-		 
-		<table class="animal_details">
-			<tr>
-				<td class="metadata">
-					<h3>Details:</h3>
-					<ul>
-						<li><p><b><%= @animal.animal_type.name %>:</b><span><%= @animal.full_breed %></span></p></li>
-						<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "Unknown" %></span></p></li>
-						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
-						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "Unknown" %></span></p></li>
-						<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "Unknown" %></span></p></li>
-						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "Unknown" %></span></p></li>
-					</ul>
-					
-					<h3>Description:</h3>
-					<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
-					<br>
-					
-					<% if @animal.special_needs? %>
-						<h3>Special Needs:</h3>
-						<p><%= simple_format(@animal.special_needs) %></p>
-					<% end %>
-				</td>
-				<td class="image">
-				    <%= image_tag @animal.photo.url(:large), :alt => "#{@animal.name} - #{@animal.full_breed}" %>
-				</td>
-			</tr>
-		</table>
+		<div class="animal_details">
+
+			<div class="media">
+				<%= image_tag(polymorphic_photo_url(@animal.photos.first, :large), :alt => "#{@animal.name} - #{@animal.full_breed}") %>
+			</div>
+			
+			<div class="type"><%= @animal.animal_type.name %>:&nbsp;&nbsp;<%= @animal.full_breed %></div>
+
+			<h3>Details:</h3>
+			<ul class="details">
+				<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></span></p></li>
+				<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
+				<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "N/A" %></span></p></li>
+				<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "N/A" %></span></p></li>
+				<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "N/A" %></span></p></li>
+			</ul>
+
+			<% if @animal.special_needs? %>
+				<h3>Special Needs:</h3>
+				<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
+			<% end%>
+			
+			<h3>Description:</h3>
+			<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
+
+		</div>
 		
 	</div>
 

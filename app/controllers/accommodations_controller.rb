@@ -2,7 +2,7 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
   
   def index
-    @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = @current_shelter.accommodations.includes(:location, :animal_type, :animals => [:animal_status, :photos]).paginate(:page => params[:page])
 
     if @accommodations.blank?
       redirect_to new_accommodation_path
@@ -47,11 +47,11 @@ class AccommodationsController < ApplicationController
   
   def search
     q = params[:q].strip
-    @accommodations = q.blank? ? {} : @current_shelter.accommodations.search(q).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = q.blank? ? {} : @current_shelter.accommodations.search(q).paginate(:page => params[:page])
   end
   
   def filter_by_type_location
-    @accommodations = @current_shelter.accommodations.filter_by_type_location(params[:animal_type_id], params[:location_id]).paginate(:per_page => Accommodation::PER_PAGE, :page => params[:page])
+    @accommodations = @current_shelter.accommodations.filter_by_type_location(params[:animal_type_id], params[:location_id]).paginate(:page => params[:page])
   end
 
 end

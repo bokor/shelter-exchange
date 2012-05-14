@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329185233) do
+ActiveRecord::Schema.define(:version => 20120418215805) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -31,10 +31,7 @@ ActiveRecord::Schema.define(:version => 20120329185233) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "document_file_name"
-    t.string   "document_content_type"
-    t.integer  "document_file_size"
-    t.datetime "document_updated_at"
+    t.string   "document"
     t.string   "document_type"
   end
 
@@ -91,10 +88,6 @@ ActiveRecord::Schema.define(:version => 20120329185233) do
     t.string   "secondary_breed"
     t.integer  "animal_type_id"
     t.integer  "animal_status_id"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shelter_id"
@@ -290,6 +283,21 @@ ActiveRecord::Schema.define(:version => 20120329185233) do
   add_index "parents", ["created_at"], :name => "index_parents_on_created_at"
   add_index "parents", ["phone", "mobile", "email", "email_2"], :name => "full_search"
 
+  create_table "photos", :force => true do |t|
+    t.string   "image"
+    t.boolean  "is_main_photo",   :default => false
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["attachable_id", "attachable_type", "is_main_photo"], :name => "attachable_main_photo"
+  add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
+  add_index "photos", ["attachable_id", "is_main_photo"], :name => "index_photos_on_attachable_id_and_is_main_photo"
+  add_index "photos", ["attachable_id"], :name => "index_photos_on_attachable_id"
+  add_index "photos", ["attachable_type"], :name => "index_photos_on_attachable_type"
+
   create_table "placements", :force => true do |t|
     t.integer  "animal_id"
     t.integer  "parent_id"
@@ -318,19 +326,16 @@ ActiveRecord::Schema.define(:version => 20120329185233) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter",                                   :default => false,    :null => false
-    t.decimal  "lat",               :precision => 15, :scale => 10
-    t.decimal  "lng",               :precision => 15, :scale => 10
+    t.boolean  "is_kill_shelter",                                 :default => false,    :null => false
+    t.decimal  "lat",             :precision => 15, :scale => 10
+    t.decimal  "lng",             :precision => 15, :scale => 10
     t.string   "email"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
+    t.string   "logo"
     t.string   "facebook"
     t.string   "time_zone"
     t.string   "access_token"
     t.string   "street_2"
-    t.string   "status",                                            :default => "active"
+    t.string   "status",                                          :default => "active"
     t.text     "status_reason"
   end
 

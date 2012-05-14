@@ -1,9 +1,9 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
 		<% if @from_controller == "parents" %>
-			<%= link_to image_tag(animal.photo.url(:thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
+			<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
 		<% else %>
-			<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+			<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), animal_path(animal)  %>
 		<% end %>
 	</td>
 	<td class="details">

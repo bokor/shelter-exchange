@@ -8,15 +8,17 @@ class Public::SaveALifeController < Public::ApplicationController
   end
   
   def show
-    @animal = Animal.includes(:animal_type, :animal_status, :shelter).find(params[:id])
+    @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos).find(params[:id])
     @shelter = @animal.shelter
-    raise ActiveRecord::RecordNotFound if @shelter.inactive?
+    raise ActiveRecord::RecordNotFound if @shelter.inactive?    
+    @photos = @animal.photos
+    @gallery_photos = PhotoPresenter.as_gallery(@photos)
   end
   
   def find_animals_in_bounds
     shelter_ids = Shelter.find(:all, :select => :id, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]])
     unless shelter_ids.blank?
-      @animals = Animal.community_animals(shelter_ids, params[:filters]).available_for_adoption.paginate(:per_page => 10, :page => params[:page]) || {}
+      @animals = Animal.community_animals(shelter_ids, params[:filters]).available_for_adoption.paginate(:page => params[:page], :per_page => 10).all || {}
     end
   end
   

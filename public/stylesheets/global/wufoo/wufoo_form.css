@@ -996,7 +996,7 @@ form li.paging-context{
 	border-radius:10px;
 }
 form li.error{
-	display:block !important;
+    display:block !important;
 	background-color: #FFDFDF !important;
 	margin-bottom:3px !important;
 }

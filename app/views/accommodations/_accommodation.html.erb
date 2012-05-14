@@ -47,7 +47,7 @@
 			<% accommodation.animals.each do |animal| %>
 			<tr>
 				<td class="image">
-					<%= link_to image_tag(animal.photo.url(:thumb)), animal_path(animal)  %>
+					<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), animal_path(animal)  %>
 				</td>
 				<td class="details">
 					<p><%= link_to animal.name, animal %></p>

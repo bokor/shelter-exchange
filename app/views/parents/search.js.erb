@@ -1,1 +1,1 @@
-$('#parents').html( "<%= escape_javascript( render 'parent_list') %>" );
+$('#parents').html( "<%= escape_javascript( render 'parent_list', :parents => @parents) %>" );

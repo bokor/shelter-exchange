@@ -1,14 +1,15 @@
 class ParentsController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :json
   
   def index
     # No Loading because Index page is a search
   end
   
   def show
-    @parent = Parent.includes(:notes, :placements => [:shelter, :animal => [:animal_type]]).find(params[:id])
-    @placement = @parent.placements.new
-    @comment = @placement.comments.build
+    @parent = Parent.includes(:notes).find(params[:id])
+
+    @adopted_placements = @parent.placements.adopted.includes(:shelter, :animal => [:animal_type, :photos]).all
+    @foster_care_placements = @parent.placements.foster_care.includes(:shelter, :animal => [:animal_type, :photos]).all
     respond_with(@parent)
   end
   
@@ -43,7 +44,8 @@ class ParentsController < ApplicationController
   
   def search
     q = params[:q].strip.split.join("%")
-    @parents = q.blank? ? {} : Parent.search(q).all
+    parent_params = params[:parents].delete_if{|k,v| v.blank?} if params[:parents]
+    @parents = q.blank? ? {} : Parent.search(q, parent_params).paginate(:page => params[:page]).all
   end
   
   

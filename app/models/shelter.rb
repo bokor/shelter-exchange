@@ -1,6 +1,6 @@
 class Shelter < ActiveRecord::Base
   # Concerns
-  include Logoable, Geocodeable
+  include Geocodeable, Guidable
   # Shelter Namespaced
   include Cleanable, Searchable, Tokenable
   
@@ -10,6 +10,8 @@ class Shelter < ActiveRecord::Base
   
   # Assocations
   #----------------------------------------------------------------------------
+  mount_uploader :logo, LogoUploader
+  
   belongs_to :account
   
   has_many :users, :through => :account
@@ -27,6 +29,7 @@ class Shelter < ActiveRecord::Base
   has_many :transfers, :dependent => :destroy
   has_many :integrations, :dependent => :destroy
 
+
   # Nested Attributes
   #----------------------------------------------------------------------------  
   accepts_nested_attributes_for :items, :allow_destroy => true
@@ -38,7 +41,7 @@ class Shelter < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true, :allow_blank => true, :email_format => true
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }   
   validates :website, :facebook, :allow_blank => true, :url_format => true
-  validates :twitter, :twitter_format => true, :allow_blank => true        
+  validates :twitter, :twitter_format => true, :allow_blank => true   
 
   
   # Scopes

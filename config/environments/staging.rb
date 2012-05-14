@@ -26,6 +26,8 @@ ShelterExchangeApp::Application.configure do
 
   # Use a different cache store in production
   config.cache_store = :dalli_store, "127.0.0.1:11211"
+   
+  Rails.application.routes.default_url_options = { :host => "se-staging.org" } # Fixes issue with Presenters not allowing Routes and Url Helper
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -50,4 +52,5 @@ ShelterExchangeApp::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
 end

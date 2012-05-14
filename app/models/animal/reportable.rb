@@ -26,7 +26,7 @@ module Animal::Reportable
       end
       scope = scope.where(:status_histories => {:id => status_histories})
       scope = scope.where(:animal_status_id => AnimalStatus::ACTIVE)
-      scope = scope.group(:animal_type_id).limit(nil)
+      scope = scope.group(:animal_type_id)
       scope
     end
   

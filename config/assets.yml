@@ -24,8 +24,15 @@ javascripts:
     - public/javascripts/global/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/global/jquery.jscroll.min.js
     - public/javascripts/global/jquery.placeholder.min.js
+    - public/javascripts/global/jquery_fileupload/vendor/jquery.ui.widget.js
+    - public/javascripts/global/tmpl.min.js
+    - public/javascripts/global/jquery_fileupload/jquery.iframe-transport.js
+    - public/javascripts/global/jquery_fileupload/jquery.fileupload.js
+    - public/javascripts/global/jquery_fileupload/jquery.fileupload-ui.js
+    - public/javascripts/global/jquery_fileupload/locale.js
+    - public/javascripts/global/galleria-1.2.7.min.js    
+    - public/javascripts/global/galleria.twelve.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/shared/**/*.js
@@ -34,7 +41,7 @@ javascripts:
   app_print:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
+    - public/javascripts/shared/forms.js
     - public/javascripts/app/animals.js
 
   admin:
@@ -43,7 +50,6 @@ javascripts:
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
     - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/shared/**/*.js
@@ -63,13 +69,13 @@ javascripts:
     - public/javascripts/global/jquery.ui.autocomplete.ext.js
     - public/javascripts/global/jquery.blockUI.min.js
     - public/javascripts/global/jquery.nivo.slider.pack.js
-    # - public/javascripts/global/jquery.flip.min.js
     - public/javascripts/global/jquery.rss.min.js
     - public/javascripts/global/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/global/jquery.jscroll.min.js
     - public/javascripts/global/jquery.placeholder.min.js
+    - public/javascripts/global/galleria-1.2.7.min.js    
+    - public/javascripts/global/galleria.twelve.min.js
     - public/javascripts/global/modernizr.js
-    - public/javascripts/global/forms.js
     - public/javascripts/global/date.js
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/shared/**/*.js
@@ -81,39 +87,51 @@ javascripts:
 
 stylesheets:
   app:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/**/*.css    
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     - public/stylesheets/app/global_print.css
     
   app_login:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/app/login/*.css
   
   app_print:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css    
     - public/stylesheets/app/print/*.css
       
   admin:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
   
   admin_login:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/admin/login.css
   
   api:
-    - public/stylesheets/global/**/*.css
+    # - public/stylesheets/global/fancybox/*.css
+    # - public/stylesheets/global/galleria/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css  
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
   
-  public:
-    - public/stylesheets/global/**/*.css
+  public:  
+    - public/stylesheets/global/fancybox/*.css
+    - public/stylesheets/global/galleria/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/nivo-slider/*.css
+    - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
   
   public_popup:
-    - public/stylesheets/global/**/*.css
+    - public/stylesheets/global/jquery-ui/*.css
+    - public/stylesheets/global/wufoo/*.css    
     - public/stylesheets/public/popup.css
     - public/stylesheets/public/controller.css

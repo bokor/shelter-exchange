@@ -16,4 +16,10 @@ class Note < ActiveRecord::Base
   validates :title, :presence => true
   validates :category, :presence => { :in => CATEGORIES, :message => "needs to be selected" }
   
+  # Instance Methods
+  #----------------------------------------------------------------------------
+  def notable?
+    !!self.notable
+  end
+  
 end

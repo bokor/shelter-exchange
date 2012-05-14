@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   layout :current_layout
   
 
-
   private
   
     def current_account
@@ -23,21 +22,16 @@ class ApplicationController < ActionController::Base
     end
     
     def shelter_inactive?
-      raise Exceptions::ShelterInactive if @current_shelter and @current_shelter.inactive?
+      raise ShelterExchange::Errors::ShelterInactive if @current_shelter and @current_shelter.inactive?
     end
     
     def set_time_zone
       Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
     end
     
-    # def force_ssl!
-    #   redirect_to :protocol => "https://" unless (request.ssl? or local_request?)
-    #   # redirect_to url_for params.merge({:protocol => 'https://'}) 
-    # end
-    # 
-    # def local_request?
-    #   Rails.env.development? or Rails.env.staging? or Rails.env.demo?
-    # end
+    def local_request?
+      Rails.env.development? or Rails.env.test?
+    end
     
     def store_location
       session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller? 
@@ -63,10 +57,6 @@ class ApplicationController < ActionController::Base
 
     
   protected
-  
-    def is_integer?(value)
-      value =~ /\A-?\d+\Z/
-    end
     
     def find_polymorphic_class
       params.each do |name, value|
@@ -77,7 +67,7 @@ class ApplicationController < ActionController::Base
       nil
     end
     
-    rescue_from Exceptions::ShelterInactive do |exception|
+    rescue_from ShelterExchange::Errors::ShelterInactive do |exception|
       render :template => "errors/shelter_#{@current_shelter.status}"
     end
     

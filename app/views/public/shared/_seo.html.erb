@@ -17,7 +17,7 @@
 <meta property="og:title" content="<%= content_for?(:open_graph_title) ? yield(:open_graph_title) : yield(:title) %> | Shelter Exchange" />
 <meta property="og:type" content="website" /><%# content_for?(:open_graph_type) ? yield(:open_graph_type) : "website" %>
 <meta property="og:url" content="<%= request.url %>" />
-<meta property="og:image" content="<%= content_for?(:open_graph_image) ? yield(:open_graph_image) : "#{full_url}/shelterexchange_icon.png" %>" />
+<meta property="og:image" content="<%= content_for?(:open_graph_image) ? yield(:open_graph_image) : image_path("shelterexchange_icon_256x256.png") %>" />
 <meta property="og:site_name" content="Shelter Exchange" />
 <meta property="og:description" content="<%= yield(:description) %>"/>
 <meta property="fb:admins" content="787130340" />
@@ -25,6 +25,6 @@
 
 <!-- icons -->
 <%= favicon_link_tag 'favicon.ico' %>
-<%= favicon_link_tag 'shelterexchange_icon.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 

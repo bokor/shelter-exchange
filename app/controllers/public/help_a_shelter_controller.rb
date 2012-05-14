@@ -17,17 +17,17 @@ class Public::HelpAShelterController < Public::ApplicationController
     unless q.blank?
       q.strip.split.join("%")
       shelter_params = params[:shelters].delete_if{|k,v| v.blank?} if params[:shelters]
-      @shelters = q.blank? ? {} : Shelter.search_by_name(q, shelter_params).paginate(:per_page => 15, :page => params[:page])
+      @shelters = q.blank? ? {} : Shelter.search_by_name(q, shelter_params).paginate(:page => params[:page], :per_page => 15).all
     end
   end
   
   def find_shelters_in_bounds
-    @shelters = Shelter.find(:all, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:per_page => 15, :page => params[:page])
+    @shelters = Shelter.find(:all, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:page => params[:page], :per_page => 15)
   end
   
   def find_animals_for_shelter
     shelter_id = params[:filters][:shelter_id]
-    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.paginate(:per_page => 15, :page => params[:page]) || {}
+    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.paginate(:page => params[:page], :per_page => 15).all || {}
   end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -38,8 +38,3 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
 
 end
-
-# def find_animals_for_shelter
-  # Removed because it was redundant    shelter_id = Shelter.find(params[:filters][:shelter_id]).id
-
-# @types = AnimalType.available_for_adoption_types(@shelter.id)

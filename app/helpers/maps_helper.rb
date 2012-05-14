@@ -14,7 +14,7 @@ module MapsHelper
       output << '</li>'
     end
     output << '</ul>'
-    output << '<div style="width:100%; text-align:center; margin: 0 auto;"><img src="' << shelter.logo.url(:thumb) << '" alt="" /></div>' if shelter.logo.file?
+    output << '<div style="width:100%; text-align:center; margin: 0 auto;"><img src="' << shelter.logo.url(:thumb) << '" alt="" /></div>' if shelter.logo?
     return output
   end
   

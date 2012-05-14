@@ -2,11 +2,11 @@ class Accommodation < ActiveRecord::Base
   # Accommodation Namespaced
   include Searchable
   
-  default_scope :order => 'name ASC', :limit => 250
+  default_scope :order => 'name ASC'
   
-  # Constants
+  # Pagination
   #----------------------------------------------------------------------------
-  PER_PAGE = 50
+  self.per_page = 50
   
   # Associations
   #----------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 <div class="right_side">
-<% if @shelter.logo.file? %>
+<% if @shelter.logo? %>
 	<div class="logo">
 		<%= image_tag @shelter.logo.url(:thumb) %>
 	</div>

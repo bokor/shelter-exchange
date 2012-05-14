@@ -9,7 +9,7 @@ body { background-color: #fff; color: #222; width:95%;margin: 0 auto;
 /* ---------------------- GLOBAL ----------------------- */
 /*********************************************************/
 h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
-p{ margin-bottom: 10px; }
+p{ margin-bottom: 15px; }
 a, img { border: none; outline: none; }
 
 code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
@@ -34,8 +34,8 @@ Dog House Sides - #db8d4a
 /* Main */   
 /******************************************************************/
 #main{text-align: left;}
-#main #content .page_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;}
-#main #content .page_content{padding: 1em 1.5em 1em 1.5em; margin:0 auto;}
+#main #content .page_heading{padding: 0em 0em 1em 0em;/*padding: 1.5em 1.5em 1em 1.5em;*/ margin:0 auto;}
+#main #content .page_content{/*padding: 1em 1.5em 1em 1.5em;*/ margin:0 auto;}
 #main:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
@@ -360,7 +360,7 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 /* Page Headings
 -----------------------------------------------------------------------------*/
-.page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}
+/*.page_heading{ margin: -1em -1em 1em -1em; padding: 1em;}*/
 .page_heading.gray{background-color: #f5f5f5;border-bottom:1px solid #eee;}
 .page_heading.blue {background-color: #edf3fe;border-bottom:1px solid #eee;}
 .page_heading.red{background-color:#faced3;border-bottom:1px solid #eee;}
@@ -412,44 +412,32 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 .print_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
 .print_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
 
-/* Print Animal :: Animal Details
+
+
+/* Print Animals :: Page Layout
 -----------------------------------------------------------------------------*/
-.print_animals table.animal_details{text-align:left;}
-.print_animals table.animal_details li p span{padding-left: 8px;}
-.print_animals table.animal_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.print_animals table.animal_details td{vertical-align:top; }
-.print_animals table.animal_details td.image img{-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
-.print_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
-.print_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.print_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
-.print_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.print_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.print_animals table.animal_details td.metadata ul li{ float:left; width: 48%;}
-/*.print_animals table.animal_details td.metadata ul li p{padding-bottom: 5px;margin:0;}*/
-/*.print_animals table.animal_details td.metadata ul .euthanasia_info{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.print_animals table.animal_details td.metadata ul .red_date{color:#ee3124;}*/
+.print_animals h1 .status{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#f16649;position:absolute; right:0; top: 10px;}
+.print_animals h3{overflow:auto;border-bottom: 1px #bbb dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
+
+.print_animals .animal_details{}
+.print_animals .animal_details:after{ content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }
+.print_animals .animal_details ul{text-align:left;padding-bottom: 10px;}
+.print_animals .animal_details ul li{ padding-bottom: 0;}
+.print_animals .animal_details ul.details li {display:inline-block; width: 200px;}
+.print_animals .animal_details ul li p{padding-bottom: 15px;margin:0;}
+.print_animals .animal_details ul p span{padding-left: 8px;}
+
+.print_animals .animal_details .type{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;padding-bottom: 20px;}
+
+.print_animals .animal_details .media{float:right;width: 500px;margin-left:15px;}
+.print_animals .animal_details .media img {-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
 
 
-/* Print Animal :: Description Layout
------------------------------------------------------------------------------*/
-.print_animals .description{width:100%; padding: 10px 0 0 0; }
-.print_animals .description h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.print_animals .description p{line-height: 1.5em;}
 
-/* Print Animal :: Euthanasia Info Layout
------------------------------------------------------------------------------*/
-.print_animals .euthanasia_info{width:100%; padding: 0 0 0 0; }
-.print_animals .euthanasia_info h3{border-bottom: 1px #bbb solid; font-weight: bold;}
-.print_animals .euthanasia_info ul li {float:left; padding-right: 20px;}
-.print_animals .euthanasia_info .date{color: #000; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.print_animals .euthanasia_info .red_date{color:#ee3124;font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-
-/* Print Animals :: Section Headings
------------------------------------------------------------------------------*/
-.print_animals .section_heading h2{float:left;}
-.print_animals .section_heading .links{float:right; text-align: right;padding-top:5px;}
-.print_animals .section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
+/* Save a Life :: Show Page (Animal Page) :: IE :: Animal Img Fix :: PIE */
+/******************************************************************/
+.ie7 .print_animals .animal_details .media img,
+.ie8 .print_animals .animal_details .media img {behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
 /* Print Animals :: Shelter Details :: Layout

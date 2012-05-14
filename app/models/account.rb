@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
-  include Documentable
+  # Concerns
+  include Guidable
   
   # Callbacks
   #----------------------------------------------------------------------------
@@ -11,6 +12,8 @@ class Account < ActiveRecord::Base
       
   # Associations
   #----------------------------------------------------------------------------
+  mount_uploader :document, DocumentUploader
+  
   has_many :users, :uniq => true, :dependent => :destroy
   has_many :shelters, :dependent => :destroy
 
@@ -23,6 +26,7 @@ class Account < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :document_type, :presence => { :in => DOCUMENT_TYPE }
   validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true
+  validates :document, :presence => true
 
   # Class Methods
   #----------------------------------------------------------------------------

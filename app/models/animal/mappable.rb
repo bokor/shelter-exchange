@@ -9,7 +9,7 @@ module Animal::Mappable
   
     def community_animals(shelter_ids, filters={})
       scope = self.scoped
-      scope = scope.includes(:animal_type, :animal_status, :shelter)
+      scope = scope.includes(:animal_type, :animal_status, :shelter, :photos)
       scope = scope.where(:shelter_id => shelter_ids)
       scope = scope.filter_euthanasia_only unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
       scope = scope.filter_special_needs_only unless filters[:special_needs_only].blank? or !filters[:special_needs_only]
@@ -20,7 +20,7 @@ module Animal::Mappable
       scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
       scope = scope.active unless filters[:animal_status].present?
     
-      scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC") #.limit(nil)
+      scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
     end
     
     def filter_euthanasia_only

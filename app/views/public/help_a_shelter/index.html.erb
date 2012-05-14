@@ -6,7 +6,7 @@
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 	<script type="text/javascript">
 		$(function() {
-			HelpAShelter.initialize(38.6,-98,"<%=s3_url('maps/overlay.kmz')%>","<%=s3_url('images/logo_small.png')%>");
+			HelpAShelter.initialize(38.6,-98,"<%=s3_url('maps/overlay.kmz')%>","<%=s3_url('maps/overlay.kmz', true)%>");
 		});
 	</script>
 <% end %>
@@ -46,7 +46,7 @@
 		<div class="ways_to_help">
 			<h2>Ways to help! 
 				<span class="social">
-					<span><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
+					<span class="facebook"><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
 				</span>
 			</h2>
 			

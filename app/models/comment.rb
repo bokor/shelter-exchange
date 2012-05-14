@@ -9,5 +9,13 @@ class Comment < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :comment, :presence => true
+  
+  
+  # Instance Methods
+  #----------------------------------------------------------------------------
+  def commentable?
+    !!self.commentable
+  end
+
    
 end

@@ -15,7 +15,7 @@ body { width: 100%; min-height: 100%; height:auto !important; height: 100%; posi
 	
 .ie body {font: normal 12px "Verdana", sans-serif;}
 
-h1, h2, h3, h4, h5 { font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
+h1, h2, h3, h4, h5 { position:relative;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 h1 { font-size: 28px; margin-bottom: 25px; border-bottom: 1px dotted #bbb; }
 h2 {  }
 h3 {  }
@@ -127,7 +127,7 @@ footer .copyright a:hover{color:#fff;}
 
 /* SubMenu */   
 /******************************************************************/
-.submenu{list-style: none; float:right; position: relative; line-height: 38px;}
+.submenu{list-style: none; float:right; position: relative; line-height: 38px;z-index:999;}
 .submenu li{float:left; padding: 0px 20px; }
 .submenu li:last-child{padding-right: 0px;}
 .submenu a{ color: #222; text-decoration: none; font-weight: bold; font-size: 14px;}
@@ -142,7 +142,10 @@ footer .copyright a:hover{color:#fff;}
 
 /* Placeholder Text */
 /******************************************************************/
-.placeholder { color: #999; }
+input.placeholder { color: #999; }
+textarea.placeholder { color: #999; }
+:-moz-placeholder{color:#999999;}
+::-webkit-input-placeholder{color:#999999;}
 
 /* Rails Environment */   
 /******************************************************************/
@@ -158,11 +161,11 @@ footer .copyright a:hover{color:#fff;}
 /* Pagination */   
 /******************************************************************/
 /* ORANGE - #CF7019 */
-.pagination { padding: 3px; margin: 10px 0 10px 0; text-align:center;}
-.pagination a, .pagination span{white-space: nowrap;}
-.pagination a {height: 60px;line-height: 40px; padding: 4px 7px 4px 7px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination { padding: 3px; margin: 10px 0 10px 0; }
+.pagination a, .pagination span{white-space: nowrap; font-weight:bold;}
+.pagination a {height: 60px;line-height: 40px; padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
 .pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
-.pagination span.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;background-color: #555;color: #fff;}
+.pagination em.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;font-style: normal;background-color: #555;color: #fff;}
 .pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
 
 

@@ -1,8 +1,4 @@
-class Integration::AdoptAPetPresenter
-  include Rails.application.routes.url_helpers
-  include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::UrlHelper
+class Integration::AdoptAPetPresenter < Presenter
 
   ADOPT_A_PET_TYPES = { 
                         "Other" => { 
@@ -15,7 +11,7 @@ class Integration::AdoptAPetPresenter
                           "Snake" => "Reptile","Tortoise" => "Reptile","Turtle" => "Reptile" }
                       }
 
-  def initialize( animal )
+  def initialize(animal)
     @animal = animal
   end
   
@@ -44,7 +40,7 @@ class Integration::AdoptAPetPresenter
   end
   
   def description
-    s = @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank")
+    s = @animal.description.blank? ? "No description provided" : help.auto_link( help.simple_format(@animal.description), :all, :target => "_blank")
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> "
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
@@ -131,8 +127,15 @@ class Integration::AdoptAPetPresenter
     end
   end
   
-  def photo
-    @animal.photo.url(:large) unless @animal.photo.url(:large).include?("default_large_photo")
+  def photos
+    photos = []
+    unless @animal.photos.blank?
+      @animal.photos.each do |photo|
+        photos << photo.image.url.gsub(/https:\/\//,"http://") if defined?(photo.image) # replaced https urls with http as there is an issue on adopt-a-pet with secure urls
+      end
+    end
+    (4-@animal.photos.size).times{ photos << nil}
+    photos
   end
   
   def you_tube_url
@@ -143,11 +146,11 @@ class Integration::AdoptAPetPresenter
   end 
 
   def to_csv
-    [id, type, breed, breed2, name, sex, description, status, purebred, special_needs, size, age, photo, you_tube_url]
+    [id, type, breed, breed2, name, sex, description, status, purebred, special_needs, size, age, photos, you_tube_url].flatten
   end
   
   def self.csv_header
-      ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","YouTubeVideoURL"]
+    ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","PhotoURL2","PhotoURL3","PhotoURL4","YouTubeVideoURL"]
   end
   
   private
@@ -165,10 +168,6 @@ class Integration::AdoptAPetPresenter
 
       delta.blank? ? 0 : delta.to_i
 
-    end
-    
-    def controller
-      nil #included this method because of the action view helpers
     end
 
 end

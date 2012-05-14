@@ -2,7 +2,7 @@
 
 <tr id="<%= "placement_#{placement.id}" %>" class="placement">
 	<td class="image">
-		<%= image_tag animal.photo.url(:thumb) %>
+		<%= image_tag polymorphic_photo_url(animal.photos.first, :thumb) %>
 		<div class="action_links">
 			<% if placement.shelter.id == @current_shelter.id %>
 				<% if can?(:destroy, Placement) %>

@@ -8,20 +8,19 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module ShelterExchangeApp
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
+      
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
-          #{config.root}/lib/
-          #{config.root}/app/sweepers
-          #{config.root}/app/observers
-          #{config.root}/app/presenters
-          #{config.root}/app/pdfs
-          #{config.root}/app/models/concerns
+        #{config.root}/lib
+        #{config.root}/app/sweepers
+        #{config.root}/app/observers
+        #{config.root}/app/presenters
+        #{config.root}/app/pdfs
+        #{config.root}/app/uploaders
+        #{config.root}/app/models/concerns
     )
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    # Loads all files and directories but behaves weird for a custom library like shelter_exchange.rb
+    # config.autoload_paths += Dir["#{config.root}/lib/**/"]
     
     # Activate observers that should always be running.
     Dir.chdir("#{Rails.root}/app/observers") do

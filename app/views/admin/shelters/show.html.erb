@@ -13,7 +13,7 @@
 
 	<div class="page_heading blue">
 		<h1><%= @shelter.name %></h1>
-		<% if @shelter.logo.file? %>
+		<% if @shelter.logo? %>
 			<div class="logo">
 				<%= image_tag @shelter.logo.url(:thumb)%>
 			</div>

@@ -1,0 +1,36 @@
+<div id="dialog_add_photos" class="dialog">
+	<div class="wrapper">
+		
+		<%= form_for ([@animal, Photo.new]), :html => { :multipart => true, :id => "photo_uploader"  } do |f| %>
+			<div class="row fileupload-buttonbar">
+				<div class="span7">
+			   		<span class="btn btn-success fileinput-button">
+			        	<i class="icon-plus icon-white"></i>
+			          	<span>Add photos...</span>
+			            <input type="file" name="photo[image]" multiple>
+			         </span>
+			  	</div>
+			    <!-- The global progress information -->
+			  	<div class="span5 fileupload-progress fade">
+					<!-- The global progress bar -->
+					<div class="progress progress-success progress-striped active">
+			 			<div class="bar" style="width:0%;"></div>
+					</div>
+					<!-- The extended global progress information -->
+					<!-- <div class="progress-extended">&nbsp;</div> -->
+				</div>
+			</div>
+			
+			<!-- The loading indicator is shown during file processing -->
+			<div class="fileupload-loading"></div>
+			
+			<!-- The table listing the files available for upload/download -->
+			<table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+		<% end %>
+			    
+		
+		<%= render "photos/upload_template" %>
+		<%= render "photos/download_template" %>
+		
+	</div>
+</div>

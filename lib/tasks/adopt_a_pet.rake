@@ -21,15 +21,12 @@ namespace :adopt_a_pet do
       SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
-      @animals = @shelter.animals.includes(:animal_type).available_for_adoption.limit(nil).all
+      @animals = @shelter.animals.includes(:animal_type, :photos).available_for_adoption.all
       
+      # Build CSV
       CSV.open(CSV_FILENAME, "w+") do |csv|
         
-        csv << Integration::AdoptAPetPresenter.csv_header
-      
-        @animals.each do |animal|
-          csv << Integration::AdoptAPetPresenter.new(animal).to_csv
-        end 
+        Integration::AdoptAPetPresenter.as_csv(@animals, csv)
         
       end 
       
