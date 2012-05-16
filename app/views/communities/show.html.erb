@@ -137,7 +137,7 @@
 
 <%= content_for :sidebar do %>
 
-	<% unless @shelter.kill_shelter? %>
+	<% unless @current_shelter.kill_shelter? %>
 		<div class="transfer_section">
 			<% if can?(:request_transfer, Animal) %>
 			<ul id="transfer_request_button" class="action_links">
