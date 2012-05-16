@@ -218,8 +218,7 @@
 		<li class="section">
 			<section>
 				<h3>Photo</h3>
-				<div>Select up to 4 pictures of the animal (Allowed types: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</div>
-				<div>Select a picture of the animal (max size 4 MB)</div>
+				<div>Select main photo (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</div>
 			</section>
 		</li>	
 		<%= f.fields_for :photos do |photo_form| %>

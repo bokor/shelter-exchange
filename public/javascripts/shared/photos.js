@@ -45,6 +45,10 @@
                  
              }
          });
+     },
+     closeDialog: function(){
+        $('.qtip.ui-tooltip').qtip('hide');
+        return false;
      }
 };
 

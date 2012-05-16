@@ -1,14 +1,20 @@
 <div id="dialog_add_photos" class="dialog">
 	<div class="wrapper">
 		
+		<p>A maximum of 3 additional photos can be added. (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</p><br>
+		
 		<%= form_for ([@animal, Photo.new]), :html => { :multipart => true, :id => "photo_uploader"  } do |f| %>
 			<div class="row fileupload-buttonbar">
 				<div class="span7">
 			   		<span class="btn btn-success fileinput-button">
 			        	<i class="icon-plus icon-white"></i>
-			          	<span>Add photos...</span>
+			          	<span>Choose photos...</span>
 			            <input type="file" name="photo[image]" multiple>
-			         </span>
+			        </span>
+					<button type="button" class="btn btn-warning cancel" onclick="Photos.closeDialog();">
+						<i class="icon-remove icon-white"></i>
+						<span>Close</span>
+					</button>
 			  	</div>
 			    <!-- The global progress information -->
 			  	<div class="span5 fileupload-progress fade">

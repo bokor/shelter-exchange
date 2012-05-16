@@ -202,6 +202,8 @@
 /*.show_animals table.animal_details td.metadata ul .hold_time{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals table.animal_details td.metadata ul .euthaniasia_date{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}*/
 
+.show_animals #dialog_add_photos.dialog {width: 680px; height: 450px; }
+
 /* Show Animal :: Photo Gallery
 -----------------------------------------------------------------------------*/
 .show_animals #photo_gallery{width: 400px; height: 290px;margin-bottom: 10px;}
