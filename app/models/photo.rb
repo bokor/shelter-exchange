@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   # Concerns
-  include Guidable
+  include Uploadable
   
   default_scope :order => 'photos.is_main_photo DESC'
   

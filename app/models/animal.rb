@@ -1,6 +1,6 @@
 class Animal < ActiveRecord::Base
   # Concerns
-  include Statusable, Typeable, Guidable
+  include Statusable, Typeable, Uploadable
   # Animal Namespaced
   include Reportable, Searchable, Mappable, Transferrable, Apiable
   

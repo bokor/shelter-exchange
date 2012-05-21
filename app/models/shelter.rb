@@ -1,6 +1,6 @@
 class Shelter < ActiveRecord::Base
   # Concerns
-  include Geocodeable, Guidable
+  include Geocodeable, Uploadable
   # Shelter Namespaced
   include Cleanable, Searchable, Tokenable
   

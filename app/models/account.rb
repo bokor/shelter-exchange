@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+  # Concerns
+  include Uploadable
   
   # Callbacks
   #----------------------------------------------------------------------------
