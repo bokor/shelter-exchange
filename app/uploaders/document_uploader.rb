@@ -22,7 +22,7 @@ class DocumentUploader < CarrierWave::Uploader::Base
   # Database Filename
   #----------------------------------------------------------------------------    
   def filename
-    "#{model.guid}#{File.extname(original_filename)}".downcase if original_filename
+    original_filename
   end
     
 end

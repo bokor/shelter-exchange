@@ -1,6 +1,4 @@
 class Account < ActiveRecord::Base
-  # Concerns
-  include Guidable
   
   # Callbacks
   #----------------------------------------------------------------------------

@@ -30,7 +30,7 @@
      initUploader: function(photos, maxFilesAllowed){
          // Initialize JQuery File Upload
      	 $('#photo_uploader').fileupload({
-             maxFileSize: 5000000,
+             // maxFileSize: 5000000,
              acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         	 autoUpload: true,
              maxNumberOfFiles: maxFilesAllowed
