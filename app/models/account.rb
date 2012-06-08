@@ -12,7 +12,7 @@ class Account < ActiveRecord::Base
       
   # Associations
   #----------------------------------------------------------------------------
-  mount_uploader :document, DocumentUploader
+  mount_uploader :document, AttachmentUploader
   
   has_many :users, :uniq => true, :dependent => :destroy
   has_many :shelters, :dependent => :destroy

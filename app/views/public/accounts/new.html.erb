@@ -144,7 +144,7 @@
 				<%= has_error_message?(@account, :document_type)%>
 			</li>
 			<li class="full">
-				<%= account_form.label :document, (@account.document? ? "Document has already been attached" : "Upload document"), :class => "desc" %>
+				<%= account_form.label :document, (@account.document? ? "Document has been attached" : "Upload document"), :class => "desc" %>
 				<% unless @account.document? %>
 				<div>
 					<%= account_form.file_field :document, :class => "field file" %>

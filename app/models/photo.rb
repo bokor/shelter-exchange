@@ -4,6 +4,10 @@ class Photo < ActiveRecord::Base
   
   default_scope :order => 'photos.is_main_photo DESC'
   
+  # Callbacks
+  #----------------------------------------------------------------------------
+  before_save :set_original_name
+  
   # Constants
   #----------------------------------------------------------------------------  
   TOTAL_MAIN = 1
@@ -36,6 +40,10 @@ class Photo < ActiveRecord::Base
   end
   
   private 
+  
+    def set_original_name
+      self.original_name = self.image.file.original_filename
+    end
     
     def max_number_of_additional_photos
       unless Photo.not_main_photo.where(:attachable_id => self.attachable, :attachable_type => self.attachable.class.name).count <= TOTAL_ADDITIONAL

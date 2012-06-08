@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418215805) do
+ActiveRecord::Schema.define(:version => 20120608144017) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -290,6 +290,7 @@ ActiveRecord::Schema.define(:version => 20120418215805) do
     t.string   "attachable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "original_name"
   end
 
   add_index "photos", ["attachable_id", "attachable_type", "is_main_photo"], :name => "attachable_main_photo"
