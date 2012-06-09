@@ -50,7 +50,6 @@ gem 'googl', '0.5.0'
 # Images
 #----------------------------------------------------------------------------         
 gem 'carrierwave', '0.5.8'
-# gem 'rmagick', '2.13.1'
 gem 'mini_magick', '3.4'
 
 # Maps - Geocoding
@@ -58,11 +57,13 @@ gem 'mini_magick', '3.4'
 gem 'geokit', '1.5.0'				
 gem 'rails3-generators', '0.14.0'  
 
-# Scheduled and Delayed Jobs - Asyc Transactions
+# Connection
 #----------------------------------------------------------------------------
 gem 'rest-client', '1.6.7'
-gem 'delayed_job', '2.1.4'    
 
+# Scheduled and Delayed Jobs - Asyc Transactions
+#----------------------------------------------------------------------------
+gem 'delayed_job', '2.1.4'    
 
 # Proactive - Monitoring & Notification
 #----------------------------------------------------------------------------

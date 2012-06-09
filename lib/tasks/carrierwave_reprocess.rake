@@ -51,7 +51,7 @@ namespace :carrierwave do
     
     ##
     # Default constants
-    TMP_PATH          = "#{Rails.root}/tmp/carrierwave"
+    # TMP_PATH          = "#{Rails.root}/tmp/carrierwave"
     
     ##
     # Set environment constants
@@ -66,11 +66,7 @@ namespace :carrierwave do
         
     ##
     # Create the temp directory
-    %x(mkdir -p "#{TMP_PATH}")
-
-    ##
-    # Find all records for the provided Model
-    records = MODEL.reorder(:id).all
+    # %x(mkdir -p "#{TMP_PATH}")
     
     ##
     # Output to console
@@ -82,8 +78,8 @@ namespace :carrierwave do
     puts "Versions:           #{VERSIONS.empty? ? "all" : VERSIONS.join(', ')}\n\n"
     
     ##
-    # Run through all records
-    records.each do |record|
+    # Find all records for the provided Model - in batch mode
+    MODEL.reorder(:id).find_each(:batch_size =>  50) do |record|
       
       ##
       # Set the mounted uploader object
@@ -130,14 +126,6 @@ namespace :carrierwave do
           
           # log to output the filename being created
           puts  "Reprocessing: #{CLASS}: #{object.id} ->  #{mounted_object.filename} -> #{mounted_object.file.content_type}"
-          
-          # Ping Facebook - Image update
-          if Rails.env.production?
-            begin
-              RestClient.post('https://graph.facebook.com', :id => "http://www.shelterexchange.org/save_a_life/#{object.id}", :scrape => true)
-            rescue
-            end
-          end
           
         end
       end
