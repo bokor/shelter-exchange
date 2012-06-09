@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608144017) do
+ActiveRecord::Schema.define(:version => 20120609165112) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"

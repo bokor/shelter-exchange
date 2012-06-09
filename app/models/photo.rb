@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :set_original_name
+  before_create :set_original_name
   
   # Constants
   #----------------------------------------------------------------------------  

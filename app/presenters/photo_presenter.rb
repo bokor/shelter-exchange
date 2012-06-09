@@ -6,8 +6,7 @@ class PhotoPresenter < Presenter
   
   def to_uploader
     {
-      "name" => @photo.read_attribute(:image),
-      "original_name" => @photo.original_name,
+      "name" => @photo.original_name,
       "url" => @photo.image.url,
       "thumbnail_url" => @photo.image.url(:thumb),
       "delete_url" => photo_path(@photo),
