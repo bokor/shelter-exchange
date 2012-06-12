@@ -42,7 +42,7 @@ class Photo < ActiveRecord::Base
   private 
   
     def set_original_name
-      self.original_name = self.image.file.original_filename
+      self.original_name = self.image.file.original_filename unless self.original_name
     end
     
     def max_number_of_additional_photos
