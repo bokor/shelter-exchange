@@ -11,7 +11,7 @@
             autoplay: 7000,
             clicknext: true,
             _showFullscreen: false,
-            // preload: 1,
+            preload: 1,
             dataSource: photos
         });
         Galleria.run('#photo_gallery');
