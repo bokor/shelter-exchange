@@ -12,7 +12,6 @@ public/assets/*
 public/source.tar*
 public/.well-known
 tmp/**/*
-tmp/*
 *.sqlite3
 
 # Temporary files of every sort
