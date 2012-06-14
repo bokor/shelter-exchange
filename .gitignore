@@ -1,7 +1,19 @@
-/log/
-/tmp/pids/
-.DS_Store
+.bundle
+
+# Log Files
+log/*
+
+# Textmate and Project Files
 *.tmproj
-tmp/pets.csv
-tmp/adopt_a_pet/pets.csv
-public/uploads/
+
+# Uploaded files and local files
+public/uploads/*
+public/assets/*
+public/source.tar*
+public/.well-known
+tmp/**/*
+tmp/*
+*.sqlite3
+
+# Temporary files of every sort
+.DS_Store
