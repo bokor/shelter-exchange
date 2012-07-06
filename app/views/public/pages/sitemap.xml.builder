@@ -51,7 +51,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
     xml.loc search_by_shelter_or_rescue_group_public_help_a_shelter_index_url
     xml.priority "0.8"
   end
-  @shelters.each do |shelter|
+  @shelters.find_each(:batch_size => 100) do |shelter|
     xml.url do
       xml.loc public_help_a_shelter_url(shelter)
       # xml.lastmod shelter.updated_at.strftime("%Y-%m-%d")
@@ -67,7 +67,7 @@ xml.urlset "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance",
     xml.lastmod @save_a_life_last_updated
     xml.priority "0.8"
   end
-  @animals.each do |animal|
+  @animals.find_each(:batch_size =>  100) do |animal|
     xml.url do
       xml.loc public_save_a_life_url(animal)
       # xml.lastmod animal.updated_at.strftime("%Y-%m-%d")
