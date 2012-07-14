@@ -27,7 +27,7 @@ class Public::HelpAShelterController < Public::ApplicationController
   
   def find_animals_for_shelter
     shelter_id = params[:filters][:shelter_id]
-    @animals = Animal.community_animals(shelter_id, params[:filters]).available_for_adoption.paginate(:page => params[:page], :per_page => 15).all || {}
+    @animals = Animal.community_animals(shelter_id, params[:filters]).available.paginate(:page => params[:page], :per_page => 15).all || {}
   end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|

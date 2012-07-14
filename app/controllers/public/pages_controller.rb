@@ -18,7 +18,7 @@ class Public::PagesController < Public::ApplicationController
   end
   
   def sitemap
-    @animals = Animal.select("animals.id, animals.updated_at").joins(:shelter).where(:shelters => { :status => "active"}).available_for_adoption
+    @animals = Animal.select("animals.id, animals.updated_at").joins(:shelter).where(:shelters => { :status => "active"}).available
     @save_a_life_last_updated = Animal.select(:updated_at).order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
     
     @shelters = Shelter.select([:id, :updated_at]).active

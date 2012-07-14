@@ -6,7 +6,7 @@
 
 <%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state.to_sym]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
 
-<%= robots "noindex,follow" if !@animal.available_for_adoption? %>
+<%= robots "noindex,follow" unless @animal.available? %>
 
 <%= open_graph_image image_path(polymorphic_photo_url(@photos.first, :original)) %>
 <%= open_graph_title "#{open_graph_title_status(@animal)}#{page_title}" %>
@@ -70,7 +70,7 @@
 
 		<div class="type"><%= @animal.animal_type.name %>:&nbsp;&nbsp;<%= @animal.full_breed %></div>
 			
-		<% if @shelter.kill_shelter? and @animal.available_for_adoption? and @animal.euthanasia_date.present? #and @animal.euthanasia_date >= 2.weeks.ago.to_date %>
+		<% if @shelter.kill_shelter? and @animal.available? and @animal.euthanasia_date.present? %>
 			<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
 		<% end %>
 		

@@ -6,7 +6,7 @@ module ShelterExchange
         begin
           RestClient.post('https://graph.facebook.com', :id => "http://www.shelterexchange.org/save_a_life/#{id}", :scrape => true)
         rescue
-        end
+        end if Animal.exists?(:id => id)
       end
     
     end

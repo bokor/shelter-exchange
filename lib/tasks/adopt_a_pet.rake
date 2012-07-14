@@ -21,7 +21,7 @@ namespace :adopt_a_pet do
       SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
-      @animals = @shelter.animals.includes(:animal_type, :photos).available_for_adoption.all
+      @animals = @shelter.animals.includes(:animal_type, :photos).available.all
       
       # Build CSV
       CSV.open(CSV_FILENAME, "w+") do |csv|

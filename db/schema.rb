@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609165112) do
+ActiveRecord::Schema.define(:version => 20120710220132) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(:version => 20120609165112) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order"
   end
 
   add_index "animal_statuses", ["created_at"], :name => "index_animal_statuses_on_created_at"
   add_index "animal_statuses", ["name"], :name => "index_animal_statuses_on_name"
+  add_index "animal_statuses", ["sort_order"], :name => "index_animal_statuses_on_sort_order"
 
   create_table "animal_types", :force => true do |t|
     t.string   "name"

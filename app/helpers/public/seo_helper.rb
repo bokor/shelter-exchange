@@ -33,7 +33,7 @@ module Public::SeoHelper
       "In #{animal.animal_status.name}! ".upcase
     elsif animal.deceased? or animal.euthanized?
       "Not available! ".upcase
-    elsif animal.adopted? or animal.reclaimed?
+    elsif animal.adopted? or animal.reclaimed? or animal.adoption_pending?
       "#{animal.animal_status.name}! ".upcase
     end
   end
@@ -43,7 +43,13 @@ module Public::SeoHelper
   # Social Media - Pinterest Helpers
   #----------------------------------------------------------------------------
   def pinterest_animal_description(animal, shelter)
-    str = animal.available_for_adoption? ? "Available for adoption - " : ""
+    str = if animal.available_for_adoption?
+            "Available for adoption - "
+          elsif animal.adoption_pending?
+            "Adoption pending - "
+          else
+             ""
+          end
 		str += "#{animal.name} is a #{animal.sex.downcase} #{animal.animal_type.name.downcase}, #{animal.full_breed}, located at #{shelter.name} in #{shelter.city}, #{shelter.state}."
 		str
   end
