@@ -14,6 +14,8 @@ ShelterExchangeApp::Application.configure do
 
   # For nginx:
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+  # Removed Spoofing check because it has disrupted some client's access.  Keep monitoring.
+  config.action_dispatch.ip_spoofing_check = false
 
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
