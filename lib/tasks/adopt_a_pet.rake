@@ -55,7 +55,7 @@ end
 def ftp_files_to_adopt_a_pet(shelter_name, username, password)
   begin
     Net::FTP.open(Integration::AdoptAPet::FTP_URL) do |ftp|
-      ftp.login("test", "brian")
+      ftp.login(username, password)
       ftp.passive = true
       ftp.puttextfile(CSV_FILENAME)
       ftp.puttextfile(CFG_FILENAME)
