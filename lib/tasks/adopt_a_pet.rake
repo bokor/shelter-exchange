@@ -55,10 +55,14 @@ def logger
 end
 
 def ftp_files_to_adopt_a_pet(username, password)
-  Net::FTP.open(Integration::AdoptAPet::FTP_URL) do |ftp|
-    ftp.login(username, password)
-    ftp.passive = true
-    ftp.puttextfile(CSV_FILENAME)
-    ftp.puttextfile(CFG_FILENAME)
+  begin
+    Net::FTP.open(Integration::AdoptAPet::FTP_URL) do |ftp|
+      ftp.login("test", "brian")
+      ftp.passive = true
+      ftp.puttextfile(CSV_FILENAME)
+      ftp.puttextfile(CFG_FILENAME)
+    end
+  rescue Exception => e
+    logger.info("Account failed :: #{username} #{password} :: #{e}")
   end
 end
