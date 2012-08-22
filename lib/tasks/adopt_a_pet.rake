@@ -31,10 +31,8 @@ namespace :adopt_a_pet do
       end 
       
       # FTP Files to Adopt a Pet
-      ftp_files_to_adopt_a_pet(integration.username, integration.password)
+      ftp_files_to_adopt_a_pet(@shelter, integration.username, integration.password)
       
-      # Log Shelter name and how long it took for each shelter
-      logger.info("#{@shelter.name} finished in #{Time.now - SHELTER_START_TIME}")
     end #Integrations Each
     
   end
@@ -62,7 +60,10 @@ def ftp_files_to_adopt_a_pet(username, password)
       ftp.puttextfile(CSV_FILENAME)
       ftp.puttextfile(CFG_FILENAME)
     end
+    # Log Shelter name and how long it took for each shelter
+    logger.info("#{@shelter.name} finished in #{Time.now - SHELTER_START_TIME}")
   rescue Exception => e
-    logger.info("Account failed :: #{username} #{password} :: #{e}")
+    # Log Exception instead
+    logger.info("#{@shelter.name} failed :: #{e}")
   end
 end
