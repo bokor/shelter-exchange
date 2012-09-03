@@ -79,7 +79,7 @@
 			<li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></span></p></li>
 			<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
 			<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "N/A" %></span></p></li>
-			<li><p><b>Size:</b><span><%= @animal.size.present? ? @animal.size : "N/A" %></span></p></li>
+			<li><p><b>Size:</b><span><%= Animal::SIZES[@animal.size.to_sym] || "N/A" %></span></p></li>
 			<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "N/A" %></span></p></li>
 		</ul>
 		

@@ -45,7 +45,7 @@ class Animal::ExportPresenter < Presenter
   end
   
   def size
-    @animal.size
+    Animal::SIZES[@animal.size.to_sym] || "N/A"
   end
   
   def color
