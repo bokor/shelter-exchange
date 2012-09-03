@@ -63,18 +63,19 @@ class Integration::AdoptAPetPresenter < Presenter
   end 
   
   def size
-    unless @animal.size.blank?
-      tmp = @animal.size.downcase
-      if tmp.include?("x-large")
-        "XL"
-      elsif tmp.include?("large")
-        "L"
-      elsif tmp.include?("medium")
-        "M"
-      elsif tmp.include?("small")
-        "S"
-      end
-    end
+    @animal.size
+    # unless @animal.size.blank?
+    #   tmp = @animal.size.downcase
+    #   if tmp.include?("x-large")
+    #     "XL"
+    #   elsif tmp.include?("large")
+    #     "L"
+    #   elsif tmp.include?("medium")
+    #     "M"
+    #   elsif tmp.include?("small")
+    #     "S"
+    #   end
+    # end
   end
   
   def age

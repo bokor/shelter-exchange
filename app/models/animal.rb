@@ -6,6 +6,15 @@ class Animal < ActiveRecord::Base
   
   default_scope :order => 'animals.updated_at DESC'
 
+  # Constants
+  #----------------------------------------------------------------------------
+  SIZES = { :S => "Small",
+            :M => "Medium", 
+            :L => "Large",
+            :XL => "X-Large"
+          }.freeze
+  
+
   # Callbacks
   #----------------------------------------------------------------------------  
   before_save :change_status_date!
@@ -45,10 +54,11 @@ class Animal < ActiveRecord::Base
   validates :primary_breed, :breed => true
   validates :secondary_breed, :breed => true, :allow_blank => true
   validates :sex, :presence => true
+  validates :size, :presence => true
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :special_needs, :presence => { :if => :special_needs? }
   validates :video_url, :video_url_format => true, :allow_blank => true
-  validates :date_of_birth, :date_format => true
+  validates :date_of_birth, :date_format => true, :presence => true
   validates :arrival_date, :date_format => true
   validates :euthanasia_date, :date_format => true
   

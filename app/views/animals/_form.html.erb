@@ -95,8 +95,8 @@
 			<%= has_error_message?(@animal, :weight)%>
 		</li>
 		<li>
-			<%= f.label :size, "Size", :class => "desc" %>
-			<div><%= f.text_field :size, :class => "field text medium", :maxlength => 255, :placeholder => "Small" %></div>
+			<%= f.label :size, "Size <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.collection_select :size, Animal::SIZES, :first, :last, {:prompt => "Select one"}, {:class => "field select medium" } %></div>
 			<%= has_error_message?(@animal, :size)%>
 		</li>
 		<li>
@@ -110,7 +110,7 @@
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
 		<li class="date">
-			<%= f.label :date_of_birth, "Date of Birth (Est.)", :class => "desc" %>
+			<%= f.label :date_of_birth, "Date of Birth (Est.) <span class='req'>*</span>".html_safe, :class => "desc" %>
 			
 			<span>
 				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
