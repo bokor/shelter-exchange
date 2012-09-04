@@ -59,7 +59,8 @@ class Animal < ActiveRecord::Base
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :special_needs, :presence => { :if => :special_needs? }
   validates :video_url, :video_url_format => true, :allow_blank => true
-  validates :date_of_birth, :date_format => true, :presence => { :if => Proc.new { |a| AnimalStatus::ACTIVE.include?(a.animal_status_id) } }
+  validates :date_of_birth, :date_format => true, 
+                            :presence => { :if => Proc.new { |a| AnimalStatus::ACTIVE.include?(a.animal_status_id) } }
   validates :arrival_date, :date_format => true
   validates :euthanasia_date, :date_format => true
   

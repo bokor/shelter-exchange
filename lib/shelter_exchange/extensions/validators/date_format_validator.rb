@@ -8,6 +8,7 @@ class DateFormatValidator < ActiveModel::EachValidator
     unless year.blank? and month.blank? and day.blank?
       
       begin
+        raise ArgumentError if year.blank? || year.size < 4 # Raise if year is blank or less than 4 to keep with format
         date = Date.parse("#{year.to_i}/#{month.to_i}/#{day.to_i}")
         raise ArgumentError, :date_of_birth if attribute == :date_of_birth && date > Date.today
         record[attribute] = date 
@@ -22,5 +23,3 @@ class DateFormatValidator < ActiveModel::EachValidator
     end
   end
 end
-
-#Date.civil(year.to_i, month.to_i, day.to_i)
