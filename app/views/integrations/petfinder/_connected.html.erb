@@ -1,0 +1,4 @@
+<span class="connection_status">Success! You are now connected.</span>
+<span class="revoke_access">
+	<%= link_to "Revoke Access", integration, :confirm => "This action will disconnect you from the Petfinder integration, but you can reconnect later.  Would you like to proceed?", :method => :delete, :remote => true, :class => "button" %>	
+</span>
