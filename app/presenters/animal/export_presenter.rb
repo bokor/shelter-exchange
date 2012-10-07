@@ -56,8 +56,8 @@ class Animal::ExportPresenter < Presenter
     @animal.weight
   end
   
-  def date_of_birth
-    @animal.date_of_birth
+  def age
+    @animal.age.humanize unless @animal.age.blank?
   end
   
   def arrival_date
@@ -103,11 +103,11 @@ class Animal::ExportPresenter < Presenter
   end 
 
   def to_csv
-    [id, name, type, status, mixed_breed, primary_breed, secondary_breed, microchip, sterilized, sex.humanize, size, color, weight, date_of_birth, arrival_date, special_needs, special_needs_description, description, photos, video_url].flatten
+    [id, name, type, status, mixed_breed, primary_breed, secondary_breed, microchip, sterilized, sex.humanize, size, color, weight, age, arrival_date, special_needs, special_needs_description, description, photos, video_url].flatten
   end
   
   def self.csv_header
-    ["Id", "Name", "Type", "Status", "Mixed Breed", "Primary Breed", "Secondary Breed", "Microchip", "Sterilized", "Sex", "Size", "Color", "Weight", "Date of Birth", "Arrival Date", "Has Special Needs", "Special Needs Description", "Description", "Photo1", "Photo2", "Photo3", "Photo4", "Video"]
+    ["Id", "Name", "Type", "Status", "Mixed Breed", "Primary Breed", "Secondary Breed", "Microchip", "Sterilized", "Sex", "Size", "Color", "Weight", "Age", "Arrival Date", "Has Special Needs", "Special Needs Description", "Description", "Photo1", "Photo2", "Photo3", "Photo4", "Video"]
   end
 
 end

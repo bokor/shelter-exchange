@@ -67,53 +67,7 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def age
-    unless @animal.date_of_birth.blank?
-      months = months_between(Date.today, @animal.date_of_birth)
-      case @animal.animal_type.name
-        when "Dog"
-          if months <= 12
-            "Puppy"
-          elsif months > 12 and months <= 36
-            "Young"
-          elsif months > 36 and months <= 96
-            "Adult"
-          elsif months > 96 
-            "Senior"
-          end
-        when "Cat"
-          if months <= 12
-            "Kitten"
-          elsif months > 12 and months <= 36
-            "Young"
-          elsif months > 36 and months <= 84
-            "Adult"
-          elsif months > 84
-            "Senior"
-          end
-        when "Horse"
-          if months <= 12
-            "Baby"
-          elsif months > 12 and months <= 36
-            "Young"
-          elsif months > 36 and months <= 168
-            "Adult"
-          elsif months > 168
-            "Senior"
-          end
-        when "Rabbit"
-          if months <= 1
-            "Baby"
-          elsif months > 1 and months <= 7
-            "Young"
-          elsif months > 7 and months <= 60
-            "Adult"
-          elsif months > 60
-            "Senior"
-          end
-        else
-          nil
-      end
-    end
+    @animal.age.humanize unless @animal.age.blank?
   end
   
   def photos

@@ -16,8 +16,7 @@ class Api::V1::AnimalPresenter < Presenter
         :secondary_breed => @animal.secondary_breed,
         :full_breed_in_text => @animal.full_breed,
         :sterilized => @animal.sterilized? ? true : false,
-        :date_of_birth => @animal.date_of_birth,
-        :date_of_birth_in_text => help.humanize_dob(@animal.date_of_birth),
+        :age => @animal.age.humanize,
         :size => Animal::SIZES[@animal.size.to_sym],
         :color => @animal.color,
         :microchip => @animal.microchip,
@@ -25,7 +24,7 @@ class Api::V1::AnimalPresenter < Presenter
         :special_needs => help.auto_link(help.simple_format(@animal.special_needs), :all, :target => "_blank"),
         :description => @animal.description.blank? ? "No description provided" : help.auto_link( help.simple_format(@animal.description), :all, :target => "_blank"),
         :weight => @animal.weight,
-        :sex => @animal.sex.to_s.humanize,
+        :sex => @animal.sex.humanize,
         :euthanasia_info => {
           :arrival_date => help.format_date(:default, @animal.arrival_date),
           :hold_time => @animal.hold_time.present? ? "#{@animal.hold_time} days" : "",

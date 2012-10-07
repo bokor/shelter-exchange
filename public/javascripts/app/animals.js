@@ -52,11 +52,6 @@ var Animals = {
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
 		
-		// Date of Birth DatePicker
-		Animals.datePicker("#animal_date_of_birth");
-		Animals.setDatePickerDate('#animal_date_of_birth');
-		$('#date_of_birth_trigger').bind("click", function(event) { $('#animal_date_of_birth_datepicker').slideToggle();});
-		
 		// Bind Form Events
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});

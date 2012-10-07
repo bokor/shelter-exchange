@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710220132) do
+ActiveRecord::Schema.define(:version => 20121006235338) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20120710220132) do
     t.boolean  "has_special_needs",  :default => false, :null => false
     t.text     "special_needs"
     t.string   "video_url"
+    t.string   "age"
   end
 
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
