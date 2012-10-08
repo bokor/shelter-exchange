@@ -78,10 +78,6 @@ gem 'dalli', '1.1.5'
 #----------------------------------------------------------------------------
 group :development, :test do
   gem 'pry-rails'
-  gem 'awesome_print'
-  gem 'pry-doc'
-  gem 'pry-nav'     # used to step through code whilst using pry
-  gem 'pry-remote'  # needed to connect to a pry debug console from a different terminal tab
 end
 
 
