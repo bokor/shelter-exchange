@@ -68,18 +68,17 @@ gem 'delayed_job', '2.1.4'
 # Proactive - Monitoring & Notification
 #----------------------------------------------------------------------------
 gem 'hoptoad_notifier', '2.4.11'
-# group :production do
-#   gem 'newrelic_rpm', '3.1.1'         
-# end
 
 # Performance
 #----------------------------------------------------------------------------
 gem 'dalli', '1.1.5'
 
 
-# CSV
+# Local Testing and Tools
 #----------------------------------------------------------------------------
-# gem 'comma', '3.0.3'
+group :development, :test do
+  gem 'pry-rails'
+end
 
 
 
