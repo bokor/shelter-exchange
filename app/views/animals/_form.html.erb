@@ -116,6 +116,29 @@
 			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
+<!-- <li class="date">
+			<%= f.label :date_of_birth, "Date of Birth (Est.) <span class='req'>*</span>".html_safe, :class => "desc" %>
+			
+			<span>
+				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
+				<%= f.label :date_of_birth, "MM" %>
+			</span> 
+			<span class="symbol">/</span>
+			<span>
+				<%= f.text_field :date_of_birth_day, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:day, @animal) %>
+				<%= f.label :date_of_birth, "DD" %>
+			</span>
+			<span class="symbol">/</span>
+			<span>
+				<%= f.text_field :date_of_birth_year, :class => "field text", :maxlength => 4, :size => 4, :value => date_of_birth_value(:year, @animal) %>
+				<%= f.label :date_of_birth, "YYYY" %>
+			</span>
+			<span>
+				<%= image_tag "icon_calendar.png", :id => "date_of_birth_trigger", :class => "icon_calendar" %>
+			</span>
+			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
+			<%= has_error_message?(@animal, :date_of_birth)%>
+		</li> -->
 		<li class="date">
 			<%= f.label :arrival_date, "Arrival/Intake Date".html_safe, :class => "desc" %>
 			

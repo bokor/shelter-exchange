@@ -8,11 +8,12 @@ class Animal < ActiveRecord::Base
 
   # Constants
   #----------------------------------------------------------------------------
-  SIZES = { :S => "Small",
-            :M => "Medium", 
-            :L => "Large",
-            :XL => "X-Large"
-          }.freeze
+  SIZES = { 
+    :S => "Small",
+    :M => "Medium", 
+    :L => "Large",
+    :XL => "X-Large"
+  }.freeze
 
   AGES = %w(baby young adult senior).freeze
   
@@ -25,6 +26,7 @@ class Animal < ActiveRecord::Base
   # Getters/Setters
   #----------------------------------------------------------------------------  
   attr_accessor :status_history_reason, 
+                # :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
 
@@ -62,6 +64,8 @@ class Animal < ActiveRecord::Base
   validates :microchip, :uniqueness => { :allow_blank => true, :scope => :shelter_id, :message => "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record." }  
   validates :special_needs, :presence => { :if => :special_needs? }
   validates :video_url, :video_url_format => true, :allow_blank => true
+  # validates :date_of_birth, :date_format => true, 
+  #                           :presence => { :if => Proc.new { |a| AnimalStatus::ACTIVE.include?(a.animal_status_id) } }
   validates :arrival_date, :date_format => true
   validates :euthanasia_date, :date_format => true
   

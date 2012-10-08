@@ -17,6 +17,8 @@ class Api::V1::AnimalPresenter < Presenter
         :full_breed_in_text => @animal.full_breed,
         :sterilized => @animal.sterilized? ? true : false,
         :age => @animal.age.humanize,
+        # :date_of_birth => @animal.date_of_birth,
+        # :date_of_birth_in_text => help.humanize_dob(@animal.date_of_birth),
         :size => Animal::SIZES[@animal.size.to_sym],
         :color => @animal.color,
         :microchip => @animal.microchip,

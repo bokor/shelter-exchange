@@ -75,6 +75,7 @@
 					
 					<h3>Details:</h3>
 					<ul>
+						<!-- <li><p><b>Age (Est.):</b><span><%= @animal.date_of_birth.present? ? humanize_dob(@animal.date_of_birth) : "N/A" %></span></p></li> -->
 						<li><p><b>Age:</b><span><%= @animal.age.present? ? @animal.age.humanize : "N/A" %></span></p></li>
 						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
 						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "N/A" %></span></p></li>

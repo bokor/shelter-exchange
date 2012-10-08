@@ -59,6 +59,10 @@ class Animal::ExportPresenter < Presenter
   def age
     @animal.age.humanize unless @animal.age.blank?
   end
+
+  def date_of_birth
+    @animal.date_of_birth
+  end
   
   def arrival_date
     @animal.arrival_date
@@ -107,6 +111,7 @@ class Animal::ExportPresenter < Presenter
   end
   
   def self.csv_header
+    # ["Id", "Name", "Type", "Status", "Mixed Breed", "Primary Breed", "Secondary Breed", "Microchip", "Sterilized", "Sex", "Size", "Color", "Weight", "Age", "Date of Birth", Arrival Date", "Has Special Needs", "Special Needs Description", "Description", "Photo1", "Photo2", "Photo3", "Photo4", "Video"]
     ["Id", "Name", "Type", "Status", "Mixed Breed", "Primary Breed", "Secondary Breed", "Microchip", "Sterilized", "Sex", "Size", "Color", "Weight", "Age", "Arrival Date", "Has Special Needs", "Special Needs Description", "Description", "Photo1", "Photo2", "Photo3", "Photo4", "Video"]
   end
 

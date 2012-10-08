@@ -7,6 +7,19 @@ module AnimalsHelper
   def humanize_dob(dob)
     time_diff_in_natural_language(dob, current_time) unless dob.blank?
   end
+
+  # def date_of_birth_value(type, animal)
+  #   return nil if type.blank?
+  #   case type
+  #     when :month
+  #       return animal.date_of_birth_month unless animal.date_of_birth_month.blank?
+  #     when :day
+  #       return animal.date_of_birth_day unless animal.date_of_birth_day.blank?
+  #     when :year
+  #       return animal.date_of_birth_year unless animal.date_of_birth_year.blank?
+  #   end
+  #   format_date(type, animal.date_of_birth)
+  # end
   
   def arrival_date_value(type, animal)
     return nil if type.blank?
