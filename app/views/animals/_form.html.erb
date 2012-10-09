@@ -90,7 +90,7 @@
 			</div>
 		</li>
 		<li>
-			<%= f.label :age, "Age <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :age, "Age range <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
 				<%= f.collection_select :age, Animal::AGES, :to_s, :humanize, {:prompt => "Select one"}, {:class => "field select small" } %>
 			</div> 
@@ -116,8 +116,8 @@
 			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
 			<%= has_error_message?(@animal, :microchip)%>
 		</li>
-<!-- <li class="date">
-			<%= f.label :date_of_birth, "Date of Birth (Est.) <span class='req'>*</span>".html_safe, :class => "desc" %>
+	  <li class="date">
+			<%= f.label :date_of_birth, "Date of Birth (Est.)".html_safe, :class => "desc" %>
 			
 			<span>
 				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
@@ -138,7 +138,7 @@
 			</span>
 			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :date_of_birth)%>
-		</li> -->
+		</li> 
 		<li class="date">
 			<%= f.label :arrival_date, "Arrival/Intake Date".html_safe, :class => "desc" %>
 			

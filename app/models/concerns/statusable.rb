@@ -7,6 +7,7 @@ module Statusable
     scope :non_active, where(:animal_status_id => AnimalStatus::NON_ACTIVE)
     scope :available, where(:animal_status_id => AnimalStatus::AVAILABLE)
     scope :available_for_adoption, where(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+    scope :adoption_pending, where(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
     scope :adopted, where(:animal_status_id => AnimalStatus::STATUSES[:adopted])
     scope :foster_care, where(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
     scope :reclaimed, where(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])

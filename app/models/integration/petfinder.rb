@@ -5,6 +5,10 @@ class Integration::Petfinder < Integration
   # Constants
   #----------------------------------------------------------------------------  
   FTP_URL = "members.petfinder.com"
+
+  # Callbacks
+  #----------------------------------------------------------------------------
+  before_save :upcase_username
   
   # Validations
   #----------------------------------------------------------------------------
@@ -13,6 +17,10 @@ class Integration::Petfinder < Integration
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
   
   private
+
+    def upcase_username
+      self.username.upcase!
+    end
   
     def connection_successful?
       begin
