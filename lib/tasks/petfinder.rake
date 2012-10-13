@@ -4,6 +4,7 @@ require 'stringio'
 PETFINDER_TASK_START_TIME    = Time.now
 PETFINDER_SHELTER_START_TIME = 0
 PETFINDER_LOG_FILENAME       = Rails.root.join("log/petfinder_rake_task.log")
+PETFINDER_CSV_FILENAME       = ""
 
 Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
 
@@ -20,7 +21,8 @@ namespace :petfinder do
       PETFINDER_SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
-      @animals = @shelter.animals.includes(:animal_type, :photos).available.all # Gets all Available and adoption pending
+      # Get all Available for adoption and Adoption Pending animals
+      @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
       #
       #
@@ -30,12 +32,15 @@ namespace :petfinder do
       #
       #
       #
+      PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
       
       # Build CSV
-      csv_string = CSV.generate {|csv| Integration::PetfinderPresenter.as_csv(@animals, csv) }
+      CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
+        Integration::PetfinderPresenter.as_csv(@animals, csv)
+      end 
       
       # FTP Files to Adopt a Pet
-      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, csv_string, @animals)
+      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
       
     end 
   end
@@ -55,14 +60,14 @@ def petfinder_logger
   @logger ||= Logger.new( File.open(PETFINDER_LOG_FILENAME, "w+") )
 end
 
-def ftp_files_to_petfinder(shelter_name, username, password, csv_string, animals)
+def ftp_files_to_petfinder(shelter_name, username, password, animals)
   begin
     Net::FTP.open(Integration::Petfinder::FTP_URL) do |ftp|
       ftp.login(username, password)
       ftp.passive = true
       # Upload CSV
       ftp.chdir('import')
-      ftp.storlines("STOR pets.csv", csv_string, 1024)
+      tp.puttextfile(PETFINDER_CSV_FILENAME)
 
       # Upload Photos
       ftp.chdir('photos')
