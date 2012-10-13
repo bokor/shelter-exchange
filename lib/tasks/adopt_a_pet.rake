@@ -6,6 +6,8 @@ ADOPT_A_PET_LOG_FILENAME       = Rails.root.join("log/adopt_a_pet_rake_task.log"
 ADOPT_A_PET_CSV_FILENAME       = Rails.root.join("tmp/adopt_a_pet/pets.csv")
 ADOPT_A_PET_CFG_FILENAME       = Rails.root.join("public/integrations/adopt_a_pet/import.cfg")
 
+Dir.mkdir(Rails.root.join("tmp/adopt_a_pet")) unless File.exists?(Rails.root.join("tmp/adopt_a_pet"))
+
 # Tasks
 #----------------------------------------------------------------------------
 namespace :adopt_a_pet do
@@ -43,7 +45,7 @@ namespace :adopt_a_pet do
   
   desc "Creating Adopt a Pet CSV files"
   task :all => [:generate_csv_files] do 
-    
+
     adopt_a_pet_logger.info("Time elapsed: #{Time.now - ADOPT_A_PET_TASK_START_TIME} seconds.")
     adopt_a_pet_logger.close
 

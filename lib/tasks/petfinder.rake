@@ -5,6 +5,8 @@ PETFINDER_TASK_START_TIME    = Time.now
 PETFINDER_SHELTER_START_TIME = 0
 PETFINDER_LOG_FILENAME       = Rails.root.join("log/petfinder_rake_task.log")
 
+Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
+
 # Tasks
 #----------------------------------------------------------------------------
 namespace :petfinder do
