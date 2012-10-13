@@ -1,16 +1,5 @@
 class Integration::AdoptAPetPresenter < Presenter
 
-  ADOPT_A_PET_TYPES = { 
-                        "Other" => { 
-                          "Alpaca" => "Farm Animal", "Chinchilla" => "Small Animal", "Cow" => "Farm Animal",
-                          "Ferret" => "Small Animal", "Fish" => "Reptile", "Frog" => "Reptile", "Gerbil" => "Small Animal", "Goat" => "Farm Animal",
-                          "Guinea Pig" => "Small Animal","Hamster" => "Small Animal","Llama" => "Farm Animal","Mouse" => "Small Animal",
-                          "Pig" => "Farm Animal","Rat" => "Small Animal","Sheep" => "Farm Animal","Tarantula" => "Reptile" },
-                        "Reptile" => {
-                          "Chameleon" => "Reptile","Gecko" => "Reptile","Iguana" => "Reptile","Lizard" => "Reptile",
-                          "Snake" => "Reptile","Tortoise" => "Reptile","Turtle" => "Reptile" }
-                      }
-
   def initialize(animal)
     @animal = animal
   end
@@ -20,7 +9,7 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def type
-    @animal.other? || @animal.reptile? ? ADOPT_A_PET_TYPES[@animal.animal_type.name][@animal.primary_breed] : @animal.animal_type.name
+    @animal.other? || @animal.reptile? ? map_to_adopt_a_pet_types : @animal.animal_type.name
   end
   
   def breed
@@ -36,11 +25,11 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def sex
-    @animal.sex == "male" ? "M" : "F"
+    @animal.sex == 'male' ? 'M' : 'F'
   end
   
   def description
-    s = @animal.description.blank? ? "No description provided" : help.auto_link( help.simple_format(@animal.description), :all, :target => "_blank")
+    s = @animal.description.blank? ? 'No description provided' : help.auto_link( help.simple_format(@animal.description), :all, :target => '_blank')
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> "
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
@@ -49,17 +38,17 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def status
-    "Available"
+    'Available'
   end
   
   def purebred
     if @animal.dog? || @animal.rabbit? || @animal.horse?
-      @animal.mix_breed? ? "N" : "Y"
+      @animal.mix_breed? ? 'N' : 'Y'
     end
   end
   
   def special_needs
-    @animal.special_needs?  ? "Y" : "N"
+    @animal.special_needs?  ? 'Y' : 'N'
   end 
   
   def size
@@ -89,11 +78,44 @@ class Integration::AdoptAPetPresenter < Presenter
   end 
 
   def to_csv
-    [id, type, breed, breed2, name, sex, description, status, purebred, special_needs, size, age, photos, you_tube_url].flatten
+    [
+      id, 
+      type, 
+      breed, 
+      breed2, 
+      name, 
+      sex, 
+      description, 
+      status, 
+      purebred, 
+      special_needs, 
+      size, 
+      age, 
+      photos, 
+      you_tube_url
+    ].flatten
   end
   
   def self.csv_header
-    ["Id","Animal","Breed","Breed2","Name","Sex","Description","Status","Purebred","SpecialNeeds","Size","Age","PhotoURL","PhotoURL2","PhotoURL3","PhotoURL4","YouTubeVideoURL"]
+    [
+      'Id',
+      'Animal',
+      'Breed',
+      'Breed2',
+      'Name',
+      'Sex',
+      'Description',
+      'Status',
+      'Purebred',
+      'SpecialNeeds',
+      'Size',
+      'Age',
+      'PhotoURL',
+      'PhotoURL2',
+      'PhotoURL3',
+      'PhotoURL4',
+      'YouTubeVideoURL'
+    ]
   end
   
   private
@@ -111,6 +133,39 @@ class Integration::AdoptAPetPresenter < Presenter
 
       delta.blank? ? 0 : delta.to_i
 
+    end
+
+    def map_to_adopt_a_pet_types
+      types = { 
+        'Other' => { 
+          'Alpaca' => 'Farm Animal', 
+          'Chinchilla' => 'Small Animal', 
+          'Cow' => 'Farm Animal',
+          'Ferret' => 'Small Animal', 
+          'Fish' => 'Reptile', 
+          'Frog' => 'Reptile', 
+          'Gerbil' => 'Small Animal', 
+          'Goat' => 'Farm Animal',
+          'Guinea Pig' => 'Small Animal',
+          'Hamster' => 'Small Animal',
+          'Llama' => 'Farm Animal',
+          'Mouse' => 'Small Animal',
+          'Pig' => 'Farm Animal',
+          'Rat' => 'Small Animal',
+          'Sheep' => 'Farm Animal',
+          'Tarantula' => 'Reptile' 
+        },
+        'Reptile' => {
+          'Chameleon' => 'Reptile',
+          'Gecko' => 'Reptile',
+          'Iguana' => 'Reptile',
+          'Lizard' => 'Reptile',
+          'Snake' => 'Reptile',
+          'Tortoise' => 'Reptile',
+          'Turtle' => 'Reptile' 
+        }
+      }
+     types[@animal.animal_type.name][@animal.primary_breed]
     end
 
 end

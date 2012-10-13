@@ -1,12 +1,9 @@
 require 'csv'
 require 'stringio'
 
-TASK_START_TIME = Time.now
-SHELTER_START_TIME = 0
-LOG_FILENAME = Rails.root.join("log/petfinder_rake_task.log")
-CSV_FILENAME = ""
-
-Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
+PETFINDER_TASK_START_TIME    = Time.now
+PETFINDER_SHELTER_START_TIME = 0
+PETFINDER_LOG_FILENAME       = Rails.root.join("log/petfinder_rake_task.log")
 
 # Tasks
 #----------------------------------------------------------------------------
@@ -18,7 +15,7 @@ namespace :petfinder do
     @integrations = Integration::Petfinder.all
     
     @integrations.each do |integration|
-      SHELTER_START_TIME = Time.now
+      PETFINDER_SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all # Gets all Available and adoption pending
@@ -31,26 +28,20 @@ namespace :petfinder do
       #
       #
       #
-
-      # Setting the file name here as we need the integration username
-      CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
       
       # Build CSV
-      CSV.open(CSV_FILENAME, "w+") do |csv|
-        Integration::PetfinderPresenter.as_csv(@animals, csv)
-      end 
+      csv_string = CSV.generate {|csv| Integration::PetfinderPresenter.as_csv(@animals, csv) }
       
       # FTP Files to Adopt a Pet
-      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
+      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, csv_string, @animals)
       
-    end #Integrations Each
-    
+    end 
   end
   
   desc "Creating Petfinder CSV files"
   task :all => [:generate_csv_files] do 
-    logger.info("Time elapsed: #{Time.now - TASK_START_TIME} seconds.")
-    logger.close
+    petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
+    petfinder_logger.close
   end
   
 end
@@ -58,18 +49,20 @@ end
 
 # Local Methods
 #----------------------------------------------------------------------------
-def logger
-  @logger ||= Logger.new( File.open(LOG_FILENAME, "w+") )
+def petfinder_logger
+  @logger ||= Logger.new( File.open(PETFINDER_LOG_FILENAME, "w+") )
 end
 
-def ftp_files_to_petfinder(shelter_name, username, password, animals)
+def ftp_files_to_petfinder(shelter_name, username, password, csv_string, animals)
   begin
     Net::FTP.open(Integration::Petfinder::FTP_URL) do |ftp|
       ftp.login(username, password)
       ftp.passive = true
+      # Upload CSV
       ftp.chdir('import')
-      ftp.puttextfile(CSV_FILENAME)
+      ftp.storlines("STOR pets.csv", csv_string, 1024)
 
+      # Upload Photos
       ftp.chdir('photos')
       animals.each do |animal|
         animal.photos.limit(3).each_with_index do |photo, index|
@@ -81,9 +74,9 @@ def ftp_files_to_petfinder(shelter_name, username, password, animals)
       end
     end
     # Log Shelter name and how long it took for each shelter
-    logger.info("#{shelter_name} finished in #{Time.now - SHELTER_START_TIME}")
+    petfinder_logger.info("#{shelter_name} finished in #{Time.now - PETFINDER_SHELTER_START_TIME}")
   rescue Exception => e
     # Log Exception instead
-    logger.info("#{shelter_name} failed :: #{e}")
+    petfinder_logger.info("#{shelter_name} failed :: #{e}")
   end
 end
