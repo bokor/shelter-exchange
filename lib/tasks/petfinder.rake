@@ -35,8 +35,9 @@ namespace :petfinder do
         
         # FTP Files to Adopt a Pet
         ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
+      else
+        petfinder_logger.info("#{shelter_name} :: No animals updated!")
       end
-      
     end 
   end
   
