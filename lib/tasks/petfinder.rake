@@ -23,7 +23,7 @@ namespace :petfinder do
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
-      # Upload to Adopt a pet when the animals have actually been updated in the past 2 hours
+      # Upload to Petfinder when the animals have actually been updated in the past 2 hours
       if @animals.collect(&:updated_at).first > 2.hours.ago
 
         PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
@@ -46,7 +46,7 @@ namespace :petfinder do
   
   desc "Creating Petfinder CSV files"
   task :all => [:generate_csv_files] do 
-    
+
     petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
     petfinder_logger.close
   end
