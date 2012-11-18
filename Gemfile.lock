@@ -196,6 +196,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (= 1.2.2)
   cancan (= 1.5.1)
   carrierwave (= 0.5.8)
   dalli (= 1.1.5)
