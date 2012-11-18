@@ -21,23 +21,18 @@ namespace :adopt_a_pet do
       ADOPT_A_PET_SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
+
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
-      # Upload to Adopt a pet when the animals have actually been updated in the past 2 hours
-      if @animals.collect(&:updated_at).first > 2.hours.ago
-        # Build CSV
-        CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+") do |csv|
-          Integration::AdoptAPetPresenter.as_csv(@animals, csv)
-        end 
+      # Build CSV
+      CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+") do |csv|
+        Integration::AdoptAPetPresenter.as_csv(@animals, csv)
+      end 
         
-        # FTP Files to Adopt a Pet
-        ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
-      else
-        
-        adopt_a_pet_logger.info("#{shelter_name} :: No animals updated!")
-      end
-
+      # FTP Files to Adopt a Pet
+      ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
+      
       # Delete the CSV File 
       File.delete(ADOPT_A_PET_CSV_FILENAME)
     end

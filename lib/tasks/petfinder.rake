@@ -20,24 +20,19 @@ namespace :petfinder do
       PETFINDER_SHELTER_START_TIME = Time.now
       
       @shelter = integration.shelter
+    
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
-      # Upload to Petfinder when the animals have actually been updated in the past 2 hours
-      if @animals.collect(&:updated_at).first > 2.hours.ago
-
-        PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
+      PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
         
-        # Build CSV
-        CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
-          Integration::PetfinderPresenter.as_csv(@animals, csv)
-        end 
+      # Build CSV
+      CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
+        Integration::PetfinderPresenter.as_csv(@animals, csv)
+      end 
         
-        # FTP Files to Adopt a Pet
-        ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
-      else
-        petfinder_logger.info("#{shelter_name} :: No animals updated!")
-      end
+      # FTP Files to Adopt a Pet
+      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
 
       # Delete the CSV File
       File.delete(PETFINDER_CSV_FILENAME)
@@ -46,7 +41,6 @@ namespace :petfinder do
   
   desc "Creating Petfinder CSV files"
   task :all => [:generate_csv_files] do 
-
     petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
     petfinder_logger.close
   end
