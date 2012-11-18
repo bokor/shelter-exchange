@@ -78,6 +78,7 @@ gem 'dalli', '1.1.5'
 #----------------------------------------------------------------------------
 group :development, :test do
   gem 'pry-rails'
+  gem 'engineyard'
 end
 
 

@@ -4,7 +4,6 @@ require 'stringio'
 PETFINDER_TASK_START_TIME    = Time.now
 PETFINDER_SHELTER_START_TIME = 0
 PETFINDER_LOG_FILENAME       = Rails.root.join("log/petfinder_rake_task.log")
-PETFINDER_CSV_FILENAME       = ""
 
 Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
 
@@ -24,23 +23,19 @@ namespace :petfinder do
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
-      #
-      #
-      #
-      # If the animals.collect(:&updated_at) is not greater than 2 hours...exit out of the loop
-      #
-      #
-      #
-      #
-      PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
-      
-      # Build CSV
-      CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
-        Integration::PetfinderPresenter.as_csv(@animals, csv)
-      end 
-      
-      # FTP Files to Adopt a Pet
-      ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
+      # Upload to Adopt a pet when the animals have actually been updated in the past 2 hours
+      if @animals.collect(&:updated_at).first > 2.hours.ago
+
+        PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
+        
+        # Build CSV
+        CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
+          Integration::PetfinderPresenter.as_csv(@animals, csv)
+        end 
+        
+        # FTP Files to Adopt a Pet
+        ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
+      end
       
     end 
   end
