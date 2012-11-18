@@ -38,11 +38,15 @@ namespace :petfinder do
       else
         petfinder_logger.info("#{shelter_name} :: No animals updated!")
       end
+
+      # Delete the CSV File
+      File.delete(PETFINDER_CSV_FILENAME)
     end 
   end
   
   desc "Creating Petfinder CSV files"
   task :all => [:generate_csv_files] do 
+    
     petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
     petfinder_logger.close
   end

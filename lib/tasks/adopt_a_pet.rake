@@ -33,10 +33,13 @@ namespace :adopt_a_pet do
         
         # FTP Files to Adopt a Pet
         ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
+      else
+        
+        adopt_a_pet_logger.info("#{shelter_name} :: No animals updated!")
       end
 
-    else
-      adopt_a_pet_logger.info("#{shelter_name} :: No animals updated!")
+      # Delete the CSV File 
+      File.delete(ADOPT_A_PET_CSV_FILENAME)
     end
   end
   
@@ -45,7 +48,6 @@ namespace :adopt_a_pet do
 
     adopt_a_pet_logger.info("Time elapsed: #{Time.now - ADOPT_A_PET_TASK_START_TIME} seconds.")
     adopt_a_pet_logger.close
-
   end
 end
 
