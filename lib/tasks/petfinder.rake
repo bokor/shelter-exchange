@@ -4,6 +4,7 @@ require 'stringio'
 PETFINDER_TASK_START_TIME    = Time.now
 PETFINDER_SHELTER_START_TIME = 0
 PETFINDER_LOG_FILENAME       = Rails.root.join("log/petfinder_rake_task.log")
+PETFINDER_CSV_FILENAME       = ""
 
 Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
 
@@ -41,6 +42,7 @@ namespace :petfinder do
   
   desc "Creating Petfinder CSV files"
   task :all => [:generate_csv_files] do 
+
     petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
     petfinder_logger.close
   end
@@ -74,6 +76,7 @@ def ftp_files_to_petfinder(shelter_name, username, password, animals)
         end
       end
     end
+    
     # Log Shelter name and how long it took for each shelter
     petfinder_logger.info("#{shelter_name} finished in #{Time.now - PETFINDER_SHELTER_START_TIME}")
   rescue Exception => e

@@ -9,7 +9,11 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def type
-    @animal.other? || @animal.reptile? ? map_to_adopt_a_pet_types : @animal.animal_type.name
+    if @animal.other? || @animal.reptile?
+      map_to_adopt_a_pet_types
+    else
+      @animal.animal_type.name
+    end
   end
   
   def breed
@@ -43,7 +47,7 @@ class Integration::AdoptAPetPresenter < Presenter
   
   def purebred
     if @animal.dog? || @animal.rabbit? || @animal.horse?
-      @animal.mix_breed? ? 'N' : 'Y'
+      @animal.mix_breed? ? 'Y' : 'N'
     end
   end
   
@@ -52,11 +56,26 @@ class Integration::AdoptAPetPresenter < Presenter
   end 
   
   def size
-    @animal.size unless @animal.size.blank?
+    unless @animal.size.blank? || @animal.cat? || ['Small Animal'].include?(type)
+      if ['Rabbit', 'Small Animal', 'Farm Animal', 'Bird', 'Horse', 'Reptile'].include?(type) && @animal.size == 'XL'
+        'L'
+      else
+        @animal.size
+      end
+    end
   end
   
   def age
-    @animal.age.humanize unless @animal.age.blank?
+    unless @animal.age.blank?
+      if @animal.age == 'baby'
+        if @animal.dog?
+          return 'Puppy'
+        elsif @animal.cat?
+          return 'Kitten'
+        end
+      end
+      @animal.age.humanize
+    end
   end
   
   def photos
@@ -66,7 +85,7 @@ class Integration::AdoptAPetPresenter < Presenter
         photos << photo.image.url.gsub(/https:\/\//,"http://") if defined?(photo.image) # replaced https urls with http as there is an issue on adopt-a-pet with secure urls
       end
     end
-    (4-@animal.photos.size).times{ photos << nil}
+    (4-@animal.photos.size).times{ photos << nil }
     photos
   end
   
@@ -119,21 +138,6 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   private
-
-    def months_between(from_time, to_time)
-      from_time = from_time.to_time if from_time.respond_to?(:to_time)
-      to_time = to_time.to_time if to_time.respond_to?(:to_time)
-      distance_in_seconds = ((to_time - from_time).abs).round
-
-      if distance_in_seconds >= 1.month
-        delta = (distance_in_seconds / 1.month).floor
-        distance_in_seconds -= delta.month
-        delta
-      end
-
-      delta.blank? ? 0 : delta.to_i
-
-    end
 
     def map_to_adopt_a_pet_types
       types = { 

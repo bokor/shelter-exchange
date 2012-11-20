@@ -486,7 +486,6 @@ Breed.create([
   { :animal_type_id => rabbit.id, :name => "Californian" },
   { :animal_type_id => rabbit.id, :name => "Champagne D'Argent" },
   { :animal_type_id => rabbit.id, :name => "Checkered Giant" },
-  { :animal_type_id => rabbit.id, :name => "Chinchilla" },
   { :animal_type_id => rabbit.id, :name => "Cinnamon" },
   { :animal_type_id => rabbit.id, :name => "Creme D'Argent" },
   { :animal_type_id => rabbit.id, :name => "Dutch" },

@@ -32,7 +32,7 @@ namespace :adopt_a_pet do
         
       # FTP Files to Adopt a Pet
       ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
-      
+        
       # Delete the CSV File 
       File.delete(ADOPT_A_PET_CSV_FILENAME)
     end
@@ -61,6 +61,7 @@ def ftp_files_to_adopt_a_pet(shelter_name, username, password)
       ftp.puttextfile(ADOPT_A_PET_CSV_FILENAME)
       ftp.puttextfile(ADOPT_A_PET_CFG_FILENAME)
     end
+    
     # Log Shelter name and how long it took for each shelter
     adopt_a_pet_logger.info("#{shelter_name} finished in #{Time.now - ADOPT_A_PET_SHELTER_START_TIME}")
   rescue Exception => e
