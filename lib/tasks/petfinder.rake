@@ -63,7 +63,7 @@ def ftp_files_to_petfinder(shelter_name, username, password, animals)
       ftp.passive = true
       # Upload CSV
       ftp.chdir('import')
-      tp.puttextfile(PETFINDER_CSV_FILENAME)
+      ftp.puttextfile(PETFINDER_CSV_FILENAME)
 
       # Upload Photos
       ftp.chdir('photos')
