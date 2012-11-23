@@ -4,6 +4,9 @@ source 'http://rubygems.org'
 gem 'bundler', '1.2.2'
 gem 'rails',   '3.0.9'
 gem 'rake',    '0.9.2.2'
+
+gem 'mail',    '2.2.19'
+
 gem 'pry-rails'
 
 
@@ -16,11 +19,6 @@ gem 'yaml_db'
 #----------------------------------------------------------------------------
 gem 'rubyzip', '0.9.4'             
 gem 'zippy', '0.1.0'               
-
-# Mail
-#----------------------------------------------------------------------------
-gem 'mail', '2.2.19'
-# gem 'aws-ses', '0.4.3'
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
@@ -81,8 +79,9 @@ end
 
 
 
-
-##TESTING THESE GEMS/Plugins
+# Investigate later
+#----------------------------------------------------------------------------
+# gem 'aws-ses', '0.4.3'
 # gem 'geokit-rails3', '0.1.3'        # Geocoding
 
 
