@@ -380,3 +380,26 @@
 
 
 
+/***********************************************************************/
+/* -------------------------- INTEGRATIONS  -------------------------- */
+/***********************************************************************/
+
+/* Integrations :: Global */
+/******************************************************************/
+.integrations ul { list-style:none ;}
+
+/* New/Create Announcements :: Layout */
+/******************************************************************/
+.integrations #main { margin: 1em 3em 0 3em; }
+.integrations #left{ width: 100%;}
+.integrations #sidebar { display: none;width: 0; }
+
+/* Alert List :: Layout */
+/******************************************************************/
+.integrations table { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+.integrations thead th { line-height: 50px; border:1px #ddd solid; text-align: center; }
+.integrations tbody tr { line-height: 30px; }
+.integrations tbody tr.odd { background-color: #fff; }
+.integrations tbody tr.even { background-color: #efefef; }
+.integrations tbody tr td { border:1px #ddd solid; }
+.integrations tbody tr td.key { padding-left: 5px; }

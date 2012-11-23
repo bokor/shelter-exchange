@@ -232,6 +232,10 @@ ShelterExchangeApp::Application.routes.draw do
       resources :shelters, :only => [:index, :show, :edit, :update] do
         get :live_search, :on => :collection
       end
+
+      # Admin :: Integrations
+      #----------------------------------------------------------------------------
+      resources :integrations, :only => [:index]
       
       # Admin :: Users
       #----------------------------------------------------------------------------

@@ -11,6 +11,14 @@ class Integration::AdoptAPet < Integration
   validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
+
+  def self.humanize
+    "Adpot a Pet"
+  end
+
+  def self.to_sym
+    :adopt_a_pet
+  end
   
   private
   
