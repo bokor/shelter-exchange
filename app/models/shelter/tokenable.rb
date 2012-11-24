@@ -10,13 +10,13 @@ module Shelter::Tokenable
   end
   
   def generate_access_token!
-    self.access_token = ActiveSupport::SecureRandom.hex(15)
+    self.access_token = SecureRandom.hex(15)
     save!
   end
   
 end
 
-# self.access_token = ActiveSupport::SecureRandom.base64(10)
+# self.access_token = SecureRandom.base64(10)
 
 
 
