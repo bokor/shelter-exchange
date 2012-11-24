@@ -1,3 +1,6 @@
+# Fix foreman logging issue
+$stdout.sync = true
+
 ShelterExchangeApp::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
