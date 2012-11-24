@@ -8,7 +8,7 @@ module StatusHistory::Reportable
   module ClassMethods
   
     def by_month(range)
-      self.select([:id, :animal_id]).where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id)
+      self.select([:id, :animal_id]).where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id).collect(&:id)
     end
   
     def status_by_month_year(month, year, state=nil)
