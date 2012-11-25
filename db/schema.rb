@@ -333,8 +333,8 @@ ActiveRecord::Schema.define(:version => 20121125041505) do
     t.datetime "updated_at"
     t.integer  "account_id"
     t.boolean  "is_kill_shelter", :default => false,    :null => false
-    t.float    "lat"
-    t.float    "lng"
+    t.decimal  "lat",             :precision => 15, :scale => 10    
+    t.decimal  "lng",             :precision => 15, :scale => 10
     t.string   "email"
     t.string   "logo"
     t.string   "facebook"
