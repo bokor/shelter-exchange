@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124010602) do
+ActiveRecord::Schema.define(:version => 20121125041505) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -332,16 +332,16 @@ ActiveRecord::Schema.define(:version => 20121124010602) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter",                                 :default => false,    :null => false
-    t.decimal  "lat",             :precision => 15, :scale => 10
-    t.decimal  "lng",             :precision => 15, :scale => 10
+    t.boolean  "is_kill_shelter", :default => false,    :null => false
+    t.float    "lat"
+    t.float    "lng"
     t.string   "email"
     t.string   "logo"
     t.string   "facebook"
     t.string   "time_zone"
     t.string   "access_token"
     t.string   "street_2"
-    t.string   "status",                                          :default => "active"
+    t.string   "status",          :default => "active"
     t.text     "status_reason"
   end
 

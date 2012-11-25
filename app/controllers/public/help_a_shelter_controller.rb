@@ -22,12 +22,12 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
   
   def find_shelters_in_bounds
-    @shelters = Shelter.where(:status => 'active').geo_scope(:bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:page => params[:page], :per_page => 15)
+    @shelters = Shelter.active.within_bounds(params[:filters][:sw].split(','), params[:filters][:ne].split(',')).paginate(:page => params[:page], :per_page => 15)
   end
   
   def find_animals_for_shelter
     shelter_id = params[:filters][:shelter_id]
-    @animals = Animal.community_animals(shelter_id, params[:filters]).available.paginate(:page => params[:page], :per_page => 15).all || {}
+    @animals = Animal.available.community_animals(shelter_id, params[:filters]).paginate(:page => params[:page], :per_page => 15).all || {}
   end
   
   rescue_from ActiveRecord::RecordNotFound do |exception|
