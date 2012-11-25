@@ -57,7 +57,6 @@
 		</div>
 		
 	</div>
-		
 <% end %>
 
 <%= content_for :sidebar do %>
@@ -83,10 +82,21 @@
 								:target => "_new" %></li>
 			</ol>
 		</div>
-	  <% end %>
-	<h2>Transfer Requests</h2>
-	<div id="transfers">
-		<%= render "transfers/transfer_list", :transfers => @transfers %>
+	<% end %>
+	
+	<div class="auto_upload">
+		<h2>Auto upload animals</h2>
+		<ul>
+			<li><%= link_to image_tag("partners/petfinder.png"), setting_path(:tab => :connect) %></li>
+			<li><%= link_to image_tag("partners/logo_adopt_a_pet_medium.gif"), setting_path(:tab => :connect) %></li>
+		</ul>
 	</div>
+
+	<% unless @transfers.blank? %>
+		<h2>Transfer Requests</h2>
+		<div id="transfers">
+			<%= render "transfers/transfer_list", :transfers => @transfers %>
+		</div>
+	<% end %>
 <% end %>
 
