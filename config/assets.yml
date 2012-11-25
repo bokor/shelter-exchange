@@ -36,7 +36,7 @@ javascripts:
     - public/javascripts/global/jquery_ujs.js
     - public/javascripts/shared/**/*.js
     - public/javascripts/app/**/*.js
-    
+
   app_print:
     - public/javascripts/global/jquery.min.js
     - public/javascripts/global/modernizr.js
@@ -90,28 +90,28 @@ stylesheets:
     - public/stylesheets/app/common.css
     - public/stylesheets/app/controller.css
     - public/stylesheets/app/global_print.css
-    
+
   app_login:
     - public/stylesheets/global/jquery-ui/*.css
     - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/app/login/*.css
-  
+
   app_print:
     - public/stylesheets/global/jquery-ui/*.css
     - public/stylesheets/global/wufoo/*.css    
     - public/stylesheets/app/print/*.css
-      
+
   admin:
     - public/stylesheets/global/jquery-ui/*.css
     - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/admin/common.css
     - public/stylesheets/admin/controller.css
-  
+
   admin_login:
     - public/stylesheets/global/jquery-ui/*.css
     - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/admin/login.css
-  
+
   api:
     # - public/stylesheets/global/fancybox/*.css
     # - public/stylesheets/global/galleria/**/*.css
@@ -119,7 +119,7 @@ stylesheets:
     - public/stylesheets/global/wufoo/*.css  
     - public/stylesheets/api/common.css
     - public/stylesheets/api/controller.css
-  
+
   public:  
     - public/stylesheets/global/fancybox/*.css
     - public/stylesheets/global/galleria/**/*.css
@@ -128,7 +128,7 @@ stylesheets:
     - public/stylesheets/global/wufoo/*.css
     - public/stylesheets/public/common.css
     - public/stylesheets/public/controller.css
-  
+
   public_popup:
     - public/stylesheets/global/jquery-ui/*.css
     - public/stylesheets/global/wufoo/*.css    

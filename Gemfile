@@ -58,18 +58,21 @@ gem 'dalli'
 
 # Local Testing and Tools
 #----------------------------------------------------------------------------
-group :test, :development do
+group :development, :test do
   gem 'thin'    
   gem 'foreman'
-end
-
-group :development, :test do
   gem 'engineyard'
 end
 
 # Monitoring & Notification
 #----------------------------------------------------------------------------
-gem 'hoptoad_notifier'
+group :production do
+  gem 'hoptoad_notifier'
+end
+
+
+
+
 
 
 # Investigate later
