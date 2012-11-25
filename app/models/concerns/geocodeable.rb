@@ -6,12 +6,11 @@ module Geocodeable
       
     # Plugins
     #----------------------------------------------------------------------------
-    geocoded_by :geocode_address, 
-                :latitude  => :lat, :longitude => :lng
+    geocoded_by :geocode_address, :latitude  => :lat, :longitude => :lng
     
     # Callbacks
     #----------------------------------------------------------------------------
-    after_validation :geocode
+    after_validation :geocode, :if => :address_changed?
 
   end
 
@@ -31,7 +30,7 @@ module Geocodeable
   end
   
   def geocode_address
-    [self.street, self.city, self.state, self.zip_code].join(" ")    
+    [self.street, self.city, self.state, self.zip_code].compact.join(', ')
   end
 end
 
