@@ -26,7 +26,8 @@ class CommunitiesController < ApplicationController
   end
   
   def find_animals_in_bounds
-    shelter_ids = Shelter.find(:all, :select => :id, :conditions => ["shelters.status = ? and shelters.id != ?", "active", @current_shelter.id], :bounds => [params[:filters][:sw],params[:filters][:ne]])
+    shelter_ids = Shelter.where("shelters.status = ? and shelters.id != ?", "active", @current_shelter.id)
+                         .geo_scope(:bounds => [params[:filters][:sw],params[:filters][:ne]])
     unless shelter_ids.blank?
       @animals = Animal.community_animals(shelter_ids, params[:filters]).paginate(:page => params[:page], :per_page => 10).all || {} 
     end

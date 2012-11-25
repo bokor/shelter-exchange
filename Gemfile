@@ -46,7 +46,7 @@ gem 'googl'
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
-gem 'geokit'
+gem 'geocoder'
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------

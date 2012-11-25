@@ -22,7 +22,7 @@ class Public::HelpAShelterController < Public::ApplicationController
   end
   
   def find_shelters_in_bounds
-    @shelters = Shelter.find(:all, :conditions => {:status => "active"}, :bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:page => params[:page], :per_page => 15)
+    @shelters = Shelter.where(:status => 'active').geo_scope(:bounds => [params[:filters][:sw],params[:filters][:ne]]).paginate(:page => params[:page], :per_page => 15)
   end
   
   def find_animals_for_shelter

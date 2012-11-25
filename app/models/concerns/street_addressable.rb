@@ -8,7 +8,6 @@ module StreetAddressable
     validate :full_address
   
   end
-  
 
   def address_changed?
     (self.new_record?) or (self.street_changed? or self.street_2_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
@@ -25,5 +24,3 @@ module StreetAddressable
     end
 
 end
-
-# %w(street city state zip_code).all? { |attr| self.send(attr).blank? }

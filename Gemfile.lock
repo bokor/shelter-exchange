@@ -92,8 +92,7 @@ GEM
     foreman (0.60.2)
       thor (>= 0.13.6)
     formatador (0.2.4)
-    geokit (1.6.5)
-      multi_json
+    geocoder (1.1.5)
     googl (0.6.1)
       httparty (~> 0.8.3)
       json (>= 1.4.6)
@@ -232,7 +231,7 @@ DEPENDENCIES
   engineyard
   fog
   foreman
-  geokit
+  geocoder
   googl
   hoptoad_notifier
   jammit
