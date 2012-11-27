@@ -396,6 +396,8 @@
 
 /* Alert List :: Layout */
 /******************************************************************/
+.integrations a {font-size: 11px; color: #000; text-decoration: none;}
+.integrations a:hover {text-decoration: underline; color: #cf7019;}
 .integrations table { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
 .integrations thead th { line-height: 50px; border:1px #ddd solid; text-align: center; }
 .integrations tbody tr { line-height: 30px; }
