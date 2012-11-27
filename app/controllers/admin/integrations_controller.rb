@@ -10,7 +10,7 @@ class Admin::IntegrationsController < Admin::ApplicationController
     @integrations_hash = Hash.new([])
 
     integrations.each do |integration|
-      @integrations_hash[integration.shelter.name] += [integration.class.to_sym]
+      @integrations_hash[integration.shelter] += [integration.class.to_sym]
     end
   end
 end
