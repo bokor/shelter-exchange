@@ -38,7 +38,7 @@ class Integration::PetfinderPresenter < Presenter
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> "
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
-    s
+    s.gsub("\n", '<br>')
   end
 
   def type
