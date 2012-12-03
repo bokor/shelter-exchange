@@ -26,7 +26,7 @@ namespace :adopt_a_pet do
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
       # Build CSV
-      CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+") do |csv|
+      CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+:UTF-8") do |csv|
         Integration::AdoptAPetPresenter.as_csv(@animals, csv)
       end 
         
