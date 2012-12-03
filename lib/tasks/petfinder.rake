@@ -28,7 +28,7 @@ namespace :petfinder do
       PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
         
       # Build CSV
-      CSV.open(PETFINDER_CSV_FILENAME, "w+") do |csv|
+      CSV.open(PETFINDER_CSV_FILENAME, "w+:UTF-8") do |csv|
         Integration::PetfinderPresenter.as_csv(@animals, csv)
       end 
         
