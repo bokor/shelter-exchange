@@ -33,6 +33,7 @@ class Integration::AdoptAPetPresenter < Presenter
   end
   
   def description
+    # FIX FOR RAILS 3.2.9  CSV prints out strings not HTML!
     s = @animal.description.blank? ? 'No description provided' : help.auto_link( help.simple_format(@animal.description), :all, :target => '_blank')
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a> "
