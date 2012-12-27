@@ -23,7 +23,7 @@ gem 'cancan'
 # UI/UX - HTML/JS/CSS/PDF
 #----------------------------------------------------------------------------
 gem 'will_paginate'
-gem 'jquery-rails'
+gem 'jquery-rails' # might need upgraded rails generate jquery:install
 gem 'jammit'
 gem 'jammit-s3'
 gem 'prawn'
@@ -56,18 +56,16 @@ gem 'delayed_job_active_record'  # Change to RESQUE
 #----------------------------------------------------------------------------
 gem 'dalli'
 
+# Monitoring & Notification
+#----------------------------------------------------------------------------
+gem 'airbrake'
+
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development, :test do
   gem 'thin'    
   gem 'foreman'
   gem 'engineyard'
-end
-
-# Monitoring & Notification
-#----------------------------------------------------------------------------
-group :production do
-  gem 'hoptoad_notifier'
 end
 
 
