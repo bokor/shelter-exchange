@@ -8,7 +8,7 @@
 # end
  
 DEFAULT_DOMAIN = "lvh.me"
-DEFAULT_PORT   = 9887
+DEFAULT_PORT   = 9292
  
 RSpec.configure do |config|
   Capybara.default_host = "http://www.#{DEFAULT_DOMAIN}"
