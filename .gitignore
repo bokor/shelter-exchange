@@ -1,18 +1,17 @@
-.bundle
-
-# Log Files
-log/*
-
-# Textmate and Project Files
-*.tmproj
-
-# Uploaded files and local files
-public/uploads/*
-public/assets/*
-public/source.tar*
 public/.well-known
-tmp/**/*
 *.sqlite3
+*.tmproj
+public/assets/*
 
 # Temporary files of every sort
+.bundle
+
+# Uploaded files and local files
 .DS_Store
+log/*
+tmp/**/*
+chromedriver.log
+
+# Textmate and Project Files
+public/uploads/*
+public/source.tar*

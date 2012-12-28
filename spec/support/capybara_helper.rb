@@ -17,9 +17,9 @@ module CapybaraHelper
 #     end
 #   end
 
-  def should_be_on expected_path
-    current_path.should == expected_path
-  end
+  # def should_be_on expected_path
+  #   current_path.should == expected_path
+  # end
 
 #   def check_table_values_for table_selector, expected_table_values
 #     all( "#{ table_selector } tbody tr" ).each do |row|

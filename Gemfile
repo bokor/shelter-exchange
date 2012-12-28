@@ -68,7 +68,6 @@ group :development, :test do
   gem 'engineyard'
 
   gem 'rspec-rails'
-  gem 'debugger', :platforms => :ruby_19
 end
 
 group :test do

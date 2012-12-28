@@ -27,8 +27,6 @@ module ShelterExchangeApp
         #{config.root}/app/uploaders
         #{config.root}/app/models/concerns
     )
-    # Loads all files and directories but behaves weird for a custom library like shelter_exchange.rb
-    # config.autoload_paths += Dir["#{config.root}/lib/**/"]
     
     # Activate observers that should always be running.
     Dir.chdir("#{Rails.root}/app/observers") do
