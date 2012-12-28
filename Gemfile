@@ -66,6 +66,20 @@ group :development, :test do
   gem 'thin'    
   gem 'foreman'
   gem 'engineyard'
+
+  gem 'rspec-rails'
+  gem 'debugger', :platforms => :ruby_19
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'factory_girl_extensions'
+
+  gem 'capybara'
+  gem 'capybara-email'
+
+  gem 'launchy'  
+  gem 'database_cleaner'
 end
 
 
@@ -100,35 +114,11 @@ end
           #gem 'sass-rails'
           #gem 'coffee-rails'
           #gem 'uglifier'
-        # group :test, :development do
-          # gem 'debugger', :platforms => :ruby_19
-          # gem 'rspec-rails' # Development group should have rspec-rails so that you get the rake tasks
-        # end
-        # gem 'aws-ses', '0.4.3'
-        # gem 'geokit-rails3', '0.1.3'        # Geocoding
-        # gem 'mime-types',      :require => 'mime/types'
 
 
-        # Factory girl needs to be test only or else database rake tasks fail
-        # when your database has no tables.
-        # group :test do
-        #   gem 'factory_girl_rails', '1.7.0' # upgrade from this when we can be bothered using the new factory_girl syntax
-        #   gem 'factory_girl_extensions'
 
-        #   # XXX: We must use a branch of artifice which supports getting parameters which are streamed as part of a POST
-        #   #   request. Artifice by default will return an empty hash when trying to get parameters of a multipart POST
-        #   #   request. In these cases, one might think that the params are stored in the streaming body. However,
-        #   #   `request.body.read` returns an empty string in these cases. There is one other way in which one might try
-        #   #   to access parameters from a multipart POST request: `request.send(:parse_multipart, request.env)` but this
-        #   #   raises with the message "bad request".
-        #   gem 'artifice',      :git => 'git://github.com/wildfireapp/artifice.git', :branch => 'streaming_requests'
-        #   gem 'capybara'
-        #   gem 'puma', '~> 1.5.0' # bumping to 1.6 seems to make some tests fail
-        #   gem 'capybara-email'
-        #   gem 'database_cleaner'
-        #   gem 'launchy'
-        #   gem 'sinatra',       :require => 'sinatra/base'
-        # end
+        # gem 'puma', '~> 1.5.0' # bumping to 1.6 seems to make some tests fail
+
 
         # group :production do
         #   gem 'SyslogLogger'
