@@ -68,6 +68,7 @@ group :development, :test do
   gem 'engineyard'
 
   gem 'rspec-rails'
+  gem 'debugger'
 end
 
 group :test do
@@ -75,9 +76,9 @@ group :test do
   gem 'factory_girl_extensions'
 
   gem 'capybara'
-  gem 'capybara-email'
+  # gem 'capybara-email'
 
-  gem 'launchy'  
+  # gem 'launchy'  
   gem 'database_cleaner'
 end
 

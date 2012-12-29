@@ -29,9 +29,6 @@ module Geocodeable
     end
   end
   
-  def geocode_address
-    [self.street, self.city, self.state, self.zip_code].compact.join(', ')
-  end
 end
 
   #GEOCODER SQL

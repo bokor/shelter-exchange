@@ -19,6 +19,9 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Capybara::RSpecMatchers
 
+  # Factory Girl
+  config.include FactoryGirl::Syntax::Methods
+
   # Include Helper Files
   config.include CapybaraHelper, :type => :request
 end

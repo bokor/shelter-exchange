@@ -17,6 +17,10 @@ module StreetAddressable
     self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
   end
 
+  def geocode_address
+    [self.street, self.street_2, self.city, self.state, self.zip_code].compact.join(', ')
+  end
+
   private 
     
     def full_address

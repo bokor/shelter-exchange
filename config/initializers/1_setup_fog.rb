@@ -12,9 +12,17 @@ S3_SECRET_ACCESS_KEY = S3_CREDENTIALS[Rails.env]["secret_access_key"]
 
 # Reusable Fog Connection
 #----------------------------------------------------------------------------
+
+# Mocking the connection for test environment
+Fog.mock! if Rails.env.test?
+
 FOG_STORAGE ||= Fog::Storage.new({
   :provider => 'AWS', 
   :aws_access_key_id => S3_ACCESS_KEY_ID,
   :aws_secret_access_key => S3_SECRET_ACCESS_KEY
 })
+
+# Creating a Test bucket for test environment
+FOG_STORAGE.directories.create(:key => S3_BUCKET) if Rails.env.test?
+
 FOG_BUCKET ||= FOG_STORAGE.directories.get(S3_BUCKET)

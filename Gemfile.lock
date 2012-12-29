@@ -48,19 +48,24 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
-    capybara-email (2.0.1)
-      capybara (~> 2.0.0)
-      mail
     carrierwave (0.7.1)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.8)
+    columnize (0.3.6)
     connection_pool (0.9.3)
     daemons (1.1.9)
     dalli (2.5.0)
     database_cleaner (0.9.1)
+    debugger (1.2.3)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.5)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.6)
     delayed_job (3.0.4)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.3)
@@ -276,10 +281,10 @@ DEPENDENCIES
   airbrake
   cancan
   capybara
-  capybara-email
   carrierwave
   dalli
   database_cleaner
+  debugger
   delayed_job_active_record
   devise
   devise_invitable
@@ -293,7 +298,6 @@ DEPENDENCIES
   jammit
   jammit-s3
   jquery-rails
-  launchy
   mail
   mini_magick
   mysql2
