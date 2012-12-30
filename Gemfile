@@ -23,7 +23,7 @@ gem 'cancan'
 # UI/UX - HTML/JS/CSS/PDF
 #----------------------------------------------------------------------------
 gem 'will_paginate'
-gem 'jquery-rails' # might need upgraded rails generate jquery:install
+gem 'jquery-rails'
 gem 'jammit'
 gem 'jammit-s3'
 gem 'prawn'
