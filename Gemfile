@@ -68,18 +68,16 @@ group :development, :test do
   gem 'engineyard'
 
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'debugger', :platforms => :ruby_19
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'factory_girl_extensions'
-
   gem 'capybara'
-  # gem 'capybara-email'
+  gem 'launchy' 
 
-  # gem 'launchy'  
-  gem 'database_cleaner'
+  # gem 'capybara-email' or 'email-spec' 
 end
 
 

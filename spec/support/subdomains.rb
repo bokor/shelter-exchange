@@ -17,5 +17,5 @@ RSpec.configure do |config|
 end
  
 def switch_to_subdomain(subdomain)
-   Capybara.app_host = "http://#{subdomain}.#{DEFAULT_DOMAIN}:#{DEFAULT_PORT}"
+  Capybara.app_host = "http://#{subdomain}.#{DEFAULT_DOMAIN}:#{DEFAULT_PORT}"
 end

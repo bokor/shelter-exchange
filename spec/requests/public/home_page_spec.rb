@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe 'Home Page', :js => :true do
+
   it 'tests' do
-    @account = Account.gen
-    @account_1 = Account.gen
-    shelter = @account_1.shelters.first
-    shelter.name = 'Testing'
-    shelter.save
-    puts shelter.name
+    puts @shelter.name
     # test = Delayed::Worker.new.work_off
     # puts test.to_json
     # puts ActionMailer::Base.deliveries
@@ -16,6 +12,12 @@ describe 'Home Page', :js => :true do
 
     # page.should have_content('shelterexchange-test')
 
+  end
+
+  it 'blah' do
+    @animal = Animal.gen
+    visit public_save_a_life_path(@animal, :subdomain => "www")
+    page.should have_content('shelterexchange-test')
   end
   # it 'welcomes the user' do
   #   @animal = Animal.gen
