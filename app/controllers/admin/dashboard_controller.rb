@@ -15,7 +15,7 @@ class Admin::DashboardController < Admin::ApplicationController
     @total_suspended_shelters_count   = Shelter.suspended.count
     @total_cancelled_shelters_count   = Shelter.cancelled.count
     @latest_shelters                  = Shelter.latest(10).all
-    @latest_adopted                   = Animal.latest(:adopted, 10).all
+    @latest_adopted                   = Animal.latest(:adopted, 50).all
     @latest_euthanized                = Animal.latest(:euthanized, 10).all
   end
   
