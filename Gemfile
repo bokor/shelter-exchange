@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 
 gem 'bundler', '1.2.2'
-gem 'rails',   '3.0.9'
+gem 'rails',   '3.0.19'
 gem 'rake',    '0.9.2.2'
 
 gem 'mail',    '2.2.19'
