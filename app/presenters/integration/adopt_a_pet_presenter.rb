@@ -47,12 +47,12 @@ class Integration::AdoptAPetPresenter < Presenter
   
   def purebred
     if @animal.dog? || @animal.rabbit? || @animal.horse?
-      @animal.mix_breed? ? 'Y' : 'N'
+      @animal.mix_breed? ? 'N' : 'Y' 
     end
   end
   
   def special_needs
-    @animal.special_needs?  ? 'Y' : 'N'
+    @animal.special_needs? ? 'Y' : 'N'
   end 
   
   def size
