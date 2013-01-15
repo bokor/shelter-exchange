@@ -29,10 +29,10 @@ class SettingsController < ApplicationController
 
     def connect
       @adopt_a_pet = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first || 
-                     Integration::AdoptAPet.new(:shelter_id => @current_shelter)
+                     Integration::AdoptAPet.new(:shelter => @current_shelter)
 
       @petfinder   = Integration::Petfinder.where(:shelter_id => @current_shelter).first || 
-                     Integration::Petfinder.new(:shelter_id => @current_shelter)
+                     Integration::Petfinder.new(:shelter => @current_shelter)
     end
     
   

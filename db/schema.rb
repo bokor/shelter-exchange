@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006235338) do
+ActiveRecord::Schema.define(:version => 20121125041505) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -181,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20121006235338) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -330,8 +332,8 @@ ActiveRecord::Schema.define(:version => 20121006235338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter",                                 :default => false,    :null => false
-    t.decimal  "lat",             :precision => 15, :scale => 10
+    t.boolean  "is_kill_shelter", :default => false,    :null => false
+    t.decimal  "lat",             :precision => 15, :scale => 10    
     t.decimal  "lng",             :precision => 15, :scale => 10
     t.string   "email"
     t.string   "logo"
@@ -339,7 +341,7 @@ ActiveRecord::Schema.define(:version => 20121006235338) do
     t.string   "time_zone"
     t.string   "access_token"
     t.string   "street_2"
-    t.string   "status",                                          :default => "active"
+    t.string   "status",          :default => "active"
     t.text     "status_reason"
   end
 
@@ -448,6 +450,7 @@ ActiveRecord::Schema.define(:version => 20121006235338) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.datetime "announcement_hide_time"
+    t.datetime "invitation_accepted_at"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

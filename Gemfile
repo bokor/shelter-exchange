@@ -1,87 +1,127 @@
 source 'http://rubygems.org'
 
+gem 'rails', '3.2.11'
 
-gem 'bundler', '1.2.2'
-gem 'rails',   '3.0.19'
-gem 'rake',    '0.9.2.2'
-
-gem 'mail',    '2.2.19'
+gem 'rack'
+gem 'rake'
+gem 'mail'
 
 gem 'pry-rails'
 
-
 # Database
 #----------------------------------------------------------------------------
-gem 'mysql2', '~> 0.2.7'
-gem 'yaml_db'
+gem 'mysql2'
 
 # Zip Files
 #----------------------------------------------------------------------------
-gem 'rubyzip', '0.9.4'             
-gem 'zippy', '0.1.0'               
+gem 'rubyzip'
+gem 'zippy'
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
-gem 'devise', '1.4.7'               
-gem 'devise_invitable', '0.5.4'     
-gem 'cancan', '1.5.1'               
+gem 'devise'
+gem 'devise_invitable'
+gem 'cancan'
 
-# HTML - JS - CSS
+# UI/UX - HTML/JS/CSS/PDF
 #----------------------------------------------------------------------------
-gem 'will_paginate', '3.0.3'
-gem 'dynamic_form', '1.1.3'         
-gem 'jquery-rails', '1.0.13'   
-gem 'jammit', '0.6.1'
+gem 'will_paginate'
+gem 'jquery-rails'
+gem 'jammit'
 gem 'jammit-s3'
+gem 'prawn'
 
-# PDF
+# Images
 #----------------------------------------------------------------------------
-gem 'prawn', '0.12.0'
+gem 'carrierwave'
+gem 'mini_magick'
+
+# Helpers
+#----------------------------------------------------------------------------
+gem 'rinku', :require => 'rails_rinku' # Rails 3.2 auto_link
 
 # APIs
 #----------------------------------------------------------------------------
-gem 'fog', '1.3.1'
-gem 'twitter', '2.0.2'
-gem 'googl', '0.5.0'      
-
-# Images
-#----------------------------------------------------------------------------         
-gem 'carrierwave', '0.5.8'
-gem 'mini_magick', '3.4'
+gem 'rest-client'
+gem 'fog'
+gem 'twitter'
+gem 'googl'
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
-gem 'geokit', '1.5.0'				
-gem 'rails3-generators', '0.14.0'  
-
-# Connection
-#----------------------------------------------------------------------------
-gem 'rest-client', '1.6.7'
+gem 'geocoder'
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
-gem 'delayed_job', '2.1.4'    
-
-# Proactive - Monitoring & Notification
-#----------------------------------------------------------------------------
-gem 'hoptoad_notifier', '2.4.11'
+gem 'delayed_job_active_record'  # Change to RESQUE
 
 # Performance
 #----------------------------------------------------------------------------
-gem 'dalli', '1.1.5'
+gem 'dalli'
 
+# Monitoring & Notification
+#----------------------------------------------------------------------------
+gem 'airbrake'
 
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development, :test do
+  gem 'thin'
+  gem 'foreman'
   gem 'engineyard'
+
+  gem 'rspec-rails'
+  gem 'debugger', :platforms => :ruby_19
 end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'factory_girl_extensions'
+  gem 'capybara'
+  gem 'launchy'
+
+  # gem 'capybara-email' or 'email-spec'
+end
+
+
+
 
 
 
 # Investigate later
 #----------------------------------------------------------------------------
-# gem 'aws-ses', '0.4.3'
-# gem 'geokit-rails3', '0.1.3'        # Geocoding
 
+# TODO
+          # Gems used only for assets and not required
+          # in production environments by default.
+          # group :assets do
+          #   gem 'sass-rails',   '~> 3.2.3'
+          #   gem 'coffee-rails', '~> 3.2.1'
+
+          #   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+          #   # gem 'therubyracer', :platforms => :ruby
+
+          #   gem 'uglifier', '>= 1.0.3'
+          #   gem 'yui-compressor'
+          # end
+
+          # MESSENGER
+          # asset pipeline
+          # gem 'yui-compressor' # compress CSS
+          # gem 'coffee-filter' # coffeescript haml filter
+          # gem 'therubyracer' # needed to run coffeescript on ubuntu
+          # the ui-toolkit includes the following:
+          #gem 'haml-rails'
+          #gem 'sass-rails'
+          #gem 'coffee-rails'
+          #gem 'uglifier'
+
+
+
+        # gem 'puma', '~> 1.5.0' # bumping to 1.6 seems to make some tests fail
+
+
+        # group :production do
+        #   gem 'SyslogLogger'
+        # end
 

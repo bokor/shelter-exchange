@@ -54,7 +54,6 @@ class Shelter < ActiveRecord::Base
   scope :inactive, where("status != 'active'")
   scope :suspended, where(:status => "suspended")
   scope :cancelled, where(:status => "cancelled")
-  
     
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -81,6 +80,5 @@ class Shelter < ActiveRecord::Base
   def cancelled?
     self.status == "cancelled"
   end
-  
 end
       
