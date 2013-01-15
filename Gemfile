@@ -5,6 +5,7 @@ gem 'rails', '3.2.11'
 gem 'rack'
 gem 'rake'
 gem 'mail'
+
 gem 'pry-rails'
 
 # Database
@@ -14,13 +15,13 @@ gem 'mysql2'
 # Zip Files
 #----------------------------------------------------------------------------
 gem 'rubyzip'
-gem 'zippy'            
+gem 'zippy'
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
-gem 'devise'               
-gem 'devise_invitable' 
-gem 'cancan'               
+gem 'devise'
+gem 'devise_invitable'
+gem 'cancan'
 
 # UI/UX - HTML/JS/CSS/PDF
 #----------------------------------------------------------------------------
@@ -31,20 +32,20 @@ gem 'jammit-s3'
 gem 'prawn'
 
 # Images
-#----------------------------------------------------------------------------         
+#----------------------------------------------------------------------------
 gem 'carrierwave'
 gem 'mini_magick'
 
 # Helpers
 #----------------------------------------------------------------------------
-gem 'rinku', :require => 'rails_rinku' # Rails 3.2 auto_link 
+gem 'rinku', :require => 'rails_rinku' # Rails 3.2 auto_link
 
 # APIs
 #----------------------------------------------------------------------------
 gem 'rest-client'
 gem 'fog'
 gem 'twitter'
-gem 'googl'   
+gem 'googl'
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
@@ -65,7 +66,7 @@ gem 'airbrake'
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development, :test do
-  gem 'thin'    
+  gem 'thin'
   gem 'foreman'
   gem 'engineyard'
 
@@ -77,9 +78,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'factory_girl_extensions'
   gem 'capybara'
-  gem 'launchy' 
+  gem 'launchy'
 
-  # gem 'capybara-email' or 'email-spec' 
+  # gem 'capybara-email' or 'email-spec'
 end
 
 
