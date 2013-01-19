@@ -207,7 +207,6 @@ ShelterExchangeApp::Application.routes.draw do
     # ROOT
     #----------------------------------------------------------------------------
     root :to => redirect("/dashboard")
-  
   end
 
 
@@ -277,16 +276,16 @@ ShelterExchangeApp::Application.routes.draw do
       end
       
     end
-    
+
     # Admin :: Owners :: Devise
     #----------------------------------------------------------------------------
+    match '/login' => redirect('/admin/login')
     devise_for :owners, :path => "admin", :controllers => { :sessions => "admin/owners/sessions" },
                         :path_names => { :sign_in => "login", :sign_out => "logout" }
     
     # Root
     #----------------------------------------------------------------------------
     root :to => redirect("/admin/dashboard")
-    
   end
   
 

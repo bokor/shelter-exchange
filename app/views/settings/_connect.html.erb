@@ -1,6 +1,7 @@
 <%= content_for :javascripts do %><% end %>
 
-<%= render @adopt_a_pet %>
+<%= render 'integrations/integration', :integration => @adopt_a_pet %>
+
 <br>
-<%= render @petfinder %>
+<%= render 'integrations/integration', :integration => @petfinder %>
 <div class="clear"></div>

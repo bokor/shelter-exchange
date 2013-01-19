@@ -10,7 +10,7 @@
 			<span class="link_separator">|</span>
 			<span><%= link_to "Help", HELP_LINK, :target => "_new" %></span>
 			<span class="link_separator">|</span>
-			<span><%= link_to "Logout", destroy_user_session_path, :confirm => "Are you sure?" %></span>
+			<span><%= link_to "Logout", destroy_user_session_path, :method => :delete, :confirm => "Are you sure?" %></span>
 			<ul class="settings_menu">
 		      	<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
 				<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>

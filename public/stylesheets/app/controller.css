@@ -181,6 +181,7 @@
 .show_animals .social{border-bottom: 1px #ccc dotted;margin-bottom: 15px;}
 .show_animals .social .text_label{width: 150px;font-weight: bold;line-height:20px;}
 .show_animals .social span{ display:block; float:left;height: 30px; line-height:30px; width: 90px; vertical-align:center; font-size: 12px;}
+.show_animals .social span.pinterest{line-height: 0px;}
 .show_animals .social:after{ content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }
 
 
@@ -654,9 +655,16 @@
 .dashboard ul {list-style:none;}
 .dashboard .completed, .dashboard .stopped {text-decoration: line-through; color: #999;}
 
+.dashboard .getting_started h2 {margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px #bbb dotted;}
 .dashboard .getting_started ol{padding: 0 0 30px 10px; margin-left: 10px;}
 .dashboard .getting_started ol li{padding-bottom: 5px;}
 .dashboard #left .getting_started h2{margin-top: 20px;}
+
+
+.dashboard .auto_upload {padding-bottom: 30px;}
+.dashboard .auto_upload h2 {margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px #bbb dotted;}
+.dashboard .auto_upload li {padding-bottom: 10px;}
+
 
 /* Activity List :: Layout
 -----------------------------------------------------------------------------*/

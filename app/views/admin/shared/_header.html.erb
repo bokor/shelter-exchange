@@ -6,7 +6,7 @@
 		<span class="col_2">
 			<span><%=current_owner.name%></span>	
 			<span class="link_separator">|</span>
-			<span><%= link_to "Logout", destroy_owner_session_path, :confirm => "Are you sure?" %></span>
+			<span><%= link_to "Logout", destroy_owner_session_path, :method => :delete, :confirm => "Are you sure?" %></span>
 		</span>
 	</div>
 	<ul id="menu">

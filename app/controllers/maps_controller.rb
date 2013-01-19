@@ -3,7 +3,7 @@ class MapsController < ApplicationController
   
   def overlay
     @shelters = Shelter.active.all
-    return render_to_string("overlay.kml")
+    render_to_string 'overlay', :format => :kml
   end
 
 end
