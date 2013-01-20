@@ -1,13 +1,13 @@
 module Geocodeable
   extend ActiveSupport::Concern
   include StreetAddressable
-  
+
   included do
-      
+
     # Plugins
     #----------------------------------------------------------------------------
     geocoded_by :geocode_address, :latitude  => :lat, :longitude => :lng
-    
+
     # Callbacks
     #----------------------------------------------------------------------------
     after_validation :geocode, :if => :address_changed?
@@ -28,12 +28,6 @@ module Geocodeable
       where("#{self.table_name}.lng < ? #{operator} #{self.table_name}.lng > ?", ne_lng, sw_lng)
     end
   end
-  
+
 end
 
-  #GEOCODER SQL
-      #   if sw_lng > ne_lng
-      #   where("shelters.lat BETWEEN #{sw_lat} AND #{ne_lat}").where("shelters.lng BETWEEN #{sw_lng} AND 180 OR shelters.lng BETWEEN -180 AND #{ne_lng}")
-      # else
-      #   where("shelters.lat BETWEEN #{sw_lat} AND #{ne_lat}").where("shelters.lng BETWEEN #{sw_lng} AND #{ne_lng}")
-      # end
