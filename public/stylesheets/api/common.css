@@ -5,8 +5,6 @@ html, body { margin:0; padding:0; height: 99%; }
 body { min-width: 625px;background-color: #fff; color: #222;
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; }
 
-/* added to fix scrolling iframe on ipads/iphones */
-hmtl { -webkit-overflow-scrolling: touch !important; overflow: scroll !important; }
 @media screen and (max-device-width: 480px), screen and (-webkit-min-device-pixel-ratio: 2, screen and (device-width: 768px)) {
     body {-webkit-text-size-adjust:none;}
 }

@@ -10,9 +10,9 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 /*html{ display: block !important; }*/
 html, body { margin:0; padding:0; height: 100%; }
 body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
-	   background: url(/images/public/background-body.jpg) repeat; color: #222; 
+	   background: url(/images/public/background-body.jpg) repeat; color: #222;
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; -webkit-text-size-adjust:none;}
-	
+
 .ie body {font: normal 12px "Verdana", sans-serif;}
 
 h1, h2, h3, h4, h5 { position:relative;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
@@ -27,14 +27,14 @@ a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; o
 a:hover{color:#f16649; text-decoration: underline;}
 
 .highlight{font-size: 14px; font-weight:bold; color:#cf7019; text-shadow: 0px 2px 3px white;}
-.separator{clear:both;width: 100%;height: 5px;margin: 25px 0px; border-color:#cf7019; 
+.separator{clear:both;width: 100%;height: 5px;margin: 25px 0px; border-color:#cf7019;
 	-moz-box-shadow: inset 0px 0px 5px #cf7019;-webkit-box-shadow: inset 0px 0px 5px #cf7019;box-shadow: inset 0px 0px 5px #cf7019;
 	-moz-border-radius: 8px;	-webkit-border-radius: 8px;	border-radius: 8px;
 }
 
 /* IE :: Separator Fix :: PIE */
 /******************************************************************/
-.ie .separator{clear:both;width: 100%; height: 1px;border: 1px solid #e0c09b;margin: 25px 0px; 
+.ie .separator{clear:both;width: 100%; height: 1px;border: 1px solid #e0c09b;margin: 25px 0px;
 	-moz-box-shadow: 0px 0px 4px #cf7019; -webkit-box-shadow: 0px 0px 4px #cf7019;box-shadow: 0px 0px 4px #cf7019;
 	behavior: url(/stylesheets/global/pie/PIE.htc);
 }
@@ -46,11 +46,11 @@ a:hover{color:#f16649; text-decoration: underline;}
 * html .clearfix{height:1%;}
 
 /* Content Wrapper */
-/******************************************************************/ 
+/******************************************************************/
 .content { min-width: 960px; width:960px; margin: 0 auto; display:block; position: relative; }
 .content:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* Page Layouts */   
+/* Page Layouts */
 /******************************************************************/
 header{height: 145px;}
 header nav { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
@@ -60,7 +60,7 @@ footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color:
 
 
 
-/* Header :: Nav */   
+/* Header :: Nav */
 /******************************************************************/
 header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
 
@@ -82,20 +82,20 @@ header nav .side_menu .help_a_shelter{right: 125px;background: url(/images/publi
 header nav .side_menu .donate{right: 0px;background: url(/images/public/tabs_donate_header.png) no-repeat;}
 
 
-/* IE Hack :: Header :: Nav */   
+/* IE Hack :: Header :: Nav */
 /******************************************************************/
 .ie header nav .menu li{margin: 0 8px; padding: 0 12px;}
 .ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
 .ie .side_menu{font: normal 9px Tahoma;}
 
 
-/* Header :: Banner */   
+/* Header :: Banner */
 /******************************************************************/
 #banner .logo {vertical-align: middle;line-height: 100px; margin: 0 auto; text-align:center; clear:left;}
 #banner .logo img{ vertical-align: middle;line-height: 100px;}
 
 
-/* Footer :: Layout */   
+/* Footer :: Layout */
 /******************************************************************/
 footer h4{ text-shadow: none; color: #eee; font-size: 18px; padding-bottom: 20px; margin:0; }
 footer h5{ text-shadow: none; color: #eee; font-size: 15px; padding-bottom: 10px; margin:0; }
@@ -118,14 +118,14 @@ footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; p
 footer .copyright a{font-weight: normal; color: #999;}
 footer .copyright a:hover{color:#fff;}
 
-/* Footer :: IE Hacks */   
+/* Footer :: IE Hacks */
 /******************************************************************/
 .ie footer .col_2{width: 205px; padding: 0 18px;}
 .ie footer .col_3{width: 205px; padding: 0 18px;}
 .ie footer .col_4{width: 210px; padding-left: 16px;}
 
 
-/* SubMenu */   
+/* SubMenu */
 /******************************************************************/
 .submenu{list-style: none; float:right; position: relative; line-height: 38px;z-index:999;}
 .submenu li{float:left; padding: 0px 20px; }
@@ -135,10 +135,10 @@ footer .copyright a:hover{color:#fff;}
 .submenu a:hover{ color:#f16649; text-decoration: underline;}
 
 
-/* Flash Messages */   
+/* Flash Messages */
 /******************************************************************/
 .flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
-.flash_message .icon{width: 16px;float: left; margin-right: .3em;}  
+.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
 
 /* Placeholder Text */
 /******************************************************************/
@@ -147,18 +147,18 @@ textarea.placeholder { color: #999; }
 :-moz-placeholder{color:#999999;}
 ::-webkit-input-placeholder{color:#999999;}
 
-/* Rails Environment */   
+/* Rails Environment */
 /******************************************************************/
 .rails_env{padding: 5px 10px; color: #fff; background-color: #cc3318; -moz-box-shadow: 0px 0px 2px #000;-webkit-box-shadow: 0px 0px 2px #000; box-shadow: 0px 0px 2px #000;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
 .rails_env.left{position: absolute; top: 40px; left: 0px;}
 .rails_env.right{position: absolute; top: 40px; right: 0px;}
 
-/* Ajax :: Messages */   
+/* Ajax :: Messages */
 /******************************************************************/
 .ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; -moz-text-shadow: 0px 0px 0px #fff; -webkit-text-shadow: 0px 0px 0px #fff;text-shadow: 0px 0px 0px #fff;}
 
 
-/* Pagination */   
+/* Pagination */
 /******************************************************************/
 /* ORANGE - #CF7019 */
 .pagination { padding: 3px; margin: 10px 0 10px 0; }
@@ -169,12 +169,12 @@ textarea.placeholder { color: #999; }
 .pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
 
 
-/* Tooltips */   
+/* Tooltips */
 /******************************************************************/
 .tooltip{cursor:pointer;}
 
 
-/* Button */   
+/* Button */
 /******************************************************************/
 .button {
 	min-width: 100px;
@@ -184,31 +184,31 @@ textarea.placeholder { color: #999; }
 	*display:inline;
 	position: relative;
 	border: 1px solid #999;
-	
-	background-color: #e0e0e0; 
+
+	background-color: #e0e0e0;
 	/*background-size: 100% 100%; */
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7)); 
-   	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	
-	-webkit-border-radius: 6px; 
-	-moz-border-radius: 6px; 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7));
+   	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
 	border-radius: 6px;
-	
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
+
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-	
+
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
-	
+
 	color: #444;
 	font-size: 11px;
 	font-weight: bold;
 	text-transform: uppercase;
-	
+
 	text-decoration: none!important;
 	text-align: center;
 }
@@ -353,23 +353,23 @@ body.firefox.mac .button.default {
 }
 
 
-/* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
+/* Toggle Buttons :: IE Hack :: Toggle Button Fix */
 /******************************************************************/
-.ie7 .button, 
+.ie7 .button,
 .ie8 .button{behavior: url(/stylesheets/global/pie/PIE.htc);}
 
 
-/* Toggle Buttons */   
+/* Toggle Buttons */
 /******************************************************************/
 ul.toggle_buttons{
-	background-color: #FEFEFE; 
-	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD)); 
-   	background-image: -webkit-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:    -moz-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:         linear-gradient(top,  #FEFEFE,  #DDD); 
-	
+	background-color: #FEFEFE;
+	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD));
+   	background-image: -webkit-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:    -moz-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:         linear-gradient(top,  #FEFEFE,  #DDD);
+
 	border: 1px solid #D4D4D4;
 	border-radius: 3px 3px;
 	-webkit-border-radius: 3px 3px;
@@ -406,7 +406,7 @@ ul.toggle_buttons li a {
 	text-transform: uppercase;
 }
 
-/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */
 /******************************************************************/
 .ie7 ul.toggle_buttons,
 .ie8 ul.toggle_buttons {background-color: #F3F3F3; }
@@ -420,7 +420,7 @@ ul.toggle_buttons li a.current {
 	color: #006FBB;
 }
 
-/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */
 /******************************************************************/
 .ie7 ul.toggle_buttons li a.current,
 .ie8 ul.toggle_buttons li a.current  {background-color: #dde7ef;}
@@ -429,7 +429,7 @@ ul.toggle_buttons li a.current {
 ul.toggle_buttons li a:hover{color: #CF7019;}
 
 
-/* JQuery UI Fixes */   
+/* JQuery UI Fixes */
 /******************************************************************/
 .ui-autocomplete a.ui-corner-all{font-weight: normal;}
 
