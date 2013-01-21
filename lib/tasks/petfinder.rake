@@ -11,42 +11,42 @@ Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join(
 # Tasks
 #----------------------------------------------------------------------------
 namespace :petfinder do
-  
+
   desc "Creating Petfinder CSV files"
   task :generate_csv_files => :environment do
-    
+
     @integrations = Integration::Petfinder.all
-    
+
     @integrations.each do |integration|
       PETFINDER_SHELTER_START_TIME = Time.now
-      
+
       @shelter = integration.shelter
-    
+
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
       PETFINDER_CSV_FILENAME = Rails.root.join("tmp/petfinder/#{integration.username}.csv")
-        
+
       # Build CSV
       CSV.open(PETFINDER_CSV_FILENAME, "w+:UTF-8") do |csv|
         Integration::PetfinderPresenter.as_csv(@animals, csv)
-      end 
-        
+      end
+
       # FTP Files to Adopt a Pet
       ftp_files_to_petfinder(@shelter.name, integration.username, integration.password, @animals)
 
       # Delete the CSV File
       File.delete(PETFINDER_CSV_FILENAME)
-    end 
+    end
   end
-  
+
   desc "Creating Petfinder CSV files"
-  task :all => [:generate_csv_files] do 
+  task :all => [:generate_csv_files] do
 
     petfinder_logger.info("Time elapsed: #{Time.now - PETFINDER_TASK_START_TIME} seconds.")
     petfinder_logger.close
   end
-  
+
 end
 
 
@@ -76,7 +76,7 @@ def ftp_files_to_petfinder(shelter_name, username, password, animals)
         end
       end
     end
-    
+
     # Log Shelter name and how long it took for each shelter
     petfinder_logger.info("#{shelter_name} finished in #{Time.now - PETFINDER_SHELTER_START_TIME}")
   rescue Exception => e
