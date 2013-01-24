@@ -2,7 +2,7 @@
  * app/animals.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
-var Animals = { 
+var Animals = {
 	animalTypeSelected: function() {
 		var animal_type_id = $('#animal_animal_type_id').val();
 
@@ -18,7 +18,7 @@ var Animals = {
 	animalStatusSelected: function(changed, animal_status_was) {
 		var animal_status_id = $('#animal_animal_status_id').val();
 		var has_value = $('#animal_status_history_reason').val() != "";
- 
+
 		if (animal_status_id != animal_status_was) { //(changed || has_value) && (animal_status_id != animal_status_was)
 			$('#reason_field').show();
 		} else {
@@ -56,22 +56,22 @@ var Animals = {
 		Animals.datePicker("#animal_date_of_birth");
 		Animals.setDatePickerDate('#animal_date_of_birth');
 		$('#date_of_birth_trigger').bind("click", function(event) { $('#animal_date_of_birth_datepicker').slideToggle();});
-		
+
 		// Bind Form Events
 		$('#animal_animal_type_id').bind("change", function(event) {Animals.animalTypeSelected();});
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_has_special_needs').bind("change", function(event) {Animals.specialNeedsSelected();});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
 		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
-		
+
 		// Arrival Date initialize
 		Animals.datePicker("#animal_arrival_date");
 		Animals.setDatePickerDate('#animal_arrival_date');
 		$('#arrival_date_trigger').bind("click", function(event) { $('#animal_arrival_date_datepicker').slideToggle(); });
-		
-		
+
+
 		//Check if a kill shelter
-		if(is_kill_shelter) {		
+		if(is_kill_shelter) {
 			// Euthanasia Date initialize
 			Animals.datePicker("#animal_euthanasia_date");
 			Animals.setDatePickerDate('#animal_euthanasia_date');
@@ -105,8 +105,8 @@ var Animals = {
 			url: "/animals/filter_by_type_status",
 			type: "get",
 			dataType: 'script',
-			data: { 
-				animal_type_id: $('#animal_animal_type_id').val(), 
+			data: {
+				animal_type_id: $('#animal_animal_type_id').val(),
 				animal_status_id: $('#animal_animal_status_id').val()
 			}
 		});
@@ -115,22 +115,26 @@ var Animals = {
 	// 	var q = $(element);
 	// 	if (q.val().length >= 3) {
 	// 		clearTimeout($.data(element, "search_timer"));
-	// 		var wait = setTimeout(function() { 
+	// 		var wait = setTimeout(function() {
 	// 			$.ajax({
 	// 				url: "/animals/search",
 	// 				dataType: "script",
 	// 				data: { q: q.val() }
 	// 			});
-	// 			clearTimeout($.data(element, "search_timer"));  
+	// 			clearTimeout($.data(element, "search_timer"));
 	// 		}, 500);
 	// 		$.data(element, "search_timer", wait);
-	// 	}		
+	// 	}
 	// },
 	autoComplete: function(){
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,
 			autoFocus: true,
-			delay: 500,
+      selectFirst: true,
+      delay: 500,
+      change: function(event,ui) {
+        $(this).val($(".ui-autocomplete li:first").text());
+      },
 			source: function( request, response ) {
 				$.ajax({
 					url: "/shared/breeds/auto_complete",
@@ -145,11 +149,11 @@ var Animals = {
 								label: item.name,
 								value: item.name,
 								id: item.id
-							}  
+							}
 						}));
 					}
 				});
-			}			
+			}
 		});
 	},
 	datePicker: function(element){
@@ -159,15 +163,15 @@ var Animals = {
 			changeMonth: true,
 			changeYear: true,
 			dateFormat: 'yy-mm-dd',
-			onSelect: function(dateText,picker) { 
+			onSelect: function(dateText,picker) {
 				var dateFormat = $(element+'_datepicker').datepicker("option", "dateFormat");
 				var tempDate = $.datepicker.parseDate(dateFormat, dateText);
-				
+
 				$(element+"_year").val($.datepicker.formatDate('yy', tempDate));
 				$(element+"_month").val($.datepicker.formatDate('mm', tempDate));
 				$(element+"_day").val($.datepicker.formatDate('dd', tempDate));
 
-			}  
+			}
 		});
 	},
 	setDatePickerDate: function(element){
@@ -193,11 +197,12 @@ var Animals = {
 			}
 		});
 		$("input[name='print_layout']:radio:[value='"+printLayout+"']").trigger("change").prop("checked", "checked");
-			
+
 		$('.print_format_options a').bind("click", function (e) {
 			e.preventDefault();
-			$("#print_format_options").slideToggle(800);			
+			$("#print_format_options").slideToggle(800);
 	   	});
 	}
-	
+
 };
+
