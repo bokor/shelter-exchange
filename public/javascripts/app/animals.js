@@ -130,19 +130,19 @@ var Animals = {
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,
 			autoFocus: true,
-      selectFirst: true,
+      //selectFirst: true,
       delay: 500,
-      create: function(event, ui){
-        // Create the auto complete widgets by attaching a class so we can reference later
-        auto_complete_class = (event.target.id == 'animal_primary_breed') ? 'primary_breed_autocomplete' : 'secondary_breed_autocomplete';
-        $(this).data("autocomplete").menu.element.addClass(auto_complete_class);
-        $(this).autocomplete( "option", "appendTo", auto_complete_class );
-      },
-      change: function(event,ui) {
-        // Added this check so we can attach a class to each instance of auto complete created
-        identifier = (event.target.id == 'animal_primary_breed') ? '.primary_breed_autocomplete' : '.secondary_breed_autocomplete';
-        $(this).val($(identifier + " li:first").text());
-      },
+      //create: function(event, ui){
+        //// Create the auto complete widgets by attaching a class so we can reference later
+        //auto_complete_class = (event.target.id == 'animal_primary_breed') ? 'primary_breed_autocomplete' : 'secondary_breed_autocomplete';
+        //$(this).data("autocomplete").menu.element.addClass(auto_complete_class);
+        //$(this).autocomplete( "option", "appendTo", auto_complete_class );
+      //},
+      //change: function(event,ui) {
+        //// Added this check so we can attach a class to each instance of auto complete created
+        //identifier = (event.target.id == 'animal_primary_breed') ? '.primary_breed_autocomplete' : '.secondary_breed_autocomplete';
+        //$(this).val($(identifier + " li:first").text());
+      //},
 			source: function( request, response ) {
 				$.ajax({
 					url: "/shared/breeds/auto_complete",
