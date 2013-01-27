@@ -39,11 +39,11 @@ class Integration::AdoptAPetPresenter < Presenter
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
 
-    # Removing any carriage returns or new lines
-    s.gsub(/\n\r?/, "<br>")
-
     # Simple format the html
-    help.auto_link( help.simple_format(s), :all, :target => '_blank')
+    description = help.auto_link( help.simple_format(s), :all, :target => '_blank')
+
+    # Removing any carriage returns or new lines
+    description.gsub(/\n\r?/, '<br>')
   end
 
   def status
