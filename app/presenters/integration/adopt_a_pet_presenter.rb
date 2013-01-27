@@ -33,15 +33,15 @@ class Integration::AdoptAPetPresenter < Presenter
   end
 
   def description
-    s =  @animal.description.blank? ? 'No description provided' : @animal.description
+    s =  if @animal.description.blank?
+           "No description provided"
+         else
+           @animal.description.gsub(/\n\r?/, '')
+         end
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a>"
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
-
-    # Replace any break lines with html tags
-    s.gsub(/\n/, ' ')
-    s.gsub(/\r/, ' ')
 
     # Simple format the html
     help.auto_link( help.simple_format(s), :all, :target => '_blank')
