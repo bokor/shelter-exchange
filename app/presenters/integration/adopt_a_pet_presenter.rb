@@ -36,7 +36,7 @@ class Integration::AdoptAPetPresenter < Presenter
     s =  if @animal.description.blank?
            "No description provided"
          else
-           @animal.description.gsub(/\n\r?/, '')
+           @animal.description.gsub(/\n\r?/, "<br>")
          end
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a>"
