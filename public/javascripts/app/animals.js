@@ -130,7 +130,7 @@ var Animals = {
 		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
 			minLength: 3,
 			autoFocus: true,
-      //selectFirst: true,
+      selectFirst: true,
       delay: 500,
       //create: function(event, ui){
         //// Create the auto complete widgets by attaching a class so we can reference later

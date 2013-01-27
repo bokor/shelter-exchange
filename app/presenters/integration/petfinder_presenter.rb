@@ -3,7 +3,7 @@ class Integration::PetfinderPresenter < Presenter
   def initialize(animal)
     @animal = animal
   end
-  
+
   def id
     @animal.id
   end
@@ -15,7 +15,7 @@ class Integration::PetfinderPresenter < Presenter
   def breed
     map_to_petfinder_breeds(@animal.primary_breed)
   end
-  
+
   def breed2
     map_to_petfinder_breeds(@animal.secondary_breed) if @animal.mix_breed?
   end
@@ -26,21 +26,22 @@ class Integration::PetfinderPresenter < Presenter
 
   def size
     @animal.size unless @animal.size.blank?
-  end  
+  end
 
   def age
     @animal.age.humanize unless @animal.age.blank?
   end
 
-  def description 
+  def description
     s =  @animal.description.blank? ? 'No description provided' : @animal.description
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a>"
     s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
-    
+
     # Replace any break lines with html tags
-    s.gsub("\n", '<br>')
+    s.gsub!("\n", '<br>')
+    s.gsub!("\r", '<br>')
 
     # Simple format the html
     help.auto_link( help.simple_format(s), :all, :target => '_blank')
@@ -49,7 +50,7 @@ class Integration::PetfinderPresenter < Presenter
   def type
     @animal.other? || @animal.reptile? ? map_to_petfinder_types : @animal.animal_type.name
   end
-  
+
   def status
     return 'A' if @animal.available_for_adoption?
     return 'P' if @animal.adoption_pending?
@@ -58,15 +59,15 @@ class Integration::PetfinderPresenter < Presenter
   def altered
     1 if @animal.sterilized?
   end
-  
+
   def mix
     1 if @animal.mix_breed?
   end
-  
+
   def special_needs
     1 if @animal.special_needs?
-  end 
-  
+  end
+
   # TO DO ::
   def photos
     photos = []
@@ -81,26 +82,26 @@ class Integration::PetfinderPresenter < Presenter
 
   def to_csv
     [
-      id, 
-      '', 
-      name, 
-      breed, 
-      breed2, 
-      sex, 
-      size, 
-      age, 
-      description, 
-      type, 
-      status, 
-      '', 
-      altered, 
-      '', '', '', '', '', 
-      special_needs, 
-      mix, 
+      id,
+      '',
+      name,
+      breed,
+      breed2,
+      sex,
+      size,
+      age,
+      description,
+      type,
+      status,
+      '',
+      altered,
+      '', '', '', '', '',
+      special_needs,
+      mix,
       photos
     ].flatten
   end
-  
+
   def self.csv_header
     [
       'ID',
@@ -127,14 +128,14 @@ class Integration::PetfinderPresenter < Presenter
 
   private
     def map_to_petfinder_types
-      local_types = { 
+      local_types = {
         'Chameleon'   => 'Scales, Fins & Other',
         'Gecko'       => 'Scales, Fins & Other',
         'Iguana'      => 'Scales, Fins & Other',
         'Lizard'      => 'Scales, Fins & Other',
         'Snake'       => 'Scales, Fins & Other',
         'Tortoise'    => 'Scales, Fins & Other',
-        'Turtle'      => 'Scales, Fins & Other', 
+        'Turtle'      => 'Scales, Fins & Other',
         'Alpaca'      => 'Barnyard',
         'Cow'         => 'Barnyard',
         'Goat'        => 'Barnyard',
@@ -165,17 +166,17 @@ class Integration::PetfinderPresenter < Presenter
         'Belgian Shepherd - Malinois'         => 'Belgian Shepherd Malinois',
         'Belgian Shepherd - Sheepdog'         => 'Belgian Shepherd Dog Sheepdog',
         'Belgian Shepherd - Tervuren'         => 'Belgian Shepherd Tervuren',
-        'Blue Heeler'                         => 'Australian Cattle Dog (Blue Heeler)',     
+        'Blue Heeler'                         => 'Australian Cattle Dog (Blue Heeler)',
         'Bouvier des Ardennes'                => 'Bouvier des Flandres',
         'Bouvier des Flandres'                => 'Bouvier des Flandres',
         'Canadian Eskimo Dog'                 => 'Eskimo Dog',
-        'Cane Corso'                          => 'Cane Corso Mastiff', 
+        'Cane Corso'                          => 'Cane Corso Mastiff',
         'Catahoula Cur'                       => 'Catahoula Leopard Dog',
-        'Caucasian Shepherd Dog'              => 'Caucasian Sheepdog (Caucasian Ovtcharka)',   
+        'Caucasian Shepherd Dog'              => 'Caucasian Sheepdog (Caucasian Ovtcharka)',
         'Chinese Crested'                     => 'Chinese Crested Dog',
         'English Foxhound'                    => 'Foxhound',
         'English Mastiff'                     => 'Mastiff',
-        'Entlebucher Mountain Dog'            => 'Entlebucher',       
+        'Entlebucher Mountain Dog'            => 'Entlebucher',
         'Finnish Hound'                       => 'Hound',
         'French Spaniel'                      => 'Spaniel',
         'German Longhaired Pointer'           => 'Pointer',
@@ -186,7 +187,7 @@ class Integration::PetfinderPresenter < Presenter
         'Korean Jindo Dog'                    => 'Jindo',
         'Labrador Husky'                      => 'Husky',
         'Longhaired Whippet'                  => 'Whippet',
-        'Mexican Hairless Dog'                => 'Xoloitzcuintle (Mexican Hairless)',         
+        'Mexican Hairless Dog'                => 'Xoloitzcuintle (Mexican Hairless)',
         'Miniature Australian Shepherd'       => 'Australian Shepherd',
         'Miniature Fox Terrier'               => 'Fox Terrier',
         'Miniature Schnauzer'                 => 'Schnauzer',
@@ -195,40 +196,40 @@ class Integration::PetfinderPresenter < Presenter
         'Parson Russell Terrier'              => 'Jack Russell Terrier',
         'Pembroke Welsh Corgi'                => 'Welsh Corgi',
         'Picardy Shepherd'                    => 'Shepherd',
-        'Portuguese Pointer'                  => 'Portuguese Water Dog',          
-        'Portuguese Water Dog'                => 'Portuguese Water Dog',          
+        'Portuguese Pointer'                  => 'Portuguese Water Dog',
+        'Portuguese Water Dog'                => 'Portuguese Water Dog',
         'Pyrenean Mastiff'                    => 'Mastiff',
         'Pyrenean Shepherd'                   => 'Shepherd',
         'Russian Spaniel'                     => 'Spaniel',
         'Russian Toy'                         => 'Terrier',
-        'Saint Bernard'                       => 'Saint Bernard St. Bernard',  
+        'Saint Bernard'                       => 'Saint Bernard St. Bernard',
         'Schiller Hound'                      => 'Hound',
-        'Scottish Terrier'                    => 'Scottish Terrier Scottie',        
+        'Scottish Terrier'                    => 'Scottish Terrier Scottie',
         'Sheltie, Shetland Sheepdog'          => 'Shetland Sheepdog Sheltie',
         'Shiloh Shepherd Dog'                 => 'German Shepherd Dog',
         'Spanish Mastiff'                     => 'Mastiff',
-        'Spanish Water Dog'                   => 'Portuguese Water Dog',         
-        'Westie, West Highland White Terrier' => 'West Highland White Terrier Westie',     
+        'Spanish Water Dog'                   => 'Portuguese Water Dog',
+        'Westie, West Highland White Terrier' => 'West Highland White Terrier Westie',
         'Wirehaired Pointing Griffon'         => 'Wire-haired Pointing Griffon',
-        'Yorkie, Yorkshire Terrier'           => 'Yorkshire Terrier Yorkie', 
+        'Yorkie, Yorkshire Terrier'           => 'Yorkshire Terrier Yorkie',
 
         # Cat
-        'American Bobtail'                    => 'Bobtail',                                   
+        'American Bobtail'                    => 'Bobtail',
         'Havana Brown'                        => 'Havana',
-        'Polydactyl Cat'                      => 'Extra-Toes Cat (Hemingway Polydactyl)',         
-        'Sphynx'                              => 'Sphynx (hairless cat)',                         
+        'Polydactyl Cat'                      => 'Extra-Toes Cat (Hemingway Polydactyl)',
+        'Sphynx'                              => 'Sphynx (hairless cat)',
 
         # Rabbit
-        'American Chinchilla'                 => 'Chinchilla', 
+        'American Chinchilla'                 => 'Chinchilla',
         'Blanc de Hotot'                      => 'Hotot',
         'Dwarf Hotot'                         => 'Dwarf',
-        'English Angora'                      => 'Angora Rabbit',   
-        'French Angora'                       => 'Angora Rabbit',   
-        'Giant Angora'                        => 'Angora Rabbit',   
+        'English Angora'                      => 'Angora Rabbit',
+        'French Angora'                       => 'Angora Rabbit',
+        'Giant Angora'                        => 'Angora Rabbit',
         'Giant Chinchilla'                    => 'Chinchilla',
         'Mini Lop'                            => 'Mini-Lop',
         'Mini Satin'                          => 'Satin',
-        'Satin Angora'                        => 'Angora Rabbit',   
+        'Satin Angora'                        => 'Angora Rabbit',
         'Standard Chinchilla'                 => 'Chinchilla',
         'Thrianta'                            => 'Havana',
 
@@ -267,23 +268,23 @@ class Integration::PetfinderPresenter < Presenter
         'Welsh Pony'                          => 'Pony',
 
         # Bird
-        'African Grey Parrot'                 => 'African Grey',                                   
-        'Budgerigar'                          => 'Budgie/Budgerigar',                            
+        'African Grey Parrot'                 => 'African Grey',
+        'Budgerigar'                          => 'Budgie/Budgerigar',
         'Lorikeet'                            => 'Lory/Lorikeet',
         'Lory'                                => 'Lory/Lorikeet',
-        'Parakeet'                            => 'Parakeet (Other)',                              
-        'Parrot'                              => 'Parrot (Other)',                             
+        'Parakeet'                            => 'Parakeet (Other)',
+        'Parrot'                              => 'Parrot (Other)',
         'Peacock'                             => 'Peacock/Pea fowl',
         'Pionus Parrot'                       => 'Pionus',
-        'Poicephalus'                         => 'Poicephalus/Senegal',                          
-        'Ringneck (Psittacula)'               => 'Ringneck/Psittacula',                           
-        'Softbill'                            => 'Softbill (Other)',                             
-          
-        # Reptile         
+        'Poicephalus'                         => 'Poicephalus/Senegal',
+        'Ringneck (Psittacula)'               => 'Ringneck/Psittacula',
+        'Softbill'                            => 'Softbill (Other)',
+
+        # Reptile
         'Chameleon'                           => 'Lizard',
         'Tortoise'                            => 'Turtle',
-          
-        # Other         
+
+        # Other
         'Pig'                                 => 'Pig (Farm)'
       }
       mapped_breed = local_breeds[breed]
