@@ -40,8 +40,9 @@ class Integration::PetfinderPresenter < Presenter
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
 
     # Replace any break lines with html tags
-    s.gsub(/\n/, '')
-    s.gsub(/\r/, '')
+    # .gsub(/\r\n?/, "\n");
+    s.gsub(/\n/, ' ')
+    s.gsub(/\r/, ' ')
 
     # Simple format the html
     help.auto_link( help.simple_format(s), :all, :target => '_blank')
