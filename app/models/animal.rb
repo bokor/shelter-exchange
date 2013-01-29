@@ -123,8 +123,8 @@ class Animal < ActiveRecord::Base
     end
 
     def update_breed_names
-      self.primary_breed   = Breed.where(:name => self.primary_breed).first.name
-      self.secondary_breed = Breed.where(:name => self.secondary_breed).first.name
+      self.primary_breed   = Breed.where(:name => self.primary_breed).first.name unless self.primary_breed.blank?
+      self.secondary_breed = Breed.where(:name => self.secondary_breed).first.name unless self.secondary_breed.blank?
     end
 
     def change_status_date!
