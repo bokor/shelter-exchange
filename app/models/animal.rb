@@ -20,8 +20,7 @@ class Animal < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :change_status_date!,
-              :update_breed_names # FIXME: Hack to set the name based on what is should be, view can be lowercase
+  before_save :change_status_date!, :update_breed_names
   after_save :create_status_history!
 
   # Getters/Setters
@@ -122,6 +121,8 @@ class Animal < ActiveRecord::Base
       @shelter ||= self.shelter.kill_shelter?
     end
 
+    # FIXME: Hack to set the name based on what is should be, view can be lowercase
+    # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
     def update_breed_names
       self.primary_breed   = Breed.where(:name => self.primary_breed).first.name unless self.primary_breed.blank?
       self.secondary_breed = Breed.where(:name => self.secondary_breed).first.name unless self.secondary_breed.blank?
