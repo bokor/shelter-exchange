@@ -12,7 +12,7 @@
 			</div>
 			<%= has_error_message?(@animal, :animal_type_id)%>
 		</li>
-		<li id="breed_fields"> 
+		<li id="breed_fields">
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
@@ -46,7 +46,7 @@
 				<%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
 			</div>
 			<%= has_error_message?(@animal, :status_history_reason)%>
-		</li>		
+		</li>
 		<li>
 			<%= f.label :sex, "Sex <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<!-- <div> -->
@@ -93,7 +93,7 @@
 			<%= f.label :age, "Age range <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
 				<%= f.collection_select :age, Animal::AGES, :to_s, :humanize, {:prompt => "Select one"}, {:class => "field select small" } %>
-			</div> 
+			</div>
 			<%= has_error_message?(@animal, :age)%>
 		</li>
 		<li>
@@ -118,11 +118,11 @@
 		</li>
 	  <li class="date">
 			<%= f.label :date_of_birth, "Date of Birth (Est.)".html_safe, :class => "desc" %>
-			
+
 			<span>
 				<%= f.text_field :date_of_birth_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:month, @animal)  %>
 				<%= f.label :date_of_birth, "MM" %>
-			</span> 
+			</span>
 			<span class="symbol">/</span>
 			<span>
 				<%= f.text_field :date_of_birth_day, :class => "field text", :maxlength => 2, :size => 2, :value => date_of_birth_value(:day, @animal) %>
@@ -138,14 +138,14 @@
 			</span>
 			<span id="animal_date_of_birth_datepicker" class="calendar"></span>
 			<%= has_error_message?(@animal, :date_of_birth)%>
-		</li> 
+		</li>
 		<li class="date">
 			<%= f.label :arrival_date, "Arrival/Intake Date".html_safe, :class => "desc" %>
-			
+
 			<span>
 				<%= f.text_field :arrival_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => arrival_date_value(:month, @animal)  %>
 				<%= f.label :arrival_date, "MM" %>
-			</span> 
+			</span>
 			<span class="symbol">/</span>
 			<span>
 				<%= f.text_field :arrival_date_day, :class => "field text", :maxlength => 2, :size => 2, :value => arrival_date_value(:day, @animal) %>
@@ -174,18 +174,18 @@
 			<div>
 				<div id="accommodation_selected">
 					<span><% if @animal.accommodation %><b><%= @animal.accommodation.name %></b><% end %></span>
-					<a href="#" id="accommodation_search_link" class="tooltip_dialog" 
-								data-dialog-element="#dialog_accommodation_search" 
+					<a href="#" id="accommodation_search_link" class="tooltip_dialog"
+								data-dialog-element="#dialog_accommodation_search"
 								data-dialog-title="&nbsp;"><% if @animal.accommodation_id %>Change<% else %>Search for accommodation<% end %></a>
 					<a href="#" id="accommodation_remove_link" onclick="Animals.removeAccommodation();return false;">Remove</a>
 
 				</div>
 				<%= f.hidden_field :accommodation_id %>
-			</div> 
+			</div>
 			<%= has_error_message?(@animal, :accommodation_id)%>
 		</li>
 		<%# end %>
-		
+
 		<% if @current_shelter.kill_shelter? %>
 		<li class="section">
 			<section>
@@ -195,11 +195,11 @@
 		</li>
 		<li class="date">
 			<%= f.label :euthanasia_date, "Euthanasia date".html_safe, :class => "desc" %>
-			
+
 			<span>
 				<%= f.text_field :euthanasia_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_date_value(:month, @animal)  %>
 				<%= f.label :euthanasia_date, "MM" %>
-			</span> 
+			</span>
 			<span class="symbol">/</span>
 			<span>
 				<%= f.text_field :euthanasia_date_day, :class => "field text", :maxlength => 2, :size => 2, :value => euthanasia_date_value(:day, @animal) %>
@@ -227,7 +227,7 @@
 				<h3>Photo</h3>
 				<div>Select main photo (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</div>
 			</section>
-		</li>	
+		</li>
 		<%= f.fields_for :photos do |photo_form| %>
 			<li id="photo" class="full">
 				<span class="left">
@@ -271,11 +271,11 @@
 		</li>
 		<li class="buttons">
 			<p id="submit_message"><%=image_tag("ajax-loader.gif", :width => "30", :height => "30")%>Large photo files may take a few seconds to upload!</p>
-			<%= f.submit button_text, :disable_with => "Submitting...", 
+			<%= f.submit button_text, :disable_with => "Submitting...",
 									  :onclick => "$('#submit_message').delay(1500).slideToggle(1000);", :class => 'button' %>
 			<% unless action_name == "new" or action_name =="create" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
-				<%= link_to "Cancel", animal_path(@animal) %> 
+				<%= link_to "Cancel", animal_path(@animal) %>
 			<% end %>
 		</li>
 	</ul>

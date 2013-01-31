@@ -20,7 +20,8 @@ class Animal < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :change_status_date!, :update_breed_names
+  before_save :change_status_date!
+  after_validation :update_breed_names # FIXME: Remove later when we store the breed ids
   after_save :create_status_history!
 
   # Getters/Setters
@@ -124,8 +125,14 @@ class Animal < ActiveRecord::Base
     # FIXME: Hack to set the name based on what is should be, view can be lowercase
     # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
     def update_breed_names
-      self.primary_breed   = Breed.where(:name => self.primary_breed).first.name unless self.primary_breed.blank?
-      self.secondary_breed = Breed.where(:name => self.secondary_breed).first.name unless self.secondary_breed.blank?
+      unless self.primary_breed.blank?
+        primary_breed_from_db = Breed.where(:name => self.primary_breed).first
+        self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
+      end
+      unless self.primary_breed.blank?
+        secondary_breed_from_db = Breed.where(:name => self.secondary_breed).first
+        self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
+      end
     end
 
     def change_status_date!
