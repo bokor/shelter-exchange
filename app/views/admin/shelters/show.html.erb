@@ -82,19 +82,19 @@
 			</div>
     </div>
 
+    <% unless @integrations.blank? %>
     <div class="stats">
-      <% unless @integrations.blank? %>
-        <h2>Integrations</h2>
-        <div class="integration_list">
-          <% [:petfinder, :adopt_a_pet].each do |type| %>
-            <div class="integration">
-              <span class="type"><%= type.to_s.humanize %></span>
-              <span class="image"><%= image_tag("icon_task.png", :width => 15) if @integrations.include?(type) %></span>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+      <h2>Integrations</h2>
+      <div class="integration_list">
+        <% [:petfinder, :adopt_a_pet].each do |type| %>
+          <div class="integration">
+            <span class="type"><%= type.to_s.humanize %></span>
+            <span class="image"><%= image_tag("icon_task.png", :width => 15) if @integrations.include?(type) %></span>
+          </div>
+        <% end %>
+      </div>
 		</div>
+    <% end %>
 
 		<div class="stats">
 			<h2>Users</h2>
@@ -103,14 +103,14 @@
 			</div>
 		</div>
 
+    <% unless @capacities.blank? %>
 		<div class="stats">
-			<% unless @capacities.blank? %>
-				<div class="capacities">
-					<h2>Does this shelter have space available?</h2>
-					<%= render "capacities/capacity_list" %>
-				</div>
-			<% end %>
+      <div class="capacities">
+        <h2>Does this shelter have space available?</h2>
+        <%= render "capacities/capacity_list" %>
+      </div>
 		</div>
+		<% end %>
 
 	</div>
 
