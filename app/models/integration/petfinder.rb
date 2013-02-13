@@ -1,15 +1,15 @@
 class Integration::Petfinder < Integration
-  
+
   require 'net/ftp'
-  
+
   # Constants
-  #----------------------------------------------------------------------------  
+  #----------------------------------------------------------------------------
   FTP_URL = "members.petfinder.com"
 
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :upcase_username
-  
+
   # Validations
   #----------------------------------------------------------------------------
   validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
@@ -23,13 +23,13 @@ class Integration::Petfinder < Integration
   def self.to_sym
     :petfinder
   end
-  
+
   private
 
     def upcase_username
       self.username.upcase!
     end
-  
+
     def connection_successful?
       begin
         Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }

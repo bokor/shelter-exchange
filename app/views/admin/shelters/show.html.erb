@@ -19,9 +19,9 @@
 			</div>
 		<% end %>
 	</div>
-	
+
 	<div class="page_content">
-		
+
 		<div class="shelter_details">
 			<div id="address">
 				<h3>Address:</h3>
@@ -43,14 +43,14 @@
 				<h3>Contact Details:</h3>
 				<ul>
 					<li>Phone:  <%= number_to_phone(@shelter.phone, :delimiter => "-") %></li>
-				
+
 					<% unless @shelter.fax.blank? %>
 						<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
 					<% end %>
-					
+
 					<li>Email:  <%= link_to @shelter.email, "mailto:#{@shelter.email}" %></li>
 				</ul>
-				
+
 				<h3>Website Details:</h3>
 				<ul>
 					<li class="action_links">
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 
-		
+
 		<div class="stats">
 			<h2>Counts by status</h2>
 			<div class="counts_by_status_list">
@@ -80,15 +80,29 @@
 					</div>
 				<% end %>
 			</div>
+    </div>
+
+    <div class="stats">
+      <% unless @integrations.blank? %>
+        <h2>Integrations</h2>
+        <div class="integration_list">
+          <% [:petfinder, :adopt_a_pet].each do |type| %>
+            <div class="integration">
+              <span class="type"><%= type.to_s.humanize %></span>
+              <span class="image"><%= image_tag("icon_task.png", :width => 15) if @integrations.include?(type) %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
 		</div>
-		
+
 		<div class="stats">
-			<h2>Shelter Users</h2>
+			<h2>Users</h2>
 			<div class="user_list">
 				<%= render @users %>
 			</div>
 		</div>
-		
+
 		<div class="stats">
 			<% unless @capacities.blank? %>
 				<div class="capacities">
@@ -97,16 +111,16 @@
 				</div>
 			<% end %>
 		</div>
-		
+
 	</div>
-		
+
 <% end %>
 
 <%= content_for :sidebar do %>
 
 	<%= render @account %>
-	
+
 	<div id="map_canvas"></div>
-	
+
 <% end %>
 

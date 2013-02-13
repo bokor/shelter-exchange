@@ -1,13 +1,13 @@
 class Integration < ActiveRecord::Base
-  
+
   # Callbacks
-  #----------------------------------------------------------------------------  
+  #----------------------------------------------------------------------------
   before_validation :clean_data!
 
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
-  
+
   # Class Methods - Single Table Inheritance (STI)
   #----------------------------------------------------------------------------
   def self.factory(params = nil)
@@ -17,7 +17,7 @@ class Integration < ActiveRecord::Base
       Integration.new(params)
     end
   end
-  
+
   def self.inherited(child)
     child.instance_eval do
       def model_name
@@ -26,13 +26,13 @@ class Integration < ActiveRecord::Base
     end
     super
   end
-  
+
   private
-  
+
     def clean_data!
       attributes.each_value { |v| v.strip! if v.respond_to?(:strip!) }
     end
-  
+
 end
 
 #avoid type field warnings like:

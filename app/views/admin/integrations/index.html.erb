@@ -5,13 +5,13 @@
   <div class="page_heading blue">
     <h1>Integrations</h1>
   </div>
-  
+
   <div class="page_content">
     <table>
       <thead>
         <tr>
-          <th>Name</th> 
-          <th>Petfinder (<%=@petfinder_count%>)</th> 
+          <th>Name</th>
+          <th>Petfinder (<%=@petfinder_count%>)</th>
           <th>Adopt a Pet (<%=@adopt_a_pet_count%>)</th>
         </tr>
       </thead>
@@ -23,7 +23,6 @@
             <td class="center"><%= image_tag("icon_task.png", :width => 15) if value.include?(:adopt_a_pet) %></td>
           </tr>
         <% end %>
-
       </tbody>
     </table>
   </div>

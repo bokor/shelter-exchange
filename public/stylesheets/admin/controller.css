@@ -83,7 +83,7 @@
 
 /* Stats
 -----------------------------------------------------------------------------*/
-.stats{padding:20px 0;}
+.stats{padding:15px 0;}
 .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
 
@@ -101,7 +101,7 @@
 -----------------------------------------------------------------------------*/
 
 .count_sections:after{ content:"\0020"; display:block; height:50px; clear:both; visibility:hidden; overflow:hidden; }
-.count_sections div {float:left;margin-right:4%; padding: 10px 30px;width:auto;text-align:center; 
+.count_sections div {float:left;margin-right:4%; padding: 10px 30px;width:auto;text-align:center;
 	-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px #ddd solid;}
 .count_sections h2 {padding-bottom: 5px; margin:0; font-weight: bold;}
 .count_sections h2.euthanized_color {color:red;}
@@ -201,7 +201,7 @@
 .users #main { margin: 1em 3em 0 3em; }
 .users #left{ width: 100%;}
 .users #sidebar { display: none;width: 0; }
-	
+
 /* User List :: Layout
 -----------------------------------------------------------------------------*/
 .user_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
@@ -213,7 +213,7 @@
 	.user .role{display:inline-block; width: 15%; font-size : 11px;}
 	.user .email{display:inline-block; width: 30%;font-size : 11px; }
 	.user .shelter_link{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
-	
+
 
 
 
@@ -388,13 +388,13 @@
 /******************************************************************/
 .integrations ul { list-style:none ;}
 
-/* New/Create Announcements :: Layout */
+/* New/Create Integrations :: Layout */
 /******************************************************************/
 .integrations #main { margin: 1em 3em 0 3em; }
 .integrations #left{ width: 100%;}
 .integrations #sidebar { display: none;width: 0; }
 
-/* Alert List :: Layout */
+/* Integrations List :: Layout */
 /******************************************************************/
 .integrations a {font-size: 11px; color: #000; text-decoration: none;}
 .integrations a:hover {text-decoration: underline; color: #cf7019;}
@@ -405,3 +405,13 @@
 .integrations tbody tr.even { background-color: #efefef; }
 .integrations tbody tr td { border:1px #ddd solid; }
 .integrations tbody tr td.key { padding-left: 5px; }
+
+/* Integration List :: Layout
+-----------------------------------------------------------------------------*/
+.integration_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.integration{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.integration.hover{cursor:default;}
+
+	.integration .type{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
+	.integration .image{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}

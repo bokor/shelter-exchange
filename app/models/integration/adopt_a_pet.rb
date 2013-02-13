@@ -1,11 +1,11 @@
 class Integration::AdoptAPet < Integration
-  
+
   require 'net/ftp'
-  
+
   # Constants
-  #----------------------------------------------------------------------------  
+  #----------------------------------------------------------------------------
   FTP_URL = "autoupload.adoptapet.com"
-  
+
   # Validations
   #----------------------------------------------------------------------------
   validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
@@ -19,9 +19,9 @@ class Integration::AdoptAPet < Integration
   def self.to_sym
     :adopt_a_pet
   end
-  
+
   private
-  
+
     def connection_successful?
       begin
         Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
