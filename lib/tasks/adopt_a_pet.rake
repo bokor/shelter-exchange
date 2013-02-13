@@ -11,36 +11,37 @@ Dir.mkdir(Rails.root.join("tmp/adopt_a_pet")) unless File.exists?(Rails.root.joi
 # Tasks
 #----------------------------------------------------------------------------
 namespace :adopt_a_pet do
-  
+
   desc "Creating Adopt a Pet CSV files"
   task :generate_csv_files => :environment do
-    
-    @integrations = Integration::AdoptAPet.all
-    
-    @integrations.each do |integration|
+
+    Integration::AdoptAPet.all.each do |integration|
       ADOPT_A_PET_SHELTER_START_TIME = Time.now
-      
+
       @shelter = integration.shelter
 
       # Get all Available for adoption and Adoption Pending animals
       @animals = @shelter.animals.includes(:animal_type, :photos).available.all
 
-      # Build CSV
-      CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+:UTF-8") do |csv|
-        Integration::AdoptAPetPresenter.as_csv(@animals, csv)
-      end 
-        
-      # FTP Files to Adopt a Pet
-      ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
-        
-      # Delete the CSV File 
-      File.delete(ADOPT_A_PET_CSV_FILENAME)
+      unless @animals.blank?
+        # Build CSV
+        CSV.open(ADOPT_A_PET_CSV_FILENAME, "w+:UTF-8") do |csv|
+          Integration::AdoptAPetPresenter.as_csv(@animals, csv)
+        end
+
+        # FTP Files to Adopt a Pet
+        ftp_files_to_adopt_a_pet(@shelter.name, integration.username, integration.password)
+
+        # Delete the CSV File
+        File.delete(ADOPT_A_PET_CSV_FILENAME)
+      else
+        adopt_a_pet_logger.info("#{@shelter.name} has 0 animals")
+      end
     end
   end
-  
-  desc "Creating Adopt a Pet CSV files"
-  task :all => [:generate_csv_files] do 
 
+  desc "Creating Adopt a Pet CSV files"
+  task :all => [:generate_csv_files] do
     adopt_a_pet_logger.info("Time elapsed: #{Time.now - ADOPT_A_PET_TASK_START_TIME} seconds.")
     adopt_a_pet_logger.close
   end
@@ -61,7 +62,7 @@ def ftp_files_to_adopt_a_pet(shelter_name, username, password)
       ftp.puttextfile(ADOPT_A_PET_CSV_FILENAME)
       ftp.puttextfile(ADOPT_A_PET_CFG_FILENAME)
     end
-    
+
     # Log Shelter name and how long it took for each shelter
     adopt_a_pet_logger.info("#{shelter_name} finished in #{Time.now - ADOPT_A_PET_SHELTER_START_TIME}")
   rescue Exception => e
