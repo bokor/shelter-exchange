@@ -8,15 +8,21 @@
 	<div class="page_heading blue">
 		<h1>Exports</h1>
 	</div>
-	
-	<div class="page_content">
-		
+
+  <div class="page_content">
+    <h2>Everything</h2>
 		<div>
-			<span><%= link_to "All Shelter and User Email Addresses", all_emails_admin_exports_path(:csv), :class => "button" %></span>
+      <span><%= link_to "All Shelter and User Emails", all_emails_admin_exports_path(:csv), :class => "button" %></span>
+    </div>
+    <br><br>
+    <h2>Integrations</h2>
+    <div>
+      <span><%= link_to "Petfinder Emails", petfinder_emails_admin_exports_path(:csv), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span><%= link_to "Adopt a Pet Emails", adopt_a_pet_emails_admin_exports_path(:csv), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span><%= link_to "All Integrations Emails", all_integrations_emails_admin_exports_path(:csv), :class => "button" %></span>
 		</div>
-		
 	</div>
-		
+
 <% end %>
 
 <%= content_for :sidebar do %>
