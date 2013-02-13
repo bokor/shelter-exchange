@@ -1,6 +1,11 @@
+<% show_created_at ||= false %>
 <div id="<%= "animal_#{animal.id}" %>" class="animal">
 	<span class="photo"><%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
 	<span class="name"><%= link_to animal.name, public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
-	<span class="breed"><%= animal.full_breed %></span>
-	<span class="status_change_date"><%= format_date(:short, animal.status_change_date) %></span>
+  <span class="breed"><%= animal.full_breed %></span>
+  <% if show_created_at %>
+    <span class="created_at_date"><%= format_date(:short, animal.created_at) %></span>
+  <% else %>
+    <span class="status_change_date"><%= format_date(:short, animal.status_change_date) %></span>
+  <% end %>
 </div>

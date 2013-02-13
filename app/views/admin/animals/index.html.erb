@@ -1,0 +1,35 @@
+<%= title "Animal Lookup" %>
+
+<%= content_for :javascripts do %><% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<%= form_for :animals, :url => { :action => :lookup }, :html => { :id => "form_search", :method => :get } do |f| %>
+			<ul>
+        <li class="full">
+          <%= label_tag "id", "Animal Lookup by ID", :class => "desc" %>
+					<span class="left half">
+					  <%= text_field_tag "id", "", :class => "field text large"  %>
+          </span>
+          <span class="leftPadded">
+            <%= f.submit "Go", :disable_with => "..." %>
+          </span>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+
+	<div class="page_content">
+    <% unless @animals.blank? %>
+      <%= render @animals, :show_created_at => true %>
+    <% else %>
+      <h2>No Animals found, please search again!</h2>
+    <% end %>
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %><% end %>
+
+

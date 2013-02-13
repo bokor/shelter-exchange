@@ -165,6 +165,17 @@
 	.shelter .created_at{display:inline-block; float:right; font-weight: bold; }
 
 
+/* Shelter Integration List :: Show :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters .integration_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.show_shelters .integration{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.show_shelters .integration.hover{cursor:default;}
+
+	.show_shelters .integration .type{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
+	.show_shelters .integration .image{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
+
+
 /* Shelter Details :: Show :: Layout
 -----------------------------------------------------------------------------*/
 .show_shelters .shelter_details {padding-bottom: 20px;}
@@ -222,6 +233,13 @@
 /* -------------------------- ANIMALS -------------------------- */
 /*****************************************************************/
 
+/* Animals :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.animals #main { margin: 1em 3em 0 3em; }
+.animals #left{ width: 100%;}
+.animals #sidebar { display: none;width: 0; }
+
+
 
 /* Animals Section :: Index :: Layout
 -----------------------------------------------------------------------------*/
@@ -238,11 +256,10 @@
 		.animal .photo img{display:inline-block; vertical-align:top;}
 	.animal .name{display:inline-block; width: 20%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
 	.animal .breed{display:inline-block; width: 40%; }
-	.animal .status_change_date{display:inline-block; float:right; font-weight: bold; }
+	.animal .status_change_date,
+  .animal .created_at_date{display:inline-block; float:right; font-weight: bold; }
 
-
-
-
+.lookup_animals .animal{border-bottom:none;}
 
 
 
@@ -396,22 +413,14 @@
 
 /* Integrations List :: Layout */
 /******************************************************************/
-.integrations a {font-size: 11px; color: #000; text-decoration: none;}
-.integrations a:hover {text-decoration: underline; color: #cf7019;}
-.integrations table { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
-.integrations thead th { line-height: 50px; border:1px #ddd solid; text-align: center; }
-.integrations tbody tr { line-height: 30px; }
-.integrations tbody tr.odd { background-color: #fff; }
-.integrations tbody tr.even { background-color: #efefef; }
-.integrations tbody tr td { border:1px #ddd solid; }
-.integrations tbody tr td.key { padding-left: 5px; }
+.integration_list a {font-size: 11px; color: #000; text-decoration: none;}
+.integration_list a:hover {text-decoration: underline; color: #cf7019;}
+.integration_list { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+.integration_list thead th { line-height: 50px; border:1px #ddd solid; text-align: center; }
+.integration_list tbody tr { line-height: 30px; }
+.integration_list tbody tr.odd { background-color: #fff; }
+.integration_list tbody tr.even { background-color: #efefef; }
+.integration_list tbody tr td { border:1px #ddd solid; }
+.integration_list tbody tr td.key { padding-left: 5px; }
 
-/* Integration List :: Layout
------------------------------------------------------------------------------*/
-.integration_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
 
-.integration{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
-.integration.hover{cursor:default;}
-
-	.integration .type{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
-	.integration .image{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
