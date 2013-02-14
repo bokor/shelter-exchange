@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 gem 'rack'
 gem 'rake'
@@ -53,7 +53,7 @@ gem 'geocoder'
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
-gem 'delayed_job_active_record'  # Change to RESQUE
+gem 'delayed_job_active_record'
 
 # Performance
 #----------------------------------------------------------------------------
