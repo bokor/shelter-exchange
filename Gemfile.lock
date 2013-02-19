@@ -281,6 +281,7 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave
+  daemons
   dalli
   debugger
   delayed_job_active_record
