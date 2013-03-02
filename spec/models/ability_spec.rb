@@ -1,20 +1,20 @@
-class Ability
-  include CanCan::Ability
+require "spec_helper"
 
-  def initialize(user)
-    send(user.role)
-  end
-
+describe Ability, ".owner" do
   def owner
     can :manage, :all
   end
+end
 
+describe Ability, ".admin" do
   def admin
     can :manage, :all
     # cannot :destroy, Animal
     cannot :change_owner, User
   end
+end
 
+describe Ability, ".user" do
   def user
     can [:read, :create, :update], :all
     cannot :update, Shelter
@@ -24,6 +24,5 @@ class Ability
     cannot :view_settings, User
     cannot :request_transfer, Animal
   end
-
 end
 

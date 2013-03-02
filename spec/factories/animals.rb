@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  
+
   factory :animal do
     sequence(:name) {|n| "animal name #{n}" }
     sequence(:microchip) {|n| "#1234-#{n}" }
