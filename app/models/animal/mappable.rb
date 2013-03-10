@@ -1,12 +1,12 @@
 module Animal::Mappable
   extend ActiveSupport::Concern
-  
+
   included do
-    
+
   end
-  
+
   module ClassMethods
-  
+
     def community_animals(shelter_ids, filters={})
       scope = self.scoped
       scope = scope.includes(:animal_type, :animal_status, :shelter, :photos)
@@ -16,13 +16,13 @@ module Animal::Mappable
       scope = scope.filter_animal_type(filters[:animal_type]) unless filters[:animal_type].blank?
       scope = scope.filter_breed(filters[:breed]) unless filters[:breed].blank?
       scope = scope.filter_sex(filters[:sex]) unless filters[:sex].blank?
-    
+
       scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
       scope = scope.active unless filters[:animal_status].present?
-    
+
       scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
     end
-    
+
     def filter_euthanasia_only
       joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks)
     end
@@ -46,7 +46,7 @@ module Animal::Mappable
     def filter_animal_status(animal_status)
       where(:animal_status_id => animal_status)
     end
-  
+
   end
 
 end

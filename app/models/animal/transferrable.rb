@@ -1,10 +1,10 @@
 module Animal::Transferrable
   extend ActiveSupport::Concern
-  
+
   included do
-  
+
   end
-  
+
   def complete_transfer_request!(current_shelter, requestor_shelter)
     self.animal_status_id = AnimalStatus::STATUSES[:new_intake]
     self.status_history_reason = "Transferred from #{current_shelter.name}"
