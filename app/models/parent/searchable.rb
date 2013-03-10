@@ -1,15 +1,16 @@
 module Parent::Searchable
   extend ActiveSupport::Concern
-  
+
   included do
 
   end
-  
+
   module ClassMethods
-    
+
     def search(q, parent_params)
       scope = self.scoped
       phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
+
       if phone.is_numeric?
         scope = scope.where("phone = ? OR mobile = ?", phone, phone)
       else
@@ -20,7 +21,5 @@ module Parent::Searchable
     end
 
   end
-
-  
 end
 

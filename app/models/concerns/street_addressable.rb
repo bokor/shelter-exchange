@@ -1,12 +1,12 @@
 module StreetAddressable
   extend ActiveSupport::Concern
-  
+
   included do
-    
+
     # Validations
     #----------------------------------------------------------------------------
     validate :full_address
-  
+
   end
 
   def address_changed?
@@ -21,8 +21,8 @@ module StreetAddressable
     [self.street, self.street_2, self.city, self.state, self.zip_code].compact.join(', ')
   end
 
-  private 
-    
+  private
+
     def full_address
       errors.add(:address, "Street, City, State and Zip code are all required") if address_valid?
     end

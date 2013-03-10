@@ -3,10 +3,9 @@ defaults: &defaults
   encoding: utf8
   reconnect: false
   pool: 5
-  username: shelterexchange
-  password: shelterexchange
+  username: root
+  password:
   host: localhost
-  socket: /tmp/mysql.sock
 
 development:
     <<: *defaults
@@ -16,10 +15,10 @@ test:
     <<: *defaults
     database: shelterexchange_test
 
-staging:
-    <<: *defaults
-    database: shelterexchange_staging
+#staging:
+    #<<: *defaults
+    #database: shelterexchange_staging
 
-production:
-    <<: *defaults
-    database: shelterexchange
+#production:
+    #<<: *defaults
+    #database: shelterexchange
