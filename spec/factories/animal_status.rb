@@ -1,22 +1,14 @@
 FactoryGirl.define do
 
-  factory :status do
-    title "This is a new note"
-    shelter
+  factory :animal_status do
   end
 
 end
 
-#TODO: Need to create a note for each category using the correct shorthand
-
-  #create_table "notes", :force => true do |t|
-    #t.string   "title"
-    #t.text     "description"
-    #t.integer  "notable_id"
-    #t.string   "notable_type"
-    #t.datetime "created_at"
-    #t.datetime "updated_at"
-    #t.integer  "shelter_id"
-    #t.string   "category"
-  #end
+  # create_table "animal_statuses", :force => true do |t|
+  #   t.string   "name"
+  #   t.datetime "created_at"
+  #   t.datetime "updated_at"
+  #   t.integer  "sort_order"
+  # end
 

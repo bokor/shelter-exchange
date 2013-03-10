@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
-  factory :note do
-    title "This is a new note"
+  factory :transfer_history do
+    status "This is a transfer history status"
     shelter
   end
 
