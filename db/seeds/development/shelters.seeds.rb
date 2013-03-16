@@ -25,7 +25,7 @@ after :"development:accounts" do
     :facebook => "http://www.facebook.com/brian.bokor",
     :logo => nil
   )
-  shelter.save(:validate => false)
+  shelter.save
 
   # Create Shelter
   #----------------------------------------------------------------------------
@@ -47,6 +47,6 @@ after :"development:accounts" do
     :facebook => "http://www.facebook.com/claire.bokor",
     :logo => nil
   )
-  shelter.save(:validate => false)
+  shelter.save
 end
 

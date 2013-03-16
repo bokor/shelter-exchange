@@ -16,8 +16,7 @@ after :"development:accounts" do
     :password              => "testing",
     :password_confirmation => "testing"
   )
-
-  user.save(:validate => false)
+  user.save
 
   # Create User
   #----------------------------------------------------------------------------
@@ -31,7 +30,6 @@ after :"development:accounts" do
     :password              => "testing",
     :password_confirmation => "testing"
   )
-
-  user.save(:validate => false)
+  user.save
 end
 
