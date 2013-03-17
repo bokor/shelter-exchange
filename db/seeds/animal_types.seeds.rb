@@ -1,7 +1,15 @@
-AnimalType.find_or_create_by_name("Dog")
-AnimalType.find_or_create_by_name("Cat")
-AnimalType.find_or_create_by_name("Horse")
-AnimalType.find_or_create_by_name("Rabbit")
-AnimalType.find_or_create_by_name("Bird")
-AnimalType.find_or_create_by_name("Reptile")
-AnimalType.find_or_create_by_name("Other")
+# Truncate Data
+#----------------------------------------------------------------------------
+truncate_db_table("animal_types")
+
+# Create Animal Statuses
+#----------------------------------------------------------------------------
+AnimalType.create([
+  { :name => "Dog" },
+  { :name => "Cat" },
+  { :name => "Horse" },
+  { :name => "Rabbit" },
+  { :name => "Bird" },
+  { :name => "Reptile" },
+  { :name => "Other" }
+])
