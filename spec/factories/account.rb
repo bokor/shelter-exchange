@@ -7,5 +7,5 @@ FactoryGirl.define do
     users {|u| [u.association(:user)] }
     shelters {|s| [s.association(:shelter)] }
   end
-
 end
+

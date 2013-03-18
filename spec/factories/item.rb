@@ -4,5 +4,5 @@ FactoryGirl.define do
     name "Sample item"
     shelter
   end
-
 end
+

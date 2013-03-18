@@ -2,10 +2,9 @@ FactoryGirl.define do
 
   factory :capacity do
     shelter
-    animal_type
+    animal_type_id AnimalType::TYPES[:dog]
     max_capacity 10
   end
-
 end
 
 

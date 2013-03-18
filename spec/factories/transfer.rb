@@ -5,7 +5,6 @@ FactoryGirl.define do
     phone     "999-999-9999"
     email     "shelter@example.com"
   end
-
 end
 
 

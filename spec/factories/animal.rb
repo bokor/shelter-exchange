@@ -12,8 +12,8 @@ FactoryGirl.define do
     is_mix_breed     true
     primary_breed    'Labrador Retriever'
     secondary_breed  'Border Collie'
-    animal_type_id   1
-    animal_status_id 1
+    animal_type_id   AnimalType::TYPES[:dog]
+    animal_status_id AnimalStatus::STATUSES[:available_for_adoption]
     size             'medium'
     age              'adult'
     # # status_change_date
@@ -25,5 +25,5 @@ FactoryGirl.define do
     # # special_needs
     # # video_url
   end
-
 end
+

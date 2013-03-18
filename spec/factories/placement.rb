@@ -6,7 +6,6 @@ FactoryGirl.define do
     shelter
     #status "adopted"
   end
-
 end
 
 #TODO: Need to create a note for each category using the correct shorthand

@@ -16,5 +16,5 @@ FactoryGirl.define do
     status          "active"
     is_kill_shelter false
   end
-
 end
+

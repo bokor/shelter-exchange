@@ -4,7 +4,6 @@ FactoryGirl.define do
     details "This is a new task"
     shelter
   end
-
 end
 
   #create_table "tasks", :force => true do |t|

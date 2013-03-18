@@ -4,7 +4,6 @@ FactoryGirl.define do
     comment "This is a new comment"
     shelter
   end
-
 end
 
 

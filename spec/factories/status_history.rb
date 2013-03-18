@@ -3,10 +3,9 @@ FactoryGirl.define do
   factory :status_history do
     shelter
     animal
-    animal_status
+    animal_status_id AnimalStatus::STATUSES[:available_for_adoption]
     reason "New status history"
   end
-
 end
 
 #   create_table "status_histories", :force => true do |t|

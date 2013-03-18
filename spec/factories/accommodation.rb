@@ -2,11 +2,10 @@ FactoryGirl.define do
 
   factory :accommodation do
     shelter
-    animal_type
+    animal_type_id AnimalType::TYPES[:dog]
     sequence(:name) {|n| "crate#{n}" }
     max_capacity 10
   end
-
 end
 
 

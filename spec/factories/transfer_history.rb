@@ -4,7 +4,6 @@ FactoryGirl.define do
     status "This is a transfer history status"
     shelter
   end
-
 end
 
 #TODO: Need to create a note for each category using the correct shorthand

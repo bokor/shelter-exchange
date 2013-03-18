@@ -4,7 +4,6 @@ FactoryGirl.define do
     title "This is a new alert"
     shelter
   end
-
 end
 
   #create_table "alerts", :force => true do |t|
