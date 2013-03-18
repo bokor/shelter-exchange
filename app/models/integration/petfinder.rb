@@ -1,6 +1,6 @@
-class Integration::Petfinder < Integration
+require 'net/ftp'
 
-  require 'net/ftp'
+class Integration::Petfinder < Integration
 
   # Constants
   #----------------------------------------------------------------------------
@@ -24,18 +24,20 @@ class Integration::Petfinder < Integration
     :petfinder
   end
 
+
+  #----------------------------------------------------------------------------
   private
 
-    def upcase_username
-      self.username.upcase!
-    end
+  def upcase_username
+    self.username.upcase!
+  end
 
-    def connection_successful?
-      begin
-        Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
-      rescue
-        errors.add(:connection_failed, "Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!")
-      end
+  def connection_successful?
+    begin
+      Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
+    rescue
+      errors.add(:connection_failed, "Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
+  end
 
 end

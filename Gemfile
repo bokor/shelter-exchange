@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gem "rails", "3.2.12"
 
@@ -11,6 +11,7 @@ gem "pry-rails"
 # Database
 #----------------------------------------------------------------------------
 gem "mysql2"
+gem "seedbank"
 
 # Zip Files
 #----------------------------------------------------------------------------
@@ -53,7 +54,7 @@ gem "geocoder"
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
-gem "daemons"
+#gem "daemons"
 gem "delayed_job_active_record"
 
 # Performance
@@ -73,15 +74,18 @@ group :development, :test do
 
   gem "rspec-rails"
   gem "debugger", :platforms => :ruby_19
+  #gem "parallel_tests"
 end
 
 group :test do
   gem "factory_girl_rails"
   gem "factory_girl_extensions"
   gem "capybara"
+  gem "capybara-webkit"
+  gem "capybara-email"
   gem "launchy"
-
-  # gem "capybara-email" or "email-spec"
+  gem "database_cleaner"
+  #gem "artifice"
 end
 
 

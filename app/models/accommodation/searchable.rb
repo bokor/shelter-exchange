@@ -2,11 +2,9 @@ module Accommodation::Searchable
   extend ActiveSupport::Concern
 
   included do
-
     scope :search, lambda { |q|
       includes(:animal_type, :location, :animals => [:photos, :animal_status]).where("name LIKE ?", "%#{q}%")
     }
-
   end
 
   module ClassMethods
@@ -18,7 +16,7 @@ module Accommodation::Searchable
       scope = scope.where(:location_id => location) unless location.blank?
       scope
     end
-
   end
 
 end
+

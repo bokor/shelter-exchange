@@ -15,7 +15,7 @@ class Animal < ActiveRecord::Base
     :XL => "X-Large"
   }.freeze
 
-  AGES = %w(baby young adult senior).freeze
+  AGES = %w[baby young adult senior].freeze
 
 
   # Callbacks
@@ -114,40 +114,38 @@ class Animal < ActiveRecord::Base
   # end
 
 
-  # Private Methods
-  #----------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------
   private
 
-    def is_kill_shelter?
-      @shelter ||= self.shelter.kill_shelter?
-    end
+  def is_kill_shelter?
+    @shelter ||= self.shelter.kill_shelter?
+  end
 
-    # FIXME: Hack to set the name based on what is should be, view can be lowercase
-    # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
-    def update_breed_names
-      unless self.primary_breed.blank?
-        primary_breed_from_db = Breed.where(:name => self.primary_breed).first
-        self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
-      end
-      unless self.primary_breed.blank?
-        secondary_breed_from_db = Breed.where(:name => self.secondary_breed).first
-        self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
-      end
+  # FIXME: Hack to set the name based on what is should be, view can be lowercase
+  # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
+  def update_breed_names
+    unless self.primary_breed.blank?
+      primary_breed_from_db = Breed.where(:name => self.primary_breed).first
+      self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
     end
-
-    def change_status_date!
-      if self.new_record? or self.animal_status_id_changed?
-        self.status_change_date = Date.today
-      end
+    unless self.primary_breed.blank?
+      secondary_breed_from_db = Breed.where(:name => self.secondary_breed).first
+      self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
     end
+  end
 
-    def status_history_reason_required?
-      self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
+  def change_status_date!
+    if self.new_record? or self.animal_status_id_changed?
+      self.status_change_date = Date.today
     end
+  end
 
-    def create_status_history!
-      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason) if self.new_record? or self.animal_status_id_changed? or self.shelter_id_changed?
-    end
+  def status_history_reason_required?
+    self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
+  end
 
+  def create_status_history!
+    StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason) if self.new_record? or self.animal_status_id_changed? or self.shelter_id_changed?
+  end
 end
 

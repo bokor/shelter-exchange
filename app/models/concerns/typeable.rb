@@ -30,10 +30,6 @@ module Typeable
   end
 
   def bird?
-    self.animal_type_id == AnimalType::TYPES[:rabbit]
-  end
-
-  def bird?
     self.animal_type_id == AnimalType::TYPES[:bird]
   end
 
@@ -46,3 +42,4 @@ module Typeable
   end
 
 end
+

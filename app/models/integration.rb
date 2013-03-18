@@ -27,12 +27,13 @@ class Integration < ActiveRecord::Base
     super
   end
 
+
+  #----------------------------------------------------------------------------
   private
 
-    def clean_data!
-      attributes.each_value { |v| v.strip! if v.respond_to?(:strip!) }
-    end
-
+  def clean_data!
+    attributes.each_value { |v| v.strip! if v.respond_to?(:strip!) }
+  end
 end
 
 #avoid type field warnings like:
@@ -42,3 +43,4 @@ end
 
 
 # @integration.becomes(params[:integration][:type].constantize)
+

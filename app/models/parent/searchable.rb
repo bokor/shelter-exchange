@@ -1,10 +1,6 @@
 module Parent::Searchable
   extend ActiveSupport::Concern
 
-  included do
-
-  end
-
   module ClassMethods
 
     def search(q, parent_params)

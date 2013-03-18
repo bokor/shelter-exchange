@@ -1,6 +1,6 @@
-class Integration::AdoptAPet < Integration
+require 'net/ftp'
 
-  require 'net/ftp'
+class Integration::AdoptAPet < Integration
 
   # Constants
   #----------------------------------------------------------------------------
@@ -20,14 +20,16 @@ class Integration::AdoptAPet < Integration
     :adopt_a_pet
   end
 
+
+  #----------------------------------------------------------------------------
   private
 
-    def connection_successful?
-      begin
-        Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
-      rescue
-        errors.add(:connection_failed, "Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
-      end
+  def connection_successful?
+    begin
+      Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
+    rescue
+      errors.add(:connection_failed, "Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
+  end
 
 end

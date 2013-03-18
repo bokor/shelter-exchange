@@ -14,7 +14,7 @@ class Ability
     # cannot :destroy, Animal
     cannot :change_owner, User
   end
-    
+
   def user
     can [:read, :create, :update], :all
     cannot :update, Shelter
@@ -24,6 +24,5 @@ class Ability
     cannot :view_settings, User
     cannot :request_transfer, Animal
   end
-  
 end
 
