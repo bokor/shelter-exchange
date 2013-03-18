@@ -1,15 +1,14 @@
 class Activity
-  def initialize(shelter)
-    @current_shelter ||= shelter
-    @total_recent = 20
-  end
-  
-  def recent(limit=10)
+
+  def self.recent(shelter)
+    limit      = 10
+    page_total = 20
+
     [].tap do |collection|
-      collection << @current_shelter.alerts.recent_activity(10)
-      collection << @current_shelter.tasks.recent_activity(10)
-      collection << @current_shelter.animals.recent_activity(10)
-    end.flatten.sort_by(&:updated_at).reverse.slice(0, @total_recent)
+      collection << shelter.alerts.recent_activity(limit)
+      collection << shelter.tasks.recent_activity(limit)
+      collection << shelter.animals.recent_activity(limit)
+    end.flatten.sort_by(&:updated_at).reverse.slice(0, page_total)
   end
-  
 end
+

@@ -1,10 +1,6 @@
 module Animal::Mappable
   extend ActiveSupport::Concern
 
-  included do
-
-  end
-
   module ClassMethods
 
     def community_animals(shelter_ids, filters={})

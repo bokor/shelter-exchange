@@ -1,10 +1,6 @@
 module StatusHistory::Reportable
   extend ActiveSupport::Concern
 
-  included do
-
-  end
-
   module ClassMethods
 
     def by_month(range)
@@ -46,8 +42,6 @@ module StatusHistory::Reportable
       scope = scope.reorder(nil).limit(nil)
       scope
     end
-
   end
-
 end
 

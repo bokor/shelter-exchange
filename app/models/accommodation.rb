@@ -1,13 +1,13 @@
 class Accommodation < ActiveRecord::Base
   # Accommodation Namespaced
   include Searchable
-  
-  default_scope :order => 'name ASC'
-  
+
+  default_scope :order => 'accommodations.name ASC'
+
   # Pagination
   #----------------------------------------------------------------------------
   self.per_page = 50
-  
+
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
@@ -15,12 +15,11 @@ class Accommodation < ActiveRecord::Base
   belongs_to :location, :readonly => true
 
   has_many :animals, :readonly => true
-  
+
   # Validations
   #----------------------------------------------------------------------------
   validates :animal_type_id, :presence => {:message => "needs to be selected"}
   validates :name, :presence => true
   validates :max_capacity, :numericality => true
-  
-  
 end
+

@@ -1,10 +1,6 @@
 module Shelter::Searchable
   extend ActiveSupport::Concern
 
-  included do
-
-  end
-
   module ClassMethods
 
     def live_search(q, shelter)

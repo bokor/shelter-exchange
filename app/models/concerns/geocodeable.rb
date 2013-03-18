@@ -28,6 +28,5 @@ module Geocodeable
       where("#{self.table_name}.lng < ? #{operator} #{self.table_name}.lng > ?", ne_lng, sw_lng)
     end
   end
-
 end
 

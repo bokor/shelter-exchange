@@ -1,86 +1,90 @@
-source 'http://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rails', '3.2.12'
+gem "rails", "3.2.12"
 
-gem 'rack'
-gem 'rake'
-gem 'mail'
+gem "rack"
+gem "rake"
+gem "mail"
 
-gem 'pry-rails'
+gem "pry-rails"
 
 # Database
 #----------------------------------------------------------------------------
-gem 'mysql2'
+gem "mysql2"
+gem "seedbank"
 
 # Zip Files
 #----------------------------------------------------------------------------
-gem 'rubyzip'
-gem 'zippy'
+gem "rubyzip"
+gem "zippy"
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
-gem 'devise'
-gem 'devise_invitable'
-gem 'cancan'
+gem "devise"
+gem "devise_invitable"
+gem "cancan"
 
 # UI/UX - HTML/JS/CSS/PDF
 #----------------------------------------------------------------------------
-gem 'will_paginate'
-gem 'jquery-rails'
-gem 'jammit'
-gem 'jammit-s3'
-gem 'prawn'
+gem "will_paginate"
+gem "jquery-rails"
+gem "jammit"
+gem "jammit-s3"
+gem "prawn"
 
 # Images
 #----------------------------------------------------------------------------
-gem 'carrierwave'
-gem 'mini_magick'
+gem "carrierwave"
+gem "mini_magick"
 
 # Helpers
 #----------------------------------------------------------------------------
-gem 'rinku', :require => 'rails_rinku' # Rails 3.2 auto_link
+gem "rinku", :require => "rails_rinku" # Rails 3.2 auto_link
 
 # APIs
 #----------------------------------------------------------------------------
-gem 'rest-client'
-gem 'fog'
-gem 'twitter'
-gem 'googl'
+gem "rest-client"
+gem "fog"
+gem "twitter"
+gem "googl"
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
-gem 'geocoder'
+gem "geocoder"
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
-gem 'delayed_job_active_record'
+gem "delayed_job_active_record"
 
 # Performance
 #----------------------------------------------------------------------------
-gem 'dalli'
+gem "dalli"
 
 # Monitoring & Notification
 #----------------------------------------------------------------------------
-gem 'airbrake'
+gem "airbrake"
 
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development, :test do
-  gem 'thin'
-  gem 'foreman'
-  gem 'engineyard'
+  gem "thin"
+  gem "foreman"
+  gem "engineyard"
 
-  gem 'rspec-rails'
-  gem 'debugger', :platforms => :ruby_19
+  gem "rspec-rails"
+  gem "debugger", :platforms => :ruby_19
+  #gem "parallel_tests"
 end
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'factory_girl_extensions'
-  gem 'capybara'
-  gem 'launchy'
-
-  # gem 'capybara-email' or 'email-spec'
+  gem "factory_girl_rails"
+  gem "factory_girl_extensions"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "capybara-email"
+  gem "launchy"
+  gem "database_cleaner"
+  #gem "artifice"
 end
 
 
@@ -95,33 +99,33 @@ end
           # Gems used only for assets and not required
           # in production environments by default.
           # group :assets do
-          #   gem 'sass-rails',   '~> 3.2.3'
-          #   gem 'coffee-rails', '~> 3.2.1'
+          #   gem "sass-rails",   "~> 3.2.3"
+          #   gem "coffee-rails", "~> 3.2.1"
 
           #   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-          #   # gem 'therubyracer', :platforms => :ruby
+          #   # gem "therubyracer", :platforms => :ruby
 
-          #   gem 'uglifier', '>= 1.0.3'
-          #   gem 'yui-compressor'
+          #   gem "uglifier", ">= 1.0.3"
+          #   gem "yui-compressor"
           # end
 
           # MESSENGER
           # asset pipeline
-          # gem 'yui-compressor' # compress CSS
-          # gem 'coffee-filter' # coffeescript haml filter
-          # gem 'therubyracer' # needed to run coffeescript on ubuntu
+          # gem "yui-compressor" # compress CSS
+          # gem "coffee-filter" # coffeescript haml filter
+          # gem "therubyracer" # needed to run coffeescript on ubuntu
           # the ui-toolkit includes the following:
-          #gem 'haml-rails'
-          #gem 'sass-rails'
-          #gem 'coffee-rails'
-          #gem 'uglifier'
+          #gem "haml-rails"
+          #gem "sass-rails"
+          #gem "coffee-rails"
+          #gem "uglifier"
 
 
 
-        # gem 'puma', '~> 1.5.0' # bumping to 1.6 seems to make some tests fail
+        # gem "puma", "~> 1.5.0" # bumping to 1.6 seems to make some tests fail
 
 
         # group :production do
-        #   gem 'SyslogLogger'
+        #   gem "SyslogLogger"
         # end
 
