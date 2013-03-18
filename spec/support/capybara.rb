@@ -1,12 +1,12 @@
 # Register Firefox with Capybara
-Capybara.register_driver :selenium_firefox do |app|
+Capybara.register_driver :firefox do |app|
   driver = Capybara::Selenium::Driver.new(app, :browser => :firefox)
   driver.browser.manage.window.resize_to 1200, 1200 # (width, height) wide enough to view the whole layout
   driver
 end
 
 # Register Chrome with Capybara
-Capybara.register_driver :selenium_chrome do |app|
+Capybara.register_driver :chrome do |app|
   # To get chrome working with selenium on the mac, run 'brew install chromedriver'
   driver = Capybara::Selenium::Driver.new app, :browser => :chrome
   driver.browser.manage.window.resize_to 1200, 1200 # (width, height) wide enough to view the whole layout

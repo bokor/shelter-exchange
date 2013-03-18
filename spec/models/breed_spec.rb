@@ -18,6 +18,17 @@ describe Breed, "#animal_type" do
   end
 end
 
+describe Breed, ".valid_for_animal" do
+
+  it "should validate the breed exists with the type" do
+    breed1 = Breed.valid_for_animal("Labrador Retriever", AnimalType::TYPES[:dog])
+    breed2 = Breed.valid_for_animal("Labrador Retriever", AnimalType::TYPES[:cat])
+
+    breed1.count.should == 1
+    breed2.count.should == 0
+  end
+end
+
 describe Breed, ".auto_complete" do
 
   it "should return the correct breeds per animal type" do
