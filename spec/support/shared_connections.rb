@@ -1,8 +1,8 @@
 # Use shared connection with transactional fixtures
 # http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 #
-# Finally, if any part of your code is using threads to access the database and you need to 
-# test it, you can just set ActiveRecord::Base.shared_connection = nil during that specific 
+# Finally, if any part of your code is using threads to access the database and you need to
+# test it, you can just set ActiveRecord::Base.shared_connection = nil during that specific
 # test and everything should work great!
 #----------------------------------------------------------------------------
 class ActiveRecord::Base
