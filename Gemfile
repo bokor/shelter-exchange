@@ -73,15 +73,17 @@ group :development, :test do
 
   gem "rspec-rails"
   gem "debugger", :platforms => :ruby_19
+  #gem "parallel_tests"
 end
 
 group :test do
   gem "factory_girl_rails"
   gem "factory_girl_extensions"
   gem "capybara"
+  gem "capybara-webkit"
+  gem "capybara-email"
   gem "launchy"
-
-  # gem "capybara-email" or "email-spec"
+  #gem "artifice"
 end
 
 

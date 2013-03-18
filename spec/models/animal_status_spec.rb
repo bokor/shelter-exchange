@@ -65,7 +65,7 @@ describe AnimalStatus, "::EXTRA_STATUS_FILTERS" do
   end
 end
 
-# Associations
+# Instance Methods
 #----------------------------------------------------------------------------
 describe AnimalStatus, "#animals" do
 
@@ -105,6 +105,8 @@ describe AnimalStatus, "#status_histories" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
 describe AnimalStatus, ".active" do
 
   it "should return only the active statuses" do

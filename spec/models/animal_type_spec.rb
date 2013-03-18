@@ -16,7 +16,7 @@ describe AnimalType, "::TYPES" do
   end
 end
 
-# Associations
+# Instance Methods
 #----------------------------------------------------------------------------
 describe AnimalType, "#animals" do
 

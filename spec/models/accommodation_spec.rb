@@ -27,6 +27,23 @@ describe Accommodation do
   end
 end
 
+# Instance Methods
+#----------------------------------------------------------------------------
+describe AnimalType, "#animals" do
+
+  it "should return a list of animals" do
+    animal_type = AnimalType.find(1)
+
+    Animal.gen :animal_type => animal_type
+    Animal.gen :animal_type => animal_type
+
+    animal_type.should respond_to(:animals)
+    animal_type.animals.count.should == 2
+  end
+end
+
+# Class Methods
+#----------------------------------------------------------------------------
 describe Accommodation, ".per_page" do
   it "should return the per page value for pagination" do
     #Accommodation.per_page.should == 50
