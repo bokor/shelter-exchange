@@ -1,7 +1,10 @@
 FactoryGirl.define do
 
   factory :placement do
+    #animal
+    #parent
     shelter
+    #status "adopted"
   end
 
 end

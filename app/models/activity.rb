@@ -10,5 +10,4 @@ class Activity
       collection << shelter.animals.recent_activity(limit)
     end.flatten.sort_by(&:updated_at).reverse.slice(0, total_recent)
   end
-
 end

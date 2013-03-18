@@ -26,3 +26,4 @@ RSpec.configure do |config|
   config.include CapybaraHelper, :type => :request
   config.include AccountHelper, :type => :request
 end
+

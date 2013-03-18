@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     Ascii85 (1.0.2)
     POpen4 (0.1.4)
@@ -64,6 +64,7 @@ GEM
     connection_pool (0.9.3)
     daemons (1.1.9)
     dalli (2.5.0)
+    database_cleaner (0.9.1)
     debugger (1.2.3)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -288,6 +289,7 @@ DEPENDENCIES
   capybara-webkit
   carrierwave
   dalli
+  database_cleaner
   debugger
   delayed_job_active_record
   devise

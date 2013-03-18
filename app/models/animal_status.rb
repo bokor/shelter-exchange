@@ -1,8 +1,5 @@
 class AnimalStatus < ActiveRecord::Base
-
-  # TODO :
-  #   1) Update this to use the text instead of symbol but not sure if is default ASC or DESC.  Check it
-  default_scope :order => :sort_order #'animal_statuses.sort_order DESC'
+  default_scope :order => "animal_statuses.sort_order ASC"
 
   # Constants
   #----------------------------------------------------------------------------

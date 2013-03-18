@@ -2,12 +2,11 @@ FactoryGirl.define do
 
   factory :note do
     title "This is a new note"
+    description "New Note description"
+    category Note::CATEGORIES[0]
     shelter
   end
-
 end
-
-#TODO: Need to create a note for each category using the correct shorthand
 
   #create_table "notes", :force => true do |t|
     #t.string   "title"

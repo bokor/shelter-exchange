@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'notes.created_at DESC'
 
   # Constants
   #----------------------------------------------------------------------------
@@ -14,7 +14,7 @@ class Note < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :title, :presence => true
-  validates :category, :presence => { :in => CATEGORIES, :message => "needs to be selected" }
+  validates :category, :inclusion => { :in => CATEGORIES, :message => "needs to be selected" }
 
   # Instance Methods
   #----------------------------------------------------------------------------

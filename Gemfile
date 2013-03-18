@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gem "rails", "3.2.12"
 
@@ -83,6 +83,7 @@ group :test do
   gem "capybara-webkit"
   gem "capybara-email"
   gem "launchy"
+  gem "database_cleaner"
   #gem "artifice"
 end
 
