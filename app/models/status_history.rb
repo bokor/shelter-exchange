@@ -2,7 +2,7 @@ class StatusHistory < ActiveRecord::Base
   # Status History Namespaced
   include Reportable
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'status_histories.created_at DESC'
 
   # Associations
   #----------------------------------------------------------------------------
@@ -15,5 +15,4 @@ class StatusHistory < ActiveRecord::Base
   def self.create_with(shelter_id, animal_id, animal_status_id, reason)
     create!(:shelter_id => shelter_id, :animal_id => animal_id, :animal_status_id => animal_status_id, :reason => reason)
   end
-
 end

@@ -17,3 +17,4 @@ class Capacity < ActiveRecord::Base
     self.animal_type.animals.active.where(:shelter_id => current_shelter).limit(nil).count
   end
 end
+

@@ -9,7 +9,7 @@ class Announcement < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :title, :presence => true
   validates :message, :presence => true
-  validates :category, :presence => { :in => CATEGORIES }
+  validates :category, :inclusion => { :in => CATEGORIES }
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
 
@@ -24,3 +24,4 @@ class Announcement < ActiveRecord::Base
     active(Time.now.utc).since(hide_time)
   end
 end
+

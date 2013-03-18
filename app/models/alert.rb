@@ -1,5 +1,5 @@
 class Alert < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'alerts.created_at DESC'
 
   # Constants
   #----------------------------------------------------------------------------
@@ -13,7 +13,7 @@ class Alert < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :title, :presence => true
-  validates :severity, :presence => {:message => 'needs to be selected'}
+  validates :severity, :presence => { :message => 'needs to be selected' }
 
   # Scopes
   #----------------------------------------------------------------------------
@@ -43,5 +43,4 @@ class Alert < ActiveRecord::Base
   def alertable?
     !!self.alertable
   end
-
 end

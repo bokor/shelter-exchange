@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   attr_accessible :name, :title, :email, :password, :password_confirmation, :authentication_token,
                   :remember_me, :role, :account_id, :announcement_hide_time
 
-
   # Validations - Extra beyond devise's validations
   #----------------------------------------------------------------------------
   validates :name, :presence => true
@@ -50,7 +49,6 @@ class User < ActiveRecord::Base
     self.role == role.to_s and (ROLES.include?(role.to_s) or role.to_s == OWNER)
   end
 
-
   # Class Methods
   #----------------------------------------------------------------------------
   def self.find_for_authentication(conditions={})
@@ -74,10 +72,12 @@ class User < ActiveRecord::Base
     scope
   end
 
+
+  #----------------------------------------------------------------------------
   private
 
-    def hide_announcements_by_default
-      self.announcement_hide_time = Time.now.utc
-    end
+  def hide_announcements_by_default
+    self.announcement_hide_time = Time.now.utc
+  end
 end
 

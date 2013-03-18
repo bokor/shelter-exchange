@@ -39,17 +39,18 @@ class Photo < ActiveRecord::Base
     !!self.is_main_photo
   end
 
+
+  #----------------------------------------------------------------------------
   private
 
-    def set_original_name
-      self.original_name = self.image.file.original_filename unless self.original_name
-    end
+  def set_original_name
+    self.original_name = self.image.file.original_filename unless self.original_name
+  end
 
-    def max_number_of_additional_photos
-      unless Photo.not_main_photo.where(:attachable_id => self.attachable, :attachable_type => self.attachable.class.name).count <= TOTAL_ADDITIONAL
-        errors.add(:base, "Max number of files exceeded")
-      end
+  def max_number_of_additional_photos
+    unless Photo.not_main_photo.where(:attachable_id => self.attachable, :attachable_type => self.attachable.class.name).count <= TOTAL_ADDITIONAL
+      errors.add(:base, "Max number of files exceeded")
     end
-
+  end
 end
 

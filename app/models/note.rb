@@ -21,5 +21,4 @@ class Note < ActiveRecord::Base
   def notable?
     !!self.notable
   end
-
 end

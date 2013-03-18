@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  default_scope :order => 'due_date ASC, updated_at DESC'
+  default_scope :order => 'tasks.due_date ASC, tasks.updated_at DESC'
 
   # Constants
   #----------------------------------------------------------------------------
@@ -73,6 +73,5 @@ class Task < ActiveRecord::Base
       due_section = "tomorrow"
     end
   end
-
 end
 

@@ -1,10 +1,6 @@
 module Animal::Apiable
   extend ActiveSupport::Concern
 
-  included do
-
-  end
-
   module ClassMethods
 
     def api_lookup(types, statuses)
@@ -15,7 +11,6 @@ module Animal::Apiable
       scope = scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
       scope
     end
-
   end
 end
 

@@ -24,6 +24,5 @@ class Ability
     cannot :view_settings, User
     cannot :request_transfer, Animal
   end
-
 end
 

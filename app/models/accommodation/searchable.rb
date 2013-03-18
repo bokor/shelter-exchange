@@ -16,6 +16,7 @@ module Accommodation::Searchable
       scope = scope.where(:location_id => location) unless location.blank?
       scope
     end
-
   end
+
 end
+

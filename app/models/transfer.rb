@@ -1,5 +1,5 @@
 class Transfer < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'transfers.created_at DESC'
 
   # Callbacks
   #----------------------------------------------------------------------------
@@ -55,19 +55,21 @@ class Transfer < ActiveRecord::Base
     self.status == COMPLETED
   end
 
+
+  #----------------------------------------------------------------------------
   private
-    def transfer_history_reason_required?
-      self.rejected?
-    end
 
-    def create_transfer_history!
-      TransferHistory.create_with(self.shelter_id, self.id, self.status, @transfer_history_reason) unless @transfer_history_reason.blank?
-    end
+  def transfer_history_reason_required?
+    self.rejected?
+  end
 
-    def transfer_animal_record!
-      self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
-    end
+  def create_transfer_history!
+    TransferHistory.create_with(self.shelter_id, self.id, self.status, @transfer_history_reason) unless @transfer_history_reason.blank?
+  end
 
+  def transfer_animal_record!
+    self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
+  end
 end
 
 

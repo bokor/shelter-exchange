@@ -16,3 +16,4 @@ class Comment < ActiveRecord::Base
     !!self.commentable
   end
 end
+

@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  default_scope :order => 'name ASC'
+  default_scope :order => 'locations.name ASC'
 
   # Associations
   #----------------------------------------------------------------------------

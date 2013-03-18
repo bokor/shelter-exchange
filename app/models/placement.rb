@@ -1,5 +1,5 @@
 class Placement < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'placements.created_at DESC'
 
   # Constants
   #----------------------------------------------------------------------------
@@ -26,5 +26,5 @@ class Placement < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :adopted, includes(:shelter, :animal => [:photos, :animal_type]).where(:status => "adopted")
   scope :foster_care, includes(:shelter, :animal => [:photos, :animal_type]).where(:status => "foster_care")
-
 end
+

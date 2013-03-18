@@ -24,13 +24,9 @@ class Account < ActiveRecord::Base
 
   # Validations
   #----------------------------------------------------------------------------
-  validates :document_type, :presence => { :in => DOCUMENT_TYPE }
+  validates :document_type, :inclusion => { :in => DOCUMENT_TYPE }
   validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true
   validates :document, :presence => true
-
-  # Class Methods
-  #----------------------------------------------------------------------------
-
 
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -42,14 +38,16 @@ class Account < ActiveRecord::Base
     self.blocked
   end
 
+
+  #-----------------------------------------------------------------------------
   private
 
-    def downcase_subdomain
-      self.subdomain.downcase! #if attribute_present?(:subdomain) I DON'T THINK THIS IS NEEDED
-    end
+  def downcase_subdomain
+    self.subdomain.downcase!
+  end
 
-    def assign_owner_role
-      self.users.first.role = User::OWNER
-    end
-
+  def assign_owner_role
+    self.users.first.role = User::OWNER
+  end
 end
+

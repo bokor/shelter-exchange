@@ -30,8 +30,6 @@ module Animal::Searchable
 
       scope
     end
-
   end
-
 end
 

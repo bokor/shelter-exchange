@@ -42,7 +42,6 @@ module StatusHistory::Reportable
       scope = scope.reorder(nil).limit(nil)
       scope
     end
-
   end
 end
 

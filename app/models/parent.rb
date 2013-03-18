@@ -4,7 +4,7 @@ class Parent < ActiveRecord::Base
   # Parent Namespaced
   include Searchable, Cleanable
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'parents.created_at DESC'
 
   # Associations
   #----------------------------------------------------------------------------

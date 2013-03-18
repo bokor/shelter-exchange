@@ -53,3 +53,4 @@ module Statusable
   end
 
 end
+

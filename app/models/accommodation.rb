@@ -2,7 +2,7 @@ class Accommodation < ActiveRecord::Base
   # Accommodation Namespaced
   include Searchable
 
-  default_scope :order => 'name ASC'
+  default_scope :order => 'accommodations.name ASC'
 
   # Pagination
   #----------------------------------------------------------------------------
@@ -22,3 +22,4 @@ class Accommodation < ActiveRecord::Base
   validates :name, :presence => true
   validates :max_capacity, :numericality => true
 end
+

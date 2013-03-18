@@ -42,3 +42,4 @@ module Typeable
   end
 
 end
+
