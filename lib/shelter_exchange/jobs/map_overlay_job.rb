@@ -19,10 +19,12 @@ module ShelterExchange
       end
 
       private
-        def build_kmz_file
-          Zippy.new(@zip_filename => MapsController.new.overlay).data
-        end
+
+      def build_kmz_file
+        Zippy.new(@zip_filename => MapsController.new.overlay).data
+      end
 
     end
   end
 end
+
