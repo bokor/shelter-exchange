@@ -3,9 +3,9 @@ require 'stringio'
 
 module ShelterExchange
   module Jobs
-    class PetfinderJob
+    class PetfinderJob < Struct.new(:shelter_id)
 
-      def initialize(shelter_id)
+      def perform
         @start_time   = Time.now
         @shelter      = Shelter.find(shelter_id)
         @integration  = Integration::Petfinder.where(:shelter_id => @shelter).first
@@ -15,9 +15,7 @@ module ShelterExchange
         # Create the tmp folder for csv files
         Dir.mkdir(Rails.root.join("tmp/petfinder")) unless File.exists?(Rails.root.join("tmp/petfinder"))
         Dir.mkdir(Rails.root.join("tmp/petfinder/#{@shelter.id}")) unless File.exists?(Rails.root.join("tmp/petfinder/#{@shelter.id}"))
-      end
 
-      def perform
         unless @animals.blank?
           # Build CSV
           CSV.open(@csv_filename , "w+:UTF-8") do |csv|
