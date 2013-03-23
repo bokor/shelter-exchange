@@ -54,6 +54,7 @@ gem "geocoder"
 
 # Scheduled and Delayed Jobs - Asyc Transactions
 #----------------------------------------------------------------------------
+gem "daemons"
 gem "delayed_job_active_record"
 
 # Performance

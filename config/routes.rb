@@ -294,6 +294,8 @@ ShelterExchangeApp::Application.routes.draw do
     devise_for :owners, :path => "admin", :controllers => { :sessions => "admin/owners/sessions" },
                         :path_names => { :sign_in => "login", :sign_out => "logout" }
 
+
+
     # Root
     #----------------------------------------------------------------------------
     root :to => redirect("/admin/dashboard")

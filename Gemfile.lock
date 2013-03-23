@@ -288,6 +288,7 @@ DEPENDENCIES
   capybara-email
   capybara-webkit
   carrierwave
+  daemons
   dalli
   database_cleaner
   debugger
