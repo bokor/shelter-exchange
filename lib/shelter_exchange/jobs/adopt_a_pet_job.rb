@@ -2,11 +2,12 @@ require 'csv'
 
 module ShelterExchange
   module Jobs
-    class AdoptAPetJob < Struct.new(:shelter_id)
+    class AdoptAPetJob
 
-      def initialize
+      def initialize(shelter_id)
+        @start_time      = Time.now
         @shelter         = Shelter.find(shelter_id)
-        @integration     = Integration.where(:shelter => @shelter).where(:type => :adopt_a_pet).first
+        @integration     = Integration::AdoptAPet.where(:shelter_id => @shelter).first
         @animals         = @shelter.animals.includes(:animal_type, :photos).available.all
         @csv_filename    = Rails.root.join("tmp/adopt_a_pet/#{@shelter.id}/pets.csv")
         @config_filename = Rails.root.join("public/integrations/adopt_a_pet/import.cfg")
@@ -23,11 +24,17 @@ module ShelterExchange
             Integration::AdoptAPetPresenter.as_csv(@animals, csv)
           end
 
+          #ftp files to server
           ftp_files
 
           # Delete the CSV File
           File.delete(@csv_filename)
+        else
+          logger.info("#{@integration.class.humanize} :: #{@shelter.name} has 0 animals")
         end
+
+        # Log Shelter name and how long it took for each shelter
+        logger.info("#{@integration.class.humanize} :: #{@shelter.name} finished in #{Time.now - @start_time}")
       end
 
       private
@@ -39,16 +46,15 @@ module ShelterExchange
             ftp.puttextfile(@csv_filename)
             ftp.puttextfile(@config_filename)
           end
-        rescue  #Exception => e
+        rescue Exception => e
+          logger.info("#{@integration.class.humanize} :: #{@shelter.name} failed :: #{e}")
         end
       end
 
+      def logger
+        @logger ||= Logger.new(File.join(Rails.root, "log", "#{@integration.type.demodulize.underscore}_integration.log"))
+      end
     end
   end
 end
-
-
-
-
-
 

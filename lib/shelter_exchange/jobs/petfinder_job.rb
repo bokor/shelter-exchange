@@ -3,11 +3,12 @@ require 'stringio'
 
 module ShelterExchange
   module Jobs
-    class PetfinderJob < Struct.new(:shelter_id)
+    class PetfinderJob
 
-      def initialize
+      def initialize(shelter_id)
+        @start_time   = Time.now
         @shelter      = Shelter.find(shelter_id)
-        @integration  = Integration::Petfinder.where(:shelter => @shelter).first
+        @integration  = Integration::Petfinder.where(:shelter_id => @shelter).first
         @animals      = @shelter.animals.includes(:animal_type, :photos).available.all
         @csv_filename = Rails.root.join("tmp/petfinder/#{@shelter.id}/#{@integration.username}.csv")
 
@@ -28,7 +29,12 @@ module ShelterExchange
 
           # Delete the CSV File
           File.delete(@csv_filename)
+        else
+          logger.info("#{@integration.class.humanize} :: #{@shelter.name} has 0 animals")
         end
+
+        # Log Shelter name and how long it took for each shelter
+        logger.info("#{@integration.class.humanize} :: #{@shelter.name} finished in #{Time.now - @start_time}")
       end
 
       private
@@ -52,10 +58,14 @@ module ShelterExchange
               end
             end
           end
-        rescue #Exception => e
+        rescue Exception => e
+          logger.info("#{@integration.class.humanize} :: #{@shelter.name} failed :: #{e}")
         end
       end
 
+      def logger
+        @logger ||= Logger.new(File.join(Rails.root, "log", "#{@integration.type.demodulize.underscore}_integration.log"))
+      end
     end
   end
 end
