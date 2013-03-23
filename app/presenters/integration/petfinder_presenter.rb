@@ -36,7 +36,7 @@ class Integration::PetfinderPresenter < Presenter
     s = @animal.description.blank? ? "No description provided" : @animal.description
     s << "<br>"
     s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a>"
-    s << "has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
+    s << " has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
     s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
 
     # Simple format the html
