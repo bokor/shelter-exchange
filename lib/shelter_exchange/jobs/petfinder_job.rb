@@ -29,9 +29,9 @@ module ShelterExchange
           File.delete(@csv_filename)
 
           # Log Shelter name and how long it took for each shelter
-          logger.info("#{@shelter.name} :: #{@shelter.id} :: finished in #{Time.now - @start_time}")
+          logger.info("#{@shelter.id} :: #{@shelter.name} :: finished in #{Time.now - @start_time}")
         else
-          logger.info("#{@shelter.name} :: #{@shelter.id} :: has 0 animals")
+          logger.info("#{@shelter.id} :: #{@shelter.name} :: has 0 animals")
         end
       end
 
@@ -57,7 +57,7 @@ module ShelterExchange
             end
           end
         rescue Exception => e
-          logger.info("#{@shelter.name} :: #{@shelter.id} :: failed :: #{e}")
+          logger.info("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e}")
         end
       end
 
