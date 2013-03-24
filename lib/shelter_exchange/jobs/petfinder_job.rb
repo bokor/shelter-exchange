@@ -27,12 +27,12 @@ module ShelterExchange
 
           # Delete the CSV File
           File.delete(@csv_filename)
-        else
-          logger.info("#{@integration.class.humanize} :: #{@shelter.name} has 0 animals")
-        end
 
-        # Log Shelter name and how long it took for each shelter
-        logger.info("#{@integration.class.humanize} :: #{@shelter.name} finished in #{Time.now - @start_time}")
+          # Log Shelter name and how long it took for each shelter
+          logger.info("#{@shelter.name} :: #{@shelter.id} :: finished in #{Time.now - @start_time}")
+        else
+          logger.info("#{@shelter.name} :: #{@shelter.id} :: has 0 animals")
+        end
       end
 
       private
@@ -57,7 +57,7 @@ module ShelterExchange
             end
           end
         rescue Exception => e
-          logger.info("#{@integration.class.humanize} :: #{@shelter.name} failed :: #{e}")
+          logger.info("#{@shelter.name} :: #{@shelter.id} :: failed :: #{e}")
         end
       end
 
