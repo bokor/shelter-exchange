@@ -80,7 +80,7 @@ describe AnimalStatus, "#animals" do
 
     animal_status.should respond_to(:animals)
     animal_status.animals.count.should == 2
-    animal_status.animals.should == [animal1, animal2]
+    animal_status.animals.should include(animal1, animal2)
   end
 end
 
