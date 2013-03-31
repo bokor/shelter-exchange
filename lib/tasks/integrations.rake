@@ -1,6 +1,6 @@
 namespace :integrations do
 
-  desc "Generate Background Jobs for all integrations"
+  desc "Generate Background Jobs for all integrations if necessary"
   task :start => :environment do
     Integration.all.each do |integration|
       shelter = integration.shelter
