@@ -29,18 +29,18 @@ end
 
 # Instance Methods
 #----------------------------------------------------------------------------
-describe AnimalType, "#animals" do
+#describe AnimalType, "#animals" do
 
-  it "should return a list of animals" do
-    animal_type = AnimalType.find(1)
+  #it "should return a list of animals" do
+    #animal_type = AnimalType.gen
 
-    Animal.gen :animal_type => animal_type
-    Animal.gen :animal_type => animal_type
+    #Animal.gen :animal_type => animal_type
+    #Animal.gen :animal_type => animal_type
 
-    animal_type.should respond_to(:animals)
-    animal_type.animals.count.should == 2
-  end
-end
+    #animal_type.should respond_to(:animals)
+    #animal_type.animals.count.should == 2
+  #end
+#end
 
 # Class Methods
 #----------------------------------------------------------------------------

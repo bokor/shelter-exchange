@@ -10,12 +10,23 @@ FactoryGirl.define do
     is_sterilized    true
     color            'black'
     is_mix_breed     true
-    primary_breed    'Labrador Retriever'
-    secondary_breed  'Border Collie'
-    animal_type_id   AnimalType::TYPES[:dog]
-    animal_status_id AnimalStatus::STATUSES[:available_for_adoption]
+    primary_breed    {
+      (Breed.where(:animal_type_id => animal_type, :name => 'Labrador Retriever').first ||
+      Breed.gen(:animal_type => animal_type, :name => 'Labrador Retriever')).name
+    }
+    secondary_breed  {
+      (Breed.where(:animal_type_id => animal_type, :name => 'Border Collie').first ||
+      Breed.gen(:animal_type => animal_type, :name => 'Border Collie')).name
+    }
+    animal_type
+    animal_status
     size             'medium'
     age              'adult'
+    shelter
+
+    #after(:create) do |user, evaluator|
+      #user.name.upcase! if evaluator.upcased
+    #end
     # # status_change_date
     # # arrival_date
     # # hold_time

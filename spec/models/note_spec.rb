@@ -60,10 +60,10 @@ end
 describe Note, "#notable" do
 
   it "should belong to a notable object" do
-    item    = Item.gen
-    animal  = Animal.gen
-    note1 = Note.gen :notable => item
-    note2 = Note.gen :notable => animal
+    item   = Item.gen
+    animal = Animal.gen
+    note1  = Note.gen :notable => item
+    note2  = Note.gen :notable => animal
 
     note1.should respond_to(:notable)
     note1.notable.should == item

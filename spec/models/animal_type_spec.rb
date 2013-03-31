@@ -21,7 +21,7 @@ end
 describe AnimalType, "#animals" do
 
   it "should have many animals" do
-    animal_type = AnimalType.find(1)
+    animal_type = AnimalType.gen
 
     animal1 = Animal.gen :animal_type => animal_type
     animal2 = Animal.gen :animal_type => animal_type
@@ -35,17 +35,20 @@ end
 describe AnimalType, "#breeds" do
 
   it "should have many breeds" do
-    animal_type = AnimalType.find(1)
+    animal_type = AnimalType.gen
+
+    breed1 = Breed.gen(:animal_type => animal_type)
+    breed2 = Breed.gen(:animal_type => animal_type)
 
     animal_type.should respond_to(:breeds)
-    animal_type.breeds.count.should == 263
+    animal_type.breeds.count.should == 2
   end
 end
 
 describe AnimalType, "#accommodations" do
 
   it "should have many accommodations" do
-    animal_type = AnimalType.find(1)
+    animal_type = AnimalType.gen
 
     accommodation1 = Accommodation.gen :animal_type => animal_type
     accommodation2 = Accommodation.gen :animal_type => animal_type
@@ -59,7 +62,7 @@ end
 describe AnimalType, "#capacities" do
 
   it "should have many capacities" do
-    animal_type = AnimalType.find(1)
+    animal_type = AnimalType.gen
 
     capacity1 = Capacity.gen :animal_type => animal_type
     capacity2 = Capacity.gen :animal_type => animal_type
