@@ -13,7 +13,7 @@ class Alert < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :title, :presence => true
-  validates :severity, :presence => { :message => 'needs to be selected' }
+  validates :severity, :inclusion => { :in => SEVERITIES, :message => "needs to be selected" }
 
   # Scopes
   #----------------------------------------------------------------------------

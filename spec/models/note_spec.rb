@@ -59,17 +59,19 @@ end
 
 describe Note, "#notable" do
 
+  it "should respond to notable" do
+    Note.gen.should respond_to(:notable)
+  end
+
   it "should belong to a notable object" do
     item   = Item.gen
     animal = Animal.gen
     note1  = Note.gen :notable => item
     note2  = Note.gen :notable => animal
 
-    note1.should respond_to(:notable)
     note1.notable.should == item
     note1.notable.should be_instance_of(Item)
 
-    note2.should respond_to(:notable)
     note2.notable.should == animal
     note2.notable.should be_instance_of(Animal)
   end
