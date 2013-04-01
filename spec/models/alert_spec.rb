@@ -93,12 +93,14 @@ end
 
 #describe Alert, ".with_alertable" do
 
-  #it "should return only the alerts with alertable objects" do
-    #alert1 = Alert.gen
-    #alert2 = Alert.gen :alertable => Animal.gen
+  #it "should include alertable objects" do
+    #Alert.gen :alertable => Animal.gen
 
     #Alert.with_alertable.count.should == 1
     #Alert.with_alertable.all.should include(alert2)
+    #Alert.should_receive(:with_alertable).with(:include => :alertable)
+    #alert.animal.should be_loaded
+    #alert.instance_variables[:@relation].should be_a_kind_of(Animal)
   #end
 #end
 
