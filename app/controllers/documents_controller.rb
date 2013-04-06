@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(params[:document].merge(:attachable => @attachable))
     if @document.save
       respond_to do |format|
-        json = DocumentPresenter.new(@document).to_uploader.to_json
+        json = [DocumentPresenter.new(@document).to_uploader].to_json
         format.html { render :json => json, :content_type => 'text/html', :layout => false }
         format.json { render :json => json	}
       end

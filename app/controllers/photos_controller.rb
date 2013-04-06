@@ -6,8 +6,9 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo].merge(:attachable => @attachable))
     if @photo.save
       respond_to do |format|
-        format.html { render :json => [PhotoPresenter.new(@photo).to_uploader].to_json, :content_type => 'text/html', :layout => false }
-        format.json { render :json => [PhotoPresenter.new(@photo).to_uploader].to_json	}
+        json = [PhotoPresenter.new(@photo).to_uploader].to_json
+        format.html { render :json => json, :content_type => 'text/html', :layout => false }
+        format.json { render :json => json	}
       end
     else
       render :json => [{:error => @photo.errors[:base].to_sentence}]
