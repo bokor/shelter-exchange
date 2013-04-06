@@ -25,7 +25,9 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Notes
     #----------------------------------------------------------------------------
-    resources :notes, :only => [:create, :edit, :update, :destroy]
+    resources :notes, :only => [:show, :create, :edit, :update, :destroy] do
+      resources :documents, :only => [:create, :destroy]
+    end
 
     # Comments
     #----------------------------------------------------------------------------
@@ -120,6 +122,10 @@ ShelterExchangeApp::Application.routes.draw do
     # Photos
     #----------------------------------------------------------------------------
     resources :photos, :only => [:destroy]
+
+    # Documents
+    #----------------------------------------------------------------------------
+    resources :documents, :only => [:destroy]
 
     # Animals
     #----------------------------------------------------------------------------

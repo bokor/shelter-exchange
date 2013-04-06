@@ -21,14 +21,14 @@ $(function() {
 			position: {
 				my: 'right center',
 				adjust: { y: -10, x: -35 }
-			}	
+			}
 		}, event).each(function(i) { // IE ONLY NOT SURE IF IT WORKS YET
 			$.attr(this, 'oldtitle', $.attr(this, 'title'));
 			this.removeAttribute('title');
 		});
 	});
 
-	
+
 	$('.tooltip_dialog').live('click', function(event) {
 		event.preventDefault();
 		$(this).qtip({
@@ -41,7 +41,7 @@ $(function() {
 				}
 			},
 			position: {
-				my: 'center', 
+				my: 'center',
 				at: 'center',
 				target: $(window),
 				adjust: { resize: true }
@@ -49,8 +49,8 @@ $(function() {
 			show: {
 				event: event.type, // Use the same show event as the one that triggered the event handler
 				ready: true, // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
-				solo: true, 
-				modal: true 
+				solo: true,
+				modal: true
 			},
 			hide: false,
 			style: {
@@ -61,19 +61,19 @@ $(function() {
 					var fn = api.elements.target.attr('data-dialog-blur');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
-					} 
+					}
 				},
 				show: function(event, api) {
 					var fn = api.elements.target.attr('data-dialog-show');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
-					} 
+					}
 				}
 			}
 		});
-	});	
-		
-	$('.photo_dialog').live('click', function(event) {
+	});
+
+	$('.photo_dialog, .document_dialog').live('click', function(event) {
 		event.preventDefault();
 		$(this).qtip({
 			overwrite: false,
@@ -85,7 +85,7 @@ $(function() {
 				}
 			},
 			position: {
-				my: 'center', 
+				my: 'center',
 				at: 'center',
 				target: $(window),
 				adjust: { resize: true }
@@ -93,8 +93,8 @@ $(function() {
 			show: {
 				event: event.type, // Use the same show event as the one that triggered the event handler
 				ready: true, // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
-				solo: true, 
-				modal: true 
+				solo: true,
+				modal: true
 			},
 			hide: false,
 			style: {
@@ -105,13 +105,13 @@ $(function() {
 					var fn = api.elements.target.attr('data-dialog-blur');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
-					} 
+					}
 				},
 				show: function(event, api) {
 					var fn = api.elements.target.attr('data-dialog-show');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
-					} 
+					}
 				}
 			}
 		});
@@ -123,13 +123,13 @@ $(function() {
 /*----------------------------------------------------------------------------*/
 $(function(){
 	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(e) {
-	  if (e.type == 'mouseover') {
+	  if (e.type == 'mouseover' || e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {
 	    $(this).removeClass("hover");
 	  }
 	});
-	
+
 	$(".alert, .note").live("click", function(e){
 		var target = $(e.target);
         if(target.is("a") || target.is("input")) { //checks if other things are clicked first
@@ -147,7 +147,7 @@ $(function(){
 			// Users.selectUser(<%=user.id%>);
 		}
 	});
-	
+
 });
 
 

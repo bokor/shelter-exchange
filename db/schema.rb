@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125041505) do
+ActiveRecord::Schema.define(:version => 20130406061014) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -187,6 +187,19 @@ ActiveRecord::Schema.define(:version => 20121125041505) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "documents", :force => true do |t|
+    t.string   "document"
+    t.string   "original_name"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "documents", ["attachable_id", "attachable_type"], :name => "index_documents_on_attachable_id_and_attachable_type"
+  add_index "documents", ["attachable_id"], :name => "index_documents_on_attachable_id"
+  add_index "documents", ["attachable_type"], :name => "index_documents_on_attachable_type"
+
   create_table "integrations", :force => true do |t|
     t.string   "type"
     t.string   "username"
@@ -332,8 +345,8 @@ ActiveRecord::Schema.define(:version => 20121125041505) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
-    t.boolean  "is_kill_shelter", :default => false,    :null => false
-    t.decimal  "lat",             :precision => 15, :scale => 10    
+    t.boolean  "is_kill_shelter",                                 :default => false,    :null => false
+    t.decimal  "lat",             :precision => 15, :scale => 10
     t.decimal  "lng",             :precision => 15, :scale => 10
     t.string   "email"
     t.string   "logo"
@@ -341,7 +354,7 @@ ActiveRecord::Schema.define(:version => 20121125041505) do
     t.string   "time_zone"
     t.string   "access_token"
     t.string   "street_2"
-    t.string   "status",          :default => "active"
+    t.string   "status",                                          :default => "active"
     t.text     "status_reason"
   end
 

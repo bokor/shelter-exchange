@@ -5,8 +5,10 @@
 		$(function() {
 			Comments.initializeDialog();
 		});
-	</script>
-	
+  </script>
+
+  <%= render "file_uploader/upload_template" %>
+	<%= render "file_uploader/download_template" %>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -19,9 +21,9 @@
 			<%= link_to "New search", parents_path %>
 		</div>
 	</div>
-	
+
 	<div class="page_content">
-		
+
 		<div class="parent_details">
 			<div id="address">
 				<h3>Address:</h3>
@@ -47,33 +49,33 @@
 				</ul>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 	</div>
-	
+
 	<div class="page_content">
 		<div id="notes" class="note_list">
 			<%= render @parent.notes %>
 		</div>
 	</div>
-	
+
 	<div id="adoption_history_heading"  class="section_heading blue">
 		<h2>Adoption History</h2>
 	</div>
-	
+
 	<div id="placement_adopted" class="page_content">
 		<table class="placement_list">
 			<%= render @adopted_placements %>
 		</table>
 	</div>
-		
+
 	<div id="foster_care_history_heading" class="section_heading blue">
 		<h2>Foster Care History</h2>
 	</div>
-	
+
 	<div id="placement_foster_care" class="page_content">
 		<table class="placement_list">
 			<%= render @foster_care_placements %>
@@ -90,7 +92,7 @@
 		<li><%= link_to 'Add note to parent', "#", :id => "add_note_link", :class => "button" -%></li>
 		<li><%= link_to 'Create an animal placement', "#", :id => "add_placement_link", :class => "button" -%></li>
 	</ul>
-	
+
 	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @parent.name %></h2>
 		<div id="create_note_errors"></div>
@@ -113,8 +115,8 @@
 			<ul>
 				<li class="complex">
 					<span class="left">
-						<a href="#" class="tooltip_dialog" 
-									data-dialog-element="#dialog_animal_search" 
+						<a href="#" class="tooltip_dialog"
+									data-dialog-element="#dialog_animal_search"
 									data-dialog-title="&nbsp;">Search for animal</a> <span class='req'>*</span></a>
 					</span>
 					<span class="right">
@@ -131,9 +133,9 @@
 				</li>
 			</ul>
 		<% end %>
-	</div>	
-	
+	</div>
+
 	<%= render "dialog_animal_search" %>
-	
+
 <% end %>
-	
+
