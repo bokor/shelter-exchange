@@ -103,11 +103,11 @@
 							<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player", :title => "Video of #{@animal.name}" %>
 						</span>
 						<% end %>
-						<span class="add_photos_link">
-							<a href="#" id="add_photos_link" class="photo_dialog button red"
-										data-dialog-element="#dialog_add_photos"
-										data-dialog-blur="Photos.refreshGallery('animals', <%=@animal.id%>)"
-										data-dialog-title="Add or Delete Photos for <%=@animal.name%>">Add additional photos</a>
+            <span class="add_photos_link">
+              <%= link_to "Add additional photos", "#", :id => "add_photos_link", :class => "photo_dialog button red",
+                :"data-dialog-blur"    => "Photos.refreshGallery('animals', #{@animal.id})",
+                :"data-dialog-element" => "#dialog_add_photos",
+                :"data-dialog-title"   => "Add or Delete Photos for #{@animal.name}" %>
 						</span>
 					</div>
 			    </td>

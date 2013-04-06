@@ -10,7 +10,10 @@
 </script>
 
 <div id="<%= "note_#{note.id}" %>" class="note">
-	<span class="created_date"><%= format_date(:short, note.created_at) %></span>
+  <span class="created_date"><%= format_date(:short, note.created_at) %></span>
+  <% unless @documents.blank? %>
+    <span class="attachment_icon"><%= image_tag "icon_paperclip.png" %></span>
+  <% end %>
 	<span class="details">
 		<span class="title"><%= note.title %></span>
 	</span>
@@ -18,9 +21,10 @@
 		<% if note.shelter_id == @current_shelter.id %>
       <% if controller_name != "communities" %>
         <span class="add_documents_link">
-          <%= link_to "Add attachments", "#", :id => "add_documents_link", :class => "document_dialog",
+          <%= link_to "Attach files", "#", :id => "add_documents_link", :class => "document_dialog",
+              :"data-dialog-blur"    => "Notes.refreshNote(#{note.id})",
               :"data-dialog-element" => "#dialog_add_documents_#{note.id}",
-              :"data-dialog-title" => "Add or Remove Attachments for the Note" %>
+              :"data-dialog-title"   => "Add or Remove attachments" %>
 				</span>&nbsp;|&nbsp;
 				<% if can?(:update, Note) %>
 				<span class="edit_link">
@@ -36,11 +40,11 @@
 		<% end %>
 	</span>
   <div class="description" id="description_note_<%=note.id%>">
-    <p><%= note.description.blank? ? "No description provided" : note.description %></p>
-    <% if @documents %>
-      <ul>
+    <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
+    <% unless @documents.blank? %>
+      <ul><strong>Attachments:</strong>
         <% @documents.each do |doc| %>
-          <li><%= link_to doc.original_name, doc.document.url%></li>
+          <li><%= link_to doc.original_name, doc.document.url, :target => "_new" %></li>
         <% end %>
       </ul>
     <% end %>

@@ -15,5 +15,12 @@ var Notes = {
 			$(this).remove();
 		});
 		$("#note_"+id).fadeIn(1000);
-	}
+	},
+  refreshNote: function(id){
+    $.ajax({
+      url: "/notes/"+id,
+      type: "get",
+   	  dataType: "script"
+    });
+  },
 };

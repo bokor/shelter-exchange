@@ -1,42 +1,41 @@
 <div id="dialog_add_photos" class="dialog">
 	<div class="wrapper">
-		
-		<p>A maximum of 3 additional photos can be added. (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</p><br>
-		
+	  <p>A maximum of 3 additional photos can be added. (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</p><br>
+
 		<%= form_for ([@animal, Photo.new]), :html => { :multipart => true, :id => "photo_uploader"  } do |f| %>
-			<div class="row fileupload-buttonbar">
-				<div class="span7">
-			   		<span class="btn btn-success fileinput-button">
-			        	<i class="icon-plus icon-white"></i>
-			          	<span>Choose photos...</span>
-			            <input type="file" name="photo[image]" multiple>
-			        </span>
+		  <div class="row fileupload-buttonbar">
+			  <div class="span7">
+			    <span class="btn btn-success fileinput-button">
+			      <i class="icon-plus icon-white"></i>
+			      <span>Choose photos...</span>
+			      <input type="file" name="photo[image]" multiple>
+			    </span>
 					<button type="button" class="btn btn-warning cancel" onclick="Photos.closeDialog();">
 						<i class="icon-remove icon-white"></i>
 						<span>Close</span>
 					</button>
-			  	</div>
-			    <!-- The global progress information -->
-			  	<div class="span5 fileupload-progress fade">
-					<!-- The global progress bar -->
+			  </div>
+
+        <!-- The global progress information -->
+			  <div class="span5 fileupload-progress fade">
+				  <!-- The global progress bar -->
 					<div class="progress progress-success progress-striped active">
 			 			<div class="bar" style="width:0%;"></div>
 					</div>
-					<!-- The extended global progress information -->
-					<!-- <div class="progress-extended">&nbsp;</div> -->
-				</div>
+					<div class="fileupload-message">Uploading please wait...</div>
+        </div>
+
 			</div>
-			
+
 			<!-- The loading indicator is shown during file processing -->
 			<div class="fileupload-loading"></div>
-			
+
 			<!-- The table listing the files available for upload/download -->
 			<table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
 		<% end %>
-			    
-		
-		<%= render "photos/upload_template" %>
-		<%= render "photos/download_template" %>
-		
+
+	  <%= render "file_uploader/upload_template" %>
+	  <%= render "file_uploader/download_template" %>
 	</div>
 </div>
+

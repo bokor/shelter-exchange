@@ -25,7 +25,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Notes
     #----------------------------------------------------------------------------
-    resources :notes, :only => [:create, :edit, :update, :destroy] do
+    resources :notes, :only => [:show, :create, :edit, :update, :destroy] do
       resources :documents, :only => [:create, :destroy]
     end
 

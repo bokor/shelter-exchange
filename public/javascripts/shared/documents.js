@@ -6,7 +6,7 @@ var Documents = {
   initUploader: function(attachable_id, documents, maxFilesAllowed){
     // Initialize JQuery File Upload
     $('#document_uploader_' + attachable_id).fileupload({
-      maxFileSize: 5000000,
+      //maxFileSize: 5000000,
       autoUpload: true,
       maxNumberOfFiles: maxFilesAllowed
       // dropZone: null
