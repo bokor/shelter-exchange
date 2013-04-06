@@ -93,8 +93,9 @@
 
 
 
-
-
+/* File Uploader
+-----------------------------------------------------------------------------*/
+.fileupload-message {margin-top:-5px; margin-bottom:5px; font-weight:bold; color:#ee3124; }
 
 
 
@@ -203,7 +204,7 @@
 /*.show_animals table.animal_details td.metadata ul .hold_time{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
 .show_animals table.animal_details td.metadata ul .euthaniasia_date{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}*/
 
-.show_animals #dialog_add_photos.dialog {width: 680px; height: 450px; }
+.show_animals .dialog {width: 680px; height: 450px; }
 
 /* Show Animal :: Photo Gallery
 -----------------------------------------------------------------------------*/
@@ -406,7 +407,7 @@
 .index_communities #sidebar { display: none;width: 0; }
 
 
-/* Commmunities :: Search Section :: Search Bar */   
+/* Commmunities :: Search Section :: Search Bar */
 /******************************************************************/
 .communities .search_content {padding-bottom: 0px;padding-top: 10px;}
 .communities .search_content .toggle_buttons{margin: 0 0 0 15px;}
@@ -415,7 +416,7 @@
 .communities .search_form form input{width: 100%;}
 
 
-/* Commmunities :: Helper Links :: Layout */   
+/* Commmunities :: Helper Links :: Layout */
 /******************************************************************/
 .communities .helper_links{text-align:right;float:right;}
 .communities .helper_links .toggle_buttons{margin-left: 5px;}
@@ -424,7 +425,7 @@
 .communities #narrow_search_results{display:none; height: 75px;}
 
 
-/* Commmunities :: Helper Links :: Narrow your Search results*/   
+/* Commmunities :: Helper Links :: Narrow your Search results*/
 /******************************************************************/
 .communities #form_filters table {vertical-align: top; width:100%;}
 .communities #form_filters table tr{vertical-align: top; width:100%;}
@@ -440,7 +441,7 @@
     .communities #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 
 
-/* Commmunities :: Search Section :: Layout */   
+/* Commmunities :: Search Section :: Layout */
 /******************************************************************/
 .communities .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
 
@@ -671,7 +672,7 @@
 .activity_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
 
 .activity{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
-	
+
 .activity .type{display:inline-block; width: 65px; height: 24px; line-height: 50px; text-align:center;}
 	.activity.type img {text-align:center; vertical-align:middle;}
 
@@ -1028,13 +1029,17 @@
 .note {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
 
 .note .created_date {display:inline-block; width: 10%;color:#666; font-size: 10px; letter-spacing: -1px;  }
-.note .details{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
+.note .attachment_icon {margin-left: -12px}
+  .note .attachment_icon img { height: 15px; }
+
+.note .details{display:inline-block; width: 56%; vertical-align:top; padding-left: 5px;}
 	.note .title {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:8px;}
 
-.note .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
+.note .action_links {display:inline-block;float: right; width: 30%; text-align: right;font-size: 10px;}
 
-.note .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em;}
+.note .description { clear:both; border-top: 1px solid #bbb; padding: 10px 4%; width: 92%; display:none; line-height: 2em;}
 
+.note .description p {display:inline-block;font-size: 13px; line-height: 1.75em; padding-top:8px; color: #222;}
 
 
 

@@ -1,0 +1,40 @@
+<div id="dialog_add_documents_<%=attachable.id %>" class="dialog">
+	<div class="wrapper">
+    <p>A maximum of 4 attachments can be added per <%= attachable.class.to_s.downcase %>.</p><br>
+
+    <%= form_for ([attachable, Document.new]), :html => { :multipart => true, :id => "document_uploader_#{attachable.id}" } do |f| %>
+		  <div class="row fileupload-buttonbar">
+			  <div class="span7">
+			    <span class="btn btn-success fileinput-button">
+			      <i class="icon-plus icon-white"></i>
+			      <span>Choose attachment...</span>
+			      <input type="file" name="document[document]" multiple>
+			    </span>
+					<button type="button" class="btn btn-warning cancel" onclick="Documents.closeDialog();">
+						<i class="icon-remove icon-white"></i>
+						<span>Close</span>
+					</button>
+        </div>
+
+			  <!-- The global progress information -->
+			  <div class="span5 fileupload-progress fade">
+				  <!-- The global progress bar -->
+					<div class="progress progress-success progress-striped active">
+            <div class="bar" style="width:0%;"></div>
+          </div>
+          <div class="fileupload-message">Uploading please wait...</div>
+			  </div>
+		  </div>
+
+  	  <!-- The loading indicator is shown during file processing -->
+		  <div class="fileupload-loading"></div>
+
+		  <!-- The table listing the files available for upload/download -->
+		  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+	  <% end %>
+
+    <div id="template-upload"></div>
+    <div id="template-download"></div>
+	</div>
+</div>
+

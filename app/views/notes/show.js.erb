@@ -1,0 +1,6 @@
+$('#note_<%=@note.id%>').replaceWith("<%= escape_javascript(render @note) %>");
+$('#note_<%=@note.id%>').show().effect("highlight", {}, 2000);
+$("#note_<%=@note.id%> .description").show();
+
+<% flash.discard %>
+

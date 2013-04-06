@@ -11,6 +11,8 @@ class Note < ActiveRecord::Base
   belongs_to :shelter, :readonly => true
   belongs_to :notable, :polymorphic => true
 
+  has_many :documents, :as => :attachable, :dependent => :destroy
+
   # Validations
   #----------------------------------------------------------------------------
   validates :title, :presence => true

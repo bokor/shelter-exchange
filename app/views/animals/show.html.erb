@@ -8,7 +8,9 @@
 			Photos.initGallery(<%=raw @gallery_photos %>);
 			Photos.initUploader(<%= raw @uploader_photos %>, <%=Photo::TOTAL_ADDITIONAL%>);
 		});
-	</script>
+  </script>
+  <%= render "file_uploader/upload_template" %>
+	<%= render "file_uploader/download_template" %>
 <% end %>
 
 <%= content_for :page_content do %>
@@ -45,38 +47,38 @@
 			</tr>
 		</table>
 	</div>
-	
+
 	<div class="page_content">
-		
+
 		<% if @animal.available? %>
 			<div class="social">
 				<span class="text_label">Share and promote:</span>
 				<span class="facebook">
-					<div class="fb-like" data-send="false" 
-										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					<div class="fb-like" data-send="false"
+										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>"
 										 data-layout="button_count"
 										 data-show-faces="false"></div>
 				</span>
 				<span class="twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" 
-					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange"
+					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>"
 					   data-text="<%="#{@animal.name} - #{@animal.full_breed} - #{@current_shelter.city}, #{@current_shelter.state}" %>">Tweet</a>
 				</span>
 				<span class="pinterest">
 					<a href="http://pinterest.com/pin/create/button/?url=<%= public_save_a_life_url(@animal, :subdomain => "www")%>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @current_shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
 				</span>
 				<!-- <span><%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www") %></span> -->
-			</div>	
+			</div>
 		<% end %>
-		 
+
 		<table class="animal_details">
 			<tr>
 				<td class="metadata">
-					
+
 					<h3>Details:</h3>
 					<ul>
 						<li><p><b>Age:</b>
-								<span><%= @animal.age.present? ? @animal.age.humanize : "N/A" %> 
+								<span><%= @animal.age.present? ? @animal.age.humanize : "N/A" %>
 									  	<%= "(#{humanize_dob(@animal.date_of_birth)})".html_safe if @animal.date_of_birth.present? %></span></p></li>
 						<li><p><b>Sex:</b><span><%= @animal.sex.humanize unless @animal.sex.blank? %> <% if @animal.is_sterilized %>(Sterilized)<% end %></span></p></li>
 						<li><p><b>Weight:</b><span><%= @animal.weight.present? ? @animal.weight : "N/A" %></span></p></li>
@@ -94,20 +96,20 @@
 					<% end %>
 				</td>
 				<td class="image">
-					
+
 					<div id="photo_gallery"></div>
-					
+
 					<div class="action_links">
 						<% unless @animal.video_url.blank? %>
 						<span class="watch_video_link">
 							<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player", :title => "Video of #{@animal.name}" %>
 						</span>
 						<% end %>
-						<span class="add_photos_link">
-							<a href="#" id="add_photos_link" class="photo_dialog button red" 
-										data-dialog-element="#dialog_add_photos" 
-										data-dialog-blur="Photos.refreshGallery('animals', <%=@animal.id%>)"
-										data-dialog-title="Add or Delete Photos for <%=@animal.name%>">Add additional photos</a>
+            <span class="add_photos_link">
+              <%= link_to "Add additional photos", "#", :id => "add_photos_link", :class => "photo_dialog button red",
+                :"data-dialog-blur"    => "Photos.refreshGallery('animals', #{@animal.id})",
+                :"data-dialog-element" => "#dialog_add_photos",
+                :"data-dialog-title"   => "Add or Delete Photos for #{@animal.name}" %>
 						</span>
 					</div>
 			    </td>
@@ -131,7 +133,7 @@
 				</td>
 			</tr>
 		</table>
-		
+
 		<% if @current_shelter.kill_shelter? %>
 		<table class="euthanasia_info">
 			<tr>
@@ -146,38 +148,38 @@
 		</table>
 		<% end %>
 
-		
+
 	</div>
-	
+
 	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
 			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js), 
+				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js),
 				                          :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>
 	</div>
-	
+
 	<div class="page_content">
 		<div id="notes" class="note_list">
 			<%= render @notes %>
 		</div>
 	</div>
-	
+
 	<div id="status_history_heading" class="section_heading orange">
 		<h2>Status history</h2>
 	</div>
-	
+
 	<div class="page_content">
 		<div id="status_histories" class="status_history_list">
 			<%= render @status_histories %>
 		</div>
 	</div>
-	
-	<%= render "photos/dialog_add_photos" %>
+
+  <%= render "photos/dialog_add_photos" %>
 
 <% end %>
 
@@ -188,7 +190,7 @@
 		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
 		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
 	</ul>
-	
+
 	<div id="create_alert" class="box hide red">
 		<h2>Add an alert for <%= @animal.name %></h2>
 		<div id="create_alert_errors"></div>
@@ -203,7 +205,7 @@
 			</ul>
 		<% end %>
 	</div>
-	
+
 	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @animal.name %></h2>
 		<div id="create_note_errors"></div>
@@ -219,7 +221,7 @@
 		<% end %>
 		<div id="another_note_category"></div>
 	</div>
-	
+
 	<div id="create_task" class="box hide blue">
 		<h2>Add a task for <%= @animal.name %></h2>
 		<div id="create_task_errors"></div>
@@ -233,7 +235,7 @@
 			</ul>
 		<% end %>
 	</div>
-	
+
 	<div id="animal_alerts">
 		<h2>Alerts</h2>
 		<div id="alerts" class="alert_list">
@@ -247,4 +249,4 @@
 	</div>
 
 <% end %>
-	
+

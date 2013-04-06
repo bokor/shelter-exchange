@@ -1,12 +1,12 @@
 class Api::V1::AnimalPresenter < Presenter
-  
+
   def initialize(animal)
     @animal = animal
   end
 
   def as_json(*args)
-    { 
-      :animal => { 
+    {
+      :animal => {
     	  :id => @animal.id,
         :name => @animal.name,
         :type => @animal.animal_type.name,
@@ -38,23 +38,23 @@ class Api::V1::AnimalPresenter < Presenter
       }
     }
   end
-  
+
   private
-  
+
     def you_tube_url
       unless @animal.video_url.blank?
         you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5]
         "http://www.youtube.com/watch?v=#{you_tube_id}" unless you_tube_id.blank?
       end
     end
-  
+
     def photos
       unless @animal.photos.blank?
-        @animal.photos.collect do |photo| 
-          { 
+        @animal.photos.collect do |photo|
+          {
             :photo => {
-              :thumbnail => photo.image.thumb.url, 
-              :small => photo.image.small.url, 
+              :thumbnail => photo.image.thumb.url,
+              :small => photo.image.small.url,
               :large => photo.image.url
             }
           }
