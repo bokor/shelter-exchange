@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     @attachable = find_polymorphic_class
     @photos = @attachable.photos
     respond_to do |format|
-      format.json { render :json => @gallery_photos = PhotoPresenter.new(@photos).to_gallery }
+      format.json { render :json => @gallery_photos = PhotoPresenter.as_gallery_collection(@photos) }
     end
   end
 end

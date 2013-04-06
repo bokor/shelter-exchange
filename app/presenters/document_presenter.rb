@@ -1,27 +1,20 @@
 class DocumentPresenter < Presenter
 
-  def initialize(documents)
-    @documents = documents
+  def initialize(document)
+    @document = document
+  end
+
+  def self.as_uploader_collection(documents)
+    documents.collect{|document| self.new(document).to_uploader }.flatten.to_json
   end
 
   def to_uploader
-    if @documents.is_a?(Array)
-      @documents.collect{|object| as_uploader(object)}.to_json
-    elsif @documents.is_a?(Document)
-      [as_uploader(@documents)].to_json
-    end
-  end
-
-  #-----------------------------------------------------------------------------
-  private
-
-  def as_uploader(document)
-    {
-      "name"        => document.original_name,
-      "url"         => document.document.url,
-      "delete_url"  => document_path(document),
-      "delete_type" => "DELETE"
-    }
+    [{
+      :name        => @document.original_name,
+      :url         => @document.document.url,
+      :delete_url  => document_path(@document),
+      :delete_type => "DELETE"
+    }]
   end
 end
 

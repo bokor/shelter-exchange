@@ -11,18 +11,19 @@ class AnimalsController < ApplicationController
 
   def show
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
-    # Photos
-    @photos = @animal.photos
-    @gallery_photos = PhotoPresenter.new(@photos).to_gallery
-    @uploader_photos = PhotoPresenter.new(@photos).to_uploader
 
-    @notes = @animal.notes.includes(:documents).all
+    # Photos
+    @photos          = @animal.photos
+    @gallery_photos  = PhotoPresenter.as_gallery_collection(@photos)
+    @uploader_photos = PhotoPresenter.as_uploader_collection(@photos)
+
+    @notes            = @animal.notes.includes(:documents).all
     @status_histories = @animal.status_histories.includes(:animal_status).all
-    @alerts = @animal.alerts.active.all
-    @overdue_tasks = @animal.tasks.overdue.active.all
-  	@today_tasks = @animal.tasks.today.active.all
-  	@tomorrow_tasks = @animal.tasks.tomorrow.active.all
-  	@later_tasks = @animal.tasks.later.active.all
+    @alerts           = @animal.alerts.active.all
+    @overdue_tasks    = @animal.tasks.overdue.active.all
+    @today_tasks      = @animal.tasks.today.active.all
+    @tomorrow_tasks   = @animal.tasks.tomorrow.active.all
+    @later_tasks      = @animal.tasks.later.active.all
   end
 
   def edit

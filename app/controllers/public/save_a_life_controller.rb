@@ -12,7 +12,7 @@ class Public::SaveALifeController < Public::ApplicationController
     @shelter = @animal.shelter
     raise ActiveRecord::RecordNotFound if @shelter.inactive?
     @photos = @animal.photos
-    @gallery_photos = PhotoPresenter.new(@photos).to_gallery
+    @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
   end
 
   def find_animals_in_bounds

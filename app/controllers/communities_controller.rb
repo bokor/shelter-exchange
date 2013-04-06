@@ -9,7 +9,7 @@ class CommunitiesController < ApplicationController
     @shelter = @animal.shelter
     raise ShelterExchange::Errors::ShelterInactive if @shelter.inactive?
     @photos = @animal.photos
-    @gallery_photos = PhotoPresenter.new(@photos).to_gallery
+    @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
 
     @notes = @animal.notes.all
     @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists?
