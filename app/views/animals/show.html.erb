@@ -8,7 +8,9 @@
 			Photos.initGallery(<%=raw @gallery_photos %>);
 			Photos.initUploader(<%= raw @uploader_photos %>, <%=Photo::TOTAL_ADDITIONAL%>);
 		});
-	</script>
+  </script>
+  <%= render "file_uploader/upload_template" %>
+	<%= render "file_uploader/download_template" %>
 <% end %>
 
 <%= content_for :page_content do %>
