@@ -1,3 +1,13 @@
+<%
+    # Documents
+    @documents = note.documents
+    @uploader_documents = DocumentPresenter.as_uploader(@documents)
+%>
+<script type="text/javascript">
+  $(function() {
+    Documents.initUploader(<%= note.id %>, <%= raw @uploader_documents %>, <%=Document::MAX_TOTAL%>);
+  });
+</script>
 <div id="<%= "note_#{note.id}" %>" class="note">
 	<span class="created_date"><%= format_date(:short, note.created_at) %></span>
 	<span class="details">
@@ -5,7 +15,12 @@
 	</span>
 	<span class="action_links">
 		<% if note.shelter_id == @current_shelter.id %>
-			<% if controller_name != "communities" %>
+      <% if controller_name != "communities" %>
+        <span class="add_documents_link">
+          <%= link_to "Add attachments", "#", :id => "add_documents_link", :class => "document_dialog",
+              :"data-dialog-element" => "#dialog_add_documents_#{note.id}",
+              :"data-dialog-title" => "Add or Delete Documents for #{note.title}" %>
+				</span>&nbsp;|&nbsp;
 				<% if can?(:update, Note) %>
 				<span class="edit_link">
 					<%= link_to "Edit", edit_note_path(note), :remote => true %>
@@ -13,11 +28,22 @@
 				<% end %>
 				<% if can?(:destroy, Note) %>
 				<span class="delete_link">&nbsp;|&nbsp;
-					<%= link_to 'Delete', note, :confirm => "Are you sure you want to delete? This note will no longer be displayed on this record.", :method => :delete, :remote => true %>	
+					<%= link_to 'Delete', note, :confirm => "Are you sure you want to delete? This note will no longer be displayed on this record.", :method => :delete, :remote => true %>
 				</span>
 				<% end %>
 			<% end %>
 		<% end %>
 	</span>
-	<p class="description" id="<%= "description_note_#{note.id}" %>"><%= note.description.blank? ? "No description provided" : note.description %></p> 
+  <div class="description" id="description_note_<%=note.id%>">
+    <p><%= note.description.blank? ? "No description provided" : note.description %></p>
+    <% if @documents %>
+      <ul>
+        <% @documents.each do |doc| %>
+          <li><%= link_to doc.original_name, doc.document.url%></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <%= render "documents/dialog_add_documents", :attachable => note %>
 </div>

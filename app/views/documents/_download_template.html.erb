@@ -14,14 +14,8 @@
 	    </button>
 		</td>
 	{% } else { %}
- 		<td class="preview">
-		  {% if (file.thumbnail_url) { %}
-			  <img src="{%=file.thumbnail_url%}">
-			  <!--<a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}" target="_new"><img src="{%=file.thumbnail_url%}"></a>-->
-		  {% } %}
-		</td>
-		<td class="name" style="width: 325px;">
-			{%=file.name%}
+		<td class="name" colspan="2" style="width: 325px;">
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}" target="_new">{%=file.name%}</a>
 		</td>
 		<td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
 		<td colspan="2"></td>
