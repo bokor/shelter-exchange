@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo].merge(:attachable => @attachable))
     if @photo.save
       respond_to do |format|
-        json = [PhotoPresenter.new(@photo).to_uploader].to_json
+        json = PhotoPresenter.new(@photo).to_uploader
         format.html { render :json => json, :content_type => 'text/html', :layout => false }
         format.json { render :json => json	}
       end
@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     @attachable = find_polymorphic_class
     @photos = @attachable.photos
     respond_to do |format|
-      format.json { render :json => @gallery_photos = PhotoPresenter.as_gallery(@photos) }
+      format.json { render :json => @gallery_photos = PhotoPresenter.new(@photos).to_gallery }
     end
   end
 end

@@ -1,7 +1,7 @@
 <%
     # Documents
     @documents = note.documents
-    @uploader_documents = DocumentPresenter.as_uploader(@documents)
+    @uploader_documents = DocumentPresenter.new(@documents).to_uploader
 %>
 <script type="text/javascript">
   $(function() {

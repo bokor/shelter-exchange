@@ -13,8 +13,8 @@ class AnimalsController < ApplicationController
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
     # Photos
     @photos = @animal.photos
-    @gallery_photos = PhotoPresenter.as_gallery(@photos)
-    @uploader_photos = PhotoPresenter.as_uploader(@photos)
+    @gallery_photos = PhotoPresenter.new(@photos).to_gallery
+    @uploader_photos = PhotoPresenter.new(@photos).to_uploader
 
     @notes = @animal.notes.includes(:documents).all
     @status_histories = @animal.status_histories.includes(:animal_status).all
