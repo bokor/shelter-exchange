@@ -8,6 +8,7 @@
     Documents.initUploader(<%= note.id %>, <%= raw @uploader_documents %>, <%=Document::MAX_TOTAL%>);
   });
 </script>
+
 <div id="<%= "note_#{note.id}" %>" class="note">
 	<span class="created_date"><%= format_date(:short, note.created_at) %></span>
 	<span class="details">
@@ -19,7 +20,7 @@
         <span class="add_documents_link">
           <%= link_to "Add attachments", "#", :id => "add_documents_link", :class => "document_dialog",
               :"data-dialog-element" => "#dialog_add_documents_#{note.id}",
-              :"data-dialog-title" => "Add or Delete Documents for #{note.title}" %>
+              :"data-dialog-title" => "Add or Remove Attachments for the Note" %>
 				</span>&nbsp;|&nbsp;
 				<% if can?(:update, Note) %>
 				<span class="edit_link">
