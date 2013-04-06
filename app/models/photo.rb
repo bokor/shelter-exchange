@@ -18,6 +18,8 @@ class Photo < ActiveRecord::Base
   #----------------------------------------------------------------------------
   belongs_to :attachable, :polymorphic => true
 
+  # Uploader
+  #----------------------------------------------------------------------------
   mount_uploader :image, PhotoUploader
 
   # Validation
