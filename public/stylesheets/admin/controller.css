@@ -243,8 +243,10 @@
 
 /* Animals Section :: Index :: Layout
 -----------------------------------------------------------------------------*/
-.animals_section{padding-bottom: 75px;}
+.animals_section{padding-bottom: 75px; cursor: pointer;}
 .animals_section h2{font-weight: bold;}
+.animals_section:hover h2{color:#cf7019;}
+.animals_section .animal_list{display:none;}
 
 /* Animal List :: Layout
 -----------------------------------------------------------------------------*/
@@ -254,8 +256,9 @@
 .animal.hover{cursor:default;}
 	.animal .photo{display:inline-block; width: 125px; vertical-align:middle;}
 		.animal .photo img{display:inline-block; vertical-align:top;}
-	.animal .name{display:inline-block; width: 20%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
-	.animal .breed{display:inline-block; width: 40%; }
+	.animal .name{display:inline-block; width: 15%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
+	.animal .breed{display:inline-block; width: 25%; }
+  .animal .shelter_name{display:inline-block; width: 30%;}
 	.animal .status_change_date,
   .animal .created_at_date{display:inline-block; float:right; font-weight: bold; }
 

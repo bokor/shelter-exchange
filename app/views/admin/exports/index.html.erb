@@ -1,30 +1,41 @@
 <%= title "Exports" %>
 
-<%= content_for :javascripts do %>
-<% end %>
-
 <%= content_for :page_content do %>
 
-	<div class="page_heading blue">
-		<h1>Exports</h1>
+  <div class="page_heading blue">
+	  <h1>Email address exports</h1>
 	</div>
 
   <div class="page_content">
+
     <h2>Everything</h2>
 		<div>
-      <span><%= link_to "All Shelter and User Emails", all_emails_admin_exports_path(:csv), :class => "button" %></span>
+      <span><%= link_to "All Shelters and Users", admin_export_path(:export_type => :all_emails), :class => "button" %></span>
     </div>
-    <br><br>
+
+    <br><hr><br>
+
     <h2>Integrations</h2>
     <div>
-      <span><%= link_to "Petfinder Emails", petfinder_emails_admin_exports_path(:csv), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
-      <span><%= link_to "Adopt a Pet Emails", adopt_a_pet_emails_admin_exports_path(:csv), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
-      <span><%= link_to "All Integrations Emails", all_integrations_emails_admin_exports_path(:csv), :class => "button" %></span>
+      <span><%= link_to "Petfinder only", admin_export_path(:export_type => :petfinder_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span><%= link_to "Adopt a Pet only", admin_export_path(:export_type => :adopt_a_pet_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span><%= link_to "All Integrations", admin_export_path(:export_type => :all_integrations_emails), :class => "button" %></span>
+		</div>
+
+    <br><hr><br>
+
+    <h2>Shelters</h2>
+    <div>
+      <span><%= link_to "Never used before", admin_export_path(:export_type => :never_used_before_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span><%= link_to "Not used in the past 30 days", admin_export_path(:export_type => :not_used_past_thirty_days_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+
+    <br><hr><br>
+
+    <h2>API</h2>
+    <div>
+      <span><%= link_to "Web token enabled", admin_export_path(:export_type => :web_token_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
 	</div>
-
-<% end %>
-
-<%= content_for :sidebar do %>
 <% end %>
 
