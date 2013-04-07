@@ -1,0 +1,5 @@
+<% unless @animals.blank? %>
+	$('#animals').html( "<%= escape_javascript( render @animals, :show_created_at => true ) %>" );
+<% else %>
+	$('#animals').html( "<h2>No Animals found, please search again!</h2>" );
+<% end %>
