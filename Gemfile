@@ -78,6 +78,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "sqlite3"
   gem "factory_girl_rails"
   gem "factory_girl_extensions"
   gem "capybara"

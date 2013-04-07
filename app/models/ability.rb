@@ -11,12 +11,12 @@ class Ability
 
   def admin
     can :manage, :all
-    # cannot :destroy, Animal
     cannot :change_owner, User
   end
 
   def user
     can [:read, :create, :update], :all
+    cannot :attach_files, Note
     cannot :update, Shelter
     cannot :generate_access_token, Shelter
     cannot :invite, User

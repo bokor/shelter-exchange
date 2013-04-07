@@ -1,6 +1,6 @@
 class Admin::DashboardController < Admin::ApplicationController
   respond_to :html, :js
-  
+
   def index
     @counts_by_status                 = Animal.unscoped.joins(:animal_status).group("animal_statuses.name").limit(nil).count
     @counts_by_transfer_with_app      = Transfer.where(:status => Transfer::COMPLETED).count
@@ -15,8 +15,5 @@ class Admin::DashboardController < Admin::ApplicationController
     @total_suspended_shelters_count   = Shelter.suspended.count
     @total_cancelled_shelters_count   = Shelter.cancelled.count
     @latest_shelters                  = Shelter.latest(10).all
-    @latest_adopted                   = Animal.latest(:adopted, 50).all
-    @latest_euthanized                = Animal.latest(:euthanized, 10).all
   end
-  
 end

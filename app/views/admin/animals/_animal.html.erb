@@ -3,6 +3,7 @@
 	<span class="photo"><%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
 	<span class="name"><%= link_to animal.name, public_save_a_life_url(animal, :subdomain => "www"), :target => "_new" %></span>
   <span class="breed"><%= animal.full_breed %></span>
+  <span class="shelter_name"><%= link_to animal.shelter.name, admin_shelter_path(animal.shelter), :target => "_new" %></span>
   <% if show_created_at %>
     <span class="created_at_date"><%= format_date(:short, animal.created_at) %></span>
   <% else %>

@@ -91,7 +91,8 @@ describe Alert, ".stopped" do
   end
 end
 
-#describe Alert, ".with_alertable" do
+describe Alert, ".with_alertable" do
+pending "Need to implement"
 
   #it "should include alertable objects" do
     #Alert.gen :alertable => Animal.gen
@@ -102,7 +103,7 @@ end
     #alert.animal.should be_loaded
     #alert.instance_variables[:@relation].should be_a_kind_of(Animal)
   #end
-#end
+end
 
 describe Alert, ".for_shelter" do
 
@@ -128,27 +129,31 @@ describe Alert, ".for_animals" do
 end
 
 
-#describe Alert, ".recent_activity" do
+describe Alert, ".recent_activity" do
+pending "Need to implement"
   #def self.recent_activity(limit=10)
     #with_alertable.reorder("alerts.updated_at DESC").limit(limit)
   #end
-#end
+end
 
-#describe Alert, "#stopped?" do
+describe Alert, "#stopped?" do
+pending "Need to implement"
   #def stopped?
     #self.stopped
   #end
-#end
+end
 
-#describe Alert, "#active?" do
+describe Alert, "#active?" do
+pending "Need to implement"
   #def active?
     #!self.stopped
   #end
-#end
+end
 
-#describe Alert, "#alertable?" do
+describe Alert, "#alertable?" do
+pending "Need to implement"
   #def alertable?
     #!!self.alertable
   #end
-#end
+end
 
