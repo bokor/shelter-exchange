@@ -9,11 +9,13 @@ require "spec_helper"
 describe StatusHistory do
 
   it "should have a default scope" do
+pending "Need to implement"
     #default_scope :order => 'created_at DESC'
   end
 end
 
 describe StatusHistory, ".create_with" do
+pending "Need to implement"
   #def self.create_with(shelter_id, animal_id, animal_status_id, reason)
     #create!(:shelter_id => shelter_id, :animal_id => animal_id, :animal_status_id => animal_status_id, :reason => reason)
   #end
@@ -21,12 +23,14 @@ end
 
 # From StatusHistory::Reportable
 describe StatusHistory, ".by_month" do
+pending "Need to implement"
   #def by_month(range)
     #self.select([:id, :animal_id]).where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id).collect(&:id)
   #end
 end
 
 describe StatusHistory, ".status_by_month_year" do
+pending "Need to implement"
   #def status_by_month_year(month, year, state=nil)
     #start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
     #range = start_date.beginning_of_month..start_date.end_of_month
@@ -45,6 +49,7 @@ describe StatusHistory, ".status_by_month_year" do
 end
 
 describe StatusHistory, ".totals_by_month" do
+pending "Need to implement"
   #def totals_by_month(year, status, with_type=false)
     #start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
     #end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year

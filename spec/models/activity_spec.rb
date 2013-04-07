@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Activity, ".recent" do
+pending "Need to implement"
   #class Activity
     #def initialize(shelter)
       #@current_shelter ||= shelter
