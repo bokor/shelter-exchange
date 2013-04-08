@@ -21,6 +21,7 @@ RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
+  config.include CarrierWave::Test::Matchers
 
   # Helper Files
   config.include CapybaraHelper, :type => :request
