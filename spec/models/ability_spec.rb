@@ -48,8 +48,8 @@ describe Ability, ".user" do
     @ability.should be_able_to(:update, :all)
   end
 
-  it "should not be able to update a shelter" do
-    @ability.should_not be_able_to(:update, Shelter)
+  it "should not be able to attach a file to a note" do
+    @ability.should_not be_able_to(:attach_files, Note)
   end
 
   it "should not be able to generate access token for the shelter" do

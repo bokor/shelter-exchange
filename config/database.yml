@@ -8,17 +8,15 @@ defaults: &defaults
   host: localhost
 
 development:
-    <<: *defaults
-    database: shelterexchange_dev
+  <<: *defaults
+  database: shelterexchange_dev
 
 test:
-    <<: *defaults
-    database: shelterexchange_test
+  adapter: sqlite3
+  encoding: utf8
+  database: ":memory:"
 
-#staging:
-    #<<: *defaults
-    #database: shelterexchange_staging
+#test:
+  #<<: *defaults
+  #database: shelterexchange_test
 
-#production:
-    #<<: *defaults
-    #database: shelterexchange

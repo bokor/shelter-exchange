@@ -77,6 +77,32 @@ describe Note, "#notable" do
   end
 end
 
+describe Note, "#documents" do
+
+  before do
+    @note = Note.gen
+
+    @document1 = Document.gen \
+      :attachable => @note,
+      :document   => File.open("#{Rails.root}/spec/data/documents/document_1.csv")
+    @document2 = Document.gen \
+      :attachable => @note,
+      :document   => File.open("#{Rails.root}/spec/data/documents/document_2.csv")
+  end
+
+  it "should have many documents" do
+    @note.should respond_to(:documents)
+    @note.documents.count.should == 2
+    @note.documents.should include(@document1, @document2)
+  end
+
+  it "should destroy the documents when a note is deleted" do
+    Document.count.should == 2
+    @note.destroy
+    Document.count.should == 0
+  end
+end
+
 describe Note, "#notable?" do
 
   it "should validate if the note has an notable association" do

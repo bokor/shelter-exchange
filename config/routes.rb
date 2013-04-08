@@ -241,7 +241,7 @@ ShelterExchangeApp::Application.routes.draw do
       # Admin :: Animals
       #----------------------------------------------------------------------------
       resources :animals, :only => [:index] do
-        get :lookup, :on => :collection
+        get :live_search, :on => :collection
       end
 
       # Admin :: Integrations
@@ -264,14 +264,8 @@ ShelterExchangeApp::Application.routes.draw do
 
       # Admin :: Export
       #----------------------------------------------------------------------------
-      resources :exports, :only => [:index] do
-        collection do
-          get :all_emails
-          get :petfinder_emails
-          get :adopt_a_pet_emails
-          get :all_integrations_emails
-        end
-      end
+      resources :exports, :only => [:index]
+      match "exports/:export_type" => "exports#show", :as => :export, :defaults => { :format => :csv }, :via => [:get]
 
       # Admin :: Reports
       #----------------------------------------------------------------------------

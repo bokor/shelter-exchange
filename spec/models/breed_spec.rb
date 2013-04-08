@@ -42,7 +42,7 @@ describe Breed, ".auto_complete" do
     breeds = Breed.auto_complete(animal_type.id, "Labrador").all
 
     breeds.count.should == 2
-    breeds.map(&:name).should == ["Labrador Husky", "Labrador Retriever"]
+    breeds.map(&:name).should include("Labrador Husky", "Labrador Retriever")
   end
 end
 

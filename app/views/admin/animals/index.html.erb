@@ -1,35 +1,56 @@
 <%= title "Animal Lookup" %>
 
-<%= content_for :javascripts do %><% end %>
+<%= content_for :javascripts do %>
+  <script type="text/javascript">
+    $(function() {
+      $(".animals_section").bind("click", function(){
+        $(this).children(".animal_list").slideToggle(500);
+      });
+    });
+  </script>
+<% end %>
 
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<%= form_for :animals, :url => { :action => :lookup }, :html => { :id => "form_search", :method => :get } do |f| %>
+		<%= form_for :animals, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
 			<ul>
         <li class="full">
-          <%= label_tag "id", "Animal Lookup by ID", :class => "desc" %>
-					<span class="left half">
-					  <%= text_field_tag "id", "", :class => "field text large"  %>
+          <span class="left half">
+            <%= label_tag "q", "Search animals by ID or Name", :class => "desc" %>
+					  <%= text_field_tag "q", "", :class => "field text large", :onkeyup =>"Animals.liveSearch(this);" %>
           </span>
           <span class="leftPadded">
-            <%= f.submit "Go", :disable_with => "..." %>
+						<%= label_tag "state", "By state", :class => "desc" %>
+						<%= collection_select "shelters", "state", US_STATES, :first, :last, {:prompt => "Select State"}, {:class => "field select addr", :onchange =>"Animals.liveSearch(this);" }  %>
           </span>
 				</li>
-			</ul>
+      </ul>
 		<% end %>
 	</div>
 
-	<div class="page_content">
-    <% unless @animals.blank? %>
-      <%= render @animals, :show_created_at => true %>
-    <% else %>
-      <h2>No Animals found, please search again!</h2>
-    <% end %>
-	</div>
+  <div class="page_content">
+    <div id="animals">
+      <% unless @animals.blank? %>
+        <%= render @animals, :show_created_at => true %>
+      <% else %>
+        <h2>No Animals found, please search again!</h2>
+      <% end %>
+    </div>
 
+    <br><br>
+    <hr>
+    <br><br>
+
+    <div class="animals_section">
+      <h2>Latest Adopted</h2>
+      <div id="latest_adopted" class="animal_list"><%= render @latest_adopted %></div>
+    </div>
+
+    <div class="animals_section">
+      <h2>Latest Euthanized</h2>
+      <div id="latest_euthanized" class="animal_list"><%= render @latest_euthanized %></div>
+    </div>
+  </div>
 <% end %>
-
-<%= content_for :sidebar do %><% end %>
-
 
