@@ -7,18 +7,12 @@ describe Note do
   end
 
   it "should require presence of title" do
-    note = Note.gen
-    note.should have(:no).error_on(:title)
-
     note = Note.gen :title => nil
     note.should have(1).error_on(:title)
     note.errors[:title].should == ["cannot be blank"]
   end
 
   it "should require inclusion of category" do
-    note = Note.gen
-    note.should have(:no).error_on(:category)
-
     note = Note.gen :category => "#{Note::CATEGORIES[0]} blah"
     note.should have(1).error_on(:category)
     note.errors[:category].should == ["needs to be selected"]
@@ -47,7 +41,6 @@ describe Note, "#shelter" do
     shelter = Shelter.new
     note = Note.new :shelter => shelter
 
-    note.should respond_to(:shelter)
     note.shelter.should == shelter
   end
 
@@ -88,7 +81,7 @@ describe Note, "#documents" do
 
   it "should have many documents" do
     @note.documents.count.should == 2
-    @note.documents.should include(@document1, @document2)
+    @note.documents.should       =~ [@document1, @document2]
   end
 
   it "should destroy the documents when a note is deleted" do

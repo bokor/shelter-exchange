@@ -7,18 +7,12 @@ describe Alert do
   end
 
   it "should require presence of title" do
-    alert = Alert.gen
-    alert.should have(:no).error_on(:title)
-
     alert = Alert.gen :title => nil
     alert.should have(1).error_on(:title)
     alert.errors[:title].should == ["cannot be blank"]
   end
 
   it "should require inclusion of severity" do
-    alert = Alert.gen
-    alert.should have(:no).error_on(:severity)
-
     alert = Alert.gen :severity => "#{Alert::SEVERITIES[0]} blah"
     alert.should have(1).error_on(:severity)
     alert.errors[:severity].should == ["needs to be selected"]
@@ -35,7 +29,7 @@ describe Alert, "#shelter" do
 
   it "should belong to a shelter" do
     shelter = Shelter.new
-    alert = Alert.new :shelter => shelter
+    alert   = Alert.new :shelter => shelter
 
     alert.shelter.should == shelter
   end
@@ -70,8 +64,10 @@ describe Alert, ".active" do
     alert1 = Alert.gen
     alert2 = Alert.gen :stopped => true
 
-    Alert.active.count.should == 1
-    Alert.active.all.should include(alert1)
+    results = Alert.active.all
+
+    results.count.should == 1
+    results.should       == [alert1]
   end
 end
 
@@ -81,8 +77,10 @@ describe Alert, ".stopped" do
     alert1 = Alert.gen
     alert2 = Alert.gen :stopped => true
 
-    Alert.stopped.count.should == 1
-    Alert.stopped.all.should include(alert2)
+    results = Alert.stopped.all
+
+    results.count.should == 1
+    results.should       == [alert2]
   end
 end
 
@@ -106,8 +104,10 @@ describe Alert, ".for_shelter" do
     alert1 = Alert.gen
     alert2 = Alert.gen :alertable => Animal.gen
 
-    Alert.for_shelter.count.should == 1
-    Alert.for_shelter.all.should include(alert1)
+    results = Alert.for_shelter.all
+
+    results.count.should == 1
+    results.should == [alert1]
   end
 end
 
@@ -117,37 +117,59 @@ describe Alert, ".for_animals" do
     alert1 = Alert.gen
     alert2 = Alert.gen :alertable => Animal.gen
 
-    Alert.for_animals.count.should == 1
-    Alert.for_animals.all.should include(alert2)
+    results = Alert.for_animals.all
+
+    results.count.should == 1
+    results.should       == [alert2]
   end
 end
 
 
 describe Alert, ".recent_activity" do
-pending "Need to implement"
-  #def self.recent_activity(limit=10)
-    #with_alertable.reorder("alerts.updated_at DESC").limit(limit)
-  #end
+
+  it "should return only the most recent activity per limit" do
+    alert1 = Alert.gen
+    alert2 = Alert.gen
+    alert3 = Alert.gen
+
+    results = Alert.recent_activity(2).all
+
+    results.count.should == 2
+    results.should       == [alert3, alert2]
+  end
 end
 
 describe Alert, "#stopped?" do
-pending "Need to implement"
-  #def stopped?
-    #self.stopped
-  #end
+
+  it "should validate if the alert is stopped" do
+    alert1 = Alert.new :stopped => true
+    alert2 = Alert.new
+
+    alert1.stopped?.should == true
+    alert2.stopped?.should == false
+  end
 end
 
 describe Alert, "#active?" do
-pending "Need to implement"
-  #def active?
-    #!self.stopped
-  #end
+
+  it "should validate if the alert is active" do
+    alert1 = Alert.new :stopped => true
+    alert2 = Alert.new
+
+    alert1.active?.should == false
+    alert2.active?.should == true
+  end
 end
 
 describe Alert, "#alertable?" do
-pending "Need to implement"
-  #def alertable?
-    #!!self.alertable
-  #end
+
+  it "should validate if the note has an alertable association" do
+    animal = Animal.new
+    alert1 = Alert.new :alertable => animal
+    alert2 = Alert.new
+
+    alert1.alertable?.should == true
+    alert2.alertable?.should == false
+  end
 end
 

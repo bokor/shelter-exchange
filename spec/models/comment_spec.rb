@@ -7,9 +7,6 @@ describe Comment do
   end
 
   it "should require presence of comment" do
-    comment = Comment.gen
-    comment.should have(:no).error_on(:comment)
-
     comment = Comment.gen :comment => nil
     comment.should have(1).error_on(:comment)
     comment.errors[:comment].should == ["cannot be blank"]

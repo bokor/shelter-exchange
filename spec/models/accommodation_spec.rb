@@ -1,74 +1,149 @@
 require "spec_helper"
 
-# TODO: Need to figure out how to TEST these
-#-----------------------------------------------
-# belongs_to :shelter, :readonly => true
-# belongs_to :animal_type, :readonly => true
-# belongs_to :location, :readonly => true
-
-# has_many :animals, :readonly => true
-
 describe Accommodation do
 
   it "should have a default scope" do
-pending "Need to implement"
-    #default_scope :order => 'name ASC'
+    Accommodation.scoped.to_sql.should == Accommodation.order("accommodations.name ASC").to_sql
   end
 
   it "should require a animal type" do
-pending "Need to implement"
-    #validates :animal_type_id, :presence => {:message => "needs to be selected"}
+    accommodation = Accommodation.gen :animal_type_id => nil
+    accommodation.should have(1).error_on(:animal_type_id)
+    accommodation.errors[:animal_type_id].should == ["needs to be selected"]
   end
 
   it "should require a name of the accommodation" do
-pending "Need to implement"
-    #validates :name, :presence => true
+    accommodation = Accommodation.gen :name => nil
+    accommodation.should have(1).error_on(:name)
+    accommodation.errors[:name].should == ["cannot be blank"]
   end
 
   it "should validate a numerical value for max capacity" do
-pending "Need to implement"
-    #validates :max_capacity, :numericality => true
+    accommodation = Accommodation.gen :max_capacity => "abc"
+    accommodation.should have(1).error_on(:max_capacity)
+    accommodation.errors[:max_capacity].should == ["requires a number"]
   end
 end
 
 # Instance Methods
 #----------------------------------------------------------------------------
-#describe AnimalType, "#animals" do
+describe Accommodation, "#shelter" do
 
-  #it "should return a list of animals" do
-    #animal_type = AnimalType.gen
+  it "should belong to a shelter" do
+    shelter       = Shelter.new
+    accommodation = Accommodation.new :shelter => shelter
 
-    #Animal.gen :animal_type => animal_type
-    #Animal.gen :animal_type => animal_type
+    accommodation.shelter.should == shelter
+  end
 
-    #animal_type.should respond_to(:animals)
-    #animal_type.animals.count.should == 2
-  #end
-#end
+  it "should return a readonly shelter" do
+    accommodation = Accommodation.gen
+    accommodation.reload.shelter.should be_readonly
+  end
+end
+
+describe Accommodation, "#animal_type" do
+
+  it "should belong to an animal type" do
+    animal_type   = AnimalType.new
+    accommodation = Accommodation.new :animal_type => animal_type
+
+    accommodation.animal_type.should == animal_type
+  end
+
+  it "should return a readonly animal type" do
+    accommodation = Accommodation.gen
+    accommodation.reload.animal_type.should be_readonly
+  end
+end
+
+describe Accommodation, "#location" do
+
+  it "should belong to an location" do
+    location      = Location.new
+    accommodation = Accommodation.new :location => location
+
+    accommodation.location.should == location
+  end
+
+  it "should return a readonly location" do
+    accommodation = Accommodation.gen
+    accommodation.reload.location.should be_readonly
+  end
+end
+
+describe Accommodation, "#animals" do
+
+  it "should return a list of animals" do
+    accommodation = Accommodation.gen
+
+    animal1 = Animal.gen :accommodation => accommodation
+    animal2 = Animal.gen :accommodation => accommodation
+
+    accommodation.animals.count.should == 2
+    accommodation.animals.should =~ [animal1, animal2]
+  end
+end
 
 # Class Methods
 #----------------------------------------------------------------------------
 describe Accommodation, ".per_page" do
-pending "Need to implement"
   it "should return the per page value for pagination" do
-    #Accommodation.per_page.should == 50
+    Accommodation.per_page.should == 50
   end
 end
 
-# From Accommodation::Searchable
-describe Accommodation, ".search" do
-pending "Need to implement"
-  #scope :search, lambda { |q| includes(:animal_type, :location, :animals => [:photos, :animal_status]).where("name LIKE ?", "%#{q}%") }
-end
+describe "Searchable" do
 
-describe Accommodation, ".filter_by_type_location" do
-pending "Need to implement"
-  #def filter_by_type_location(type, location)
-    #scope = scoped{}
-    #scope = scope.includes(:animal_type, :location, :animals => [:photos, :animal_status])
-    #scope = scope.where(:animal_type_id => type) unless type.blank?
-    #scope = scope.where(:location_id => location) unless location.blank?
-    #scope
-  #end
+  describe Accommodation, ".search" do
+
+    it "should return search results" do
+      accommodation1 = Accommodation.gen :name => "Crate"
+      accommodation2 = Accommodation.gen :name => "Cage"
+
+      results = Accommodation.search("Cra")
+      results.count.should == 1
+      results.should =~ [accommodation1]
+    end
+  end
+
+  describe Accommodation, ".filter_by_type_location" do
+
+    before do
+      @dog   = AnimalType.gen :name => "Dog"
+      @cat   = AnimalType.gen :name => "Cat"
+
+      @west_side      = Location.gen :name => "West Side"
+      @east_side      = Location.gen :name => "East Side"
+
+      @accommodation1 = Accommodation.gen \
+        :animal_type => @dog,
+        :location    => @west_side
+      @accommodation2 = Accommodation.gen \
+        :animal_type => @dog,
+        :location    => @west_side
+      @accommodation3 = Accommodation.gen \
+        :animal_type => @dog,
+        :location    => @east_side
+    end
+
+    it "should filter by animal type" do
+      results = Accommodation.filter_by_type_location(@dog, nil)
+      results.count.should == 3
+      results.should =~ [@accommodation1, @accommodation2, @accommodation3]
+    end
+
+    it "should filter by location" do
+      results = Accommodation.filter_by_type_location(nil, @west_side)
+      results.count.should == 2
+      results.should =~ [@accommodation1, @accommodation2]
+    end
+
+    it "should filter by animal type and location" do
+      results = Accommodation.filter_by_type_location(@dog, @east_side)
+      results.count.should == 1
+      results.should =~ [@accommodation3]
+    end
+  end
 end
 

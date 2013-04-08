@@ -27,7 +27,7 @@ describe AnimalType, "#animals" do
     animal2 = Animal.gen :animal_type => animal_type
 
     animal_type.animals.count.should == 2
-    animal_type.animals.should include(animal1, animal2)
+    animal_type.animals.should       =~ [animal1, animal2]
   end
 end
 
@@ -52,7 +52,7 @@ describe AnimalType, "#accommodations" do
     accommodation2 = Accommodation.gen :animal_type => animal_type
 
     animal_type.accommodations.count.should == 2
-    animal_type.accommodations.should include(accommodation1, accommodation2)
+    animal_type.accommodations.should       =~ [accommodation1, accommodation2]
   end
 end
 
@@ -65,7 +65,7 @@ describe AnimalType, "#capacities" do
     capacity2 = Capacity.gen :animal_type => animal_type
 
     animal_type.capacities.count.should == 2
-    animal_type.capacities.should include(capacity1, capacity2)
+    animal_type.capacities.should       =~ [capacity1, capacity2]
   end
 end
 

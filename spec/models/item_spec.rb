@@ -7,7 +7,6 @@ describe Item, "#shelter" do
     item    = Item.new :shelter => shelter
 
     item.shelter.should == shelter
-    item.shelter.should be_instance_of(Shelter)
   end
 end
 

@@ -18,7 +18,8 @@ end
 describe Breed, ".valid_for_animal" do
 
   it "should validate the breed exists with the type" do
-    breed       = Breed.gen :name => "Labrador Retriever"
+    Breed.gen :name => "Labrador Retriever"
+
     validation1 = Breed.valid_for_animal("Labrador Retriever", 1)
     validation2 = Breed.valid_for_animal("Labrador Retriever", 2)
 
@@ -38,7 +39,7 @@ describe Breed, ".auto_complete" do
     breeds = Breed.auto_complete(animal_type.id, "Labrador").all
 
     breeds.count.should == 2
-    breeds.should include(breed1, breed2)
+    breeds.should       =~ [breed1, breed2]
   end
 end
 

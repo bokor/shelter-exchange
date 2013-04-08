@@ -8,7 +8,7 @@ describe AnimalStatus do
     AnimalStatus.gen :sort_order => 3
 
     AnimalStatus.all.collect(&:id).should == [1, 3, 2]
-    AnimalStatus.scoped.to_sql.should == AnimalStatus.order("animal_statuses.sort_order ASC").to_sql
+    AnimalStatus.scoped.to_sql.should  == AnimalStatus.order("animal_statuses.sort_order ASC").to_sql
   end
 end
 
@@ -79,7 +79,7 @@ describe AnimalStatus, "#animals" do
     animal2 = Animal.gen :animal_status => animal_status
 
     animal_status.animals.count.should == 2
-    animal_status.animals.should include(animal1, animal2)
+    animal_status.animals.should =~ [animal1, animal2]
   end
 end
 
@@ -92,7 +92,7 @@ describe AnimalStatus, "#status_histories" do
     status_history2 = StatusHistory.gen :animal_status => animal_status
 
     animal_status.status_histories.count.should == 2
-    animal_status.status_histories.should include(status_history1, status_history2)
+    animal_status.status_histories.should =~ [status_history1, status_history2]
   end
 
   it "should destroy the status histories when a status is deleted" do

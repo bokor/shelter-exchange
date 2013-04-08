@@ -8,6 +8,8 @@ require "capybara/email/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|s| require s }
 
+Rails.logger.level = 5
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
