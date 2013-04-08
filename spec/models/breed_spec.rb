@@ -3,14 +3,10 @@ require "spec_helper"
 describe Breed, "#animal_type" do
 
   it "should belong to an animal type" do
-    animal_type = AnimalType.gen :name => "Dog"
-    breed = Breed.gen :animal_type => animal_type
+    animal_type = AnimalType.new :name => "Dog"
+    breed       = Breed.new :animal_type => animal_type
 
-    breed.should respond_to(:animal_type)
-    animal_type = breed.animal_type
-
-    animal_type.id.should   == 1
-    animal_type.name.should == "Dog"
+    breed.animal_type.should == animal_type
   end
 
   it "should return a readonly animal_type" do
@@ -36,13 +32,13 @@ describe Breed, ".auto_complete" do
   it "should return the correct breeds per animal type" do
     animal_type = AnimalType.gen
 
-    Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
-    Breed.gen :name => "Labrador Husky", :animal_type => animal_type
+    breed1 = Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
+    breed2 = Breed.gen :name => "Labrador Husky", :animal_type => animal_type
 
     breeds = Breed.auto_complete(animal_type.id, "Labrador").all
 
     breeds.count.should == 2
-    breeds.map(&:name).should include("Labrador Husky", "Labrador Retriever")
+    breeds.should include(breed1, breed2)
   end
 end
 
@@ -189,3 +185,4 @@ describe "Typeable" do
     end
   end
 end
+

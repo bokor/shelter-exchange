@@ -26,7 +26,6 @@ describe AnimalType, "#animals" do
     animal1 = Animal.gen :animal_type => animal_type
     animal2 = Animal.gen :animal_type => animal_type
 
-    animal_type.should respond_to(:animals)
     animal_type.animals.count.should == 2
     animal_type.animals.should include(animal1, animal2)
   end
@@ -37,10 +36,9 @@ describe AnimalType, "#breeds" do
   it "should have many breeds" do
     animal_type = AnimalType.gen
 
-    breed1 = Breed.gen(:animal_type => animal_type)
-    breed2 = Breed.gen(:animal_type => animal_type)
+    breed1 = Breed.gen :animal_type => animal_type
+    breed2 = Breed.gen :animal_type => animal_type
 
-    animal_type.should respond_to(:breeds)
     animal_type.breeds.count.should == 2
   end
 end
@@ -53,7 +51,6 @@ describe AnimalType, "#accommodations" do
     accommodation1 = Accommodation.gen :animal_type => animal_type
     accommodation2 = Accommodation.gen :animal_type => animal_type
 
-    animal_type.should respond_to(:accommodations)
     animal_type.accommodations.count.should == 2
     animal_type.accommodations.should include(accommodation1, accommodation2)
   end
@@ -67,7 +64,6 @@ describe AnimalType, "#capacities" do
     capacity1 = Capacity.gen :animal_type => animal_type
     capacity2 = Capacity.gen :animal_type => animal_type
 
-    animal_type.should respond_to(:capacities)
     animal_type.capacities.count.should == 2
     animal_type.capacities.should include(capacity1, capacity2)
   end

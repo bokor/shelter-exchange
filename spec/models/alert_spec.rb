@@ -34,10 +34,9 @@ end
 describe Alert, "#shelter" do
 
   it "should belong to a shelter" do
-    shelter = Shelter.gen
-    alert = Alert.gen :shelter => shelter
+    shelter = Shelter.new
+    alert = Alert.new :shelter => shelter
 
-    alert.should respond_to(:shelter)
     alert.shelter.should == shelter
   end
 
@@ -49,15 +48,11 @@ end
 
 describe Alert, "#alertable" do
 
-  it "should respond to alertable" do
-    Alert.gen.should respond_to(:alertable)
-  end
-
   it "should belong to a alertable object" do
-    item   = Item.gen
-    animal = Animal.gen
-    alert1  = Alert.gen :alertable => item
-    alert2  = Alert.gen :alertable => animal
+    item   = Item.new
+    animal = Animal.new
+    alert1 = Alert.new :alertable => item
+    alert2 = Alert.new :alertable => animal
 
     alert1.alertable.should == item
     alert1.alertable.should be_instance_of(Item)
@@ -121,7 +116,6 @@ describe Alert, ".for_animals" do
   it "should return only the alerts assigned to an animal" do
     alert1 = Alert.gen
     alert2 = Alert.gen :alertable => Animal.gen
-    alert3 = Alert.gen :alertable => Item.gen
 
     Alert.for_animals.count.should == 1
     Alert.for_animals.all.should include(alert2)

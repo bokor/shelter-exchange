@@ -44,8 +44,8 @@ end
 describe Note, "#shelter" do
 
   it "should belong to a shelter" do
-    shelter = Shelter.gen
-    note = Note.gen :shelter => shelter
+    shelter = Shelter.new
+    note = Note.new :shelter => shelter
 
     note.should respond_to(:shelter)
     note.shelter.should == shelter
@@ -59,15 +59,11 @@ end
 
 describe Note, "#notable" do
 
-  it "should respond to notable" do
-    Note.gen.should respond_to(:notable)
-  end
-
   it "should belong to a notable object" do
-    item   = Item.gen
-    animal = Animal.gen
-    note1  = Note.gen :notable => item
-    note2  = Note.gen :notable => animal
+    item   = Item.new
+    animal = Animal.new
+    note1  = Note.new :notable => item
+    note2  = Note.new :notable => animal
 
     note1.notable.should == item
     note1.notable.should be_instance_of(Item)
@@ -91,7 +87,6 @@ describe Note, "#documents" do
   end
 
   it "should have many documents" do
-    @note.should respond_to(:documents)
     @note.documents.count.should == 2
     @note.documents.should include(@document1, @document2)
   end
@@ -106,9 +101,9 @@ end
 describe Note, "#notable?" do
 
   it "should validate if the note has an notable association" do
-    item  = Item.gen
-    note1 = Note.gen :notable => item
-    note2 = Note.gen
+    item  = Item.new
+    note1 = Note.new :notable => item
+    note2 = Note.new
 
     note1.notable?.should == true
     note2.notable?.should == false

@@ -21,10 +21,9 @@ end
 describe Comment, "#shelter" do
 
   it "should belong to a shelter" do
-    shelter = Shelter.gen
-    comment = Comment.gen :shelter => shelter
+    shelter = Shelter.new
+    comment = Comment.new :shelter => shelter
 
-    comment.should respond_to(:shelter)
     comment.shelter.should == shelter
   end
 
@@ -37,16 +36,14 @@ end
 describe Comment, "#commentable" do
 
   it "should belong to a commentable object" do
-    item    = Item.gen
-    animal  = Animal.gen
-    comment1 = Comment.gen :commentable => item
-    comment2 = Comment.gen :commentable => animal
+    item    = Item.new
+    animal  = Animal.new
+    comment1 = Comment.new :commentable => item
+    comment2 = Comment.new :commentable => animal
 
-    comment1.should respond_to(:commentable)
     comment1.commentable.should == item
     comment1.commentable.should be_instance_of(Item)
 
-    comment2.should respond_to(:commentable)
     comment2.commentable.should == animal
     comment2.commentable.should be_instance_of(Animal)
   end
@@ -55,9 +52,9 @@ end
 describe Comment, "#commentable?" do
 
   it "should validate if the comment has an commentable association" do
-    item     = Item.gen
-    comment1 = Comment.gen :commentable => item
-    comment2 = Comment.gen
+    item     = Item.new
+    comment1 = Comment.new :commentable => item
+    comment2 = Comment.new
 
     comment1.commentable?.should == true
     comment2.commentable?.should == false

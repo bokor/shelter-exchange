@@ -78,7 +78,6 @@ describe AnimalStatus, "#animals" do
     animal1 = Animal.gen :animal_status => animal_status
     animal2 = Animal.gen :animal_status => animal_status
 
-    animal_status.should respond_to(:animals)
     animal_status.animals.count.should == 2
     animal_status.animals.should include(animal1, animal2)
   end
@@ -92,7 +91,6 @@ describe AnimalStatus, "#status_histories" do
     status_history1 = StatusHistory.gen :animal_status => animal_status
     status_history2 = StatusHistory.gen :animal_status => animal_status
 
-    animal_status.should respond_to(:status_histories)
     animal_status.status_histories.count.should == 2
     animal_status.status_histories.should include(status_history1, status_history2)
   end

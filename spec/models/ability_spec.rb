@@ -4,7 +4,7 @@ require "cancan/matchers"
 describe Ability, ".owner" do
 
   before do
-    user = User.gen :role => :owner
+    user = User.new :role => :owner
     @ability = Ability.new(user)
   end
 
@@ -16,7 +16,7 @@ end
 describe Ability, ".admin" do
 
   before do
-    user = User.gen :role => :admin
+    user = User.new :role => :admin
     @ability = Ability.new(user)
   end
 
@@ -32,7 +32,7 @@ end
 describe Ability, ".user" do
 
   before do
-    user = User.gen :role => :user
+    user = User.new :role => :user
     @ability = Ability.new(user)
   end
 
