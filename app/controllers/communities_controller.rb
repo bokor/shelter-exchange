@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos).find(params[:id])
+    @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos, :transfers).find(params[:id])
     @shelter = @animal.shelter
     raise ShelterExchange::Errors::ShelterInactive if @shelter.inactive?
     @photos = @animal.photos

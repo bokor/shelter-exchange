@@ -28,34 +28,34 @@
 			</tr>
 		</table>
 	</div>
-	
+
 	<div class="page_content">
-		
+
 		<% if @animal.available? %>
 			<div class="social">
 				<span class="text_label">Share and promote:</span>
 				<span class="facebook">
-					<div class="fb-like" data-send="false" 
-										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					<div class="fb-like" data-send="false"
+										 data-href="<%= public_save_a_life_url(@animal, :subdomain => "www")%>"
 										 data-layout="button_count"
 										 data-show-faces="false"></div>
 				</span>
 				<span class="twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" 
-					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>" 
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange"
+					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>"
 					   data-text="<%="#{@animal.name} - #{@animal.full_breed} - #{@shelter.city}, #{@shelter.state}" %>">Tweet</a>
 				</span>
 				<span class="pinterest">
 					<a href="http://pinterest.com/pin/create/button/?url=<%= public_save_a_life_url(@animal, :subdomain => "www")%>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
 				</span>
 				<!-- <span><%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www") %></span> -->
-			</div>	
+			</div>
 		<% end %>
-		 
+
 		<table class="animal_details">
 			<tr>
 				<td class="metadata">
-					
+
 					<h3>Details:</h3>
 					<ul>
 						<li><p><b>Age:</b>
@@ -70,9 +70,9 @@
 					</ul>
 				</td>
 				<td class="image">
-					
+
 			    	<div id="photo_gallery"></div>
-			
+
 					<% unless @animal.video_url.blank? %>
 					<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player right", :title => "Video of #{@animal.name}" %>
 					<% end %>
@@ -97,7 +97,7 @@
 				</td>
 			</tr>
 		</table>
-		
+
 		<% if @shelter.kill_shelter? %>
 		<table class="euthanasia_info">
 			<tr>
@@ -112,29 +112,26 @@
 		</table>
 		<% end %>
 
-		
+
 	</div>
-	
+
 	<div id="notes_heading" class="section_heading orange">
 		<h2>Notes</h2>
 		<div class="links">
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
 			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js), 
+				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js),
 				                          :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>
 	</div>
-	
+
 	<div class="page_content">
 		<div id="notes" class="note_list">
 			<%= render @notes %>
 		</div>
 	</div>
-
-
-
 <% end %>
 
 <%= content_for :sidebar do %>
@@ -165,14 +162,14 @@
 			<% end %>
 			</div>
 		</div>
-	<% end %>	
+	<% end %>
 
 	<div id="animal_shelter">
 		<h2>Shelter details</h2>
 		<div id="shelter" class="shelter_details">
 			<% if @shelter.logo? %>
 				<div class="logo">
-					<%= image_tag @shelter.logo.url(:thumb) %> 
+					<%= image_tag @shelter.logo.url(:thumb) %>
 				</div>
 			<% end %>
 
@@ -201,4 +198,4 @@
 <% end %>
 
 
-	
+

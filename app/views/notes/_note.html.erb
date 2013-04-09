@@ -10,7 +10,7 @@
 
 <div id="<%= "note_#{note.id}" %>" class="note">
   <span class="created_date"><%= format_date(:short, note.created_at) %></span>
-  <% unless @documents.blank? %>
+  <% if @documents.present? && (note.shelter_id == @current_shelter.id || controller_name != "parents") %>
     <span class="attachment_icon"><%= image_tag "icon_paperclip.png" %></span>
   <% end %>
 	<span class="details">
@@ -48,7 +48,7 @@
 
   <div class="description" id="description_note_<%=note.id%>">
     <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
-    <% unless @documents.blank? %>
+    <% if @documents.present? && (note.shelter_id == @current_shelter.id || controller_name != "parents") %>
       <ul><strong>Attachments:</strong>
         <% @documents.each do |doc| %>
           <li><%= link_to doc.original_name, doc.document.url, :target => "_new" %></li>

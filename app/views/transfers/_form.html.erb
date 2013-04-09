@@ -21,7 +21,6 @@
 	<div><%= f.text_area :transfer_history_reason, :class => "field textarea small", :placeholder => "Add a note that may help expedite this transfer." %></div>
 	<%= has_error_message?(@transfer, :transfer_history_reason)%>
 </li>
-
 <%= f.hidden_field :animal_id, :value => @animal.id %>
 <%= f.hidden_field :requestor_shelter_id, :value => @current_shelter.id %>
-<%= f.hidden_field :shelter_id, :value => @shelter.id %>
+<%= f.hidden_field :shelter_id, :value => @animal.shelter_id %>
