@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
     @photos = @animal.photos
     @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
 
-    @notes = @animal.notes.all
+    @notes = @animal.notes.includes(:documents).all
     @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists?
   end
 
@@ -19,9 +19,9 @@ class CommunitiesController < ApplicationController
     filter_param = params[:filter]
     @animal = Animal.find(params[:animal_id])
     if filter_param.blank?
-      @notes = @animal.notes.all
+      @notes = @animal.notes.includes(:documents).all
     else
-      @notes = @animal.notes.where(:category => filter_param).all
+      @notes = @animal.notes.includes(:documents).where(:category => filter_param).all
     end
   end
 

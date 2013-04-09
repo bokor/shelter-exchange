@@ -15,8 +15,14 @@
 	</div>
 	<div id="print_format_options" class="box blue hide">
 		<%= form_for :animals, :url => { :action => :print }, :html => { :id => "form_printer_options", :method => :post } do |f| %>
-			<ul>
-				<li>	
+		  <ul>
+			  <li>
+					<span>
+						<%= radio_button_tag :print_layout, :kennel_card, (print_layout == "kennel_card"), :class => "field radio" %>
+						<%= label_tag :print_layout, "Kennel Card", :class => "desc choice" %>
+					</span>
+        </li>
+				<li>
 					<div>
 						<span>
 							<%= radio_button_tag :print_layout, :animal_with_notes, (print_layout == "animal_with_notes"), :class => "field radio" %>
@@ -36,13 +42,7 @@
 						<% end %>
 					</span>
 				</li>
-				<li>
-					<span>
-						<%= radio_button_tag :print_layout, :kennel_card, (print_layout == "kennel_card"), :class => "field radio" %>
-						<%= label_tag :print_layout, "Kennel Card", :class => "desc choice" %>
-					</span>
-				</li>
-			   	<li class="buttons">
+			  <li class="buttons">
 					<%= submit_tag "Ok", :disable_with => "Submitting...", :class => "button" %>
 					&nbsp;&nbsp;or&nbsp;&nbsp;
 					<%= link_to 'Cancel', '#', :class => "button", :onclick => "$('.print_format_options a').trigger('click'); return false;"  %>

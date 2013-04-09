@@ -11,7 +11,7 @@
 <%= content_for :page_content do %>
 
 	<%= render "animals/print/print_options", :print_layout => @print_layout %>
-	
+
 	<div class="page_heading">
 		<table class="animal">
 			<tr>
@@ -29,9 +29,9 @@
 			</tr>
 		</table>
 	</div>
-	
+
 	<div class="page_content">
-		
+
 		<div class="animal_details">
 
 			<div class="media">
@@ -57,28 +57,47 @@
 			<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 
 		</div>
-		
+
 		<div class="animal_shelter">
 			<%= render "animals/print/shelter_details" %>
 		</div>
-		
+
 	</div>
 
-	
+
 	<% if @notes.present? and @print_layout == "animal_with_notes" %>
-	
 		<% @note_categories.each do |category| %>
-			
+
 			<div class="page_break"><span>Page Break</span></div>
 
 			<div class="page_content">
 				<h2><%=category.humanize%> Notes</h2>
 				<div id="notes" class="note_list">
-					<%= render @notes.select{|n| n.category == category} %>
+          <% @notes.select{|n| n.category == category}.each do |note| %>
+            <div id="<%= "note_#{note.id}" %>" class="note">
+              <span class="created_date"><%= format_date(:short, note.created_at) %></span>
+              <span class="details">
+                <span class="title"><%= note.title %></span>
+              </span>
+
+              <div class="description" id="description_note_<%=note.id%>">
+                <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
+                <% unless note.documents.blank? %>
+                  <ul class="attachments"><strong>Attachments:</strong>
+                  <% note.documents.each do |doc| %>
+                    <li><%= link_to doc.original_name, doc.document.url, :target => "_new" %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
+
+              </div>
+            </div>
+          <% end %>
+
 				</div>
 			</div>
 		<% end %>
-		
-	<% end %>
+  <% end %>
 
 <% end %>
+

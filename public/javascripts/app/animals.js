@@ -204,13 +204,12 @@ var Animals = {
 				$("#note_categories").find("label").css("color", "#bbb");
 			}
 		});
-		$("input[name='print_layout']:radio:[value='"+printLayout+"']").trigger("change").prop("checked", "checked");
+		$("input[value='"+printLayout+"']:radio").trigger("change").prop("checked", "checked");
 
 		$('.print_format_options a').bind("click", function (e) {
 			e.preventDefault();
 			$("#print_format_options").slideToggle(800);
-	   	});
+	  });
 	}
-
 };
 

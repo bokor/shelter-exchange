@@ -56,11 +56,11 @@ class AnimalsController < ApplicationController
   end
 
   def print
-    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
-    @shelter = @current_shelter
+    @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :shelter, :photos, :accommodation => [:location]).find(params[:id])
+    @shelter = @animal.shelter
     @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
-    @notes = @animal.notes.where(:category => @note_categories).all
-    @print_layout = params[:print_layout] || "animal_with_notes"
+    @notes = @animal.notes.includes(:documents).where(:category => @note_categories).all
+    @print_layout = params[:print_layout] || "kennel_card"
 
     respond_to do |format|
       format.html {
@@ -88,9 +88,9 @@ class AnimalsController < ApplicationController
     filter_param = params[:filter]
     @animal = @current_shelter.animals.find(params[:id])
     if filter_param.blank?
-      @notes = @animal.notes.all
+      @notes = @animal.notes.includes(:documents).all
     else
-      @notes = @animal.notes.where(:category => filter_param).all
+      @notes = @animal.notes.includes(:documents).where(:category => filter_param).all
     end
   end
 
