@@ -7,13 +7,13 @@ describe Note do
   end
 
   it "should require presence of title" do
-    note = Note.gen :title => nil
+    note = Note.new :title => nil
     note.should have(1).error_on(:title)
     note.errors[:title].should == ["cannot be blank"]
   end
 
   it "should require inclusion of category" do
-    note = Note.gen :category => "#{Note::CATEGORIES[0]} blah"
+    note = Note.new :category => "#{Note::CATEGORIES[0]} blah"
     note.should have(1).error_on(:category)
     note.errors[:category].should == ["needs to be selected"]
   end

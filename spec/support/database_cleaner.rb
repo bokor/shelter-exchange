@@ -6,13 +6,14 @@ RSpec.configure do |config|
   config.before :suite do
 
     # Prints out the database adapter in color
-    print "\033[7;33;41m#{ActiveRecord::Base.connection.adapter_name}"
-    puts  "\033[0m"
+    #print "\033[7;33;41m#{ActiveRecord::Base.connection.adapter_name}"
+    #puts  "\033[0m"
 
-    if ActiveRecord::Base.connection.adapter_name.downcase.include?("sqlite")
-      load_schema = lambda { load "#{Rails.root.to_s}/db/schema.rb" }
-      silence_stream(STDOUT, &load_schema)
-    end
+    # Loads SQLite3 in memory
+    #if ActiveRecord::Base.connection.adapter_name.downcase.include?("sqlite")
+      #load_schema = lambda { load "#{Rails.root.to_s}/db/schema.rb" }
+      #silence_stream(STDOUT, &load_schema)
+    #end
 
     DatabaseCleaner.strategy = :truncation #, { :except => %w[animal_types animal_statuses breeds] }
   end

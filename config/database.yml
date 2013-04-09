@@ -12,11 +12,6 @@ development:
   database: shelterexchange_dev
 
 test:
-  adapter: sqlite3
-  encoding: utf8
-  database: ":memory:"
-
-#test:
-  #<<: *defaults
-  #database: shelterexchange_test
+  <<: *defaults
+  database: shelterexchange_test
 

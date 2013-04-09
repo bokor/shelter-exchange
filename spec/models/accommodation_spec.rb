@@ -7,19 +7,19 @@ describe Accommodation do
   end
 
   it "should require a animal type" do
-    accommodation = Accommodation.gen :animal_type_id => nil
+    accommodation = Accommodation.new :animal_type_id => nil
     accommodation.should have(1).error_on(:animal_type_id)
     accommodation.errors[:animal_type_id].should == ["needs to be selected"]
   end
 
   it "should require a name of the accommodation" do
-    accommodation = Accommodation.gen :name => nil
+    accommodation = Accommodation.new :name => nil
     accommodation.should have(1).error_on(:name)
     accommodation.errors[:name].should == ["cannot be blank"]
   end
 
   it "should validate a numerical value for max capacity" do
-    accommodation = Accommodation.gen :max_capacity => "abc"
+    accommodation = Accommodation.new :max_capacity => "abc"
     accommodation.should have(1).error_on(:max_capacity)
     accommodation.errors[:max_capacity].should == ["requires a number"]
   end

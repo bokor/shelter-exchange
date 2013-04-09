@@ -7,13 +7,13 @@ describe Alert do
   end
 
   it "should require presence of title" do
-    alert = Alert.gen :title => nil
+    alert = Alert.new :title => nil
     alert.should have(1).error_on(:title)
     alert.errors[:title].should == ["cannot be blank"]
   end
 
   it "should require inclusion of severity" do
-    alert = Alert.gen :severity => "#{Alert::SEVERITIES[0]} blah"
+    alert = Alert.new :severity => "#{Alert::SEVERITIES[0]} blah"
     alert.should have(1).error_on(:severity)
     alert.errors[:severity].should == ["needs to be selected"]
   end
