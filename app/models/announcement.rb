@@ -1,5 +1,5 @@
 class Announcement < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'announcements.created_at DESC'
 
   # Constants
   #----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ class Announcement < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :title, :presence => true
   validates :message, :presence => true
-  validates :category, :inclusion => { :in => CATEGORIES }
+  validates :category, :inclusion => { :in => CATEGORIES, :message => "needs to be selected" }
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
 
