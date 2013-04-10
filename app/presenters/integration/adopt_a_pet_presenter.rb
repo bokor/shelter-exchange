@@ -115,9 +115,8 @@ class Integration::AdoptAPetPresenter < Presenter
       special_needs,
       size,
       age,
-      photos,
       you_tube_url
-    ].flatten
+    ].concat(photos)
   end
 
   def self.csv_header
@@ -134,11 +133,11 @@ class Integration::AdoptAPetPresenter < Presenter
       'SpecialNeeds',
       'Size',
       'Age',
+      'YouTubeVideoURL',
       'PhotoURL',
       'PhotoURL2',
       'PhotoURL3',
-      'PhotoURL4',
-      'YouTubeVideoURL'
+      'PhotoURL4'
     ]
   end
 

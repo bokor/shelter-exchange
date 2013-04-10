@@ -96,9 +96,8 @@ class Integration::PetfinderPresenter < Presenter
       altered,
       '', '', '', '', '',
       special_needs,
-      mix,
-      photos
-    ].flatten
+      mix
+    ].concat(photos)
   end
 
   def self.csv_header
