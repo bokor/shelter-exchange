@@ -187,7 +187,7 @@
 				<li class="action_links">
 					<span><%= link_to "Email Us", "mailto:#{@shelter.email}?subject=From Shelter Exchange" %>|</span>
 					<% unless @shelter.website.blank? %>
-						<span><%= link_to "Visit Website", @shelter.website %>|</span>
+						<span><%= link_to "Visit Website", @shelter.website, :target => "_blank" %>|</span>
 					<% end %>
 					<span><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<%=get_directions_address(@shelter)%>&hl=en" target="_blank">Get Directions</a></span>
 				</li>
