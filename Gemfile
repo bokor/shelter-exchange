@@ -67,11 +67,13 @@ gem "airbrake"
 
 # Local Testing and Tools
 #----------------------------------------------------------------------------
-group :development, :test do
+group :development do
   gem "thin"
   gem "foreman"
   gem "engineyard"
+end
 
+group :development, :test do
   gem "rspec-rails"
   gem "debugger", :platforms => :ruby_19
   #gem "parallel_tests"
