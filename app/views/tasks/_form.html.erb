@@ -19,9 +19,9 @@
 </li>
 <li style="display:none;">
 	<div class="due_date_field">
-		<div class="due_date_alt"><%=format_date(:long_day_of_week, Date.today)%></div>
+		<div class="due_date_alt"><%=format_date(:long_day_of_week, Time.zone.now.to_date)%></div>
 		<div class="date_picker"></div>
 		<%= f.hidden_field :due_date, :class => "hidden_due_date" %>
 	</div>
-</li>	
-	
+</li>
+
