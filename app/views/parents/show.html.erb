@@ -96,7 +96,7 @@
 	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @parent.name %></h2>
 		<div id="create_note_errors"></div>
-		<%= form_for ([@parent, @note = Note.new]), :remote => true, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
+		<%= form_for ([@parent, @note = Note.new]), :remote => true, :format => :js, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
 			<ul>
 				<%= render "notes/form", :f => f, :default_category => true %>
 		    	<li class="buttons">
@@ -111,7 +111,7 @@
 	<div id="create_placement" class="box hide blue">
 		<h2>Create an Animal Placement</h2>
 		<div id="create_placement_errors"></div>
-		<%= form_for (@placement = @parent.placements.new), :remote => true, :html => { :id => "create_placement_form", :class => "create_placement_form" } do |f| %>
+		<%= form_for (@placement = @parent.placements.new), :remote => true, :format => :js, :html => { :id => "create_placement_form", :class => "create_placement_form" } do |f| %>
 			<ul>
 				<li class="complex">
 					<span class="left">

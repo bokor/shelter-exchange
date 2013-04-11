@@ -6,14 +6,14 @@
 		<span class="action_links">
 		<% if transfer.approved? %>
 			<span class="complete_request_link">
-			<%= link_to "Complete Request", edit_transfer_path(transfer, :status => "completed"), :remote => true %>
+			<%= link_to "Complete Request", edit_transfer_path(transfer, :status => "completed", :format => :js), :remote => true %>
 			</span>
 			<% elsif transfer.new_request? %>
 			<span class="approve_link">
-				<%= link_to "Approve", edit_transfer_path(transfer, :status => "approved"), :remote => true %>
+				<%= link_to "Approve", edit_transfer_path(transfer, :status => "approved", :format => :js), :remote => true %>
 			</span>
 			<span class="reject_link">&nbsp;|&nbsp;
-				<%= link_to "Reject", edit_transfer_path(transfer, :status => "rejected"), :remote => true %>
+				<%= link_to "Reject", edit_transfer_path(transfer, :status => "rejected", :format => :js), :remote => true %>
 			</span>
 			<% end %>
 		</span>

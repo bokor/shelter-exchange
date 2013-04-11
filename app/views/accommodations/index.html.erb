@@ -15,12 +15,12 @@
 	</div>
 
 	<div class="page_content">
-			
+
 		<table class="search">
 			<tr>
 				<td class="full_search">
 					<h3>Search for accommodation:</h3>
-					<%= form_for :accommodations, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+					<%= form_for :accommodations, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 						<%= text_field_tag "q", ""  %>
 						<%# text_field_tag "q", "", :onkeyup =>"Accommodations.liveSearch(this);"  %>
 						<%= f.submit "Go", :disable_with => "..." %>
@@ -31,13 +31,13 @@
 					<table class="filter_table">
 						<tr>
 							<td><%= label_tag :animal_type_id, "Animal type" %></td>
-							<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+							<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
 								{ :name => "animal_type_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %><br /><br />
 							</td>
 						</tr>
 						<tr>
 							<td><%= label_tag :location_id, "Location details" %></td>
-							<td><%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"}, 
+							<td><%= collection_select(:location, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"},
 									{ :name => "location_id", :onchange => "Accommodations.filterByTypeLocation();" } ) %>
 							</td>
 						</tr>
@@ -45,21 +45,21 @@
 				</td>
 			</tr>
 		</table>
-			
+
 		<div id="accommodations">
 			<%= render 'accommodation_list', :accommodations => @accommodations %>
 		</div>
-			
+
 	</div>
 
 <% end %>
 
 <%= content_for :sidebar do %>
-	
+
 	<div id="create_accommodation" class="box orange">
 		<h2>Create a new accommodation</h2>
 		<div id="create_accommodation_errors"></div>
-		<%= form_for (@accommodation = Accommodation.new), :remote => true, :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
+		<%= form_for (@accommodation = Accommodation.new), :remote => true, :format => :js, :html => { :id => "create_accommodation_form", :class => "create_accommodation_form" } do |f| %>
 			<ul>
 				<%= render :partial => "form", :locals => { :f => f } %>
 				<li class="buttons">
@@ -68,7 +68,7 @@
 			</ul>
 		<% end %>
 	</div>
-		
+
 	<%= render "locations/dialog_locations" %>
-	
+
 <% end %>

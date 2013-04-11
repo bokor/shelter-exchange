@@ -50,7 +50,7 @@ var HelpAShelter = {
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 
 		$.ajax({
-			url: "/help_a_shelter/find_shelters_in_bounds",
+			url: "/help_a_shelter/find_shelters_in_bounds.js",
 			type: "get",
 			dataType: 'script',
 			data: $("#form_city_zipcode_search").serialize(),

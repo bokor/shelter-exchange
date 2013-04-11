@@ -6,10 +6,10 @@
 	</span>
 	<span class="action_links">
 		<span class="edit_link">
-			<%= link_to "Edit", edit_admin_announcement_path(announcement), :remote => true %>
+			<%= link_to "Edit", edit_admin_announcement_path(announcement, :format => :js), :remote => true %>
 		</span>
 		<span class="delete_link">&nbsp;|&nbsp;
-			<%= link_to "Delete", admin_announcement_path(announcement), :confirm => "Are you sure you want to delete? This announcement will no longer appear in the list.", :method => :delete, :remote => true %>	
+			<%= link_to "Delete", admin_announcement_path(announcement, :format => :js), :confirm => "Are you sure you want to delete? This announcement will no longer appear in the list.", :method => :delete, :remote => true %>
 		</span>
 	</span>
 	<p class="message" id="message_announcement_<%=announcement.id %>"><%= auto_link(announcement.message, :all, :target => "_blank").html_safe %></p>

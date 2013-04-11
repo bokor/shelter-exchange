@@ -1,5 +1,5 @@
 <% show_update_button = false %>
-<%= form_for (@user), :remote => true, :html => { :class => "update_user_form", :id => "update_user_form_#{@user.id}" } do |f| %>
+<%= form_for (@user), :remote => true, :format => :js, :html => { :class => "update_user_form", :id => "update_user_form_#{@user.id}" } do |f| %>
 	<ul>
 	<% if @user == current_user %>
 		<li class="full">

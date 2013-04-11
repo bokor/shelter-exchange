@@ -7,7 +7,7 @@ var Animals = {
 		clearTimeout($.data(element, "search_timer"));
 		var wait = setTimeout(function() {
 			$.ajax({
-				url: "/admin/animals/live_search",
+				url: "/admin/animals/live_search.js",
 				type: "get",
 				dataType: "script",
 				data: $("#form_search").serialize()

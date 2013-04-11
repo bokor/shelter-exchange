@@ -1,7 +1,7 @@
 <div class="box blue" id="edit_task_<%=@task.id %>">
 	<h2>Update task</h2>
 	<div id="edit_task_errors_<%=@task.id %>"></div>
-	<%= form_for (@task), :remote => true, :html => { :id => "edit_task_form_#{@task.id}", :class => "edit_task_form"} do |f| %>
+	<%= form_for (@task), :remote => true, :format => :js, :html => { :id => "edit_task_form_#{@task.id}", :class => "edit_task_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f, :task => @task %>
 			<li class="buttons">
@@ -10,6 +10,6 @@
 				<%= link_to 'Cancel', '#', :onclick => "Tasks.cancelForm(#{@task.id});return false;"  %>
 			</li>
 		</ul>
-		
+
 	<% end %>
 </div>

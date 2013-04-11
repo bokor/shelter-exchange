@@ -1,15 +1,15 @@
-<% 
-	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count 
+<%
+	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count
 	accommodation_class = (animal_count == accommodation.max_capacity) ? "box red" : "box"
 %>
 <div id="accommodation_<%= accommodation.id %>" class="<%=accommodation_class%> accommodation">
-	
+
 	<div class="accommodation_info">
 		<div class="accommodation_name">
 			<h3><%= accommodation.name %></h3>
 			<span class="location_details"><%= accommodation.location ? accommodation.location.name : "None" %></span>
 		</div>
-		
+
 		<div class="accommodation_types">
 			<span class="animal_type"><%= accommodation.animal_type.name %></span>
 			<span class="select_link">
@@ -21,7 +21,7 @@
 			</span>
 		</div>
 	</div>
-		
+
 	<div class="accommodation_count">
 		<span class="space_available">Space available: <%= accommodation.max_capacity - animal_count %></span>
 		<div class="action_links">
@@ -30,17 +30,17 @@
 			</span>
 			<% if can?(:update, Accommodation) %>
 			<span class="edit_link">&nbsp;|&nbsp;
-				<%= link_to "Edit", edit_accommodation_path(accommodation), :remote => true %>
+				<%= link_to "Edit", edit_accommodation_path(accommodation, :format => :js), :remote => true %>
 			</span>
 			<% end %>
 			<% if can?(:destroy, Accommodation) %>
 			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure you want to delete? This will no longer display as an accommodation.", :remote => true %>
+				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure you want to delete? This will no longer display as an accommodation.", :remote => true, :format => :js %>
 			</span>
 			<% end %>
 		</div>
 	</div>
-	
+
 	<div id="accommodation_details_<%= accommodation.id %>" class="accommodation_details">
 		<% if animal_count > 0 %>
 		<table class="animal_list">
