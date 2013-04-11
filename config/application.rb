@@ -13,7 +13,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-#TODO 
+#TODO
             # if defined?(Bundler)
             #   # If you precompile assets before deploying to production, use this line
             #   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -23,7 +23,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module ShelterExchangeApp
   class Application < Rails::Application
-      
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
         #{config.root}/lib
@@ -34,7 +34,7 @@ module ShelterExchangeApp
         #{config.root}/app/uploaders
         #{config.root}/app/models/concerns
     )
-    
+
     # Activate observers that should always be running.
     Dir.chdir("#{Rails.root}/app/observers") do
       config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
@@ -42,7 +42,7 @@ module ShelterExchangeApp
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    config.time_zone = 'Eastern Time (US & Canada)'
+    #config.time_zone = 'Eastern Time (US & Canada)'
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -77,14 +77,14 @@ module ShelterExchangeApp
 
                         # Version of your assets, change this if you want to expire all your assets
                         # config.assets.version = '1.0'
-    
+
     # Allows Devise to use the UrlHelper file for Subdomain links in the emails.
     config.to_prepare do
-      Devise::Mailer.class_eval do 
+      Devise::Mailer.class_eval do
         helper :url
       end
     end
-    
+
   end
 end
 

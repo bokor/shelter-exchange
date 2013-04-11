@@ -10,15 +10,15 @@
 	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
 	// Clear up final functions
 	$('.due_date_field').parent().hide(); // Hide LI tag
-	$('#task_due_date').val( Date.today().toString('yyyy-MM-dd') );
-	
+  $('#task_due_date').val( "<%=Time.zone.now.to_date%>" );
+
 	// Clear Form
 	$('#create_task_form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#create_task_errors').html("");
 	$('#create_task_form p.error').remove();
 	$('#create_task_form li').removeClass("error");
-	
+
 <% end %>
 <% flash.discard %>
