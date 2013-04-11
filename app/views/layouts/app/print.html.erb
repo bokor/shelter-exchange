@@ -5,37 +5,39 @@
 <!--[if IE 9 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
 <head>
-  
+
 	<!-- title -->
-	<title><%= yield(:title) %> | Shelter Exchange</title>
-		
+  <title><%= yield(:title) %> | Shelter Exchange</title>
+
+  <!-- metatags -->
+	<meta charset="utf-8">
+
 	<!-- icons -->
 	<%= favicon_link_tag 'favicon.ico' %>
 	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 	<!-- stylesheets -->
  	<%= include_stylesheets :app_print, :media => "all" %>
-	
+
 	<!-- javascripts -->
 	<%= include_javascripts :app_print %>
-	
+
 	<!--[if (gte IE 6)&(lte IE 8)]>
 		<%= javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
-	
+
 	<!--[if (lt IE 9)]>
 		<%= javascript_include_tag "global/html5" %>
 	<![endif]-->
-	
-	<%= yield(:javascripts) %>		
-	
-	<%= csrf_meta_tag %>
 
+	<%= yield(:javascripts) %>
+
+	<%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %> <%=@print_layout%>_<%= controller_name %>">
-		
+
 	<div id="main">
-		
+
 		<div id="content">
 			<% if content_for?(:page_content) %>
 		  		<%= yield(:page_content) %>
@@ -45,7 +47,7 @@
 	</div>
 	<!--//end main -->
 	<%= render :partial => "shared/footer" %>
-	
+
 </body>
 
 </html>

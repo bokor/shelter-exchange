@@ -1,6 +1,6 @@
 <div id="dialog_comments" class="dialog">
 	<div class="wrapper">
-		
+
 		<span class="title">
 			<h2>View comments</h2>
 		</span>
@@ -8,11 +8,11 @@
 			<span class="add_comment_link"><%= link_to "Add a comment", "#" %></span>
 		</span>
 		<div class="clear"></div>
-		
+
 		<div id="create_comment" class="box hide orange">
 			<!-- <h3>Add a new comment</h3> -->
 			<div id="create_comment_errors"></div>
-			<%= form_for (@comment = Comment.new), :remote => true, :html => { :id => "create_comment_form", :class => "create_comment_form" } do |f| %>
+			<%= form_for (@comment = Comment.new), :remote => true, :format => :js, :html => { :id => "create_comment_form", :class => "create_comment_form" } do |f| %>
 				<ul>
 					<%= render "comments/form", :f => f  %>
 					<li class="buttons">
@@ -25,6 +25,6 @@
 		</div>
 
 		<div id="comments" class="comment_list"></div>
-		
+
 	</div>
 </div>

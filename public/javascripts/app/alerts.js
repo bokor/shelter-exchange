@@ -4,18 +4,18 @@
  * ------------------------------------------------------------------------ */
 var Alerts = {
 	removeAlertSection: function() {
-		if ($("#shelter_alerts > div").size() == 0 && $('#shelter_alerts_section').is(":visible")) {  
+		if ($("#shelter_alerts > div").size() == 0 && $('#shelter_alerts_section').is(":visible")) {
 			$('#shelter_alerts_section').slideToggle();
-		} 
-		if ($("#animal_alerts > div").size() == 0 && $('#animal_alerts_section').is(":visible")) { 
+		}
+		if ($("#animal_alerts > div").size() == 0 && $('#animal_alerts_section').is(":visible")) {
 			$('#animal_alerts_section').slideToggle();
 		}
 	},
 	stop: function(element, id){
 		$(element).attr("disabled", true);
-		if (confirm("Are you sure you want to stop this alert? This alert will no longer appear in the list.")) { 
+		if (confirm("Are you sure you want to stop this alert? This alert will no longer appear in the list.")) {
 			$.ajax({
-				url: "/alerts/"+id+"/stop",
+				url: "/alerts/"+id+"/stop.js",
 				type: "post",
 				dataType: 'script'
 			});
@@ -25,7 +25,7 @@ var Alerts = {
 		}
 	},
 	cancelForm: function(id){
-		$("#edit_alert_"+id).slideToggle(800,function() { 
+		$("#edit_alert_"+id).slideToggle(800,function() {
 			$(this).remove();
 		});
 		$("#alert_"+id).fadeIn(1000);

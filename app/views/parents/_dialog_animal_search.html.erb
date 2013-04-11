@@ -1,7 +1,7 @@
 <div id="dialog_animal_search" class="dialog">
 	<div class="wrapper">
-		<%= form_for :animals, :url => { :action => :find_animals_by_name, :controller => :animals }, 
-		             :remote => true, :html => { :id => "form_animal_search", :method => :get } do |f| %>		
+		<%= form_for :animals, :url => { :action => :find_animals_by_name, :controller => :animals },
+		             :remote => true, :format => :js, :html => { :id => "form_animal_search", :method => :get } do |f| %>
   			<h2>Search for animal:</h2>
   			<%= text_field_tag "q", ""  %>
 			<%= f.submit "Go", :disable_with => "..." %>

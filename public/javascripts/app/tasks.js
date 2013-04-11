@@ -9,16 +9,16 @@ var Tasks = {
 		$('#create_task .task_due_category').bind("change", function() {Tasks.dueDate("#create_task");});
 	},
 	removeTaskSection: function() {
-		if ($("#overdue_tasks > div").size() == 0 && $('#overdue_tasks_section').is(":visible")) {  
+		if ($("#overdue_tasks > div").size() == 0 && $('#overdue_tasks_section').is(":visible")) {
 			$('#overdue_tasks_section').slideToggle();
-		} 
-		if ($("#today_tasks > div").size() == 0 && $('#today_tasks_section').is(":visible")) {  
+		}
+		if ($("#today_tasks > div").size() == 0 && $('#today_tasks_section').is(":visible")) {
 			$('#today_tasks_section').slideToggle();
 		}
-		if ($("#tomorrow_tasks > div").size() == 0&& $('#tomorrow_tasks_section').is(":visible")) {  
+		if ($("#tomorrow_tasks > div").size() == 0&& $('#tomorrow_tasks_section').is(":visible")) {
 			$('#tomorrow_tasks_section').slideToggle();
 		}
-		if ($("#later_tasks > div").size() == 0 && $('#later_tasks_section').is(":visible")) {  
+		if ($("#later_tasks > div").size() == 0 && $('#later_tasks_section').is(":visible")) {
 			$('#later_tasks_section').slideToggle();
 		}
 	},
@@ -29,9 +29,9 @@ var Tasks = {
 
 		if (due_category == 'today') {
 			setDate = Date.today().toString('yyyy-MM-dd');
-		} else if (due_category == 'tomorrow') { 
+		} else if (due_category == 'tomorrow') {
 			setDate = new Date().add(1).day().toString('yyyy-MM-dd');
-		} else if (due_category == 'later') { 
+		} else if (due_category == 'later') {
 			setDate = "";
 		} else if (due_category == 'specific_date') {
 			var tempDate = $(task_div + ' .date_picker').datepicker("getDate");
@@ -50,9 +50,9 @@ var Tasks = {
 			dateFormat: 'yy-mm-dd',
 			altField: element + " .due_date_alt",
 			altFormat: "D MM d, yy",
-			onSelect: function(dateText,picker) { 
+			onSelect: function(dateText,picker) {
 				//HIDDEN FIELD
-				$(element + " .hidden_due_date").val( dateText ); 
+				$(element + " .hidden_due_date").val( dateText );
 
 				//DIV FIELD
 				var dateFormat = $(this).datepicker( "option", "dateFormat" );
@@ -62,14 +62,14 @@ var Tasks = {
 				var formatDate = $.datepicker.formatDate(altFormat, parseDate);
 				$(altField).html(formatDate);
 
-			}  
+			}
 		});
 	},
 	complete: function(element, id){
 		$(element).attr("disabled", true);
-		if (confirm("Are you sure you want to complete this task? This task will no longer appear in the list.")) { 
+		if (confirm("Are you sure you want to complete this task? This task will no longer appear in the list.")) {
 			$.ajax({
-				url: "/tasks/"+id+"/complete",
+				url: "/tasks/"+id+"/complete.js",
 				type: "post",
 				dataType: 'script'
 			});

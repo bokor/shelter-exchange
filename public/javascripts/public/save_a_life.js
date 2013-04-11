@@ -47,7 +47,7 @@ var SaveALife = {
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 
 		$.ajax({
-			url: "/save_a_life/find_animals_in_bounds",
+			url: "/save_a_life/find_animals_in_bounds.js",
 			type: "get",
 			dataType: 'script',
 			data: $("#form_filters").serialize(),

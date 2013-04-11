@@ -1,7 +1,7 @@
 <div class="box blue" id="edit_accommodation_<%=@accommodation.id %>">
 	<h2>Update accommodation</h2>
 	<div id="edit_accommodation_errors_<%=@accommodation.id %>"></div>
-	<%= form_for (@accommodation), :remote => true, :html => { :id => "edit_accommodation_form_#{@accommodation.id}", :class => "edit_accommodation_form"} do |f| %>
+	<%= form_for (@accommodation), :remote => true, :format => :js, :html => { :id => "edit_accommodation_form_#{@accommodation.id}", :class => "edit_accommodation_form"} do |f| %>
 		<ul>
 			<%= render :partial => "form", :locals => { :f => f } %>
 	    	<li class="buttons">

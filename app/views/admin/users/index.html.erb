@@ -5,7 +5,7 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<%= form_for :users, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+		<%= form_for :users, :url => { :action => :live_search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 			<ul>
 				<li class="full">
 					<span class="left half">
@@ -16,7 +16,7 @@
 			</ul>
 		<% end %>
 	</div>
-	
+
 	<div class="page_content">
 
 		<div class="users_section">
@@ -28,9 +28,9 @@
 				<%= will_paginate @users %>
 			</div>
 		</div>
-		
+
 	</div>
-		
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>
