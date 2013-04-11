@@ -35,7 +35,6 @@ var Tasks = {
 			setDate = "";
 		} else if (due_category == 'specific_date') {
 			var tempDate = $(task_div + ' .date_picker').datepicker("getDate");
-      alert(tempDate);
 			setDate = new Date(tempDate).toString('yyyy-MM-dd');
 			$(task_div + ' .due_date_field').parent().show(); // Show LI tag
 		}
