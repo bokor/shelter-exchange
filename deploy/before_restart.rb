@@ -1,5 +1,5 @@
 # Set Current TimeZone
-#sudo "ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime"
+sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
 # Run Jammit-s3
 config_file = (environment == "production" ? "config/assets.yml" : "config/assets_#{environment}.yml")
