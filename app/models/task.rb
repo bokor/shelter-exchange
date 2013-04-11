@@ -42,19 +42,19 @@ class Task < ActiveRecord::Base
   end
 
   def overdue?
-    self.due_date.present? and self.due_date < Date.today
+    self.due_date.present? and self.due_date < Time.zone.now.to_date
   end
 
   def today?
-    self.due_date.present? and self.due_date == Date.today
+    self.due_date.present? and self.due_date == Time.zone.now.to_date
   end
 
   def tomorrow?
-    self.due_date.present? and self.due_date == Date.today + 1.day
+    self.due_date.present? and self.due_date == Time.zone.now.to_date + 1.day
   end
 
   def later?
-    self.due_date.blank? or self.due_date > Date.today + 1.day or self.due_category == "later"
+    self.due_date.blank? or self.due_date > Time.zone.now.to_date + 1.day or self.due_category == "later"
   end
 
   def specific_date?
