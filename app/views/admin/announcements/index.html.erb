@@ -8,23 +8,23 @@
 	<div class="page_heading">
 		<h1>Announcements</h1>
 	</div>
-		
+
 	<div class="page_content">
-			
+
 		<div id="announcements" class="announcement_list">
 			<%= render @announcements %>
 		</div>
-				
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
-	
+
 	<div id="create_announcement" class="box red">
 		<h2>Add an announcement</h2>
 		<div id="create_announcement_errors"></div>
-		<%= form_for ([:admin, @announcement = Announcement.new]), :remote => true, :html => { :id => "create_announcement_form", :class => "create_announcement_form" } do |f| %>
+		<%= form_for ([:admin, @announcement = Announcement.new]), :remote => true, :format => :js, :html => { :id => "create_announcement_form", :class => "create_announcement_form" } do |f| %>
 			<ul>
 				<%= render "form", :f => f  %>
 		    	<li class="buttons">
@@ -33,6 +33,6 @@
 			</ul>
 		<% end %>
 	</div>
-	
-		
+
+
 <% end %>

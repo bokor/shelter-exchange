@@ -6,21 +6,21 @@
 <%= content_for :page_content do %>
 
 	<% if @total_animals > 0 %>
-	
+
 		<div class="print_heading">
 			<h1>Animals</h1>
 		</div>
-		
+
 		<div class="page_content">
-		
+
 			<table class="search">
 				<tr>
 					<td class="full_search">
 						<h3>Search for animals:</h3>
-						<%= form_for :animals, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+						<%= form_for :animals, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", ""  %>
 							<%# text_field_tag "q", "", :onkeyup => "Animals.liveSearch(this);"  %>
-							<%= f.submit "Go", :disable_with => "..." %> 
+							<%= f.submit "Go", :disable_with => "..." %>
 						<% end %>
 					</td>
 					<td class="filters">
@@ -28,7 +28,7 @@
 						<table class="filter_table">
 							<tr>
 								<td><%= label_tag :animal_type_id, "Type" %></td>
-								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, 
+								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
 								       { :name => "animal_type_id", :onchange => "Animals.filterByTypeStatus();" } ) %><br /><br />
 								</td>
 							</tr>
@@ -42,11 +42,11 @@
 					</td>
 				</tr>
 			</table>
-			
+
 			<div class="help_text">
 				<strong>Below are the active animals at your facility. Search all other animals using status filter.</strong>
 			</div>
-			
+
 			<div id="animals">
 				<% unless @animals.blank? %>
 					<%= render "animal_list", :animals => @animals %>
@@ -56,7 +56,7 @@
 			</div>
 
 		</div>
-		
+
 	<% else %>
 		<div class="page_heading">
 			<h1>Create your first animal</h1>

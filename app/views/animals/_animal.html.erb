@@ -10,7 +10,7 @@
 		<% if @from_controller == "parents" %>
 			<h3><%= link_to animal.name, "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %></h3>
 		<% else %>
-			<h3><%= link_to animal.name, animal %></h3>		
+			<h3><%= link_to animal.name, animal %></h3>
 		<% end %>
 		<p><%= animal.full_breed %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.sterilized? %>(Sterilized)<% end %>
@@ -30,7 +30,7 @@
 			<% end %>
 			<% if can?(:destroy, Animal) %>
 			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true %>
+				<%= link_to "Delete", animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true, :format => :js %>
 			</span>
 			<% end %>
 		</div>

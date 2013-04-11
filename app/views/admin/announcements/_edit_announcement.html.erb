@@ -1,7 +1,7 @@
 <div class="box blue" id="edit_announcement_<%=@announcement.id %>">
 	<h2>Update announcement</h2>
 	<div id="edit_announcement_errors_<%=@announcement.id %>"></div>
-	<%= form_for ([:admin, @announcement]), :remote => true, :html => { :id => "edit_announcement_form_#{@announcement.id}", :class => "edit_announcement_form"} do |f| %>
+	<%= form_for ([:admin, @announcement]), :remote => true, :format => :js, :html => { :id => "edit_announcement_form_#{@announcement.id}", :class => "edit_announcement_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f  %>
 	    	<li class="buttons">

@@ -8,16 +8,16 @@ var Communities = {
 		logo = marker;
 		lat = latitude;
 		lng = longitude;
-		
-		Maps.createMap(); 
-		
+
+		Maps.createMap();
+
 		$("#map_canvas").jScroll({speed : "slow"});
 
 		$("#search_by_city_zipcode").bind("click",function(e, first){
 			e.preventDefault();
-			
+
 			$("#map_canvas").stop().animate({marginTop: "0px"},0); // Fixes JScroll issue with hidden elements in the page
-			
+
 			$("#results_by_city_zipcode").show();
 			$("#results_by_shelter_name").hide();
 			$("#form_city_zipcode_search").show();
@@ -30,7 +30,7 @@ var Communities = {
 
 			Communities.searchByCityZipCode();
 			if($("#city_zipcode").val()){ Maps.geocodeAddress(); }
-			
+
 		});
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
@@ -46,7 +46,7 @@ var Communities = {
 			$(this).addClass("current");
 			Communities.searchByShelterName();
 		});
-		
+
 		$("#search_by_city_zipcode").trigger("click", true);
 	},
 	resetAll: function() {
@@ -59,14 +59,14 @@ var Communities = {
 		$("#form_city_zipcode_search, #form_shelter_name_search").unbind("submit");
 		$("#filters_sex, #filters_animal_status, #filters_animal_type").unbind("change");
 		$("#filters_euthanasia_only, #filters_special_needs_only").unbind($.browser.msie? "propertychange" : "change");
-		
+
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
-	},	
+	},
 	createMap: function(){
 		geocoder = new google.maps.Geocoder();
 		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
-		kmlLayer = new google.maps.KmlLayer(mapOverlay); 
+		kmlLayer = new google.maps.KmlLayer(mapOverlay);
 		kmlLayer.setMap(map);
 	},
 	searchByCityZipCode: function() {
@@ -76,11 +76,11 @@ var Communities = {
 			mapCenter = map.getCenter();
 			Communities.findAnimalsInBounds();
 		});
-		
+
 		resizeListener = google.maps.event.addDomListener(window, 'resize', function() {
 		  map.setCenter(mapCenter);
 		});
-		
+
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
 		Maps.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
@@ -89,11 +89,11 @@ var Communities = {
 	searchByShelterName: function() {
 		// Set up and config
 	    //myLatLng = new google.maps.LatLng(lat, lng);
-	
+
 		if($('#filters_shelter_id').val() != ""){
 			Communities.findAnimalsForShelter();
 		}
-	
+
 		// Set up forms
 		Communities.bindFilters();
 		Maps.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
@@ -101,12 +101,12 @@ var Communities = {
   	},
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
-		
+
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
-		
+
 		$.ajax({
-			url: "/communities/find_animals_in_bounds",
+			url: "/communities/find_animals_in_bounds.js",
 			type: "get",
 			dataType: 'script',
 			data: $("#form_filters").serialize()
@@ -115,7 +115,7 @@ var Communities = {
 	},
 	findAnimalsForShelter: function(){
 		$.ajax({
-			url: "/communities/find_animals_for_shelter",
+			url: "/communities/find_animals_for_shelter.js",
 			type: "get",
 			dataType: 'script',
 			data: $("#form_filters").serialize()
@@ -123,18 +123,18 @@ var Communities = {
 	},
 	bindFilters: function(findAnimalsFunction){
 		$("#form_filters").bind("keypress", function(e){
-			return !(window.event && window.event.keyCode == 13); 
+			return !(window.event && window.event.keyCode == 13);
 		});
-		
+
 		$("#form_city_zipcode_search").bind("submit", function(e){
 			e.preventDefault();
 			Maps.geocodeAddress();
 		});
-		
+
 		$("#form_shelter_name_search").bind("submit", function(e){
 			e.preventDefault();
 		});
-		
+
 		$("#filters_animal_type").bind("change", function(e){
 			e.preventDefault();
 			$("#filters_breed").val("");
@@ -147,16 +147,16 @@ var Communities = {
 			}
 			findAnimalsFunction();
 		});
-		
+
 		$("#filters_sex, #filters_animal_status").bind("change", function(e){
 			e.preventDefault();
 			findAnimalsFunction();
 		});
-		
+
 		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
 		  	e.preventDefault();
 			findAnimalsFunction();
 		});
-		
+
 	}
 };

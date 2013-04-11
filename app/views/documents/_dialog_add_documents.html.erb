@@ -2,7 +2,7 @@
 	<div class="wrapper">
     <p>A maximum of 4 attachments can be added per <%= attachable.class.to_s.downcase %>.</p><br>
 
-    <%= form_for ([attachable, Document.new]), :html => { :multipart => true, :id => "document_uploader_#{attachable.id}" } do |f| %>
+    <%= form_for ([attachable, Document.new]), :remote => true, :format => :json, :html => { :multipart => true, :id => "document_uploader_#{attachable.id}" } do |f| %>
 		  <div class="row fileupload-buttonbar">
 			  <div class="span7">
 			    <span class="btn btn-success fileinput-button">

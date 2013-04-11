@@ -1,6 +1,6 @@
 <div id="create_adopt_a_pet_errors"></div>
-	
-<%= form_for (integration), :remote => true, :html => { :id => "create_adopt_a_pet_form", :class => "create_adopt_a_pet_form" } do |f| %>
+
+<%= form_for (integration), :remote => true, :format => :js, :html => { :id => "create_adopt_a_pet_form", :class => "create_adopt_a_pet_form" } do |f| %>
 	<ul>
 		<li>
 			<%= f.label :username, "FTP Username <span class='req'>*</span>".html_safe, :class => "desc" %>

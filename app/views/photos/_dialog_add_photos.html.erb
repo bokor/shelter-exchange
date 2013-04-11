@@ -2,7 +2,7 @@
 	<div class="wrapper">
 	  <p>A maximum of 3 additional photos can be added. (File types allowed: <%=PhotoUploader.new.extension_white_list.to_sentence %>)</p><br>
 
-		<%= form_for ([@animal, Photo.new]), :html => { :multipart => true, :id => "photo_uploader"  } do |f| %>
+    <%= form_for ([@animal, Photo.new]), :remote => true, :format => :json, :html => { :multipart => true, :id => "photo_uploader"  } do |f| %>
 		  <div class="row fileupload-buttonbar">
 			  <div class="span7">
 			    <span class="btn btn-success fileinput-button">

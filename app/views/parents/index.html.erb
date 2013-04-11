@@ -8,9 +8,9 @@
 	<div class="page_heading blue">
 		<h1>Parents</h1>
 	</div>
-		
+
 	<div class="page_content">
-		
+
 		<div class="help_text">
 			<p>A Parent is a person who may have a history of <strong>adopting or fostering animals</strong> from either your facility or another shelter or rescue group. If you are considering adopting an animal to a person through your facility, you can check their background by searching for their record here, which allows shelters and rescues to share information about who is adopting or fostering.</p>
 
@@ -21,23 +21,23 @@
 				<li>If their record is not found, please add them to the database as this will benefit other shelters and rescues and assist you by keeping concise records of adoptive parents.</li>
 			</ul>
 		</div>
-		
+
 		<div class="separator"></div>
-		
+
 		<div id="parent_search">
 			<h3>Lookup by Name, Email address, or Phone number:</h3>
-			<%= form_for :parents, :url => { :action => :search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+			<%= form_for :parents, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 				<%= text_field_tag "q", "" %>
 				<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "Select State"}, {:class => "field select addr", :onchange =>"Shelters.liveSearch(this);"}  %>
 				<%= f.submit "Go" %>
-				
+
 			<% end %>
 		</div>
-			
+
 		<div id="parents"></div>
 
 	</div>
-		
+
 <% end %>
 
 <%= content_for :sidebar do %>

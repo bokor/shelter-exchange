@@ -5,7 +5,7 @@
 <!--[if IE 9 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
 <head>
-	
+
 	<!-- title -->
 	<title><%= yield(:title) %> | Shelter Exchange</title>
 
@@ -19,25 +19,24 @@
 
 	<!-- stylesheets -->
 	<%= include_stylesheets :public_popup, :media => "all" %>
-	
+
 	<!-- javascripts -->
 	<%# include_javascripts :public %>
-	
+
 	<!--[if (gte IE 6)&(lte IE 8)]>
 		<%# javascript_include_tag "global/selectivizr-min" %>
 	<![endif]-->
-	
+
 	<!--[if (lt IE 9)]>
 		<%= javascript_include_tag "global/html5" %>
-	<![endif]-->	
-	
-	<%= yield(:javascripts) %>
-	
-	<%= csrf_meta_tag %>
+	<![endif]-->
 
+	<%= yield(:javascripts) %>
+
+	<%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= page_name %>">
-	
+
 	<header>
 		<div id="banner" class="content">
 			<div class="logo">
@@ -48,7 +47,7 @@
 			</div>
 		</div>
 	</header>
-        
+
 	<section id="main">
 		<div class="content">
 			<%= yield(:page_content) %>
@@ -56,6 +55,6 @@
 	</section>
 
 	<%= render :partial => "public/shared/analytics"  if Rails.env.production? %>
-    
+
 </body>
 </html>

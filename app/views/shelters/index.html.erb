@@ -13,7 +13,7 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		
+
 		<% if @shelter.logo? %>
 			<div class="logo">
 				<%= image_tag @shelter.logo.url(:small) %>
@@ -27,9 +27,9 @@
 			<% end %>
 		</div>
 	</div>
-		
+
 	<div class="page_content">
-		
+
 		<div class="shelter_details">
 			<div id="address">
 				<h3>Address:</h3>
@@ -51,14 +51,14 @@
 				<h3>Contact Details:</h3>
 				<ul>
 					<li>Phone:  <%= number_to_phone(@shelter.phone, :delimiter => "-") %></li>
-					
+
 					<% unless @shelter.fax.blank? %>
 						<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
 					<% end %>
-					
+
 					<li>Email:  <%= @shelter.email %></li>
 				</ul>
-				
+
 				<h3>Website Details:</h3>
 				<ul>
 					<li class="action_links">
@@ -76,19 +76,19 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div id="map_canvas"></div>
-		
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
-	
+
 	<div id="items_section">
-		<h2>Wish List 
+		<h2>Wish List
 			<% if can?(:update, Shelter) %>
-				<span class="actions"><%= link_to "Edit", edit_shelter_path(@shelter), :remote => true, :id => "edit_wish_list" %></span>
+				<span class="actions"><%= link_to "Edit", edit_shelter_path(@shelter, :format => :js), :remote => true, :id => "edit_wish_list" %></span>
 			<% end %>
 		</h2>
 		<p>List below the 5 items most needed as donations to your facility. This list will be displayed on the Shelter Exchange website so please keep this list up to date!</p>
@@ -96,5 +96,5 @@
 			<%= render @shelter.items unless @shelter.items.blank? %>
 		</ol>
 	</div>
-	
+
 <% end %>

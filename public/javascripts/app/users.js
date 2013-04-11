@@ -5,7 +5,7 @@
 var Users = {
 	selectUser: function(id) {
 		$.ajax({
-			url: "/users/"+id+"/edit",
+			url: "/users/"+id+"/edit.js",
 			type: "get",
 			dataType: 'script'
 		});

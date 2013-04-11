@@ -1,6 +1,6 @@
 <div id="edit_items" class="box green">
 	<h2>Editing Wish List</h2>
-	<%= form_for setup_items(@shelter), :remote => true do |f| %>
+	<%= form_for setup_items(@shelter), :remote => true, :format => :js do |f| %>
 		<ul>
 			<%= f.fields_for :items do |item_fields| %>
 				<li>
