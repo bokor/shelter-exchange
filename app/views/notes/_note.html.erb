@@ -31,7 +31,7 @@
 
       <% if can?(:update, Note) %>
         <span class="edit_link">
-          <%= link_to "Edit", edit_note_path(note), :remote => true %>
+          <%= link_to "Edit", edit_note_path(note, :format => :js), :remote => true %>
         </span>
       <% end %>
 
@@ -39,7 +39,7 @@
         <span class="delete_link">&nbsp;|&nbsp;
           <%= link_to 'Delete', note,
             :confirm => "Are you sure you want to delete? This note will no longer be available and all attachments will be deleted.",
-            :method => :delete, :remote => true %>
+            :method => :delete, :remote => true, :format => :js %>
         </span>
       <% end %>
 

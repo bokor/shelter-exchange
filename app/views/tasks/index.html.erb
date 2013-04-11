@@ -13,7 +13,7 @@
 	<div class="page_heading">
 		<h1>Tasks</h1>
 	</div>
-		
+
 	<div class="page_content">
 		<%= render :partial => "task_list" %>
 	</div>
@@ -26,7 +26,7 @@
 	<div id="create_task" class="box blue">
 		<h2>Add a task</h2>
 		<div id="create_task_errors"></div>
-		<%= form_for (@task = Task.new), :remote => true, :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
+		<%= form_for (@task = Task.new), :remote => true, :format => :js, :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
 		<ul>
 			<%= render "form", :f => f  %>
 			<li class="buttons">
@@ -35,5 +35,5 @@
 		</ul>
 		<% end %>
 	</div>
-	
+
 <% end %>

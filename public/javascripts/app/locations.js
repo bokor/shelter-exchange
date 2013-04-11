@@ -12,10 +12,10 @@ var Locations = {
 		//	e.preventDefault();
 		//	$('.qtip.ui-tooltip').qtip('hide');
 		//});
-	},	
+	},
 	findAllLocations: function() {
 		$.ajax({
-			url: "/locations/find_all",
+			url: "/locations/find_all.js",
 			type: "get",
 			dataType: 'script'
 		});

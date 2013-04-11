@@ -5,7 +5,7 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<%= form_for :shelters, :url => { :action => :live_search }, :remote => true, :html => { :id => "form_search", :method => :get } do |f| %>
+		<%= form_for :shelters, :url => { :action => :live_search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 			<ul>
 				<li class="full">
 					<span class="left half">
@@ -20,12 +20,12 @@
 						<%= f.label :status, "Status", :class => "desc" %>
 						<%= f.collection_select :status, Shelter::STATUSES, :to_s, :humanize, {:prompt => "Select one"}, {:class => "field select large", :onchange =>"Shelters.liveSearch(this);"} %>
 					</span>
-					
+
 				</li>
 			</ul>
 		<% end %>
 	</div>
-	
+
 	<div class="page_content">
 
 		<div class="shelters_section">
@@ -37,7 +37,7 @@
 				<%= will_paginate @no_kill_shelters, :param_name => :no_kill_shelters_page %>
 			</div>
 		</div>
-		
+
 		<div class="shelters_section kill">
 			<h2>Kill Shelters</h2>
 			<div id="kill_shelters" class="shelter_list">
@@ -47,9 +47,9 @@
 				<%= will_paginate @kill_shelters, :param_name => :kill_shelters_page %>
 			</div>
 		</div>
-		
+
 	</div>
-		
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>

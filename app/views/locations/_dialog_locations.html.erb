@@ -11,7 +11,7 @@
 		<div id="create_location" class="box hide orange">
 			<!-- <h3>Add a new location</h3> -->
 			<div id="create_location_errors"></div>
-			<%= form_for (@location = Location.new), :remote => true, :html => { :id => "create_location_form", :class => "create_location_form" } do |f| %>
+			<%= form_for (@location = Location.new), :remote => true, :format => :js, :html => { :id => "create_location_form", :class => "create_location_form" } do |f| %>
 				<ul>
 					<%= render :partial => "locations/form", :locals => { :f => f } %>
 					<li class="buttons">

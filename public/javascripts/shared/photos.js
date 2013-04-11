@@ -18,7 +18,7 @@ var Photos = {
   },
   refreshGallery: function(attachable_name, id){
     $.ajax({
-      url: "/"+attachable_name+"/"+id+"/photos/refresh_gallery",
+      url: "/"+attachable_name+"/"+id+"/photos/refresh_gallery.json",
       type: "get",
    	  dataType: 'json'
     }).done(function (data) {

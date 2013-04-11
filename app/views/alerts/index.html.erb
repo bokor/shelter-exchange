@@ -8,33 +8,33 @@
 	<div class="page_heading">
 		<h1>Alerts</h1>
 	</div>
-		
+
 	<div class="page_content">
-			
+
 		<div id="shelter_alerts_section" class="<%= "hide" if @shelter_alerts.blank? %>">
 			<h3>Shelter</h3>
 			<div id="shelter_alerts" class="alert_list">
 				<%= render :partial => "alert", :collection => @shelter_alerts %>
 			</div>
 		</div>
-			
+
 		<div id="animal_alerts_section" class="<%= "hide" if @animal_alerts.blank? %>">
 			<h3>Animal</h3>
 			<div id="animal_alerts" class="alert_list">
 				<%= render :partial => "alert", :collection => @animal_alerts %>
 			</div>
 		</div>
-				
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
-	
+
 	<div id="create_alert" class="box red">
 		<h2>Add an alert</h2>
 		<div id="create_alert_errors"></div>
-		<%= form_for (@alert = Alert.new), :remote => true, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
+		<%= form_for (@alert = Alert.new), :remote => true, :format => :js, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
 			<ul>
 				<%= render "form", :f => f  %>
 		    	<li class="buttons">
@@ -43,6 +43,6 @@
 			</ul>
 		<% end %>
 	</div>
-	
-		
+
+
 <% end %>

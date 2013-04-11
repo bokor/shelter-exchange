@@ -18,7 +18,7 @@ var Notes = {
 	},
   refreshNote: function(id){
     $.ajax({
-      url: "/notes/"+id,
+      url: "/notes/"+id+".js",
       type: "get",
    	  dataType: "script"
     });

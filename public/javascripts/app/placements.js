@@ -5,7 +5,7 @@
 var Placements = {
 	findComments: function(id){
 		$.ajax({
-			url: "/placements/"+id+"/find_comments",
+			url: "/placements/"+id+"/find_comments.js",
 			type: "get",
 			dataType: 'script'
 		});

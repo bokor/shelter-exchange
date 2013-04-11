@@ -1,7 +1,7 @@
 <div class="box blue" id="edit_transfer_<%=@transfer.id %>">
 	<h2><%= status_action_name(@transfer)%> transfer request of <%=@transfer.animal.name%></h2>
 	<div id="edit_transfer_errors_<%=@transfer.id %>"></div>
-	<%= form_for (@transfer), :remote => true, :html => { :id => "edit_transfer_form_#{@transfer.id}", :class => "edit_transfer_form"} do |f| %>
+	<%= form_for (@transfer), :remote => true, :format => :js, :html => { :id => "edit_transfer_form_#{@transfer.id}", :class => "edit_transfer_form"} do |f| %>
 		<ul>
 			<li class="full">
 				<%= f.label :transfer_history_reason, "Additional notes".html_safe, :class => "desc" %>

@@ -102,7 +102,7 @@ var Animals = {
 	},
 	filterByTypeStatus: function(){
 		$.ajax({
-			url: "/animals/filter_by_type_status",
+			url: "/animals/filter_by_type_status.js",
 			type: "get",
 			dataType: 'script',
 			data: {
@@ -117,7 +117,7 @@ var Animals = {
 	// 		clearTimeout($.data(element, "search_timer"));
 	// 		var wait = setTimeout(function() {
 	// 			$.ajax({
-	// 				url: "/animals/search",
+	// 				url: "/animals/search.js",
 	// 				dataType: "script",
 	// 				data: { q: q.val() }
 	// 			});
@@ -145,7 +145,7 @@ var Animals = {
       //},
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete",
+					url: "/shared/breeds/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term,

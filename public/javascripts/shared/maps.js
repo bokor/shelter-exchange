@@ -15,11 +15,11 @@ var logo = null;
 var idleListener = null;
 var resizeListener = null;
 
-var Maps = {	
+var Maps = {
 	createMap: function(){
 		geocoder = new google.maps.Geocoder();
 		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
-		kmlLayer = new google.maps.KmlLayer(mapOverlay); 
+		kmlLayer = new google.maps.KmlLayer(mapOverlay);
 		kmlLayer.setMap(map);
 	},
 	geocodeAddress: function(){
@@ -42,32 +42,32 @@ var Maps = {
 			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/breeds/auto_complete",
+					url: "/shared/breeds/auto_complete.json",
 					dataType: "json",
 					data: { q: request.term, animal_type_id: $("#filters_animal_type").val() },
 					success: function( data ) {
 						response( $.map( data, function( item ) {
 							return {
-								label: item.name, 
+								label: item.name,
 								value: item.name
-							}  
+							}
 						}));
 					}
 				});
 			},
-			close: function(event, ui) { 
+			close: function(event, ui) {
 				event.preventDefault();
 				closeFunction();
-			}			
+			}
 		});
 	},
 	addressAutoComplete: function(){
 		$("#city_zipcode").autocomplete({
 			minLength: 3,
 			autoFocus: true,
-			delay: 400, 
+			delay: 400,
 			source: function(request, response) {
-		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) { 
+		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) {
 					response( $.map( results, function( item ) {
 						var address = item.formatted_address.replace(", USA", "");
 						return {
@@ -76,7 +76,7 @@ var Maps = {
  							latitude: item.geometry.location.lat(),
 							longitude: item.geometry.location.lng(),
 							viewport: item.geometry.viewport
-						}  
+						}
 					}));
 		 		})
 			},
@@ -85,19 +85,19 @@ var Maps = {
 				e.preventDefault();
 				$(this).val(ui.item.value);
 				map.fitBounds(ui.item.viewport);
-				lat = ui.item.latitude; 
+				lat = ui.item.latitude;
 				lng = ui.item.longitude;
-			}	
+			}
 		});
 	},
 	shelterNameAutoComplete: function(selectFunction){
 		$("#shelter_name").autocomplete({
 			minLength: 3,
 			autoFocus: true,
-			delay: 500, 
+			delay: 500,
 			source: function( request, response ) {
 				$.ajax({
-					url: "/shared/shelters/auto_complete",
+					url: "/shared/shelters/auto_complete.json",
 					dataType: "json",
 					data: {
 						q: request.term
@@ -110,7 +110,7 @@ var Maps = {
 								label: item.name,
 								value: item.name,
 								id: item.id
-							}  
+							}
 						}));
 					}
 				});
@@ -120,7 +120,7 @@ var Maps = {
 				selectFunction();
 				lat = ui.item.lat;
 				lng = ui.item.lng;
-			}	
+			}
 		});
 	}
 };

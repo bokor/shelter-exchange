@@ -9,18 +9,18 @@
 			<li class="available"><strong>Available space:</strong> <%= capacity.max_capacity - animal_count %></li>
 		</ul>
 	</span>
-	
+
 	<span class="action_links">
 		<% if can?(:update, Capacity) %>
 			<span class="edit_link">
-				<%= link_to "Edit", edit_capacity_path(capacity), :remote => true %>
+				<%= link_to "Edit", edit_capacity_path(capacity, :format => :js), :remote => true %>
 			</span>
 		<% end %>
 		<% if can?(:destroy, Capacity) %>
 			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true %>	
+				<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true, :format => :js %>
 			</span>
 		<% end %>
 	</span>
-	
+
 </div>
