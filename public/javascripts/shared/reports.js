@@ -22,7 +22,7 @@ var Reports = {
 	},
 	pieChart: function(title, url_function){
 		$.ajax({
-			url: ajaxUrl + url_function + ".js",
+			url: ajaxUrl + url_function + ".json",
 			type: "get",
 			dataType: 'json',
 			data: {
@@ -70,7 +70,7 @@ var Reports = {
 	},
 	barChart: function(title, url_function, yaxis_title){
 		$.ajax({
-			url: ajaxUrl + url_function + ".js",
+			url: ajaxUrl + url_function + ".json",
 			type: "get",
 			dataType: 'json',
 			data: {
