@@ -3,7 +3,7 @@
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
 		$(function() {
-			Tasks.initialize();
+      Tasks.initialize("<%=Time.zone.now.utc_offset/60/60%>");
 		});
 	</script>
 <% end %>
@@ -19,7 +19,7 @@
 			<li><strong>When is this due?</strong> - Pick from the drop down menu when this task is due. Choose the 'Specific Date' option for a calendar to appear.</li>
 		</ul>
 	</div>
-		
+
 	<div class="page_content">
 		<%= render "shared/error_messages", :target => @task %>
 		<div id="create_task">
@@ -31,9 +31,9 @@
 					</li>
 				</ul>
 			<% end %>
-		</div>	
+		</div>
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
