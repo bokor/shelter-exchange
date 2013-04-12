@@ -30,12 +30,12 @@ var Tasks = {
 		if (due_category == 'today') {
 			setDate = Date.today().toString('yyyy-MM-dd');
 		} else if (due_category == 'tomorrow') {
-			setDate = new Date().add(1).day().toString('yyyy-MM-dd');
+			setDate = Date().add(1).day().toString('yyyy-MM-dd');
 		} else if (due_category == 'later') {
 			setDate = "";
 		} else if (due_category == 'specific_date') {
 			var tempDate = $(task_div + ' .date_picker').datepicker("getDate");
-			setDate = new Date(tempDate).toString('yyyy-MM-dd');
+			setDate = Date(tempDate).toString('yyyy-MM-dd');
 			$(task_div + ' .due_date_field').parent().show(); // Show LI tag
 		}
 
@@ -85,7 +85,4 @@ var Tasks = {
 		$("#task_"+id).fadeIn(1000);
 	}
 };
-
-
-
 
