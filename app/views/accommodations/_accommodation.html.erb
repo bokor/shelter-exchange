@@ -1,6 +1,6 @@
 <%
 	animal_count = 	accommodation.animals.blank? ? 0 : accommodation.animals.count
-	accommodation_class = (animal_count == accommodation.max_capacity) ? "box red" : "box"
+  accommodation_class = (animal_count >= accommodation.max_capacity) ? "box red" : "box"
 %>
 <div id="accommodation_<%= accommodation.id %>" class="<%=accommodation_class%> accommodation">
 
