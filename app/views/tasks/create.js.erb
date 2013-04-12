@@ -12,6 +12,12 @@
 	$('.due_date_field').parent().hide(); // Hide LI tag
   $('#task_due_date').val( "<%=Time.zone.now.to_date%>" );
 
+  // Update Date Picker to now
+  $('#create_task .date_picker').datepicker("setDate", "<%=Time.zone.now.to_date%>" );
+	var tempDate = $('#create_task .date_picker').datepicker("getDate");
+	var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
+	$('#create_task .due_date_alt').html(setDate);
+
 	// Clear Form
 	$('#create_task_form').get(0).reset();
 
@@ -19,6 +25,7 @@
 	$('#create_task_errors').html("");
 	$('#create_task_form p.error').remove();
 	$('#create_task_form li').removeClass("error");
-
 <% end %>
+
 <% flash.discard %>
+
