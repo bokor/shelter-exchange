@@ -2,26 +2,28 @@
 	$('#edit_task_errors_<%=@task.id%>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @task) %>" );
 	<%= render 'shared/ajax_form_errors', :target => @task, :form_id => "edit_task_form_#{@task.id}" %>
 <% else %>
-	<% due_section = @task.due_section %>
+
+  <% due_section = @task.due_section %>
+
+  $('#edit_task_<%=@task.id%>').slideToggle(1000, function() {
+	  $(this).remove();
+		Tasks.removeTaskSection();
+	});
+
+  alert("<%=@task.due_date_changed?%>");
+
 	<% if @task.due_date_changed? %>
-		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() {
-			$(this).remove();
-			Tasks.removeTaskSection();
-		});
 		$('#task_<%= @task.id %>').fadeOut(1000, function() {
 			$(this).remove();
 			Tasks.removeTaskSection();
-		});
+    });
+
 		// Manipulate Specific Section's Content
 		$('#<%=due_section %>_tasks_section').removeClass("no_task");
 		$('#<%=due_section %>_tasks_section').fadeIn(1500);
-		$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
+		$('#<%=due_section %>_tasks').append("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
 		$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1000);
 	<% else %>
-		$('#edit_task_<%=@task.id%>').slideToggle(1000, function() {
-			$(this).remove();
-			Tasks.removeTaskSection();
-		});
 		$('#task_<%=@task.id%>').replaceWith( "<%= escape_javascript(render @task) %>" );
 		$('#task_<%=@task.id%>').show().effect("highlight", {}, 1000);
 	<% end %>
@@ -32,4 +34,6 @@
 	$('#edit_task_form_<%=@task.id %> li').removeClass("error");
 
 <% end %>
+
 <% flash.discard %>
+

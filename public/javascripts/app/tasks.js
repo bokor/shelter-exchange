@@ -2,9 +2,13 @@
  * app/tasks.js
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
+var offset;
+
 var Tasks = {
-	initialize: function(){
-		Tasks.datePicker("#create_task");
+	initialize: function(timezone_offset){
+    offset = timezone_offset;
+
+    Tasks.datePicker("#create_task");
 		Tasks.dueDate("#create_task");
 		$('#create_task .task_due_category').bind("change", function() {Tasks.dueDate("#create_task");});
 	},
@@ -23,23 +27,25 @@ var Tasks = {
 		}
 	},
 	dueDate: function(task_div) {
-		var setDate;
+		var dueDate;
+    var todayDate = Timezone.getDateWithOffset(offset);
+
 		var due_category = $(task_div + ' .task_due_category').val();
 		$(task_div + ' .due_date_field').parent().hide(); // Hide LI tag
 
 		if (due_category == 'today') {
-			setDate = Date.today().toString('yyyy-MM-dd');
+			dueDate = todayDate.toString('yyyy-MM-dd');
 		} else if (due_category == 'tomorrow') {
-			setDate = Date().add(1).day().toString('yyyy-MM-dd');
+			dueDate = todayDate.add(1).day().toString('yyyy-MM-dd');
 		} else if (due_category == 'later') {
-			setDate = "";
+			dueDate = "";
 		} else if (due_category == 'specific_date') {
-			var tempDate = $(task_div + ' .date_picker').datepicker("getDate");
-			setDate = Date(tempDate).toString('yyyy-MM-dd');
+			var datepickerDate = $(task_div + ' .date_picker').datepicker("getDate");
+			dueDate = new Date.parse(datepickerDate, 'yyyy-MM-dd');
 			$(task_div + ' .due_date_field').parent().show(); // Show LI tag
 		}
 
-		$(task_div + ' .hidden_due_date').val(setDate);
+		$(task_div + ' .hidden_due_date').val(dueDate);
 	},
 	datePicker: function(element){
 		$(element + " .date_picker").datepicker({

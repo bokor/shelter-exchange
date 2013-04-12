@@ -3,7 +3,7 @@
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
 		$(function() {
-			Tasks.initialize();
+      Tasks.initialize("<%=Time.zone.now.utc_offset/60/60%>");
 		});
 	</script>
 <% end %>
@@ -18,10 +18,10 @@
 		<%= render :partial => "task_list" %>
 	</div>
 
-
 <% end %>
 
 <%= content_for :sidebar do %>
+
 	<div id="create_task" class="box blue">
 		<h2>Add a task</h2>
 		<div id="create_task_errors"></div>

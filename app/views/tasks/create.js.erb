@@ -3,11 +3,13 @@
 	<%= render 'shared/ajax_form_errors', :target => @task, :form_id => "create_task_form" %>
 <% else %>
 	// Section Specific Code
-	<% due_section = @task.due_section %>
+  <% due_section = @task.due_section %>
+
 	$('#<%=due_section %>_tasks_section').removeClass("no_task");
 	$('#<%=due_section %>_tasks_section').fadeIn(1000);
 	$('#<%=due_section %>_tasks').prepend("<%= escape_javascript(render @task) %>"); //probably append instead of prepend
-	$("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
+  $("#<%=due_section %>_tasks .task").first().effect("highlight", {}, 1500);
+
 	// Clear up final functions
 	$('.due_date_field').parent().hide(); // Hide LI tag
   $('#task_due_date').val( "<%=Time.zone.now.to_date%>" );
