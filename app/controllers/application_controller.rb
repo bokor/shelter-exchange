@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :authenticate_user!, :current_account, :current_shelter, :shelter_inactive?,
-                :set_time_zone, :store_location
+                :store_location
+  around_filter :shelter_time_zone
 
   layout :current_layout
 
@@ -25,8 +26,8 @@ class ApplicationController < ActionController::Base
       raise ShelterExchange::Errors::ShelterInactive if @current_shelter and @current_shelter.inactive?
     end
 
-    def set_time_zone
-      Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
+    def shelter_time_zone(&block)
+      Time.use_zone(current_shelter.time_zone, &block) unless @current_shelter.blank?
     end
 
     def local_request?
