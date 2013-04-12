@@ -7,7 +7,7 @@ $('#edit_task_<%=@task.id%> .task_due_category').bind("change", function() {Task
 
 <% due_section = @task.due_section %>
 
-<% if @task.overdue? or @task.specific_date? %>
+<% if @task.overdue? || @task.specific_date? %>
 	var db_date = $('#edit_task_<%=@task.id%> .hidden_due_date').val();
 	$('#edit_task_<%=@task.id%> .task_due_category').val('specific_date');
 	$('#edit_task_<%=@task.id%> .date_picker').datepicker("setDate", db_date);
