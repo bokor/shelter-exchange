@@ -45,8 +45,8 @@ end
 describe Accommodation, "#animal_type" do
 
   it "should belong to an animal type" do
-    animal_type   = AnimalType.new
-    accommodation = Accommodation.new :animal_type => animal_type
+    animal_type   = AnimalType.gen
+    accommodation = Accommodation.gen :animal_type => animal_type
 
     accommodation.animal_type.should == animal_type
   end
@@ -74,14 +74,20 @@ end
 
 describe Accommodation, "#animals" do
 
+  before do
+    @accommodation = Accommodation.gen
+    @animal1 = Animal.gen :accommodation => @accommodation
+    @animal2 = Animal.gen :accommodation => @accommodation
+  end
+
   it "should return a list of animals" do
-    accommodation = Accommodation.gen
+    @accommodation.animals.count.should == 2
+    @accommodation.animals.should =~ [@animal1, @animal2]
+  end
 
-    animal1 = Animal.gen :accommodation => accommodation
-    animal2 = Animal.gen :accommodation => accommodation
-
-    accommodation.animals.count.should == 2
-    accommodation.animals.should =~ [animal1, animal2]
+  it "should return readonly animals" do
+    @accommodation.animals[0].should be_readonly
+    @accommodation.animals[1].should be_readonly
   end
 end
 

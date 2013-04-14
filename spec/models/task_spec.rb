@@ -1,228 +1,272 @@
-#require "spec_helper"
-
-#describe Note do
-
-  #it "should have a default scope" do
-    #Note.scoped.to_sql.should == Note.order('notes.created_at DESC').to_sql
-  #end
-
-  #it "should require presence of title" do
-    #note = Note.gen
-    #note.should have(:no).error_on(:title)
-
-    #note = Note.gen :title => nil
-    #note.should have(1).error_on(:title)
-    #note.errors[:title].should == ["cannot be blank"]
-  #end
-
-  #it "should require inclusion of category" do
-    #note = Note.gen
-    #note.should have(:no).error_on(:category)
-
-    #note = Note.gen :category => "#{Note::CATEGORIES[0]} blah"
-    #note.should have(1).error_on(:category)
-    #note.errors[:category].should == ["needs to be selected"]
-  #end
-#end
-
-#describe Note, "::DEFAULT_CATEGORY" do
-  #it "should contain a single value for the default category" do
-    #Note::DEFAULT_CATEGORY.should == "general"
-  #end
-#end
-
-#describe Note, "::CATEGORIES" do
-  #it "should contain a default list of Categories" do
-    #Note::CATEGORIES.should == [
-      #"general", "medical", "behavioral", "intake"
-    #]
-  #end
-#end
-
-## Instance Methods
-##----------------------------------------------------------------------------
-#describe Note, "#shelter" do
-
-  #it "should belong to a shelter" do
-    #shelter = Shelter.gen
-    #note = Note.gen :shelter => shelter
-
-    #note.should respond_to(:shelter)
-    #note.shelter.should == shelter
-  #end
-
-  #it "should return a readonly shelter" do
-    #note = Note.gen
-    #note.reload.shelter.should be_readonly
-  #end
-#end
-
-#describe Note, "#notable" do
-
-  #it "should belong to a notable object" do
-    #item   = Item.gen
-    #animal = Animal.gen
-    #note1  = Note.gen :notable => item
-    #note2  = Note.gen :notable => animal
-
-    #note1.should respond_to(:notable)
-    #note1.notable.should == item
-    #note1.notable.should be_instance_of(Item)
-
-    #note2.should respond_to(:notable)
-    #note2.notable.should == animal
-    #note2.notable.should be_instance_of(Animal)
-  #end
-#end
-
-#describe Note, "#notable?" do
-
-  #it "should validate if the note has an notable association" do
-    #item  = Item.gen
-    #note1 = Note.gen :notable => item
-    #note2 = Note.gen
-
-    #note1.notable?.should == true
-    #note2.notable?.should == false
-  #end
-#end
-
-
-
-
 require "spec_helper"
-
-# TODO: Need to figure out how to TEST these
-#-----------------------------------------------
-# belongs_to :shelter, :readonly => true
-# belongs_to :taskable, :polymorphic => true
 
 describe Task do
 
   it "should have a default scope" do
-pending "Need to implement"
-    #default_scope :order => 'due_date ASC, updated_at DESC'
+    Task.scoped.to_sql.should == Task.order('tasks.due_date ASC, tasks.updated_at DESC').to_sql
   end
 
-  it "should require details" do
-pending "Need to implement"
-    #validates :details, :presence => true
+  it "should require presence of details" do
+    task = Task.gen :details => nil
+    task.should have(1).error_on(:details)
+    task.errors[:details].should == ["cannot be blank"]
   end
 end
 
+# Constants
+#----------------------------------------------------------------------------
 describe Task, "::CATEGORIES" do
-pending "Need to implement"
+
   it "should contain a default list of Categories" do
-    #Task::CATEGORIES.should == ["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"]
+    Task::CATEGORIES.should == ["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"]
   end
 end
 
 describe Task, "::DUE_CATEGORIES" do
-pending "Need to implement"
+
   it "should contain a default list of Due Categories" do
-    #Task::DUE_CATEGORIES.should == ["today", "tomorrow", "later", "specific_date"]
+    Task::DUE_CATEGORIES.should == ["today", "tomorrow", "later", "specific_date"]
   end
 end
 
-describe Task, ".active" do
-pending "Need to implement"
-  #scope :active, where(:completed => false)
+# Instance Methods
+#----------------------------------------------------------------------------
+describe Task, "#shelter" do
+
+  it "should belong to a shelter" do
+    shelter = Shelter.new
+    task = Task.new :shelter => shelter
+
+    task.shelter.should == shelter
+  end
+
+  it "should return a readonly shelter" do
+    task = Task.gen
+    task.reload.shelter.should be_readonly
+  end
 end
 
-describe Task, ".completed" do
-pending "Need to implement"
-  #scope :completed, where(:completed => true)
-end
+describe Note, "#taskable" do
 
-describe Task, ".overdue" do
-pending "Need to implement"
-  #scope :overdue, where("due_date < ?", Date.today) # ??? Time.zone.now.midnight.to_date
-end
+  it "should belong to a taskable object" do
+    item   = Item.new
+    animal = Animal.new
+    task1  = Task.new :taskable => item
+    task2  = Task.new :taskable => animal
 
-describe Task, ".today" do
-pending "Need to implement"
-  #scope :today, where("due_date = ?", Date.today)
-end
+    task1.taskable.should == item
+    task1.taskable.should be_instance_of(Item)
 
-describe Task, ".tomorrow" do
-pending "Need to implement"
-  #scope :tomorrow, where("due_date = ?", Date.today + 1.day)
-end
-
-describe Task, ".later" do
-pending "Need to implement"
-  #scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("due_date DESC")
-end
-
-describe Task, ".recent_activity" do
-pending "Need to implement"
-  #def self.recent_activity(limit=10)
-    #includes(:taskable).reorder("tasks.updated_at DESC").limit(limit)
-  #end
+    task2.taskable.should == animal
+    task2.taskable.should be_instance_of(Animal)
+  end
 end
 
 describe Task, "#taskable?" do
-pending "Need to implement"
-  #def taskable?
-    #!!self.taskable
-  #end
+
+  it "should validate if the task has an taskable association" do
+    item  = Item.new
+    task1 = Task.new :taskable => item
+    task2 = Task.new
+
+    task1.taskable?.should == true
+    task2.taskable?.should == false
+  end
 end
 
 describe Task, "#completed?" do
-pending "Need to implement"
-  #def completed?
-    #self.completed
-  #end
+
+  it "should validate if the task has been completed" do
+    task1 = Task.new :completed => true
+    task2 = Task.new :completed => false
+
+    task1.completed?.should == true
+    task2.completed?.should == false
+  end
 end
 
 describe Task, "#overdue?" do
-pending "Need to implement"
-  #def overdue?
-    #self.due_date.present? and self.due_date < Date.today
-  #end
+
+  it "should validate if the task is overdue" do
+    task1 = Task.new :due_date => Date.today - 1.day
+    task2 = Task.new :due_date => Date.today + 1.day
+
+    task1.overdue?.should == true
+    task2.overdue?.should == false
+  end
 end
 
 describe Task, "#today?" do
-pending "Need to implement"
-  #def today?
-    #self.due_date.present? and self.due_date == Date.today
-  #end
+
+  it "should validate if the task is due today" do
+    task1 = Task.new :due_date => Date.today
+    task2 = Task.new :due_date => Date.today + 1.day
+
+    task1.today?.should == true
+    task2.today?.should == false
+  end
 end
 
 describe Task, "#tomorrow?" do
-pending "Need to implement"
-  #def tomorrow?
-    #self.due_date.present? and self.due_date == Date.today + 1.day
-  #end
+
+  it "should validate if the task is due tomorrow" do
+    task1 = Task.new :due_date => Date.today + 1.day
+    task2 = Task.new :due_date => Date.today
+
+    task1.tomorrow?.should == true
+    task2.tomorrow?.should == false
+  end
 end
 
 describe Task, "#later?" do
-pending "Need to implement"
-  #def later?
-    #self.due_date.blank? or self.due_date > Date.today + 1.day or self.due_category == "later"
-  #end
+
+  it "should validate if the task is due later" do
+    task1 = Task.new :due_date => Date.today + 2.days
+    task2 = Task.new :due_category => "later"
+    task3 = Task.new :due_date => Date.today
+
+    task1.later?.should == true
+    task2.later?.should == true
+    task3.later?.should == false
+  end
 end
 
 describe Task, "#specific_date?" do
-pending "Need to implement"
-  #def specific_date?
-    #self.due_category == "specific_date"
-  #end
+
+  it "should validate if the task is due later" do
+    task1 = Task.new :due_category => "specific_date"
+    task2 = Task.new :due_category => "later"
+
+    task1.specific_date?.should == true
+    task2.specific_date?.should == false
+  end
 end
 
 describe Task, "#due_section" do
-pending "Need to implement"
-  #def due_section
-    #due_section = self.due_category
-    #if self.later?
-      #due_section = "later"
-    #elsif self.overdue?
-      #due_section = "overdue"
-    #elsif self.today?
-      #due_section = "today"
-    #elsif self.tomorrow?
-      #due_section = "tomorrow"
-    #end
-  #end
+
+  it "should validate if the task is due later" do
+    task1 = Task.new :due_category => "specific_date"
+    task2 = Task.new :due_category => "later"
+
+    task1.specific_date?.should == true
+    task2.specific_date?.should == false
+  end
+end
+
+describe Task, "#due_section" do
+
+  it "should return overdue" do
+    task = Task.new :due_date => Date.today - 1.day
+    task.due_section.should == "overdue"
+  end
+
+  it "should return today" do
+    task = Task.new :due_date => Date.today
+    task.due_section.should == "today"
+  end
+
+  it "should return tomorrow" do
+    task = Task.new :due_date => Date.today + 1.day
+    task.due_section.should == "tomorrow"
+  end
+
+  it "should return later" do
+    task = Task.new :due_date => Date.today + 2.days
+    task.due_section.should == "later"
+  end
+end
+
+# Class Methods
+#----------------------------------------------------------------------------
+describe Task, ".active" do
+
+  it "should return only the active alerts" do
+    task1 = Task.gen :completed => false
+    task2 = Task.gen :completed => true
+
+    tasks = Task.active.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".completed" do
+
+  it "should return only the completed tasks" do
+    task1 = Task.gen :completed => true
+    task2 = Task.gen :completed => false
+
+    tasks = Task.completed.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".overdue" do
+
+  it "should return all of the overdue tasks" do
+    task1 = Task.gen :due_date => Date.today - 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.overdue.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".today" do
+
+  it "should return all of the tasks due today" do
+    task1 = Task.gen :due_date => Date.today - 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.overdue.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".tomorrow" do
+
+  it "should return all of the tasks due tomorrow" do
+    task1 = Task.gen :due_date => Date.today + 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.tomorrow.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".later" do
+
+  it "should return all of the tasks due later" do
+    task1 = Task.gen :due_date => Date.today + 2.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.later.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".recent_activity" do
+
+  it "should return only the most recent activity per limit" do
+    task1 = Task.gen :updated_at => Time.now - 2.hour
+    task2 = Task.gen :updated_at => Time.now - 1.hour
+    task3 = Task.gen :updated_at => Time.now, :taskable => Item.gen
+
+    results = Task.recent_activity(2).all
+
+    results.count.should == 2
+    results.should       == [task3, task2]
+  end
 end
 

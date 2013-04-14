@@ -1,35 +1,75 @@
 require "spec_helper"
 
-# TODO: Need to figure out how to TEST these
-#-----------------------------------------------
-# belongs_to :shelter, :readonly => true
-# belongs_to :animal_type, :readonly => true
-#
-
 describe Capacity do
 
-  it "should require a animal type" do
-pending "Need to implement"
-    #validates :animal_type_id, :presence => { :message => "needs to be selected" },
-                             #:uniqueness => { :scope => :shelter_id, :message => "is already in use" }
+  it "should require presence of animal type id" do
+    capacity = Capacity.new :animal_type_id => nil
+    capacity.should have(1).error_on(:animal_type_id)
+    capacity.errors[:animal_type_id].should == ["needs to be selected"]
   end
 
-  it "should have a unique animal type per shelter" do
-pending "Need to implement"
-    #validates :animal_type_id, :presence => { :message => "needs to be selected" },
-                             #:uniqueness => { :scope => :shelter_id, :message => "is already in use" }
+  it "should require uniqueness scoped by shelter id of animal type id" do
+    shelter     = Shelter.new
+    animal_type = AnimalType.gen
+    capacity1   = Capacity.gen :animal_type => animal_type, :shelter => shelter
+    capacity2   = Capacity.gen :animal_type => animal_type, :shelter => shelter
+
+    capacity1.should have(0).errors
+
+    capacity2.should have(1).error_on(:animal_type_id)
+    capacity2.errors[:animal_type_id].should == ["is already in use"]
   end
 
-  it "should validate a numerical value for max capacity" do
-pending "Need to implement"
-    #validates :max_capacity, :numericality => true
+  it "should require a number for max capacity" do
+    capacity = Capacity.new :max_capacity => "abc"
+    capacity.should have(1).error_on(:max_capacity)
+    capacity.errors[:max_capacity].should == ["requires a number"]
+  end
+end
+
+# Instance Methods
+#----------------------------------------------------------------------------
+describe Capacity, "#shelter" do
+
+  it "should belong to a shelter" do
+    shelter  = Shelter.new
+    capacity = Capacity.new :shelter => shelter
+
+    capacity.shelter.should == shelter
+  end
+
+  it "should return a readonly shelter" do
+    capacity = Capacity.gen
+    capacity.reload.shelter.should be_readonly
+  end
+end
+
+describe Capacity, "#animal_type" do
+
+  it "should belong to a animal type" do
+    animal_type = AnimalType.new
+    capacity    = Capacity.new :animal_type => animal_type
+
+    capacity.animal_type.should == animal_type
+  end
+
+  it "should return a readonly animal type" do
+    capacity = Capacity.gen
+    capacity.reload.animal_type.should be_readonly
   end
 end
 
 describe Capacity, "#animal_count" do
-pending "Need to implement"
-  #def animal_count(current_shelter)
-    #self.animal_type.animals.active.where(:shelter_id => current_shelter).limit(nil).count
-  #end
+  it "should return a count of the active animals per animal type" do
+    shelter       = Shelter.gen
+    animal_type   = AnimalType.gen
+    animal_status = AnimalStatus.gen :id => AnimalStatus::STATUSES[:available_for_adoption]
+    capacity      = Capacity.gen :animal_type => animal_type, :shelter => shelter
+
+    2.times{ Animal.gen(:animal_type => animal_type, :shelter => shelter, :animal_status => animal_status) }
+
+    count = capacity.animal_count(shelter)
+    count.should == 2
+  end
 end
 

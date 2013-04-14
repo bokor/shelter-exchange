@@ -1,5 +1,7 @@
 require "spec_helper"
 
+# Instance Methods
+#----------------------------------------------------------------------------
 describe Breed, "#animal_type" do
 
   it "should belong to an animal type" do
@@ -15,6 +17,8 @@ describe Breed, "#animal_type" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
 describe Breed, ".valid_for_animal" do
 
   it "should validate the breed exists with the type" do

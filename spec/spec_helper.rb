@@ -8,13 +8,10 @@ require "capybara/email/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|s| require s }
 
-Rails.logger.level = 5
-
 RSpec.configure do |config|
   config.mock_with :rspec
 
-  config.use_transactional_fixtures = true # see shared_connections.rb
-  config.infer_base_class_for_anonymous_controllers = false
+  config.use_transactional_fixtures = false
 
   config.include Capybara::DSL
   config.include Capybara::Email::DSL

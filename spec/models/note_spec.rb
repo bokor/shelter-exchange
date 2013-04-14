@@ -19,6 +19,8 @@ describe Note do
   end
 end
 
+# Constants
+#----------------------------------------------------------------------------
 describe Note, "::DEFAULT_CATEGORY" do
   it "should contain a single value for the default category" do
     Note::DEFAULT_CATEGORY.should == "general"
@@ -69,8 +71,7 @@ end
 describe Note, "#documents" do
 
   before do
-    @note = Note.gen
-
+    @note      = Note.gen
     @document1 = Document.gen \
       :attachable => @note,
       :document   => File.open("#{Rails.root}/spec/data/documents/document_1.csv")
