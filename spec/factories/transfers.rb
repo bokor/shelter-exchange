@@ -4,7 +4,7 @@ FactoryGirl.define do
     animal
     requestor_shelter
     requestor
-    phone     "999-999-9999"
+    sequence(:phone) {|n| "999999#{n+1000}" }
     sequence(:email) {|n| "shelter#{n}@example.com" }
     shelter
     status "Transfer status"
