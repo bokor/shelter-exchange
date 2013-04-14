@@ -20,7 +20,7 @@ class Placement < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------------
   validates :animal_id, :presence => {:message => 'needs to be selected'}
-  validates :status, :presence => {:in => STATUS, :message => 'needs to be selected'}
+  validates :status, :inclusion => {:in => STATUS, :message => 'needs to be selected'}
 
   # Scopes
   #----------------------------------------------------------------------------

@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :shelter do
     sequence(:name) {|n| "Shelter #{n}" }
-    phone           "999-999-9999"
+    sequence(:phone) {|n| "999999#{n+1000}" }
     sequence(:email) {|n| "shelter#{n}@example.com" }
     website         "http://www.shelterexchange.org"
     twitter         "@shelterexchange"
