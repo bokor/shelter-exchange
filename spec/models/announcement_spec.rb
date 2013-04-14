@@ -37,12 +37,16 @@ describe Announcement do
   end
 end
 
+# Constants
+#----------------------------------------------------------------------------
 describe Announcement, "::CATEGORIES" do
   it "should contain a default list of Categories" do
     Announcement::CATEGORIES.should == ["general", "web_update", "help"]
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
 describe Announcement, ".active" do
 
   it "should return values that haven't passed the current_time" do
@@ -75,5 +79,4 @@ describe Announcement, ".current_announcements" do
     announcements.count.should == 1
   end
 end
-
 

@@ -1,13 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authenticate_user!, :current_account, :current_shelter, :shelter_inactive?,
-                :shelter_time_zone, :store_location
+  before_filter :authenticate_user!,
+                :current_account,
+                :current_shelter,
+                :shelter_inactive?,
+                :shelter_time_zone,
+                :store_location
 
   layout :current_layout
 
   def current_account
-    @current_account ||= Account.find_by_subdomain!(request.subdomains.last) unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
+    unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
+      @current_account ||= Account.find_by_subdomain!(request.subdomains.last)
+    end
   end
 
   def current_shelter

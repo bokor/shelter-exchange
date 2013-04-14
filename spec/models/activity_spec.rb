@@ -1,5 +1,7 @@
 require "spec_helper"
 
+# Constants
+#----------------------------------------------------------------------------
 describe Activity, "::LIMIT" do
   it "should return the limit of each activity" do
     Activity::LIMIT.should == 10
@@ -12,6 +14,8 @@ describe Activity, "::PAGE_TOTAL" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
 describe Activity, ".recent" do
 
   before do
@@ -26,18 +30,16 @@ describe Activity, ".recent" do
 
     results = Activity.recent(@shelter)
     results.count.should == 6
-    results.map(&:class).should == [Animal, Alert, Alert, Animal, Animal, Task]
+    results.collect(&:class).collect(&:name).should == ["Animal", "Animal", "Animal", "Task", "Alert", "Alert"]
   end
 
   it "should only return a total of 20 of the recent (Tasks, Alerts, Animals)" do
-    10.times{ Animal.gen :shelter => @shelter}
-    10.times{ Task.gen :shelter => @shelter }
-    10.times{ Alert.gen :shelter => @shelter }
+    8.times{ Animal.gen :shelter => @shelter }
+    8.times{ Task.gen :shelter => @shelter }
+    8.times{ Alert.gen :shelter => @shelter }
 
     results = Activity.recent(@shelter)
     results.count.should == 20
-    results.map(&:class).uniq.should == [Alert, Task]
-    results.map(&:class).uniq.should_not == [Animal]
   end
 end
 

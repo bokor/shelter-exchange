@@ -36,10 +36,6 @@ describe AnimalStatus, "::STATUSES" do
     }
   end
 end
-  EXTRA_STATUS_FILTERS = [
-    ["All Active", :active],
-    ["All Non-Active", :non_active]
-  ].freeze
 
 describe AnimalStatus, "::ACTIVE" do
   it "should contain a list active statuses" do
@@ -72,37 +68,40 @@ end
 #----------------------------------------------------------------------------
 describe AnimalStatus, "#animals" do
 
+  before do
+    @animal_status = AnimalStatus.gen
+    @animal1       = Animal.gen :animal_status => @animal_status
+    @animal2       = Animal.gen :animal_status => @animal_status
+  end
+
   it "should have many animals" do
-    animal_status = AnimalStatus.gen
+    @animal_status.animals.count.should == 2
+    @animal_status.animals.should =~ [@animal1, @animal2]
+  end
 
-    animal1 = Animal.gen :animal_status => animal_status
-    animal2 = Animal.gen :animal_status => animal_status
-
-    animal_status.animals.count.should == 2
-    animal_status.animals.should =~ [animal1, animal2]
+  it "should return readonly animals" do
+    @animal_status.animals[0].should be_readonly
+    @animal_status.animals[1].should be_readonly
   end
 end
 
 describe AnimalStatus, "#status_histories" do
 
+  before do
+    @animal_status   = AnimalStatus.gen
+    @status_history1 = StatusHistory.gen :animal_status => @animal_status
+    @status_history2 = StatusHistory.gen :animal_status => @animal_status
+  end
+
   it "should have many status histories" do
-    animal_status = AnimalStatus.gen
-
-    status_history1 = StatusHistory.gen :animal_status => animal_status
-    status_history2 = StatusHistory.gen :animal_status => animal_status
-
-    animal_status.status_histories.count.should == 2
-    animal_status.status_histories.should =~ [status_history1, status_history2]
+    @animal_status.status_histories.count.should == 2
+    @animal_status.status_histories.should       =~ [@status_history1, @status_history2]
   end
 
   it "should destroy the status histories when a status is deleted" do
-    animal_status = AnimalStatus.gen
-
-    StatusHistory.gen :animal_status => animal_status, :animal => nil
-
-    StatusHistory.count.should == 1
-    animal_status.destroy
-    StatusHistory.count.should == 0
+    @animal_status.status_histories.count.should == 2
+    @animal_status.destroy
+    @animal_status.status_histories.count.should == 0
   end
 end
 

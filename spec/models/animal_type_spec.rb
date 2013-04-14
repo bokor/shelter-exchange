@@ -20,53 +20,77 @@ end
 #----------------------------------------------------------------------------
 describe AnimalType, "#animals" do
 
-  it "should have many animals" do
-    animal_type = AnimalType.gen
+  before do
+    @animal_type = AnimalType.gen
+    @animal1     = Animal.gen :animal_type => @animal_type
+    @animal2     = Animal.gen :animal_type => @animal_type
+  end
 
-    animal1 = Animal.gen :animal_type => animal_type
-    animal2 = Animal.gen :animal_type => animal_type
+  it "should return a list of animals" do
+    @animal_type.animals.count.should == 2
+    @animal_type.animals.should =~ [@animal1, @animal2]
+  end
 
-    animal_type.animals.count.should == 2
-    animal_type.animals.should       =~ [animal1, animal2]
+  it "should return readonly animals" do
+    @animal_type.animals[0].should be_readonly
+    @animal_type.animals[1].should be_readonly
   end
 end
 
 describe AnimalType, "#breeds" do
 
-  it "should have many breeds" do
-    animal_type = AnimalType.gen
+  before do
+    @animal_type = AnimalType.gen
+    @breed1      = Breed.gen :animal_type => @animal_type
+    @breed2      = Breed.gen :animal_type => @animal_type
+  end
 
-    breed1 = Breed.gen :animal_type => animal_type
-    breed2 = Breed.gen :animal_type => animal_type
+  it "should return a list of breeds" do
+    @animal_type.breeds.count.should == 2
+    @animal_type.breeds.should =~ [@breed1, @breed2]
+  end
 
-    animal_type.breeds.count.should == 2
+  it "should return readonly breeds" do
+    @animal_type.breeds[0].should be_readonly
+    @animal_type.breeds[1].should be_readonly
   end
 end
 
 describe AnimalType, "#accommodations" do
 
-  it "should have many accommodations" do
-    animal_type = AnimalType.gen
+  before do
+    @animal_type    = AnimalType.gen
+    @accommodation1 = Accommodation.gen :animal_type => @animal_type
+    @accommodation2 = Accommodation.gen :animal_type => @animal_type
+  end
 
-    accommodation1 = Accommodation.gen :animal_type => animal_type
-    accommodation2 = Accommodation.gen :animal_type => animal_type
+  it "should return a list of accommodations" do
+    @animal_type.accommodations.count.should == 2
+    @animal_type.accommodations.should =~ [@accommodation1, @accommodation2]
+  end
 
-    animal_type.accommodations.count.should == 2
-    animal_type.accommodations.should       =~ [accommodation1, accommodation2]
+  it "should return readonly accommodations" do
+    @animal_type.accommodations[0].should be_readonly
+    @animal_type.accommodations[1].should be_readonly
   end
 end
 
 describe AnimalType, "#capacities" do
 
-  it "should have many capacities" do
-    animal_type = AnimalType.gen
+  before do
+    @animal_type = AnimalType.gen
+    @capacity1   = Capacity.gen :animal_type => @animal_type
+    @capacity2   = Capacity.gen :animal_type => @animal_type
+  end
 
-    capacity1 = Capacity.gen :animal_type => animal_type
-    capacity2 = Capacity.gen :animal_type => animal_type
+  it "should return a list of capacities" do
+    @animal_type.capacities.count.should == 2
+    @animal_type.capacities.should =~ [@capacity1, @capacity2]
+  end
 
-    animal_type.capacities.count.should == 2
-    animal_type.capacities.should       =~ [capacity1, capacity2]
+  it "should return readonly capacities" do
+    @animal_type.capacities[0].should be_readonly
+    @animal_type.capacities[1].should be_readonly
   end
 end
-
 

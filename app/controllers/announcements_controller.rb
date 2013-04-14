@@ -4,7 +4,5 @@ class AnnouncementsController < ApplicationController
   def hide
     current_user.update_attributes({ :announcement_hide_time => Time.now.utc })
   end
-  
 end
 
-  

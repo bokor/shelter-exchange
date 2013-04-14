@@ -19,12 +19,16 @@ describe Alert do
   end
 end
 
+# Constants
+#----------------------------------------------------------------------------
 describe Alert, "::SEVERITIES" do
   it "should contain a default list of severities" do
     Alert::SEVERITIES.should == ["high", "medium", "low"]
   end
 end
 
+# Instance Methods
+#----------------------------------------------------------------------------
 describe Alert, "#shelter" do
 
   it "should belong to a shelter" do
@@ -53,89 +57,6 @@ describe Alert, "#alertable" do
 
     alert2.alertable.should == animal
     alert2.alertable.should be_instance_of(Animal)
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-describe Alert, ".active" do
-
-  it "should return only the active alerts" do
-    alert1 = Alert.gen
-    alert2 = Alert.gen :stopped => true
-
-    results = Alert.active.all
-
-    results.count.should == 1
-    results.should       == [alert1]
-  end
-end
-
-describe Alert, ".stopped" do
-
-  it "should return only the stopped non_active alerts" do
-    alert1 = Alert.gen
-    alert2 = Alert.gen :stopped => true
-
-    results = Alert.stopped.all
-
-    results.count.should == 1
-    results.should       == [alert2]
-  end
-end
-
-describe Alert, ".with_alertable" do
-pending "Need to implement"
-
-  #it "should include alertable objects" do
-    #Alert.gen :alertable => Animal.gen
-
-    #Alert.with_alertable.count.should == 1
-    #Alert.with_alertable.all.should include(alert2)
-    #Alert.should_receive(:with_alertable).with(:include => :alertable)
-    #alert.animal.should be_loaded
-    #alert.instance_variables[:@relation].should be_a_kind_of(Animal)
-  #end
-end
-
-describe Alert, ".for_shelter" do
-
-  it "should return only the shelter wide alerts" do
-    alert1 = Alert.gen
-    alert2 = Alert.gen :alertable => Animal.gen
-
-    results = Alert.for_shelter.all
-
-    results.count.should == 1
-    results.should == [alert1]
-  end
-end
-
-describe Alert, ".for_animals" do
-
-  it "should return only the alerts assigned to an animal" do
-    alert1 = Alert.gen
-    alert2 = Alert.gen :alertable => Animal.gen
-
-    results = Alert.for_animals.all
-
-    results.count.should == 1
-    results.should       == [alert2]
-  end
-end
-
-
-describe Alert, ".recent_activity" do
-
-  it "should return only the most recent activity per limit" do
-    alert1 = Alert.gen
-    alert2 = Alert.gen
-    alert3 = Alert.gen
-
-    results = Alert.recent_activity(2).all
-
-    results.count.should == 2
-    results.should       == [alert3, alert2]
   end
 end
 
@@ -170,6 +91,88 @@ describe Alert, "#alertable?" do
 
     alert1.alertable?.should == true
     alert2.alertable?.should == false
+  end
+end
+
+# Class Methods
+#----------------------------------------------------------------------------
+describe Alert, ".active" do
+
+  it "should return only the active alerts" do
+    alert1 = Alert.gen
+    alert2 = Alert.gen :stopped => true
+
+    alerts = Alert.active.all
+
+    alerts.count.should == 1
+    alerts.should       == [alert1]
+  end
+end
+
+describe Alert, ".stopped" do
+
+  it "should return only the stopped non_active alerts" do
+    alert1 = Alert.gen
+    alert2 = Alert.gen :stopped => true
+
+    alerts = Alert.stopped.all
+
+    alerts.count.should == 1
+    alerts.should       == [alert2]
+  end
+end
+
+describe Alert, ".with_alertable" do
+pending "Need to implement"
+
+  #it "should include alertable objects" do
+    #Alert.gen :alertable => Animal.gen
+
+    #Alert.with_alertable.count.should == 1
+    #Alert.with_alertable.all.should include(alert2)
+    #Alert.should_receive(:with_alertable).with(:include => :alertable)
+    #alert.animal.should be_loaded
+    #alert.instance_variables[:@relation].should be_a_kind_of(Animal)
+  #end
+end
+
+describe Alert, ".for_shelter" do
+
+  it "should return only the shelter wide alerts" do
+    alert1 = Alert.gen
+    alert2 = Alert.gen :alertable => Animal.gen
+
+    alerts = Alert.for_shelter.all
+
+    alerts.count.should == 1
+    alerts.should == [alert1]
+  end
+end
+
+describe Alert, ".for_animals" do
+
+  it "should return only the alerts assigned to an animal" do
+    alert1 = Alert.gen
+    alert2 = Alert.gen :alertable => Animal.gen
+
+    alerts = Alert.for_animals.all
+
+    alerts.count.should == 1
+    alerts.should       == [alert2]
+  end
+end
+
+describe Alert, ".recent_activity" do
+
+  it "should return only the most recent activity per limit" do
+    alert1 = Alert.gen :updated_at => Time.now - 2.hour
+    alert2 = Alert.gen :updated_at => Time.now - 1.hour
+    alert3 = Alert.gen :updated_at => Time.now
+
+    alerts = Alert.recent_activity(2).all
+
+    alerts.count.should == 2
+    alerts.should       == [alert3, alert2]
   end
 end
 
