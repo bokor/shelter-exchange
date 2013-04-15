@@ -18,6 +18,26 @@ module Animal::Transferrable
     self.tasks.delete_all
     self.alerts.delete_all
   end
-
 end
+
+      #animal = self.animal
+      #animal.update_attributes({
+        #:animal_status_id => AnimalStatus::STATUSES[:new_intake],
+        #:status_history_reason => "Transferred from #{shelter.name}",
+        #:status_change_date => Date.today,
+        #:shelter_id => requestor_shelter.id,
+        #:arrival_date => Date.today,
+        #:hold_time => nil,
+        #:euthanasia_date => nil,
+        #:accommodation_id => nil,
+        #:updated_at => Date.today
+      #})
+
+      ## Update Notes to new Shelter
+      #animal.notes.update_all({:shelter_id => requestor_shelter.id})
+
+      ## Delete all Records not needed
+      #animal.status_histories.where(:shelter_id => shelter.id).delete_all
+      #animal.tasks.delete_all
+      #animal.alerts.delete_all
 

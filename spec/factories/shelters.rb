@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :shelter do
+  factory :shelter, :aliases => [:requestor_shelter] do
     sequence(:name) {|n| "Shelter #{n}" }
     sequence(:phone) {|n| "999999#{n+1000}" }
     sequence(:email) {|n| "shelter#{n}@example.com" }

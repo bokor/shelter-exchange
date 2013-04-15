@@ -1,13 +1,13 @@
 FactoryGirl.define do
 
   factory :transfer do
-    animal
-    requestor_shelter
-    requestor
+    sequence(:requestor) {|n| "Requestor #{n}" }
     sequence(:phone) {|n| "999999#{n+1000}" }
     sequence(:email) {|n| "shelter#{n}@example.com" }
+    status "" #Blank is the default
     shelter
-    status "Transfer status"
+    animal
+    requestor_shelter
   end
 end
 

@@ -11,8 +11,8 @@ class Transfer < ActiveRecord::Base
 
   # Constants
   #----------------------------------------------------------------------------
-  APPROVED = "approved"
-  REJECTED = "rejected"
+  APPROVED  = "approved"
+  REJECTED  = "rejected"
   COMPLETED = "completed"
 
   # Associations
@@ -20,6 +20,7 @@ class Transfer < ActiveRecord::Base
   belongs_to :shelter, :class_name => "Shelter", :readonly => true
   belongs_to :requestor_shelter, :class_name => "Shelter", :readonly => true
   belongs_to :animal
+
   has_many :transfer_histories, :dependent => :destroy
 
   # Validations
@@ -71,6 +72,4 @@ class Transfer < ActiveRecord::Base
     self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
   end
 end
-
-
 
