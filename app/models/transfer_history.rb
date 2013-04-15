@@ -4,6 +4,7 @@ class TransferHistory < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :transfer, :readonly => true
+  belongs_to :shelter, :readonly => true
 
   # Class Methods
   #----------------------------------------------------------------------------
