@@ -38,6 +38,9 @@ class TasksController < ApplicationController
 
   def update
     @task = @current_shelter.tasks.find(params[:id])
+    # Added this to check if the due date changed for the view
+    @task.attributes = params[:task]
+    @due_date_changed = @task.due_date_changed?
     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])
     respond_with(@task)
   end
