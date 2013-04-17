@@ -10,7 +10,7 @@
 		Tasks.removeTaskSection();
 	});
 
-	<% if @task.due_date_changed? %>
+  <% if @due_date_changed %>
 		$('#task_<%= @task.id %>').fadeOut(1000, function() {
 			$(this).remove();
 			Tasks.removeTaskSection();
