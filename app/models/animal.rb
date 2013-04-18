@@ -2,7 +2,7 @@ class Animal < ActiveRecord::Base
   # Concerns
   include Statusable, Typeable, Uploadable
   # Animal Namespaced
-  include Reportable, Searchable, Mappable, Transferrable, Apiable
+  include Reportable, Searchable, Mappable, Apiable
 
   default_scope :order => 'animals.updated_at DESC'
 

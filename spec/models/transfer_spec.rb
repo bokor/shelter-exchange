@@ -48,20 +48,14 @@ describe Transfer do
     end
 
     it "should transfer the animal record" do
-    pending "Doesn't work"
       shelter           = Shelter.gen
       requestor_shelter = Shelter.gen
       animal            = Animal.gen :shelter => shelter
 
-      transfer = Transfer.gen :animal => animal, :shelter => shelter, :requestor_shelter => requestor_shelter, :status => "completed"
+      transfer = Transfer.gen :animal_id => animal.id, :shelter => shelter, :requestor_shelter => requestor_shelter, :status => "completed"
+
       transfer.reload.animal.shelter.should == requestor_shelter
     end
-#
-# after_save :create_transfer_history!, :transfer_animal_record!
-
-    # def transfer_animal_record!
-    #   self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
-    # end
   end
 end
 

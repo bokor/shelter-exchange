@@ -3,7 +3,8 @@ class Transfer < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  after_save :create_transfer_history!, :transfer_animal_record!
+  after_save :create_transfer_history!, :if => :transfer_history_reason
+  after_save :transfer_animal_record!, :if => :completed?
 
   # Getter/Setter
   #----------------------------------------------------------------------------
@@ -29,7 +30,7 @@ class Transfer < ActiveRecord::Base
   validates :phone, :presence => true
   validates :email, :presence => true, :email_format => true
 
-  validates :transfer_history_reason, :presence => { :if => :transfer_history_reason_required? }
+  validates :transfer_history_reason, :presence => { :if => :rejected? }
 
   # Scopes
   #----------------------------------------------------------------------------
@@ -60,16 +61,29 @@ class Transfer < ActiveRecord::Base
   #----------------------------------------------------------------------------
   private
 
-  def transfer_history_reason_required?
-    self.rejected?
-  end
-
   def create_transfer_history!
-    TransferHistory.create_with(self.shelter_id, self.id, self.status, @transfer_history_reason) unless @transfer_history_reason.blank?
+    TransferHistory.create_with(self.shelter_id, self.id, self.status, self.transfer_history_reason)
   end
 
   def transfer_animal_record!
-    self.animal.complete_transfer_request!(self.shelter, self.requestor_shelter) if self.completed?
+    self.animal.animal_status_id      = AnimalStatus::STATUSES[:new_intake]
+    self.animal.status_history_reason = "Transferred from #{self.shelter.name}"
+    self.animal.status_change_date    = Date.today
+    self.animal.shelter_id            = self.requestor_shelter.id
+    self.animal.arrival_date          = Date.today
+    self.animal.hold_time             = nil
+    self.animal.euthanasia_date       = nil
+    self.animal.accommodation_id      = nil
+    self.animal.updated_at            = DateTime.now
+    self.animal.save(:validate => false)
+
+    # Update Notes to new Shelter
+    self.animal.notes.update_all(:shelter_id => self.requestor_shelter.id)
+
+    # Delete all Records not needed
+    self.animal.status_histories.where(:shelter_id => self.shelter.id).delete_all
+    self.animal.tasks.delete_all
+    self.animal.alerts.delete_all
   end
 end
 
