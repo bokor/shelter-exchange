@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Associations
   #----------------------------------------------------------------------------
-  belongs_to :account
+  belongs_to :account, :readonly => true
   has_many :shelters, :through => :account
 
   devise :database_authenticatable, :recoverable, :token_authenticatable,
