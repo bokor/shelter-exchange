@@ -10,15 +10,19 @@ FactoryGirl.define do
     is_sterilized      true
     color              'black'
     is_mix_breed       true
-    size               'medium'
+    size               'M'
     age                'adult'
     status_change_date nil
     arrival_date       nil
     hold_time          nil
     euthanasia_date    nil
     has_special_needs  false
-    special_needs      ""
-    video_url          ""
+    special_needs      nil
+    video_url          nil
+    animal_type
+    animal_status
+    shelter
+    #accommodation
     primary_breed    {
       (Breed.where(:animal_type_id => animal_type, :name => 'Labrador Retriever').first ||
       Breed.gen(:animal_type => animal_type, :name => 'Labrador Retriever')).name
@@ -27,10 +31,6 @@ FactoryGirl.define do
       (Breed.where(:animal_type_id => animal_type, :name => 'Border Collie').first ||
       Breed.gen(:animal_type => animal_type, :name => 'Border Collie')).name
     }
-    animal_type
-    animal_status
-    shelter
-    accommodation
   end
 end
 
