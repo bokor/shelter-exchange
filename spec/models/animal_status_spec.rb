@@ -3,11 +3,6 @@ require "spec_helper"
 describe AnimalStatus do
 
   it "should have a default scope" do
-    AnimalStatus.gen :sort_order => 1
-    AnimalStatus.gen :sort_order => 16
-    AnimalStatus.gen :sort_order => 3
-
-    AnimalStatus.all.collect(&:id).should == [1, 3, 2]
     AnimalStatus.scoped.to_sql.should  == AnimalStatus.order("animal_statuses.sort_order ASC").to_sql
   end
 end
@@ -110,16 +105,20 @@ end
 describe AnimalStatus, ".active" do
 
   it "should return only the active statuses" do
-    (1..AnimalStatus::STATUSES.size).each{ AnimalStatus.gen }
-    AnimalStatus.active.pluck(:id).sort.should == [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 16]
+    AnimalStatus::ACTIVE.each do |status|
+      AnimalStatus.gen! :id => status
+    end
+    AnimalStatus.active.pluck(:id).should =~ AnimalStatus::ACTIVE
   end
 end
 
 describe AnimalStatus, ".non_active" do
 
   it "should return only the non_active statuses" do
-    (1..AnimalStatus::STATUSES.size).each{ AnimalStatus.gen }
-    AnimalStatus.non_active.pluck(:id).sort.should == [2, 12, 13, 14, 15]
+    AnimalStatus::NON_ACTIVE.each do |status|
+      AnimalStatus.gen! :id => status
+    end
+    AnimalStatus.non_active.pluck(:id).should =~ AnimalStatus::NON_ACTIVE
   end
 end
 
