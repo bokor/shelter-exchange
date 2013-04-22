@@ -22,10 +22,11 @@ end
 describe Breed, ".valid_for_animal" do
 
   it "should validate the breed exists with the type" do
-    Breed.gen :name => "Labrador Retriever"
+    animal_type = AnimalType.gen
+    Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
 
-    validation1 = Breed.valid_for_animal("Labrador Retriever", 1)
-    validation2 = Breed.valid_for_animal("Labrador Retriever", 2)
+    validation1 = Breed.valid_for_animal("Labrador Retriever", animal_type.id)
+    validation2 = Breed.valid_for_animal("Labrador Retriever", 100000)
 
     validation1.count.should == 1
     validation2.count.should == 0
@@ -47,14 +48,13 @@ describe Breed, ".auto_complete" do
   end
 end
 
-describe "Typeable" do
+describe Breed, "Typeable" do
 
   before do
     # Create 1 of each type and 1 breed for each type
-    (1..AnimalType::TYPES.size).each {
-      animal_type = AnimalType.gen
-      Breed.gen :animal_type => animal_type
-    }
+    (1..AnimalType::TYPES.size).each_with_index do |type, index|
+      Breed.gen :animal_type_id => index+1
+    end
   end
 
   describe Breed, ".dogs" do
