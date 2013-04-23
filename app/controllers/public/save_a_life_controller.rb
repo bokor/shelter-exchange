@@ -26,5 +26,5 @@ class Public::SaveALifeController < Public::ApplicationController
     self.action_name = "index"
     render :action => :index, :status => 404
   end
-
 end
+
