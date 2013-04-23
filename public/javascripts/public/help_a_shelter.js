@@ -20,7 +20,6 @@ var HelpAShelter = {
 		});
 
 		HelpAShelter.searchByCityZipCode();
-
 	},
 	filterInitialize: function(){
 		HelpAShelter.bindFilters();
@@ -42,7 +41,7 @@ var HelpAShelter = {
 
 		// Set up forms
 		Maps.addressAutoComplete();
-  	},
+  },
 	findSheltersInBounds: function(){
 		var bounds = map.getBounds();
 
@@ -99,6 +98,6 @@ var HelpAShelter = {
 		  	e.preventDefault();
 			HelpAShelter.findAnimalsForShelter();
 		});
-
 	}
 };
+

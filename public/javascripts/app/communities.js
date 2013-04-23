@@ -3,9 +3,8 @@
  * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Communities = {
-	initialize: function(latitude, longitude, overlay, marker){
+	initialize: function(latitude, longitude, overlay){
 		mapOverlay = overlay;
-		logo = marker;
 		lat = latitude;
 		lng = longitude;
 
@@ -29,8 +28,7 @@ var Communities = {
 			$(this).addClass("current");
 
 			Communities.searchByCityZipCode();
-			if($("#city_zipcode").val()){ Maps.geocodeAddress(); }
-
+			if($("#city_zipcode").val() != ""){ Maps.geocodeAddress(); }
 		});
 
 		$("#search_by_shelter_name").bind("click",function(e, first){
@@ -63,14 +61,7 @@ var Communities = {
 		//Destroy all AutoCompletes
 		$("#filters_breed").autocomplete("destroy");
 	},
-	createMap: function(){
-		geocoder = new google.maps.Geocoder();
-		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
-		kmlLayer = new google.maps.KmlLayer(mapOverlay);
-		kmlLayer.setMap(map);
-	},
 	searchByCityZipCode: function() {
-
 		// Add Google Map Listener
 		idleListener = google.maps.event.addListener(map, 'idle', function(e){
 			mapCenter = map.getCenter();
@@ -85,11 +76,8 @@ var Communities = {
 		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
 		Maps.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
 		Maps.addressAutoComplete();
-  	},
+  },
 	searchByShelterName: function() {
-		// Set up and config
-	    //myLatLng = new google.maps.LatLng(lat, lng);
-
 		if($('#filters_shelter_id').val() != ""){
 			Communities.findAnimalsForShelter();
 		}
@@ -98,7 +86,7 @@ var Communities = {
 		Communities.bindFilters();
 		Maps.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
 		Maps.shelterNameAutoComplete(function(){Communities.findAnimalsForShelter()});
-  	},
+  },
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
 
