@@ -19,20 +19,36 @@ var Maps = {
 	createMap: function(){
 		geocoder = new google.maps.Geocoder();
 		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
-		kmlLayer = new google.maps.KmlLayer(mapOverlay);
-		kmlLayer.setMap(map);
+
+    if ($("#city_zipcode").val() != "") {
+      kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+      Maps.geocodeAddress();
+    } else if (google.loader.ClientLocation) {
+      var state = States.lookup(google.loader.ClientLocation.address.region);
+      if (state != undefined) {
+        $("#city_zipcode").val(state);
+        kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+        Maps.geocodeAddress();
+      } else {
+        kmlLayer = new google.maps.KmlLayer(mapOverlay);
+      }
+    } else {
+      kmlLayer = new google.maps.KmlLayer(mapOverlay);
+    }
+
+    kmlLayer.setMap(map);
 	},
 	geocodeAddress: function(){
-		var city_zipcode = $("#city_zipcode").val();
-        if (city_zipcode != ""){
-			geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
-		     	if (status == google.maps.GeocoderStatus.OK) {
-					map.fitBounds(results[0].geometry.viewport);
+	  var city_zipcode = $("#city_zipcode").val();
+    if (city_zipcode != ""){
+		  geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
+		    if (status == google.maps.GeocoderStatus.OK) {
+				  map.fitBounds(results[0].geometry.viewport);
 					// map.setCenter(results[0].geometry.viewport);
-		      	} else {
-		        	alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
-		      	}
-		    });
+        } else {
+		      alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
+		    }
+		  });
 		}
 	},
 	breedAutoComplete: function(closeFunction){
@@ -67,16 +83,18 @@ var Maps = {
 			autoFocus: true,
 			delay: 400,
 			source: function(request, response) {
-		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'us' }, function(results, status) {
+		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'US' }, function(results, status) {
 					response( $.map( results, function( item ) {
-						var address = item.formatted_address.replace(", USA", "");
-						return {
-							label: address,
-			    		value: address,
- 							latitude: item.geometry.location.lat(),
-							longitude: item.geometry.location.lng(),
-							viewport: item.geometry.viewport
-						}
+            if (item.formatted_address.indexOf("USA") != -1) {
+              var address = item.formatted_address.replace(", USA", "");
+              return {
+                label: address,
+                value: address,
+                latitude: item.geometry.location.lat(),
+                longitude: item.geometry.location.lng(),
+                viewport: item.geometry.viewport
+              }
+             }
 					}));
 		 		})
 			},
@@ -124,3 +142,4 @@ var Maps = {
 		});
 	}
 };
+
