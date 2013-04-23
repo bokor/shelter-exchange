@@ -16,6 +16,7 @@ class AnimalObserver < ActiveRecord::Observer
     end
   end
 
+  #-----------------------------------------------------------------------------
   private
 
   def enqueue_integrations(shelter_id)
