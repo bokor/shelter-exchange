@@ -10,7 +10,7 @@ class Admin::SheltersController < Admin::ApplicationController
     @shelter = Shelter.find(params[:id])
     @account = @shelter.account
     @capacities = @shelter.capacities.includes(:animal_type).all
-    @integrations = @shelter.integrations.map{|integration| integration.class.to_sym }
+    @integrations = @shelter.integrations.map{|integration| integration.to_sym }
     @users = @shelter.account.users.all
     @counts_by_status = Animal.unscoped.joins(:animal_status).where(:shelter_id => @shelter).group("animal_statuses.name").limit(nil).count
     respond_with(@shelter)

@@ -16,11 +16,12 @@ class AnimalObserver < ActiveRecord::Observer
     end
   end
 
+  #-----------------------------------------------------------------------------
   private
 
   def enqueue_integrations(shelter_id)
     Integration.where(:shelter_id => shelter_id).each do |integration|
-      case integration.class.to_sym
+      case integration.to_sym
       when :petfinder
         Delayed::Job.enqueue(ShelterExchange::Jobs::PetfinderJob.new(shelter_id))
       when :adopt_a_pet
