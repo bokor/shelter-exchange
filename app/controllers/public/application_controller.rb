@@ -1,7 +1,7 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
 
-  #before_filter :authenticate! if Rails.env.staging?
+  before_filter :authenticate! if Rails.env.staging?
   layout :current_layout
 
   #-----------------------------------------------------------------------------
