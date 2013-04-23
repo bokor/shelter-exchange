@@ -16,11 +16,15 @@ class Integration::Petfinder < Integration
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
 
-  def self.humanize
+  def humanize
     "Petfinder"
   end
 
-  def self.to_sym
+  def to_s
+    "petfinder"
+  end
+
+  def to_sym
     :petfinder
   end
 

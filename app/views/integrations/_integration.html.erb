@@ -1,15 +1,15 @@
-<div id="integration_<%=integration.type.demodulize.underscore%>" class="integration">
-	
-	<%= render "integrations/#{integration.type.demodulize.underscore}/help" %>
-	
+<div id="integration_<%= integration.to_s %>" class="integration">
+
+	<%= render "integrations/#{integration.to_s}/help" %>
+
 	<div class="separator"></div>
-	
-	<div id="<%=integration.type.demodulize.underscore%>_connection" class="connection">
+
+	<div id="<%= integration.to_s %>_connection" class="connection">
 		<% if integration.new_record? %>
-			<%= render "integrations/#{integration.type.demodulize.underscore}/form", :integration => integration %>
+			<%= render "integrations/#{integration.to_s}/form", :integration => integration %>
 		<% else %>
-			<%= render "integrations/#{integration.type.demodulize.underscore}/connected", :integration => integration %>
+			<%= render "integrations/#{integration.to_s}/connected", :integration => integration %>
 		<% end %>
 	</div>
-	
+
 </div>

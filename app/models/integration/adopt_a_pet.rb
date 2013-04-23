@@ -12,11 +12,15 @@ class Integration::AdoptAPet < Integration
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
 
-  def self.humanize
+  def humanize
     "Adpot a Pet"
   end
 
-  def self.to_sym
+  def to_s
+    "adopt_a_pet"
+  end
+
+  def to_sym
     :adopt_a_pet
   end
 
