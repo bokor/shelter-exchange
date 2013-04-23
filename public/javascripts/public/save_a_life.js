@@ -27,7 +27,7 @@ var SaveALife = {
 
 		// Add Google Map Listener
 		idleListener = google.maps.event.addListener(map, 'idle', function(e){
-			mapCenter = map.getCenter();
+      mapCenter = map.getCenter();
 			SaveALife.findAnimalsInBounds();
 		});
 
@@ -39,7 +39,7 @@ var SaveALife = {
 		SaveALife.bindFilters();
 		Maps.breedAutoComplete(function(){SaveALife.findAnimalsInBounds()});
 		Maps.addressAutoComplete();
-  	},
+  },
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
 
@@ -95,3 +95,4 @@ var SaveALife = {
 		});
 	}
 };
+
