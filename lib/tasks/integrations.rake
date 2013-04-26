@@ -5,7 +5,7 @@ namespace :integrations do
     Integration.all.each do |integration|
       shelter = integration.shelter
 
-      case integration.class.to_sym
+      case integration.to_sym
       when :petfinder
         Delayed::Job.enqueue(ShelterExchange::Jobs::PetfinderJob.new(shelter.id))
       when :adopt_a_pet
