@@ -4,8 +4,8 @@ class Admin::IntegrationsController < Admin::ApplicationController
   def index
     integrations       = Integration.joins(:shelter).includes(:shelter).order('shelters.name ASC').all
 
-    @petfinder_count   = integrations.select{|i| i.class.to_sym == :petfinder }.count
-    @adopt_a_pet_count = integrations.select{|i| i.class.to_sym == :adopt_a_pet }.count
+    @petfinder_count   = integrations.select{|i| i.to_sym == :petfinder }.count
+    @adopt_a_pet_count = integrations.select{|i| i.to_sym == :adopt_a_pet }.count
 
     @integrations_hash = Hash.new([])
 
