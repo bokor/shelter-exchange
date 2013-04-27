@@ -1,6 +1,6 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
-
+  #http_basic_authenticate_with :name => "username", :password => "pass"
   before_filter :authenticate! if Rails.env.staging?
   layout :current_layout
 

@@ -48,7 +48,7 @@ module ShelterExchange
             # Upload Photos
             ftp.chdir('photos')
             @animals.each do |animal|
-              animal.photos.limit(3).each_with_index do |photo, index|
+              animal.photos.take(3).each_with_index do |photo, index|
                 photo_url  = photo.image.url(:large)
                 temp_image = StringIO.new(RestClient.get(photo_url))
 
