@@ -71,7 +71,7 @@ class Integration::PetfinderPresenter < Presenter
   def photos
     photos = []
     unless @animal.photos.blank?
-      @animal.photos.limit(3).each_with_index do |photo, index|
+      @animal.photos.take(3).each_with_index do |photo, index|
         photos << "#{id}-#{index+1}#{File.extname(photo.image.url)}" # 1234-1.jpg is the format
       end
     end
