@@ -11,7 +11,7 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
     end
     @shelters.each do |shelter|
       xml.Placemark do
-        xml.name shelter.name
+        xml.name nil #shelter.name
         xml.description do
            xml.cdata! shelter_info_window(shelter)
         end
@@ -23,3 +23,4 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
     end
   end
 end
+

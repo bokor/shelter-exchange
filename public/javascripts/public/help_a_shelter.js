@@ -45,6 +45,8 @@ var HelpAShelter = {
 	findSheltersInBounds: function(){
 		var bounds = map.getBounds();
 
+    $("#filters_map_center").val(mapCenter.toUrlValue());
+    $("#filters_distance").val(Maps.viewportDistance());
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 

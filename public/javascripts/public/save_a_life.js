@@ -32,7 +32,7 @@ var SaveALife = {
 		});
 
 		resizeListener = google.maps.event.addDomListener(window, 'resize', function() {
-		  	map.setCenter(mapCenter);
+		  map.setCenter(mapCenter);
 		});
 
 		// Set up forms
@@ -43,6 +43,8 @@ var SaveALife = {
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
 
+    $("#filters_map_center").val(mapCenter.toUrlValue());
+    $("#filters_distance").val(Maps.viewportDistance());
 		$("#filters_sw").val(bounds.getSouthWest().toUrlValue());
 		$("#filters_ne").val(bounds.getNorthEast().toUrlValue());
 

@@ -38,13 +38,20 @@ var Maps = {
 
     kmlLayer.setMap(map);
 	},
+  viewportDistance: function(){
+    var sw = map.getBounds().getSouthWest();
+    var ne = map.getBounds().getNorthEast();
+
+    var meters = google.maps.geometry.spherical.computeDistanceBetween(sw, ne);
+    var miles = meters * 0.000621371192;
+    return miles;
+  },
 	geocodeAddress: function(){
 	  var city_zipcode = $("#city_zipcode").val();
     if (city_zipcode != ""){
 		  geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
 		    if (status == google.maps.GeocoderStatus.OK) {
 				  map.fitBounds(results[0].geometry.viewport);
-					// map.setCenter(results[0].geometry.viewport);
         } else {
 		      alert("Your search was unsuccessful.  Please enter a valid City, State or Zip Code");
 		    }

@@ -1,10 +1,11 @@
 module MapsHelper
-  
+
   def shelter_info_window(shelter)
-    output =  '<ul>'
+    output =  "<h2><a href='#{Rails.application.routes.url_helpers.public_help_a_shelter_url(shelter, :subdomain => 'www')}'>#{shelter.name}</a></h2>"
+    output << '<ul>'
     output << '<li>' << shelter.street << '</li>'
     output << '<li>' << shelter.street_2 << '</li>' unless shelter.street_2.blank?
-    output << '<li>' << shelter.city << ', ' << shelter.state << ' ' << shelter.zip_code << '</li>' 
+    output << '<li>' << shelter.city << ', ' << shelter.state << ' ' << shelter.zip_code << '</li>'
     output << '<li style="padding-bottom: 10px;">' << number_to_phone(shelter.phone, :delimiter => "-") << '</li>' unless shelter.phone.blank?
     unless shelter.email.blank? and shelter.website.blank?
       output << '<li>'
@@ -15,7 +16,7 @@ module MapsHelper
     end
     output << '</ul>'
     output << '<div style="width:100%; text-align:center; margin: 0 auto;"><img src="' << shelter.logo.url(:thumb) << '" alt="" /></div>' if shelter.logo?
-    return output
+    output
   end
-  
 end
+
