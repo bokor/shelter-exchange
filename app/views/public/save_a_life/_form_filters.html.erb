@@ -25,7 +25,9 @@
 				</span>
 			</td>
 		</tr>
-	</table>
+  </table>
+  <%= hidden_field_tag "filters[distance]" %>
+  <%= hidden_field_tag "filters[map_center]" %>
 	<%= hidden_field_tag "filters[sw]" %>
 	<%= hidden_field_tag "filters[ne]" %>
 	<%= hidden_field_tag "filters[shelter_id]" %>

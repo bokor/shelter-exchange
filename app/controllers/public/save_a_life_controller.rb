@@ -16,8 +16,19 @@ class Public::SaveALifeController < Public::ApplicationController
   end
 
   def find_animals_in_bounds
-    shelter_ids = Shelter.active.within_bounds(params[:filters][:sw].split(','), params[:filters][:ne].split(',')).collect(&:id)
-    @animals    = Animal.community_animals(shelter_ids, params[:filters]).available.paginate(:page => params[:page], :per_page => 10) || {}
+    map_center     = params[:filters][:map_center].split(',')
+    distance       = params[:filters][:distance].to_f
+    sw_lat, sw_lng = params[:filters][:sw].split(',')
+    ne_lat, ne_lng = params[:filters][:ne].split(',')
+
+    shelter_ids = Shelter.
+      near(map_center, distance, :select => "id").
+      within_bounding_box([sw_lat, sw_lng, ne_lat, ne_lng]).active.collect(&:id)
+
+    @animals = Animal.
+      community_animals(shelter_ids, params[:filters]).
+      available.
+      paginate(:page => params[:page], :per_page => 10).all || {}
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

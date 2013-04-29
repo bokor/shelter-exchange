@@ -17,17 +17,29 @@ class Public::HelpAShelterController < Public::ApplicationController
     unless q.blank?
       q.strip.split.join("%")
       shelter_params = params[:shelters].delete_if{|k,v| v.blank?} if params[:shelters]
-      @shelters = q.blank? ? {} : Shelter.search_by_name(q, shelter_params).paginate(:page => params[:page], :per_page => 15).all
+      @shelters = q.blank? ? {} : Shelter.search_by_name(q, shelter_params).active.paginate(:page => params[:page], :per_page => 15).all
     end
   end
 
   def find_shelters_in_bounds
-    @shelters = Shelter.active.within_bounds(params[:filters][:sw].split(','), params[:filters][:ne].split(',')).paginate(:page => params[:page], :per_page => 15)
+    map_center     = params[:filters][:map_center].split(',')
+    distance       = params[:filters][:distance].to_f
+    sw_lat, sw_lng = params[:filters][:sw].split(',')
+    ne_lat, ne_lng = params[:filters][:ne].split(',')
+
+    @shelters = Shelter.
+      near(map_center, distance).
+      within_bounding_box([sw_lat, sw_lng, ne_lat, ne_lng]).
+      active.
+      paginate(:page => params[:page], :per_page => 15).all
   end
 
   def find_animals_for_shelter
     shelter_id = params[:filters][:shelter_id]
-    @animals = Animal.community_animals(shelter_id, params[:filters]).available.paginate(:page => params[:page], :per_page => 15).all || {}
+    @animals = Animal.
+      community_animals(shelter_id, params[:filters]).
+      available.
+      paginate(:page => params[:page], :per_page => 15).all || {}
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

@@ -26,17 +26,30 @@ class CommunitiesController < ApplicationController
   end
 
   def find_animals_in_bounds
-    shelter_ids = Shelter.active.within_bounds(params[:filters][:sw].split(','), params[:filters][:ne].split(',')).collect(&:id)
+    map_center     = params[:filters][:map_center].split(',')
+    distance       = params[:filters][:distance].to_f
+    sw_lat, sw_lng = params[:filters][:sw].split(',')
+    ne_lat, ne_lng = params[:filters][:ne].split(',')
+
+    shelter_ids = Shelter.
+      near(map_center, distance, :select => "id").
+      within_bounding_box([sw_lat, sw_lng, ne_lat, ne_lng]).active.collect(&:id)
+
     # Remove the current shelter from the list so they don't see their animals
     shelter_ids.delete(@current_shelter.id)
-    @animals = Animal.community_animals(shelter_ids, params[:filters]).paginate(:page => params[:page], :per_page => 10).all || {}
+
+    @animals = Animal.
+      community_animals(shelter_ids, params[:filters]).
+      paginate(:page => params[:page], :per_page => 10).all || {}
   end
 
   def find_animals_for_shelter
     @shelter = Shelter.active.find(params[:filters][:shelter_id])
     unless @shelter.blank?
       @capacities = @shelter.capacities.includes(:animal_type).all
-      @animals = Animal.community_animals(@shelter.id, params[:filters]).paginate(:page => params[:page], :per_page => 10).all || {}
+      @animals = Animal.
+        community_animals(@shelter.id, params[:filters]).
+        paginate(:page => params[:page], :per_page => 10).all || {}
     end
   end
 
@@ -45,6 +58,5 @@ class CommunitiesController < ApplicationController
     flash[:error] = "You have requested an animal that is no longer listed!"
     redirect_to communities_path
   end
-
-
 end
+
