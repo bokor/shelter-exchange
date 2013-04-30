@@ -25,10 +25,14 @@ class Public::SaveALifeController < Public::ApplicationController
       near(map_center, distance, :select => "id").
       within_bounding_box([sw_lat, sw_lng, ne_lat, ne_lng]).active.collect(&:id)
 
-    @animals = Animal.
-      community_animals(shelter_ids, params[:filters]).
-      available.
-      paginate(:page => params[:page], :per_page => 10).all || {}
+    @animals = if shelter_ids.any?
+      Animal.
+        community_animals(shelter_ids, params[:filters]).
+        available.
+        paginate(:page => params[:page], :per_page => 10).all
+    else
+      {}
+    end
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
