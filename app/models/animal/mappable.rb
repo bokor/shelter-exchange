@@ -16,7 +16,7 @@ module Animal::Mappable
       scope = scope.filter_animal_status(filters[:animal_status]) unless filters[:animal_status].blank?
       scope = scope.active unless filters[:animal_status].present?
 
-      if shelter_ids.any? && shelter_ids.is_a?(Array)
+      if shelter_ids.is_a?(Array) && shelter_ids.any?
         scope.reorder("FIELD(shelter_id, #{shelter_ids.join(',')}), ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
       else
         scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
