@@ -49,7 +49,7 @@ var Maps = {
 	geocodeAddress: function(){
 	  var city_zipcode = $("#city_zipcode").val();
     if (city_zipcode != ""){
-		  geocoder.geocode( { address: city_zipcode + ", USA", region: 'US' }, function(results, status) {
+		  geocoder.geocode( { address: city_zipcode + ", USA", region: 'en_US' }, function(results, status) {
 		    if (status == google.maps.GeocoderStatus.OK) {
 				  map.fitBounds(results[0].geometry.viewport);
         } else {
@@ -90,7 +90,7 @@ var Maps = {
 			autoFocus: true,
 			delay: 400,
 			source: function(request, response) {
-		  	geocoder.geocode( { 'address': request.term + " , USA", 'region': 'US' }, function(results, status) {
+		  	geocoder.geocode( { address: request.term + ", USA", region: 'en_US' }, function(results, status) {
 					response( $.map( results, function( item ) {
             if (item.formatted_address.indexOf("USA") != -1) {
               var address = item.formatted_address.replace(", USA", "");
