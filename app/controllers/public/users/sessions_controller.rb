@@ -1,6 +1,7 @@
 class Public::Users::SessionsController < ::Devise::SessionsController
   include UrlHelper
   layout 'public/application'
+  force_ssl
 
   def new
     # Force Signout because www is not allowed to have a sign in per se
