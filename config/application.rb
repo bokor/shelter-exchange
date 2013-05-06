@@ -1,38 +1,29 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-# require 'rails/all'
-# require "rails/test_unit/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
+require 'rails/all'
 require "sprockets/railtie"
+# require 'sass-rails' # this needs to be required or else asset concatination does not use sass-rails pre-processors
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
-
-#TODO
-            # if defined?(Bundler)
-            #   # If you precompile assets before deploying to production, use this line
-            #   Bundler.require(*Rails.groups(:assets => %w(development test)))
-            #   # If you want your assets lazily compiled in production, use this line
-            #   # Bundler.require(:default, :assets, Rails.env)
-            # end
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module ShelterExchangeApp
   class Application < Rails::Application
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
-        #{config.root}/lib
-        #{config.root}/app/sweepers
-        #{config.root}/app/observers
-        #{config.root}/app/presenters
-        #{config.root}/app/pdfs
-        #{config.root}/app/uploaders
-        #{config.root}/app/models/concerns
+      #{config.root}/lib
+      #{config.root}/app/sweepers
+      #{config.root}/app/observers
+      #{config.root}/app/presenters
+      #{config.root}/app/pdfs
+      #{config.root}/app/uploaders
+      #{config.root}/app/models/concerns
     )
 
     # Activate observers that should always be running.
@@ -50,13 +41,26 @@ module ShelterExchangeApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
 
-    # Setup generators
+    # RSpec - Setup factory generators
     config.generators do |g|
       g.test_framework      :rspec, :fixture => true
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
-#TODO
+    # Asset pipeline
+    config.assets.enabled = true       # Enable the asset pipeline
+    config.assets.version = '1.0'      # Version of your assets, change this if you want to expire all your assets
+    config.assets.prefix = "/assets"
+
+    # Devise - Allows Devise to use the UrlHelper file for Subdomain links in the emails.
+    config.to_prepare do
+      Devise::Mailer.class_eval do
+        helper :url
+      end
+    end
+
+  end
+end
 
                         # Enable escaping HTML in JSON.
                         # config.active_support.escape_html_entities_in_json = true
@@ -71,24 +75,6 @@ module ShelterExchangeApp
                         # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
                         # parameters by using an attr_accessible or attr_protected declaration.
                         # config.active_record.whitelist_attributes = true
-
-                        # Enable the asset pipeline
-                        config.assets.enabled = false
-
-                        # Version of your assets, change this if you want to expire all your assets
-                        # config.assets.version = '1.0'
-
-    # Allows Devise to use the UrlHelper file for Subdomain links in the emails.
-    config.to_prepare do
-      Devise::Mailer.class_eval do
-        helper :url
-      end
-    end
-
-  end
-end
-
-
 
 
 # Not needed right now

@@ -1,0 +1,735 @@
+/******************************************************************/
+/* -------------------------- COMMON  -------------------------- */
+/******************************************************************/
+
+/* Social buttons */
+/*************************************************************************************************************************************/
+.social{position: absolute; padding-left: 15px; top: 8px;z-index:9999;}
+.social span{ display:block; float:left;height: 21px; line-height:21px; width: 90px; vertical-align: top;font-size: 12px;}
+.social:after{ content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }
+
+/*.social .facebook{width: 90px;}
+.social .twitter{width: 100px;}
+.social .pinterest{width: 90px;}*/
+
+/* Only FB Like Buttons */
+/******************************************************************/
+.pages .social,
+.accounts .social,
+.index_help_a_shelter .social{width: 65px;}
+
+.index_help_a_shelter .social{top: 2px;}
+
+/* Custom Formats for all buttons */
+/******************************************************************/
+.show_help_a_shelter .social{ position:static;padding:0;}
+.show_help_a_shelter .social span{display:block; float:none; width: auto;}
+
+.index_save_a_life .social{padding-left:0;position:relative;}
+
+
+/*************************************************************************************************************************************/
+
+/* Search - Not Found Error */
+/******************************************************************/
+#search_not_found {}
+#search_not_found h2{margin: 0 auto; text-align: center;height: 50px; line-height:50px;border:none; margin-top: 25px; }
+#search_not_found p,
+#search_not_found a{font-size: 14px; margin: 0 auto; text-align: center;}
+
+.index_help_a_shelter #search_not_found {border-top: 1px #ccc dotted;}
+
+
+/* Sections :: Headings
+-----------------------------------------------------------------------------*/
+.section_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto; border-top-style: solid; border-top-width: 1px;border-bottom-style: solid; border-bottom-width: 1px;border-color: #ccc;background-color: none;}
+.section_heading.no_borders{border-top-width: 0px;border-bottom-width: 0px;}
+.section_heading.red{border-color: #f07280;background-color:#faced3;}
+.section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
+.section_heading.orange{border-color: #f9d36f; background-color:#fdf1d0;}
+.section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
+.section_heading h2{float:left;}
+.section_heading .links{float:right; text-align: right;padding-top:5px;}
+.section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+
+/* Newsletter :: Signup */
+/******************************************************************/
+section.newsletter{ width:100%;height: 50px; bottom: 250px; position:absolute;background-color: #db8d4a;}
+section.newsletter div.content{position:relative; margin: 0 auto; text-align:center;}
+section.newsletter span{color: #fff; font-size: 14px; display: inline-block; line-height: 50px; padding-right: 15px;}
+section.newsletter form{display: inline-block; line-height: 50px;}
+section.newsletter span img{ vertical-align:middle;}
+section.newsletter span input.field{ color: #999;}
+section.newsletter span input.field.error{ color: red;}
+section.newsletter span.hide {display:none;}
+section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform: uppercase;}
+section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px; }
+section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/*******************************************************************/
+/* -------------------------- ACCOUNTS -------------------------- */
+/*******************************************************************/
+
+
+/* Accounts :: Global
+-----------------------------------------------------------------------------*/
+.accounts ul {list-style:none;}
+.accounts li:first-child h3{border-top:none; padding-top: 0px; margin-top: 0px;}
+.accounts h3{border-bottom:none;}
+.accounts .subdomain_highlight {padding: .1em .2em;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;-khtml-border-radius: 2px;background-color: #E1F1FA;color: #39C;text-shadow: 0 1px 0 white;}
+
+
+/* Accounts :: Social buttons */
+/******************************************************************/
+.create_accounts .social{display:none;}
+
+
+/*******************************************************************/
+/* -------------------------- HOME PAGE -------------------------- */
+/*******************************************************************/
+
+
+/* Home Page */
+/******************************************************************/
+.home_page h2{text-align:center;margin: 0 auto;padding: 20px 0;}
+
+.home_page .theme-default #slider {margin:10px auto 50px auto;
+	width:960px; /* Make sure your images are the same size */
+    height:392px; /* Make sure your images are the same size */
+}
+/* Home Page -> Slider :: IE :: Board Member Img Fix :: PIE */
+/******************************************************************/
+.ie7 .home_page .theme-default .nivoSlider,
+.ie8 .home_page .theme-default .nivoSlider{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+/* Home Page :: Adoptions */
+/******************************************************************/
+.home_page .adoptions{ text-align:center; padding-bottom: 20px;}
+.home_page .adoptions:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.home_page .adoptions .box {width: 300px; float:left; margin-right: 26px;height: 200px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+.home_page .adoptions .photo{padding-top: 20px;}
+.home_page .adoptions .photo img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
+.home_page .adoptions .animal p{text-align:center; padding: 0px 20px;}
+.home_page .adoptions .animal h3{border:none;padding:15px 0 10px 0; margin:0;text-align:center;}
+
+/* Home Page :: Adoptions :: IE :: Box Fix :: PIE */
+/******************************************************************/
+.ie7 .home_page .adoptions .box,
+.ie8 .home_page .adoptions .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.ie7 .home_page .adoptions .photo img,
+.ie8 .home_page .adoptions .photo img{behavior: url(/assets/pie/PIE.htc);}
+
+/* Home Page :: Adoptions :: After IE Fix */
+/******************************************************************/
+.home_page .adoptions .box:last-child{margin-right: 0px;}
+
+
+
+
+/* Home Page :: Stats */
+/******************************************************************/
+.home_page .stats{width: 100%;display:block;margin: 0 auto; text-align: center;}
+.home_page .stats h2{width:225px;padding-bottom:0px; position:relative; margin-bottom:-38px; background: url(/images/public/background-body.jpg) repeat;}
+.home_page .stats ul{list-style:none; text-align:center; margin: 0 auto;}
+.home_page .stats ul li{padding: 0 50px; text-align:center; margin: 0 auto; display: inline-block; zoom: 1; *display: inline;}
+	.home_page .stat_count{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
+	.home_page .stat_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
+
+/* Home Page :: Stats :: IE :: Box Fix :: PIE */
+/******************************************************************/
+/*.ie7 .home_page .stats .box,
+.ie8 .home_page .stats .box{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+*/
+/* Home Page :: Stats :: After IE Fix */
+/******************************************************************/
+/*.home_page .stats .box:first-child{margin-left: 1%;}
+.home_page .stats .box:last-child{margin-right: 1%;}
+*/
+
+
+
+/* Home Page :: RSS-Feed */
+/******************************************************************/
+.home_page #rss-feed ul {list-style:none; padding: 25px 5px 15px 5px; margin-bottom: 20px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+.home_page #rss-feed ul li {padding-bottom: 15px; text-align:center;}
+.home_page #rss-feed ul li h3{ padding-bottom: 5px;}
+
+/* Home Page :: RSS-Feed :: PIE */
+/******************************************************************/
+.ie7 .home_page #rss-feed ul,
+.ie8 .home_page #rss-feed ul{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+/* Home Page :: Homepage :: Mission Statement */
+/******************************************************************/
+section.mission_statement{clear:both;width: 960px; height: 292px; margin-bottom: 10px; position:relative;}
+section.mission_statement .message{position:relative; padding-top: 200px;}
+section.mission_statement p{width: 900px; text-align:center; margin: 0 auto; color: #eee; text-align:center; font-size: 13px;}
+section.mission_statement .social{display:block;position:absolute; top:auto; bottom:20px;right: 45px;}
+
+/* IE :: Home Page :: Homepage :: Mission Statement */
+/******************************************************************/
+.ie section.mission_statement p{font-size:12px;}
+
+
+/********************************************************************/
+/* -------------------------- CONTACT US -------------------------- */
+/********************************************************************/
+
+
+/* Contact us */
+/******************************************************************/
+.contact_us_page #contact_details{float:left; width: 29%;}
+.contact_us_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
+.contact_us_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
+.contact_us_page #contact_details div{padding-bottom: 15px;}
+.contact_us_page #contact_form{float:left; border-left: 1px #bbb dotted; width: 66%; padding-left: 4%;}
+
+
+/******************************************************************/
+/* -------------------------- ABOUT US -------------------------- */
+/******************************************************************/
+
+
+/* About us -> Founders */
+/******************************************************************/
+.about_us_founders_story_page #main img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.about_us_founders_story_page #main img.left{ float:left; margin: 0px 20px 20px 0px;}
+.about_us_founders_story_page #main img.right{ float:right; margin: 0px 0px 20px 20px;}
+
+/* About us -> Founders :: IE :: Board Member Img Fix :: PIE */
+/******************************************************************/
+.ie7 .about_us_founders_story_page #main img,
+.ie8 .about_us_founders_story_page #main img{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+/* About us :: Mission */
+/******************************************************************/
+.about_us_mission_page .mission_list ul{ padding-bottom: 25px; }
+.about_us_mission_page .mission_list ul li{padding-bottom: 5px; margin-left: 20px; padding-left: 10px;}
+.about_us_mission_page .animals img{width: 300px; height: 190px; margin-right:25px;-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
+.about_us_mission_page .animals img:last-child{margin-right: 0px;}
+
+/* About us :: Mission :: IE :: Board Member Img Fix :: PIE */
+/******************************************************************/
+.ie7 .about_us_mission_page .animals img,
+.ie8 .about_us_mission_page .animals img{margin-right: 15px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.about_us_mission_page .animals img:last-child{margin-right: 0px;}
+
+
+/* About us :: Board of Directors */
+/******************************************************************/
+.about_us_board_of_directors_page .board_member {}
+.about_us_board_of_directors_page .board_member:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.about_us_board_of_directors_page .board_member h2{ padding-top: 20px;border-top: 1px dotted #bbb; border-bottom:none;}
+.about_us_board_of_directors_page .board_member.first h2{ padding-top: 0px; border:none;}
+.about_us_board_of_directors_page .board_member img{float:right; margin: 0px 0px 30px 20px; -webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;	}
+
+/* About us :: Board of Directors :: IE :: Board Member Img Fix :: PIE */
+/******************************************************************/
+.ie7 .about_us_board_of_directors_page .board_member img,
+.ie8 .about_us_board_of_directors_page .board_member img{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+/* About us :: Financials */
+/******************************************************************/
+.about_us_financials_page .documents .year{float: left;width:48%;padding-right: 2%;}
+.about_us_financials_page .documents .year:last-child{ padding-right: 0;padding-left: 2%;}
+.about_us_financials_page .documents h2{ border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb; padding: 10px 0; margin:0px;}
+.about_us_financials_page .documents ul{padding: 10px 0; list-style-type: none;}
+.about_us_financials_page .documents ul li{height: 39px;padding: 10px 0;background: transparent url(/assets/public/icons/pdf.png) no-repeat; padding-left: 50px; }
+.about_us_financials_page .documents .general ul li {display:inline-block; min-width: 100px; *display:inline; padding-right: 30px;}
+
+
+/****************************************************************/
+/* -------------------------- DONATE -------------------------- */
+/****************************************************************/
+
+
+/* Donate */
+/******************************************************************/
+.donate_page h2{text-align:center; padding-bottom: 15px;}
+.donate_page .caption {font-size: 11px;}
+.donate_page .facts{padding-bottom: 10px;}
+.donate_page .facts:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.donate_page .box {float:left; width: 300px; margin-right: 25px; height: 160px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
+
+
+/* Donate :: IE :: Box Fix :: PIE */
+/******************************************************************/
+.ie7 .donate_page .box, .ie8 .donate_page .box{ margin-right: 15px; background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.donate_page .box:last-child{margin-right: 0px;}
+.donate_page .box p:first-child{padding-top: 25px;}
+.donate_page .box p{text-align:center; padding: 0px 20px;}
+
+.donate_page h3{border:none;padding:0; margin:0;text-align:center;}
+
+
+/**********************************************************************/
+/* -------------------------- GET INVOLVED -------------------------- */
+/**********************************************************************/
+
+/* Get Involved :: Sub Menu */
+/******************************************************************/
+.get_involved_shelters_and_rescues_page .submenu{ padding-top: 5px;line-height: 1em;}
+.get_involved_shelters_and_rescues_page .submenu li{padding: 0px 10px; }
+.get_involved_shelters_and_rescues_page .submenu a{ text-decoration: none; color: #444;font-size: 11px;font-weight: bold;}
+.get_involved_shelters_and_rescues_page .submenu a:hover{cursor: pointer;color: #CF7019;}
+
+/* Get Involved */
+/******************************************************************/
+.get_involved_page .sections {list-style: none;}
+.get_involved_page .sections li{ margin-bottom: 40px;}
+
+.get_involved_page .box{width: 48%; margin-bottom: 15px; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
+.get_involved_page .box.odd{float:left; padding-right: 1%;}
+.get_involved_page .box.even{float:right; padding-left: 1%;}
+.get_involved_page .box:hover{ cursor: pointer; -moz-box-shadow:  0px 0px 10px #f16649; -webkit-box-shadow:  0px 0px 10px #f16649; box-shadow:  0px 0px 10px #f16649;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
+.get_involved_page .box div{padding: 25px;text-align:center; margin: 0 auto;}
+.get_involved_page .box div h2{padding-bottom: 5px;padding-top: 5px; margin:0;}
+
+.get_involved_page .box a{color:#cf7019; text-decoration:none;}
+.get_involved_page .box:hover a h2{text-decoration:underline;}
+.get_involved_page p{color: #222; text-decoration: none;}
+.get_involved_page .box:hover p{text-decoration: none;}
+
+/* Get Involved :: IE Hack :: Box Fix :: PIE */
+/******************************************************************/
+.ie7 .get_involved_page .box, .ie8 .get_involved_page .box{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .get_involved_page .box:hover, .ie8 .get_involved_page .box:hover{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+/* Get Involved :: Shelters and Rescues */
+/******************************************************************/
+.get_involved_shelters_and_rescues_page .feature{width: 100%;position: relative; }
+.get_involved_shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.get_involved_shelters_and_rescues_page .feature:last-child{padding-bottom: 20px;}
+/*.get_involved_shelters_and_rescues_page .feature h2{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}*/
+.get_involved_shelters_and_rescues_page .feature h3{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}
+.get_involved_shelters_and_rescues_page .feature p{padding-bottom: 10px;}
+.get_involved_shelters_and_rescues_page .feature ul {width: 550px; float:left;}
+.get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 255px; padding-left: 17px; vertical-align:top;}
+.get_involved_shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
+.get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
+.get_involved_shelters_and_rescues_page .feature .screenshot img{-moz-box-shadow: 0 0 6px #222;-moz-box-shadow: 0 0 6px #222;box-shadow: 0 0 6px #222;}
+
+/* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
+/******************************************************************/
+.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+/******************************************************************************/
+/* -------------------------- WHY SHELTER EXCHANGE -------------------------- */
+/******************************************************************************/
+
+
+/* Why Shelter Exchange */
+/******************************************************************/
+
+
+/* Why Shelter Exchange :: FAQs */
+/******************************************************************/
+.why_shelter_exchange_faqs_page .list h3{border:none; padding-bottom:5px; margin: 0;}
+.why_shelter_exchange_faqs_page .list{list-style: none;padding-top: 30px;}
+.why_shelter_exchange_faqs_page .list li {margin-left:50px; padding-left: 20px; padding-bottom: 20px;}
+.why_shelter_exchange_faqs_page .list li span{position:absolute; left: 0px; /*border: 1px solid #CF7019;*/ color: #CF7019;font-size: 18px; width: 35px;height: 35px; line-height: 35px; text-align: center;background: #fff;
+	-moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px;
+	-moz-box-shadow: 0 0px 4px #000; -webkit-box-shadow: 0 0px 4px #000; box-shadow: 0 0px 4px #000;}
+
+/* Why Shelter Exchange :: FAQs :: IE :: List Fix :: PIE */
+/******************************************************************/
+.ie7 .why_shelter_exchange_faqs_page .list li span, .ie8 .why_shelter_exchange_faqs_page .list li span{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+.why_shelter_exchange_faqs_page .list li ul li{ padding-bottom: 5px;}
+.why_shelter_exchange_faqs_page .list p{padding-bottom: 10px; margin:0;}
+
+/* Why Shelter Exchange :: Problems and Solutions */
+/******************************************************************/
+.why_shelter_exchange_problems_and_solutions_page .list h3{border-bottom: none; padding-bottom: 5px; margin:0;}
+.why_shelter_exchange_problems_and_solutions_page .list{list-style:none;}
+
+
+
+/* Why Shelter Exchange :: Community Support */
+/******************************************************************/
+.why_shelter_exchange_in_kind_donations_page .list {list-style: none; padding-top: 20px;}
+.why_shelter_exchange_in_kind_donations_page .list li{ border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 20px;}
+.why_shelter_exchange_in_kind_donations_page .list li:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.why_shelter_exchange_in_kind_donations_page .list li:last-child{border:none;}
+.why_shelter_exchange_in_kind_donations_page .list img{float:left;}
+.why_shelter_exchange_in_kind_donations_page .list div{padding-left: 220px;}
+
+
+
+
+/********************************************************************/
+/* -------------------------- SAVE A LIFE -------------------------- */
+/********************************************************************/
+
+
+/* Save a Life :: Global
+-----------------------------------------------------------------------------*/
+.index_save_a_life #main .content { width: 95%;} /* Remove if you want to use the .content parent size of 960px;*/
+.save_a_life #main ul {list-style:none;}
+.save_a_life #main ul.form {padding-bottom: 0; margin-bottom:0;}
+.index_save_a_life #main p, .index_save_a_life #main h3{margin-bottom: 10px; padding-bottom: 0px;}
+
+
+/* Save a Life :: Search Section :: Search Bar */
+/******************************************************************/
+.index_save_a_life .search_content {padding-bottom: 10px;padding-top: 10px;}
+.index_save_a_life .search_content .toggle_buttons{margin: 0 0 0 15px;}
+.index_save_a_life .search_form{width: 70%}
+.index_save_a_life .search_form form{float:left;width: 38%;}
+.index_save_a_life .search_form form input{height:20px;width:100%;font-size:14px; }
+.index_save_a_life .helper_links{width: 30%; text-align:right;float:right;}
+
+/* Save a Life :: Search Section :: Help Text */
+/******************************************************************/
+.index_save_a_life #help_text{display:none;margin-bottom:5px;}
+.index_save_a_life #help_text h3{color:#000; text-shadow:none;}
+
+
+/* Save a Life :: Search Section :: Filters */
+/******************************************************************/
+.index_save_a_life #narrow_search_results{display:none;}
+.index_save_a_life #form_filters table {vertical-align: top; width:100%;}
+.index_save_a_life #form_filters table tr{vertical-align: top; width:100%;}
+.index_save_a_life #form_filters table td{padding-left:40px;}
+.index_save_a_life #form_filters table td.type {width: 15%;}
+.index_save_a_life #form_filters table td.breed {width: 25%;}
+	.index_save_a_life #form_filters table td.breed input {width: 99%;}
+.index_save_a_life #form_filters table td.sex {width: 10%;}
+.index_save_a_life #form_filters table td.extra_options {width: 30%;}
+.index_save_a_life #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
+	.index_save_a_life #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
+    .index_save_a_life #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
+
+
+/* Save a life :: Search Section :: Layout */
+/******************************************************************/
+.index_save_a_life .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
+
+
+/* Save a life :: Results :: Layout
+-----------------------------------------------------------------------------*/
+.index_save_a_life .search_results {padding-top: 10px;}
+.index_save_a_life table.results{width: 100%; padding-bottom: 20px;}
+.index_save_a_life table.results td.shelter_half{width:49%; padding-right: 1%; vertical-align:top; }
+.index_save_a_life table.results td.animal_half{width:49%; padding-left: 1%; vertical-align:top;border-left: 1px dotted #bbb;}
+
+/* Save a life :: Map Canvas :: Layout
+-----------------------------------------------------------------------------*/
+.index_save_a_life #map_canvas{width:100%; height: 500px;}
+
+/* Save a life :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.show_save_a_life #shelter_details{padding-bottom: 20px;/*border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 10px;*/}
+.show_save_a_life #shelter_details h2 span{position:absolute;letter-spacing: 0px; margin-top: -2px;font-size: 14px;padding-left: 20px;}
+.show_save_a_life #shelter_details .logo{float:right; text-align:right;}
+.show_save_a_life #shelter_details .address_info{width: 860px;}
+.show_save_a_life #shelter_details .action_links span,
+.show_save_a_life #shelter_details .action_links a{padding-right: 8px;}
+.save_a_life #shelter_details h1 {color: #CCC;height: 100px;line-height: 100px;margin: 0 auto;text-align: center;}
+.show_save_a_life .animal_shelter{border-top: 1px #bbb dotted; padding-top: 20px; margin-top: 10px;
+border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
+
+/* Index Save a life :: Social buttons */
+/******************************************************************/
+.index_save_a_life .social {margin-top: 15px;}
+
+/* Show Save a life :: Social buttons */
+/******************************************************************/
+/*.show_save_a_life .social {display:inline-block; height: 30px;margin-left: 20px;}
+.show_save_a_life .social iframe{vertical-align:middle;}
+.show_save_a_life .social span {display:inline-block;}
+.show_save_a_life .social .pin-it-button{font-size: 12px;}*/
+
+/* Save a life :: Search by Shelter Name :: Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.index_save_a_life .animals h1 {color: #bbb;margin: 0 auto; text-align: center;height: 500px; line-height: 500px;}
+
+
+/* Save a Life :: Layout :: Animal List
+-----------------------------------------------------------------------------*/
+.index_save_a_life table.animal_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.index_save_a_life table.animal_list h3,
+.index_save_a_life table.animal_list p{ padding-bottom: 10px; margin:0; }
+.index_save_a_life table.animal_list tr {border-bottom:1px #bbb dotted; }
+.index_save_a_life table.animal_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_save_a_life table.animal_list td.image { width:100px; padding-left:5px; }
+.index_save_a_life table.animal_list td.details { /*width: 400px;*/width:57%;padding-left: 15px;color:#666; }
+.index_save_a_life table.animal_list td.status {/*width: 290px;*/ width:44%;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_save_a_life table.animal_list .euthanisia_date{color:#DF0000;}
+
+.index_save_a_life .pagination{ margin: 0 auto; text-align:center;}
+
+/* Save a Life :: Layout :: Animal List
+-----------------------------------------------------------------------------*/
+.ie .index_save_a_life table.animal_list td.details { width:55%; padding-left: 10px;}
+.ie .index_save_a_life table.animal_list td.status { width:46%;padding-left: 5px;}
+
+/* Save a Life ::Search by Shelter Name :: Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.index_save_a_life #shelter_animals table.animal_list{border-top: 1px dotted #bbb;}
+
+
+/* Save a Life :: Show Page (Animal Page)
+-----------------------------------------------------------------------------*/
+.show_save_a_life h1 .status{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#f16649;position:absolute; right:0; top: 10px;}
+.show_save_a_life h3{overflow:auto;border-bottom: 1px #bbb dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
+
+.show_save_a_life .animal_details{}
+.show_save_a_life .animal_details:after{ content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }
+.show_save_a_life .animal_details ul{text-align:left;padding-bottom: 10px;}
+.show_save_a_life .animal_details ul li{ padding-bottom: 0;}
+.show_save_a_life .animal_details ul li p{padding-bottom: 15px;margin:0;}
+.show_save_a_life .animal_details ul p span{padding-left: 8px;}
+
+.show_save_a_life .animal_details .media{float:right;width: 500px;margin-left:15px;}
+.show_save_a_life .animal_details #photo_gallery{width: 500px;height:360px;}
+
+.show_save_a_life .animal_details .type{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;padding-bottom: 35px;}
+
+.show_save_a_life .animal_details .video_player{ margin-top: 10px;}
+.show_save_a_life .animal_details p.euthanasia_info{color: #ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px; margin-top: -10px;}
+
+.show_save_a_life img.default_photo{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
+
+/* Save a Life :: Show Page (Animal Page) :: IE :: Animal Img Fix :: PIE */
+/******************************************************************/
+.ie7 .show_save_a_life img.default_photo,
+.ie8 .show_save_a_life img.default_photo{behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+/************************************************************************/
+/* -------------------------- Help a Shelter -------------------------- */
+/************************************************************************/
+
+
+/* Help a Shelter :: Global
+-----------------------------------------------------------------------------*/
+.index_help_a_shelter #main .content { width: 95%;} /* Remove if you want to use the .content parent size of 960px;*/
+.search_by_shelter_or_rescue_group_help_a_shelter #main .content { width: 95%;}/* Remove if you want to use the .content parent size of 960px;*/
+
+.help_a_shelter #main ul {list-style:none;}
+.help_a_shelter #main ul.form {padding-bottom: 0; margin-bottom:0;}
+.help_a_shelter #main p{margin-bottom: 10px; padding-bottom: 0px;}
+.help_a_shelter .map_separator{margin-top:5px;height: 1px;border-bottom: 1px dotted #bbb;}
+
+/* Index Help a Shelter :: Search Section :: Search Bar */
+/******************************************************************/
+.index_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.index_help_a_shelter .search_content .toggle_buttons{margin: 0 0 0 15px;}
+.index_help_a_shelter .search_form{width: 70%}
+.index_help_a_shelter .search_form form{float:left;width: 38%;}
+	.index_help_a_shelter .search_form form input{height:20px;width:100%;font-size:14px; }
+
+/* Search by Shelter or Rescue Group Help a Shelter :: Search Section :: Search Bar */
+/******************************************************************/
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content {padding-bottom: 10px;padding-top: 10px;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_form{float:left;width: 95%;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_form form{float:left;width: 59%;}
+	.search_by_shelter_or_rescue_group_help_a_shelter .search_form input[type=text]{ width: 65%; height:20px;font-size:14px;}
+.search_by_shelter_or_rescue_group_help_a_shelter .search_content .toggle_buttons{float:left; margin: 0;}
+
+
+/* Index Help a Shelter :: Help Text */
+/******************************************************************/
+.help_a_shelter .helper_links{/*width: 5%;*/ text-align:right;float:right;}
+.help_a_shelter #help_text{display:none; }
+.help_a_shelter #help_text h3{color:#000; text-shadow:none;}
+
+
+/* Index Help a Shelter :: Map :: Layout
+-----------------------------------------------------------------------------*/
+.index_help_a_shelter .map {padding: 10px 0;margin-right: 355px; }
+.index_help_a_shelter .map:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.index_help_a_shelter .map #map_canvas{float:left;width:100%; height: 400px;}
+.index_help_a_shelter .map .ways_to_help{ float:right;margin-right: -355px;padding-right: 10px;width: 325px; /*padding-left: 15px;width: 325px;*/}
+.index_help_a_shelter .map .ways_to_help h2{ text-align:center;}
+.index_help_a_shelter .map .ways_to_help h4{letter-spacing:0px; padding-bottom:0; margin-bottom:0;}
+.index_help_a_shelter .map .ways_to_help p {line-height:1.25;}
+.index_help_a_shelter .map .ways_to_help ul li{/*list-style-type:disc; margin-left: 20px;padding: 0 0 5px 5px;*/padding-bottom: 10px;}
+
+/* IE Hack :: Index Help a Shelter :: Map Canvas */
+/******************************************************************/
+.ie8 .index_help_a_shelter .map #map_canvas{ height: 380px;}
+
+
+/* Help a Shelter :: Shelter List :: Layout
+-----------------------------------------------------------------------------*/
+.help_a_shelter #shelters{border-top: 1px dotted #bbb;}
+.help_a_shelter .shelter_list{margin:5px 0;padding: 10px 0; border-bottom: 1px dotted #bbb;text-align: center;}
+.help_a_shelter .shelter_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.help_a_shelter .shelter_list .help_text{position:relative;font-size: 28px;line-height: 200px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
+.help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
+
+.help_a_shelter .shelter{display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; width: 30%; text-align:center; height: 140px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #bbb;}
+.help_a_shelter .shelter .logo{height:75px; line-height:75px; vertical-align:middle;}
+.help_a_shelter .shelter .logo img{vertical-align:middle;}
+.help_a_shelter .shelter.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
+.help_a_shelter .shelter a{color: #222; font-weight:normal;}
+.help_a_shelter .shelter h3{margin-bottom:0;padding:5px 0;}
+.help_a_shelter .shelter a:hover{text-decoration:none;}
+
+
+/* Index Help a Shelter :: Shelter List :: Layout :: IE ::  PIE */
+/******************************************************************/
+.ie7 .help_a_shelter .shelter,
+.ie8 .help_a_shelter .shelter{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+/* Show Help a Shelter :: Shelter Details :: Layout
+-----------------------------------------------------------------------------*/
+.show_help_a_shelter #shelter_details{border-top: 1px #bbb dotted; border-bottom: 1px #bbb dotted;padding: 15px 0 5px 0; margin: 20px 0 5px 0;}
+.show_help_a_shelter #shelter_details .logo{padding-right: 15px; float:left;}
+.show_help_a_shelter #shelter_details .address_info{width: 40%; padding-right: 25px; float:left;}
+.show_help_a_shelter #shelter_details .address_info h1{font-size: 20px; border-bottom: none; padding-bottom: 10px; margin:0px;}
+.show_help_a_shelter #shelter_details .wish_list{width: 40%; float:left; font-weight:bold;}
+.show_help_a_shelter #shelter_details .wish_list p{margin-bottom:0px; padding-bottom:5px;}
+.show_help_a_shelter #shelter_details .wish_list ol li{margin-left:20px; padding:0 0 5px 5px;}
+.show_help_a_shelter #shelter_details .action_links span,
+.show_help_a_shelter #shelter_details .action_links a{padding-right: 8px;}
+.show_help_a_shelter #shelter_details:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Show Help a Shelter :: Social buttons */
+/******************************************************************/
+.show_help_a_shelter .social {padding-top: 10px;margin-left: 0px;}
+.show_help_a_shelter .social span {display:block;text-align:left;height: 25px; line-height: 25px;}
+
+/* IE Fix :: Show Help a Shelter :: Social buttons */
+/******************************************************************/
+.ie7 .show_help_a_shelter .social,
+.ie8 .show_help_a_shelter .social{position:absolute;}
+
+
+/* Show Help a Shelter :: Search Section :: Search Bar */
+/******************************************************************/
+.show_help_a_shelter .search_content {width:100%;padding-top: 10px;margin-bottom:0px;}
+.show_help_a_shelter .helper_links{width: 30%; text-align:right;float:right;}
+.show_help_a_shelter .search_content:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Show Help a Shelter :: Search Section :: Help Text */
+/******************************************************************/
+.show_help_a_shelter #help_text{display:none;margin-bottom:5px;}
+.show_help_a_shelter #help_text h3{color:#000; text-shadow:none;}
+
+
+/* Show Help a Shelter :: Search Section :: Filters */
+/******************************************************************/
+.show_help_a_shelter #narrow_search_results{display:none; height: 65px;}
+.show_help_a_shelter #form_filters table {vertical-align: top; width:100%;}
+.show_help_a_shelter #form_filters table tr{vertical-align: top; width:100%;}
+.show_help_a_shelter #form_filters table td{padding-left:40px;}
+.show_help_a_shelter #form_filters table td.type {width: 15%;}
+.show_help_a_shelter #form_filters table td.breed {width: 25%;}
+	.show_help_a_shelter #form_filters table td.breed input {width: 99%;}
+.show_help_a_shelter #form_filters table td.sex {width: 10%;}
+.show_help_a_shelter #form_filters table td.extra_options {width: 30%;}
+.show_help_a_shelter #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
+	.show_help_a_shelter #form_filters table td.extra_options .only_one_checkbox{display:block;margin-top: 24px;}
+	.show_help_a_shelter #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
+	.show_help_a_shelter #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
+
+
+
+/* Show Help a Shelter :: Layout :: Animal List
+-----------------------------------------------------------------------------*/
+.show_help_a_shelter #animals p.no_results{color: #CCC;height: 200px;line-height: 200px;margin: 0 auto;text-align: center; font-weight: bold; border-bottom: 1px dotted #bbb;letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;font-size:28px;}
+
+.show_help_a_shelter .animal_list{margin:5px 0;padding: 10px 0; /*border-top: 1px dotted #bbb;*/ border-bottom: 1px dotted #bbb;text-align: center;}
+.show_help_a_shelter .animal_list h2{text-align:center;padding-bottom: 20px;}
+.show_help_a_shelter .animal_list:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.show_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
+
+.show_help_a_shelter .animal{width: 30%; min-height: 240px; display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; text-align:center; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #ccc;}
+.show_help_a_shelter .animal .logo{height:150px; line-height:150px; vertical-align:middle; padding-bottom: 5px;}
+.show_help_a_shelter .animal .logo img{vertical-align:middle; -webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
+.show_help_a_shelter .animal.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
+.show_help_a_shelter .animal a{color: #222; font-weight:normal;}
+.show_help_a_shelter .animal h3{margin-bottom:0;padding:5px 0;}
+.show_help_a_shelter .animal a:hover{text-decoration:none;}
+.show_help_a_shelter .animal ul{padding-top: 5px;}
+.show_help_a_shelter .animal ul li{color:#222;font-size:12px;padding-bottom:9px;}
+.show_help_a_shelter .animal ul li.euthanisia_date{color:#DF0000; font-weight: bold;height:18px;}
+
+
+/* Show Help a Shelter :: Animal List :: Layout :: IE ::  PIE */
+/******************************************************************/
+.ie7 .show_help_a_shelter .animal .logo img,
+.ie8 .show_help_a_shelter .animal .logo img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .show_help_a_shelter .animal,
+.ie8 .show_help_a_shelter .animal{ background: url(/images/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+
+
+
+
+
+
+
+
+/********************************************************************/
+/* -------------------------- CAPACITIES -------------------------- */
+/********************************************************************/
+
+/* Capacities :: Global
+-----------------------------------------------------------------------------*/
+.capacities ul {list-style:none;}
+
+/* Capacities List :: Layout */
+/******************************************************************/
+.capacity_list {border-top: 1px dotted #ccc;}
+.capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
+
+.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 60px; width: 60px;font-size: 13px; font-weight: bold; }
+.capacity .counts{display:inline-block;  padding-left: 60px;}
+	.capacity .counts ul{padding-top: 8px;}
+	.capacity .counts ul li{line-height: 25px; }
+
+.capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
+
+
+/* Capacity Legend :: Layout
+-----------------------------------------------------------------------------*/
+.capacities .legend{width: 90px; margin-top: 20px; padding: 10px 15px; border: 1px solid #ccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+.capacities .legend table { border-collapse: collapse; border-spacing: 0;  }
+.capacities .legend table th{font-size: 14px;}
+.capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
+.capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
+
+/* Save a life :: Capacity
+-----------------------------------------------------------------------------*/
+.index_save_a_life .capacity .action_links{display:none;}
+.index_save_a_life .capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
+.index_save_a_life .capacities h2{padding-bottom: 10px; /*border-bottom: 1px solid #ddd;*/}
+
+
+
+/*****************************************************************/
+/* -------------------------- PRIVACY -------------------------- */
+/*****************************************************************/
+.privacy_page h2{border-top: 1px #bbb dotted; padding-top: 10px;}
+.privacy_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
+.privacy_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
+.privacy_page #contact_details div{padding-bottom: 15px;}
+
+/**************************************************************************/
+/* -------------------------- TERMS OF SERVICE -------------------------- */
+/**************************************************************************/
+.terms_of_service_page h2{border-top: 1px #bbb dotted; padding-top: 10px;}
+.terms_of_service_page ol{padding-bottom: 20px;}
+.terms_of_service_page ol li{margin-left: 20px; padding-left: 20px; padding-bottom: 10px;}
+
