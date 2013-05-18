@@ -2,8 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
 require 'rails/all'
-require "sprockets/railtie"
-# require 'sass-rails' # this needs to be required or else asset concatination does not use sass-rails pre-processors
+#require "sprockets/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

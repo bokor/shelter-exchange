@@ -16,7 +16,7 @@
 //= require modernizr
 //= require date
 //= require jquery_ujs
-//= require highcharts.js
+//= require highcharts
 //
 //= require_tree ./shared/
 //= require_tree ./app/

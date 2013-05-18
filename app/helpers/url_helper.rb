@@ -24,8 +24,7 @@ module UrlHelper
 
   def s3_url(file_name, last_modified = false)
     query_string = last_modified ? "?#{FOG_BUCKET.files.head(file_name).last_modified.to_i}" : ""
-    "#{request.protocol}#{S3_BUCKET}.s3.amazonaws.com/#{file_name}#{query_string}"
-    # "https://#{S3_BUCKET}.s3.amazonaws.com/#{file_name}#{query_string}"
+    "//#{S3_BUCKET}.s3.amazonaws.com/#{file_name}#{query_string}"
   end
 
 end

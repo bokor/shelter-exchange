@@ -4,3 +4,4 @@ module SheltersHelper
     shelter
   end
 end
+
