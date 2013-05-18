@@ -103,7 +103,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Home Page -> Slider :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
 .ie7 .home_page .theme-default .nivoSlider,
-.ie8 .home_page .theme-default .nivoSlider{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .home_page .theme-default .nivoSlider{ behavior: url(/assets/pie/PIE.htc);}
 
 
 
@@ -120,7 +120,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Home Page :: Adoptions :: IE :: Box Fix :: PIE */
 /******************************************************************/
 .ie7 .home_page .adoptions .box,
-.ie8 .home_page .adoptions .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .home_page .adoptions .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 .ie7 .home_page .adoptions .photo img,
 .ie8 .home_page .adoptions .photo img{behavior: url(/assets/pie/PIE.htc);}
@@ -141,19 +141,6 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 	.home_page .stat_count{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 	.home_page .stat_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
 
-/* Home Page :: Stats :: IE :: Box Fix :: PIE */
-/******************************************************************/
-/*.ie7 .home_page .stats .box,
-.ie8 .home_page .stats .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
-*/
-/* Home Page :: Stats :: After IE Fix */
-/******************************************************************/
-/*.home_page .stats .box:first-child{margin-left: 1%;}
-.home_page .stats .box:last-child{margin-right: 1%;}
-*/
-
-
-
 /* Home Page :: RSS-Feed */
 /******************************************************************/
 .home_page #rss-feed ul {list-style:none; padding: 25px 5px 15px 5px; margin-bottom: 20px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
@@ -163,7 +150,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Home Page :: RSS-Feed :: PIE */
 /******************************************************************/
 .ie7 .home_page #rss-feed ul,
-.ie8 .home_page #rss-feed ul{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .home_page #rss-feed ul{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 
 
@@ -200,14 +187,14 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* About us -> Founders */
 /******************************************************************/
-.about_us_founders_story_page #main img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.about_us_founders_story_page #main img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}
 .about_us_founders_story_page #main img.left{ float:left; margin: 0px 20px 20px 0px;}
 .about_us_founders_story_page #main img.right{ float:right; margin: 0px 0px 20px 20px;}
 
 /* About us -> Founders :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
 .ie7 .about_us_founders_story_page #main img,
-.ie8 .about_us_founders_story_page #main img{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .about_us_founders_story_page #main img{ behavior: url(/assets/pie/PIE.htc);}
 
 
 /* About us :: Mission */
@@ -220,7 +207,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 /* About us :: Mission :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
 .ie7 .about_us_mission_page .animals img,
-.ie8 .about_us_mission_page .animals img{margin-right: 15px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .about_us_mission_page .animals img{margin-right: 15px;behavior: url(/assets/pie/PIE.htc);}
 
 .about_us_mission_page .animals img:last-child{margin-right: 0px;}
 
@@ -236,7 +223,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 /* About us :: Board of Directors :: IE :: Board Member Img Fix :: PIE */
 /******************************************************************/
 .ie7 .about_us_board_of_directors_page .board_member img,
-.ie8 .about_us_board_of_directors_page .board_member img{ behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .about_us_board_of_directors_page .board_member img{ behavior: url(/assets/pie/PIE.htc);}
 
 
 /* About us :: Financials */
@@ -265,7 +252,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Donate :: IE :: Box Fix :: PIE */
 /******************************************************************/
-.ie7 .donate_page .box, .ie8 .donate_page .box{ margin-right: 15px; background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .donate_page .box, .ie8 .donate_page .box{ margin-right: 15px; background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 .donate_page .box:last-child{margin-right: 0px;}
 .donate_page .box p:first-child{padding-top: 25px;}
@@ -304,8 +291,8 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Get Involved :: IE Hack :: Box Fix :: PIE */
 /******************************************************************/
-.ie7 .get_involved_page .box, .ie8 .get_involved_page .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
-.ie7 .get_involved_page .box:hover, .ie8 .get_involved_page .box:hover{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .get_involved_page .box, .ie8 .get_involved_page .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
+.ie7 .get_involved_page .box:hover, .ie8 .get_involved_page .box:hover{behavior: url(/assets/pie/PIE.htc);}
 
 
 
@@ -325,7 +312,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
 /******************************************************************/
-.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
 
 
 /******************************************************************************/
@@ -348,7 +335,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Why Shelter Exchange :: FAQs :: IE :: List Fix :: PIE */
 /******************************************************************/
-.ie7 .why_shelter_exchange_faqs_page .list li span, .ie8 .why_shelter_exchange_faqs_page .list li span{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .why_shelter_exchange_faqs_page .list li span, .ie8 .why_shelter_exchange_faqs_page .list li span{behavior: url(/assets/pie/PIE.htc);}
 
 .why_shelter_exchange_faqs_page .list li ul li{ padding-bottom: 5px;}
 .why_shelter_exchange_faqs_page .list p{padding-bottom: 10px; margin:0;}
@@ -509,7 +496,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Save a Life :: Show Page (Animal Page) :: IE :: Animal Img Fix :: PIE */
 /******************************************************************/
 .ie7 .show_save_a_life img.default_photo,
-.ie8 .show_save_a_life img.default_photo{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .show_save_a_life img.default_photo{behavior: url(/assets/pie/PIE.htc);}
 
 
 
@@ -589,7 +576,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Index Help a Shelter :: Shelter List :: Layout :: IE ::  PIE */
 /******************************************************************/
 .ie7 .help_a_shelter .shelter,
-.ie8 .help_a_shelter .shelter{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .help_a_shelter .shelter{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 
 /* Show Help a Shelter :: Shelter Details :: Layout
@@ -670,9 +657,9 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Show Help a Shelter :: Animal List :: Layout :: IE ::  PIE */
 /******************************************************************/
 .ie7 .show_help_a_shelter .animal .logo img,
-.ie8 .show_help_a_shelter .animal .logo img{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .show_help_a_shelter .animal .logo img{behavior: url(/assets/pie/PIE.htc);}
 .ie7 .show_help_a_shelter .animal,
-.ie8 .show_help_a_shelter .animal{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .show_help_a_shelter .animal{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 
 

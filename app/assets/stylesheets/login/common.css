@@ -59,7 +59,7 @@ body.login{background-color: #eee;}
 
 /* Home Page -> Newsletter :: IE :: PIE */
 /******************************************************************/
-.ie7 .login #center #content, .ie8 .login #center #content{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .login #center #content, .ie8 .login #center #content{behavior: url(/assets/pie/PIE.htc);}
 
 
 .passwords ul{list-style:none;}

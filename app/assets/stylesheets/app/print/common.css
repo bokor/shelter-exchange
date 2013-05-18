@@ -437,7 +437,7 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 /* Save a Life :: Show Page (Animal Page) :: IE :: Animal Img Fix :: PIE */
 /******************************************************************/
 .ie7 .print_animals .animal_details .media img,
-.ie8 .print_animals .animal_details .media img {behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .print_animals .animal_details .media img {behavior: url(/assets/pie/PIE.htc);}
 
 
 /* Print Animals :: Shelter Details :: Layout

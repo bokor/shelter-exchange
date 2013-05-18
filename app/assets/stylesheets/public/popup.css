@@ -36,7 +36,7 @@ a:hover{color:#f16649; text-decoration: underline;}
 /******************************************************************/
 .ie .separator{clear:both;width: 100%; height: 1px;border: 1px solid #e0c09b;margin: 25px 0px;
 	-moz-box-shadow: 0px 0px 4px #cf7019; -webkit-box-shadow: 0px 0px 4px #cf7019;box-shadow: 0px 0px 4px #cf7019;
-	behavior: url(/stylesheets/global/pie/PIE.htc);
+	behavior: url(/assets/pie/PIE.htc);
 }
 
 
@@ -76,15 +76,15 @@ header nav .side_menu li a span{margin-top: -20px;height: 1;line-height:1em; dis
 
 header nav .side_menu li:hover, header nav .side_menu li.current { margin:-5px 0;color:#fff;text-decoration: none;}
 header nav .side_menu li:hover a, header nav .side_menu li.current a{ color:#fff;text-decoration: none;}
-header nav .side_menu .save_a_life{right: 250px;background: url(/images/public/tabs_save_a_life_header.png) no-repeat;}
-header nav .side_menu .help_a_shelter{right: 125px;background: url(/images/public/tabs_help_a_shelter_header.png) no-repeat;}
-header nav .side_menu .donate{right: 0px;background: url(/images/public/tabs_donate_header.png) no-repeat;}
+header nav .side_menu .save_a_life{right: 250px;background: url(/assets/public/tabs_save_a_life_header.png) no-repeat;}
+header nav .side_menu .help_a_shelter{right: 125px;background: url(/assets/public/tabs_help_a_shelter_header.png) no-repeat;}
+header nav .side_menu .donate{right: 0px;background: url(/assets/public/tabs_donate_header.png) no-repeat;}
 
 
 /* IE Hack :: Header :: Nav */
 /******************************************************************/
 .ie header nav .menu li{margin: 0 8px; padding: 0 12px;}
-.ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/stylesheets/global/pie/PIE.htc); }
+.ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/assets/pie/PIE.htc); }
 .ie .side_menu{font: normal 9px Tahoma;}
 
 
@@ -352,7 +352,7 @@ body.firefox.mac .button.default {
 /* Toggle Buttons :: IE Hack :: Toggle Button Fix */
 /******************************************************************/
 .ie7 .button,
-.ie8 .button{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie8 .button{behavior: url(/assets/pie/PIE.htc);}
 
 
 /* Toggle Buttons */

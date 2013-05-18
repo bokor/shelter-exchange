@@ -2,7 +2,7 @@
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
 
 html, body { margin:0; padding:0; height: 100%; }
-body { background-color: #e7e7e7; color: #222; 
+body { background-color: #e7e7e7; color: #222;
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px; -webkit-text-size-adjust:none;}
 
 
@@ -37,8 +37,8 @@ Dog House Sides - #db8d4a
 /***********************************************************************/
 /* -------------------------- Page Layouts --------------------------- */
 /***********************************************************************/
-  
-/* Header */   
+
+/* Header */
 /******************************************************************/
 #header{height: 90px; background-color: #209000; position:relative;}
 
@@ -61,12 +61,12 @@ Dog House Sides - #db8d4a
 #menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
 
 
-/* Main */   
+/* Main */
 /******************************************************************/
 #main { margin: 1em 0 0 3em; }
 #main:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-/* Left - Content Area */   
+/* Left - Content Area */
 /******************************************************************/
 /*border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;*/
 #left { float: left; width: 65%; background-color: #fff; margin: 0; padding: 0; position: relative; text-align: left;  }
@@ -74,12 +74,12 @@ Dog House Sides - #db8d4a
 #left #content .page_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;}
 #left #content .page_content{padding: 1em 1.5em 1em 1.5em; margin:0 auto;}
 
-/* Right - Sidebar */   
+/* Right - Sidebar */
 /******************************************************************/
 #right { float: left; width: 35%; margin: 0px; padding: 0px; position: relative; text-align: left;  }
 #right #sidebar { padding: 0 1.5em 0 1.5em; display: block; }
 
-/* Footer */   
+/* Footer */
 /******************************************************************/
 #footer { width: 100%; height: 100px; padding: 10px 0 0 0; margin:0 auto; background-color: #e7e7e7; }
 #footer img{float:left;}
@@ -89,17 +89,17 @@ Dog House Sides - #db8d4a
 
 /* IE6 Warning Box
 -----------------------------------------------------------------------------*/
-.ie6_warning{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 5px 0; border-top-style: solid; 
+.ie6_warning{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 5px 0; border-top-style: solid;
 	border-bottom: 1px solid #f9d36f; border-top: 1px solid #f9d36f; background-color:#fdf1d0;}
 .ie6_warning p{line-height: 1.5em;}
 
-/* Ajax :: Messages */   
+/* Ajax :: Messages */
 /******************************************************************/
 .ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; font-weight:bold;}
 
 
 
-/* Flash Messages */   
+/* Flash Messages */
 /******************************************************************/
 .flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
 .flash_message .icon{width: 16px;float: left; margin-right: .3em;}
@@ -112,7 +112,7 @@ textarea.placeholder { color: #999; }
 ::-webkit-input-placeholder{color:#999999;}
 
 
-/* Pagination */   
+/* Pagination */
 /******************************************************************/
 /* ORANGE - #CF7019 */
 .pagination { padding: 3px; margin: 10px 0 10px 0; }
@@ -134,7 +134,7 @@ textarea.placeholder { color: #999; }
 
 
 
-/* Button */   
+/* Button */
 /******************************************************************/
 .button {
 	min-width: 100px;
@@ -144,31 +144,31 @@ textarea.placeholder { color: #999; }
 	*display:inline;
 	position: relative;
 	border: 1px solid #999;
-	
-	background-color: #e0e0e0; 
+
+	background-color: #e0e0e0;
 	/*background-size: 100% 100%; */
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7)); 
-   	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%); 
-	
-	-webkit-border-radius: 6px; 
-	-moz-border-radius: 6px; 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(0.5,#f0f0f0),color-stop(0.5,#e0e0e0),color-stop(1,#d7d7d7));
+   	background-image: -webkit-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:    -moz-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:     -ms-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:      -o-linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+	background-image:         linear-gradient(top,#fff 0,#f0f0f0 50%,#e0e0e0 50%,#d7d7d7 100%);
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
 	border-radius: 6px;
-	
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); 
+
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-	
+
 	text-shadow: rgba(255, 255, 255, 0.746094) 0px 1px;
-	
+
 	color: #444;
 	font-size: 11px;
 	font-weight: bold;
 	text-transform: uppercase;
-	
+
 	text-decoration: none!important;
 	text-align: center;
 }
@@ -316,23 +316,23 @@ body.firefox.mac .button.default {
 }
 
 
-/* Toggle Buttons :: IE Hack :: Toggle Button Fix */   
+/* Toggle Buttons :: IE Hack :: Toggle Button Fix */
 /******************************************************************/
-.ie7 .button, 
-.ie8 .button{behavior: url(/stylesheets/global/pie/PIE.htc);}
+.ie7 .button,
+.ie8 .button{behavior: url(/assets/pie/PIE.htc);}
 
 
-/* Toggle Buttons */   
+/* Toggle Buttons */
 /******************************************************************/
 ul.toggle_buttons{
-	background-color: #FEFEFE; 
-	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD)); 
-   	background-image: -webkit-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:    -moz-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD); 
-	background-image:         linear-gradient(top,  #FEFEFE,  #DDD); 
-	
+	background-color: #FEFEFE;
+	background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#FEFEFE), to(#DDD));
+   	background-image: -webkit-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:    -moz-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:     -ms-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:      -o-linear-gradient(top,  #FEFEFE,  #DDD);
+	background-image:         linear-gradient(top,  #FEFEFE,  #DDD);
+
 	border: 1px solid #D4D4D4;
 	border-radius: 3px 3px;
 	-webkit-border-radius: 3px 3px;
@@ -370,7 +370,7 @@ ul.toggle_buttons li a {
 }
 
 
-/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */
 /******************************************************************/
 .ie7 ul.toggle_buttons,
 .ie8 ul.toggle_buttons {background-color: #F3F3F3; }
@@ -384,7 +384,7 @@ ul.toggle_buttons li a.current {
 	color: #006FBB;
 }
 
-/* IE Hack :: Toggle Buttons :: Toggle Button Fix */   
+/* IE Hack :: Toggle Buttons :: Toggle Button Fix */
 /******************************************************************/
 .ie7 ul.toggle_buttons li a.current,
 .ie8 ul.toggle_buttons li a.current  {background-color: #dde7ef;}
@@ -393,14 +393,14 @@ ul.toggle_buttons li a:hover{color: #CF7019;}
 
 
 
-/* Application Tabs */   
+/* Application Tabs */
 /******************************************************************/
 .tabs {position: relative; bottom: 0; left:0; margin: 0; padding: 0 0 0 0;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
 .tabs li {float: left; font-size: 13px;list-style: none;margin: 0px 10px 0px 0px; }
 .tabs li.current a{font-weight: bold; text-shadow: 1px 1px 1px #fff; }
 .tabs a:link, .tabs a:visited {float: left;padding: 6px 18px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
 
-/* Application Tabs - Default Color */   
+/* Application Tabs - Default Color */
 /******************************************************************/
 /* default */
 .tabs li.current a{background: #fff; color: #cf7019; }
