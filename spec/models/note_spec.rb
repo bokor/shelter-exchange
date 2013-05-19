@@ -35,6 +35,20 @@ describe Note, "::CATEGORIES" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
+describe Note, ".without_hidden" do
+
+  it "should only return notes that aren't hidden" do
+    note1 = Note.gen
+    note2 = Note.gen
+    note3 = Note.gen :hidden => true
+
+    notes = Note.without_hidden
+    notes.should =~ [note1, note2]
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Note, "#shelter" do

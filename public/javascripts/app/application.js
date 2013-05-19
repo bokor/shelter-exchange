@@ -8,6 +8,9 @@
 $(function() {
 	//$.fn.qtip.zindex = 100;
 	$('.tooltip').live('mouseover', function(event) {
+    var width  = $(this).width();
+    var height = $(this).height();
+
 		$(this).qtip({
 			overwrite: false,
 			content: {
@@ -20,7 +23,7 @@ $(function() {
 			style: { classes: 'ui-tooltip-dark ui-tooltip-tipsy ui-tooltip-shadow' },
 			position: {
 				my: 'right center',
-				adjust: { y: -10, x: -35 }
+				adjust: { y: -(height/2), x:-(width) }
 			}
 		}, event).each(function(i) { // IE ONLY NOT SURE IF IT WORKS YET
 			$.attr(this, 'oldtitle', $.attr(this, 'title'));
