@@ -6,6 +6,10 @@ class Note < ActiveRecord::Base
   DEFAULT_CATEGORY = "general"
   CATEGORIES = %w[general medical behavioral intake].freeze
 
+  # Getters/Setters
+  #----------------------------------------------------------------------------
+  attr_accessor :allow_hidden
+
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
@@ -17,6 +21,10 @@ class Note < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :title, :presence => true
   validates :category, :inclusion => { :in => CATEGORIES, :message => "needs to be selected" }
+
+  # Scopes
+  #----------------------------------------------------------------------------
+  scope :without_hidden, where(:hidden => false)
 
   # Instance Methods
   #----------------------------------------------------------------------------
