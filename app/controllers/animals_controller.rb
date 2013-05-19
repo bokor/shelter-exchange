@@ -59,7 +59,13 @@ class AnimalsController < ApplicationController
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :shelter, :photos, :accommodation => [:location]).find(params[:id])
     @shelter = @animal.shelter
     @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
-    @notes = @animal.notes.includes(:documents).where(:category => @note_categories).all
+
+    if params[:hidden]
+      @notes = @animal.notes.includes(:documents).where(:category => @note_categories).all
+    else
+      @notes = @animal.notes.includes(:documents).without_hidden.where(:category => @note_categories).all
+    end
+
     @print_layout = params[:print_layout] || "kennel_card"
 
     respond_to do |format|

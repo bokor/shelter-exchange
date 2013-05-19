@@ -77,6 +77,7 @@
             <div id="<%= "note_#{note.id}" %>" class="note">
               <span class="created_date"><%= format_date(:short, note.created_at) %></span>
               <span class="details">
+                <% if note.hidden? %><span class="icon-lock"></span><% end %>
                 <span class="title"><%= note.title %></span>
               </span>
 

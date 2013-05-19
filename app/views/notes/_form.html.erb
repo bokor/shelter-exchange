@@ -3,6 +3,7 @@
 	<div><%= f.text_field :title, :class => "field text large" %></div>
 	<%= has_error_message?(@note, :title)%>
 </li>
+
 <% if defined?(default_category) && default_category %>
 	<%= f.hidden_field :category, :value => Note::DEFAULT_CATEGORY %>
 <% else %>
@@ -14,6 +15,17 @@
 		<%= has_error_message?(@note, :category)%>
 	</li>
 <% end %>
+
+<% if defined?(allow_hidden) && allow_hidden %>
+  <li>
+    <span>
+      <%= f.check_box :hidden, :class =>"field checkbox" %>
+      <%= f.label :hidden, "Make this note private?", :class => "desc choice" %>
+    </span>
+    <%= has_error_message?(@note, :hidden)%>
+  </li>
+<% end %>
+
 <li class="full">
 	<%= f.label :description, :class => "desc" %>
 	<div><%= f.text_area :description, :class => "field textarea medium" %></div>

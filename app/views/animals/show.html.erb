@@ -147,8 +147,6 @@
 			</tr>
 		</table>
 		<% end %>
-
-
 	</div>
 
 	<div id="notes_heading" class="section_heading orange">
@@ -211,7 +209,7 @@
 		<div id="create_note_errors"></div>
 		<%= form_for ([@animal, @note = Note.new]), :remote => true, :format => :js, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
 			<ul>
-				<%= render "notes/form", :f => f %>
+        <%= render "notes/form", :f => f, :allow_hidden => true %>
 		    	<li class="buttons">
 					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
 					&nbsp;or&nbsp;
