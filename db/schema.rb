@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406061014) do
+ActiveRecord::Schema.define(:version => 20130519185626) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -241,9 +241,11 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
     t.datetime "updated_at"
     t.integer  "shelter_id"
     t.string   "category"
+    t.boolean  "hidden",       :default => false
   end
 
   add_index "notes", ["created_at"], :name => "index_notes_on_created_at"
+  add_index "notes", ["hidden"], :name => "index_notes_on_hidden"
   add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
   add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
