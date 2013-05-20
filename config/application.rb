@@ -50,6 +50,7 @@ module ShelterExchangeApp
     config.assets.enabled = true       # Enable the asset pipeline
     config.assets.version = '1.0'      # Version of your assets, change this if you want to expire all your assets
     config.assets.prefix = "/assets"
+    config.assets.paths << Rails.root.join("app/assets/documents")
 
     # Devise - Allows Devise to use the UrlHelper file for Subdomain links in the emails.
     config.to_prepare do

@@ -4,7 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
  *= require fancybox/jquery.fancybox-1.3.4
- *= require galleria/twelve/galleria.twelve
+ *= require galleria/galleria.twelve
  *= require jquery-ui/jquery-ui.custom
  *= require nivo-slider/nivo-slider
  *= require wufoo/wufoo_form
