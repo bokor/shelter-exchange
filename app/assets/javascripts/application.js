@@ -41,6 +41,7 @@ $(function() {
 			},
 			style: { classes: 'ui-tooltip-dark ui-tooltip-tipsy ui-tooltip-shadow' },
 			position: {
+        viewport: $(window),
 				my: 'right center',
 				adjust: { y: -(height/2), x:-(width) }
 			}
