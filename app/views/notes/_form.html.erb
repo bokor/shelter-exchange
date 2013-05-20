@@ -16,11 +16,14 @@
 	</li>
 <% end %>
 
-<% if defined?(allow_hidden) && allow_hidden %>
+<% if @note.notable_type == "Animal" %>
   <li>
     <span>
       <%= f.check_box :hidden, :class =>"field checkbox" %>
-      <%= f.label :hidden, "Make this note private?", :class => "desc choice" %>
+      <label class="desc choice" for="note_hidden">
+        Make this note private
+        <i class="icon-question-sign tooltip" data-tip="Notes marked as Private can only be viewed by users for your account and will not be shared in the Community section. We advise this Private option only to be used for highly sensitive information."></i>
+      </label>
     </span>
     <%= has_error_message?(@note, :hidden)%>
   </li>

@@ -17,7 +17,7 @@
 
   <span class="details">
     <span class="title">
-      <% if note.hidden? %><span class="icon-lock tooltip" data-tip="Private note"></span><% end %>
+      <% if note.hidden? %><span class="icon-lock tooltip" data-tip="Private"></span><% end %>
       <%= note.title %>
     </span>
 	</span>
@@ -36,11 +36,7 @@
 
       <% if can?(:update, Note) %>
         <span class="edit_link">
-          <% if note.allow_hidden || controller_name == "animals" %>
-            <%= link_to "Edit", edit_note_path(note, :allow_hidden => true, :format => :js), :remote => true %>
-          <% else %>
-            <%= link_to "Edit", edit_note_path(note, :format => :js), :remote => true %>
-          <% end %>
+          <%= link_to "Edit", edit_note_path(note, :format => :js), :remote => true %>
         </span>
       <% end %>
 

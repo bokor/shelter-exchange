@@ -3,16 +3,16 @@ module Statusable
 
   included do
 
-    scope :active,                 where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::ACTIVE)
-    scope :non_active,             where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::NON_ACTIVE)
-    scope :available,              where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::AVAILABLE)
+    scope :active, where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::ACTIVE)
+    scope :non_active, where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::NON_ACTIVE)
+    scope :available, where("#{self.table_name}.animal_status_id IN (?)", AnimalStatus::AVAILABLE)
     scope :available_for_adoption, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:available_for_adoption])
-    scope :adoption_pending,       where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:adoption_pending])
-    scope :adopted,                where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:adopted])
-    scope :foster_care,            where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:foster_care])
-    scope :reclaimed,              where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:reclaimed])
-    scope :euthanized,             where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:euthanized])
-    scope :transferred,            where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:transferred])
+    scope :adoption_pending, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:adoption_pending])
+    scope :adopted, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:adopted])
+    scope :foster_care, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:foster_care])
+    scope :reclaimed, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:reclaimed])
+    scope :euthanized, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:euthanized])
+    scope :transferred, where("#{self.table_name}.animal_status_id = ?", AnimalStatus::STATUSES[:transferred])
 
   end
 
