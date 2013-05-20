@@ -16,7 +16,7 @@
 	</li>
 <% end %>
 
-<% if defined?(allow_hidden) && allow_hidden %>
+<% if @note.notable_type == "Animal" %>
   <li>
     <span>
       <%= f.check_box :hidden, :class =>"field checkbox" %>

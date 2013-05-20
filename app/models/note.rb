@@ -6,10 +6,6 @@ class Note < ActiveRecord::Base
   DEFAULT_CATEGORY = "general"
   CATEGORIES = %w[general medical behavioral intake].freeze
 
-  # Getters/Setters
-  #----------------------------------------------------------------------------
-  attr_accessor :allow_hidden
-
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter, :readonly => true
