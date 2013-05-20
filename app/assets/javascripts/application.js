@@ -25,8 +25,8 @@
 /* QTip - Tooltips
 /*----------------------------------------------------------------------------*/
 $(function() {
-	//$.fn.qtip.zindex = 100;
-	$('.tooltip').live('mouseover', function(event) {
+
+  $('.tooltip').live('mouseover', function(event) {
     var width  = $(this).width();
     var height = $(this).height();
 
@@ -50,7 +50,6 @@ $(function() {
 			this.removeAttribute('title');
 		});
 	});
-
 
 	$('.tooltip_dialog').live('click', function(event) {
 		event.preventDefault();
@@ -94,6 +93,7 @@ $(function() {
 				}
 			}
 		});
+
 	});
 
 	$('.photo_dialog, .document_dialog').live('click', function(event) {
@@ -172,8 +172,6 @@ $(function(){
 	});
 
 });
-
-
 
 /* Sidebar Function :: Show and Hide
 /*----------------------------------------------------------------------------*/
