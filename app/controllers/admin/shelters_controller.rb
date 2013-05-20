@@ -35,3 +35,4 @@ class Admin::SheltersController < Admin::ApplicationController
   end
 
 end
+

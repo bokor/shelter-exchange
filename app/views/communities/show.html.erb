@@ -121,8 +121,9 @@
 			<%= link_to 'All', filter_notes_animals_path(:id => @animal.id, :format => :js), :remote => true, :id => "all_notes_link" %>
 			<% Note::CATEGORIES.each do |category|%>
 				&nbsp;|&nbsp;
-				<%= link_to category.humanize, filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js),
-				                          :remote => true, :id => "#{category}_notes_link" %>
+        <%= link_to category.humanize,
+                    filter_notes_animals_path(:filter => category, :id => @animal.id, :format => :js),
+				            :remote => true, :id => "#{category}_notes_link" %>
 			<% end %>
 		</div>
 	</div>
@@ -196,6 +197,4 @@
 	</div>
 
 <% end %>
-
-
 
