@@ -6,8 +6,8 @@
 /* QTip - Tooltips
 /*----------------------------------------------------------------------------*/
 $(function() {
-	//$.fn.qtip.zindex = 100;
-	$('.tooltip').live('mouseover', function(event) {
+
+  $('.tooltip').live('mouseover', function(event) {
     var width  = $(this).width();
     var height = $(this).height();
 
@@ -22,7 +22,8 @@ $(function() {
 			},
 			style: { classes: 'ui-tooltip-dark ui-tooltip-tipsy ui-tooltip-shadow' },
 			position: {
-				my: 'right center',
+				viewport: $(window),
+        my: 'right center',
 				adjust: { y: -(height/2), x:-(width) }
 			}
 		}, event).each(function(i) { // IE ONLY NOT SURE IF IT WORKS YET
@@ -30,7 +31,6 @@ $(function() {
 			this.removeAttribute('title');
 		});
 	});
-
 
 	$('.tooltip_dialog').live('click', function(event) {
 		event.preventDefault();
@@ -74,6 +74,7 @@ $(function() {
 				}
 			}
 		});
+
 	});
 
 	$('.photo_dialog, .document_dialog').live('click', function(event) {
@@ -153,8 +154,6 @@ $(function(){
 
 });
 
-
-
 /* Sidebar Function :: Show and Hide
 /*----------------------------------------------------------------------------*/
 $(function() {
@@ -188,3 +187,4 @@ $(function () {
 	    e.preventDefault();
     });
 });
+
