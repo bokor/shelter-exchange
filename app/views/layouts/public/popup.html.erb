@@ -20,7 +20,11 @@
 	<!-- stylesheets -->
   <%= stylesheet_link_tag :public_popup, :media => "all" %>
 
-	<!--[if (lt IE 9)]>
+  <!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
+	<![endif]-->
+
+  <!--[if (lt IE 9)]>
 		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
