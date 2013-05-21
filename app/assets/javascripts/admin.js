@@ -4,6 +4,7 @@
 //= require jquery.blockUI.min
 //= require modernizr
 //= require date
+//= require highcharts
 //= require jquery_ujs
 //
 //= require_tree ./shared/

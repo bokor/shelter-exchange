@@ -1,7 +1,6 @@
 <%= title "Foster Care Monthly Total by Animal Type - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Foster Care Monthly Total By Type', 'foster_care_monthly_total_by_type', 'Foster Care');

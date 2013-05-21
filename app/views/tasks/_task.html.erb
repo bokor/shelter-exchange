@@ -6,7 +6,7 @@
 	<% end %>
 	<span class="type">
 		<% unless task.category.blank? %>
-			<img class="tooltip" data-tip="<%=task.category.humanize%>" src="/images/icon_<%=task.category.underscore%>.png" />
+      <img class="tooltip" data-tip="<%=task.category.humanize%>" src="<%= image_path("icon_#{task.category.underscore}.png")%>" />
 		<% end %>
 	</span>
 	<span class="due_date"><%= display_due_date(task) %></span>

@@ -1,7 +1,7 @@
 <%= title "Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports %>
+<%= include_javascripts :reports %>
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
 			Reports.initialize();
@@ -16,23 +16,23 @@
 		<div class="action_links">
 			<%= label_tag :selected_state, "Select State:" %>
 			<%= select "", :selected_state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All"}, {:onchange => ""}  %>
-			
+
 			<%= label_tag :selected_month, "Select month:" %>
 			<%= select_month(Date.today, {:field_name => :selected_month, :prefix => "", :start_month => current_month},{:onchange => ""} )%>
-			
+
 			<%= label_tag :date_report_selected_year, "Select year:" %>
 			<%= select_year(Date.today, {:field_name => :selected_year, :prefix => "", :start_year => current_year - 3, :end_year => current_year},{:onchange => ""})%>
-			
+
 			<%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
 		</div>
 	</div>
-	
+
 	<div class="page_content">
-	
+
 		<div id="status_by_month_year" class="report"></div>
 		<div class="separator"></div>
 		<div id="type_by_month_year" class="report"></div>
-	
+
 	</div>
 
 <% end %>
