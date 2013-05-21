@@ -11,6 +11,8 @@
  *= require qtip/jquery.qtip
  *= require wufoo/wufoo_form
  *
+ *= require shared/reset
+ *= require shared/buttons
  *= require app/common
  *= require app/controller
  *= require app/print

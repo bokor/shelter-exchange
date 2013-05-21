@@ -7,6 +7,8 @@
  *= require jquery-ui/jquery-ui.custom
  *= require wufoo/wufoo_form
  *
+ *= require shared/reset
+ *= require shared/buttons
  *= require app/print/common
  *= require app/print/print
 */

@@ -6,6 +6,8 @@
  *= require jquery-ui/jquery-ui.custom
  *= require wufoo/wufoo_form
  *
+ *= require shared/reset
+ *= require shared/buttons
  *= require login/common
 */
 

@@ -9,6 +9,8 @@
  *= require nivo-slider/nivo-slider
  *= require wufoo/wufoo_form
  *
+ *= require shared/reset
+ *= require shared/buttons
  *= require public/common
  *= require public/controller
 */
