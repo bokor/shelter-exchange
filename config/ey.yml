@@ -2,11 +2,13 @@ environments:
  shelter_exchange_app_production:
    branch: production
    migrate: false
+   precompile_assets: true
    copy_exclude:
       - .git
 
  shelter_exchange_app_staging:
    branch: staging
    migrate: false
+   precompile_assets: true
    copy_exclude:
        - .git
