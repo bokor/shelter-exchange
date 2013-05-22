@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/pagination.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 
 /* Pagination Links :: AJAX Searches

@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/fancybox.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 
 /* You Tube Link Fancybox and Screenshots

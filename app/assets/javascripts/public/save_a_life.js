@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * public/save_a_life.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var SaveALife = {
 	initialize: function(latitude, longitude, overlay){

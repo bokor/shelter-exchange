@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * admin/shelters.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Shelters = {
 	initialize: function(lat, lng, s3_url){
@@ -47,5 +46,5 @@ var Shelters = {
 		});
 		$("#account_"+id).fadeIn(1000);
 	}
-
 };
+

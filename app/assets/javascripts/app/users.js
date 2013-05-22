@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * app/users.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Users = {
 	selectUser: function(id) {
@@ -17,3 +16,4 @@ var Users = {
 		$("#user_"+id).fadeIn(1000);
 	}
 };
+

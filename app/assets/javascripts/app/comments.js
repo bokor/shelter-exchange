@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * app/comments.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Comments = {
 	initializeDialog: function(){
@@ -8,11 +7,6 @@ var Comments = {
 			e.preventDefault();
 			$('#create_comment').slideToggle(800);
 		});
-		//$('.close_link a').bind('click', function(e){
-		//	e.preventDefault();
-			//Hide QTip
-		//	$('.qtip.ui-tooltip').qtip('hide');
-		//});
 	},
 	updateCommentable: function(id, commentable){
 		$("#comment_commentable_id").val(id);
@@ -33,3 +27,4 @@ var Comments = {
 		$("#comment_"+id).fadeIn(1000);
 	}
 };
+

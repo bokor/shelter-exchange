@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/photos.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Photos = {
   initGallery: function(photos){
@@ -50,6 +49,4 @@ var Photos = {
     return false;
   }
 };
-
-
 

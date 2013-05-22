@@ -1,10 +1,8 @@
 /*!------------------------------------------------------------------------
  * admin/users.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Users = {
 	liveSearch: function(element){
-		// var q = $(element);
 		clearTimeout($.data(element, "search_timer"));
 		var wait = setTimeout(function() {
 			$.ajax({
@@ -18,3 +16,4 @@ var Users = {
 		$.data(element, "search_timer", wait);
 	}
 };
+

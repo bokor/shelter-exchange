@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * public/help_a_shelter.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var HelpAShelter = {
 	initialize: function(latitude, longitude, overlay){

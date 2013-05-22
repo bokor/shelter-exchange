@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/social.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 $(function(){
 
@@ -39,7 +38,6 @@ $(function(){
         else
             window.addEventListener("load", async_load, false);
     })();
-
 
     /* Social Media - Twitter Tweet
     /*----------------------------------------------------------------------------*/

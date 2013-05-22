@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/maps.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var defaultZoom = 11;
 var myLatLng = null;

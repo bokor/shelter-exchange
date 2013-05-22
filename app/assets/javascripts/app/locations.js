@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * app/locations.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Locations = {
 	initializeDialog: function(){
@@ -8,10 +7,6 @@ var Locations = {
 			e.preventDefault();
 			$('#create_location').slideToggle(800);
 		});
-		//$('.close_link a').bind('click', function(e){
-		//	e.preventDefault();
-		//	$('.qtip.ui-tooltip').qtip('hide');
-		//});
 	},
 	findAllLocations: function() {
 		$.ajax({
@@ -27,5 +22,4 @@ var Locations = {
 		$('#location_'+id).fadeIn(1000);
 	}
 };
-
 

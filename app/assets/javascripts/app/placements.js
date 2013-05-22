@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * app/placements.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Placements = {
 	findComments: function(id){
@@ -17,9 +16,4 @@ var Placements = {
 		$("#placement_"+id).fadeIn(1000);
 	}
 };
-
-
-
-
-
 

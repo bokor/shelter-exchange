@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/documents.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Documents = {
   initUploader: function(attachable_id, documents, maxFilesAllowed){

@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * app/communities.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var Communities = {
 	initialize: function(latitude, longitude, overlay){
@@ -147,6 +146,6 @@ var Communities = {
 		  	e.preventDefault();
 			findAnimalsFunction();
 		});
-
 	}
 };
+

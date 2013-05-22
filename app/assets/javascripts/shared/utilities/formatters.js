@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/formatters.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 
 /* URL Formatter :: Prepends http:// to url input fields

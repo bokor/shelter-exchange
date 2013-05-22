@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/reports.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 var ajaxUrl = (/\/admin\//.test(window.location.pathname)) ? "/admin/reports/" : "/reports/";
 
@@ -111,7 +110,7 @@ var Reports = {
 
 				new Highcharts.Chart(options);
 		 	}
-
 		});
 	}
 };
+

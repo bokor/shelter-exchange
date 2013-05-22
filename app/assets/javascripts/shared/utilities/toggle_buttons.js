@@ -1,6 +1,5 @@
 /*!------------------------------------------------------------------------
  * shared/toggle_buttons.js
- * Copyright (c) 2011 Designwaves, LLC. All rights reserved.
  * ------------------------------------------------------------------------ */
 
 /* Toggle Helper Links in Help a Shelter and Save a Life.
