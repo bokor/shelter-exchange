@@ -28,9 +28,19 @@ gem "cancan"
 #----------------------------------------------------------------------------
 gem "will_paginate"
 gem "jquery-rails"
-gem "jammit"
-gem "jammit-s3"
 gem "prawn"
+
+group :assets do
+  gem "sass-rails"
+  gem "coffee-rails"
+  gem "uglifier"
+  gem "yui-compressor"
+  gem "asset_sync"
+end
+
+group :development, :test do
+  gem 'quiet_assets'
+end
 
 # Images
 #----------------------------------------------------------------------------
@@ -89,46 +99,4 @@ group :test do
   gem "database_cleaner"
   #gem "artifice"
 end
-
-
-
-
-
-
-# Investigate later
-#----------------------------------------------------------------------------
-
-# TODO
-          # Gems used only for assets and not required
-          # in production environments by default.
-          # group :assets do
-          #   gem "sass-rails",   "~> 3.2.3"
-          #   gem "coffee-rails", "~> 3.2.1"
-
-          #   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-          #   # gem "therubyracer", :platforms => :ruby
-
-          #   gem "uglifier", ">= 1.0.3"
-          #   gem "yui-compressor"
-          # end
-
-          # MESSENGER
-          # asset pipeline
-          # gem "yui-compressor" # compress CSS
-          # gem "coffee-filter" # coffeescript haml filter
-          # gem "therubyracer" # needed to run coffeescript on ubuntu
-          # the ui-toolkit includes the following:
-          #gem "haml-rails"
-          #gem "sass-rails"
-          #gem "coffee-rails"
-          #gem "uglifier"
-
-
-
-        # gem "puma", "~> 1.5.0" # bumping to 1.6 seems to make some tests fail
-
-
-        # group :production do
-        #   gem "SyslogLogger"
-        # end
 

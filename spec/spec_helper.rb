@@ -25,5 +25,9 @@ RSpec.configure do |config|
   # Helper Files
   config.include CapybaraHelper, :type => :request
   config.include AccountHelper, :type => :request
+
+  # config.before :suite do
+  #   Delayed::Worker.delay_jobs = false
+  # end
 end
 

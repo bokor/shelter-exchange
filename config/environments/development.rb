@@ -15,7 +15,7 @@ ShelterExchangeApp::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-  
+
   Rails.application.routes.default_url_options = { :host => 'lvh.me', :port => 3000 } # Fixes issue with Presenters not allowing Routes and Url Helper
 
   # Don't care if the mailer can't send
@@ -32,6 +32,11 @@ ShelterExchangeApp::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  # Asset Pipeline
+  config.assets.compress = false
+  config.assets.debug    = true
+  config.quiet_assets    = true
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
@@ -43,11 +48,5 @@ ShelterExchangeApp::Application.configure do
 
             # Raise exception on mass assignment protection for Active Record models
             # config.active_record.mass_assignment_sanitizer = :strict
-
-            # Do not compress assets
-            # config.assets.compress = false
-
-            # Expands the lines which load the assets
-            # config.assets.debug = true
 end
 

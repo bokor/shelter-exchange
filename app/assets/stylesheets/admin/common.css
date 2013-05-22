@@ -1,0 +1,127 @@
+html, body { margin:0; padding:0; height: 100%; }
+body { background-color: #e7e7e7; color: #222;
+	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px;-webkit-text-size-adjust:none; }
+
+
+/*********************************************************/
+/* ---------------------- GLOBAL ----------------------- */
+/*********************************************************/
+h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
+h1 {  }
+h2 {  }
+h3 {  }
+h4 {  }
+h5 {  }
+
+p{ margin-bottom: 10px; }
+img { border: none; outline: none; }
+
+code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
+
+
+/* ClearFix */
+/******************************************************************/
+.clearfix:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+* html .clearfix{height:1%;}
+
+
+/***********************************************************************/
+/* -------------------------- Page Layouts --------------------------- */
+/***********************************************************************/
+
+/* Header */
+/******************************************************************/
+#header{height: 90px; background-color: #cf7019; position:relative;}
+
+#toolbar { font-family: 'Helvetica Neue', Arial, Verdana, sans-serif; height: 35px; line-height: 35px; background-color: #222; margin: 0; padding: 0 3em 0 3em; position:relative;}
+#toolbar:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+#toolbar span { color: #eee; font-size: 11px;}
+#toolbar a {color: #eee;}
+#toolbar .col_1{width: 50%;}
+#toolbar .col_2{width: 50%; float:right; text-align:right;}
+#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 9999;background-color: #222; border: 1px solid #333;}
+#toolbar .settings_menu li { padding: 0px 10px; display:block;}
+#toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
+#toolbar .settings_menu li a:hover { color: #f26649;}
+#toolbar .settings_menu li.current a { color: #f26649;}
+#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; }
+#menu li {float: left; font-size: 13px;list-style: none;margin: 0px 6px 0px 0px; }
+#menu li.current a{background: #e7e7e7; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
+#menu a:link, #menu a:visited {background: #8f4400;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
+#menu a:hover,#menu a:link.active, #menu a:visited.active {background: #ff912d;color: #eee; }
+
+
+/*
+
+dark
+ad5d00 - background
+762f0e - tab
+dc7327 - tab hover
+
+blue
+00488a- background
+0c3561 - tab
+218db8 - tab hover
+
+*/
+
+/* Main */
+/******************************************************************/
+#main { margin: 1em 0 0 3em; }
+#main:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Left - Content Area */
+/******************************************************************/
+/*border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;*/
+#left { float: left; width: 65%; background-color: #fff; margin: 0; padding: 0; position: relative; text-align: left;  }
+#left #content { box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999; }
+#left #content .page_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;}
+#left #content .page_content{padding: 1em 1.5em 1em 1.5em; margin:0 auto;}
+
+/* Right - Sidebar */
+/******************************************************************/
+#right { float: left; width: 35%; margin: 0px; padding: 0px; position: relative; text-align: left;  }
+#right #sidebar { padding: 0 1.5em 0 1.5em; display: block; }
+
+/* Footer */
+/******************************************************************/
+#footer { width: 100%; height: 100px; padding: 10px 0 0 0; margin:0 auto; background-color: #e7e7e7; }
+#footer img{float:left;}
+#footer h5{float:left;padding-left:5px;line-height:65px;}
+#footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Ajax :: Messages */
+/******************************************************************/
+.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff;}
+
+
+
+/* Flash Messages */
+/******************************************************************/
+.flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
+.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
+
+/* Placeholder Text */
+/******************************************************************/
+input.placeholder { color: #999; }
+textarea.placeholder { color: #999; }
+:-moz-placeholder{color:#999999;}
+::-webkit-input-placeholder{color:#999999;}
+
+/* Pagination */
+/******************************************************************/
+/* ORANGE - #CF7019 */
+.pagination { padding: 3px; margin: 10px 0 10px 0; }
+.pagination a, .pagination span{white-space: nowrap; font-weight:bold;}
+.pagination a {height: 60px;line-height: 40px; padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
+.pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
+.pagination em.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;font-style: normal;background-color: #555;color: #fff;}
+.pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
+
+
+
+/* Tooltips */
+/******************************************************************/
+.tooltip{cursor:pointer;}
+

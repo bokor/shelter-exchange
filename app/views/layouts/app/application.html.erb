@@ -18,17 +18,17 @@
 	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 	<!-- stylesheets -->
- 	<%= include_stylesheets :app, :media => "all" %>
+  <%= stylesheet_link_tag :application, :media => "all" %>
 
 	<!-- javascripts -->
-	<%= include_javascripts :app %>
+	<%= javascript_include_tag :application %>
 
-	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
-	<![endif]-->
+	<!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
+  <![endif]-->
 
 	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag "global/html5" %>
+		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
 	<%= yield(:javascripts) %>

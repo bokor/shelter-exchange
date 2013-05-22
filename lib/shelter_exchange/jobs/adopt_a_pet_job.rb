@@ -10,7 +10,7 @@ module ShelterExchange
         @integration     = Integration::AdoptAPet.where(:shelter_id => @shelter).first
         @animals         = @shelter.animals.includes(:animal_type, :photos).available.all
         @csv_filename    = Rails.root.join("tmp/adopt_a_pet/#{@shelter.id}/pets.csv")
-        @config_filename = Rails.root.join("public/integrations/adopt_a_pet/import.cfg")
+        @config_filename = Rails.application.assets.find_asset("integrations/adopt_a_pet/import.cfg")
 
         # Create the tmp folder for csv files
         Dir.mkdir(Rails.root.join("tmp/adopt_a_pet")) unless File.exists?(Rails.root.join("tmp/adopt_a_pet"))

@@ -1,7 +1,6 @@
 <%= title "Intake Monthly Total by Animal Type - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Intake Monthly Total By Type', 'intake_monthly_total_by_type', 'Intake');
@@ -10,7 +9,7 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	
+
 	<div class="page_heading blue">
 		<h1>Reports</h1>
 		<div class="action_links">
@@ -18,7 +17,7 @@
 			<%= select_year(Date.today, {:field_name => :selected_year, :prefix => "", :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.barChart('Intake Monthly Total By Type', 'intake_monthly_total_by_type', 'Intake');"})%>
 		</div>
 	</div>
-	
+
 	<div class="page_content">
 		<div id="intake_monthly_total_by_type" class="report"></div>
 	</div>

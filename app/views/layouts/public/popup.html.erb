@@ -18,17 +18,14 @@
 	<link rel="canonical" href="<%=request.url.split("?")[0] %>" />
 
 	<!-- stylesheets -->
-	<%= include_stylesheets :public_popup, :media => "all" %>
+  <%= stylesheet_link_tag :public_popup, :media => "all" %>
 
-	<!-- javascripts -->
-	<%# include_javascripts :public %>
-
-	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%# javascript_include_tag "global/selectivizr-min" %>
+  <!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
 	<![endif]-->
 
-	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag "global/html5" %>
+  <!--[if (lt IE 9)]>
+		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
 	<%= yield(:javascripts) %>

@@ -1,5 +1,5 @@
 <%
-	attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
+	attachments.inline["logo_email.jpg"] = File.read(Rails.application.assets.find_asset('logo_email.jpg'))
 %>
 <html>
 <head>
@@ -17,7 +17,7 @@
 	</div>
 
 	<p>You have been temporarily locked out of your Shelter Exchange account due to multiple failed attempts to log in. </p>
-	<p>To unlock the account please click this link below and reset your password.</p> 
+	<p>To unlock the account please click this link below and reset your password.</p>
 	<p><strong><%= link_to 'Unlock my account', unlock_url(@resource, :subdomain => @resource.account.subdomain, :unlock_token => @resource.unlock_token) %></strong></p>
 
 	<p>Many thanks,</p>
