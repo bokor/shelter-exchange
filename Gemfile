@@ -80,7 +80,6 @@ gem "airbrake"
 group :development do
   gem "thin"
   gem "foreman"
-  gem "engineyard"
 end
 
 group :development, :test do
