@@ -49,6 +49,8 @@ ShelterExchangeApp::Application.configure do
     app_print.js
     login.js
     public.js
+    selectivizr.js
+    html5.js
   )
   # Stylesheets
   config.assets.precompile += %W(
