@@ -1,5 +1,5 @@
 module CapacitiesHelper
-  
+
   def capacity_status(capacity, animal_count)
     if (animal_count >= (capacity.max_capacity * 0.8).round.to_i)
   		return "red"
@@ -9,4 +9,6 @@ module CapacitiesHelper
       return "green"
   	end
   end
+
 end
+

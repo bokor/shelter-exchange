@@ -1,5 +1,5 @@
 module TransfersHelper
-  
+
   def status_action_name(transfer)
     if transfer.approved?
       "Approve"
@@ -9,5 +9,6 @@ module TransfersHelper
       "Reject"
     end
   end
-  
+
 end
+

@@ -1,5 +1,5 @@
 <%
-	attachments.inline["logo_email.jpg"] = File.read(Rails.root.join('public/images/logo_email.jpg'))
+	attachments.inline["logo_email.jpg"] = File.read(Rails.application.assets.find_asset('logo_email.jpg'))
 %>
 <html>
 <head>
@@ -26,6 +26,6 @@
 	<h3>Shelter Exchange</h3>
 	<a href="mailto:info@shelterexchange.org">info@shelterexchange.org</a><br />
 	<a href="http://www.shelterexchange.org">www.shelterexchange.org</a>
-	
+
 </body>
 </html>

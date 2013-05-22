@@ -1,4 +1,6 @@
 class PhotoUploader < CarrierWave::Uploader::Base
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
@@ -31,7 +33,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # Default URL
   #----------------------------------------------------------------------------
   def default_url
-    "/images/default_#{version_name || :original}_photo.jpg"
+    asset_path("default_#{version_name || :original}_photo.jpg")
   end
 
   # File Extensions Allowed

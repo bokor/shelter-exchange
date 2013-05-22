@@ -9,6 +9,12 @@ ShelterExchangeApp::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  # Enable threaded mode
+  # config.threadsafe! unless $rails_rake_task
+
+  # Use a different logger for distributed setups
+  # config.logger = SyslogLogger.new
+
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
@@ -19,22 +25,52 @@ ShelterExchangeApp::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = 'http://shelterexchange.s3.amazonaws.com'
+  config.action_controller.asset_host = "//shelterexchange.s3.amazonaws.com"
 
-#TODO
-            # Compress JavaScripts and CSS
-            # config.assets.compress = true
+  # Asset Pipeline
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
 
-            # Don't fallback to assets pipeline if a precompiled asset is missed
-            # config.assets.compile = false
+  # Choose the compressors to use
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :yui
 
-            # Generate digests for assets URLs
-            # config.assets.digest = true
-  
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  # Javascripts
+  config.assets.precompile += %W(
+    admin.js
+    api.js
+    app_print.js
+    login.js
+    public.js
+  )
+  # Stylesheets
+  config.assets.precompile += %W(
+    admin.css
+    api.css
+    app_print.css
+    login.css
+    public.css
+    public_popup.css
+  )
+
+  # Memcache Store
+  # Use a different cache store in production
+  # config.cache_store = :dalli_store, "127.0.0.1:11211"
+
   Rails.application.routes.default_url_options = { :host => 'shelterexchange.org' } # Fixes issue with Presenters not allowing Routes and Url Helper
   config.action_mailer.default_url_options     = { :host => 'shelterexchange.org' }
   config.action_mailer.delivery_method         = :sendmail
   config.action_mailer.sendmail_settings       = {:arguments => '-i'}
+
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
@@ -44,23 +80,3 @@ ShelterExchangeApp::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-
-# Not needed right now
-# -------------------------
-  # Use a different cache store in production
-  # config.cache_store = :dalli_store, "127.0.0.1:11211"
-
-  # If you have no front-end server that supports something like X-Sendfile,
-  # just comment this out and Rails will serve the files
-
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
-
-  # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
-
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
-  # Enable threaded mode
-  # config.threadsafe! unless $rails_rake_task
