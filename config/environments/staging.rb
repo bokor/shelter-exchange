@@ -42,23 +42,26 @@ ShelterExchangeApp::Application.configure do
   config.assets.digest = true
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  config.assets.precompile += ["*.js", "*.css"]
   # Javascripts
-  config.assets.precompile += %W(
-    admin.js
-    api.js
-    app_print.js
-    login.js
-    public.js
-  )
+  #config.assets.precompile += %W(
+    #admin.js
+    #api.js
+    #app_print.js
+    #login.js
+    #public.js
+    #selectivizr.js
+    #html5.js
+  #)
   # Stylesheets
-  config.assets.precompile += %W(
-    admin.css
-    api.css
-    app_print.css
-    login.css
-    public.css
-    public_popup.css
-  )
+  #config.assets.precompile += %W(
+    #admin.css
+    #api.css
+    #app_print.css
+    #login.css
+    #public.css
+    #public_popup.css
+  #)
 
   # Use a different cache store in production
   # config.cache_store = :dalli_store, "127.0.0.1:11211"
