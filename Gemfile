@@ -55,8 +55,6 @@ gem "rinku", :require => "rails_rinku" # Rails 3.2 auto_link
 #----------------------------------------------------------------------------
 gem "rest-client"
 gem "fog"
-gem "twitter"
-gem "googl"
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
@@ -80,6 +78,7 @@ gem "airbrake"
 group :development do
   gem "thin"
   gem "foreman"
+  gem "engineyard"
 end
 
 group :development, :test do
