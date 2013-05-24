@@ -5,8 +5,6 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
     xml.Style :id => "shelterExchangeLogo" do
       xml.IconStyle do
         xml.Icon do
-          # If this breaks then access s3_url
-          #xml.href s3_url('assets/logo_xsmall.png')
           xml.href asset_path('logo_xsmall.png')
         end
       end

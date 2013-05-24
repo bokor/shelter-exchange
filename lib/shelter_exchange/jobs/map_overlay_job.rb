@@ -1,7 +1,6 @@
 module ShelterExchange
   module Jobs
     class MapOverlayJob
-      #include Rails.application.routes.url_helpers
       include Sprockets::Helpers::RailsHelper
       include Sprockets::Helpers::IsolatedHelper
 
