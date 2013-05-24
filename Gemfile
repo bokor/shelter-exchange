@@ -39,10 +39,6 @@ group :assets do
   #gem "turbo-sprockets-rails3"
 end
 
-group :development, :test do
-  gem 'quiet_assets'
-end
-
 # Images
 #----------------------------------------------------------------------------
 gem "carrierwave"
@@ -80,6 +76,7 @@ group :development do
   gem "thin"
   gem "foreman"
   gem "engineyard"
+  gem 'quiet_assets'
 end
 
 group :development, :test do
