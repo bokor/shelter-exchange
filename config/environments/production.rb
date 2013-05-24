@@ -27,6 +27,25 @@ ShelterExchangeApp::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   config.action_controller.asset_host = "//shelterexchange.s3.amazonaws.com"
 
+  Rails.application.routes.default_url_options = { :host => 'shelterexchange.org' } # Fixes issue with Presenters not allowing Routes and Url Helper
+  config.action_mailer.default_url_options     = { :host => 'shelterexchange.org' }
+  config.action_mailer.delivery_method         = :sendmail
+  config.action_mailer.sendmail_settings       = {:arguments => '-i'}
+
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
+
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation can not be found)
+  config.i18n.fallbacks = true
+
+  # Send deprecation notices to registered listeners
+  config.active_support.deprecation = :notify
+
+  # Memcache Store
+  # Use a different cache store in production
+  # config.cache_store = :dalli_store, "127.0.0.1:11211"
+
   # Asset Pipeline
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -63,24 +82,5 @@ ShelterExchangeApp::Application.configure do
     public.css
     public_popup.css
   )
-
-  # Memcache Store
-  # Use a different cache store in production
-  # config.cache_store = :dalli_store, "127.0.0.1:11211"
-
-  Rails.application.routes.default_url_options = { :host => 'shelterexchange.org' } # Fixes issue with Presenters not allowing Routes and Url Helper
-  config.action_mailer.default_url_options     = { :host => 'shelterexchange.org' }
-  config.action_mailer.delivery_method         = :sendmail
-  config.action_mailer.sendmail_settings       = {:arguments => '-i'}
-
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found)
-  config.i18n.fallbacks = true
-
-  # Send deprecation notices to registered listeners
-  config.active_support.deprecation = :notify
 end
 
