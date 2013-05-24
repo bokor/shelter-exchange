@@ -36,7 +36,7 @@ group :assets do
   gem "uglifier"
   gem "yui-compressor"
   gem "asset_sync"
-  gem "turbo-sprockets-rails3"
+  # gem "turbo-sprockets-rails3"
 end
 
 # Images
