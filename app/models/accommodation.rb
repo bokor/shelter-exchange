@@ -28,7 +28,7 @@ class Accommodation < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def filter_by_type_location(type, location)
+  def self.filter_by_type_location(type, location)
     scope = self.scoped
     scope = scope.includes(:animal_type, :location, :animals => [:photos, :animal_status])
     scope = scope.where(:animal_type_id => type) unless type.blank?

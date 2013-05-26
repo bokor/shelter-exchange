@@ -27,7 +27,7 @@ class Parent < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def search(q, parent_params)
+  def self.search(q, parent_params)
     phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
 
     scope = self.scoped

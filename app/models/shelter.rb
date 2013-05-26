@@ -60,7 +60,7 @@ class Shelter < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def live_search(q, shelter)
+  def self.live_search(q, shelter)
     scope = self.scoped
     scope = scope.where(shelter)
     scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ? OR facebook LIKE ? OR twitter LIKE ? or email LIKE ?",
@@ -68,7 +68,7 @@ class Shelter < ActiveRecord::Base
     scope
   end
 
-  def search_by_name(q, shelter)
+  def self.search_by_name(q, shelter)
     scope = self.scoped
     scope = scope.where(shelter)
     scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ?", "%#{q}%", "%#{q}%", "%#{q}%") unless q.blank?
