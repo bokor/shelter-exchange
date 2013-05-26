@@ -14,7 +14,7 @@ class Capacity < ActiveRecord::Base
   # Instance Methods
   #----------------------------------------------------------------------------
   def animal_count(shelter)
-    self.animal_type.animals.available.where(:shelter_id => shelter).limit(nil).count
+    self.animal_type.animals.for_capacity.where(:shelter_id => shelter).limit(nil).count
   end
 end
 

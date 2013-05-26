@@ -61,15 +61,16 @@ end
 
 describe Capacity, "#animal_count" do
   it "should return a count of the active animals per animal type" do
-    shelter       = Shelter.gen
-    animal_type   = AnimalType.gen
-    animal_status = AnimalStatus.gen :id => AnimalStatus::STATUSES[:available_for_adoption]
-    capacity      = Capacity.gen :animal_type => animal_type, :shelter => shelter
+    shelter     = Shelter.gen
+    animal_type = AnimalType.gen
+    capacity    = Capacity.gen :animal_type => animal_type, :shelter => shelter
 
-    2.times{ Animal.gen(:animal_type => animal_type, :shelter => shelter, :animal_status => animal_status) }
+    AnimalStatus::STATUSES.values.each do |status|
+      Animal.gen :animal_type => animal_type, :shelter => shelter, :animal_status_id => status
+    end
 
     count = capacity.animal_count(shelter)
-    count.should == 2
+    count.should == AnimalStatus::CAPACITY.count
   end
 end
 
