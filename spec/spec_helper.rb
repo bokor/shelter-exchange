@@ -13,6 +13,8 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
+  config.include ActionController::RecordIdentifier, :type => :request
+
   config.include Capybara::DSL
   config.include Capybara::Email::DSL
   config.include Capybara::RSpecMatchers

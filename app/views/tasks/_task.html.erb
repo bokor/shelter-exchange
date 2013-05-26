@@ -1,4 +1,4 @@
-<div id="<%= "task_#{task.id}" %>" class="task">
+<div id="<%= dom_id(task) %>" class="task">
 	<% if can?(:update, Task) %>
 	<span class="complete">
 		<%= check_box_tag "task[completed]", 1, false, :onclick => "Tasks.complete(this, #{task.id});" %>

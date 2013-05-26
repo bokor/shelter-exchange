@@ -19,7 +19,7 @@ class Admin::ApplicationController < ActionController::Base
   protected
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    render :file => "public/404.html", :layout => false, :status => :not_found
+    render :file => "public/404", :format => :html, :layout => false, :status => :not_found
   end
 
 end

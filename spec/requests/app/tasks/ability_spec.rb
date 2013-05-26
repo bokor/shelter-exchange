@@ -1,0 +1,31 @@
+#<div id="<%= "task_#{task.id}" %>" class="task">
+	#<% if can?(:update, Task) %>
+	#<span class="complete">
+		#<%= check_box_tag "task[completed]", 1, false, :onclick => "Tasks.complete(this, #{task.id});" %>
+	#</span>
+	#<% end %>
+	#<span class="type">
+		#<% unless task.category.blank? %>
+      #<img class="tooltip" data-tip="<%=task.category.humanize%>" src="<%= image_path("icon_#{task.category.underscore}.png")%>" />
+		#<% end %>
+	#</span>
+	#<span class="due_date"><%= display_due_date(task) %></span>
+	#<span class="details">
+		#<span class="title"><%= task.details %> <%= show_taskable_link(task) %></span>
+	#</span>
+	#<span class="action_links">
+		#<% if can?(:update, Task) %>
+		#<span class="edit_link">
+			#<%= link_to "Edit", edit_task_path(task, :format => :js), :remote => true %>
+		#</span>
+		#<% end %>
+		#<% if can?(:destroy, Task) %>
+		#<span class="delete_link">&nbsp;|&nbsp;
+			#<%= link_to "Delete", task, :method => :delete, :confirm => "Are you sure you want to delete? This task will no longer appear in the list.", :remote => true, :format => :js %>
+		#</span>
+		#<% end %>
+	#</span>
+#</div>
+
+
+
