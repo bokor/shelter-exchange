@@ -82,7 +82,7 @@ var Communities = {
 		}
 
 		// Set up forms
-		Communities.bindFilters();
+		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
 		Maps.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
 		Maps.shelterNameAutoComplete(function(){Communities.findAnimalsForShelter()});
   },
@@ -143,7 +143,7 @@ var Communities = {
 		});
 
 		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
-		  	e.preventDefault();
+		  e.preventDefault();
 			findAnimalsFunction();
 		});
 	}

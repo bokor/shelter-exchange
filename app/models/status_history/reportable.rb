@@ -11,7 +11,7 @@ module StatusHistory::Reportable
       start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
       range      = start_date.beginning_of_month..start_date.end_of_month
 
-      scope = scoped{}
+      scope = self.scoped
       scope = scope.select("count(*) count, animal_statuses.name")
       scope = scope.joins(:animal_status)
 
@@ -29,7 +29,7 @@ module StatusHistory::Reportable
       start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
       end_date   = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
 
-      scope = scoped{}
+      scope = self.scoped
 
       if with_type
         scope = scope.select("animal_types.name as type").joins(:animal => :animal_type).group(:animal_type_id)
