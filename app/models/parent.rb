@@ -1,5 +1,4 @@
 class Parent < ActiveRecord::Base
-  # Concerns
   include StreetAddressable
 
   default_scope :order => 'parents.created_at DESC'

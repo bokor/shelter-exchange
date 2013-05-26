@@ -1,5 +1,4 @@
 class Photo < ActiveRecord::Base
-  # Concerns
   include Uploadable
 
   default_scope :order => 'photos.is_main_photo DESC'

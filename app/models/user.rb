@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
 
-  before_create :hide_announcements_by_default
 
   # Constants
   #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User
   OWNER = "owner"
+
+  # Callbacks
+  #----------------------------------------------------------------------------
+  before_create :hide_announcements_by_default
 
   # Associations
   #----------------------------------------------------------------------------

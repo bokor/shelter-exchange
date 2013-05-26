@@ -1,5 +1,4 @@
 class Accommodation < ActiveRecord::Base
-
   default_scope :order => 'accommodations.name ASC'
 
   # Pagination

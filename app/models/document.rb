@@ -1,5 +1,4 @@
 class Document < ActiveRecord::Base
-  # Concerns
   include Uploadable
 
   # Callbacks
