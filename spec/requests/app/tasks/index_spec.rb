@@ -42,7 +42,7 @@ describe "Index: Task Page", :js => :true do
       fill_in "Details", :with => "Overdue task details"
       select "Specific date", :from => "When is it due?"
 
-      calendar_date_select_from("#due_date_container .date_picker", :previous_month)
+      calendar_datepicker_from("#due_date_container .date_picker", :previous_month)
 
       click_button "Create Task"
     end
@@ -106,7 +106,7 @@ describe "Index: Task Page", :js => :true do
       fill_in "Details", :with => "Specific date task details"
       select "Specific date", :from => "When is it due?"
 
-      calendar_date_select_from("#due_date_container .date_picker", :next_month)
+      calendar_datepicker_from("#due_date_container .date_picker", :next_month)
 
       click_button "Create Task"
     end

@@ -14,7 +14,7 @@ module CapybaraHelper
     find("body")[:class].should include(action_and_controller)
   end
 
-  def calendar_date_select_from(element, timeframe=:current_month)
+  def calendar_datepicker_from(element, timeframe=:current_month)
     page.execute_script %Q{ $('#{element}').trigger("focus") } # activate datetime picker
 
     case timeframe
@@ -36,7 +36,6 @@ module CapybaraHelper
   end
 
   def mouse_over element
-    require_selenium_support!
     element = find(element) if String === element
     page.driver.browser.mouse.move_to element.native
   end
