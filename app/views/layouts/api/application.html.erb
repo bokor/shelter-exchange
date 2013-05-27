@@ -26,6 +26,7 @@
 		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
+  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
 	<%= yield(:javascripts) %>
 
 	<%= csrf_meta_tags %>

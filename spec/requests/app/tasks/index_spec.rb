@@ -13,7 +13,7 @@ describe "Index: Task Page", :js => :true do
     page_title_should_be "Tasks"
   end
 
-  it "should redirect to new page when there are no tasks" do
+  it "should redirect to 'new' page when there are no tasks" do
     @task.destroy
 
     visit tasks_path
@@ -99,7 +99,27 @@ describe "Index: Task Page", :js => :true do
     end
   end
 
-  it "should show specific date tasks for later" do
+  it "should show specific date on overdue task" do
+    visit tasks_path
+
+    within "#create_task" do
+      fill_in "Details", :with => "Specific date task details"
+      select "Specific date", :from => "When is it due?"
+
+      calendar_datepicker_from("#due_date_container .date_picker", :previous_month)
+
+      click_button "Create Task"
+    end
+
+    within "#overdue_tasks" do
+      previous_month = (Date.today - 1.month).strftime("%b")
+      page.should have_css "span.task_due_date"
+      page.should have_content "#{previous_month} 15"
+      page.should have_content "Specific date task details"
+    end
+  end
+
+  it "should show specific date on later task" do
     visit tasks_path
 
     within "#create_task" do
@@ -113,15 +133,36 @@ describe "Index: Task Page", :js => :true do
 
     within "#later_tasks" do
       previous_month = (Date.today + 1.month).strftime("%b")
+      page.should have_css "span.task_due_date"
       page.should have_content "#{previous_month} 15"
       page.should have_content "Specific date task details"
+    end
+  end
+
+  it "should not show specific date on today task" do
+    task = Task.gen :shelter => @shelter, :due_category => "specific_date", :due_date => Date.today
+
+    visit tasks_path
+
+    within "##{dom_id(task)}" do
+      page.should have_no_css "span.task_due_date"
+    end
+  end
+
+  it "should not show specific date on tomorrow task" do
+    task = Task.gen :shelter => @shelter, :due_category => "specific_date", :due_date => Date.today + 1.day
+
+    visit tasks_path
+
+    within "##{dom_id(task)}" do
+      page.should have_no_css "span.task_due_date"
     end
   end
 
   context "Categories" do
 
     def should_have_icon_and_tooltip_for(task)
-      within "##{dom_id task}" do
+      within "##{dom_id(task)}" do
         page.should have_content "#{task.category.underscore} details"
 
         image = find(".type img")
@@ -161,34 +202,34 @@ describe "Index: Task Page", :js => :true do
       task = Task.gen :shelter => @shelter, :category => nil
       visit tasks_path
 
-      within "##{dom_id task}" do
-        page.should have_no_css(".type img.toolip")
+      within "##{dom_id(task)}" do
+        page.should have_no_css("span.type img.toolip")
       end
     end
   end
 
-  context "Edit" do
-    it "should move task from overdue to today"
-    it "should move task from today to tomorrow"
-    it "should move task from tomorrow to later"
-    it "should move task from later to today"
-  end
-
-  context "Delete" do
-    it "should delete a task"
-    it "should not delete a task"
-  end
-
-  context "Complete" do
-    it "should complete a task"
-    it "should not complete a task"
-  end
-
   context "Taskable" do
-    it "should have a link an animal record" do
-    #<span class="details">
-      #<span class="title"><%= task.details %> <%= show_taskable_link(task) %></span>
-    #</span>
+
+    it "should have a link to an animal record" do
+      animal = Animal.gen :shelter => @shelter, :name => "Billy Bob"
+      task   = Task.gen :shelter => @shelter, :taskable => animal
+
+      visit tasks_path
+
+      within "##{dom_id(task)}" do
+        page.should have_css "span.taskable_link"
+        page.should have_link "Billy Bob"
+      end
+    end
+
+    it "should not have a link to an animal record" do
+      task   = Task.gen :shelter => @shelter, :taskable => nil
+
+      visit tasks_path
+
+      within "##{dom_id(task)}" do
+        page.should have_no_css "span.taskable_link"
+      end
     end
   end
 end

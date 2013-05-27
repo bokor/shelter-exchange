@@ -31,9 +31,10 @@
 		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
+  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
 	<%= yield(:javascripts) %>
 
-	<%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 
