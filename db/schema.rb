@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130519185626) do
+ActiveRecord::Schema.define(:version => 20130527063138) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -315,6 +315,7 @@ ActiveRecord::Schema.define(:version => 20130519185626) do
 
   add_index "photos", ["attachable_id", "attachable_type", "is_main_photo"], :name => "attachable_main_photo"
   add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
+  add_index "photos", ["attachable_id", "is_main_photo", "created_at"], :name => "attachable_main_photo_created_at"
   add_index "photos", ["attachable_id", "is_main_photo"], :name => "index_photos_on_attachable_id_and_is_main_photo"
   add_index "photos", ["attachable_id"], :name => "index_photos_on_attachable_id"
   add_index "photos", ["attachable_type"], :name => "index_photos_on_attachable_type"

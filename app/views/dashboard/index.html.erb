@@ -8,13 +8,13 @@
 	<div class="page_heading blue">
 		<h1>Latest Activity</h1>
 	</div>
-	
+
 	<div class="page_content">
-	
+
 		<div id="activities" class="activity_list">
 			<% unless @latest_activity.blank? %>
-				<% @latest_activity.each do |activity| %>
-					<div class="activity">
+				<% @latest_activity.each_with_index do |activity, index| %>
+          <div class="activity" id="activity_<%=index%>">
 						<span class="type">
 							<%= image_tag "icon_#{activity.class.name.downcase}.png", :class =>"tooltip", "data-tip" => activity.class.name %>
 						</span>
@@ -30,32 +30,32 @@
 						<span class="title">No current activity</span>
 					</span>
 				</div>
-				
+
 				<div class="getting_started">
 					<h2>Getting Started</h2>
 					<p>If your questions are not answered through the help link, please <%= link_to "start a discussion", "http://help.shelterexchange.org/help/discussion/new", :target => "_new" %> so that the community can benefit from the Q&A and our team will respond.</p>
 					<ol>
-						<li><%= link_to "Edit shelter details and create a wish list", 
-									    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list", 
+						<li><%= link_to "Edit shelter details and create a wish list",
+									    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list",
 										:target => "_new" %></li>
-						<li><%= link_to "Upload shelter logo", 
-						               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo", 
+						<li><%= link_to "Upload shelter logo",
+						               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo",
 						               	:target => "_new" %></li>
-						<li><%= link_to "Set up your shelter capacity", 
-										"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity", 
+						<li><%= link_to "Set up your shelter capacity",
+										"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity",
 										:target => "_new" %></li>
-						<li><%= link_to "Set up accommodations", 
-										"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations", 
+						<li><%= link_to "Set up accommodations",
+										"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations",
 										:target => "_new" %></li>
-						<li><%= link_to "Add your first animal record", 
-										"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record", 
+						<li><%= link_to "Add your first animal record",
+										"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record",
 										:target => "_new" %></li>
 					</ol>
 				</div>
-				
+
 			<% end %>
 		</div>
-		
+
 	</div>
 <% end %>
 
@@ -65,25 +65,25 @@
 			<h2>Getting Started</h2>
 			<p>If your questions are not answered through the help link, please <%= link_to "start a discussion", "http://help.shelterexchange.org/help/discussion/new", :target => "_new" %> so that the community can benefit from the Q&A and our team will respond.</p>
 			<ol>
-				<li><%= link_to "Edit shelter details and create a wish list", 
-							    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list", 
+				<li><%= link_to "Edit shelter details and create a wish list",
+							    "http://help.shelterexchange.org/help/kb/getting-started/edit-shelter-details-and-create-a-wish-list",
 								:target => "_new" %></li>
-				<li><%= link_to "Upload shelter logo", 
-				               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo", 
+				<li><%= link_to "Upload shelter logo",
+				               	"http://help.shelterexchange.org/help/kb/getting-started/upload-shelter-logo",
 				               	:target => "_new" %></li>
-				<li><%= link_to "Set up your shelter capacity", 
-								"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity", 
+				<li><%= link_to "Set up your shelter capacity",
+								"http://help.shelterexchange.org/help/kb/getting-started/set-up-your-shelter-capacity",
 								:target => "_new" %></li>
-				<li><%= link_to "Set up accommodations", 
-								"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations", 
+				<li><%= link_to "Set up accommodations",
+								"http://help.shelterexchange.org/help/kb/getting-started/set-up-accommodations",
 								:target => "_new" %></li>
-				<li><%= link_to "Add your first animal record", 
-								"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record", 
+				<li><%= link_to "Add your first animal record",
+								"http://help.shelterexchange.org/help/kb/getting-started/add-your-first-animal-record",
 								:target => "_new" %></li>
 			</ol>
 		</div>
 	<% end %>
-	
+
 	<div class="auto_upload">
 		<h2>Auto upload animals</h2>
 		<ul>
@@ -92,11 +92,13 @@
 		</ul>
 	</div>
 
-	<% unless @transfers.blank? %>
-		<h2>Transfer Requests</h2>
-		<div id="transfers">
-			<%= render "transfers/transfer_list", :transfers => @transfers %>
-		</div>
+  <% unless @transfers.blank? %>
+    <div class="transfer_requests">
+      <h2>Transfer Requests</h2>
+      <div id="transfers">
+        <%= render "transfers/transfer_list", :transfers => @transfers %>
+      </div>
+    </div>
 	<% end %>
 <% end %>
 

@@ -3,13 +3,13 @@ module Typeable
 
   included do
 
-    scope :dogs,     where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:dog])
-    scope :cats,     where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:cat])
-    scope :horses,   where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:horse])
-    scope :rabbits,  where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:rabbit])
-    scope :birds,    where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:bird])
-    scope :reptiles, where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:reptile])
-    scope :other,    where("#{self.table_name}.animal_type_id = ?", AnimalType::TYPES[:other])
+    scope :dogs,     where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:dog])
+    scope :cats,     where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:cat])
+    scope :horses,   where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:horse])
+    scope :rabbits,  where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:rabbit])
+    scope :birds,    where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:bird])
+    scope :reptiles, where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:reptile])
+    scope :other,    where(:"#{self.table_name}.animal_type_id" => AnimalType::TYPES[:other])
 
   end
 

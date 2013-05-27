@@ -6,6 +6,8 @@ FactoryGirl.define do
     category Note::CATEGORIES[0]
     hidden false
     shelter
+    created_at Time.now
+    updated_at Time.now
   end
 end
 

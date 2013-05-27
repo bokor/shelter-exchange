@@ -8,6 +8,8 @@ FactoryGirl.define do
     due_category "today"
     completed false
     shelter
+    created_at Time.now
+    updated_at Time.now
   end
 end
 

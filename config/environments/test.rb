@@ -8,7 +8,7 @@ ShelterExchangeApp::Application.configure do
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
-  #config.serve_static_assets = true
+  config.serve_static_assets = true
   #config.static_cache_control = 'public, max-age=3600'
 
   # Log error messages when you accidentally call methods on nil
@@ -28,13 +28,7 @@ ShelterExchangeApp::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  Rails.application.routes.default_url_options = { :host => 'test.host' }
-
-  # Asset Pipeline
-  config.assets.compile  = true
-  config.assets.compress = false
-  config.assets.debug    = false
-  config.assets.digest   = false
+  Rails.application.routes.default_url_options = { :host => 'lvh.me' }
 
   # Raise exception on mass assignment protection for Active Record models
   #config.active_record.mass_assignment_sanitizer = :strict
