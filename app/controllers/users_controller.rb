@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def change_owner
     @current_owner = @current_account.users.find(params[:id])
     @new_owner = @current_account.users.find(params[:new_owner_id])
@@ -68,7 +67,6 @@ class UsersController < ApplicationController
     @user = User.invite!(params[:user])
   end
 
-
   def valid_token
     token_user = User.valid_token?(params[:id])
     if token_user
@@ -81,3 +79,4 @@ class UsersController < ApplicationController
   end
 
 end
+
