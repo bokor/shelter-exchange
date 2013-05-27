@@ -5,7 +5,7 @@ class Parent < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :clean_fields
+  before_save :clean_phone_numbers
 
   # Associations
   #----------------------------------------------------------------------------
@@ -43,13 +43,8 @@ class Parent < ActiveRecord::Base
   #----------------------------------------------------------------------------
   private
 
-  def clean_fields
-    clean_phone_numbers
-  end
-
   def clean_phone_numbers
-    [:phone, :mobile].each do |type|
-      self.send(type).gsub(/\D/, "") if self.respond_to?(type) and self.send(type).present?
-    end
+    self.phone  = self.phone.gsub(/\D/, "") unless self.phone.blank?
+    self.mobile = self.mobile.gsub(/\D/, "") unless self.mobile.blank?
   end
 end

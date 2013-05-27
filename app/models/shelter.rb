@@ -119,9 +119,8 @@ class Shelter < ActiveRecord::Base
   end
 
   def clean_phone_numbers
-    [:phone, :fax].each do |type|
-      self.send(type).gsub!(/\D/, "") if self.respond_to?(type) and self.send(type).present?
-    end
+    self.phone = self.phone.gsub(/\D/, "") unless self.phone.blank?
+    self.fax   = self.fax.gsub(/\D/, "") unless self.fax.blank?
   end
 end
 
