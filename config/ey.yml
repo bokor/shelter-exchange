@@ -1,14 +1,18 @@
 environments:
  shelter_exchange_app_production:
    branch: production
+   bundle_without: test development
    migrate: false
    precompile_assets: true
+   #precompile_unchanged_assets: false
    copy_exclude:
       - .git
 
  shelter_exchange_app_staging:
    branch: staging
+   bundle_without: test development
    migrate: false
    precompile_assets: true
+   precompile_unchanged_assets: false
    copy_exclude:
        - .git
