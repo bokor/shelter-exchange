@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-
   # Constants
   #----------------------------------------------------------------------------
   ROLES = %w[user admin].freeze #ROLES => Owner(only created on account creation), Admin, User
@@ -17,13 +16,13 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :recoverable, :token_authenticatable,
          :rememberable, :trackable, :lockable, :invitable, :validatable,
-         :authentication_keys => [ :email, :subdomain ]
-         #:confirmable, :lockable
+         :authentication_keys => [:email],
+         :request_keys => [:subdomain]
 
   # Getters/Setters
   #----------------------------------------------------------------------------
   attr_accessible :name, :title, :email, :password, :password_confirmation, :authentication_token,
-                  :remember_me, :role, :account_id, :announcement_hide_time
+                  :remember_me, :role, :announcement_hide_time
 
   # Validations - Extra beyond devise's validations
   #----------------------------------------------------------------------------
@@ -55,8 +54,9 @@ class User < ActiveRecord::Base
   # Class Methods
   #----------------------------------------------------------------------------
   def self.find_for_authentication(conditions={})
-    subdomain = conditions.delete(:subdomain)
-    self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
+    account = Account.find_by_subdomain(conditions.delete(:subdomain))
+    conditions[:account_id] = account.id if account
+    super(conditions)
   end
 
   def self.valid_token?(token)
