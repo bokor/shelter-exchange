@@ -1,33 +1,13 @@
 html, body { margin:0; padding:0; height: 100%; }
 body { background: url(/assets/public/background-body.jpg) repeat; color:#434343; font: normal 13px 'Lucida Grande', verdana, arial, helvetica, sans-serif; min-width: 960px; }
 
-/*********************************************************/
-/* ---------------------- GLOBAL ----------------------- */
-/*********************************************************/
 h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
-h1 {  }
-h2 {  }
-h3 {  }
-h4 {  }
-h5 {  }
-
 p{ margin-bottom: 10px; }
 img { border: none; outline: none; }
 .center { margin: 0 auto; text-align: center; }
 .left{text-align:left;}
 .right{text-align:right;}
 .clear { clear: both; }
-/*a, img { border: none; outline: none; }
-a:hover, a:selected { border: none; outline: none; }
-*/
-
-
-
-/* ClearFix */
-/******************************************************************/
-.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
-* html .clearfix{height:1%;}
-
 
 /******************************************************************/
 #main{ width: 100%; margin:0; padding-top: 3em; }
@@ -45,7 +25,6 @@ a:hover, a:selected { border: none; outline: none; }
 #footer h5{float:left;padding-left:5px;line-height:65px;}
 #footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-
 /*****************************************************************/
 /* -------------------------- DEVISE --------------------------- */
 /*****************************************************************/
@@ -60,12 +39,10 @@ body.login{background-color: #eee;}
 /******************************************************************/
 .ie7 .login #center #content, .ie8 .login #center #content{behavior: url(/assets/pie/PIE.htc);}
 
-
 .passwords ul{list-style:none;}
 
 /* Flash Messages */
 /******************************************************************/
 .flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
 .flash_message .icon{width: 16px;float: left; margin-right: .3em;}
-
 

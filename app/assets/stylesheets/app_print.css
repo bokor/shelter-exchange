@@ -9,7 +9,9 @@
  *
  *= require shared/reset
  *= require shared/buttons
- *= require app/print/common
+ *= require shared/components
+ *= require app/print/layout
+ *= require app/print/controller
  *= require app/print/print
 */
 

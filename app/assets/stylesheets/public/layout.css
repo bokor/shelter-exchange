@@ -53,8 +53,6 @@ header #banner { height: 100px;  position: relative; }/*f3f1ec*/
 section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 320px; position: relative; }
 footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
 
-
-
 /* Header :: Nav */
 /******************************************************************/
 header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
@@ -119,7 +117,6 @@ footer .copyright a:hover{color:#fff;}
 .ie footer .col_3{width: 205px; padding: 0 18px;}
 .ie footer .col_4{width: 210px; padding-left: 16px;}
 
-
 /* SubMenu */
 /******************************************************************/
 .submenu{list-style: none; float:right; position: relative; line-height: 38px;z-index:999;}
@@ -128,6 +125,13 @@ footer .copyright a:hover{color:#fff;}
 .submenu a{ color: #222; text-decoration: none; font-weight: bold; font-size: 14px;}
 .submenu a.current{ color:#cf7019; text-decoration: none;}
 .submenu a:hover{ color:#f16649; text-decoration: underline;}
+
+
+
+
+
+
+
 
 
 /* Flash Messages */
