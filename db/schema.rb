@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528010315) do
+ActiveRecord::Schema.define(:version => 20130528020822) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
 
   add_index "accommodations", ["animal_type_id"], :name => "index_accommodations_on_animal_type_id"
   add_index "accommodations", ["location_id"], :name => "index_accommodations_on_location_id"
+  add_index "accommodations", ["name"], :name => "index_accommodations_on_name"
   add_index "accommodations", ["shelter_id"], :name => "index_accommodations_on_shelter_id"
 
   create_table "accounts", :force => true do |t|
@@ -49,12 +50,13 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.string   "severity"
   end
 
-  add_index "alerts", ["alertable_id", "alertable_type", "created_at"], :name => "alerts_with_alertable"
   add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
   add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
-  add_index "alerts", ["shelter_id", "alertable_type", "created_at"], :name => "alerts_with_shelter_and_alertable"
+  add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
+  add_index "alerts", ["created_at"], :name => "index_alerts_on_created_at"
   add_index "alerts", ["shelter_id", "alertable_type"], :name => "index_alerts_on_shelter_id_and_alertable_type"
   add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
+  add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
   create_table "animal_statuses", :force => true do |t|
     t.string   "name"
@@ -63,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.integer  "sort_order"
   end
 
+  add_index "animal_statuses", ["created_at"], :name => "index_animal_statuses_on_created_at"
+  add_index "animal_statuses", ["name"], :name => "index_animal_statuses_on_name"
   add_index "animal_statuses", ["sort_order"], :name => "index_animal_statuses_on_sort_order"
 
   create_table "animal_types", :force => true do |t|
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
   end
 
   add_index "animal_types", ["created_at"], :name => "index_animal_types_on_created_at"
+  add_index "animal_types", ["name"], :name => "index_animal_types_on_name"
 
   create_table "animals", :force => true do |t|
     t.string   "microchip"
@@ -104,9 +109,15 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
 
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
+  add_index "animals", ["animal_type_id", "animal_status_id", "id", "name"], :name => "search_by_name"
+  add_index "animals", ["animal_type_id", "animal_status_id", "name"], :name => "auto_complete"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
+  add_index "animals", ["created_at", "shelter_id"], :name => "index_animals_on_created_at_and_shelter_id"
   add_index "animals", ["created_at"], :name => "index_animals_on_created_at"
+  add_index "animals", ["id", "name"], :name => "index_animals_on_id_and_name"
+  add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
+  add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
   add_index "animals", ["updated_at"], :name => "index_animals_on_updated_at"
 
   create_table "announcements", :force => true do |t|
@@ -132,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
 
   add_index "breeds", ["animal_type_id", "name"], :name => "index_breeds_on_animal_type_id_and_name"
   add_index "breeds", ["animal_type_id"], :name => "index_breeds_on_animal_type_id"
+  add_index "breeds", ["created_at"], :name => "index_breeds_on_created_at"
+  add_index "breeds", ["name"], :name => "index_breeds_on_name"
 
   create_table "capacities", :force => true do |t|
     t.integer  "shelter_id"
@@ -154,10 +167,10 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.integer  "shelter_id"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type", "created_at"], :name => "comments_with_commentable"
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["shelter_id", "commentable_type", "created_at"], :name => "comments_with_shelter_and_commentable"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["shelter_id", "commentable_type"], :name => "index_comments_on_shelter_id_and_commentable_type"
   add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
 
@@ -199,8 +212,10 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.datetime "updated_at"
   end
 
+  add_index "integrations", ["id", "type"], :name => "index_integrations_on_id_and_type"
   add_index "integrations", ["shelter_id", "type"], :name => "index_integrations_on_shelter_id_and_type"
   add_index "integrations", ["shelter_id"], :name => "index_integrations_on_shelter_id"
+  add_index "integrations", ["type"], :name => "index_integrations_on_type"
 
   create_table "items", :force => true do |t|
     t.integer  "shelter_id"
@@ -218,6 +233,7 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.datetime "updated_at"
   end
 
+  add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["shelter_id"], :name => "index_locations_on_shelter_id"
 
   create_table "notes", :force => true do |t|
@@ -232,9 +248,13 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.boolean  "hidden",       :default => false
   end
 
-  add_index "notes", ["notable_id", "created_at"], :name => "index_notes_on_notable_id_and_created_at"
+  add_index "notes", ["created_at"], :name => "index_notes_on_created_at"
+  add_index "notes", ["hidden"], :name => "index_notes_on_hidden"
+  add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
+  add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
   add_index "notes", ["shelter_id"], :name => "index_notes_on_shelter_id"
+  add_index "notes", ["title"], :name => "index_notes_on_title"
 
   create_table "owners", :force => true do |t|
     t.string   "name"
@@ -347,7 +367,10 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
 
   add_index "shelters", ["access_token"], :name => "index_shelters_on_access_token", :unique => true
   add_index "shelters", ["account_id"], :name => "index_shelters_on_account_id"
+  add_index "shelters", ["id", "status", "is_kill_shelter"], :name => "index_shelters_on_id_and_status_and_is_kill_shelter"
+  add_index "shelters", ["id", "status"], :name => "index_shelters_on_id_and_status"
   add_index "shelters", ["lat", "lng"], :name => "index_shelters_on_lat_and_lng"
+  add_index "shelters", ["status", "lat", "lng"], :name => "index_shelters_on_status_and_lat_and_lng"
 
   create_table "status_histories", :force => true do |t|
     t.integer  "shelter_id"
@@ -358,9 +381,9 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.datetime "updated_at"
   end
 
-  add_index "status_histories", ["animal_id", "created_at"], :name => "status_history_animal"
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
+  add_index "status_histories", ["created_at", "animal_id"], :name => "index_status_histories_on_created_at_and_animal_id"
   add_index "status_histories", ["shelter_id"], :name => "index_status_histories_on_shelter_id"
 
   create_table "tasks", :force => true do |t|
@@ -377,11 +400,14 @@ ActiveRecord::Schema.define(:version => 20130528010315) do
     t.integer  "shelter_id"
   end
 
+  add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"
   add_index "tasks", ["shelter_id", "taskable_type"], :name => "index_tasks_on_shelter_id_and_taskable_type"
   add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
   add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"
+  add_index "tasks", ["taskable_type"], :name => "index_tasks_on_taskable_type"
   add_index "tasks", ["updated_at", "due_date"], :name => "index_tasks_on_updated_at_and_due_date"
+  add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
 
   create_table "transfer_histories", :force => true do |t|
     t.integer  "shelter_id"
