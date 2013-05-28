@@ -120,7 +120,7 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 /* Home Page :: Adoptions :: IE :: Box Fix :: PIE */
 /******************************************************************/
 .ie7 .home_page .adoptions .box,
-.ie8 .home_page .adoptions .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
+.ie8 .home_page .adoptions .box{ margin-right: 20px; background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
 .ie7 .home_page .adoptions .photo img,
 .ie8 .home_page .adoptions .photo img{behavior: url(/assets/pie/PIE.htc);}
