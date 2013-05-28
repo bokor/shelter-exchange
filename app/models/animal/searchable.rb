@@ -11,14 +11,21 @@ module Animal::Searchable
              animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
              "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
     }
-    scope :search_by_name, lambda { |q|
-      includes(:animal_type, :animal_status, :photos).
-      where("animals.id LIKE ? OR animals.name LIKE ?", "%#{q}%", "%#{q}%")
-    }
-
   end
 
   module ClassMethods
+
+    def search_by_name(q)
+      scope = self.scoped
+      scope = scope.includes(:animal_type, :animal_status, :photos)
+      if q.is_numeric?
+        scope = scope.where(:"animals.id" => q)
+      else
+        scope = scope.where("animals.name LIKE ?", "%#{q}%")
+      end
+
+      scope
+    end
 
     def filter_by_type_status(type, status)
       scope = self.scoped
