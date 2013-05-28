@@ -96,3 +96,14 @@ group :test do
   #gem "artifice"
 end
 
+
+
+# Checkout Later
+# gem "mime_types"
+# gem "multi_json"
+# gem "redis"
+# gem "redis_namespace"
+# gem "redis_rails"
+# gem "resque"
+# gem "resque-lock"
+# gem "resque-mailer"

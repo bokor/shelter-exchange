@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527225431) do
+ActiveRecord::Schema.define(:version => 20130528010315) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(:version => 20130527225431) do
   end
 
   add_index "alerts", ["alertable_id", "alertable_type", "created_at"], :name => "alerts_with_alertable"
+  add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
   add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
   add_index "alerts", ["shelter_id", "alertable_type", "created_at"], :name => "alerts_with_shelter_and_alertable"
+  add_index "alerts", ["shelter_id", "alertable_type"], :name => "index_alerts_on_shelter_id_and_alertable_type"
   add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
 
   create_table "animal_statuses", :force => true do |t|
@@ -103,9 +105,9 @@ ActiveRecord::Schema.define(:version => 20130527225431) do
   add_index "animals", ["accommodation_id"], :name => "index_animals_on_accommodation_id"
   add_index "animals", ["animal_status_id"], :name => "index_animals_on_animal_status_id"
   add_index "animals", ["animal_type_id"], :name => "index_animals_on_animal_type_id"
-  add_index "animals", ["shelter_id", "created_at"], :name => "index_animals_on_shelter_id_and_created_at"
-  add_index "animals", ["shelter_id", "updated_at"], :name => "index_animals_on_shelter_id_and_updated_at"
+  add_index "animals", ["created_at"], :name => "index_animals_on_created_at"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
+  add_index "animals", ["updated_at"], :name => "index_animals_on_updated_at"
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -153,8 +155,10 @@ ActiveRecord::Schema.define(:version => 20130527225431) do
   end
 
   add_index "comments", ["commentable_id", "commentable_type", "created_at"], :name => "comments_with_commentable"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["shelter_id", "commentable_type", "created_at"], :name => "comments_with_shelter_and_commentable"
+  add_index "comments", ["shelter_id", "commentable_type"], :name => "index_comments_on_shelter_id_and_commentable_type"
   add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
 
   create_table "delayed_jobs", :force => true do |t|
@@ -373,10 +377,9 @@ ActiveRecord::Schema.define(:version => 20130527225431) do
     t.integer  "shelter_id"
   end
 
-  add_index "tasks", ["shelter_id", "due_date", "updated_at"], :name => "tasks_by_shelter_id"
-  add_index "tasks", ["shelter_id", "taskable_type", "due_date", "updated_at"], :name => "tasks_by_shelter_id_and_tasksable"
+  add_index "tasks", ["shelter_id", "taskable_type"], :name => "index_tasks_on_shelter_id_and_taskable_type"
   add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
-  add_index "tasks", ["taskable_id", "taskable_type", "due_date", "updated_at"], :name => "tasks_by_taskable"
+  add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
   add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"
   add_index "tasks", ["updated_at", "due_date"], :name => "index_tasks_on_updated_at_and_due_date"
 
