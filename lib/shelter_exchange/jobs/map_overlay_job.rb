@@ -1,6 +1,8 @@
 module ShelterExchange
   module Jobs
     class MapOverlayJob
+      include Sprockets::Helpers::RailsHelper
+      include Sprockets::Helpers::IsolatedHelper
 
       def perform
         FOG_BUCKET.files.create(

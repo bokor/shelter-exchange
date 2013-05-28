@@ -18,34 +18,35 @@
 	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 	<!-- stylesheets -->
- 	<%= include_stylesheets :app, :media => "all" %>
+  <%= stylesheet_link_tag :application, :media => "all" %>
 
 	<!-- javascripts -->
-	<%= include_javascripts :app %>
+	<%= javascript_include_tag :application %>
 
-	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
-	<![endif]-->
+	<!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
+  <![endif]-->
 
 	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag "global/html5" %>
+		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
+  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
 	<%= yield(:javascripts) %>
 
-	<%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 
 	<div id="fb-root"></div>
 
-	<%= render :partial => "shared/ie6_warning" %>
-	<%= render :partial => "shared/header" %>
+	<%= render "shared/ie6_warning" %>
+	<%= render "shared/header" %>
 
 	<div id="main">
 
-		<%= render :partial => "shared/flash_messages" %>
-		<%= render :partial => "shared/announcements" %>
+		<%= render "shared/flash_messages" %>
+		<%= render "shared/announcements" %>
 
 		<div id="left">
 
@@ -56,7 +57,7 @@
 			</div>
 			<!--//end screen -->
 
-			<%= render :partial => "shared/footer" %>
+			<%= render "shared/footer" %>
 
 		</div>
 		<!--//end left -->
@@ -76,6 +77,7 @@
 	</div>
 	<!--//end main -->
 
+	<%= render "shared/analytics" %>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ module Animal::Searchable
   module ClassMethods
 
     def filter_by_type_status(type, status)
-      scope = scoped{}
+      scope = self.scoped
       scope = scope.includes(:animal_type, :animal_status, :photos)
       scope = scope.where(:animal_type_id => type) unless type.blank?
       unless status.blank?

@@ -1,4 +1,6 @@
 class LogoUploader < CarrierWave::Uploader::Base
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
   include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
@@ -27,7 +29,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   # Default URL
   #----------------------------------------------------------------------------
   def default_url
-    "/images/default_#{version_name || :original}_logo.jpg"
+    asset_path("default_#{version_name || :original}_logo.jpg")
   end
 
   # File Extensions Allowed

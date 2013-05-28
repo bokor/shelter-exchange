@@ -1,5 +1,4 @@
 class Breed < ActiveRecord::Base
-  # Shared
   include Typeable
 
   # Associations

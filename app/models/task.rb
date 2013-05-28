@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  default_scope :order => 'tasks.due_date ASC, tasks.updated_at DESC'
+  default_scope :order => "tasks.due_date ASC, tasks.updated_at DESC"
 
   # Constants
   #----------------------------------------------------------------------------
@@ -20,7 +20,7 @@ class Task < ActiveRecord::Base
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true)
 
-  scope :overdue, where("due_date < ?", Time.zone.now.to_date) # ??? Time.zone.now.midnight.to_date
+  scope :overdue, where("due_date < ?", Time.zone.now.to_date)
   scope :today, where("due_date = ?", Time.zone.now.to_date)
   scope :tomorrow, where("due_date = ?", Time.zone.now.to_date + 1.day)
   scope :later, where("due_category = ? OR due_date > ?", "later", Time.zone.now.to_date + 1.day).order("due_date DESC")

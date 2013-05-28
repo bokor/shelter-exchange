@@ -6,24 +6,26 @@
 	var note_filter_active = "All";
     if ($('.active_link').html()){
 		note_filter_active = $('.active_link').html();
-	} 
-     
+	}
+
 	if (note_filter_active == '<%=@note.category%>' || note_filter_active == "All") {
-		$('#notes').prepend("<%= escape_javascript(render @note) %>"); 
+		$('#notes').prepend("<%= escape_javascript(render @note) %>");
 		$(".note").first().effect("highlight", {}, 1000);
 	} else {
 		$("#another_note_category").html('<div class="added_to_category"><p>Added to Category: <%= @note.category.humanize%> <!--<a href="#" onclick="$(this).parent().hide();">X</a>--></p></div>');
 		$("#another_note_category").slideToggle(1500,function() {
-			$(this).fadeOut(2000); 
+			$(this).fadeOut(2000);
 		});
 	}
 
 	// Clear Form
 	$('#create_note_form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#create_note_errors').html("");
 	$('#create_note_form p.error').remove();
 	$('#create_note_form li').removeClass("error");
 <% end %>
+
 <% flash.discard %>
+

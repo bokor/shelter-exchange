@@ -74,15 +74,15 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ShelterExchange::Errors::ShelterInactive do |exception|
-    render :template => "errors/shelter_#{@current_shelter.status}"
+    render :template => "errors/shelter_#{@current_shelter.status}", :format => :html
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    render :template => 'errors/unauthorized'
+    render :template => 'errors/unauthorized', :format => :html
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
+    render :file => "public/404", :format => :html, :layout => false, :status => :not_found
   end
 end
 

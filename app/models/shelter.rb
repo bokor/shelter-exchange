@@ -1,12 +1,13 @@
 class Shelter < ActiveRecord::Base
-  # Concerns
   include Geocodeable, Uploadable
-  # Shelter Namespaced
-  include Cleanable, Searchable, Tokenable
 
   # Constants
   #----------------------------------------------------------------------------
   STATUSES = ["active", "suspended", "cancelled"].freeze
+
+  # Callbacks
+  #----------------------------------------------------------------------------
+  before_save :clean_fields
 
   # Assocations
   #----------------------------------------------------------------------------
@@ -42,6 +43,7 @@ class Shelter < ActiveRecord::Base
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :website, :facebook, :allow_blank => true, :url_format => true
   validates :twitter, :twitter_format => true, :allow_blank => true
+  validates :access_token, :uniqueness => true, :on => :generate_access_token!
 
 
   # Scopes
@@ -54,6 +56,24 @@ class Shelter < ActiveRecord::Base
   scope :inactive, where("status != 'active'")
   scope :suspended, where(:status => "suspended")
   scope :cancelled, where(:status => "cancelled")
+  scope :by_access_token, lambda { |access_token| where(:access_token => access_token) }
+
+  # Class Methods
+  #----------------------------------------------------------------------------
+  def self.live_search(q, shelter)
+    scope = self.scoped
+    scope = scope.where(shelter)
+    scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ? OR facebook LIKE ? OR twitter LIKE ? or email LIKE ?",
+                        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%") unless q.blank?
+    scope
+  end
+
+  def self.search_by_name(q, shelter)
+    scope = self.scoped
+    scope = scope.where(shelter)
+    scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ?", "%#{q}%", "%#{q}%", "%#{q}%") unless q.blank?
+    scope
+  end
 
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -79,6 +99,28 @@ class Shelter < ActiveRecord::Base
 
   def cancelled?
     self.status == "cancelled"
+  end
+
+  def generate_access_token!
+    self.access_token = SecureRandom.hex(15)
+    save!
+  end
+
+  #----------------------------------------------------------------------------
+  private
+
+  def clean_fields
+    clean_status_reason
+    clean_phone_numbers
+  end
+
+  def clean_status_reason
+    self.status_reason = "" if self.status_changed? && self.active?
+  end
+
+  def clean_phone_numbers
+    self.phone = self.phone.gsub(/\D/, "") unless self.phone.blank?
+    self.fax   = self.fax.gsub(/\D/, "") unless self.fax.blank?
   end
 end
 

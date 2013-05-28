@@ -28,9 +28,16 @@ gem "cancan"
 #----------------------------------------------------------------------------
 gem "will_paginate"
 gem "jquery-rails"
-gem "jammit"
-gem "jammit-s3"
 gem "prawn"
+
+group :assets do
+  gem "sass-rails"
+  gem "coffee-rails"
+  gem "uglifier"
+  gem "yui-compressor"
+  gem "asset_sync"
+  # gem "turbo-sprockets-rails3"
+end
 
 # Images
 #----------------------------------------------------------------------------
@@ -45,8 +52,6 @@ gem "rinku", :require => "rails_rinku" # Rails 3.2 auto_link
 #----------------------------------------------------------------------------
 gem "rest-client"
 gem "fog"
-gem "twitter"
-gem "googl"
 
 # Maps - Geocoding
 #----------------------------------------------------------------------------
@@ -71,6 +76,7 @@ group :development do
   gem "thin"
   gem "foreman"
   gem "engineyard"
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -83,7 +89,7 @@ group :test do
   gem "factory_girl_rails"
   gem "factory_girl_extensions"
   gem "capybara"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
   gem "capybara-email"
   gem "launchy"
   gem "database_cleaner"
@@ -92,43 +98,12 @@ end
 
 
 
-
-
-
-# Investigate later
-#----------------------------------------------------------------------------
-
-# TODO
-          # Gems used only for assets and not required
-          # in production environments by default.
-          # group :assets do
-          #   gem "sass-rails",   "~> 3.2.3"
-          #   gem "coffee-rails", "~> 3.2.1"
-
-          #   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-          #   # gem "therubyracer", :platforms => :ruby
-
-          #   gem "uglifier", ">= 1.0.3"
-          #   gem "yui-compressor"
-          # end
-
-          # MESSENGER
-          # asset pipeline
-          # gem "yui-compressor" # compress CSS
-          # gem "coffee-filter" # coffeescript haml filter
-          # gem "therubyracer" # needed to run coffeescript on ubuntu
-          # the ui-toolkit includes the following:
-          #gem "haml-rails"
-          #gem "sass-rails"
-          #gem "coffee-rails"
-          #gem "uglifier"
-
-
-
-        # gem "puma", "~> 1.5.0" # bumping to 1.6 seems to make some tests fail
-
-
-        # group :production do
-        #   gem "SyslogLogger"
-        # end
-
+# Checkout Later
+# gem "mime_types"
+# gem "multi_json"
+# gem "redis"
+# gem "redis_namespace"
+# gem "redis_rails"
+# gem "resque"
+# gem "resque-lock"
+# gem "resque-mailer"

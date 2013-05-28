@@ -99,57 +99,54 @@ describe Accommodation, ".per_page" do
   end
 end
 
-describe "Searchable" do
+describe Accommodation, ".search" do
 
-  describe Accommodation, ".search" do
+  it "should return search results" do
+    accommodation1 = Accommodation.gen :name => "Crate"
+    accommodation2 = Accommodation.gen :name => "Cage"
 
-    it "should return search results" do
-      accommodation1 = Accommodation.gen :name => "Crate"
-      accommodation2 = Accommodation.gen :name => "Cage"
+    results = Accommodation.search("Cra")
+    results.count.should == 1
+    results.should =~ [accommodation1]
+  end
+end
 
-      results = Accommodation.search("Cra")
-      results.count.should == 1
-      results.should =~ [accommodation1]
-    end
+describe Accommodation, ".filter_by_type_location" do
+
+  before do
+    @dog   = AnimalType.gen :name => "Dog"
+    @cat   = AnimalType.gen :name => "Cat"
+
+    @west_side      = Location.gen :name => "West Side"
+    @east_side      = Location.gen :name => "East Side"
+
+    @accommodation1 = Accommodation.gen \
+      :animal_type => @dog,
+      :location    => @west_side
+    @accommodation2 = Accommodation.gen \
+      :animal_type => @dog,
+      :location    => @west_side
+    @accommodation3 = Accommodation.gen \
+      :animal_type => @dog,
+      :location    => @east_side
   end
 
-  describe Accommodation, ".filter_by_type_location" do
+  it "should filter by animal type" do
+    results = Accommodation.filter_by_type_location(@dog, nil)
+    results.count.should == 3
+    results.should =~ [@accommodation1, @accommodation2, @accommodation3]
+  end
 
-    before do
-      @dog   = AnimalType.gen :name => "Dog"
-      @cat   = AnimalType.gen :name => "Cat"
+  it "should filter by location" do
+    results = Accommodation.filter_by_type_location(nil, @west_side)
+    results.count.should == 2
+    results.should =~ [@accommodation1, @accommodation2]
+  end
 
-      @west_side      = Location.gen :name => "West Side"
-      @east_side      = Location.gen :name => "East Side"
-
-      @accommodation1 = Accommodation.gen \
-        :animal_type => @dog,
-        :location    => @west_side
-      @accommodation2 = Accommodation.gen \
-        :animal_type => @dog,
-        :location    => @west_side
-      @accommodation3 = Accommodation.gen \
-        :animal_type => @dog,
-        :location    => @east_side
-    end
-
-    it "should filter by animal type" do
-      results = Accommodation.filter_by_type_location(@dog, nil)
-      results.count.should == 3
-      results.should =~ [@accommodation1, @accommodation2, @accommodation3]
-    end
-
-    it "should filter by location" do
-      results = Accommodation.filter_by_type_location(nil, @west_side)
-      results.count.should == 2
-      results.should =~ [@accommodation1, @accommodation2]
-    end
-
-    it "should filter by animal type and location" do
-      results = Accommodation.filter_by_type_location(@dog, @east_side)
-      results.count.should == 1
-      results.should =~ [@accommodation3]
-    end
+  it "should filter by animal type and location" do
+    results = Accommodation.filter_by_type_location(@dog, @east_side)
+    results.count.should == 1
+    results.should =~ [@accommodation3]
   end
 end
 

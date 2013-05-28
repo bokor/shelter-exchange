@@ -1,0 +1,92 @@
+html, body { margin:0; padding:0; height: 100%; }
+body { background-color: #e7e7e7; color: #222;
+	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px; -webkit-text-size-adjust:none;}
+
+h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
+p{ margin-bottom: 10px; }
+a, img { border: none; outline: none; }
+code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
+
+/*
+Shelter Exchange Letters - #cf7019
+Dog House Roof - #f26649
+Dog House Sides - #db8d4a
+*/
+
+/* Header */
+/******************************************************************/
+#header{height: 90px; background-color: #209000; position:relative;}
+
+#toolbar { font-family: 'Helvetica Neue', Arial, Verdana, sans-serif; height: 35px; line-height: 35px; background-color: #222; margin: 0; padding: 0 3em 0 3em; position:relative;}
+#toolbar:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+#toolbar span { color: #eee; font-size: 11px;}
+#toolbar a {color: #eee;}
+#toolbar .col_1{width: 50%;}
+#toolbar .col_2{width: 50%; float:right; text-align:right;}
+#toolbar .settings_menu { display:none; position:absolute; top: 30px; right:12.6em; width:125px; -webkit-border-radius: 8px; -moz-border-radius: 8px;border-radius: 8px; z-index: 99999;background-color: #222; border: 1px solid #333;}
+#toolbar .settings_menu li { padding: 0px 10px; display:block;}
+#toolbar .settings_menu li a {color:#fff; text-decoration:none; display:block; }
+#toolbar .settings_menu li a:hover { color: #f26649;/*text-decoration: underline;*/}
+#toolbar .settings_menu li.current a { color: #f26649; /*text-decoration: underline;*/}
+#menu {position: absolute; bottom: 0;margin: 0; padding: 0 0 0 3em;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
+#menu li {float: left; font-size: 13px;list-style: none;margin: 0px 6px 0px 0px; }
+#menu li.current a{background: #e7e7e7; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
+#menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
+#menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
+
+/* Main */
+/******************************************************************/
+#main { margin: 1em 0 0 3em; }
+#main:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Left - Content Area */
+/******************************************************************/
+/*border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;*/
+#left { float: left; width: 65%; background-color: #fff; margin: 0; padding: 0; position: relative; text-align: left;  }
+#left #content { box-shadow: 0px 0px 6px #999; -moz-box-shadow: 0px 0px 6px #999; -webkit-box-shadow: 0px 0px 6px #999; }
+#left #content .page_heading{padding: 1.5em 1.5em 1em 1.5em; margin:0 auto;}
+#left #content .page_content{padding: 1em 1.5em 1em 1.5em; margin:0 auto;}
+
+/* Right - Sidebar */
+/******************************************************************/
+#right { float: left; width: 35%; margin: 0px; padding: 0px; position: relative; text-align: left;  }
+#right #sidebar { padding: 0 1.5em 0 1.5em; display: block; }
+
+/* Footer */
+/******************************************************************/
+#footer { width: 100%; height: 100px; padding: 10px 0 0 0; margin:0 auto; background-color: #e7e7e7; }
+#footer img{float:left;}
+#footer h5{float:left;padding-left:5px;line-height:65px;}
+#footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* IE6 Warning Box
+-----------------------------------------------------------------------------*/
+.ie6_warning{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 5px 0; border-top-style: solid;
+	border-bottom: 1px solid #f9d36f; border-top: 1px solid #f9d36f; background-color:#fdf1d0;}
+.ie6_warning p{line-height: 1.5em;}
+
+/* Application Tabs */
+/******************************************************************/
+.tabs {position: relative; bottom: 0; left:0; margin: 0; padding: 0 0 0 0;text-align: center; /*font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;*/}
+.tabs li {float: left; font-size: 13px;list-style: none;margin: 0px 10px 0px 0px; }
+.tabs li.current a{font-weight: bold; text-shadow: 1px 1px 1px #fff; }
+.tabs a:link, .tabs a:visited {float: left;padding: 6px 18px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
+
+/* Application Tabs - Default Color */
+/******************************************************************/
+/* default */
+.tabs li.current a{background: #fff; color: #cf7019; }
+.tabs a:link, .tabs a:visited {color:#2D76B9;}
+.tabs a:hover,.tabs a:link.active, .tabs a:visited.active {background: #bbb;color: #fff; }
+
+/* blue */
+.tabs.blue li.current a{background: #fff; color: #cf7019; }
+.tabs.blue a:link, .tabs.blue a:visited {background: #0c3561;color: #fff;}
+.tabs.blue a:hover,.tabs.blue a:link.active, .tabs.blue a:visited.active {background: #218db8;color: #fff; }
+
+/* orange */
+.tabs.orange li.current a{background: #fff; color: #cf7019; }
+.tabs.orange a:link, .tabs.orange a:visited {background: #762f0e;color: #fff;}
+.tabs.orange a:hover,.tabs.orange a:link.active, .tabs.orange a:visited.active {background: #dc7327;color: #eee; }
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406061014) do
+ActiveRecord::Schema.define(:version => 20130528020822) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
   add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
   add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
   add_index "alerts", ["created_at"], :name => "index_alerts_on_created_at"
+  add_index "alerts", ["shelter_id", "alertable_type"], :name => "index_alerts_on_shelter_id_and_alertable_type"
   add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
   add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
   add_index "animals", ["name"], :name => "index_animals_on_name"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
   add_index "animals", ["status_change_date"], :name => "index_animals_on_status_change_date"
+  add_index "animals", ["updated_at"], :name => "index_animals_on_updated_at"
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -169,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
+  add_index "comments", ["shelter_id", "commentable_type"], :name => "index_comments_on_shelter_id_and_commentable_type"
   add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
 
   create_table "delayed_jobs", :force => true do |t|
@@ -210,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
   end
 
   add_index "integrations", ["id", "type"], :name => "index_integrations_on_id_and_type"
+  add_index "integrations", ["shelter_id", "type"], :name => "index_integrations_on_shelter_id_and_type"
   add_index "integrations", ["shelter_id"], :name => "index_integrations_on_shelter_id"
   add_index "integrations", ["type"], :name => "index_integrations_on_type"
 
@@ -241,9 +245,11 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
     t.datetime "updated_at"
     t.integer  "shelter_id"
     t.string   "category"
+    t.boolean  "hidden",       :default => false
   end
 
   add_index "notes", ["created_at"], :name => "index_notes_on_created_at"
+  add_index "notes", ["hidden"], :name => "index_notes_on_hidden"
   add_index "notes", ["notable_id", "notable_type"], :name => "index_notes_on_notable_id_and_notable_type"
   add_index "notes", ["notable_id"], :name => "index_notes_on_notable_id"
   add_index "notes", ["notable_type"], :name => "index_notes_on_notable_type"
@@ -313,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
 
   add_index "photos", ["attachable_id", "attachable_type", "is_main_photo"], :name => "attachable_main_photo"
   add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
+  add_index "photos", ["attachable_id", "is_main_photo", "created_at"], :name => "attachable_main_photo_created_at"
   add_index "photos", ["attachable_id", "is_main_photo"], :name => "index_photos_on_attachable_id_and_is_main_photo"
   add_index "photos", ["attachable_id"], :name => "index_photos_on_attachable_id"
   add_index "photos", ["attachable_type"], :name => "index_photos_on_attachable_type"
@@ -393,9 +400,8 @@ ActiveRecord::Schema.define(:version => 20130406061014) do
     t.integer  "shelter_id"
   end
 
-  add_index "tasks", ["category"], :name => "index_tasks_on_task_category_id"
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"
-  add_index "tasks", ["details"], :name => "index_tasks_on_info"
+  add_index "tasks", ["shelter_id", "taskable_type"], :name => "index_tasks_on_shelter_id_and_taskable_type"
   add_index "tasks", ["shelter_id"], :name => "index_tasks_on_shelter_id"
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"
   add_index "tasks", ["taskable_id"], :name => "index_tasks_on_taskable_id"

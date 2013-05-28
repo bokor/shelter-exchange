@@ -14,30 +14,36 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
+	<!-- icons -->
+	<%= favicon_link_tag 'favicon.ico' %>
+	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
 	<!-- stylesheets -->
- 	<%= include_stylesheets :admin, :media => "all" %>
+  <%= stylesheet_link_tag :admin, :media => "all" %>
 
 	<!-- javascripts -->
-	<%= include_javascripts :admin %>
+	<%= javascript_include_tag :admin %>
 
-	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
+	<!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
 	<![endif]-->
 
 	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag "global/html5" %>
-	<![endif]-->
+		<%= javascript_include_tag :html5 %>
+  <![endif]-->
+
+  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
 	<%= yield(:javascripts) %>
 
 	<%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
 
-	<%= render :partial => "admin/shared/header" %>
+	<%= render "admin/shared/header" %>
 
 	<div id="main">
 
-		<div id="flash_messages"><%= render :partial => "shared/flash_messages" %></div>
+		<%= render "shared/flash_messages" %>
 
 		<div id="left">
 
@@ -48,7 +54,7 @@
 			</div>
 			<!--//end screen -->
 
-			<%= render :partial => "shared/footer" %>
+			<%= render "shared/footer" %>
 
 		</div>
 		<!--//end left -->

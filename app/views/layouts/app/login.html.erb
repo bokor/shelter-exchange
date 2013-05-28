@@ -19,19 +19,20 @@
 	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
 	<!-- stylesheets -->
-	<%= include_stylesheets :app_login, :media => "all" %>
+	<%= stylesheet_link_tag :login, :media => "all" %>
 
 	<!-- javascripts -->
-	<%= include_javascripts :app %>
+	<%= javascript_include_tag :login %>
 
-	<!--[if (gte IE 6)&(lte IE 8)]>
-		<%= javascript_include_tag "global/selectivizr-min" %>
+	<!--[if (lte IE 8)]>
+		<%= javascript_include_tag :selectivizr %>
 	<![endif]-->
 
 	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag "global/html5" %>
+		<%= javascript_include_tag :html5 %>
 	<![endif]-->
 
+  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
 	<%= yield(:javascripts) %>
 
 	<%= csrf_meta_tags %>
@@ -42,7 +43,7 @@
 
 		<div id="logo"><%= image_tag("logo_centered.png") %></div>
 
-		<div id="flash_messages"><%= render :partial => "shared/flash_messages" %></div>
+		<div id="flash_messages"><%= render "shared/flash_messages" %></div>
 
 		<div id="center">
 
@@ -59,6 +60,7 @@
 	</div>
 	<!--//end main -->
 
+	<%= render "shared/analytics" %>
 </body>
 
 </html>

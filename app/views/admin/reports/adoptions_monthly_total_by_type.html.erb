@@ -1,7 +1,6 @@
 <%= title "Adoptions Monthly Total by Animal Type - Reports"  %>
 
 <%= content_for :javascripts do %>
-	<%= include_javascripts :reports %>
 	<script type="text/javascript">
 		$(function() {
 			Reports.barChart('Adoptions Monthly Total By Type', 'adoptions_monthly_total_by_type', 'Adoptions');

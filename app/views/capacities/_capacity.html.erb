@@ -1,4 +1,4 @@
-<% animal_count = capacity.animal_count(@current_shelter) %>
+<% animal_count = capacity.animal_count(@shelter || @current_shelter) %>
 <% status_class = capacity_status(capacity, animal_count) %>
 
 <div id="<%= "capacity_#{capacity.id}" %>" class="capacity">

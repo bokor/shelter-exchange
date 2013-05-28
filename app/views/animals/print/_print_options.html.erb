@@ -39,12 +39,21 @@
 								<%= check_box_tag value, true, (params[value.to_s].present?), :class => "field checkbox" %>
 								<%= label_tag value, value.humanize, :class => "desc choice" %>
 							</span>
-						<% end %>
-					</span>
-				</li>
+            <% end %>
+            <br>
+            <span class="left">
+               <br>
+              <%= label_tag :hidden, "Include private notes?", :class => "desc choice" %>
+            </span>
+            <span class="leftPadded">
+              <%= check_box_tag :hidden, true, params[:hidden].present?, :class => "field checkbox" %>
+            </span>
+
+          </span>
+        </li>
 			  <li class="buttons">
 					<%= submit_tag "Ok", :disable_with => "Submitting...", :class => "button" %>
-					&nbsp;&nbsp;or&nbsp;&nbsp;
+					&nbsp;&nbsp;
 					<%= link_to 'Cancel', '#', :class => "button", :onclick => "$('.print_format_options a').trigger('click'); return false;"  %>
 				</li>
 			</ul>

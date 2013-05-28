@@ -6,6 +6,8 @@ FactoryGirl.define do
     severity    Alert::SEVERITIES[0]
     stopped     false
     shelter
+    created_at Time.now
+    updated_at Time.now
   end
 end
 

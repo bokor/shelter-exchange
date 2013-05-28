@@ -1,5 +1,4 @@
 class StatusHistory < ActiveRecord::Base
-  # Status History Namespaced
   include Reportable
 
   default_scope :order => 'status_histories.created_at DESC'

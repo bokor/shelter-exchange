@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
     @photos = @animal.photos
     @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
 
-    @notes = @animal.notes.includes(:documents).all
+    @notes = @animal.notes.includes(:documents).without_hidden.all
     @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists?
   end
 

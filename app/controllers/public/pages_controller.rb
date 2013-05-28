@@ -14,7 +14,9 @@ class Public::PagesController < Public::ApplicationController
     @path = params[:path]
     template = File.join('public/pages', @path)    # About/FAQ page /about/faq.html.erb
     template_with_index = template + "/index"      # About Page /about/index.html.erb
-    render :template => template rescue render :template => template_with_index rescue render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
+    render :template => template, :format => :html rescue
+    render :template => template_with_index, :format => :html rescue
+    render :file => "public/404", :format => :html, :layout => false, :status => :not_found
   end
 
   def sitemap
@@ -26,6 +28,4 @@ class Public::PagesController < Public::ApplicationController
   end
 
 end
-
-
 

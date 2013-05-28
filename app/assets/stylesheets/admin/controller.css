@@ -1,0 +1,322 @@
+/* If you want FULL SCREEN THEN USE THIS ON THE PAGE YOU NEED IT FOR.
+.index_users #main { margin: 1em 3em 0 3em; }
+.index_users #left { width: 100%;}
+.index_users #sidebar { width: 0;}*/
+/*******************************************************************/
+/* -------------------------- DASHBOARD -------------------------- */
+/*******************************************************************/
+
+/* Dashboard :: Global
+-----------------------------------------------------------------------------*/
+.dashboard ul {list-style:none;}
+
+/* Dashboard :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.dashboard #main { margin: 1em 3em 0 3em; }
+.dashboard #left{ width: 100%;}
+.dashboard #sidebar { display: none;width: 0; }
+
+
+
+/******************************************************************/
+/* -------------------------- SHELTERS -------------------------- */
+/******************************************************************/
+
+/* Shelters :: Global
+-----------------------------------------------------------------------------*/
+.shelters ul {list-style:none;}
+
+/* Shelters :: Index :: Layout
+-----------------------------------------------------------------------------*/
+.index_shelters #main { margin: 1em 3em 0 3em; }
+.index_shelters #left{ width: 100%;}
+.index_shelters #sidebar { display: none;width: 0; }
+
+/* Shelters :: Show :: Page Heading */
+/******************************************************************/
+.show_shelters .page_heading h1{width:70%; float:left; }
+.show_shelters .page_heading .logo{width:30%; float:left; text-align:right; padding-top: 5px;}
+
+
+/* Shelters Section :: Index :: Layout
+-----------------------------------------------------------------------------*/
+.shelters_section{padding-bottom: 75px;}
+.shelters_section h2{font-weight: bold;}
+.shelters_section.kill h2{color: red;}
+
+/* Shelter List :: Layout
+-----------------------------------------------------------------------------*/
+.shelter_list { width: 100%; border-top: 1px #bbb dotted;}
+
+.shelter{clear:both;width: 100%; display:inline-block; line-height: 75px; padding: 2px 0 4px 0; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
+.shelter.hover{cursor:default;}
+	.shelter .logo{display:inline-block; width: 150px; vertical-align:middle;}
+		.shelter .logo img{display:inline-block; vertical-align:middle;}
+	.shelter .name{display:inline-block; width: 25%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
+	.shelter .city_state{display:inline-block; width: 20%; }
+	.shelter .email{display:inline-block; }
+	.shelter .created_at{display:inline-block; float:right; font-weight: bold; }
+
+
+/* Shelter Integration List :: Show :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters .integration_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.show_shelters .integration{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.show_shelters .integration.hover{cursor:default;}
+
+	.show_shelters .integration .type{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
+	.show_shelters .integration .image{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
+
+
+/* Shelter Details :: Show :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters .shelter_details {padding-bottom: 20px;}
+.show_shelters .shelter_details ul {padding-bottom: 20px;}
+.show_shelters .shelter_details #address {float:left; width: 45%; padding-right: 5%; }
+.show_shelters .shelter_details #contact_details {float:left; width: 50%;}
+.show_shelters .shelter_details #contact_details .action_links span,
+.show_shelters .shelter_details #contact_details .action_links a{padding-right: 8px;}
+.show_shelters .shelter_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_shelters .shelter_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+
+/* Shelter Map :: Show :: Canvas
+-----------------------------------------------------------------------------*/
+.show_shelters #map_canvas {margin: 0 auto; width: 100%; height: 350px; position: relative; background-color: #fff; }
+
+
+/* Account Details :: Show Sidebar :: Layout
+-----------------------------------------------------------------------------*/
+.show_shelters #sidebar .account_details{padding: 5px 0 20px 0; }
+.show_shelters #sidebar .account_details table { width: 100%; border-collapse: collapse; border-spacing: 0; border: 1px solid #bbb; }
+.show_shelters #sidebar .account_details table td{padding:5px; border: 1px solid #bbb;}
+.show_shelters #sidebar .account_details table td.key{width: 35%;}
+.show_shelters #sidebar .account_details table td.value{width: 65%;}
+
+
+/***************************************************************/
+/* -------------------------- USERS -------------------------- */
+/***************************************************************/
+
+
+/* Users :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.users #main { margin: 1em 3em 0 3em; }
+.users #left{ width: 100%;}
+.users #sidebar { display: none;width: 0; }
+
+/* User List :: Layout
+-----------------------------------------------------------------------------*/
+.user_list { width: 100%; border-top: 1px #bbb dotted; padding-bottom: 30px; }
+
+.user{clear:both;width: 100%; display:inline-block; line-height: 30px; text-align:left;border-bottom: 1px dotted #bbb;}
+.user.hover{cursor:default;}
+
+	.user .name{display:inline-block; width: 25%; font-size : 11px;font-weight: bold;}
+	.user .role{display:inline-block; width: 15%; font-size : 11px;}
+	.user .email{display:inline-block; width: 30%;font-size : 11px; }
+	.user .shelter_link{display:inline-block; width: 40%; font-size : 11px;font-weight: bold;}
+
+
+
+
+
+/*****************************************************************/
+/* -------------------------- ANIMALS -------------------------- */
+/*****************************************************************/
+
+/* Animals :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.animals #main { margin: 1em 3em 0 3em; }
+.animals #left{ width: 100%;}
+.animals #sidebar { display: none;width: 0; }
+
+
+
+/* Animals Section :: Index :: Layout
+-----------------------------------------------------------------------------*/
+.animals_section{padding-bottom: 75px; cursor: pointer;}
+.animals_section h2{font-weight: bold;}
+.animals_section:hover h2{color:#cf7019;}
+.animals_section .animal_list{display:none;}
+
+/* Animal List :: Layout
+-----------------------------------------------------------------------------*/
+.animal_list { width: 100%; border-top: 1px #bbb dotted;}
+
+.animal{clear:both;width: 100%; display:inline-block; line-height: 75px; padding: 2px 0 4px 0; text-align:left;border-bottom: 1px dotted #bbb; font-size:11px;}
+.animal.hover{cursor:default;}
+	.animal .photo{display:inline-block; width: 125px; vertical-align:middle;}
+		.animal .photo img{display:inline-block; vertical-align:top;}
+	.animal .name{display:inline-block; width: 15%; line-height: 1.5em;vertical-align: middle;font-weight: bold;}
+	.animal .breed{display:inline-block; width: 25%; }
+  .animal .shelter_name{display:inline-block; width: 30%;}
+	.animal .status_change_date,
+  .animal .created_at_date{display:inline-block; float:right; font-weight: bold; }
+
+.lookup_animals .animal{border-bottom:none;}
+
+
+
+/********************************************************************/
+/* -------------------------- CAPACITIES -------------------------- */
+/********************************************************************/
+
+/* Capacities List :: Layout */
+/******************************************************************/
+.capacity_list {border-top: 1px dotted #ccc;}
+.capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
+
+.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 60px; width: 60px;font-size: 13px; font-weight: bold; }
+.capacity .counts{display:inline-block;  padding-left: 60px;}
+	.capacity .counts ul{padding-top: 8px;}
+	.capacity .counts ul li{line-height: 25px; }
+
+.capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
+
+
+/* Capacity Legend :: Layout
+-----------------------------------------------------------------------------*/
+.capacities .legend{width: 90px; margin-top: 20px; padding: 10px 15px; border: 1px solid #eee; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+.capacities .legend table { border-collapse: collapse; border-spacing: 0;  }
+.capacities .legend table th{font-size: 14px;}
+.capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
+.capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
+
+
+
+/******************************************************************/
+/* -------------------------- ACCOUNTS -------------------------- */
+/******************************************************************/
+
+
+/* Account :: Layout
+-----------------------------------------------------------------------------*/
+.account{padding-bottom: 20px;}
+.account ul {padding-bottom: 20px;}
+
+
+
+
+
+
+
+
+/*****************************************************************/
+/* -------------------------- REPORTS -------------------------- */
+/*****************************************************************/
+
+/* Reports :: Global
+-----------------------------------------------------------------------------*/
+.reports ul {list-style:none;}
+
+.reports .page_heading h1{width:25%; float:left; }
+.reports .page_heading .action_links{width:75%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+.reports .page_heading .action_links label {padding-left: 15px;}
+.reports .page_heading .action_links input {margin-left: 15px;}
+
+/* Reports :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+/*.reports #main { margin: 1em 3em 0 3em; }
+.reports #left{ width: 100%;}
+.reports #sidebar { display: none;width: 0; }*/
+
+
+/* Reports :: Layout
+-----------------------------------------------------------------------------*/
+.reports #sidebar .box ul {list-style:none; padding-left: 15px;}
+
+
+
+
+/************************************************************************/
+/* -------------------------- ANNOUNCEMENTS  -------------------------- */
+/************************************************************************/
+
+/* Announcements :: Global */
+/******************************************************************/
+.announcements ul { list-style:none ;}
+
+/* New/Create Announcements :: Layout */
+/******************************************************************/
+.new_announcements #main, .create_announcements #main { margin: 1em 3em 0 3em; }
+.new_announcements #left, .create_announcements #left{ width: 100%;}
+.new_announcements #sidebar, .create_announcements #sidebar { display: none;width: 0; }
+
+/* Announcements :: Help
+-----------------------------------------------------------------------------*/
+.announcements ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
+.announcements ul.help li{margin-left: 20px;padding-bottom: 10px;}
+
+
+/* Alert List :: Layout */
+/******************************************************************/
+.announcement_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
+
+.announcement{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
+
+.announcement .category{display:inline-block; padding: 0 5px; }
+	.announcement .category div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
+	.announcement .category div.web_update{background-color:#ee3124; }
+	.announcement .category div.help{background-color:#f39500;}
+	.announcement .category div.general{background-color:gray;}
+
+.announcement .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
+
+.announcement .details{display:inline-block; width: 57%; vertical-align:top; }
+	.announcement .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top:5px; padding-left: 5px;}
+
+.announcement .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
+
+.announcement .message { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em; }
+
+
+
+
+/*****************************************************************/
+/* -------------------------- EXPORTS -------------------------- */
+/*****************************************************************/
+
+/* Exports :: Global
+-----------------------------------------------------------------------------*/
+.exports ul {list-style:none;}
+
+/* Exports :: Index/Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.exports #main { margin: 1em 3em 0 3em; }
+.exports #left{ width: 100%;}
+.exports #sidebar { display: none;width: 0; }
+
+
+
+
+
+
+/***********************************************************************/
+/* -------------------------- INTEGRATIONS  -------------------------- */
+/***********************************************************************/
+
+/* Integrations :: Global */
+/******************************************************************/
+.integrations ul { list-style:none ;}
+
+/* New/Create Integrations :: Layout */
+/******************************************************************/
+.integrations #main { margin: 1em 3em 0 3em; }
+.integrations #left{ width: 100%;}
+.integrations #sidebar { display: none;width: 0; }
+
+/* Integrations List :: Layout */
+/******************************************************************/
+.integration_list a {font-size: 11px; color: #000; text-decoration: none;}
+.integration_list a:hover {text-decoration: underline; color: #cf7019;}
+.integration_list { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+.integration_list thead th { line-height: 50px; border:1px #ddd solid; text-align: center; }
+.integration_list tbody tr { line-height: 30px; }
+.integration_list tbody tr.odd { background-color: #fff; }
+.integration_list tbody tr.even { background-color: #efefef; }
+.integration_list tbody tr td { border:1px #ddd solid; }
+.integration_list tbody tr td.key { padding-left: 5px; }
+
+

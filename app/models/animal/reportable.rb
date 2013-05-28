@@ -17,7 +17,7 @@ module Animal::Reportable
       range = start_date.beginning_of_month..start_date.end_of_month
       status_histories = StatusHistory.where(:shelter_id => shelter_id || {}).by_month(range)
 
-      scope = scoped{}
+      scope = self.scoped
       scope = scope.select("count(*) count, animal_types.name")
       scope = scope.joins(:status_histories, :animal_type)
       unless state.blank?
@@ -33,7 +33,7 @@ module Animal::Reportable
     def intake_totals_by_month(year, with_type=false)
       start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
       end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
-      scope = scoped{}
+      scope = self.scoped
 
       if with_type
         scope = scope.select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)

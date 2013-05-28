@@ -1,23 +1,23 @@
-<li>
+<li id="details_container">
 	<%= f.label :details, "Details <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_field :details, :class => "field text large", :maxlength => 255 %></div>
 	<%= has_error_message?(@task, :details)%>
 </li>
-<li>
+<li id="category_container">
 	<%= f.label :category, "Category", :class => "desc" %>
 	<div>
 	<%= f.collection_select :category, Task::CATEGORIES, :to_s, :humanize, {:include_blank =>  "None"}, {:class => "field select medium" }  %>
 	</div>
 	<%= has_error_message?(@task, :category)%>
 </li>
-<li>
+<li id="due_category_container">
 	<%= f.label :due_category, "When is it due?", :class => "desc" %>
 	<div>
 		<%= f.collection_select :due_category, Task::DUE_CATEGORIES, :to_s, :humanize, {}, { :class => "task_due_category field select medium" } %>
 	</div>
 	<%= has_error_message?(@task, :due_category)%>
 </li>
-<li style="display:none;">
+<li id="due_date_container" style="display:none;">
 	<div class="due_date_field">
 		<div class="due_date_alt"><%=format_date(:long_day_of_week, Time.zone.now.to_date)%></div>
 		<div class="date_picker"></div>

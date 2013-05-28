@@ -18,6 +18,10 @@ class Note < ActiveRecord::Base
   validates :title, :presence => true
   validates :category, :inclusion => { :in => CATEGORIES, :message => "needs to be selected" }
 
+  # Scopes
+  #----------------------------------------------------------------------------
+  scope :without_hidden, where(:hidden => false)
+
   # Instance Methods
   #----------------------------------------------------------------------------
   def notable?

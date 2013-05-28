@@ -5,6 +5,8 @@ FactoryGirl.define do
     reason "This is a transfer reason"
     shelter
     transfer
+    created_at Time.now
+    updated_at Time.now
   end
 end
 

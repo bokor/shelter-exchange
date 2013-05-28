@@ -15,6 +15,8 @@ FactoryGirl.define do
     time_zone       "Pacific Time (US & Canada)"
     status          "active"
     is_kill_shelter false
+    created_at Time.now
+    updated_at Time.now
   end
 end
 

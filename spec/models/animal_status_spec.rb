@@ -32,6 +32,12 @@ describe AnimalStatus, "::STATUSES" do
   end
 end
 
+describe AnimalStatus, "::CAPACITY" do
+  it "should contain a list of statuses for capacity counts" do
+    AnimalStatus::CAPACITY.should == [1,4,5,6,7,8,9,10,11,16]
+  end
+end
+
 describe AnimalStatus, "::ACTIVE" do
   it "should contain a list active statuses" do
     AnimalStatus::ACTIVE.should == [1,3,4,5,6,7,8,9,10,11,16]
