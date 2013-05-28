@@ -3,7 +3,6 @@ class AddNewIndexes < ActiveRecord::Migration
     remove_index :tasks, :name => "index_tasks_on_task_category_id"
     remove_index :tasks, :name => "index_tasks_on_info"
 
-    add_index :animals, :created_at
     add_index :animals, :updated_at
 
     add_index :integrations, [:shelter_id, :type]
