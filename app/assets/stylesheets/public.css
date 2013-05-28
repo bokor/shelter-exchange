@@ -11,7 +11,7 @@
  *
  *= require shared/reset
  *= require shared/buttons
- *= require public/common
+ *= require public/layout
  *= require public/controller
 */
 

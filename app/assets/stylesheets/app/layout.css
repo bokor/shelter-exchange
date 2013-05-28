@@ -2,38 +2,16 @@ html, body { margin:0; padding:0; height: 100%; }
 body { background-color: #e7e7e7; color: #222;
 	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Tahoma, sans-serif; min-width: 960px; -webkit-text-size-adjust:none;}
 
-
-/*********************************************************/
-/* ---------------------- GLOBAL ----------------------- */
-/*********************************************************/
 h1, h2, h3, h4, h5 { font-weight: bold; color:#000; letter-spacing: -1px; margin-bottom: 10px;  }
-h1 {  }
-h2 {  }
-h3 {  }
-h4 {  }
-h5 {  }
-
 p{ margin-bottom: 10px; }
 a, img { border: none; outline: none; }
-
 code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace; /*Consolas, InconsolataMedium, Courier, 'Courier New', Monaco, monospace;*/}
-
 
 /*
 Shelter Exchange Letters - #cf7019
 Dog House Roof - #f26649
 Dog House Sides - #db8d4a
 */
-
-/* ClearFix */
-/******************************************************************/
-.clearfix:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-* html .clearfix{height:1%;}
-
-
-/***********************************************************************/
-/* -------------------------- Page Layouts --------------------------- */
-/***********************************************************************/
 
 /* Header */
 /******************************************************************/
@@ -56,7 +34,6 @@ Dog House Sides - #db8d4a
 #menu li.current a{background: #e7e7e7; color: #cf7019;  font-weight: bold; text-shadow: 1px 1px 1px #fff; }
 #menu a:link, #menu a:visited {background: #18630c;color: #fff;float: left;padding: 6px 10px 6px 10px;text-align: center;text-decoration: none;border-radius: 3px 3px 0px 0px;-webkit-border-radius: 3px 3px 0px 0px;-moz-border-radius: 3px 3px 0px 0px;}
 #menu a:hover,#menu a:link.active, #menu a:visited.active {background: #21b833;color: #eee; }
-
 
 /* Main */
 /******************************************************************/
@@ -83,52 +60,11 @@ Dog House Sides - #db8d4a
 #footer h5{float:left;padding-left:5px;line-height:65px;}
 #footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-
 /* IE6 Warning Box
 -----------------------------------------------------------------------------*/
 .ie6_warning{position:relative;padding: 1.5em 1.5em 1em 1.5em; margin: 5px 0; border-top-style: solid;
 	border-bottom: 1px solid #f9d36f; border-top: 1px solid #f9d36f; background-color:#fdf1d0;}
 .ie6_warning p{line-height: 1.5em;}
-
-/* Ajax :: Messages */
-/******************************************************************/
-.ajax-message h1, .ajax-message h2, .ajax-message h3{color:#fff; font-weight:bold;}
-
-
-
-/* Flash Messages */
-/******************************************************************/
-.flash_message {width: 97%;padding: 1.2em 0 1.2em .7em; margin-bottom: 10px;}
-.flash_message .icon{width: 16px;float: left; margin-right: .3em;}
-
-/* Placeholder Text */
-/******************************************************************/
-input.placeholder { color: #999; }
-textarea.placeholder { color: #999; }
-:-moz-placeholder{color:#999999;}
-::-webkit-input-placeholder{color:#999999;}
-
-
-/* Pagination */
-/******************************************************************/
-/* ORANGE - #CF7019 */
-.pagination { padding: 3px; margin: 10px 0 10px 0; }
-.pagination a, .pagination span{white-space: nowrap; font-weight:bold;}
-.pagination a {height: 60px;line-height: 40px; padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #ccc;background: #f7f7f7;color: #555;text-decoration: none;}
-.pagination a:hover, .pagination a:active {border: 1px solid #aaa;color: #111;}
-.pagination em.current {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #444;font-weight: bold;font-style: normal;background-color: #555;color: #fff;}
-.pagination span.disabled {padding: 5px 8px 5px 8px;margin: 2px;border: 1px solid #eee;color: #aaa;}
-
-
-
-
-/* ToolTips
------------------------------------------------------------------------------*/
-.tooltip{cursor:pointer;}
-
-.ui-tooltip-dialog{max-width: 100%;font-size: 13px;}
-.ui-tooltip-dialog .ui-tooltip-titlebar{font-size: 11px;}
-
 
 /* Application Tabs */
 /******************************************************************/

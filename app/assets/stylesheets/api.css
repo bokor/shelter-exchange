@@ -8,7 +8,8 @@
  *
  *= require shared/reset
  *= require shared/buttons
- *= require api/common
+ *= require shared/components
+ *= require api/layout
  *= require api/controller
 */
 

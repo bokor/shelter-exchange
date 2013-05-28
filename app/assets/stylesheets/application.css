@@ -13,7 +13,8 @@
  *
  *= require shared/reset
  *= require shared/buttons
- *= require app/common
+ *= require shared/components
+ *= require app/layout
  *= require app/controller
  *= require app/print
 */
