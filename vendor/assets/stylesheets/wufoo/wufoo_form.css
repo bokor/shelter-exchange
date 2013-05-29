@@ -35,7 +35,7 @@ span.rightPadded{padding-right: 10px;}
 /* Added for extra errors that we might want to display in the form tag */
 .custom_form_errors{display:none;}
 
-/* Error Message */   
+/* Error Message */
 /******************************************************************/
 .error_message{list-style:none;}
 
@@ -45,7 +45,7 @@ span.rightPadded{padding-right: 10px;}
 /* ----- INFO ----- */
 
 .info{
-	display:inline-block; 
+	display:inline-block;
 	clear:both;
 	margin:0 0 5px 0;
 	padding:0 1% 1.1em 1%;
@@ -88,10 +88,10 @@ form li{
 	        transition: background-color 350ms ease-out;
 }
 form ul:after,form li:after, form li div:after{
-	content:"."; 
+	content:".";
 	display:block;
-	height:0; 
-	clear:both; 
+	height:0;
+	clear:both;
 	visibility:hidden;
 }
 * html form li{height: 1%;margin-bottom:-3px;}
@@ -154,14 +154,14 @@ form li.complex div span{
 form li.complex div span.full{
 	margin:0;
 }
-form li.complex div span.left, 
+form li.complex div span.left,
 form li.complex div span.right{
 	margin:0;
 	width:48%;
 }
-form li.complex div span.full input, 
-form li.complex div span.full select, 
-form li.complex div span.left input, 
+form li.complex div span.full input,
+form li.complex div span.full select,
+form li.complex div span.left input,
 form li.complex div span.right input,
 form li.complex div span.left select,
 form li.complex div span.right select{
@@ -187,9 +187,9 @@ label span, .section span, p span, .likert span{
 
 /* ----- TEXT DIRECTION ----- */
 
-.rtl .info h2, .rtl .info div, .rtl label.desc, .rtl label.choice, 
-.rtl div label, .rtl span label, .rtl input.text, 
-.rtl textarea.textarea, .rtl select.select, .rtl p.instruct, 
+.rtl .info h2, .rtl .info div, .rtl label.desc, .rtl label.choice,
+.rtl div label, .rtl span label, .rtl input.text,
+.rtl textarea.textarea, .rtl select.select, .rtl p.instruct,
 .rtl .section h3, .rtl .section div, .rtl input.btTxt{
 	direction:rtl;
 }
@@ -289,7 +289,7 @@ input.text, input.search, textarea.textarea{
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
 	border-bottom:1px solid #ddd;
-	background:#fff url(fieldbg.gif) repeat-x top;
+	background:#fff url(/assets/wufoo/fieldbg.gif) repeat-x top;
 }
 
 input.nospin::-webkit-inner-spin-button,
@@ -329,10 +329,10 @@ input.other{
 	margin:1px 0;
 }
 
-.center, 
+.center,
 form li span.center input.text, form li span.center label,
 form li.name span label,
-form li.date input.text, form li.date span label, 
+form li.date input.text, form li.date span label,
 form li.phone input.text, form li.phone span label,
 form li.time input.text, form li.time span label{
 	text-align:center;
@@ -503,7 +503,7 @@ form li.likert{
 
 /* ----- Likert Classes ----- */
 
-.col1 td{width:30%;} 
+.col1 td{width:30%;}
 .col2 td{width:25%;}
 .col3 td{width:18%;}
 .col4 td{width:14.5%;}
@@ -577,11 +577,11 @@ button.link:hover{
 	width:65%;
 }
 
-* html .leftLabel li fieldset div, 
+* html .leftLabel li fieldset div,
 * html .rightLabel li fieldset div{
 	float:right;
 }
-*+html .leftLabel li fieldset div, 
+*+html .leftLabel li fieldset div,
 *+html .rightLabel li fieldset div{
 	float:right;
 }
@@ -707,7 +707,7 @@ li.leftThird p.complex, li.middleThird p.complex, li.rightThird p.complex,
 
 /* ----- ADVANCED CLASSNAMES ----- */
 
-.hideSeconds .seconds, .hideAMPM .ampm, .hideAddr2 .addr2, .hideSecondary #previousPageButton, 
+.hideSeconds .seconds, .hideAMPM .ampm, .hideAddr2 .addr2, .hideSecondary #previousPageButton,
 .hideCents .radix, .hideCents .cents{
 	display:none;
 }
@@ -837,11 +837,11 @@ form li.paging-context{
 	text-align:center;
 	font-size:85%;
 	font-style:normal;
-	
+
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	border-radius:10px;
-	
+
 	-webkit-box-shadow:rgba(0,0,0,.15) 0px 1px 2px;
 	-moz-box-shadow:rgba(0,0,0,.15) 0px 1px 2px;
 	-o-box-shadow:rgba(0,0,0,.15) 0px 1px 2px;
