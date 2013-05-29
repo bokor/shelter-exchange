@@ -1,11 +1,15 @@
 class Public::ApplicationController < ActionController::Base
   protect_from_forgery
-  #http_basic_authenticate_with :name => "username", :password => "pass"
-  before_filter :authenticate! if Rails.env.staging?
+  http_basic_authenticate_with :name => "username", :password => "pass" if Rails.env.staging?
+  before_filter :force_non_ssl
   layout :current_layout
 
   #-----------------------------------------------------------------------------
   private
+
+  def force_non_ssl
+    redirect_to :protocol => "http" if request.ssl?
+  end
 
   def current_layout
     if params[:layout].present? && template_exists?(params[:layout], "layouts/public")
