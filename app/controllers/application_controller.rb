@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  force_ssl :unless => :local_request?
 
   before_filter :authenticate_user!,
                 :current_account,
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def local_request?
-    Rails.env.development? or Rails.env.test?
+    Rails.env.development? || Rails.env.test?
   end
 
   #-----------------------------------------------------------------------------
