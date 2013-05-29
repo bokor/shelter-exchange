@@ -1,6 +1,7 @@
 class Public::Users::SessionsController < ::Devise::SessionsController
   include UrlHelper
   layout 'public/application'
+  before_filter :force_ssl
 
   def new
     # Force Signout because www is not allowed to have a sign in per se
@@ -24,6 +25,12 @@ class Public::Users::SessionsController < ::Devise::SessionsController
 
   #-----------------------------------------------------------------------------
   private
+
+  def force_ssl
+    unless Rails.env.development? || Rails.env.test? || request.ssl?
+      redirect_to :protocol => 'https'
+    end
+  end
 
   def sign_in_and_redirect(resource_or_scope, resource=nil)
     auth_token = Devise.friendly_token
