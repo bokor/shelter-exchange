@@ -40,40 +40,40 @@
 <% end %>
 
 <%= content_for :page_content do %>
-	
+
 	<h1><%= @animal.name %>
 		<span class="social">
 			<span class="facebook">
 				<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
 			</span>
 			<span class="twitter">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="shelterexchange<%=",#{@shelter.twitter.slice(1..-1)}" if @shelter.twitter %>">Tweet</a>
+				<a href="//twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="shelterexchange<%=",#{@shelter.twitter.slice(1..-1)}" if @shelter.twitter %>">Tweet</a>
 			</span>
 			<span class="pinterest">
-				<a href="http://pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+				<a href="//pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
 			</span>
 		</span>
 		<span class="status"><%= public_animal_status(@animal) %></span>
 	</h1>
-		
-	
+
+
 	<div class="animal_details">
-		
+
 		<div class="media">
-			
+
 			<div id="photo_gallery"></div>
-			
+
 			<% unless @animal.video_url.blank? %>
 				<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player right", :title => "Video of #{@animal.name}" %>
 			<% end %>
 		</div>
 
 		<div class="type"><%= @animal.animal_type.name %>:&nbsp;&nbsp;<%= @animal.full_breed %></div>
-			
+
 		<% if @shelter.kill_shelter? and @animal.available? and @animal.euthanasia_date.present? %>
 			<p class="euthanasia_info">Scheduled to be euthanized on <%= format_date(:long, @animal.euthanasia_date) %>.</p>
 		<% end %>
-		
+
 		<h3>Details:</h3>
 		<ul>
 			<li><p><b>Age:</b>
@@ -84,21 +84,21 @@
 			<li><p><b>Size:</b><span><%= Animal::SIZES[@animal.size.to_sym] || "N/A" %></span></p></li>
 			<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "N/A" %></span></p></li>
 		</ul>
-		
+
 		<% if @animal.special_needs? %>
 			<h3>Special Needs:</h3>
 			<p><%= auto_link( simple_format(@animal.special_needs), :all, :target => "_blank").html_safe %></p>
 		<% end%>
 		<h3>Description:</h3>
 		<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
-		
+
 	</div>
-	
-	
+
+
 	<div class="animal_shelter">
 		<%= render "shelter_details" %>
 		<p>Please contact <%= @shelter.name %> for more information on how to adopt <%=@animal.name %>.</p>
 	</div>
-	
-	
+
+
 <% end %>

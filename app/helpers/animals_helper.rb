@@ -76,7 +76,7 @@ module AnimalsHelper
   def fancybox_video_url(animal)
     you_tube_id = find_you_tube_id(animal.video_url)
     unless you_tube_id.blank?
-      "http://www.youtube.com/v/#{you_tube_id}" #"?version=3&enablejsapi=1"
+      "//www.youtube.com/v/#{you_tube_id}" #"?version=3&enablejsapi=1"
     else
       animal.video_url
     end
