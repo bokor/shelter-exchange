@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :token_authenticatable,
          :rememberable, :trackable, :lockable, :invitable, :validatable,
          :authentication_keys => [:email],
+         # OLD WAY :authentication_keys => [ :email, :subdomain ]
          :request_keys => [:subdomain]
 
   # Getters/Setters
@@ -58,6 +59,11 @@ class User < ActiveRecord::Base
     conditions[:account_id] = account.id if account
     super(conditions)
   end
+  # Old way
+  #def self.find_for_authentication(conditions={})
+    #subdomain = conditions.delete(:subdomain)
+    #self.select("users.*").joins(:account).where(conditions).where("accounts.subdomain = ?", subdomain).first
+  #end
 
   def self.valid_token?(token)
     token_user = self.where(:authentication_token => token).first
