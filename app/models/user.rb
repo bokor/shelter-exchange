@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # Getters/Setters
   #----------------------------------------------------------------------------
   attr_accessible :name, :title, :email, :password, :password_confirmation, :authentication_token,
-                  :remember_me, :role, :announcement_hide_time
+                  :remember_me, :role, :account_id, :announcement_hide_time
 
   # Validations - Extra beyond devise's validations
   #----------------------------------------------------------------------------
