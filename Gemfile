@@ -29,6 +29,7 @@ gem "cancan"
 gem "will_paginate"
 gem "jquery-rails"
 gem "prawn"
+gem "sitemap_generator"
 
 group :assets do
   gem "sass-rails"

@@ -1,5 +1,5 @@
 class Public::PagesController < Public::ApplicationController
-  respond_to :html, :xml
+  respond_to :html
 
   # caches_action :index, :expires_in => 1.hour
   # caches_action :show
@@ -17,14 +17,6 @@ class Public::PagesController < Public::ApplicationController
     render :template => template, :format => :html rescue
     render :template => template_with_index, :format => :html rescue
     render :file => "public/404", :format => :html, :layout => false, :status => :not_found
-  end
-
-  def sitemap
-    @animals = Animal.select("animals.id, animals.updated_at").joins(:shelter).where(:shelters => { :status => "active"}).available
-    @save_a_life_last_updated = Animal.select(:updated_at).order(:updated_at).first.updated_at.strftime("%Y-%m-%d")
-
-    @shelters = Shelter.select([:id, :updated_at]).active
-    @help_a_shelter_last_updated = Shelter.select(:updated_at).active.order("updated_at DESC").first.updated_at.strftime("%Y-%m-%d")
   end
 
 end
