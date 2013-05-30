@@ -8,7 +8,7 @@ describe "Delete: From the Index Alert Page", :js => :true do
     @alert = Alert.gen :shelter => @shelter
   end
 
-  it "should delete a alert" do
+  it "should delete an alert" do
     visit alerts_path
 
     Alert.count.should == 1

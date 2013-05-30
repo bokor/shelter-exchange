@@ -35,11 +35,11 @@ describe "New: Alert Page", :js => :true do
     page.should have_content "There was a problem with your submission."
 
     within "#title_container" do
-      find ".error", :text => "Cannot be blank"
+      find(".error").text.should == "Cannot be blank"
     end
 
     within "#severity_container" do
-      find ".error", :text => "Needs to be selected"
+      find(".error").text.should == "Needs to be selected"
     end
 
     current_path.should == alerts_path

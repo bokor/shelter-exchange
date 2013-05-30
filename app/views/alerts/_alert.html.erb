@@ -1,4 +1,5 @@
 <div id="<%= dom_id(alert) %>" class="alert">
+
 	<span class="stop">
 		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stop(this, #{alert.id});" %>
 	</span>
@@ -7,7 +8,8 @@
 	<span class="details">
 		<span class="title"><%= alert.title %> <%= show_alertable_link(alert) %></span>
 	</span>
-	<span class="action_links">
+
+  <span class="action_links">
 		<span class="edit_link">
 			<%= link_to "Edit", edit_alert_path(alert, :format => :js), :remote => true %>
 		</span>
@@ -17,7 +19,8 @@
 		</span>
 		<% end %>
 	</span>
-	<p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>
+  <p class="description" id="description_alert_<%=alert.id %>"><%= alert.description %></p>
+
 </div>
 
 

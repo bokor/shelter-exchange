@@ -31,11 +31,11 @@ describe "Index: Alert Page", :js => :true do
     page.should have_content "There was a problem with your submission."
 
     within "#create_alert #title_container" do
-      find ".error", :text => "Cannot be blank"
+      find(".error").text.should == "Cannot be blank"
     end
 
     within "#create_alert #severity_container" do
-      find ".error", :text => "Needs to be selected"
+      find(".error").text.should == "Needs to be selected"
     end
   end
 

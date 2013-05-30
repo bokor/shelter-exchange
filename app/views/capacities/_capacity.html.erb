@@ -1,7 +1,8 @@
 <% animal_count = capacity.animal_count(@shelter || @current_shelter) %>
 <% status_class = capacity_status(capacity, animal_count) %>
 
-<div id="<%= "capacity_#{capacity.id}" %>" class="capacity">
+<div id="<%= dom_id(capacity) %>" class="capacity">
+
 	<span class="status"><div class="circle medium <%=status_class%>"><%= capacity.animal_type.name %></div></span>
 	<span class="counts">
 		<ul>
@@ -11,16 +12,15 @@
 	</span>
 
 	<span class="action_links">
-		<% if can?(:update, Capacity) %>
-			<span class="edit_link">
-				<%= link_to "Edit", edit_capacity_path(capacity, :format => :js), :remote => true %>
-			</span>
-		<% end %>
+		<span class="edit_link">
+			<%= link_to "Edit", edit_capacity_path(capacity, :format => :js), :remote => true %>
+		</span>
 		<% if can?(:destroy, Capacity) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 				<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true, :format => :js %>
 			</span>
 		<% end %>
-	</span>
+  </span>
 
 </div>
+

@@ -31,7 +31,7 @@ describe "New: Task Page", :js => :true do
     page.should have_content "There was a problem with your submission."
 
     within "#details_container" do
-      find ".error", :text => "Cannot be blank"
+      find(".error").text.should == "Cannot be blank"
     end
 
     current_path.should == tasks_path
