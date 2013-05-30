@@ -6,8 +6,6 @@ FactoryGirl.define do
     document_type 'Your adoption contract'
     users {|u| [u.association(:user)] }
     shelters {|s| [s.association(:shelter)] }
-    created_at Time.now
-    updated_at Time.now
   end
 end
 

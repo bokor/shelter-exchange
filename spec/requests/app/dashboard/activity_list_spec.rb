@@ -32,6 +32,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       # Update Status Only
       animal.animal_status = AnimalStatus.gen :name => "Adopted"
+      animal.updated_at    = Time.now + 1.hour
       animal.save!
 
       visit dashboard_path

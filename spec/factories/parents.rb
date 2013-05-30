@@ -11,8 +11,6 @@ FactoryGirl.define do
     sequence(:mobile)   {|n| "999999#{n+1000}" }
     sequence(:email)    {|n| "parent_email_#{n}@example.com" }
     sequence(:email_2)  {|n| "parent_email2_#{n}@example.com" }
-    created_at Time.now
-    updated_at Time.now
   end
 end
 

@@ -31,8 +31,6 @@ FactoryGirl.define do
       (Breed.where(:animal_type_id => animal_type, :name => 'Border Collie').first ||
       Breed.gen(:animal_type => animal_type, :name => 'Border Collie')).name
     }
-    created_at Time.now
-    updated_at Time.now
   end
 end
 
