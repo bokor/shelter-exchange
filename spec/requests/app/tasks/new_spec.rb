@@ -20,7 +20,7 @@ describe "New: Task Page", :js => :true do
     flash_message_should_be "Task has been created."
 
     current_path.should == tasks_path
-    page.should have_content "Test Title"
+    find(".details").text.should == "Test Title"
   end
 
   it "should not create a new task" do

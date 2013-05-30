@@ -12,16 +12,9 @@ describe "Ability: Permissions for the user role on the Index Task Page", :js =>
     @task = Task.gen :shelter => @shelter
   end
 
-  it "should complete a task" do
+  it "should not be able to delete task" do
     visit tasks_path
-
-    within "##{dom_id(@task)}" do
-      check('task_completed')
-      accept_confirmation!
-    end
-
-    page.should have_no_content @task.details
-    @task.reload.should be_completed
+    page.should have_no_content("Delete")
   end
 end
 

@@ -13,8 +13,8 @@
 
 		<div id="activities" class="activity_list">
 			<% unless @latest_activity.blank? %>
-				<% @latest_activity.each_with_index do |activity, index| %>
-          <div class="activity" id="activity_<%=index%>">
+				<% @latest_activity.each do |activity| %>
+          <div class="activity" id="<%=dom_id(activity)%>">
 						<span class="type">
 							<%= image_tag "icon_#{activity.class.name.downcase}.png", :class =>"tooltip", "data-tip" => activity.class.name %>
 						</span>

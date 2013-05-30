@@ -23,14 +23,15 @@ describe Activity, ".recent" do
   end
 
   it "should return the correct data sorted by updated_at (Tasks, Alerts, Animals)" do
-    1.times{ Task.gen :shelter => @shelter }
-    2.times{ Animal.gen :shelter => @shelter }
-    2.times{ Alert.gen :shelter => @shelter }
-    1.times{ Animal.gen :shelter => @shelter }
+    Task.gen :shelter => @shelter, :updated_at => Time.now - 4.days
+    Animal.gen :shelter => @shelter, :updated_at => Time.now - 3.days
+    Alert.gen :shelter => @shelter, :updated_at => Time.now - 2.days
+    Task.gen :shelter => @shelter, :updated_at => Time.now - 2.days
+    Animal.gen :shelter => @shelter, :updated_at => Time.now - 1.day
 
     results = Activity.recent(@shelter)
-    results.count.should == 6
-    results.collect(&:class).collect(&:name).should == ["Animal", "Animal", "Animal", "Task", "Alert", "Alert"]
+    results.count.should == 5
+    results.collect(&:class).collect(&:name).should == ["Animal", "Alert", "Task", "Animal", "Task"]
   end
 
   it "should only return a total of 20 of the recent (Tasks, Alerts, Animals)" do

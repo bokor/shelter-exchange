@@ -14,14 +14,14 @@
 		<div id="shelter_alerts_section" class="<%= "hide" if @shelter_alerts.blank? %>">
 			<h3>Shelter</h3>
 			<div id="shelter_alerts" class="alert_list">
-				<%= render :partial => "alert", :collection => @shelter_alerts %>
+				<%= render @shelter_alerts %>
 			</div>
 		</div>
 
 		<div id="animal_alerts_section" class="<%= "hide" if @animal_alerts.blank? %>">
 			<h3>Animal</h3>
 			<div id="animal_alerts" class="alert_list">
-				<%= render :partial => "alert", :collection => @animal_alerts %>
+				<%= render @animal_alerts %>
 			</div>
 		</div>
 
@@ -43,6 +43,5 @@
 			</ul>
 		<% end %>
 	</div>
-
-
 <% end %>
+

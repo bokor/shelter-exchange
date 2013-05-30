@@ -1,20 +1,16 @@
-<div id="<%= "alert_#{alert.id}" %>" class="alert">
-	<% if can?(:update, Alert) %>
+<div id="<%= dom_id(alert) %>" class="alert">
 	<span class="stop">
 		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stop(this, #{alert.id});" %>
 	</span>
-	<% end %>
 	<span class="type"><div class="<%= alert.severity %>"><%= alert.severity.humanize %></div></span>
 	<span class="created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
 	<span class="details">
 		<span class="title"><%= alert.title %> <%= show_alertable_link(alert) %></span>
 	</span>
 	<span class="action_links">
-		<% if can?(:update, Alert) %>
 		<span class="edit_link">
 			<%= link_to "Edit", edit_alert_path(alert, :format => :js), :remote => true %>
 		</span>
-		<% end %>
 		<% if can?(:destroy, Alert) %>
 		<span class="delete_link">&nbsp;|&nbsp;
 			<%= link_to "Delete", alert, :confirm => "Are you sure you want to delete? This alert will no longer appear in the list.", :method => :delete, :remote => true, :format => :js %>

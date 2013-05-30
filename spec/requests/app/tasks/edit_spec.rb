@@ -166,4 +166,3 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 end
 
-

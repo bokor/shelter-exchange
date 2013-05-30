@@ -13,7 +13,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(animal)}" do
         icon = find(".type img")
         icon[:src].should include("icon_animal.png")
         icon[:class].should include("tooltip")
@@ -28,16 +28,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list animals when the status updated" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy"
+      status1 = AnimalStatus.gen :name => "old"
+      status2 = AnimalStatus.gen :name => "Adopted"
+      animal  = Animal.gen! :shelter => @shelter, :name => "Billy", :animal_status => status1
 
-      # Update Status Only
-      animal.animal_status = AnimalStatus.gen :name => "Adopted"
-      animal.updated_at    = Time.now + 1.hour
-      animal.save!
+      animal.update_attributes!({
+        :animal_status => status2,
+        :updated_at    => Time.now + 10.minutes
+      })
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(animal)}" do
         icon = find(".type img")
         icon[:src].should include("icon_animal.png")
         icon[:class].should include("tooltip")
@@ -61,7 +63,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(animal)}" do
         icon = find(".type img")
         icon[:src].should include("icon_animal.png")
         icon[:class].should include("tooltip")
@@ -85,7 +87,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_1" do
+      within "##{dom_id(task1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_task.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Task"
+
+        find(".title").text.should == "New - a new task."
+
+        find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(task2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_task.png")
         icon[:class].should include("tooltip")
@@ -96,17 +109,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
         find(".title a")[:href].should include(animal_path(animal))
 
         find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
-      end
-
-      within "#activities #activity_2" do
-        icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
-
-        find(".title").text.should == "New - a new task."
-
-        find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
       end
     end
 
@@ -127,7 +129,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(task1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_task.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Task"
+
+        find(".title").text.should == "example task is complete."
+
+        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(task2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_task.png")
         icon[:class].should include("tooltip")
@@ -138,17 +151,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
         find(".title a")[:href].should include(animal_path(animal))
 
         find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
-      end
-
-      within "#activities #activity_1" do
-        icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
-
-        find(".title").text.should == "example task is complete."
-
-        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
       end
     end
 
@@ -167,7 +169,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(task1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_task.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Task"
+
+        find(".title").text.should == "example task was updated."
+
+        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(task2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_task.png")
         icon[:class].should include("tooltip")
@@ -178,17 +191,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
         find(".title a")[:href].should include(animal_path(animal))
 
         find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
-      end
-
-      within "#activities #activity_1" do
-        icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
-
-        find(".title").text.should == "example task was updated."
-
-        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
       end
     end
   end
@@ -202,7 +204,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_1" do
+      within "##{dom_id(alert1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_alert.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Alert"
+
+        find(".title").text.should == "New - Low - a new alert."
+
+        find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(alert2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_alert.png")
         icon[:class].should include("tooltip")
@@ -213,17 +226,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
         find(".title a")[:href].should include(animal_path(animal))
 
         find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
-      end
-
-      within "#activities #activity_2" do
-        icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
-
-        find(".title").text.should == "New - Low - a new alert."
-
-        find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
       end
     end
 
@@ -245,7 +247,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(alert1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_alert.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Alert"
+
+        find(".title").text.should == "Low - example alert has been stopped."
+
+        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(alert2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_alert.png")
         icon[:class].should include("tooltip")
@@ -256,17 +269,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
         find(".title a")[:href].should include(animal_path(animal))
 
         find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
-      end
-
-      within "#activities #activity_1" do
-        icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
-
-        find(".title").text.should == "Low - example alert has been stopped."
-
-        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
       end
     end
 
@@ -286,7 +288,18 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      within "#activities #activity_0" do
+      within "##{dom_id(alert1)}" do
+        icon = find(".type img")
+        icon[:src].should include("icon_alert.png")
+        icon[:class].should include("tooltip")
+        icon[:"data-tip"].should == "Alert"
+
+        find(".title").text.should == "High - example alert was updated."
+
+        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
+      end
+
+      within "##{dom_id(alert2)}" do
         icon = find(".type img")
         icon[:src].should include("icon_alert.png")
         icon[:class].should include("tooltip")
@@ -298,23 +311,12 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
         find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
       end
-
-      within "#activities #activity_1" do
-        icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
-
-        find(".title").text.should == "High - example alert was updated."
-
-        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
-      end
     end
   end
 
-  context "Ordering" do
+  context "Sorting" do
 
-    it "should order by lasted updated" do
+    it "should sort activities by lasted updated" do
       animal1 = Animal.gen :shelter => @shelter, :name => "Animal1", :updated_at => Time.now - 3.minutes
       animal2 = Animal.gen :shelter => @shelter, :name => "Animal2", :updated_at => Time.now - 2.minutes
       task1  = Task.gen :shelter => @shelter, :details => "Task1", :updated_at => Time.now - 1.minutes
@@ -324,7 +326,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      page.body.should =~ /Alert2.*?Alert1.*?Task2.*?Task1.*?Animal2.*?Animal1/m
+      page.body.should =~ /#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m
     end
   end
 end
