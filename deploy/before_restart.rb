@@ -1,5 +1,6 @@
 app_name = "shelter_exchange_app"
-puts "APPLICATION NAME :: #{app}"
+puts ""
+run "echo 'APPLICATION NAME :: #{app}'"
 # Set Current TimeZone
 sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
