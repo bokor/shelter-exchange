@@ -1,9 +1,4 @@
 User-Agent: *
 Allow: /
-Disallow: /images
-Disallow: /javascripts
-Disallow: /stylesheets
-Disallow: /design
-Disallow: /integrations
 Disallow: /uploads
-Sitemap: http://www.shelterexchange.org/sitemap.xml
+Sitemap: http://shelterexchange.s3.amazonaws.com/sitemaps/sitemap.xml.gz

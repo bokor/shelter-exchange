@@ -3,8 +3,8 @@ every 1.day, :at => '2:00 am' do
   rake "integrations:start"
 end
 
-# Ping Search Engines
-every 1.day, :at => '5:00 am' do
-  rake "sitemap:ping"
+# Refresh Sitemap and Ping Search Engines
+every 2.hours do
+  rake "sitemap:refresh"
 end
 

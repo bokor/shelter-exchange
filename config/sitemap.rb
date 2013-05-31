@@ -1,5 +1,19 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://www.shelterexchange.org"
+# pick a place safe to write the files
+SitemapGenerator::Sitemap.public_path = 'tmp/'
+# store on S3 using Fog
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new({
+  :aws_access_key_id => S3_ACCESS_KEY_ID,
+  :aws_secret_access_key => S3_SECRET_ACCESS_KEY,
+  :fog_provider => 'AWS',
+  :fog_directory => S3_BUCKET
+})
+# inform the map cross-linking where to find the other maps
+SitemapGenerator::Sitemap.sitemaps_host = "http://#{S3_BUCKET}.s3.amazonaws.com/"
+# pick a namespace within your bucket to organize your maps
+SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+
 
 SitemapGenerator::Sitemap.create do
 
@@ -12,16 +26,12 @@ SitemapGenerator::Sitemap.create do
   #---------------------------------------------
 
   #-Signup Page--------------------------------------------
-  Dir.chdir(Rails.root.join("app/views/public/accounts"))
-  signup_lastmod   = File.ctime(File.absolute_path("new.html.erb")).strftime("%Y-%m-%d")
-  add public_signup_path, :lastmod => signup_lastmod, :priority => "0.6"
+  add public_signup_path, :changefreq => "monthly", :priority => "0.6"
   #---------------------------------------------
 
   #-Login Page--------------------------------------------
-  Dir.chdir(Rails.root.join("app/views/public/users/sessions"))
-  login_lastmod   = File.ctime(File.absolute_path("new.html.erb")).strftime("%Y-%m-%d")
-  add new_public_user_session_path, :lastmod => login_lastmod, :priority => "0.5"
-  #---------------------------------------------
+  add new_public_user_session_path, :changefreq => "monthly", :priority => "0.5"
+  #-------------------------------------------------------
 
   #-Help a Shelter :: Shelters--------------------------------------------
   add public_help_a_shelter_index_path,
@@ -37,7 +47,7 @@ SitemapGenerator::Sitemap.create do
       :changefreq => "weekly",
       :priority => "0.7"
   end
-  #---------------------------------------------
+  #-------------------------------------------------------------------
 
   #-Save a life :: Animals--------------------------------------------
   add public_save_a_life_index_path,
@@ -50,7 +60,7 @@ SitemapGenerator::Sitemap.create do
       :changefreq => "daily",
       :priority => "0.8"
   end
-  #---------------------------------------------
+  #-------------------------------------------------------------------
 
 end
 
