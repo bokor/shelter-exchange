@@ -1,11 +1,9 @@
-app_name = "shelter_exchange_app"
-run "echo 'APPLICATION NAME :: #{app}' >> ~/deploy.log"
-
+puts "ENVIRONMENT :: #{environment}"
 # Set Current TimeZone
 sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
 # Restart Delayed Job
-restart_delayed_jobs = "monit restart all -g dj_#{app_name}"
+restart_delayed_jobs = "monit restart all -g dj_#{app}"
 
 if environment == "production"
   on_utilities("background_jobs"){ sudo(restart_delayed_jobs) }
@@ -16,7 +14,7 @@ end
 # Update Crontab from Whenever
 if environment == "production"
   on_utilities("background_jobs"){
-    run "cd #{current_path} && bundle exec whenever --update-crontab '#{app_name}_#{environment}'"
+    run "cd #{current_path} && bundle exec whenever --update-crontab '#{app}_#{environment}'"
   }
 end
 
