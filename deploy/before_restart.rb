@@ -1,13 +1,12 @@
-puts "ENVIRONMENT :: #{environment}"
 # Set Current TimeZone
 sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
 # Restart Delayed Job
 restart_delayed_jobs = "monit restart all -g dj_#{app}"
-
-if environment == "production"
+case environment
+when "production"
   on_utilities("background_jobs"){ sudo(restart_delayed_jobs) }
-elsif environment == "staging"
+when "staging"
   sudo(restart_delayed_jobs)
 end
 
