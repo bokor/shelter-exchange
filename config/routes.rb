@@ -369,22 +369,19 @@ ShelterExchangeApp::Application.routes.draw do
 
       # Public :: Pages
       #----------------------------------------------------------------------------
-      resources :pages, :only => [:index, :show, :sitemap]
-      match '/sitemap.xml' => 'pages#sitemap', :format => :xml
+      resources :pages, :only => [:index, :show]
+
       match '*path' => 'pages#show'
       root :to => 'pages#index'
-
     end
 
   end
 
-
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
   # Catch All - If route isn't found then Four oh Four
   #----------------------------------------------------------------------------
-  match "*path", :to => 'errors#routing', :status => 404
-  # match "*path" => redirect("/404.html")   OLD WAY TO DO IT
+  match "*path", :to => 'errors#routing', :status => :not_found
 
 end
+

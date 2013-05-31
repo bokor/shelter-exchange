@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  respond_to :html
+
   def routing
     if status.present? && status == 410
       render :file => "public/410", :format => :html, :layout => false, :status => 410
