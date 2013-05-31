@@ -1,3 +1,5 @@
+# https://github.com/kjvarga/sitemap_generator
+
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://www.shelterexchange.org"
 # pick a place safe to write the files
