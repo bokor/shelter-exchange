@@ -1,5 +1,5 @@
 class Public::PagesController < Public::ApplicationController
-  respond_to :html
+  respond_to :html, :xml
 
   # caches_action :index, :expires_in => 1.hour
   # caches_action :show
@@ -17,6 +17,13 @@ class Public::PagesController < Public::ApplicationController
     render :template => template, :format => :html rescue
     render :template => template_with_index, :format => :html rescue
     render :file => "public/404", :format => :html, :layout => false, :status => :not_found
+  end
+
+  def sitemap
+    sitemap_data = open("https://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz").read
+    send_data( sitemap_data, disposition: "inline", :type => "application/x-gzip" )
+
+    #redirect_to "https://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz"
   end
 
 end

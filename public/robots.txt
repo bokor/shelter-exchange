@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 Disallow: /uploads
-Sitemap: http://shelterexchange.s3.amazonaws.com/sitemaps/sitemap.xml.gz
+Sitemap: http://www.shelterexchange.org/sitemap.xml
