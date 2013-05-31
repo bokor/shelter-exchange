@@ -370,6 +370,8 @@ ShelterExchangeApp::Application.routes.draw do
       # Public :: Pages
       #----------------------------------------------------------------------------
       resources :pages, :only => [:index, :show]
+      match "/sitemap.xml.gz" => redirect("http://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz")
+      match "/sitemap.xml" => redirect("http://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz")
 
       match '*path' => 'pages#show'
       root :to => 'pages#index'
