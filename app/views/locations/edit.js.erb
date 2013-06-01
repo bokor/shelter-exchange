@@ -1,7 +1,12 @@
 $('#location_<%=@location.id%>').hide();
 $('#location_<%=@location.id%>').after("<%= escape_javascript(render 'edit_location', :collection => @location) %>");
 $('#edit_location_<%=@location.id%>').show();
-<% flash.discard %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/locations/{id}/edit"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/locations/{id}/edit"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
+

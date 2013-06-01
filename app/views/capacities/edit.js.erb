@@ -3,4 +3,10 @@ $('#capacity_<%=@capacity.id%>').after( "<%= escape_javascript(render 'edit_capa
 $('#edit_capacity_<%=@capacity.id%>').show();
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/capacities/{id}/edit"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/capacities/{id}/edit"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
+

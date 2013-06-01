@@ -5,4 +5,7 @@
 <% end %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/communities/find_animals_on_map"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/communities/find_animals_on_map"]);
+<% end %>
+

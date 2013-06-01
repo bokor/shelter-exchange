@@ -5,4 +5,7 @@
 <% end %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/filter_by_type_or_location"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/accommodations/filter_by_type_or_location"]);
+<% end %>
+

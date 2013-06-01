@@ -7,3 +7,8 @@
 		$('#shelters').html("<%= escape_javascript( render 'not_found_error') %>");
 	}
 <% end %>
+
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/help_a_shelter/search_by_shelter_or_rescue_group/"]);
+<% end %>
+

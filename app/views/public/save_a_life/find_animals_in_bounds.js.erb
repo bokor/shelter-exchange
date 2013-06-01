@@ -7,4 +7,7 @@
 <% end %>
 
 // Google Analytics
-if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/find_animals_on_map"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/save_a_life/find_animals_on_map"]);
+<% end %>
+

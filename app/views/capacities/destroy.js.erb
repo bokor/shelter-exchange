@@ -2,7 +2,11 @@ $('#capacity_<%= @capacity.id %>').fadeOut(1000, function() {
 	$(this).remove();
 });
 
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/capacities/{id}/destroy"]);
+<% end %>
+
+// Discard Flash Message
 <% flash.discard %>
 
-// Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/capacities/{id}/destroy"]); }

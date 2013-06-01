@@ -6,9 +6,11 @@ $('#user_<%=@user.id%>').fadeOut(1500, function() {
 	$(this).remove();
 });
 
+// Google Analytics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/users/{id}/destroy"]);
+<% end %>
+
 // Discard Flash Message
 <% flash.discard %>
-
-// Google Analytics
-if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/users/{id}/destroy"]); }
 

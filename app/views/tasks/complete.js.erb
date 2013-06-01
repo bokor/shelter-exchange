@@ -3,8 +3,11 @@ $('#task_<%= @task.id %>').fadeOut(1000, function() {
 	Tasks.removeTaskSection();
 });
 
-<% flash.discard %>
-
 // Google Analytics
-if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/tasks/{id}/complete"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/tasks/{id}/complete"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
 

@@ -11,4 +11,6 @@
 <% end %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/communities/find_animals_for_shelter"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/communities/find_animals_for_shelter"]);
+<% end %>

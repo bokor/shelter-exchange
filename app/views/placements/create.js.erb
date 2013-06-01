@@ -20,6 +20,12 @@
   $('#create_placement').slideToggle();
 
   // Google Anayltics
-  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/placements/{id}/new"]); }
+  <% if Rails.env.production? %>
+    _gaq.push(['_trackPageview', "/placements/{id}/new"]);
+  <% end %>
+
 <% end %>
+
+// Discard Flash Message
 <% flash.discard %>
+

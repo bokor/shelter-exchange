@@ -7,4 +7,7 @@
 <% end %>
 
 // Google Analytics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/find_shelters_on_map"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/help_a_shelter/find_shelters_on_map"]);
+<% end %>
+

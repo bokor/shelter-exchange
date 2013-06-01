@@ -17,7 +17,12 @@
 	$('#create_transfer_form li').removeClass("error");
 
   // Google Analytics
-  if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/transfers/{id}/new"]); }
+  <% if Rails.env.production? %>
+    _gaq.push(['_trackPageview', "/transfers/{id}/new"]);
+  <% end %>
 
 <% end %>
+
+// Discard Flash Message
 <% flash.discard %>
+

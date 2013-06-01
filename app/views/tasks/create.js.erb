@@ -29,9 +29,12 @@
   $('#create_task_form li').removeClass("error");
 
   // Google Analytics
-  if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/tasks/{id}/new"]); }
+  <% if Rails.env.production? %>
+    _gaq.push(['_trackPageview', "/tasks/{id}/new"]);
+  <% end %>
 
 <% end %>
 
+// Discard Flash Message
 <% flash.discard %>
 

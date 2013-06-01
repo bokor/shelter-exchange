@@ -1,8 +1,11 @@
 <% unless @accommodations.blank? %>
-$('#accommodations').html( "<%= escape_javascript( render 'accommodation_list', :accommodations => @accommodations ) %>" );
+  $('#accommodations').html( "<%= escape_javascript( render 'accommodation_list', :accommodations => @accommodations ) %>" );
 <% else %>
-$('#accommodations').html( "<div class='no_results'><h2>No Accommodations found</h2></div>" );
+  $('#accommodations').html( "<div class='no_results'><h2>No Accommodations found</h2></div>" );
 <% end %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/search"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/accommodations/search"]);
+<% end %>
+

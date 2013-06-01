@@ -5,5 +5,7 @@
 <% end %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/placements/find_comments"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/placements/find_comments"]);
+<% end %>
 

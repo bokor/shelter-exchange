@@ -18,8 +18,12 @@
   $('#users').append("<%= escape_javascript(render @user) %>");
 
   // Google Analytics
-  if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/users/{id}/invite"]); }
+  <% if Rails.env.production? %>
+    _gaq.push(['_trackPageview', "/users/{id}/invite"]);
+  <% end %>
 
 <% end %>
+
 // Discard Flash Message
 <% flash.discard %>
+

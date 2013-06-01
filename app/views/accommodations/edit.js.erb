@@ -1,7 +1,12 @@
 $('#accommodation_<%=@accommodation.id%>').hide();
 $('#accommodation_<%=@accommodation.id%>').after("<%= escape_javascript(render 'edit_accommodation', :collection => @accommodation) %>");
 $('#edit_accommodation_<%=@accommodation.id%>').show();
-<% flash.discard %>
 
 // Google Anayltics
-if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/{id}/edit"]); }
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/accommodations/{id}/edit"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
+
