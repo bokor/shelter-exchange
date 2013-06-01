@@ -2,17 +2,20 @@
 	$('#create_capacity_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @capacity) %>" );
 	<%= render 'shared/ajax_form_errors', :target => @capacity, :form_id => "create_capacity_form" %>
 <% else %>
-    $('#capacity_help').hide();
-	$('#capacities').prepend("<%= escape_javascript(render 'capacity', :capacity => @capacity) %>"); 
+  $('#capacity_help').hide();
+	$('#capacities').prepend("<%= escape_javascript(render 'capacity', :capacity => @capacity) %>");
 	$(".capacity").first().effect("highlight", {}, 1500);
 
 	// Clear Form
 	$('#create_capacity_form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#create_capacity_errors').html("");
 	$('#create_capacity_form p.error').remove();
-	$('#create_capacity_form li').removeClass("error");
-	
+  $('#create_capacity_form li').removeClass("error");
+
+  // Google Anayltics
+  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/capacities/{id}/new"]); }
+
 <% end %>
 <% flash.discard %>

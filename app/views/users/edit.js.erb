@@ -2,3 +2,7 @@ $('#user_<%=@user.id%>').hide();
 $('#user_<%=@user.id%>').after("<%= escape_javascript(render 'edit_user') %>");
 $('#edit_user_<%=@user.id%>').show();
 <% flash.discard %>
+
+// Google Analytics
+if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/users/{id}/edit"]); }
+

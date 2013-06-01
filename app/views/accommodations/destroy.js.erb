@@ -1,4 +1,7 @@
-$('#accommodation_<%= @accommodation.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#accommodation_<%= @accommodation.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/{id}/destroy"]); }

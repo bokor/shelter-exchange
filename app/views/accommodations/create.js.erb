@@ -3,15 +3,19 @@
 	<%= render 'shared/ajax_form_errors', :target => @accommodation, :form_id => "create_accommodation_form" %>
 <% else %>
 	// Add Location
-	$(".accommodation_list").prepend("<%= escape_javascript(render @accommodation) %>"); 
+	$(".accommodation_list").prepend("<%= escape_javascript(render @accommodation) %>");
 	$(".accommodation").first().effect("highlight", {}, 1000);
-	
+
 	// Clear Form
 	$('#create_accommodation_form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#create_accommodation_errors').html("");
 	$('#create_accommodation_form p.error').remove();
-	$('#create_accommodation_form li').removeClass("error");
+  $('#create_accommodation_form li').removeClass("error");
+
+  // Google Anayltics
+  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/{id}/new"]); }
+
 <% end %>
 <% flash.discard %>

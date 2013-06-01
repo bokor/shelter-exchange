@@ -51,11 +51,7 @@ var SaveALife = {
 			url: "/save_a_life/find_animals_in_bounds.js",
 			type: "get",
 			dataType: 'script',
-			data: $("#form_filters").serialize(),
-			success: function( data ) {
-				// Update Google Analytics if production
-				if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/save_a_life/search/"+$("#city_zipcode").val()]); }
-			}
+			data: $("#form_filters").serialize()
 		});
 	},
 	bindFilters: function(){

@@ -1,5 +1,8 @@
-$('#capacity_<%= @capacity.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#capacity_<%= @capacity.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/capacities/{id}/destroy"]); }

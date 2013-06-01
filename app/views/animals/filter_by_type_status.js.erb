@@ -3,3 +3,6 @@
 <% else %>
 	$('#animals').html( "<div class='no_results'><h2>No Animals found</h2></div>" );
 <% end %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/animals/filter_by_type_or_status"]); }

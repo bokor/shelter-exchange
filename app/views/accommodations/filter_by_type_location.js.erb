@@ -3,3 +3,6 @@
 <% else %>
 	$('#accommodations').html( "<div class='no_results'><h2>No Accommodations found</h2></div>" );
 <% end %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/accommodations/filter_by_type_or_location"]); }

@@ -8,14 +8,17 @@
 
 	// Reset Form
 	$('#new_invitation form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#new_invitation_errors').html("");
 	$('#new_invitation form p.error').remove();
 	$('#new_invitation form li').removeClass("error");
-	
+
 	// Add User to Table
-	$('#users').append("<%= escape_javascript(render @user) %>"); 
+  $('#users').append("<%= escape_javascript(render @user) %>");
+
+  // Google Analytics
+  if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/users/{id}/invite"]); }
 
 <% end %>
 // Discard Flash Message

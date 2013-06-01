@@ -3,3 +3,7 @@
 <% else %>
 	$('#commments').html( "<div class='no_results'><h2>No comments found</h2></div>" );
 <% end %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/placements/find_comments"]); }
+

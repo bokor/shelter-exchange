@@ -1,1 +1,4 @@
 $('#parents').html( "<%= escape_javascript( render 'parent_list', :parents => @parents) %>" );
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/parents/search"]); }
