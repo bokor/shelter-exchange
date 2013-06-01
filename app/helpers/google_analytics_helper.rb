@@ -1,17 +1,20 @@
 module GoogleAnalyticsHelper
 
   def trackable_pageview
-    found = Rails.application.routes.router.recognize(request){}
+    trackable_path = request.path
+    found          = Rails.application.routes.router.recognize(request){}
 
-    if found.empty?
-      return request.path
+    unless found.empty?
+      match, parameters, route = found.first
+      route_path = route.path.spec.to_s
+
+      unless route_path.include?("*path")
+        route_string   = route_path.gsub("(.:format)", "")
+        trackable_path = route_string.gsub(/:(\w+)?/, '{id}') # Replace dynamic segments with {id}
+      end
     end
 
-    match, parameters, route = found.first
-    route_string = route.path.spec.to_s.gsub("(.:format)", "")
-
-    # Replace dynamic segments with {id}
-    route_string.gsub(/:(\w+)?/, '{id}')
+    trackable_path
   end
 
 end
