@@ -3,3 +3,6 @@ $('#alert_<%=@alert.id%>').after( "<%= escape_javascript(render 'edit_alert', :c
 $('#edit_alert_<%=@alert.id%>').show();
 
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/alerts/{id}/edit"]); }

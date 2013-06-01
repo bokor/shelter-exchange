@@ -1,5 +1,9 @@
-$('#placement_<%= @placement.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#placement_<%= @placement.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/placements/{id}/destroy"]); }
+

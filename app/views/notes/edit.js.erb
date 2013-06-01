@@ -2,3 +2,6 @@ $('#note_<%=@note.id%>').hide();
 $('#note_<%=@note.id%>').after("<%= escape_javascript(render 'edit_note', :collection => @note) %>");
 $('#edit_note_<%=@note.id%>').show();
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/notes/{id}/edit"]); }

@@ -20,7 +20,8 @@ $('#edit_task_<%=@task.id%> .task_due_category').bind("change", function() {Task
 	$('#edit_task_<%=@task.id%> .due_date_field').parent().hide(); // Hide LI tag
 <% end %>
 
-// Not sure this is needed
-//Tasks.dueDate("#edit_task_<%=@task.id%>");
-
 <% flash.discard %>
+
+// Google Analytics
+if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/tasks/{id}/edit"]); }
+

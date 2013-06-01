@@ -2,3 +2,6 @@
 
 $('#<%=integration_type%>_connection').html( '<%= escape_javascript(render "integrations/#{integration_type}/form", :integration => @integration) %>' );
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/integrations/{id}/destroy"]); }

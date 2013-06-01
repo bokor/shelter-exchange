@@ -3,15 +3,18 @@
 	<%= render 'shared/ajax_form_errors', :target => @location, :form_id => "create_location_form" %>
 <% else %>
 	// Add Location
-	$('#locations').prepend("<%= escape_javascript(render @location) %>"); 
+	$('#locations').prepend("<%= escape_javascript(render @location) %>");
 	$(".location").first().effect("highlight", {}, 1000);
 
 	// Clear Form
 	$('#create_location_form').get(0).reset();
-	
+
 	// Remove Errors
 	$('#create_location_errors').html("");
 	$('#create_location_form p.error').remove();
-	$('#create_location_form li').removeClass("error");
+  $('#create_location_form li').removeClass("error");
+
+  // Google Anayltics
+  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/locations/{id}/new"]); }
 <% end %>
 <% flash.discard %>

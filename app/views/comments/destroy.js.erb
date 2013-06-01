@@ -1,4 +1,7 @@
-$('#comment_<%= @comment.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#comment_<%= @comment.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/comments/{id}/destroy"]); }

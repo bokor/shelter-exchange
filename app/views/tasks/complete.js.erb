@@ -1,6 +1,10 @@
-$('#task_<%= @task.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#task_<%= @task.id %>').fadeOut(1000, function() {
+	$(this).remove();
 	Tasks.removeTaskSection();
 });
 
 <% flash.discard %>
+
+// Google Analytics
+if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/tasks/{id}/complete"]); }
+
