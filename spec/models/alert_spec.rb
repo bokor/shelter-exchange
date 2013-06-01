@@ -122,20 +122,6 @@ describe Alert, ".stopped" do
   end
 end
 
-describe Alert, ".with_alertable" do
-pending "Need to implement"
-
-  #it "should include alertable objects" do
-    #Alert.gen :alertable => Animal.gen
-
-    #Alert.with_alertable.count.should == 1
-    #Alert.with_alertable.all.should include(alert2)
-    #Alert.should_receive(:with_alertable).with(:include => :alertable)
-    #alert.animal.should be_loaded
-    #alert.instance_variables[:@relation].should be_a_kind_of(Animal)
-  #end
-end
-
 describe Alert, ".for_shelter" do
 
   it "should return only the shelter wide alerts" do

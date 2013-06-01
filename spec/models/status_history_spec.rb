@@ -81,15 +81,18 @@ describe "Reportable" do
 
     animal_type = AnimalType.gen :name => "Dog"
 
+    AnimalStatus.destroy_all
     status1 = AnimalStatus.gen :id => AnimalStatus::STATUSES[:available_for_adoption], :name => "Available for adoption"
     status2 = AnimalStatus.gen :id => AnimalStatus::STATUSES[:adopted], :name => "Adopted"
 
     animal = Animal.gen :animal_type => animal_type, :animal_status => status1
 
-    @status_history1 = StatusHistory.gen :created_at => Date.civil(2013, 02, 05), :animal => animal, :animal_status => status1, :shelter => shelter1
-    @status_history2 = StatusHistory.gen :created_at => Date.civil(2013, 02, 04), :animal => animal, :animal_status => status2, :shelter => shelter1
-    @status_history3 = StatusHistory.gen :created_at => Date.civil(2013, 02, 04), :animal => animal, :animal_status => status2, :shelter => shelter2
-    @status_history4 = StatusHistory.gen :created_at => Date.civil(2013, 03, 04), :animal => animal, :animal_status => status1, :shelter => shelter2
+    @date_for_status_history = Date.civil(2013, 02, 05)
+
+    @status_history1 = StatusHistory.gen :created_at => @date_for_status_history, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter1
+    @status_history2 = StatusHistory.gen :created_at => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter1
+    @status_history3 = StatusHistory.gen :created_at => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter2
+    @status_history4 = StatusHistory.gen :created_at => @date_for_status_history + 1.month, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter2
   end
 
   describe StatusHistory, ".by_month" do
@@ -145,12 +148,12 @@ describe "Reportable" do
       status_histories = StatusHistory.totals_by_month(2013, :available_for_adoption, true).all
 
       # Setting this because the Animal creates another Status history
-      current_month = Date.today.strftime("%B").downcase
+      current_month = @date_for_status_history.strftime("%B").downcase
+      next_month    = (@date_for_status_history + 1.month).strftime("%B").downcase
 
       status_histories[0].type.should                == "Dog"
       status_histories[0].send(current_month).should == 1
-      status_histories[0].february.should            == 1
-      status_histories[0].march.should               == 1
+      status_histories[0].send(next_month).should    == 1
     end
   end
 end
