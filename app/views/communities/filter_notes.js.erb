@@ -1,1 +1,4 @@
 $('#notes').html( "<%= escape_javascript(render @notes) %>" );
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/communities/{id}/filter_notes"]); }

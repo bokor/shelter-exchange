@@ -53,11 +53,7 @@ var HelpAShelter = {
 			url: "/help_a_shelter/find_shelters_in_bounds.js",
 			type: "get",
 			dataType: 'script',
-			data: $("#form_city_zipcode_search").serialize(),
-			success: function( data ) {
-				// Update Google Analytics if production
-				if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#city_zipcode").val()]); }
-			}
+			data: $("#form_city_zipcode_search").serialize()
 		});
 	},
 	findAnimalsForShelter: function(){
@@ -65,11 +61,7 @@ var HelpAShelter = {
 			url: "/help_a_shelter/find_animals_for_shelter",
 			type: "get",
 			dataType: 'script',
-			data: $("#form_filters").serialize(),
-			success: function( data ) {
-				// Update Google Analytics if production
-				if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/help_a_shelter/search/"+$("#filters_shelter_id").val()]); }
-			}
+			data: $("#form_filters").serialize()
 		});
 	},
 	bindFilters: function(){

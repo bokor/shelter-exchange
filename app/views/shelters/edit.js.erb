@@ -1,2 +1,6 @@
 $('#items_section').hide();
 $('#items_section').after( "<%= escape_javascript(render 'items/edit_items', :collection => @shelter) %>" );
+
+// Google Analytics
+if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/shelters/{id}/edit_wish_list"]); }
+

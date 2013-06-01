@@ -378,11 +378,5 @@ ShelterExchangeApp::Application.routes.draw do
 
   end
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  # Catch All - If route isn't found then Four oh Four
-  #----------------------------------------------------------------------------
-  match "*path", :to => 'errors#routing', :status => :not_found
-
 end
 

@@ -2,16 +2,19 @@
 	$('#create_comment_errors').html( "<%= escape_javascript(render 'shared/error_messages', :target => @comment) %>" );
 	<%= render 'shared/ajax_form_errors', :target => @comment, :form_id => "create_comment_form" %>
 <% else %>
-	$('#comments').prepend("<%= escape_javascript(render @comment) %>"); 
+	$('#comments').prepend("<%= escape_javascript(render @comment) %>");
 	$("#comments .comment").first().effect("highlight", {}, 1000);
-		
+
 	// Clear Form
 	$('#create_comment_form').get(0).reset();
 
 	// Remove Errors
 	$('#create_comment_errors').html("");
 	$('#create_comment_form p.error').remove();
-	$('#create_comment_form li').removeClass("error");
+  $('#create_comment_form li').removeClass("error");
+
+  // Google Anayltics
+  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/comments/{id}/new"]); }
 
 <% end %>
 <% flash.discard %>

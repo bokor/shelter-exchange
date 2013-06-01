@@ -26,7 +26,11 @@
 	// Remove Errors
 	$('#create_task_errors').html("");
 	$('#create_task_form p.error').remove();
-	$('#create_task_form li').removeClass("error");
+  $('#create_task_form li').removeClass("error");
+
+  // Google Analytics
+  if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/tasks/{id}/new"]); }
+
 <% end %>
 
 <% flash.discard %>

@@ -24,7 +24,10 @@
 	// Remove Errors
 	$('#create_note_errors').html("");
 	$('#create_note_form p.error').remove();
-	$('#create_note_form li').removeClass("error");
+  $('#create_note_form li').removeClass("error");
+
+  // Google Anayltics
+  if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/notes/{id}/new"]); }
 <% end %>
 
 <% flash.discard %>

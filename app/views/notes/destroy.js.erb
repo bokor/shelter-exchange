@@ -1,4 +1,7 @@
-$('#note_<%= @note.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#note_<%= @note.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 <% flash.discard %>
+
+// Google Anayltics
+if (typeof(_gaq) != "undefined") { _gaq.push(['_trackPageview', "/notes/{id}/destroy"]); }

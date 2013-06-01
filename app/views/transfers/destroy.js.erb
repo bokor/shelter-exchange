@@ -1,4 +1,8 @@
-$('#transfer_<%= @transfer.id %>').fadeOut(1000, function() { 
-	$(this).remove(); 
+$('#transfer_<%= @transfer.id %>').fadeOut(1000, function() {
+	$(this).remove();
 });
 <% flash.discard %>
+
+// Google Analytics
+if (typeof(_gaq) != "undefined") {  _gaq.push(['_trackPageview', "/transfers/{id}/destroy"]); }
+
