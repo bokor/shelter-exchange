@@ -10,7 +10,10 @@ module GoogleAnalyticsHelper
 
       unless route_path.include?("*path")
         route_string   = route_path.gsub("(.:format)", "")
-        trackable_path = route_string.gsub(/:(\w+)?/, '{id}') # Replace dynamic segments with {id}
+
+        if route_string.include?(":id")
+          trackable_path = route_string.gsub(/:(\w+)?/, '{id}') # Replace dynamic segments with {id}
+        end
       end
     end
 
