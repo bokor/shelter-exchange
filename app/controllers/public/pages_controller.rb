@@ -21,7 +21,7 @@ class Public::PagesController < Public::ApplicationController
 
   def sitemap
     #sitemap_data = open("https://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz").read
-    #send_data( sitemap_data, disposition: "inline", :type => "application/x-gzip" )
+    #send_data( sitemap_data, disposition: "inline", :type => "application/xml" )
 
     redirect_to "http://s3.amazonaws.com/shelterexchange/sitemaps/sitemap.xml.gz", :status => :moved_permanently
   end
