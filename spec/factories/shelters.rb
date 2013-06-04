@@ -7,7 +7,7 @@ FactoryGirl.define do
     website         "http://www.shelterexchange.org"
     twitter         "@shelterexchange"
     facebook        "http://www.facebook.com/shelterexchange"
-    street          "123 Main Street"
+    street          "123 Main St."
     street_2        "Apt 101"
     city            "Redwood City"
     state           "CA"
@@ -17,4 +17,3 @@ FactoryGirl.define do
     is_kill_shelter false
   end
 end
-

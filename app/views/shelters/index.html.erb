@@ -47,33 +47,36 @@
 					<div class="shelter_type no_kill">No Kill Shelter</div>
 				<% end %>
 			</div>
-			<div id="contact_details">
-				<h3>Contact Details:</h3>
-				<ul>
-					<li>Phone:  <%= number_to_phone(@shelter.phone, :delimiter => "-") %></li>
+			<div id="contact_info">
+				<div id="contact_details">
+					<h3>Contact Details:</h3>
+					<ul>
+						<li>Phone:  <%= number_to_phone(@shelter.phone, :delimiter => "-") %></li>
 
-					<% unless @shelter.fax.blank? %>
-						<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
-					<% end %>
+						<% unless @shelter.fax.blank? %>
+							<li>Fax:  <%= number_to_phone(@shelter.fax, :delimiter => "-") %></li>
+						<% end %>
 
-					<li>Email:  <%= @shelter.email %></li>
-				</ul>
-
-				<h3>Website Details:</h3>
-				<ul>
-					<li class="action_links">
-						<% unless @shelter.website.blank? %>
-						<span><%= link_to "Website", @shelter.website, :target => "_blank" %>|</span>
-						<% end %>
-						<% unless @shelter.twitter.blank? %>
-						<span><%= link_to "Twitter", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
-						<% end %>
-						<% unless @shelter.facebook.blank? %>
-						<span><%= link_to "Facebook", @shelter.facebook, :target => "_blank" %>|</span>
-						<% end %>
-						<span><%= link_to "Help a Shelter", public_help_a_shelter_url(@shelter, :subdomain => "www"), :target => "_blank" %></span>
-					</li>
-				</ul>
+						<li>Email:  <%= @shelter.email %></li>
+					</ul>
+				</div>
+    		<div id="website_details">
+					<h3>Website Details:</h3>
+					<ul>
+						<li class="action_links">
+							<% unless @shelter.website.blank? %>
+							<span><%= link_to "Website", @shelter.website, :target => "_blank" %>|</span>
+							<% end %>
+							<% unless @shelter.twitter.blank? %>
+							<span><%= link_to "Twitter", "http://twitter.com/#!/#{@shelter.twitter.slice(1..-1)}", :target => "_blank" %>|</span>
+							<% end %>
+							<% unless @shelter.facebook.blank? %>
+							<span><%= link_to "Facebook", @shelter.facebook, :target => "_blank" %>|</span>
+							<% end %>
+							<span><%= link_to "Help a Shelter", public_help_a_shelter_url(@shelter, :subdomain => "www"), :target => "_blank" %></span>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
