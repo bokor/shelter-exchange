@@ -15,8 +15,9 @@ end
 
 # Configure Capybara
 Capybara.configure do |config|
-  config.default_selector  = :css
-  config.current_driver    = :rack_test
-  config.javascript_driver = :firefox
-  config.default_wait_time = 5
+  config.default_selector    = :css
+  config.current_driver      = :rack_test
+  config.javascript_driver   = :firefox
+  config.default_wait_time   = 5
+  config.always_include_port = true
 end
