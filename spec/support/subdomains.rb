@@ -7,13 +7,13 @@
 #   visit root_path
 # end
 
-DEFAULT_DOMAIN = "lvh.me"
-DEFAULT_PORT   = 9292
+DEFAULT_DOMAIN = Rails.application.routes.default_url_options[:host]
+DEFAULT_PORT   = Rails.application.routes.default_url_options[:port]
 
 RSpec.configure do |config|
   Capybara.default_host = "http://www.#{DEFAULT_DOMAIN}"
   Capybara.server_port = DEFAULT_PORT
-  Capybara.app_host = "http://www.#{DEFAULT_DOMAIN}:#{Capybara.server_port}"
+  Capybara.app_host = "http://www.#{DEFAULT_DOMAIN}:#{DEFAULT_PORT}"
 end
 
 def switch_to_subdomain(subdomain)
