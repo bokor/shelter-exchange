@@ -87,7 +87,7 @@ describe "Index: Shelter Page", :js => :true do
         find_link("Website")[:href].should include(@shelter.website)
         find_link("Twitter")[:href].should == "http://twitter.com/#!/shelterexchange"
         find_link("Facebook")[:href].should == @shelter.facebook
-        find_link("Help a Shelter")[:href].should == public_help_a_shelter_url(@shelter, :subdomain => "www", :port => DEFAULT_PORT)
+        find_link("Help a Shelter")[:href].should == public_help_a_shelter_url(@shelter, :subdomain => "www")
       end
     end
 

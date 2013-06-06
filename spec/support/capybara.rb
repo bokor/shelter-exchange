@@ -19,5 +19,13 @@ Capybara.configure do |config|
   config.current_driver      = :rack_test
   config.javascript_driver   = :firefox
   config.default_wait_time   = 5
-  config.always_include_port = true
+
+  # Support for Rspec / Capybara subdomain integration testing
+  config.default_host = Rails.application.routes.default_url_options[:host]
+  config.server_port  = Rails.application.routes.default_url_options[:port]
+  config.app_host     = "http://www.#{Capybara.default_host}:#{Capybara.server_port}"
+end
+
+def switch_to_subdomain(subdomain)
+  Capybara.app_host = "http://#{subdomain}.#{Capybara.default_host}:#{Capybara.server_port}"
 end
