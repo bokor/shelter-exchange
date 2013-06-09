@@ -12,3 +12,5 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
 end
 
+#, :vcr => { :cassette_name => "app/shelter/google_maps" }
+
