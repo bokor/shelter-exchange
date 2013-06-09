@@ -372,8 +372,8 @@ ShelterExchangeApp::Application.routes.draw do
       resources :pages, :only => [:index, :show, :sitemap]
       match '/sitemap.xml' => 'pages#sitemap', :format => :xml
 
-      match '*path' => 'pages#show'
       root :to => 'pages#index'
+      match '*path' => 'pages#show'
     end
 
   end
