@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Index: Shelter Page", :js => :true do
+describe "Index: Shelter Page", :vcr => { :cassette_name => "app/shelter/google_maps" }, :js => :true do
 
   before do
     @account, @user, @shelter = login
@@ -115,3 +115,4 @@ describe "Index: Shelter Page", :js => :true do
 
   end
 end
+

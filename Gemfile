@@ -91,14 +91,15 @@ group :test do
   gem "factory_girl_rails"
   gem "factory_girl_extensions"
   gem "capybara"
-  # gem "capybara-webkit"
   gem "capybara-email"
   gem "launchy"
   gem "database_cleaner"
-  #gem "artifice"
+  gem "vcr"
+  gem "webmock"
 end
 
 
+# gem "capybara-webkit"
 
 # Checkout Later
 # gem "mime_types"

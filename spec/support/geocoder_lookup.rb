@@ -3,7 +3,6 @@ RSpec.configure do |config|
   config.before :suite do
     Geocoder.configure(:lookup => :test)
 
-    #TODO: Use Artifice, Fakeweb or VCR to mock the web calls
     Geocoder::Lookup::Test.set_default_stub(
       [
         {
@@ -19,7 +18,4 @@ RSpec.configure do |config|
     )
   end
 end
-
-
-
 
