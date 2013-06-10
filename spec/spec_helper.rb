@@ -28,5 +28,9 @@ RSpec.configure do |config|
   # Helper Files
   config.include CapybaraHelper, :type => :request
   config.include AccountHelper, :type => :request
+
+  config.before :suite do
+    ActiveRecord::Base.observers.disable :all
+  end
 end
 
