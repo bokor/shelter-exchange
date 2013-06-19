@@ -3,7 +3,7 @@ module AccountHelper
   def login
     account = Account.gen
     user    = account.users.first
-    shelter = account.shelters.first 
+    shelter = account.shelters.first
 
     switch_to_subdomain(account.subdomain)
     login_with(user)

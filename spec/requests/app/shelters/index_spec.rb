@@ -115,3 +115,4 @@ describe "Index: Shelter Page", :js => :true do
 
   end
 end
+
