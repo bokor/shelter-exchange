@@ -12,7 +12,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|s| require s }
 RSpec.configure do |config|
   config.mock_with :rspec
 
-  config.use_transactional_fixtures                      = false
+  config.use_transactional_fixtures = false
   config.treat_symbols_as_metadata_keys_with_true_values = true # in RSpec 3 this will no longer be necessary.
 
   config.include ActionController::RecordIdentifier, :type => :request
