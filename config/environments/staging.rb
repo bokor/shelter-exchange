@@ -25,10 +25,9 @@ ShelterExchangeApp::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = "//shelterexchange-staging.s3.amazonaws.com"
+  config.action_controller.asset_host = "shelterexchange-staging.s3.amazonaws.com"
 
   Rails.application.routes.default_url_options = { :host => 'se-staging.org' } # Fixes issue with Presenters not allowing Routes and Url Helper
-
   config.action_mailer.default_url_options     = { :host => 'se-staging.org' }
   config.action_mailer.delivery_method         = :sendmail
   config.action_mailer.sendmail_settings       = {:arguments => '-i'}
