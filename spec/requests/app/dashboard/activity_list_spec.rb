@@ -58,7 +58,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       # Update any other field but status
       animal.name       = "Abbey"
-      animal.updated_at = Date.today + 1.day
+      animal.updated_at = Date.today + 2.days
       animal.save!
 
       visit dashboard_path

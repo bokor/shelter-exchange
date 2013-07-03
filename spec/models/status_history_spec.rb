@@ -73,7 +73,7 @@ describe StatusHistory, ".create_with" do
   end
 end
 
-describe "Reportable" do
+describe "Reports" do
 
   before do
     shelter1 = Shelter.gen :state => "CA"

@@ -5,6 +5,8 @@ module ShelterExchange
       include Sprockets::Helpers::IsolatedHelper
 
       def perform
+        # Add Date to publish date if you can do a fuzzy search for a name (like overlay-9879008.kml) and search for overlay)
+
         FOG_BUCKET.files.create(
           :key => "maps/overlay.kmz",
           :body => build_kmz_file,

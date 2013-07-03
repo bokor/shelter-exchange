@@ -1,20 +1,18 @@
 module Statusable
   extend ActiveSupport::Concern
 
-  included do
-
-    scope :active, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::ACTIVE)
-    scope :non_active, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::NON_ACTIVE)
-    scope :available, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::AVAILABLE)
-    scope :for_capacity, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::CAPACITY)
-    scope :available_for_adoption, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:available_for_adoption])
-    scope :adoption_pending, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:adoption_pending])
-    scope :adopted, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:adopted])
-    scope :foster_care, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:foster_care])
-    scope :reclaimed, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:reclaimed])
-    scope :euthanized, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:euthanized])
-    scope :transferred, where(:"#{self.table_name}.animal_status_id" => AnimalStatus::STATUSES[:transferred])
-
+  included do |base|
+    base.scope :active, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::ACTIVE)
+    base.scope :non_active, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::NON_ACTIVE)
+    base.scope :available, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::AVAILABLE)
+    base.scope :for_capacity, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::CAPACITY)
+    base.scope :available_for_adoption, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:available_for_adoption])
+    base.scope :adoption_pending, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:adoption_pending])
+    base.scope :adopted, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:adopted])
+    base.scope :foster_care, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:foster_care])
+    base.scope :reclaimed, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:reclaimed])
+    base.scope :euthanized, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:euthanized])
+    base.scope :transferred, where(:"#{base.table_name}.animal_status_id" => AnimalStatus::STATUSES[:transferred])
   end
 
   def available?
