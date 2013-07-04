@@ -12,7 +12,6 @@ module Uploadable
     #----------------------------------------------------------------------------
     attr_accessor :guid
     attr_accessor :timestamp
-
   end
 
   def generate_guid!(length=8)

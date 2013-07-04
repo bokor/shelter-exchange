@@ -11,7 +11,6 @@ module Geocodeable
     # Callbacks
     #----------------------------------------------------------------------------
     after_validation :geocode, :if => :address_changed?
-
   end
 
   module ClassMethods
