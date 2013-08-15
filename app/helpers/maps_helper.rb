@@ -2,7 +2,7 @@ module MapsHelper
 
   def map_shelter_icon
     # if Rails.env.development?
-      image_path("logo_xsmall.png")
+      image_path("logo_xsmall.png", :protocol => "http")
     # else
     #   "http://#{Rails.application.config.action_controller.asset_host}/assets/logo_xsmall.png"
     # end
