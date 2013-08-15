@@ -1,11 +1,11 @@
 module MapsHelper
 
   def map_shelter_icon
-    # if Rails.env.development?
+    if hostname = Rails.application.config.action_controller.asset_host
+      "http://#{hostname}/assets/logo_xsmall.png"
+    else
       image_path("logo_xsmall.png", :protocol => "http")
-    # else
-    #   "http://#{Rails.application.config.action_controller.asset_host}/assets/logo_xsmall.png"
-    # end
+    end
   end
 
   def shelter_info_window(shelter)
