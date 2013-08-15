@@ -1,4 +1,14 @@
 module MapsHelper
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
+
+  def map_shelter_icon
+    if Rails.env.development?
+      image_path("logo_xsmall.png")
+    else
+      "http://#{Rails.application.config.action_controller.asset_host}/assets/logo_xsmall.png"
+    end
+  end
 
   def shelter_info_window(shelter)
     output =  "<h2><a href='#{Rails.application.routes.url_helpers.public_help_a_shelter_url(shelter, :subdomain => 'www')}'>#{shelter.name}</a></h2>"

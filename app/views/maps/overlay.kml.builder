@@ -5,7 +5,7 @@ xml.kml :xmlns => "http://www.opengis.net/kml/2.2" do
     xml.Style :id => "shelterExchangeLogo" do
       xml.IconStyle do
         xml.Icon do
-          xml.href image_path("logo_xsmall.png", :protocol => "http")
+          xml.href map_shelter_icon
         end
       end
     end

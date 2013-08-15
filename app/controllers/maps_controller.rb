@@ -1,7 +1,4 @@
 class MapsController < ApplicationController
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
-
   layout false
 
   def overlay
