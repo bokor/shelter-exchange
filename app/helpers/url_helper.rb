@@ -11,7 +11,7 @@ module UrlHelper
     if options.kind_of?(Hash) && options.has_key?(:subdomain)
       options[:host] = with_subdomain(options.delete(:subdomain))
     end
-    #options[:protocol] ||= 'http'
+    # options[:protocol] ||= 'http'
     super
   end
 
