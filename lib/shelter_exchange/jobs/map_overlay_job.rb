@@ -1,8 +1,6 @@
 module ShelterExchange
   module Jobs
     class MapOverlayJob
-      include Sprockets::Helpers::RailsHelper
-      include Sprockets::Helpers::IsolatedHelper
 
       def perform
         # Add Date to publish date if you can do a fuzzy search for a name (like overlay-9879008.kml) and search for overlay)
@@ -18,7 +16,6 @@ module ShelterExchange
       end
 
       private
-
       def build_kmz_file
         Zippy.new("overlay.kml" => MapsController.new.overlay).data
       end

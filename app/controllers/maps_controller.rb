@@ -1,6 +1,9 @@
 class MapsController < ApplicationController
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
+
   layout false
-  
+
   def overlay
     @shelters = Shelter.active.all
     render_to_string 'overlay', :format => :kml
@@ -16,14 +19,14 @@ end
 #   include AbstractController::Translation
 #   include AbstractController::AssetPaths
 #   include Rails.application.routes.url_helpers
-#   
+#
 #   helper MapsHelper
-#   
+#
 #   self.view_paths = "app/views"
-#   
+#
 #   def overlay
 #     @shelters = Shelter.all
 #     return render_to_string("overlay.kml")
 #   end
-# 
+#
 # end
