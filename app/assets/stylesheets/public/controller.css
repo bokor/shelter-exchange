@@ -288,7 +288,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .get_involved_page .box.odd{float:left; padding-right: 1%;}
 .get_involved_page .box.even{float:right; padding-left: 1%;}
 .get_involved_page .box:hover{ cursor: pointer; -moz-box-shadow:  0px 0px 10px #f16649; -webkit-box-shadow:  0px 0px 10px #f16649; box-shadow:  0px 0px 10px #f16649;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
-.get_involved_page .box a{padding: 25px;text-align:center; margin: 0 auto;}
+.get_involved_page .box div{padding: 25px;text-align:center; margin: 0 auto;}
 .get_involved_page .box div h2{padding-bottom: 5px;padding-top: 5px; margin:0;}
 
 .get_involved_page .box a{color:#cf7019; text-decoration:none;}
