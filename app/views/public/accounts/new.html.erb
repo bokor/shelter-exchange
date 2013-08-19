@@ -8,7 +8,7 @@
 			/* Signup - Subdomain Autofill
 			/*----------------------------------------------------------------------------*/
 			var formatSubdomain = function(value) { return value.replace(/[^a-zA-Z]+/g, '').toLowerCase().substr(0,50); }
-			
+
 			$("#account_shelters_attributes_0_name").keyup(function() {
 				var subdomain = formatSubdomain($(this).val());
 				$("#account_subdomain").val(subdomain);
@@ -19,12 +19,12 @@
 				$(".subdomain_highlight").text(subdomain);
 				$(this).val(subdomain);
 			});
-			
+
 			if ($("#account_subdomain").val() != "") {
 				$(".subdomain_highlight").text($("#account_subdomain").val());
 			}
-			
-			// if (subdomain.substring(subdomain.length-1) == "-"){ 
+
+			// if (subdomain.substring(subdomain.length-1) == "-"){
 			// 	subdomain = subdomain.substring(0, subdomain.length-1);
 			// }
 		});
@@ -34,19 +34,19 @@
 <%= content_for :page_content do %>
 
 	<ul class="submenu">
-		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/get_involved/shelters_and_rescues">Shelters and Rescues</a></li>
+		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/shelters_and_rescues">Shelters and Rescues</a></li>
 		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Sign Up</a></li>
 		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
 	</ul>
-	
-	<h1>Create a new account 
+
+	<h1>Create a new account
 		<span class="social">
 			<span class="facebook"><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
 		</span>
 	</h1>
-	
+
 	<%= render "shared/error_messages", :target => @account %>
-		
+
 	<%= form_for (@account), :url => public_signup_path, :html => { :multipart => true } do |account_form| %>
 
 		<%= account_form.fields_for :shelters do |shelter_fields| %>
@@ -59,7 +59,7 @@
 			</li>
 			<li class="full">
 				<%= shelter_fields.label :name, "Organization Name <span class='req'>*</span>".html_safe, :class => "desc" %>
-				<div><%= shelter_fields.text_field :name, :class => "field text medium" %></div>					
+				<div><%= shelter_fields.text_field :name, :class => "field text medium" %></div>
 				<%= has_error_message?(@account.shelters.first, :name)%>
 			</li>
 			<li class="full complex">
@@ -123,7 +123,7 @@
 				<%= has_error_message?(@account.shelters.first, :time_zone)%>
 			</li>
 			<li><p></p></li>
-				
+
 			<li class="section">
 				<section>
 					<h3>Step 2:  Organization Status</h3>
@@ -153,9 +153,9 @@
 				<%= account_form.hidden_field :document_cache, :class => "field file" %>
 				<%= has_error_message?(@account, :document)%>
 			</li>
-				
+
 			<li><p></p></li>
-				
+
 			<%= account_form.fields_for :users do |user_fields| %>
 				<li class="section">
 					<section>
@@ -184,7 +184,7 @@
 					<%= has_error_message?(@account.users.first, :password_confirmation)%>
 				</li>
 			<% end %>
-				
+
 			<li><p></p></li>
 
 			<li class="section">
@@ -214,7 +214,7 @@
 		</ul>
 	<% end %>
 
-	
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>
