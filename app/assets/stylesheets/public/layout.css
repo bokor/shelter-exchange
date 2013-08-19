@@ -58,7 +58,7 @@ footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color:
 header nav a { color:#fff; text-decoration:none; font-weight:normal; font-size: 11px; text-transform: uppercase; }
 
 header nav .menu { float:left; list-style:none; text-align:left; }
-header nav .menu li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 10px; padding: 0 15px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
+header nav .menu li { position:relative;cursor: pointer; width: auto;line-height: 45px; min-height: 45px; margin: 0 5px; padding: 0 15px; text-align:left; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 45px; }
 header nav .menu li:hover, header nav .menu li.current { background: url(/assets/public/background-body.jpg) repeat; -moz-box-shadow:inset 0px 0px 10px #888; -webkit-box-shadow:inset 0px 0px 10px #888; box-shadow: inset 0px 0px 10px #888; -moz-border-radius: 10px 10px 0px 0px;-webkit-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;}
 header nav .menu li:hover a, header nav .menu li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
 
@@ -77,7 +77,7 @@ header nav .side_menu .donate{right: 0px;background: url(/assets/public/tabs_don
 
 /* IE Hack :: Header :: Nav */
 /******************************************************************/
-.ie header nav .menu li{margin: 0 8px; padding: 0 12px;}
+.ie header nav .menu li{margin: 0 5px; padding: 0 10px;}
 .ie header nav .menu li:hover, .ie header nav .menu li.current {z-index:10;behavior: url(/assets/pie/PIE.htc); }
 .ie .side_menu{font: normal 9px Tahoma;}
 

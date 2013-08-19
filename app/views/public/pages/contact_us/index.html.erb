@@ -6,24 +6,12 @@
 
 <%= content_for :page_content do %>
 
-	<h1>Contact us 
+	<h1>Contact us
 		<span class="social">
 			<span class="facebook"><div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div></span>
 		</span>
 	</h1>
 	<p>Interested in fundraising? Looking to donate through your company? Want to find out more about our work? Please use the form below to get in touch.</p>
-
-	<div id="contact_details" itemscope itemtype="http://schema.org/Organization">
-		<span class="name" itemprop="name"><h3>Shelter Exchange</h3></span>
-		<br>
-		<!-- <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-			<p><span itemprop="streetAddress">P.O. Box 91301</span></p>
-		    <p><span itemprop="addressLocality">Raleigh, NC <span class="postalCode" itemprop="postalCode">27675</span></span></p>
-		</div> -->
-		<p>Tel: <span itemprop="telephone">919-725-7173</span></p>
-		<p>E-mail: <span itemprop="email"><a href="mailto:info@shelterexchange.org?subject=Contact us">info(at)shelterexchange.org</a></span></p>
-	</div>
-
 
 	<div id="contact_form" class="form">
 		<script type="text/javascript">
@@ -34,8 +22,8 @@
 		<script type="text/javascript">
 			var s7x2p7 = new WufooForm();
 			s7x2p7.initialize({
-				'userName':'shelterexchange', 
-				'formHash':'s7x2p7', 
+				'userName':'shelterexchange',
+				'formHash':'s7x2p7',
 				'autoResize':true,
 				'height':'594',
 				'header':'hide',
@@ -44,7 +32,7 @@
 			s7x2p7.display();
 		</script>
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>

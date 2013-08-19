@@ -166,20 +166,6 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .ie section.mission_statement p{font-size:12px;}
 
 
-/********************************************************************/
-/* -------------------------- CONTACT US -------------------------- */
-/********************************************************************/
-
-
-/* Contact us */
-/******************************************************************/
-.contact_us_page #contact_details{float:left; width: 29%;}
-.contact_us_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
-.contact_us_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
-.contact_us_page #contact_details div{padding-bottom: 15px;}
-.contact_us_page #contact_form{float:left; border-left: 1px #bbb dotted; width: 66%; padding-left: 4%;}
-
-
 /******************************************************************/
 /* -------------------------- ABOUT US -------------------------- */
 /******************************************************************/
@@ -261,27 +247,48 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .donate_page h3{border:none;padding:0; margin:0;text-align:center;}
 
 
+/******************************************************************************/
+/* -------------------------- SHELTERS AND RESCUES -------------------------- */
+/******************************************************************************/
+
+/* Shelters and Rescues :: Sub Menu */
+/******************************************************************/
+.shelters_and_rescues_page .submenu{ padding-top: 5px;line-height: 1em;}
+.shelters_and_rescues_page .submenu li{padding: 0px 10px; }
+.shelters_and_rescues_page .submenu a{ text-decoration: none; color: #444;font-size: 11px;font-weight: bold;}
+.shelters_and_rescues_page .submenu a:hover{cursor: pointer;color: #CF7019;}
+
+/* Shelters and Rescues */
+/******************************************************************/
+.shelters_and_rescues_page .feature{width: 100%;position: relative; }
+.shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.shelters_and_rescues_page .feature:last-child{padding-bottom: 20px;}
+.shelters_and_rescues_page .feature h3{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}
+.shelters_and_rescues_page .feature p{padding-bottom: 10px;}
+.shelters_and_rescues_page .feature ul {width: 550px; float:left;}
+.shelters_and_rescues_page .feature li {display:inline-block;width: 255px; padding-left: 17px; vertical-align:top;}
+.shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
+.shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
+.shelters_and_rescues_page .feature .screenshot img{-moz-box-shadow: 0 0 6px #222;-moz-box-shadow: 0 0 6px #222;box-shadow: 0 0 6px #222;}
+
+/* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
+/******************************************************************/
+.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
+
 /**********************************************************************/
 /* -------------------------- GET INVOLVED -------------------------- */
 /**********************************************************************/
-
-/* Get Involved :: Sub Menu */
-/******************************************************************/
-.get_involved_shelters_and_rescues_page .submenu{ padding-top: 5px;line-height: 1em;}
-.get_involved_shelters_and_rescues_page .submenu li{padding: 0px 10px; }
-.get_involved_shelters_and_rescues_page .submenu a{ text-decoration: none; color: #444;font-size: 11px;font-weight: bold;}
-.get_involved_shelters_and_rescues_page .submenu a:hover{cursor: pointer;color: #CF7019;}
 
 /* Get Involved */
 /******************************************************************/
 .get_involved_page .sections {list-style: none;}
 .get_involved_page .sections li{ margin-bottom: 40px;}
 
-.get_involved_page .box{width: 48%; margin-bottom: 15px; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
+.get_involved_page .box{display: inline-block; width: 30%; margin-left: 3%; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
 .get_involved_page .box.odd{float:left; padding-right: 1%;}
 .get_involved_page .box.even{float:right; padding-left: 1%;}
 .get_involved_page .box:hover{ cursor: pointer; -moz-box-shadow:  0px 0px 10px #f16649; -webkit-box-shadow:  0px 0px 10px #f16649; box-shadow:  0px 0px 10px #f16649;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
-.get_involved_page .box div{padding: 25px;text-align:center; margin: 0 auto;}
+.get_involved_page .box a{padding: 25px;text-align:center; margin: 0 auto;}
 .get_involved_page .box div h2{padding-bottom: 5px;padding-top: 5px; margin:0;}
 
 .get_involved_page .box a{color:#cf7019; text-decoration:none;}
@@ -293,26 +300,6 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 /******************************************************************/
 .ie7 .get_involved_page .box, .ie8 .get_involved_page .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 .ie7 .get_involved_page .box:hover, .ie8 .get_involved_page .box:hover{behavior: url(/assets/pie/PIE.htc);}
-
-
-
-/* Get Involved :: Shelters and Rescues */
-/******************************************************************/
-.get_involved_shelters_and_rescues_page .feature{width: 100%;position: relative; }
-.get_involved_shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.get_involved_shelters_and_rescues_page .feature:last-child{padding-bottom: 20px;}
-/*.get_involved_shelters_and_rescues_page .feature h2{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}*/
-.get_involved_shelters_and_rescues_page .feature h3{border-bottom: 1px #bbb dotted; padding-bottom: 10px; margin-bottom: 10px;}
-.get_involved_shelters_and_rescues_page .feature p{padding-bottom: 10px;}
-.get_involved_shelters_and_rescues_page .feature ul {width: 550px; float:left;}
-.get_involved_shelters_and_rescues_page .feature li {display:inline-block;width: 255px; padding-left: 17px; vertical-align:top;}
-.get_involved_shelters_and_rescues_page .feature li p{padding-bottom: 0px; }
-.get_involved_shelters_and_rescues_page .feature .screenshot{width: 400px; float:left; padding-right: 10px; }
-.get_involved_shelters_and_rescues_page .feature .screenshot img{-moz-box-shadow: 0 0 6px #222;-moz-box-shadow: 0 0 6px #222;box-shadow: 0 0 6px #222;}
-
-/* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
-/******************************************************************/
-.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
 
 
 /******************************************************************************/

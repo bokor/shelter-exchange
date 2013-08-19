@@ -372,6 +372,11 @@ ShelterExchangeApp::Application.routes.draw do
       resources :pages, :only => [:index, :show, :sitemap]
       match '/sitemap.xml' => 'pages#sitemap', :format => :xml
 
+
+      # Public :: Pages :: Redirects
+      #----------------------------------------------------------------------------
+      match "/get_involved/shelters_and_rescues", :to => redirect("/shelters_and_rescues")
+
       match '*path' => 'pages#show'
       root :to => 'pages#index'
     end
