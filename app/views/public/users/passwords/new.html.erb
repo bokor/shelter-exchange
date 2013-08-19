@@ -9,17 +9,17 @@
 <%= content_for :page_content do %>
 
 	<ul class="submenu">
-		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/get_involved/shelters_and_rescues">Shelters and Rescues</a></li>
+		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/shelters_and_rescues">Shelters and Rescues</a></li>
 		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Sign Up</a></li>
 		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
 	</ul>
 
 	<h1>Forgot your password?</h1>
-	
+
 	<%= render "shared/error_messages", :target => resource %>
-		
+
 	<%= form_for(resource, :as => :user, :url => password_path(:user), :html => { :method => :post, :id => "reset_password_form" }) do |f| %>
-		
+
 		<ul>
 	  		<li class="half">
 	  			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -33,6 +33,6 @@
 			</li>
 		</ul>
 	<% end %>
-	
+
 <% end %>
 <%= content_for :sidebar do %><% end %>

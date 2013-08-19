@@ -7,7 +7,7 @@
 <%= content_for :page_content do %>
 
 	<ul class="submenu">
-		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/get_involved/shelters_and_rescues">Shelters and Rescues</a></li>
+		<li><a class="<%=sub_navigation(:shelters_and_rescues)%>" href="/shelters_and_rescues">Shelters and Rescues</a></li>
 		<li><a class="<%=sub_navigation(:signup)%>" href="/signup">Sign Up</a></li>
 		<li><a class="<%=sub_navigation(:login)%>" href="/login">Login</a></li>
 	</ul>
@@ -15,7 +15,7 @@
 	<h1>Login</h1>
 
 	<%= render "shared/flash_messages" %>
-		
+
 	<%= form_for(resource, :as => :user, :url => session_path(:user)) do |f| %>
 
 		<ul class="half">
@@ -35,7 +35,7 @@
 				<% if devise_mapping.rememberable? %>
 				<div>
 					<span>
-						<%= f.check_box :remember_me, :class => "field checkbox" %>  
+						<%= f.check_box :remember_me, :class => "field checkbox" %>
 						<%= f.label :remember_me, :class => "choice" %>
 					</span>
 				</div>
@@ -49,8 +49,8 @@
 				<% end %>
 			</li>
 		</ul>
-		
+
 	<% end %>
-	
+
 <% end %>
 <%= content_for :sidebar do %><% end %>
