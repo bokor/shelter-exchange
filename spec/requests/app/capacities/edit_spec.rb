@@ -24,7 +24,7 @@ describe "Edit: Capacity Page", :js => :true do
     end
 
     within "##{dom_id(@capacity)}" do
-      find(".status").text.should  == "Dog"
+      page.should have_content("Dog")
     end
   end
 
