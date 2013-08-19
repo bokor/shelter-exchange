@@ -273,7 +273,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
 /******************************************************************/
-.ie7 .get_involved_shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
+.ie7 .shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
 
 /**********************************************************************/
 /* -------------------------- GET INVOLVED -------------------------- */
@@ -284,7 +284,7 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .get_involved_page .sections {list-style: none;}
 .get_involved_page .sections li{ margin-bottom: 40px;}
 
-.get_involved_page .box{display: inline-block; width: 30%; margin-left: 3%; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
+.get_involved_page .box{display: inline-block; width: 300px; margin: 0 5px 0 10px; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
 .get_involved_page .box.odd{float:left; padding-right: 1%;}
 .get_involved_page .box.even{float:right; padding-left: 1%;}
 .get_involved_page .box:hover{ cursor: pointer; -moz-box-shadow:  0px 0px 10px #f16649; -webkit-box-shadow:  0px 0px 10px #f16649; box-shadow:  0px 0px 10px #f16649;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
