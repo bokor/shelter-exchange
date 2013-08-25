@@ -17,20 +17,22 @@ var resizeListener = null;
 var Maps = {
 	createMap: function(){
 		geocoder = new google.maps.Geocoder();
-		map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
+    map      = new google.maps.Map(document.getElementById("map_canvas"), { scrollwheel: false, mapTypeId: google.maps.MapTypeId.ROADMAP});
 
     if ($("#city_zipcode").val() != "") {
       kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
       Maps.geocodeAddress();
-    } else if (google.loader.ClientLocation) {
-      var state = States.lookup(google.loader.ClientLocation.address.region);
-      if (state != undefined) {
-        $("#city_zipcode").val(state);
-        kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
-        Maps.geocodeAddress();
-      } else {
-        kmlLayer = new google.maps.KmlLayer(mapOverlay);
-      }
+    } else if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position){ //Success
+          kmlLayer = new google.maps.KmlLayer(mapOverlay); //, { preserveViewport: true });
+          Maps.reverseGeocode(position.coords.latitude, position.coords.longitude);
+          Maps.geocodeAddress();
+        },
+        function(){ //Failure
+          kmlLayer = new google.maps.KmlLayer(mapOverlay);
+        }
+      );
     } else {
       kmlLayer = new google.maps.KmlLayer(mapOverlay);
     }
@@ -56,6 +58,32 @@ var Maps = {
 		    }
 		  });
 		}
+	},
+  reverseGeocode: function(latitude, longitude){
+    var formatted_address = "";
+    var city              = "";
+    var state             = "";
+    var state_abbr        = "";
+    var latLng            = new google.maps.LatLng(latitude, longitude);
+
+    geocoder.geocode( { latLng: latLng }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        formatted_address = results[0].formatted_address;
+        /* if (formatted_address.indexOf("USA") != -1) { formatted_address.replace(", USA", ""); } */
+
+        $.each(results[0].address_components, function(index, addr) {
+          if(addr.types[0] == ['administrative_area_level_1']) { // State
+            state      = addr.long_name;
+            state_abbr = addr.short_name;
+          } else if(addr.types[0] == ['locality']) { // City
+            city = addr.long_name;
+          }
+        });
+
+        $("#city_zipcode").val(state);
+        /* map.fitBounds(results[0].geometry.viewport); */
+      }
+    });
 	},
 	breedAutoComplete: function(closeFunction){
 		$("#filters_breed").autocomplete({
