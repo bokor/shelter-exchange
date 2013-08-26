@@ -60,6 +60,15 @@ class Admin::ExportsController < Admin::ApplicationController
 
   # Shelter Exports
   #----------------------------------------------------------------------------
+  def signed_up_last_thirty_days_emails
+    shelter_ids = Shelter.select(:id).where(:created_at, [Date.today..Date.today - 30.days])
+
+    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
+      User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+
+    generate_csv_with_emails(results)
+  end
+
   def never_used_before_emails
     shelter_ids = Shelter.select("DISTINCT(shelters.id)").
                           joins("LEFT OUTER JOIN animals on animals.shelter_id = shelters.id").

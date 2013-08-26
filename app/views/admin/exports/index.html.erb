@@ -26,6 +26,7 @@
 
     <h2>Shelters</h2>
     <div>
+      <span><%= link_to "Signed up in the last 30 days", admin_export_path(:export_type => :signed_up_last_thirty_days_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
       <span><%= link_to "Never used before", admin_export_path(:export_type => :never_used_before_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
       <span><%= link_to "Not used in the past 30 days", admin_export_path(:export_type => :not_used_past_thirty_days_emails), :class => "button" %></span>&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
