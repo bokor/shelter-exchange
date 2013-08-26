@@ -22,22 +22,33 @@ var Maps = {
     if ($("#city_zipcode").val() != "") {
       kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
       Maps.geocodeAddress();
+      kmlLayer.setMap(map);
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position){ //Success
-          kmlLayer = new google.maps.KmlLayer(mapOverlay); //, { preserveViewport: true });
-          Maps.reverseGeocode(position.coords.latitude, position.coords.longitude);
-          Maps.geocodeAddress();
+          var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+          geocoder.geocode( { latLng: latLng }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+				      map.fitBounds(results[0].geometry.viewport);
+              map.setZoom(8);
+              kmlLayer.setMap(map);
+            } else {
+              kmlLayer   = new google.maps.KmlLayer(mapOverlay);
+              kmlLayer.setMap(map);
+            }
+          });
         },
         function(){ //Failure
-          kmlLayer = new google.maps.KmlLayer(mapOverlay);
+          kmlLayer = new google.maps.KmlLayer(mapOverlay, { preserveViewport: true });
+          kmlLayer.setMap(map);
         }
-      );
+      , {timeout: 1500, maximumAge:900000000});
     } else {
       kmlLayer = new google.maps.KmlLayer(mapOverlay);
+      kmlLayer.setMap(map);
     }
-
-    kmlLayer.setMap(map);
 	},
   viewportDistance: function(){
     var sw = map.getBounds().getSouthWest();
@@ -60,30 +71,7 @@ var Maps = {
 		}
 	},
   reverseGeocode: function(latitude, longitude){
-    var formatted_address = "";
-    var city              = "";
-    var state             = "";
-    var state_abbr        = "";
-    var latLng            = new google.maps.LatLng(latitude, longitude);
 
-    geocoder.geocode( { latLng: latLng }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        formatted_address = results[0].formatted_address;
-        /* if (formatted_address.indexOf("USA") != -1) { formatted_address.replace(", USA", ""); } */
-
-        $.each(results[0].address_components, function(index, addr) {
-          if(addr.types[0] == ['administrative_area_level_1']) { // State
-            state      = addr.long_name;
-            state_abbr = addr.short_name;
-          } else if(addr.types[0] == ['locality']) { // City
-            city = addr.long_name;
-          }
-        });
-
-        $("#city_zipcode").val(state);
-        /* map.fitBounds(results[0].geometry.viewport); */
-      }
-    });
 	},
 	breedAutoComplete: function(closeFunction){
 		$("#filters_breed").autocomplete({
