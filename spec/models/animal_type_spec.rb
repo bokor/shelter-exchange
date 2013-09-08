@@ -3,7 +3,7 @@ require "spec_helper"
 # Constants
 #----------------------------------------------------------------------------
 describe AnimalType, "::TYPES" do
-  it "should contain a default list of types" do
+  it "contains a default list of types" do
     AnimalType::TYPES.should == {
       :dog     => 1,
       :cat     => 2,
@@ -26,12 +26,12 @@ describe AnimalType, "#animals" do
     @animal2     = Animal.gen :animal_type => @animal_type
   end
 
-  it "should return a list of animals" do
+  it "returns a list of animals" do
     @animal_type.animals.count.should == 2
     @animal_type.animals.should =~ [@animal1, @animal2]
   end
 
-  it "should return readonly animals" do
+  it "returns readonly animals" do
     @animal_type.animals[0].should be_readonly
     @animal_type.animals[1].should be_readonly
   end
@@ -45,12 +45,12 @@ describe AnimalType, "#breeds" do
     @breed2      = Breed.gen :animal_type => @animal_type
   end
 
-  it "should return a list of breeds" do
+  it "returns a list of breeds" do
     @animal_type.breeds.count.should == 2
     @animal_type.breeds.should =~ [@breed1, @breed2]
   end
 
-  it "should return readonly breeds" do
+  it "returns readonly breeds" do
     @animal_type.breeds[0].should be_readonly
     @animal_type.breeds[1].should be_readonly
   end
@@ -64,12 +64,12 @@ describe AnimalType, "#accommodations" do
     @accommodation2 = Accommodation.gen :animal_type => @animal_type
   end
 
-  it "should return a list of accommodations" do
+  it "returns a list of accommodations" do
     @animal_type.accommodations.count.should == 2
     @animal_type.accommodations.should =~ [@accommodation1, @accommodation2]
   end
 
-  it "should return readonly accommodations" do
+  it "returns readonly accommodations" do
     @animal_type.accommodations[0].should be_readonly
     @animal_type.accommodations[1].should be_readonly
   end
@@ -83,12 +83,12 @@ describe AnimalType, "#capacities" do
     @capacity2   = Capacity.gen :animal_type => @animal_type
   end
 
-  it "should return a list of capacities" do
+  it "returns a list of capacities" do
     @animal_type.capacities.count.should == 2
     @animal_type.capacities.should =~ [@capacity1, @capacity2]
   end
 
-  it "should return readonly capacities" do
+  it "returns readonly capacities" do
     @animal_type.capacities[0].should be_readonly
     @animal_type.capacities[1].should be_readonly
   end

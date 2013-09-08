@@ -17,25 +17,47 @@
 	<div id="email_logo">
 		<%= image_tag attachments['logo_email.jpg'].url -%>
 	</div>
-	
+
 	<p>Hi <%= @user.first_name %>,</p>
 
-	<p>Thank you so much for signing up to use Shelter Exchange. I hope our application brings your organization many benefits and much success with saving the lives of animals in need.</p>
-	
-	<p>Please note! Here is your personal URL that provides you direct access to sign in to Shelter Exchange. We strongly recommend that you bookmark this URL for ease of use</p>
-	
+  <p>Thank you for signing up to use Shelter Exchange, I hope our application brings your organization
+  many benefits and much success with saving the lives of the animals in your care.</p>
+
+  <p>Please note! Here is your personal URL that provides you direct access to sign in to Shelter Exchange.
+  We strongly recommend that you bookmark this URL for ease of use to sign in:</p>
+
 	<p><%= link_to "#{root_url(:subdomain => @account.subdomain)}", root_url(:subdomain => @account.subdomain) %></p>
 
-	<p>Please note that the adoptable animals you enter into the Shelter Exchange application will be available on our public website <a href="http://www.shelterexchange.org">www.shelterexchange.org</a> under the heading <strong>Save a Life</strong>. Here you can gain additional exposure from the public to promote adoptions at your facility.</p>
+  <p>The adoptable animals you enter into the Shelter Exchange application will be available on our
+  public website under the heading <a href="http://www.shelterexchange.org/save_a_life">Save a Life</a>. Here you can gain additional
+  exposure from the public to promote adoptions at your facility and we also provide sharing buttons
+  for each animal using Facebook, Twitter and Pinterest.</p>
 
-	<p>In the application there is a button called Community. Here you can view all shelters and rescue groups currently using Shelter Exchange and the animals they have available. This information is only available to shelters and rescue groups to view, as we provide an insight into all animals, not just those available for adoption. We encourage you to visit this section often if you can help take in other animals to your facility. This is where we display animals with the greatest needs or the shortest time to live. Additionally if you have animals that you need to share with other groups please ensure you enter them in under the correct status. (For example, a hard behavioral case would be best served as a 'Rescue Candidate.' This informs other rescues that the animal needs assistance and would make an ideal candidate for a rescue group.)</p>
+  <p>Shelter Exchange have partnered with <a href="http://www.petfinder.com">Petfinder.com</a> and <a href="http://www.adoptapet.com">Adopt-a-pet.com</a> to provide simple
+  automatic uploading of animals to their sites. You can implement the automatic uploads by following the directions here:</p>
 
-	<p>We have various help documents that can be found by clicking the Help button at the top right section of the application window. Here is our Getting Started section to assist with setting up</p>
-	
+  <ul>
+    <li>Petfinder - <a href="http://help.shelterexchange.org/help/kb/community-sharing/upload-animals-to-petfinder">http://help.shelterexchange.org/help/kb/community-sharing/upload-animals-to-petfinder</a></li>
+    <li>Adopt-a-pet - <a href="http://help.shelterexchange.org/help/kb/community-sharing/upload-animals-to-adopt-a-petcom">http://help.shelterexchange.org/help/kb/community-sharing/upload-animals-to-adopt-a-petcom</a></li>
+  </ul>
+
+  <p>Also, once you have signed in to the application you will notice a button called <strong>Community</strong>.
+  Here you can view all shelters and rescue groups currently using Shelter Exchange and the animals they have
+  available. This information is only available to shelters and rescue groups that are using Shelter Exchange, as we
+  provide an insight into all animals in need, not just those available for adoption. We encourage you to visit this
+  section often if you can help take in other animals to your facility. This is where we display animals with the
+  greatest needs or the shortest time to live. Additionally if you have animals that you need to share with other
+  groups please ensure you enter them in under the correct status. (For example, a hard behavioral case would be
+  best served as a 'Rescue Candidate.' This informs other rescues that the animal needs assistance and would make
+  an ideal candidate for a rescue group.)</p>
+
+  <p>We have various help documents that can be found by clicking the Help button at the top right section of the
+  application window. Here is our Getting Started section to assist with setting up:</p>
+
 	<p><a href="http://help.shelterexchange.org/help/kb/getting-started">http://help.shelterexchange.org/help/kb/getting-started</a></p>
 
-	<p>If you have any questions, suggestions or problems please feel free to post them on our forum discussions board and we will answer as soon as we can</p>
-	
+	<p>If you have any questions, suggestions or problems please feel free to post them on our forum discussions board and we will answer as soon as we can!</p>
+
 	<p><a href="http://help.shelterexchange.org/help/discussions">http://help.shelterexchange.org/help/discussions</a></p>
 
 

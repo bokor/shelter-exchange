@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_validation :downcase_subdomain, :assign_owner_role
+  before_create :downcase_subdomain
 
   # Constants
   #----------------------------------------------------------------------------
@@ -13,7 +13,7 @@ class Account < ActiveRecord::Base
   #----------------------------------------------------------------------------
   mount_uploader :document, AttachmentUploader
 
-  has_many :users, :uniq => true, :dependent => :destroy
+  has_many :users, :dependent => :destroy
   has_many :shelters, :dependent => :destroy
 
   # Nested Attributes
@@ -43,10 +43,6 @@ class Account < ActiveRecord::Base
 
   def downcase_subdomain
     self.subdomain.downcase!
-  end
-
-  def assign_owner_role
-    self.users.first.role = User::OWNER
   end
 end
 
