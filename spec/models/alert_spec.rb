@@ -2,17 +2,17 @@ require "spec_helper"
 
 describe Alert do
 
-  it "should have a default scope" do
+  it "has a default scope" do
     Alert.scoped.to_sql.should == Alert.order('alerts.created_at DESC').to_sql
   end
 
-  it "should require presence of title" do
+  it "requires presence of title" do
     alert = Alert.new :title => nil
     alert.should have(1).error_on(:title)
     alert.errors[:title].should == ["cannot be blank"]
   end
 
-  it "should require inclusion of severity" do
+  it "requires inclusion of severity" do
     alert = Alert.new :severity => "#{Alert::SEVERITIES[0]} blah"
     alert.should have(1).error_on(:severity)
     alert.errors[:severity].should == ["needs to be selected"]
@@ -22,7 +22,7 @@ end
 # Constants
 #----------------------------------------------------------------------------
 describe Alert, "::SEVERITIES" do
-  it "should contain a default list of severities" do
+  it "contains a default list of severities" do
     Alert::SEVERITIES.should == ["high", "medium", "low"]
   end
 end
@@ -31,14 +31,14 @@ end
 #----------------------------------------------------------------------------
 describe Alert, "#shelter" do
 
-  it "should belong to a shelter" do
+  it "belongs to a shelter" do
     shelter = Shelter.new
     alert   = Alert.new :shelter => shelter
 
     alert.shelter.should == shelter
   end
 
-  it "should return a readonly shelter" do
+  it "returns a readonly shelter" do
     alert = Alert.gen
     alert.reload.shelter.should be_readonly
   end
@@ -46,7 +46,7 @@ end
 
 describe Alert, "#alertable" do
 
-  it "should belong to a alertable object" do
+  it "belongs to a alertable object" do
     item   = Item.new
     animal = Animal.new
     alert1 = Alert.new :alertable => item
@@ -62,7 +62,7 @@ end
 
 describe Alert, "#stopped?" do
 
-  it "should validate if the alert is stopped" do
+  it "validates if the alert is stopped" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
@@ -73,7 +73,7 @@ end
 
 describe Alert, "#active?" do
 
-  it "should validate if the alert is active" do
+  it "validates if the alert is active" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
@@ -84,7 +84,7 @@ end
 
 describe Alert, "#alertable?" do
 
-  it "should validate if the note has an alertable association" do
+  it "validates if the note has an alertable association" do
     animal = Animal.new
     alert1 = Alert.new :alertable => animal
     alert2 = Alert.new
@@ -98,7 +98,7 @@ end
 #----------------------------------------------------------------------------
 describe Alert, ".active" do
 
-  it "should return only the active alerts" do
+  it "returns only the active alerts" do
     alert1 = Alert.gen
     alert2 = Alert.gen :stopped => true
 
@@ -111,7 +111,7 @@ end
 
 describe Alert, ".stopped" do
 
-  it "should return only the stopped non_active alerts" do
+  it "returns only the stopped non_active alerts" do
     alert1 = Alert.gen
     alert2 = Alert.gen :stopped => true
 
@@ -124,7 +124,7 @@ end
 
 describe Alert, ".for_shelter" do
 
-  it "should return only the shelter wide alerts" do
+  it "returns only the shelter wide alerts" do
     alert1 = Alert.gen
     alert2 = Alert.gen :alertable => Animal.gen
 
@@ -137,7 +137,7 @@ end
 
 describe Alert, ".for_animals" do
 
-  it "should return only the alerts assigned to an animal" do
+  it "returns only the alerts assigned to an animal" do
     alert1 = Alert.gen
     alert2 = Alert.gen :alertable => Animal.gen
 
@@ -150,7 +150,7 @@ end
 
 describe Alert, ".recent_activity" do
 
-  it "should return only the most recent activity per limit" do
+  it "returns only the most recent activity per limit" do
     alert1 = Alert.gen :updated_at => Time.now - 2.hour
     alert2 = Alert.gen :updated_at => Time.now - 1.hour
     alert3 = Alert.gen :updated_at => Time.now

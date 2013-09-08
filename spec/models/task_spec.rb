@@ -2,11 +2,11 @@ require "spec_helper"
 
 describe Task do
 
-  it "should have a default scope" do
+  it "has a default scope" do
     Task.scoped.to_sql.should == Task.order('tasks.due_date ASC, tasks.updated_at DESC').to_sql
   end
 
-  it "should require presence of details" do
+  it "requires presence of details" do
     task = Task.gen :details => nil
     task.should have(1).error_on(:details)
     task.errors[:details].should == ["cannot be blank"]
@@ -17,14 +17,14 @@ end
 #----------------------------------------------------------------------------
 describe Task, "::CATEGORIES" do
 
-  it "should contain a default list of Categories" do
+  it "contains a default list of Categories" do
     Task::CATEGORIES.should == ["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"]
   end
 end
 
 describe Task, "::DUE_CATEGORIES" do
 
-  it "should contain a default list of Due Categories" do
+  it "contains a default list of Due Categories" do
     Task::DUE_CATEGORIES.should == ["today", "tomorrow", "later", "specific_date"]
   end
 end
@@ -40,7 +40,7 @@ describe Task, "#shelter" do
     task.shelter.should == shelter
   end
 
-  it "should return a readonly shelter" do
+  it "returns a readonly shelter" do
     task = Task.gen
     task.reload.shelter.should be_readonly
   end
@@ -48,7 +48,7 @@ end
 
 describe Note, "#taskable" do
 
-  it "should belong to a taskable object" do
+  it "belongs to a taskable object" do
     item   = Item.new
     animal = Animal.new
     task1  = Task.new :taskable => item
@@ -64,7 +64,7 @@ end
 
 describe Task, "#taskable?" do
 
-  it "should validate if the task has an taskable association" do
+  it "validates if the task has an taskable association" do
     item  = Item.new
     task1 = Task.new :taskable => item
     task2 = Task.new
@@ -76,7 +76,7 @@ end
 
 describe Task, "#completed?" do
 
-  it "should validate if the task has been completed" do
+  it "validates if the task has been completed" do
     task1 = Task.new :completed => true
     task2 = Task.new :completed => false
 
@@ -87,7 +87,7 @@ end
 
 describe Task, "#overdue?" do
 
-  it "should validate if the task is overdue" do
+  it "validates if the task is overdue" do
     task1 = Task.new :due_date => Date.today - 1.day
     task2 = Task.new :due_date => Date.today + 1.day
 
@@ -98,7 +98,7 @@ end
 
 describe Task, "#today?" do
 
-  it "should validate if the task is due today" do
+  it "validates if the task is due today" do
     task1 = Task.new :due_date => Date.today
     task2 = Task.new :due_date => Date.today + 1.day
 
@@ -109,7 +109,7 @@ end
 
 describe Task, "#tomorrow?" do
 
-  it "should validate if the task is due tomorrow" do
+  it "validates if the task is due tomorrow" do
     task1 = Task.new :due_date => Date.today + 1.day
     task2 = Task.new :due_date => Date.today
 
@@ -120,7 +120,7 @@ end
 
 describe Task, "#later?" do
 
-  it "should validate if the task is due later" do
+  it "validates if the task is due later" do
     task1 = Task.new :due_date => Date.today + 2.days
     task2 = Task.new :due_category => "later"
     task3 = Task.new :due_date => Date.today
@@ -133,7 +133,7 @@ end
 
 describe Task, "#specific_date?" do
 
-  it "should validate if the task is due later" do
+  it "validates if the task is due later" do
     task1 = Task.new :due_category => "specific_date"
     task2 = Task.new :due_category => "later"
 
@@ -144,7 +144,7 @@ end
 
 describe Task, "#due_section" do
 
-  it "should validate if the task is due later" do
+  it "validates if the task is due later" do
     task1 = Task.new :due_category => "specific_date"
     task2 = Task.new :due_category => "later"
 
@@ -155,22 +155,22 @@ end
 
 describe Task, "#due_section" do
 
-  it "should return overdue" do
+  it "returns overdue" do
     task = Task.new :due_date => Date.today - 1.day
     task.due_section.should == "overdue"
   end
 
-  it "should return today" do
+  it "returns today" do
     task = Task.new :due_date => Date.today
     task.due_section.should == "today"
   end
 
-  it "should return tomorrow" do
+  it "returns tomorrow" do
     task = Task.new :due_date => Date.today + 1.day
     task.due_section.should == "tomorrow"
   end
 
-  it "should return later" do
+  it "returns later" do
     task = Task.new :due_date => Date.today + 2.days
     task.due_section.should == "later"
   end
@@ -180,7 +180,7 @@ end
 #----------------------------------------------------------------------------
 describe Task, ".active" do
 
-  it "should return only the active alerts" do
+  it "returns only the active alerts" do
     task1 = Task.gen :completed => false
     task2 = Task.gen :completed => true
 
@@ -193,7 +193,7 @@ end
 
 describe Task, ".completed" do
 
-  it "should return only the completed tasks" do
+  it "returns only the completed tasks" do
     task1 = Task.gen :completed => true
     task2 = Task.gen :completed => false
 
@@ -206,7 +206,7 @@ end
 
 describe Task, ".overdue" do
 
-  it "should return all of the overdue tasks" do
+  it "returns all of the overdue tasks" do
     task1 = Task.gen :due_date => Date.today - 1.day
     task2 = Task.gen :due_date => Date.today
 
@@ -219,7 +219,7 @@ end
 
 describe Task, ".today" do
 
-  it "should return all of the tasks due today" do
+  it "returns all of the tasks due today" do
     task1 = Task.gen :due_date => Date.today - 1.day
     task2 = Task.gen :due_date => Date.today
 
@@ -232,7 +232,7 @@ end
 
 describe Task, ".tomorrow" do
 
-  it "should return all of the tasks due tomorrow" do
+  it "returns all of the tasks due tomorrow" do
     task1 = Task.gen :due_date => Date.today + 1.day
     task2 = Task.gen :due_date => Date.today
 
@@ -245,7 +245,7 @@ end
 
 describe Task, ".later" do
 
-  it "should return all of the tasks due later" do
+  it "returns all of the tasks due later" do
     task1 = Task.gen :due_date => Date.today + 2.day
     task2 = Task.gen :due_date => Date.today
 
@@ -258,7 +258,7 @@ end
 
 describe Task, ".recent_activity" do
 
-  it "should return only the most recent activity per limit" do
+  it "returns only the most recent activity per limit" do
     task1 = Task.gen :updated_at => Time.now - 2.hour
     task2 = Task.gen :updated_at => Time.now - 1.hour
     task3 = Task.gen :updated_at => Time.now, :taskable => Item.gen

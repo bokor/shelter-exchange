@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe StatusHistory do
 
-  it "should have a default scope" do
+  it "has a default scope" do
     StatusHistory.scoped.to_sql.should == StatusHistory.order('status_histories.created_at DESC').to_sql
   end
 end
@@ -12,14 +12,14 @@ end
 #----------------------------------------------------------------------------
 describe StatusHistory, "#shelter" do
 
-  it "should belong to a shelter" do
+  it "belongs to a shelter" do
     shelter        = Shelter.new
     status_history = StatusHistory.new :shelter => shelter
 
     status_history.shelter.should == shelter
   end
 
-  it "should return a readonly shelter" do
+  it "returns a readonly shelter" do
     status_history = StatusHistory.gen
     status_history.reload.shelter.should be_readonly
   end
@@ -27,14 +27,14 @@ end
 
 describe StatusHistory, "#animal" do
 
-  it "should belong to an animal" do
+  it "belongs to an animal" do
     animal         = Animal.new
     status_history = StatusHistory.new :animal => animal
 
     status_history.animal.should == animal
   end
 
-  it "should return a readonly animal" do
+  it "returns a readonly animal" do
     status_history = StatusHistory.gen
     status_history.reload.animal.should be_readonly
   end
@@ -42,14 +42,14 @@ end
 
 describe StatusHistory, "#animal_status" do
 
-  it "should belong to an animal status" do
+  it "belongs to an animal status" do
     animal_status  = AnimalStatus.new
     status_history = StatusHistory.new :animal_status => animal_status
 
     status_history.animal_status.should == animal_status
   end
 
-  it "should return a readonly animal status" do
+  it "returns a readonly animal status" do
     status_history = StatusHistory.gen
     status_history.reload.animal_status.should be_readonly
   end
@@ -59,7 +59,7 @@ end
 #----------------------------------------------------------------------------
 describe StatusHistory, ".create_with" do
 
-  it "should create a status history" do
+  it "creates a status history" do
     StatusHistory.count.should == 0
 
     status_history = StatusHistory.create_with(1, 2, 3, "testing")
@@ -97,7 +97,7 @@ describe "Reports" do
 
   describe StatusHistory, ".by_month" do
 
-    it "should return status history ids and animal ids for a month range" do
+    it "returns status history ids and animal ids for a month range" do
       start_date = Date.civil(2013, 02, 01)
       range      = start_date.beginning_of_month..start_date.end_of_month
 
@@ -110,7 +110,7 @@ describe "Reports" do
 
   describe StatusHistory, ".status_by_month_year" do
 
-    it "should return the status histories for the month year" do
+    it "returns the status histories for the month year" do
       status_histories = StatusHistory.status_by_month_year(02, 2013).all
 
       status_histories.count.should    == 2
@@ -122,7 +122,7 @@ describe "Reports" do
       status_histories[1].name.should  == "Adopted"
     end
 
-    it "should return the status histories for the month year and state" do
+    it "returns the status histories for the month year and state" do
       status_histories = StatusHistory.status_by_month_year(02, 2013, "CA").all
 
       status_histories.count.should    == 2
@@ -137,14 +137,14 @@ describe "Reports" do
 
   describe StatusHistory, ".totals_by_month" do
 
-    it "should return the totals by month per status" do
+    it "returns the totals by month per status" do
       status_histories = StatusHistory.totals_by_month(2013, :adopted)
 
       status_histories[0].type.should     == "Total"
       status_histories[0].february.should == 2
     end
 
-    it "should return the totals per type and status" do
+    it "returns the totals per type and status" do
       status_histories = StatusHistory.totals_by_month(2013, :available_for_adoption, true).all
 
       # Setting this because the Animal creates another Status history

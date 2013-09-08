@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe TransferHistory do
 
-  it "should have a default scope" do
+  it "has a default scope" do
     TransferHistory.scoped.to_sql.should == TransferHistory.order('transfer_histories.created_at DESC').to_sql
   end
 end
@@ -11,14 +11,14 @@ end
 #----------------------------------------------------------------------------
 describe TransferHistory, "#transfer" do
 
-  it "should belong to a transfer" do
+  it "belongs to a transfer" do
     transfer         = Transfer.new
     transfer_history = TransferHistory.new :transfer => transfer
 
     transfer_history.transfer.should == transfer
   end
 
-  it "should return a readonly transfer" do
+  it "returns a readonly transfer" do
     transfer_history = TransferHistory.gen
     transfer_history.reload.transfer.should be_readonly
   end
@@ -26,14 +26,14 @@ end
 
 describe TransferHistory, "#shelter" do
 
-  it "should belong to a shelter" do
+  it "belongs to a shelter" do
     shelter          = Shelter.new
     transfer_history = TransferHistory.new :shelter => shelter
 
     transfer_history.shelter.should == shelter
   end
 
-  it "should return a readonly shelter" do
+  it "returns a readonly shelter" do
     transfer_history = TransferHistory.gen
     transfer_history.reload.shelter.should be_readonly
   end
@@ -43,7 +43,7 @@ end
 #----------------------------------------------------------------------------
 describe TransferHistory, ".create_with" do
 
-  it "should create a status history" do
+  it "creates a status history" do
     TransferHistory.count.should == 0
 
     transfer_history = TransferHistory.create_with(1, 2, "adopted", "testing")

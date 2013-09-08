@@ -2,17 +2,17 @@ require "spec_helper"
 
 describe Placement do
 
-  it "should have a default scope" do
+  it "has a default scope" do
     Placement.scoped.to_sql.should == Placement.order('placements.created_at DESC').to_sql
   end
 
-  it "should require presence of animal id" do
+  it "requires presence of animal id" do
     placement = Placement.new :animal_id => nil
     placement.should have(1).error_on(:animal_id)
     placement.errors[:animal_id].should == ["needs to be selected"]
   end
 
-  it "should require inclusion of status" do
+  it "requires inclusion of status" do
     placement = Placement.new :status => "#{Placement::STATUS[0]} blah"
     placement.should have(1).error_on(:status)
     placement.errors[:status].should == ["needs to be selected"]
@@ -20,7 +20,7 @@ describe Placement do
 
   context "Nested Attributes" do
 
-    it "should accept nested attributes for comments" do
+    it "accepts nested attributes for comments" do
       Placement.count.should == 0
       Comment.count.should   == 0
 
@@ -30,7 +30,7 @@ describe Placement do
       Comment.count.should   == 1
     end
 
-    it "should reject nested attributes for comments" do
+    it "rejects nested attributes for comments" do
       Placement.count.should == 0
       Comment.count.should   == 0
 
@@ -40,7 +40,7 @@ describe Placement do
       Comment.count.should   == 0
     end
 
-    it "should destroy nested comments" do
+    it "destroys nested comments" do
       placement = Placement.gen :comments_attributes => [{:comment => "destroy comment"}]
 
       Placement.count.should == 1
@@ -57,7 +57,7 @@ end
 # Constants
 #----------------------------------------------------------------------------
 describe Placement, "::STATUS" do
-  it "should contain a default list of statuses" do
+  it "contains a default list of statuses" do
     Placement::STATUS.should == ["adopted", "foster_care"]
   end
 end
@@ -66,14 +66,14 @@ end
 #----------------------------------------------------------------------------
 describe Placement, "#shelter" do
 
-  it "should belong to a shelter" do
+  it "belongs to a shelter" do
     shelter   = Shelter.new
     placement = Placement.new :shelter => shelter
 
     placement.shelter.should == shelter
   end
 
-  it "should return a readonly shelter" do
+  it "returns a readonly shelter" do
     placement = Placement.gen
     placement.reload.shelter.should be_readonly
   end
@@ -81,14 +81,14 @@ end
 
 describe Placement, "#animal" do
 
-  it "should belong to a animal" do
+  it "belongs to a animal" do
     animal    = Animal.new
     placement = Placement.new :animal => animal
 
     placement.animal.should == animal
   end
 
-  it "should return a readonly animal" do
+  it "returns a readonly animal" do
     placement = Placement.gen
     placement.reload.animal.should be_readonly
   end
@@ -96,14 +96,14 @@ end
 
 describe Placement, "#parent" do
 
-  it "should belong to a parent" do
+  it "belongs to a parent" do
     parent    = Parent.new
     placement = Placement.new :parent => parent
 
     placement.parent.should == parent
   end
 
-  it "should return a readonly parent" do
+  it "returns a readonly parent" do
     placement = Placement.gen
     placement.reload.parent.should be_readonly
   end
@@ -117,12 +117,12 @@ describe Placement, "#comments" do
     @comment2  = Comment.gen :commentable => @placement
   end
 
-  it "should return a list of comments" do
+  it "returns a list of comments" do
     @placement.comments.count.should == 2
     @placement.comments.should       =~ [@comment1, @comment2]
   end
 
-  it "should destroy the comments when a placement is deleted" do
+  it "destroys the comments when a placement is deleted" do
     @placement.comments.count.should == 2
     @placement.destroy
     @placement.comments.count.should == 0
@@ -133,7 +133,7 @@ end
 #----------------------------------------------------------------------------
 describe Placement, ".adopted" do
 
-  it "should return all of the adopted placements" do
+  it "returns all of the adopted placements" do
     placement1 = Placement.gen :status => "adopted"
     placement2 = Placement.gen :status => "other"
 
@@ -146,7 +146,7 @@ end
 
 describe Placement, ".foster_care" do
 
-  it "should return all of the foster care placements" do
+  it "returns all of the foster care placements" do
     placement1 = Placement.gen :status => "foster_care"
     placement2 = Placement.gen :status => "other"
 

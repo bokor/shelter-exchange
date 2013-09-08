@@ -8,7 +8,7 @@ describe Ability, ".owner" do
     @ability = Ability.new(user)
   end
 
-  it "should be able to manage everything" do
+  it "can manage everything" do
     @ability.should be_able_to(:manage, :all)
   end
 end
@@ -20,11 +20,11 @@ describe Ability, ".admin" do
     @ability = Ability.new(user)
   end
 
-  it "should be able to manager everything" do
+  it "can manage everything" do
     @ability.should be_able_to(:manage, :all)
   end
 
-  it "should not be able to change the owner" do
+  it "can not to change the owner" do
     @ability.should_not be_able_to(:change_owner, User)
   end
 end
@@ -36,39 +36,39 @@ describe Ability, ".user" do
     @ability = Ability.new(user)
   end
 
-  it "should be able to read everything" do
+  it "can read everything" do
     @ability.should be_able_to(:read, :all)
   end
 
-  it "should be able to create everything" do
+  it "can create everything" do
     @ability.should be_able_to(:create, :all)
   end
 
-  it "should be able to update everything" do
+  it "can update everything" do
     @ability.should be_able_to(:update, :all)
   end
 
-  it "should not be able to attach a file to a note" do
+  it "can not attach a file to a note" do
     @ability.should_not be_able_to(:attach_files, Note)
   end
 
-  it "should not be able to generate access token for the shelter" do
+  it "can not generate access token for the shelter" do
     @ability.should_not be_able_to(:generate_access_token, Shelter)
   end
 
-  it "should not be able to invite a user" do
+  it "can not invite a user" do
     @ability.should_not be_able_to(:intive, User)
   end
 
-  it "should not be able to change the role a user" do
+  it "can not change the role a user" do
     @ability.should_not be_able_to(:change_role, User)
   end
 
-  it "should not be able to view settings for a user" do
+  it "can not view settings for a user" do
     @ability.should_not be_able_to(:view_settings, User)
   end
 
-  it "should not be able to request a transfer of an animal" do
+  it "can not request a transfer of an animal" do
     @ability.should_not be_able_to(:request_transfer, Animal)
   end
 end

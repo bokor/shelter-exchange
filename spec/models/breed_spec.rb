@@ -4,14 +4,14 @@ require "spec_helper"
 #----------------------------------------------------------------------------
 describe Breed, "#animal_type" do
 
-  it "should belong to an animal type" do
+  it "belongs to an animal type" do
     animal_type = AnimalType.new :name => "Dog"
     breed       = Breed.new :animal_type => animal_type
 
     breed.animal_type.should == animal_type
   end
 
-  it "should return a readonly animal_type" do
+  it "returns a readonly animal_type" do
     breed = Breed.gen
     breed.reload.animal_type.should be_readonly
   end
@@ -21,7 +21,7 @@ end
 #----------------------------------------------------------------------------
 describe Breed, ".valid_for_animal" do
 
-  it "should validate the breed exists with the type" do
+  it "validates the breed exists with the type" do
     animal_type = AnimalType.gen
     Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
 
@@ -35,7 +35,7 @@ end
 
 describe Breed, ".auto_complete" do
 
-  it "should return the correct breeds per animal type" do
+  it "returns the correct breeds per animal type" do
     animal_type = AnimalType.gen
 
     breed1 = Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
@@ -59,7 +59,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".dogs" do
 
-    it "should return all of the dog breeds" do
+    it "returns all of the dog breeds" do
       breeds = Breed.dogs
       breeds.count.should == 1
     end
@@ -67,7 +67,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".cats" do
 
-    it "should return all of the cat breeds" do
+    it "returns all of the cat breeds" do
       breeds = Breed.cats
       breeds.count.should == 1
     end
@@ -75,7 +75,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".horses" do
 
-    it "should return all of the horse breeds" do
+    it "returns all of the horse breeds" do
       breeds = Breed.horses
       breeds.count.should == 1
     end
@@ -83,7 +83,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".rabbits" do
 
-    it "should return all of the rabbit breeds" do
+    it "returns all of the rabbit breeds" do
       breeds = Breed.rabbits
       breeds.count.should == 1
     end
@@ -91,7 +91,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".birds" do
 
-    it "should return all of the bird breeds" do
+    it "returns all of the bird breeds" do
       breeds = Breed.birds
       breeds.count.should == 1
     end
@@ -99,7 +99,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".reptiles" do
 
-    it "should return all of the reptile breeds" do
+    it "returns all of the reptile breeds" do
       breeds = Breed.reptiles
       breeds.count.should == 1
     end
@@ -107,7 +107,7 @@ describe Breed, "Typeable" do
 
   describe Breed, ".other" do
 
-    it "should return all of the other breeds" do
+    it "returns all of the other breeds" do
       breeds = Breed.other
       breeds.count.should == 1
     end
@@ -115,7 +115,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#dog?" do
 
-    it "should validate if the breed is a dog" do
+    it "validates if the breed is a dog" do
       breed1 = Breed.dogs.first
       breed2 = Breed.cats.first
 
@@ -126,7 +126,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#cat?" do
 
-    it "should validate if the breed is a cat" do
+    it "validates if the breed is a cat" do
       breed1 = Breed.cats.first
       breed2 = Breed.dogs.first
 
@@ -137,7 +137,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#horse?" do
 
-    it "should validate if the breed is a horse" do
+    it "validates if the breed is a horse" do
       breed1 = Breed.horses.first
       breed2 = Breed.dogs.first
 
@@ -148,7 +148,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#rabbit?" do
 
-    it "should validate if the breed is a rabbit" do
+    it "validates if the breed is a rabbit" do
       breed1 = Breed.rabbits.first
       breed2 = Breed.dogs.first
 
@@ -159,7 +159,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#bird?" do
 
-    it "should validate if the breed is a bird" do
+    it "validates if the breed is a bird" do
       breed1 = Breed.birds.first
       breed2 = Breed.dogs.first
 
@@ -170,7 +170,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#reptile?" do
 
-    it "should validate if the breed is a reptile" do
+    it "validates if the breed is a reptile" do
       breed1 = Breed.reptiles.first
       breed2 = Breed.dogs.first
 
@@ -181,7 +181,7 @@ describe Breed, "Typeable" do
 
   describe Breed, "#other?" do
 
-    it "should validate if the breed is an other" do
+    it "validates if the breed is an other" do
       breed1 = Breed.other.first
       breed2 = Breed.dogs.first
 

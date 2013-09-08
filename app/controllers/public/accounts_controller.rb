@@ -1,8 +1,6 @@
 class Public::AccountsController < Public::ApplicationController
   respond_to :html
 
-  # caches_action :new, :expires_in => 1.hour
-
   def new
     @account = Account.new
     @shelter = @account.shelters.build
@@ -12,6 +10,7 @@ class Public::AccountsController < Public::ApplicationController
 
   def create
     @account = Account.new(params[:account])
+    @account.users.first.role = User::OWNER
 
     respond_with(@account) do |format|
       if @account.save
