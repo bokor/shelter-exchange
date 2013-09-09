@@ -19,10 +19,6 @@ describe Account do
   end
 
   it "requires format of subdomain containing only letters, numbers, or hyphens" do
-    account = Account.new :subdomain => "--testing-testing---"
-    account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
-
     account = Account.new :subdomain => "testing_testing"
     account.should have(1).error_on(:subdomain)
     account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
@@ -30,6 +26,39 @@ describe Account do
     account = Account.new :subdomain => "testing testing"
     account.should have(1).error_on(:subdomain)
     account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
+  end
+
+  it "requires format of subdomain to start with a letter" do
+    account = Account.new :subdomain => "007testing"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["has to start and end with a letter"]
+
+    account = Account.new :subdomain => "---testing"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["has to start and end with a letter"]
+  end
+
+  it "requires format of subdomain to end with a letter or number" do
+    account = Account.new :subdomain => "testing---"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["has to start and end with a letter"]
+
+    account = Account.new :subdomain => "testing007"
+    account.should have(0).error_on(:subdomain)
+  end
+
+  it "requires format of subdomain not being a reserved name" do
+    account = Account.new :subdomain => "www"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["is reserved and unavailable."]
+
+    account = Account.new :subdomain => "admin"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["is reserved and unavailable."]
+
+    account = Account.new :subdomain => "help"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["is reserved and unavailable."]
   end
 
   it "requires inclusion of document type" do
