@@ -19,6 +19,10 @@ describe Account do
   end
 
   it "requires format of subdomain containing only letters, numbers, or hyphens" do
+    account = Account.new :subdomain => "--testing-testing---"
+    account.should have(1).error_on(:subdomain)
+    account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
+
     account = Account.new :subdomain => "testing_testing"
     account.should have(1).error_on(:subdomain)
     account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
