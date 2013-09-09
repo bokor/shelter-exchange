@@ -1,14 +1,14 @@
 <div id="header">
 	<div id="toolbar">
 		<span class="col_1">
-			<span><%=@current_shelter.name%> <%# !Rails.env.production? ? "(#{Rails.env.humanize} Server)" : nil %></span>	
+			<span><%=@current_shelter.name%> <%# !Rails.env.production? ? "(#{Rails.env.humanize} Server)" : nil %></span>
 		</span>
 		<span class="col_2">
-			<span><%=current_user.name%></span>	
+			<span><%=current_user.name%></span>
 			<span class="link_separator">|</span>
 			<span><%= link_to "Settings", "#", :class => "settings_link" %></span>
 			<span class="link_separator">|</span>
-			<span><%= link_to "Help", HELP_LINK, :target => "_new" %></span>
+			<span><%= link_to "Help", "http://help.shelterexchange.org", :target => "_new" %></span>
 			<span class="link_separator">|</span>
 			<span><%= link_to "Logout", destroy_user_session_path, :method => :delete, :confirm => "Are you sure?" %></span>
 			<ul class="settings_menu">
