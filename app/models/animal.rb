@@ -6,6 +6,8 @@ class Animal < ActiveRecord::Base
 
   # Constants
   #----------------------------------------------------------------------------
+  SEX = %w[male female].freeze
+  AGES = %w[baby young adult senior].freeze
   SIZES = {
     :S => "Small",
     :M => "Medium",
@@ -13,7 +15,6 @@ class Animal < ActiveRecord::Base
     :XL => "X-Large"
   }.freeze
 
-  AGES = %w[baby young adult senior].freeze
 
 
   # Callbacks

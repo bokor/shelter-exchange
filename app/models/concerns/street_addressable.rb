@@ -6,11 +6,19 @@ module StreetAddressable
   end
 
   def address_changed?
-    (self.new_record?) or (self.street_changed? or self.street_2_changed? or self.city_changed? or self.state_changed? or self.zip_code_changed?)
+    self.new_record? ||
+    self.street_changed? ||
+    self.street_2_changed? ||
+    self.city_changed? ||
+    self.state_changed? ||
+    self.zip_code_changed?
   end
 
   def address_valid?
-    self.street.blank? or self.city.blank? or self.state.blank? or self.zip_code.blank?
+    self.street.blank? ||
+    self.city.blank? ||
+    self.state.blank? ||
+    self.zip_code.blank?
   end
 
   def geocode_address

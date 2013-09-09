@@ -35,7 +35,7 @@ Devise.setup do |config|
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
   config.case_insensitive_keys = [ :email ]
-  
+
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
@@ -78,18 +78,18 @@ Devise.setup do |config|
   # this period, the invited resource won't be able to accept the invitation.
   # When invite_for is 0 (the default), the invitation won't expire.
   config.invite_for = 0
-  
+
   # Number of invitations users can send.
   # If invitation_limit is nil, users can send unlimited invitations.
   # If invitation_limit is 0, users can't send invitations.
   # If invitation_limit n > 0, users can send n invitations.
   # Default: nil
   # config.invitation_limit = 5
-  
+
   # The key to be used to check existing users when sending an invitation
   # config.invite_key = :email
-  
-  # Flag that force a record to be valid before being actually invited 
+
+  # Flag that force a record to be valid before being actually invited
   # Default: false
   config.validate_on_invite = true
 
@@ -115,7 +115,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
