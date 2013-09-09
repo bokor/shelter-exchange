@@ -27,16 +27,6 @@ class Account < ActiveRecord::Base
   validates :subdomain, :presence => true, :uniqueness => true, :subdomain_format => true
   validates :document, :presence => true
 
-  # Instance Methods
-  #----------------------------------------------------------------------------
-  def approved?
-    !self.blocked
-  end
-
-  def blocked?
-    self.blocked
-  end
-
 
   #-----------------------------------------------------------------------------
   private

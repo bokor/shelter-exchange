@@ -7,26 +7,38 @@
 		$(function() {
 			/* Signup - Subdomain Autofill
 			/*----------------------------------------------------------------------------*/
-			var formatSubdomain = function(value) { return value.replace(/[^a-zA-Z]+/g, '').toLowerCase().substr(0,50); }
+      var formatSubdomain = function(value) {
+        return value.replace(/[^a-zA-Z0-9-]+/g, '').toLowerCase().substr(0,50);
+      }
 
-			$("#account_shelters_attributes_0_name").keyup(function() {
+			$("#account_shelters_attributes_0_name").keyup(function(e) {
 				var subdomain = formatSubdomain($(this).val());
 				$("#account_subdomain").val(subdomain);
+        $(".subdomain_highlight").text(subdomain);
+      });
+
+      $("#account_subdomain").keyup(function(e) {
+        // store current positions in variables
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+
+        // Update Text
+        var subdomain = formatSubdomain($(this).val());
 				$(".subdomain_highlight").text(subdomain);
-			});
-			$("#account_subdomain").keyup(function() {
-				var subdomain = formatSubdomain($(this).val());
-				$(".subdomain_highlight").text(subdomain);
-				$(this).val(subdomain);
+        $(this).val(subdomain);
+
+        // restore from variables...
+        this.setSelectionRange(start, end);
 			});
 
 			if ($("#account_subdomain").val() != "") {
 				$(".subdomain_highlight").text($("#account_subdomain").val());
-			}
+      }
 
-			// if (subdomain.substring(subdomain.length-1) == "-"){
-			// 	subdomain = subdomain.substring(0, subdomain.length-1);
-			// }
+      $("#account_form").on("submit",function(event){
+        subdomain = $("#account_subdomain").val();
+        $("#account_subdomain").val(subdomain.replace(/(^\W+)|(\W+$)/g, ""));
+      });
 		});
 	</script>
 <% end %>
@@ -47,7 +59,7 @@
 
 	<%= render "shared/error_messages", :target => @account %>
 
-	<%= form_for (@account), :url => public_signup_path, :html => { :multipart => true } do |account_form| %>
+  <%= form_for (@account), :url => public_signup_path, :html => { :multipart => true, :id => "account_form" } do |account_form| %>
 
 		<%= account_form.fields_for :shelters do |shelter_fields| %>
 		<ul>
