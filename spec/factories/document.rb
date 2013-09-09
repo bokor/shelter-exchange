@@ -1,6 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+
   factory :document do
+    document { File.open(Rails.root.join("spec/data/documents/testing.pdf")) }
   end
 end
+

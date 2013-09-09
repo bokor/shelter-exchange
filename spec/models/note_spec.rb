@@ -88,10 +88,10 @@ describe Note, "#documents" do
     @note      = Note.gen
     @document1 = Document.gen \
       :attachable => @note,
-      :document   => File.open("#{Rails.root}/spec/data/documents/document_1.csv")
+      :document   => File.open("#{Rails.root}/spec/data/documents/testing.pdf")
     @document2 = Document.gen \
       :attachable => @note,
-      :document   => File.open("#{Rails.root}/spec/data/documents/document_2.csv")
+      :document   => File.open("#{Rails.root}/spec/data/documents/testing.docx")
   end
 
   it "has many documents" do
