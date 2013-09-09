@@ -12,7 +12,7 @@
 			</td>
 			<td class="sex">
 				<%= label_tag :filters_sex, "Sex", :class => "desc" %>
-				<div><%= collection_select :filters, :sex, SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
+				<div><%= collection_select :filters, :sex, Animal::SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
 			</td>
 			<td class="extra_options">
 				<span class="<%= "only_one_checkbox" if @shelter.no_kill_shelter? %>">
