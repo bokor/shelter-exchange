@@ -35,12 +35,10 @@ class Integration::PetfinderPresenter < Presenter
   def description
     s = @animal.description.blank? ? "No description provided" : @animal.description
     s << "<br>"
-    s << "<a href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}'>#{@animal.name}, #{@animal.full_breed}</a>"
-    s << " has been shared from <a href='http://www.shelterexchange.org'>Shelter Exchange</a>."
-    s << "<link rel='canonical' href='#{public_save_a_life_url(@animal, :host=> "www.shelterexchange.org")}' />"
+    s << "#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org."
 
     # Simple format the html
-    description = help.auto_link( help.simple_format(s), :all, :target => '_blank')
+    description = help.simple_format(s)
 
     # Removing any carriage returns or new lines
     description.gsub(/\n\r?/, '<br>')
