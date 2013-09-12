@@ -33,79 +33,6 @@ describe User, "::OWNER" do
   end
 end
 
-# Instance Methods
-#----------------------------------------------------------------------------
-describe User, "#account" do
-
-  it "belongs to a account" do
-    account = Account.gen
-    user = User.gen :account => account
-
-    user.account.should == account
-  end
-
-  it "should return a readonly shelter" do
-    user = User.gen :account => Account.gen
-    user.reload.account.should be_readonly
-  end
-end
-
-describe User, "#shelter" do
-
-  it "should have many shelters through an account" do
-    shelter1 = Shelter.gen
-    shelter2 = Shelter.gen
-    user     = User.gen
-
-    account  = Account.gen(
-      :shelters => [shelter1, shelter2],
-      :users => [user]
-    )
-
-    user.shelters.should =~ [shelter1, shelter2]
-  end
-end
-
-describe User, "#first_name" do
-
-  it "returns the user's first name" do
-    user = User.new :name => "Jimmy Bob"
-    user.first_name.should == "Jimmy"
-  end
-end
-
-describe User, "#last_name" do
-
-  it "returns the user's last name" do
-    user = User.new :name => "Jimmy Bob"
-    user.last_name.should == "Bob"
-  end
-end
-
-describe User, "#is?(role)" do
-
-  it "validates user as owner" do
-    user = User.new :role => "owner"
-    user.is?(:owner).should == true
-    user.is?(:admin).should == false
-    user.is?(:user).should  == false
-  end
-
-  it "validates user as admin" do
-    user = User.new :role => "admin"
-    user.is?(:owner).should == false
-    user.is?(:admin).should == true
-    user.is?(:user).should  == false
-  end
-
-  it "validates user as user" do
-    user = User.new :role => "user"
-    user.is?(:owner).should == false
-    user.is?(:admin).should == false
-    user.is?(:user).should  == true
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe User, ".owner" do
@@ -267,6 +194,79 @@ describe User, ".admin_live_search" do
     list_user.name.should == "helper"
     list_user.shelter_id.should == @shelter1.id
     list_user.shelter_name.should == "oranges"
+  end
+end
+
+# Instance Methods
+#----------------------------------------------------------------------------
+describe User, "#account" do
+
+  it "belongs to a account" do
+    account = Account.gen
+    user = User.gen :account => account
+
+    user.account.should == account
+  end
+
+  it "should return a readonly shelter" do
+    user = User.gen :account => Account.gen
+    user.reload.account.should be_readonly
+  end
+end
+
+describe User, "#shelter" do
+
+  it "should have many shelters through an account" do
+    shelter1 = Shelter.gen
+    shelter2 = Shelter.gen
+    user     = User.gen
+
+    account  = Account.gen(
+      :shelters => [shelter1, shelter2],
+      :users => [user]
+    )
+
+    user.shelters.should =~ [shelter1, shelter2]
+  end
+end
+
+describe User, "#first_name" do
+
+  it "returns the user's first name" do
+    user = User.new :name => "Jimmy Bob"
+    user.first_name.should == "Jimmy"
+  end
+end
+
+describe User, "#last_name" do
+
+  it "returns the user's last name" do
+    user = User.new :name => "Jimmy Bob"
+    user.last_name.should == "Bob"
+  end
+end
+
+describe User, "#is?(role)" do
+
+  it "validates user as owner" do
+    user = User.new :role => "owner"
+    user.is?(:owner).should == true
+    user.is?(:admin).should == false
+    user.is?(:user).should  == false
+  end
+
+  it "validates user as admin" do
+    user = User.new :role => "admin"
+    user.is?(:owner).should == false
+    user.is?(:admin).should == true
+    user.is?(:user).should  == false
+  end
+
+  it "validates user as user" do
+    user = User.new :role => "user"
+    user.is?(:owner).should == false
+    user.is?(:admin).should == false
+    user.is?(:user).should  == true
   end
 end
 

@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe Account do
 
+  it_should_behave_like Uploadable
+
   it "requires presence of subdomain" do
     account = Account.new :subdomain => nil
     account.should have(2).error_on(:subdomain)
@@ -142,7 +144,7 @@ describe Account, "#shelters" do
   end
 end
 
-describe Note, "#users" do
+describe Account, "#users" do
 
   before do
     @user1 = User.gen
@@ -160,26 +162,6 @@ describe Note, "#users" do
     User.count.should == 2
     @account.destroy
     User.count.should == 0
-  end
-end
-
-# Concerns
-#----------------------------------------------------------------------------
-describe Account, "Uploadable" do
-
-  it "generates a random guid" do
-    SecureRandom.stub(:hex).and_return("abcdef12345")
-
-    account = Account.gen
-    account.guid.should == "abcdef12345"
-  end
-
-  it "generates a timestamp" do
-    now = Time.now
-    Time.stub!(:now).and_return(now)
-
-    account = Account.gen
-    account.timestamp.should == now.to_i
   end
 end
 

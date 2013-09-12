@@ -58,6 +58,5 @@ module Typeable
   def other?
     self.animal_type_id == AnimalType::TYPES[:other]
   end
-
 end
 

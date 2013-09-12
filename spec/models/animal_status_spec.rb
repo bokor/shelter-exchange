@@ -65,6 +65,28 @@ describe AnimalStatus, "::EXTRA_STATUS_FILTERS" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
+describe AnimalStatus, ".active" do
+
+  it "returns only the active statuses" do
+    AnimalStatus::ACTIVE.each do |status|
+      AnimalStatus.gen! :id => status
+    end
+    AnimalStatus.active.pluck(:id).should =~ AnimalStatus::ACTIVE
+  end
+end
+
+describe AnimalStatus, ".non_active" do
+
+  it "returns only the non_active statuses" do
+    AnimalStatus::NON_ACTIVE.each do |status|
+      AnimalStatus.gen! :id => status
+    end
+    AnimalStatus.non_active.pluck(:id).should =~ AnimalStatus::NON_ACTIVE
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe AnimalStatus, "#animals" do
@@ -103,28 +125,6 @@ describe AnimalStatus, "#status_histories" do
     @animal_status.status_histories.count.should == 2
     @animal_status.destroy
     @animal_status.status_histories.count.should == 0
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-describe AnimalStatus, ".active" do
-
-  it "returns only the active statuses" do
-    AnimalStatus::ACTIVE.each do |status|
-      AnimalStatus.gen! :id => status
-    end
-    AnimalStatus.active.pluck(:id).should =~ AnimalStatus::ACTIVE
-  end
-end
-
-describe AnimalStatus, ".non_active" do
-
-  it "returns only the non_active statuses" do
-    AnimalStatus::NON_ACTIVE.each do |status|
-      AnimalStatus.gen! :id => status
-    end
-    AnimalStatus.non_active.pluck(:id).should =~ AnimalStatus::NON_ACTIVE
   end
 end
 

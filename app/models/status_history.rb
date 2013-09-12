@@ -1,5 +1,4 @@
 class StatusHistory < ActiveRecord::Base
-
   default_scope :order => 'status_histories.created_at DESC'
 
   # Associations
@@ -62,3 +61,4 @@ class StatusHistory < ActiveRecord::Base
   #----------------------------------------------------------------------------
 
 end
+

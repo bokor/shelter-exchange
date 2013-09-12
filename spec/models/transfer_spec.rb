@@ -79,6 +79,62 @@ describe Transfer, "::COMPLETED" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
+describe Transfer, ".approved" do
+
+  it "returns all of the approved transfers" do
+    transfer1 = Transfer.gen :status => "approved"
+    transfer2 = Transfer.gen :status => ""
+
+    transfers = Transfer.approved.all
+
+    transfers.count.should == 1
+    transfers.should       =~ [transfer1]
+  end
+end
+
+describe Transfer, ".rejected" do
+
+  it "returns all of the rejected transfers" do
+    transfer1 = Transfer.gen :status => "rejected", :transfer_history_reason => "transfer reason"
+    transfer2 = Transfer.gen :status => ""
+
+    transfers = Transfer.rejected.all
+
+    transfers.count.should == 1
+    transfers.should       =~ [transfer1]
+  end
+end
+
+describe Transfer, ".completed" do
+
+  it "returns all of the completed transfers" do
+    transfer1 = Transfer.gen :status => "completed"
+    transfer2 = Transfer.gen :status => ""
+
+    transfers = Transfer.completed.all
+
+    transfers.count.should == 1
+    transfers.should       =~ [transfer1]
+  end
+end
+
+describe Transfer, ".active" do
+
+  it "returns all of the active transfers" do
+    transfer1 = Transfer.gen :status => "approved"
+    transfer2 = Transfer.gen :status => "approved"
+    transfer3 = Transfer.gen :status => "completed"
+    transfer4 = Transfer.gen :status => nil
+
+    transfers = Transfer.active.all
+
+    transfers.count.should == 3
+    transfers.should       =~ [transfer1, transfer2, transfer4]
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Transfer, "#shelter" do
@@ -183,62 +239,6 @@ describe Transfer, "#completed?" do
 
     transfer1.completed?.should == true
     transfer2.completed?.should == false
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-describe Transfer, ".approved" do
-
-  it "returns all of the approved transfers" do
-    transfer1 = Transfer.gen :status => "approved"
-    transfer2 = Transfer.gen :status => ""
-
-    transfers = Transfer.approved.all
-
-    transfers.count.should == 1
-    transfers.should       =~ [transfer1]
-  end
-end
-
-describe Transfer, ".rejected" do
-
-  it "returns all of the rejected transfers" do
-    transfer1 = Transfer.gen :status => "rejected", :transfer_history_reason => "transfer reason"
-    transfer2 = Transfer.gen :status => ""
-
-    transfers = Transfer.rejected.all
-
-    transfers.count.should == 1
-    transfers.should       =~ [transfer1]
-  end
-end
-
-describe Transfer, ".completed" do
-
-  it "returns all of the completed transfers" do
-    transfer1 = Transfer.gen :status => "completed"
-    transfer2 = Transfer.gen :status => ""
-
-    transfers = Transfer.completed.all
-
-    transfers.count.should == 1
-    transfers.should       =~ [transfer1]
-  end
-end
-
-describe Transfer, ".active" do
-
-  it "returns all of the active transfers" do
-    transfer1 = Transfer.gen :status => "approved"
-    transfer2 = Transfer.gen :status => "approved"
-    transfer3 = Transfer.gen :status => "completed"
-    transfer4 = Transfer.gen :status => nil
-
-    transfers = Transfer.active.all
-
-    transfers.count.should == 3
-    transfers.should       =~ [transfer1, transfer2, transfer4]
   end
 end
 

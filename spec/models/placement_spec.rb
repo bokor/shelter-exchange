@@ -62,6 +62,34 @@ describe Placement, "::STATUS" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
+describe Placement, ".adopted" do
+
+  it "returns all of the adopted placements" do
+    placement1 = Placement.gen :status => "adopted"
+    placement2 = Placement.gen :status => "other"
+
+    placements = Placement.adopted.all
+
+    placements.count.should == 1
+    placements.should       == [placement1]
+  end
+end
+
+describe Placement, ".foster_care" do
+
+  it "returns all of the foster care placements" do
+    placement1 = Placement.gen :status => "foster_care"
+    placement2 = Placement.gen :status => "other"
+
+    placements = Placement.foster_care.all
+
+    placements.count.should == 1
+    placements.should       == [placement1]
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Placement, "#shelter" do
@@ -126,34 +154,6 @@ describe Placement, "#comments" do
     @placement.comments.count.should == 2
     @placement.destroy
     @placement.comments.count.should == 0
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-describe Placement, ".adopted" do
-
-  it "returns all of the adopted placements" do
-    placement1 = Placement.gen :status => "adopted"
-    placement2 = Placement.gen :status => "other"
-
-    placements = Placement.adopted.all
-
-    placements.count.should == 1
-    placements.should       == [placement1]
-  end
-end
-
-describe Placement, ".foster_care" do
-
-  it "returns all of the foster care placements" do
-    placement1 = Placement.gen :status => "foster_care"
-    placement2 = Placement.gen :status => "other"
-
-    placements = Placement.foster_care.all
-
-    placements.count.should == 1
-    placements.should       == [placement1]
   end
 end
 

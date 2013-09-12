@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Document do
 
+  it_should_behave_like Uploadable
+
   it "sets the original name" do
     file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
     document = Document.gen(:document => file)
@@ -58,26 +60,6 @@ describe Document, "#attachable?" do
 
     document1.attachable?.should == true
     document2.attachable?.should == false
-  end
-end
-
-# Concerns
-#----------------------------------------------------------------------------
-describe Document, "Uploadable" do
-
-  it "generates a random guid" do
-    SecureRandom.stub(:hex).and_return("abcdef12345")
-
-    document = Document.gen
-    document.guid.should == "abcdef12345"
-  end
-
-  it "generates a timestamp" do
-    now = Time.now
-    Time.stub!(:now).and_return(now)
-
-    document = Document.gen
-    document.timestamp.should == now.to_i
   end
 end
 

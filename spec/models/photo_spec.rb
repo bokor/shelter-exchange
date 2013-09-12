@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Photo do
 
+  it_should_behave_like Uploadable
+
   it "has a default scope" do
     Photo.scoped.to_sql.should == Photo.order('photos.is_main_photo DESC, photos.created_at DESC').to_sql
   end
@@ -115,26 +117,6 @@ describe Photo, "#main_photo?" do
 
     photo1.main_photo?.should == true
     photo2.main_photo?.should == false
-  end
-end
-
-# Concerns
-#----------------------------------------------------------------------------
-describe Photo, "Uploadable" do
-
-  it "generates a random guid" do
-    SecureRandom.stub(:hex).and_return("abcdef12345")
-
-    photo = Photo.gen
-    photo.guid.should == "abcdef12345"
-  end
-
-  it "generates a timestamp" do
-    now = Time.now
-    Time.stub!(:now).and_return(now)
-
-    photo = Photo.gen
-    photo.timestamp.should == now.to_i
   end
 end
 

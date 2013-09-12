@@ -82,6 +82,5 @@ module Statusable
   def transferred?
     self.animal_status_id == AnimalStatus::STATUSES[:transferred]
   end
-
 end
 

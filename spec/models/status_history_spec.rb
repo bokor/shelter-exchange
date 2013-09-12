@@ -8,53 +8,6 @@ describe StatusHistory do
   end
 end
 
-# Instance Methods
-#----------------------------------------------------------------------------
-describe StatusHistory, "#shelter" do
-
-  it "belongs to a shelter" do
-    shelter        = Shelter.new
-    status_history = StatusHistory.new :shelter => shelter
-
-    status_history.shelter.should == shelter
-  end
-
-  it "returns a readonly shelter" do
-    status_history = StatusHistory.gen
-    status_history.reload.shelter.should be_readonly
-  end
-end
-
-describe StatusHistory, "#animal" do
-
-  it "belongs to an animal" do
-    animal         = Animal.new
-    status_history = StatusHistory.new :animal => animal
-
-    status_history.animal.should == animal
-  end
-
-  it "returns a readonly animal" do
-    status_history = StatusHistory.gen
-    status_history.reload.animal.should be_readonly
-  end
-end
-
-describe StatusHistory, "#animal_status" do
-
-  it "belongs to an animal status" do
-    animal_status  = AnimalStatus.new
-    status_history = StatusHistory.new :animal_status => animal_status
-
-    status_history.animal_status.should == animal_status
-  end
-
-  it "returns a readonly animal status" do
-    status_history = StatusHistory.gen
-    status_history.reload.animal_status.should be_readonly
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe StatusHistory, ".create_with" do
@@ -155,6 +108,53 @@ describe "Reports" do
       status_histories[0].send(current_month).should == 1
       status_histories[0].send(next_month).should    == 1
     end
+  end
+end
+
+# Instance Methods
+#----------------------------------------------------------------------------
+describe StatusHistory, "#shelter" do
+
+  it "belongs to a shelter" do
+    shelter        = Shelter.new
+    status_history = StatusHistory.new :shelter => shelter
+
+    status_history.shelter.should == shelter
+  end
+
+  it "returns a readonly shelter" do
+    status_history = StatusHistory.gen
+    status_history.reload.shelter.should be_readonly
+  end
+end
+
+describe StatusHistory, "#animal" do
+
+  it "belongs to an animal" do
+    animal         = Animal.new
+    status_history = StatusHistory.new :animal => animal
+
+    status_history.animal.should == animal
+  end
+
+  it "returns a readonly animal" do
+    status_history = StatusHistory.gen
+    status_history.reload.animal.should be_readonly
+  end
+end
+
+describe StatusHistory, "#animal_status" do
+
+  it "belongs to an animal status" do
+    animal_status  = AnimalStatus.new
+    status_history = StatusHistory.new :animal_status => animal_status
+
+    status_history.animal_status.should == animal_status
+  end
+
+  it "returns a readonly animal status" do
+    status_history = StatusHistory.gen
+    status_history.reload.animal_status.should be_readonly
   end
 end
 

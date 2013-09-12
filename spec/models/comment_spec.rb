@@ -57,3 +57,4 @@ describe Comment, "#commentable?" do
     comment2.commentable?.should == false
   end
 end
+
