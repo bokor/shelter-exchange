@@ -29,6 +29,100 @@ describe Task, "::DUE_CATEGORIES" do
   end
 end
 
+# Class Methods
+#----------------------------------------------------------------------------
+describe Task, ".active" do
+
+  it "returns only the active alerts" do
+    task1 = Task.gen :completed => false
+    task2 = Task.gen :completed => true
+
+    tasks = Task.active.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".completed" do
+
+  it "returns only the completed tasks" do
+    task1 = Task.gen :completed => true
+    task2 = Task.gen :completed => false
+
+    tasks = Task.completed.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".overdue" do
+
+  it "returns all of the overdue tasks" do
+    task1 = Task.gen :due_date => Date.today - 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.overdue.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".today" do
+
+  it "returns all of the tasks due today" do
+    task1 = Task.gen :due_date => Date.today - 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.overdue.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".tomorrow" do
+
+  it "returns all of the tasks due tomorrow" do
+    task1 = Task.gen :due_date => Date.today + 1.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.tomorrow.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".later" do
+
+  it "returns all of the tasks due later" do
+    task1 = Task.gen :due_date => Date.today + 2.day
+    task2 = Task.gen :due_date => Date.today
+
+    tasks = Task.later.all
+
+    tasks.count.should == 1
+    tasks.should       == [task1]
+  end
+end
+
+describe Task, ".recent_activity" do
+
+  it "returns only the most recent activity per limit" do
+    task1 = Task.gen :updated_at => Time.now - 2.hour
+    task2 = Task.gen :updated_at => Time.now - 1.hour
+    task3 = Task.gen :updated_at => Time.now, :taskable => Item.gen
+
+    results = Task.recent_activity(2).all
+
+    results.count.should == 2
+    results.should       == [task3, task2]
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Task, "#shelter" do
@@ -173,100 +267,6 @@ describe Task, "#due_section" do
   it "returns later" do
     task = Task.new :due_date => Date.today + 2.days
     task.due_section.should == "later"
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-describe Task, ".active" do
-
-  it "returns only the active alerts" do
-    task1 = Task.gen :completed => false
-    task2 = Task.gen :completed => true
-
-    tasks = Task.active.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".completed" do
-
-  it "returns only the completed tasks" do
-    task1 = Task.gen :completed => true
-    task2 = Task.gen :completed => false
-
-    tasks = Task.completed.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".overdue" do
-
-  it "returns all of the overdue tasks" do
-    task1 = Task.gen :due_date => Date.today - 1.day
-    task2 = Task.gen :due_date => Date.today
-
-    tasks = Task.overdue.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".today" do
-
-  it "returns all of the tasks due today" do
-    task1 = Task.gen :due_date => Date.today - 1.day
-    task2 = Task.gen :due_date => Date.today
-
-    tasks = Task.overdue.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".tomorrow" do
-
-  it "returns all of the tasks due tomorrow" do
-    task1 = Task.gen :due_date => Date.today + 1.day
-    task2 = Task.gen :due_date => Date.today
-
-    tasks = Task.tomorrow.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".later" do
-
-  it "returns all of the tasks due later" do
-    task1 = Task.gen :due_date => Date.today + 2.day
-    task2 = Task.gen :due_date => Date.today
-
-    tasks = Task.later.all
-
-    tasks.count.should == 1
-    tasks.should       == [task1]
-  end
-end
-
-describe Task, ".recent_activity" do
-
-  it "returns only the most recent activity per limit" do
-    task1 = Task.gen :updated_at => Time.now - 2.hour
-    task2 = Task.gen :updated_at => Time.now - 1.hour
-    task3 = Task.gen :updated_at => Time.now, :taskable => Item.gen
-
-    results = Task.recent_activity(2).all
-
-    results.count.should == 2
-    results.should       == [task3, task2]
   end
 end
 

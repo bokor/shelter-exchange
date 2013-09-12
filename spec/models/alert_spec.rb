@@ -27,73 +27,6 @@ describe Alert, "::SEVERITIES" do
   end
 end
 
-# Instance Methods
-#----------------------------------------------------------------------------
-describe Alert, "#shelter" do
-
-  it "belongs to a shelter" do
-    shelter = Shelter.new
-    alert   = Alert.new :shelter => shelter
-
-    alert.shelter.should == shelter
-  end
-
-  it "returns a readonly shelter" do
-    alert = Alert.gen
-    alert.reload.shelter.should be_readonly
-  end
-end
-
-describe Alert, "#alertable" do
-
-  it "belongs to a alertable object" do
-    item   = Item.new
-    animal = Animal.new
-    alert1 = Alert.new :alertable => item
-    alert2 = Alert.new :alertable => animal
-
-    alert1.alertable.should == item
-    alert1.alertable.should be_instance_of(Item)
-
-    alert2.alertable.should == animal
-    alert2.alertable.should be_instance_of(Animal)
-  end
-end
-
-describe Alert, "#stopped?" do
-
-  it "validates if the alert is stopped" do
-    alert1 = Alert.new :stopped => true
-    alert2 = Alert.new
-
-    alert1.stopped?.should == true
-    alert2.stopped?.should == false
-  end
-end
-
-describe Alert, "#active?" do
-
-  it "validates if the alert is active" do
-    alert1 = Alert.new :stopped => true
-    alert2 = Alert.new
-
-    alert1.active?.should == false
-    alert2.active?.should == true
-  end
-end
-
-describe Alert, "#alertable?" do
-
-  it "validates if the note has an alertable association" do
-    animal = Animal.new
-    alert1 = Alert.new :alertable => animal
-    alert2 = Alert.new
-
-    alert1.alertable?.should == true
-    alert2.alertable?.should == false
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Alert, ".active" do
@@ -159,6 +92,73 @@ describe Alert, ".recent_activity" do
 
     alerts.count.should == 2
     alerts.should       == [alert3, alert2]
+  end
+end
+
+# Instance Methods
+#----------------------------------------------------------------------------
+describe Alert, "#shelter" do
+
+  it "belongs to a shelter" do
+    shelter = Shelter.new
+    alert   = Alert.new :shelter => shelter
+
+    alert.shelter.should == shelter
+  end
+
+  it "returns a readonly shelter" do
+    alert = Alert.gen
+    alert.reload.shelter.should be_readonly
+  end
+end
+
+describe Alert, "#alertable" do
+
+  it "belongs to a alertable object" do
+    item   = Item.new
+    animal = Animal.new
+    alert1 = Alert.new :alertable => item
+    alert2 = Alert.new :alertable => animal
+
+    alert1.alertable.should == item
+    alert1.alertable.should be_instance_of(Item)
+
+    alert2.alertable.should == animal
+    alert2.alertable.should be_instance_of(Animal)
+  end
+end
+
+describe Alert, "#stopped?" do
+
+  it "validates if the alert is stopped" do
+    alert1 = Alert.new :stopped => true
+    alert2 = Alert.new
+
+    alert1.stopped?.should == true
+    alert2.stopped?.should == false
+  end
+end
+
+describe Alert, "#active?" do
+
+  it "validates if the alert is active" do
+    alert1 = Alert.new :stopped => true
+    alert2 = Alert.new
+
+    alert1.active?.should == false
+    alert2.active?.should == true
+  end
+end
+
+describe Alert, "#alertable?" do
+
+  it "validates if the note has an alertable association" do
+    animal = Animal.new
+    alert1 = Alert.new :alertable => animal
+    alert2 = Alert.new
+
+    alert1.alertable?.should == true
+    alert2.alertable?.should == false
   end
 end
 

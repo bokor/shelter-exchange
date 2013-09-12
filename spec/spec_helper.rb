@@ -8,6 +8,7 @@ require "capybara/email/rspec"
 require "webmock/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|s| require s }
+Dir[Rails.root.join("spec/shared_examples/**/*.rb")].each {|s| require s }
 
 RSpec.configure do |config|
   config.mock_with :rspec

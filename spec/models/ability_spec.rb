@@ -1,6 +1,8 @@
 require "spec_helper"
 require "cancan/matchers"
 
+# Class Methods
+#----------------------------------------------------------------------------
 describe Ability, ".owner" do
 
   before do
