@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 
+#require "rake"
 require "rspec/rails"
 require "capybara/rspec"
 require "capybara/rails"
@@ -31,6 +32,11 @@ RSpec.configure do |config|
   config.include AccountHelper, :type => :request
 
   config.before :suite do
+    # Load Seed Data
+    # ShelterExchangeApp::Application.load_tasks
+    # Rake::Task["db:seed:common"].invoke
+
+    # Disable All Observers
     ActiveRecord::Base.observers.disable :all
   end
 end
