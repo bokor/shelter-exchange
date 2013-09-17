@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("accounts")
+ActiveRecord::Base.connection.execute("TRUNCATE accounts")
 
 # Create Account
 #----------------------------------------------------------------------------

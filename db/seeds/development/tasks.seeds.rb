@@ -1,6 +1,6 @@
  #Truncate Data
 #----------------------------------------------------------------------------
-#truncate_db_table("tasks")
+# ActiveRecord::Base.connection.execute("TRUNCATE tasks")
 
 #after :"development:shelters" do
 

@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("parents")
+ActiveRecord::Base.connection.execute("TRUNCATE parents")
 
 # Create Parent
 #----------------------------------------------------------------------------
