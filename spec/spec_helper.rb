@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 
-#require "rake"
+# require "rake"
 require "rspec/rails"
 require "capybara/rspec"
 require "capybara/rails"
@@ -33,6 +33,7 @@ RSpec.configure do |config|
 
   config.before :suite do
     # Load Seed Data
+    # require rake, transactional fixures true, enabled shared connnection, remove database cleaner
     # ShelterExchangeApp::Application.load_tasks
     # Rake::Task["db:seed:common"].invoke
 
