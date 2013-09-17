@@ -37,11 +37,14 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "##{dom_id(task, :edit)}" do
+      fill_in "Details", :with => "updated category to email"
       select "Email", :from => "Category"
       click_button "Update Task"
     end
 
     within "##{dom_id(task)}" do
+      page.should have_content("updated category to email")
+
       image = find(".type img")
       image[:src].should include("icon_email.png")
       image[:class].should include("tooltip")
