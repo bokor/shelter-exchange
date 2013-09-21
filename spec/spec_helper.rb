@@ -16,7 +16,9 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.treat_symbols_as_metadata_keys_with_true_values = true # in RSpec 3 this will no longer be necessary.
-
+  # config.expect_with :rspec do |c|
+  #   c.syntax = :expect
+  # end
   config.include ActionController::RecordIdentifier, :type => :request
   config.include Capybara::DSL
   config.include Capybara::Email::DSL
