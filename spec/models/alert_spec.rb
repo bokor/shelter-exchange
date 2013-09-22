@@ -6,13 +6,13 @@ describe Alert do
     Alert.scoped.to_sql.should == Alert.order('alerts.created_at DESC').to_sql
   end
 
-  it "requires presence of title" do
+  it "validates presence of title" do
     alert = Alert.new :title => nil
     alert.should have(1).error_on(:title)
     alert.errors[:title].should == ["cannot be blank"]
   end
 
-  it "requires inclusion of severity" do
+  it "validates inclusion of severity" do
     alert = Alert.new :severity => "#{Alert::SEVERITIES[0]} blah"
     alert.should have(1).error_on(:severity)
     alert.errors[:severity].should == ["needs to be selected"]

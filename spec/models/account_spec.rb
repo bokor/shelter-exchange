@@ -91,22 +91,28 @@ describe Account do
       Account.count.should == 0
       User.count.should   == 0
 
-      user = User.gen
-      Account.gen :users_attributes => [user.attributes]
+      Account.gen :users_attributes => [User.attributes, User.attributes]
 
       Account.count.should == 1
-      User.count.should   == 1
+      User.count.should == 2
     end
 
     it "accepts nested attributes for shelters" do
       Account.count.should == 0
-      Shelter.count.should   == 0
+      Shelter.count.should == 0
 
-      shelter = Shelter.gen
-      Account.gen :shelters_attributes => [shelter.attributes]
+      Account.gen :shelters_attributes => [Shelter.attributes, Shelter.attributes]
 
       Account.count.should == 1
-      Shelter.count.should   == 1
+      Shelter.count.should == 2
+    end
+  end
+
+  context "Mount Uploader" do
+
+    it "returns an attachment uploader for the document" do
+      account = Account.gen
+      account.document.should be_kind_of(AttachmentUploader)
     end
   end
 end
