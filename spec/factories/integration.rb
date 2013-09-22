@@ -6,8 +6,12 @@ FactoryGirl.define do
     shelter
   end
 
-  # factory :adopt_a_pet_integration, :class => :integration do
-  #   type "Integration::AdoptAPet"
-  # end
+  factory :adopt_a_pet_integration, :parent => :integration do
+    type "Integration::AdoptAPet"
+  end
+
+  factory :petfinder_integration, :parent => :integration do
+    type "Integration::Petfinder"
+  end
 end
 

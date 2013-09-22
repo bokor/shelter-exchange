@@ -16,9 +16,8 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.treat_symbols_as_metadata_keys_with_true_values = true # in RSpec 3 this will no longer be necessary.
-  # config.expect_with :rspec do |c|
-  #   c.syntax = :expect
-  # end
+
+  # Matchers and Helpers
   config.include ActionController::RecordIdentifier, :type => :request
   config.include Capybara::DSL
   config.include Capybara::Email::DSL
@@ -29,7 +28,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include CarrierWave::Test::Matchers
 
-  # Helper Files
+  # Custom Helper Files
   config.include CapybaraHelper, :type => :request
   config.include AccountHelper, :type => :request
 
@@ -41,6 +40,11 @@ RSpec.configure do |config|
 
     # Disable All Observers
     ActiveRecord::Base.observers.disable :all
+  end
+
+  config.after :suite do
+    # Remove Carrierwave Files
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
   end
 end
 

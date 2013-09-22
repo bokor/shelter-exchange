@@ -43,5 +43,5 @@ class Integration::Petfinder < Integration
       errors.add(:connection_failed, "Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
   end
-
 end
+
