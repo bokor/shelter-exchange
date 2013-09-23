@@ -53,7 +53,7 @@ end
 
 describe Document, "#attachable?" do
 
-  it "validates if the document has an attachable association" do
+  it "returns true if the document has an attachable association" do
     animal  = Animal.new
     document1 = Document.new :attachable => animal
     document2 = Document.new

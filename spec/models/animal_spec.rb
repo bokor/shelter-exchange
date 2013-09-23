@@ -1217,7 +1217,7 @@ end
 
 describe Animal, "#stopped?" do
 
-  it "validates if the animal has special needs" do
+  it "returns true if the animal has special needs" do
     animal1 = Animal.new :has_special_needs => true
     animal2 = Animal.new
 
@@ -1228,7 +1228,7 @@ end
 
 describe Animal, "#mix_breed?" do
 
-  it "validates if the animal is a mix breed" do
+  it "returns true if the animal is a mix breed" do
     animal1 = Animal.new :is_mix_breed => true
     animal2 = Animal.new :is_mix_breed => false
 
@@ -1239,7 +1239,7 @@ end
 
 describe Animal, "#sterilized?" do
 
-  it "validates if the animal is sterilized" do
+  it "returns true if the animal is sterilized" do
     animal1 = Animal.new :is_sterilized => true
     animal2 = Animal.new :is_sterilized => false
 

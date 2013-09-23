@@ -82,7 +82,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#dog?" do
 
-    it "validates if the #{described_class} is a dog" do
+    it "returns true if the #{described_class} is a dog" do
       typeable1 = described_class.gen(:animal_type => @dog)
       typeable2 = described_class.gen(:animal_type => @cat)
 
@@ -93,7 +93,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#cat?" do
 
-    it "validates if the #{described_class} is a cat" do
+    it "returns true if the #{described_class} is a cat" do
       typeable1 = described_class.gen(:animal_type => @cat)
       typeable2 = described_class.gen(:animal_type => @dog)
 
@@ -104,7 +104,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#horse?" do
 
-    it "validates if the #{described_class} is a horse" do
+    it "returns true if the #{described_class} is a horse" do
       typeable1 = described_class.gen(:animal_type => @horse)
       typeable2 = described_class.gen(:animal_type => @dog)
 
@@ -115,7 +115,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#rabbit?" do
 
-    it "validates if the #{described_class} is a rabbit" do
+    it "returns true if the #{described_class} is a rabbit" do
       typeable1 = described_class.gen(:animal_type => @rabbit)
       typeable2 = described_class.gen(:animal_type => @dog)
 
@@ -126,7 +126,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#bird?" do
 
-    it "validates if the #{described_class} is a bird" do
+    it "returns true if the #{described_class} is a bird" do
       typeable1 = described_class.gen(:animal_type => @bird)
       typeable2 = described_class.gen(:animal_type => @dog)
 
@@ -137,7 +137,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#reptile?" do
 
-    it "validates if the #{described_class} is a reptile" do
+    it "returns true if the #{described_class} is a reptile" do
       typeable1 = described_class.gen(:animal_type => @reptile)
       typeable2 = described_class.gen(:animal_type => @dog)
 
@@ -148,7 +148,7 @@ shared_examples_for Typeable do
 
   describe described_class, "#other?" do
 
-    it "validates if the #{described_class} is an other" do
+    it "returns true if the #{described_class} is an other" do
       typeable1 = described_class.gen(:animal_type => @other)
       typeable2 = described_class.gen(:animal_type => @dog)
 

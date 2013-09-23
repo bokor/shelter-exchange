@@ -137,7 +137,7 @@ shared_examples_for Statusable do
   # Instance Methods
   #----------------------------------------------------------------------------
   describe described_class, "#available?" do
-    it "validates if the #{described_class} available?" do
+    it "returns true if the #{described_class} available?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
@@ -147,7 +147,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#available_for_adoption?" do
-    it "validates if the #{described_class} available_for_adoption?" do
+    it "returns true if the #{described_class} available_for_adoption?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
@@ -157,7 +157,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#adopted?" do
-    it "validates if the #{described_class} adopted?" do
+    it "returns true if the #{described_class} adopted?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
 
@@ -167,7 +167,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#adoption_pending?" do
-    it "validates if the #{described_class} adoption_pending?" do
+    it "returns true if the #{described_class} adoption_pending?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoped])
 
@@ -177,7 +177,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#reclaimed?" do
-    it "validates if the #{described_class} reclaimed?" do
+    it "returns true if the #{described_class} reclaimed?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
@@ -187,7 +187,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#foster_care?" do
-    it "validates if the #{described_class} foster_care?" do
+    it "returns true if the #{described_class} foster_care?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
@@ -197,7 +197,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#deceased?" do
-    it "validates if the #{described_class} deceased?" do
+    it "returns true if the #{described_class} deceased?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:deceased])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
@@ -207,7 +207,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#euthanized?" do
-    it "validates if the #{described_class} euthanized?" do
+    it "returns true if the #{described_class} euthanized?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
@@ -217,7 +217,7 @@ shared_examples_for Statusable do
   end
 
   describe described_class, "#transferred?" do
-    it "validates if the #{described_class} transferred?" do
+    it "returns true if the #{described_class} transferred?" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:transferred])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 

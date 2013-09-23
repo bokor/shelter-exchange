@@ -108,7 +108,7 @@ end
 
 describe Note, "#notable?" do
 
-  it "validates if the note has an notable association" do
+  it "returns true if the note has an notable association" do
     item  = Item.new
     note1 = Note.new :notable => item
     note2 = Note.new

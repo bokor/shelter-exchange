@@ -248,21 +248,21 @@ end
 
 describe User, "#is?(role)" do
 
-  it "validates user as owner" do
+  it "returns true if user is owner" do
     user = User.new :role => "owner"
     user.is?(:owner).should == true
     user.is?(:admin).should == false
     user.is?(:user).should  == false
   end
 
-  it "validates user as admin" do
+  it "returns true if user is admin" do
     user = User.new :role => "admin"
     user.is?(:owner).should == false
     user.is?(:admin).should == true
     user.is?(:user).should  == false
   end
 
-  it "validates user as user" do
+  it "returns true if user is user" do
     user = User.new :role => "user"
     user.is?(:owner).should == false
     user.is?(:admin).should == false
