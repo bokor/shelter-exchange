@@ -1,212 +1,5 @@
 require "spec_helper"
 
-#
-#   # General Scopes
-#   #----------------------------------------------------------------------------
-#   scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).order("status_change_date DESC").limit(limit) }
-#   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
-#   scope :search, lambda { |q|
-#     includes(:animal_type, :animal_status, :photos).
-#     where("animals.id LIKE ? OR animals.name LIKE ? OR animals.description LIKE ? OR
-#            animals.microchip LIKE ? OR animals.color LIKE ? OR animals.weight LIKE ? OR
-#            animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
-#            "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
-#   }
-#
-#   # Dashboard - Recent Activity
-#   #----------------------------------------------------------------------------
-#   def self.recent_activity(limit=10)
-#     includes(:animal_type, :animal_status).reorder("animals.updated_at DESC").limit(limit)
-#   end
-#   #----------------------------------------------------------------------------
-#
-#   # API
-#   #----------------------------------------------------------------------------
-#   def self.api_lookup(types, statuses)
-#     scope = self.scoped
-#     scope = scope.includes(:animal_type, :animal_status, :photos)
-#     scope = (statuses.blank? ? scope.available : scope.where(:animal_status_id => statuses))
-#     scope = scope.where(:animal_type_id => types) unless types.blank?
-#     scope = scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
-#     scope
-#   end
-#   #----------------------------------------------------------------------------
-#
-#   # Maps and Community
-#   #----------------------------------------------------------------------------
-#   def self.community_animals(shelter_ids, filters={})
-#     scope = self.scoped
-#     scope = scope.includes(:animal_type, :animal_status, :shelter, :photos)
-#     scope = scope.where(:shelter_id => shelter_ids)
-#     # Fitler Euthanasia
-#     scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
-#     # Filter Special Needs
-#     scope = scope.where(:has_special_needs => true) unless filters[:special_needs_only].blank? or !filters[:special_needs_only]
-#     # Filter Animal Type
-#     scope = scope.where(:animal_type_id => filters[:animal_type]) unless filters[:animal_type].blank?
-#     # Filter Breed
-#     scope = scope.where("animals.primary_breed = ? OR animals.secondary_breed = ?", filters[:breed], breed) unless filters[:breed].blank?
-#     # Filter Sex
-#     scope = scope.where(:sex => filters[:sex].downcase) unless filters[:sex].blank?
-#     # Filter Animal Status
-#     scope = scope.where(:animal_status_id => filters[:animal_status]) unless filters[:animal_status].blank?
-#     scope = scope.active unless filters[:animal_status].present?
-#
-#     if shelter_ids.is_a?(Array) && shelter_ids.any?
-#       scope.reorder("FIELD(shelter_id, #{shelter_ids.join(',')}), ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
-#     else
-#       scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
-#     end
-#   end
-#   #----------------------------------------------------------------------------
-#
-#
-#   # Searching
-#   #----------------------------------------------------------------------------
-#   def self.search_by_name(q)
-#     scope = self.scoped
-#     scope = scope.includes(:animal_type, :animal_status, :photos)
-#     if q.is_numeric?
-#       scope = scope.where(:"animals.id" => q)
-#     else
-#       scope = scope.where("animals.name LIKE ?", "%#{q}%")
-#     end
-#
-#     scope
-#   end
-#
-#   def self.filter_by_type_status(type, status)
-#     scope = self.scoped
-#     scope = scope.includes(:animal_type, :animal_status, :photos)
-#     scope = scope.where(:animal_type_id => type) unless type.blank?
-#     unless status.blank?
-#       scope = (status == "active" or status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
-#     end
-#
-#     scope
-#   end
-#   #----------------------------------------------------------------------------
-#
-#   # Reporting
-#   #----------------------------------------------------------------------------
-#   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id)
-#   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
-#   scope :current_month, where(:status_change_date => Date.today.beginning_of_month..Date.today.end_of_month)
-#   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
-#
-#   def self.type_by_month_year(month, year, shelter_id=nil, state=nil)
-#     start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
-#     range = start_date.beginning_of_month..start_date.end_of_month
-#     status_histories = StatusHistory.where(:shelter_id => shelter_id || {}).by_month(range)
-#
-#     scope = self.scoped
-#     scope = scope.select("count(*) count, animal_types.name")
-#     scope = scope.joins(:status_histories, :animal_type)
-#     unless state.blank?
-#       scope = scope.joins(:shelter)
-#       scope = scope.where(:shelters => { :state => state })
-#     end
-#     scope = scope.where(:status_histories => {:id => status_histories})
-#     scope = scope.where(:animal_status_id => AnimalStatus::ACTIVE)
-#     scope = scope.group(:animal_type_id)
-#     scope
-#   end
-#
-#   def self.intake_totals_by_month(year, with_type=false)
-#     start_date = year.blank? ? Date.today.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
-#     end_date = year.blank? ? Date.today.end_of_year : Date.parse("#{year}0101").end_of_year
-#     scope = self.scoped
-#
-#     if with_type
-#       scope = scope.select("animal_types.name as type").joins(:animal_type).group(:animal_type_id)
-#     else
-#       scope = scope.select("'Total' as type")
-#     end
-#
-#     start_date.month.upto(end_date.month) do |month|
-#       scope = scope.select("COUNT(CASE WHEN animals.created_at BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
-#       start_date = start_date.next_month
-#     end
-#     scope = scope.reorder(nil).limit(nil)
-#     scope
-#   end
-#   #----------------------------------------------------------------------------
-#
-#   # Instance Methods
-#   #----------------------------------------------------------------------------
-#
-#   #-----------------------------------------------------------------------------
-#   private
-#
-#   def is_kill_shelter?
-#     @shelter ||= self.shelter.kill_shelter?
-#   end
-#
-#   # FIXME: Hack to set the name based on what is should be, view can be lowercase
-#   # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
-#   def update_breed_names
-#     unless self.primary_breed.blank?
-#       primary_breed_from_db = Breed.where(:name => self.primary_breed).first
-#       self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
-#     end
-#     unless self.primary_breed.blank?
-#       secondary_breed_from_db = Breed.where(:name => self.secondary_breed).first
-#       self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
-#     end
-#   end
-#
-#   def change_status_date!
-#     if self.new_record? or self.animal_status_id_changed?
-#       self.status_change_date = Date.today
-#     end
-#   end
-#
-#   def status_history_reason_required?
-#     self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
-#   end
-#
-#   def create_status_history!
-#     StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason) if self.new_record? or self.animal_status_id_changed? or self.shelter_id_changed?
-#   end
-#
-#   def clean_fields
-#     clean_description
-#     clean_secondary_breed
-#     clean_special_needs
-#   end
-#
-#   def clean_description
-#     # Remove Microsoft Extra Smart Formatting
-#     unless self.description.blank?
-#       self.description.strip!
-#       self.description.gsub!(/[\u201C\u201D\u201E\u201F\u2033\u2036]/, '"')
-#       self.description.gsub!(/[\u2018\u2019\u201A\u201B\u2032\u2035\uFFFD]/, "'")
-#       self.description.gsub!(/[\u2013\u2014]/, "-")
-#       self.description.gsub!(/\u02C6/, '^')
-#       self.description.gsub!(/\u2039/, '<')
-#       self.description.gsub!(/\u203A/, '>')
-#       self.description.gsub!(/\u2013/, '-')
-#       self.description.gsub!(/\u2014/, '--')
-#       self.description.gsub!(/\u2026/, '...')
-#       self.description.gsub!(/\u00A9/, '&copy;')
-#       self.description.gsub!(/\u00AE/, '&reg;')
-#       self.description.gsub!(/\u2122/, '&trade;')
-#       self.description.gsub!(/\u00BC/, '&frac14;')
-#       self.description.gsub!(/\u00BD/, '&frac12;')
-#       self.description.gsub!(/\u00BE/, '&frac34;')
-#       self.description.gsub!(/[\u02DC\u00A0]/, " ")
-#     end
-#   end
-#
-#   def clean_secondary_breed
-#     self.secondary_breed = nil unless self.mix_breed?
-#   end
-#
-#   def clean_special_needs
-#     self.special_needs = nil unless self.special_needs?
-#   end
-# end
-
 describe Animal do
 
   it_should_behave_like Statusable
@@ -360,21 +153,162 @@ describe Animal do
   end
 
   context "Nested Attributes" do
-#   accepts_nested_attributes_for :photos, :limit => Photo::MAX_TOTAL,
-#                                          :allow_destroy => true,
-#                                          :reject_if => Proc.new { |a| a['image'].blank? if a['image_cache'].blank? }
+
+    before do
+      @image = File.open("#{Rails.root}/spec/data/images/photo.jpg")
+    end
+
+    it "accepts nested attributes for photos" do
+      Animal.count.should == 0
+      Photo.count.should   == 0
+
+      Animal.gen :photos_attributes => [{:image => @image}]
+
+      Photo.count.should == 1
+      Photo.count.should   == 1
+    end
+
+    it "rejects nested attributes for photos" do
+      Animal.count.should == 0
+      Photo.count.should   == 0
+
+      Animal.gen :photos_attributes => [{:image => nil}]
+
+      Animal.count.should == 1
+      Photo.count.should   == 0
+    end
+
+    it "destroys nested photos" do
+      animal = Animal.gen :photos_attributes => [{:image => @image}]
+
+      Animal.count.should == 1
+      Photo.count.should   == 1
+
+      animal.destroy
+
+      Animal.count.should == 0
+      Photo.count.should   == 0
+    end
   end
 
   context "Before Save" do
-  ##   before_save :change_status_date!, :clean_fields
+
+    it "cleans the description to remove all of the MS formatting" do
+      animal = Animal.gen(
+        :description => "\u2036\u201F\u2035\u2032\u2013\u02C6\u2039\u203A\u2013\u2014\u2026\u00A9\u00AE\u2122\u00BC\u00BD\u00BE\u02DC"
+      )
+      animal.description.should == "\"\"''-^<>--...&copy;&reg;&trade;&frac14;&frac12;&frac34;"
+    end
+
+    it "strips the description" do
+      animal = Animal.gen(
+        :description => "   hi    "
+      )
+      animal.description.should == "hi"
+    end
+
+    it "removed secondary breed when the mixed breed is false" do
+      animal = Animal.gen(
+        :secondary_breed => "test",
+        :is_mix_breed => false
+      )
+      animal.secondary_breed.should be_nil
+    end
+
+    it "removed special needs when the has special needs is false" do
+      animal = Animal.gen(
+        :special_needs => "test",
+        :has_special_needs => false
+      )
+      animal.special_needs.should be_nil
+    end
+
+    it "changes the status date for a new record" do
+      animal = Animal.gen
+      animal.status_change_date.should == Date.today
+    end
+
+    it "changes the status date when the animal status changes" do
+      animal = Animal.gen :animal_status_id => 1
+      animal.update_attributes(:status_change_date => Date.today - 1.month)
+
+      animal.status_change_date.should == Date.today - 1.month
+
+      animal.update_attributes(:animal_status_id => 2)
+
+      animal.status_change_date.should == Date.today
+    end
   end
 
   context "After Validation" do
-#   after_validation :update_breed_names # FIXME: Remove later when we store the breed ids
+
+    it "updates the breed names to exactly match the ones in the database" do
+      primary_breed = Breed.gen(:name => "Labrador Retriever")
+      secondary_breed = Breed.gen(:name => "Border Collie")
+
+      animal = Animal.gen(
+        :primary_breed => " labrador retriever    ",
+        :secondary_breed => " border collie  "
+      )
+
+      animal.primary_breed.should == "Labrador Retriever"
+      animal.secondary_breed.should == "Border Collie"
+    end
   end
 
   context "After Save" do
-#   after_save :create_status_history!
+
+    it "creates status history for a new record" do
+      Animal.count.should == 0
+      StatusHistory.count.should == 0
+
+      animal = Animal.gen
+
+      Animal.count.should == 1
+      StatusHistory.count.should == 1
+    end
+
+    it "creates status history when the animal status has changed" do
+      Animal.count.should == 0
+      StatusHistory.count.should == 0
+
+      animal = Animal.gen :status_history_reason => "New Record"
+
+      Animal.count.should == 1
+      StatusHistory.count.should == 1
+
+      animal.animal_status = AnimalStatus.gen
+      animal.status_history_reason = "Status Updated"
+      animal.save
+
+      Animal.count.should == 1
+      StatusHistory.count.should == 2
+
+      histories = StatusHistory.all
+      histories.map(&:reason).should == ["New Record", "Status Updated"]
+    end
+
+    it "creates status history when the shelter has changed" do
+      Animal.count.should == 0
+      StatusHistory.count.should == 0
+
+      animal = Animal.gen :status_history_reason => "New Record"
+
+      Animal.count.should == 1
+      StatusHistory.count.should == 1
+
+      shelter = Shelter.gen
+      animal.shelter = shelter
+      animal.status_history_reason = "New Transfer"
+      animal.save
+
+      Animal.count.should == 1
+      StatusHistory.count.should == 2
+
+      histories = StatusHistory.all
+      histories[0].reason.should == "New Record"
+      histories[1].reason.should == "New Transfer"
+    end
   end
 end
 
@@ -405,7 +339,663 @@ end
 
 # Class Methods
 #----------------------------------------------------------------------------
+describe Animal, ".latest" do
 
+  it "returns the latest animals for a specific status and limit" do
+    animal1 = Animal.gen(:animal_status_id => 1)
+    animal2 = Animal.gen(:animal_status_id => 1)
+    animal3 = Animal.gen(:animal_status_id => 1)
+    animal4 = Animal.gen(:animal_status_id => 2)
+
+    animal1.update_attribute(:status_change_date, Date.today)
+    animal2.update_attribute(:status_change_date, Date.today - 2.days)
+    animal3.update_attribute(:status_change_date, Date.today - 1.days)
+
+    animals = Animal.latest(:available_for_adoption, 4)
+
+    animals.count.should == 3
+    animals.should =~ [animal1, animal3, animal2]
+  end
+end
+
+describe Animal, ".auto_complete" do
+
+  it "returns the animals like the name parameter" do
+    animal1 = Animal.gen(:name => "Doggie")
+    animal2 = Animal.gen(:name => "Dog")
+    animal3 = Animal.gen(:name => "Cat")
+
+    animals = Animal.auto_complete("dog")
+
+    animals.count.should == 2
+    animals.should =~ [animal1, animal2]
+  end
+end
+
+describe Animal, ".search" do
+
+  context "with no search term" do
+
+    it "returns all animals when no params" do
+      animal1 = Animal.gen
+      animal2 = Animal.gen
+
+      animals = Animal.search("")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+  end
+
+  context "with numeric search term" do
+
+    it "returns animal that matches id" do
+       animal1 = Animal.gen :id => 1234567890
+       animal2 = Animal.gen :id => 1234567
+
+       animals = Animal.search("1234567")
+
+       animals.count.should == 1
+       animals.should == [animal2]
+     end
+
+    it "returns animal that matches microchip" do
+       animal1 = Animal.gen :microchip => 1234567890
+       animal2 = Animal.gen :microchip => 1234567
+
+       animals = Animal.search("1234567")
+
+       animals.count.should == 1
+       animals.should == [animal2]
+     end
+  end
+
+  context "with alphanumeric search term" do
+
+    it "returns all animals with the name like" do
+      animal1 = Animal.gen :name => "DoggieTown"
+      animal2 = Animal.gen :name => "DogTown"
+      animal3 = Animal.gen :name => "KittyTown"
+
+      animals = Animal.search("dog")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+
+    it "returns all animals with the microchip like" do
+      animal1 = Animal.gen :microchip => "DoggieTown"
+      animal2 = Animal.gen :microchip => "DogTown"
+      animal3 = Animal.gen :microchip => "KittyTown"
+
+      animals = Animal.search("dog")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+
+    it "returns all animals with the description like" do
+      animal1 = Animal.gen :description => "DoggieTown"
+      animal2 = Animal.gen :description => "DogTown"
+      animal3 = Animal.gen :description => "KittyTown"
+
+      animals = Animal.search("dog")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+
+    it "returns all animals with the primary breed like" do
+      animal1 = Animal.gen :primary_breed => "DoggieTown"
+      animal2 = Animal.gen :primary_breed => "DogTown"
+      animal3 = Animal.gen :primary_breed => "KittyTown"
+
+      animals = Animal.search("dog")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+
+    it "returns all animals with the secondary breed like" do
+      animal1 = Animal.gen :secondary_breed => "DoggieTown"
+      animal2 = Animal.gen :secondary_breed => "DogTown"
+      animal3 = Animal.gen :secondary_breed => "KittyTown"
+
+      animals = Animal.search("dog")
+
+      animals.count.should == 2
+      animals.should =~ [animal1, animal2]
+    end
+  end
+end
+
+describe Animal, ".recent_activity" do
+
+  it "returns a limited number of recent animals" do
+    animal1 = Animal.gen :updated_at => Time.now - 2.days
+    animal2 = Animal.gen :updated_at => Time.now
+    animal3 = Animal.gen :updated_at => Time.now - 10.days
+
+    animals = Animal.recent_activity(10)
+
+    animals.should == [animal2, animal1, animal3]
+  end
+end
+
+describe Animal, ".api_lookup" do
+
+  it "returns a list of available animals because no status provided" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 2
+    animal3 = Animal.gen :animal_status_id => 16
+
+    animals = Animal.api_lookup(nil, nil)
+
+    animals.should == [animal1, animal3]
+  end
+
+  it "returns a list of animals per statuses provided" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 2
+    animal3 = Animal.gen :animal_status_id => 16
+
+    animals = Animal.api_lookup(nil, [2])
+
+    animals.should == [animal2]
+  end
+
+  it "returns a list of animals per types provided" do
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :animal_status_id => 1, :animal_type => type1
+    animal2 = Animal.gen :animal_status_id => 2, :animal_type => type1
+    animal3 = Animal.gen :animal_status_id => 16, :animal_type => type2
+
+    animals = Animal.api_lookup([type1.id], nil)
+
+    animals.should == [animal1]
+  end
+
+  it "returns a list of animals per statuses and types provided" do
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :animal_status_id => 1, :animal_type => type1
+    animal2 = Animal.gen :animal_status_id => 2, :animal_type => type1
+    animal3 = Animal.gen :animal_status_id => 16, :animal_type => type2
+
+    animals = Animal.api_lookup([type1.id], [2])
+
+    animals.should == [animal2]
+  end
+
+  it "returns a list of animals ordered by euthanasia_date" do
+    next_month = Date.today + 1.month
+    next_week = Date.today + 7.days
+    animal1 = Animal.gen(
+      :animal_status_id => 1,
+      :euthanasia_date_day => next_month.day,
+      :euthanasia_date_month => next_month.month,
+      :euthanasia_date_year => next_month.year
+    )
+    animal2 = Animal.gen(
+      :animal_status_id => 1,
+      :euthanasia_date_day => next_week.day,
+      :euthanasia_date_month => next_week.month,
+      :euthanasia_date_year => next_week.year
+    )
+    animal3 = Animal.gen(:animal_status_id => 1)
+
+    animals = Animal.api_lookup(nil, nil)
+
+    animals.should == [animal2, animal1, animal3]
+  end
+end
+
+describe Animal, ".community_animals" do
+
+  before do
+    @kill_shelter = Shelter.gen :is_kill_shelter => true
+    @no_kill_shelter = Shelter.gen :is_kill_shelter => false
+
+    @available_kill = Animal.gen :shelter => @kill_shelter, :animal_status_id => 1
+    @pending_kill = Animal.gen :shelter => @kill_shelter, :animal_status_id => 16
+    @adopted_kill = Animal.gen :shelter => @kill_shelter, :animal_status_id => 2
+
+    @available_no_kill = Animal.gen :shelter => @no_kill_shelter, :animal_status_id => 1
+    @pending_no_kill = Animal.gen :shelter => @no_kill_shelter, :animal_status_id => 16
+    @adopted_no_kill = Animal.gen :shelter => @no_kill_shelter, :animal_status_id => 2
+  end
+
+  it "returns filtered animal by shelter ids" do
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id])
+    animals.should =~ [
+      @available_kill,
+      @pending_kill,
+      @available_no_kill,
+      @pending_no_kill
+    ]
+  end
+
+  it "returns a sorted list of animals" do
+    @available_kill.update_column(:euthanasia_date, Date.today)
+    @pending_kill.update_column(:euthanasia_date, Date.today + 2.days)
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id])
+
+    animals.count.should == 4
+
+    # Only checking the kill shelter order because it is all that matters in the ordering
+    animals[0].should == @available_kill
+    animals[1].should == @pending_kill
+  end
+
+  it "returns filtered animal by euthanasia" do
+    filters = { :euthanasia_only => true }
+
+    @available_kill.update_column(:euthanasia_date, Date.today)
+    @pending_kill.update_column(:euthanasia_date, Date.today)
+    @adopted_kill.update_column(:euthanasia_date, Date.today + 4.weeks)
+    @available_no_kill.update_column(:euthanasia_date, Date.today)
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@available_kill, @pending_kill]
+  end
+
+  it "returns filtered animal by special needs" do
+    filters = { :special_needs_only => true }
+
+    @available_kill.update_column(:has_special_needs, true)
+    @pending_kill.update_column(:has_special_needs, false)
+    @adopted_kill.update_column(:has_special_needs, true)
+    @available_no_kill.update_column(:has_special_needs, false)
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@available_kill]
+  end
+
+  it "returns filtered animal by animal type" do
+    filters = { :animal_type => 1 }
+
+    @available_kill.update_column(:animal_type_id, 1)
+    @pending_kill.update_column(:animal_type_id, 1)
+    @adopted_kill.update_column(:animal_type_id, 2)
+    @available_no_kill.update_column(:animal_type_id, 1)
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@available_kill, @pending_kill, @available_no_kill]
+  end
+
+  it "returns filtered animal by breed" do
+    filters = { :breed => "lab" }
+
+    @available_kill.update_column(:primary_breed, "lab")
+    @pending_kill.update_column(:secondary_breed, "lab")
+    @adopted_kill.update_column(:primary_breed, "lab")
+    @available_no_kill.update_column(:secondary_breed, "lab")
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@available_kill, @pending_kill, @available_no_kill]
+  end
+
+  it "returns filtered animal by sex" do
+    filters = { :sex => "male" }
+
+    @available_kill.update_column(:sex, "male")
+    @pending_kill.update_column(:sex, "female")
+    @adopted_kill.update_column(:sex, "male")
+    @available_no_kill.update_column(:sex, "male")
+    @pending_no_kill.update_column(:sex, "female")
+    @adopted_no_kill.update_column(:sex, "male")
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@available_kill, @available_no_kill]
+  end
+
+  it "returns filtered animal by animal statuses" do
+    filters = { :animal_status => "2" }
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    animals.should =~ [@adopted_kill, @adopted_no_kill]
+  end
+end
+
+describe Animal, ".search_by_name" do
+
+  it "returns an animal based on the id" do
+    animal1 = Animal.gen
+    animal2 = Animal.gen
+
+    animals = Animal.search_by_name(animal1.id.to_s)
+    animals.count.should == 1
+    animals.should == [animal1]
+  end
+
+  it "returns a list of animals based on the name" do
+    animal1 = Animal.gen :name => "doggie"
+    animal2 = Animal.gen :name => "dog"
+    animal3 = Animal.gen :name => "kittie"
+
+    animals = Animal.search_by_name("dog")
+    animals.count.should == 2
+    animals.should =~ [animal1, animal2]
+  end
+end
+
+describe Animal, ".filter_by_type_status" do
+
+  it "returns animals that are only active" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 3
+    animal3 = Animal.gen :animal_status_id => 2
+
+    animals = Animal.filter_by_type_status(nil, "active")
+    animals.count.should == 2
+    animals.should =~ [animal1, animal2]
+  end
+
+  it "returns animals that are only non-active" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 3
+    animal3 = Animal.gen :animal_status_id => 2
+
+    animals = Animal.filter_by_type_status(nil, "non_active")
+    animals.count.should == 1
+    animals.should =~ [animal3]
+  end
+
+  it "returns a list of animals based on the type" do
+    animal_type1 = AnimalType.gen
+    animal_type2 = AnimalType.gen
+
+    animal1 = Animal.gen :animal_type => animal_type1
+    animal2 = Animal.gen :animal_type => animal_type2
+    animal3 = Animal.gen :animal_type => animal_type1
+
+    animals = Animal.filter_by_type_status(animal_type1.id, nil)
+    animals.count.should == 2
+    animals.should =~ [animal1, animal3]
+  end
+
+  it "returns a list of animals based on the status" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 3
+    animal3 = Animal.gen :animal_status_id => 2
+
+    animals = Animal.filter_by_type_status(nil, 3)
+    animals.count.should == 1
+    animals.should =~ [animal2]
+  end
+
+  it "returns a list of animals based on the type and status" do
+    animal_type1 = AnimalType.gen
+    animal_type2 = AnimalType.gen
+
+    animal1 = Animal.gen :animal_type => animal_type1, :animal_status_id => 1
+    animal2 = Animal.gen :animal_type => animal_type2, :animal_status_id => 2
+    animal3 = Animal.gen :animal_type => animal_type1, :animal_status_id => 3
+
+    animals = Animal.filter_by_type_status(animal_type1.id, 1)
+    animals.count.should == 1
+    animals.should =~ [animal1]
+  end
+end
+
+describe Animal, ".count_by_type" do
+
+  it "returns a count and animal type name" do
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :animal_type => type1
+    animal2 = Animal.gen :animal_type => type2
+    animal3 = Animal.gen :animal_type => type1
+
+    results = Animal.count_by_type
+
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "count" => 2,
+        "name" => type1.name
+      }
+    }, {
+      "animal" =>{
+        "count" => 1,
+        "name" => type2.name
+      }
+    }]
+  end
+end
+
+describe Animal, ".count_by_status" do
+
+  it "returns a count and animal type name" do
+    status1 = AnimalStatus.gen
+    status2 = AnimalStatus.gen
+
+    animal1 = Animal.gen :animal_status => status1
+    animal2 = Animal.gen :animal_status => status2
+    animal3 = Animal.gen :animal_status => status1
+
+    results = Animal.count_by_status
+
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "count" => 2,
+        "name" => status1.name
+      }
+    }, {
+      "animal" =>{
+        "count" => 1,
+        "name" => status2.name
+      }
+    }]
+  end
+end
+
+describe Animal, ".current_month" do
+
+  it "returns animals that had their status change this month" do
+    animal1 = Animal.gen
+    animal2 = Animal.gen
+    animal3 = Animal.gen
+
+    animal1.update_column(:status_change_date, Date.today)
+    animal2.update_column(:status_change_date, Date.today + 1.month)
+    animal3.update_column(:status_change_date, Date.today - 1.day)
+
+    animals = Animal.current_month
+    animals.should =~ [animal1, animal3]
+  end
+end
+
+describe Animal, ".year_to_date" do
+  it "returns animals that had their status change this year" do
+    animal1 = Animal.gen
+    animal2 = Animal.gen
+    animal3 = Animal.gen
+
+    animal1.update_column(:status_change_date, Date.today)
+    animal2.update_column(:status_change_date, Date.today + 1.year)
+    animal3.update_column(:status_change_date, Date.today - 1.day)
+
+    animals = Animal.year_to_date
+    animals.should =~ [animal1, animal3]
+  end
+end
+
+describe Animal, ".type_by_month_year" do
+
+  it "returns a count and animal type for the month and year for all shelters" do
+    shelter = Shelter.gen
+
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :shelter => shelter, :animal_type => type1
+    animal2 = Animal.gen :shelter => shelter, :animal_type => type2
+
+    history1 = StatusHistory.gen(
+      :shelter => shelter,
+      :animal => animal1,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+    history2 = StatusHistory.gen(
+      :shelter => shelter,
+      :animal => animal2,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+    history3 = StatusHistory.gen(
+      :shelter => shelter,
+      :animal => animal1,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+    history4 = StatusHistory.gen(
+      :shelter => shelter,
+      :animal => animal1,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2014")
+    )
+
+    results = Animal.type_by_month_year("07", "2013", nil, nil)
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "count" => 2,
+        "name" => type1.name
+      }
+    }, {
+      "animal" =>{
+        "count" => 1,
+        "name" => type2.name
+      }
+    }]
+  end
+
+  it "returns a count and animal type for the month and year based on a shelter id" do
+    shelter1 = Shelter.gen
+    shelter2 = Shelter.gen
+
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :shelter => shelter1, :animal_type => type1
+    animal2 = Animal.gen :shelter => shelter2, :animal_type => type2
+
+    history1 = StatusHistory.gen(
+      :shelter => shelter1,
+      :animal => animal1,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+    history3 = StatusHistory.gen(
+      :shelter => shelter2,
+      :animal => animal2,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+
+    results = Animal.type_by_month_year("07", "2013", shelter1.id, nil)
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "count" => 1,
+        "name" => type1.name
+      }
+    }]
+  end
+
+  it "returns a count and animal type for the month and year based on a state" do
+    shelter1 = Shelter.gen :state => "PA"
+    shelter2 = Shelter.gen :state => "CA"
+
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    animal1 = Animal.gen :shelter => shelter1, :animal_type => type1
+    animal2 = Animal.gen :shelter => shelter2, :animal_type => type2
+
+    history1 = StatusHistory.gen(
+      :shelter => shelter1,
+      :animal => animal1,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+    history3 = StatusHistory.gen(
+      :shelter => shelter2,
+      :animal => animal2,
+      :animal_status_id => 1,
+      :created_at => DateTime.parse("July 1, 2013")
+    )
+
+    results = Animal.type_by_month_year("07", "2013", nil, "CA")
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "count" => 1,
+        "name" => type2.name
+      }
+    }]
+  end
+end
+
+describe Animal, ".intake_totals_by_month" do
+
+  it "returns counts for a year without animal types" do
+    Animal.gen :created_at => DateTime.parse("July 1, 2013")
+    Animal.gen :created_at => DateTime.parse("July 1, 2013")
+    Animal.gen :created_at => DateTime.parse("Jan 1, 2013")
+    Animal.gen :created_at => DateTime.parse("May 1, 2013")
+    Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
+    Animal.gen :created_at => DateTime.parse("Nov 1, 2013")
+    Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
+
+    results = Animal.intake_totals_by_month("2013")
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "april" => 0,
+        "august" => 0,
+        "december" => 0,
+        "february" => 0,
+        "january" => 1,
+        "july" => 2,
+        "june" => 0,
+        "march" => 0,
+        "may" => 1,
+        "november" => 1,
+        "october" => 0,
+        "september" => 2
+      }
+    }]
+  end
+
+  it "returns counts for a year with animal types" do
+    type1 = AnimalType.gen
+    type2 = AnimalType.gen
+
+    Animal.gen :animal_type => type1, :created_at => DateTime.parse("July 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => DateTime.parse("July 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => DateTime.parse("Jan 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => DateTime.parse("May 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => DateTime.parse("Sept 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => DateTime.parse("Nov 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => DateTime.parse("Sept 1, 2013")
+
+    results = Animal.intake_totals_by_month("2013", true)
+    MultiJson.load(results.to_json).should =~ [{
+      "animal" => {
+        "april" => 0, "august" => 0, "december" => 0, "february" => 0, "january" => 0, "july" => 2,
+        "june" => 0, "march" => 0, "may" => 0, "november" => 1, "october" => 0, "september" => 1
+      }
+    }, {
+      "animal" => {
+        "april" => 0, "august" => 0, "december" => 0, "february" => 0, "january" => 1, "july" => 0,
+        "june" => 0, "march" => 0, "may" => 1, "november" => 0, "october" => 0, "september" => 1
+      }
+    }]
+  end
+end
 
 # Instance Methods
 #----------------------------------------------------------------------------
@@ -599,27 +1189,62 @@ describe Animal, "#photos" do
   end
 end
 
-#   def full_breed
-#     if mix_breed?
-#       self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"
-#     else
-#       self.primary_breed
-#     end
-#   end
-#
-#   def special_needs?
-#     self.has_special_needs
-#   end
-#
-#   def mix_breed?
-#     self.is_mix_breed
-#   end
-#
-#   def sterilized?
-#     self.is_sterilized
-#   end
-#
-#   # def photos?
-#   #   self.photos.present?
-#   # end
-#
+describe Animal, "#full_breed" do
+
+  it "returns the full breed when only primary breed" do
+    animal = Animal.new :primary_breed => "Labrador Retriever"
+    animal.full_breed.should == "Labrador Retriever"
+  end
+
+  it "returns the full breed when primary breed and is a mix breed" do
+    animal = Animal.new(
+      :primary_breed => "Labrador Retriever",
+      :secondary_breed => "",
+      :is_mix_breed => true
+    )
+    animal.full_breed.should == "Labrador Retriever Mix"
+  end
+
+  it "returns the full breed when primary breed and is a mix breed with secondary breed" do
+    animal = Animal.new(
+      :primary_breed => "Labrador Retriever",
+      :secondary_breed => "Border Collie",
+      :is_mix_breed => true
+    )
+    animal.full_breed.should == "Labrador Retriever & Border Collie Mix"
+  end
+end
+
+describe Animal, "#stopped?" do
+
+  it "validates if the animal has special needs" do
+    animal1 = Animal.new :has_special_needs => true
+    animal2 = Animal.new
+
+    animal1.special_needs?.should == true
+    animal2.special_needs?.should == false
+  end
+end
+
+describe Animal, "#mix_breed?" do
+
+  it "validates if the animal is a mix breed" do
+    animal1 = Animal.new :is_mix_breed => true
+    animal2 = Animal.new :is_mix_breed => false
+
+    animal1.mix_breed?.should == true
+    animal2.mix_breed?.should == false
+  end
+end
+
+describe Animal, "#sterilized?" do
+
+  it "validates if the animal is sterilized" do
+    animal1 = Animal.new :is_sterilized => true
+    animal2 = Animal.new :is_sterilized => false
+
+    animal1.sterilized?.should == true
+    animal2.sterilized?.should == false
+  end
+end
+

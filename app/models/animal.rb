@@ -77,13 +77,22 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).order("status_change_date DESC").limit(limit) }
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
-  scope :search, lambda { |q|
-    includes(:animal_type, :animal_status, :photos).
-    where("animals.id LIKE ? OR animals.name LIKE ? OR animals.description LIKE ? OR
-           animals.microchip LIKE ? OR animals.color LIKE ? OR animals.weight LIKE ? OR
-           animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
-           "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
-  }
+
+  def self.search(q)
+    scope = self.scoped
+    scope = scope.includes(:animal_type, :animal_status, :photos)
+    if q.is_numeric?
+      scope = scope.where("animals.id = ? OR animals.microchip = ?", q, q)
+    else
+      scope = scope.where(
+        "animals.name LIKE ? OR animals.description LIKE ? OR animals.microchip LIKE ? OR animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
+        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%"
+      )
+    end
+
+    scope
+  end
+  #----------------------------------------------------------------------------
 
   # Dashboard - Recent Activity
   #----------------------------------------------------------------------------
@@ -110,19 +119,40 @@ class Animal < ActiveRecord::Base
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :shelter, :photos)
     scope = scope.where(:shelter_id => shelter_ids)
+
     # Fitler Euthanasia
-    scope = scope.joins(:shelter).where("shelters.is_kill_shelter = ?", true).where("animals.euthanasia_date < ?", Date.today + 2.weeks) unless filters[:euthanasia_only].blank? or !filters[:euthanasia_only]
+    unless filters[:euthanasia_only].blank? || !filters[:euthanasia_only]
+      scope = scope.joins(:shelter)
+      scope = scope.where("shelters.is_kill_shelter = ?", true)
+      scope = scope.where("animals.euthanasia_date < ?", Date.today + 2.weeks)
+    end
+
     # Filter Special Needs
-    scope = scope.where(:has_special_needs => true) unless filters[:special_needs_only].blank? or !filters[:special_needs_only]
+    unless filters[:special_needs_only].blank? || !filters[:special_needs_only]
+      scope = scope.where(:has_special_needs => true)
+    end
+
     # Filter Animal Type
-    scope = scope.where(:animal_type_id => filters[:animal_type]) unless filters[:animal_type].blank?
+    unless filters[:animal_type].blank?
+      scope = scope.where(:animal_type_id => filters[:animal_type])
+    end
+
     # Filter Breed
-    scope = scope.where("animals.primary_breed = ? OR animals.secondary_breed = ?", filters[:breed], breed) unless filters[:breed].blank?
+    unless filters[:breed].blank?
+      scope = scope.where("animals.primary_breed = ? OR animals.secondary_breed = ?", filters[:breed], filters[:breed])
+    end
+
     # Filter Sex
-    scope = scope.where(:sex => filters[:sex].downcase) unless filters[:sex].blank?
+    unless filters[:sex].blank?
+      scope = scope.where(:sex => filters[:sex].downcase)
+    end
+
     # Filter Animal Status
-    scope = scope.where(:animal_status_id => filters[:animal_status]) unless filters[:animal_status].blank?
-    scope = scope.active unless filters[:animal_status].present?
+    if filters[:animal_status].blank?
+      scope = scope.active
+    else
+      scope = scope.where(:animal_status_id => filters[:animal_status])
+    end
 
     if shelter_ids.is_a?(Array) && shelter_ids.any?
       scope.reorder("FIELD(shelter_id, #{shelter_ids.join(',')}), ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
@@ -139,7 +169,7 @@ class Animal < ActiveRecord::Base
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
     if q.is_numeric?
-      scope = scope.where(:"animals.id" => q)
+      scope = scope.where("animals.id = ?", q)
     else
       scope = scope.where("animals.name LIKE ?", "%#{q}%")
     end
@@ -152,7 +182,7 @@ class Animal < ActiveRecord::Base
     scope = scope.includes(:animal_type, :animal_status, :photos)
     scope = scope.where(:animal_type_id => type) unless type.blank?
     unless status.blank?
-      scope = (status == "active" or status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
+      scope = (status == "active" || status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
     end
 
     scope
@@ -167,19 +197,25 @@ class Animal < ActiveRecord::Base
   scope :year_to_date, where(:status_change_date => Date.today.beginning_of_year..Date.today.end_of_year)
 
   def self.type_by_month_year(month, year, shelter_id=nil, state=nil)
-    start_date = (month.blank? or year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
+    start_date = (month.blank? || year.blank?) ? Date.today : Date.civil(year.to_i, month.to_i, 01)
     range = start_date.beginning_of_month..start_date.end_of_month
-    status_histories = StatusHistory.where(:shelter_id => shelter_id || {}).by_month(range)
+
+    status_histories = if shelter_id
+      StatusHistory.where(:shelter_id => shelter_id).by_month(range)
+    else
+      StatusHistory.by_month(range)
+    end
 
     scope = self.scoped
     scope = scope.select("count(*) count, animal_types.name")
     scope = scope.joins(:status_histories, :animal_type)
+
     unless state.blank?
       scope = scope.joins(:shelter)
       scope = scope.where(:shelters => { :state => state })
     end
-    scope = scope.where(:status_histories => {:id => status_histories})
-    scope = scope.where(:animal_status_id => AnimalStatus::ACTIVE)
+
+    scope = scope.where(:status_histories => { :id => status_histories, :animal_status_id => AnimalStatus::ACTIVE })
     scope = scope.group(:animal_type_id)
     scope
   end
@@ -226,10 +262,6 @@ class Animal < ActiveRecord::Base
     self.is_sterilized
   end
 
-  # def photos?
-  #   self.photos.present?
-  # end
-
 
   #-----------------------------------------------------------------------------
   private
@@ -238,31 +270,31 @@ class Animal < ActiveRecord::Base
     @shelter ||= self.shelter.kill_shelter?
   end
 
-  # FIXME: Hack to set the name based on what is should be, view can be lowercase
-  # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
   def update_breed_names
+    # FIXME: Hack to set the name based on what is should be, view can be lowercase
+    # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
+
     unless self.primary_breed.blank?
-      primary_breed_from_db = Breed.where(:name => self.primary_breed).first
+      primary_breed_from_db = Breed.where(:name => self.primary_breed.strip!).first
       self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
     end
-    unless self.primary_breed.blank?
-      secondary_breed_from_db = Breed.where(:name => self.secondary_breed).first
+
+    unless self.secondary_breed.blank?
+      secondary_breed_from_db = Breed.where(:name => self.secondary_breed.strip!).first
       self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
     end
   end
 
   def change_status_date!
-    if self.new_record? or self.animal_status_id_changed?
+    if self.new_record? || self.animal_status_id_changed?
       self.status_change_date = Date.today
     end
   end
 
-  def status_history_reason_required?
-    self.animal_status_id.present? and (self.new_record? or self.animal_status_id_changed?)
-  end
-
   def create_status_history!
-    StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason) if self.new_record? or self.animal_status_id_changed? or self.shelter_id_changed?
+    if self.new_record? || self.animal_status_id_changed? || self.shelter_id_changed?
+      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason)
+    end
   end
 
   def clean_fields
@@ -274,7 +306,6 @@ class Animal < ActiveRecord::Base
   def clean_description
     # Remove Microsoft Extra Smart Formatting
     unless self.description.blank?
-      self.description.strip!
       self.description.gsub!(/[\u201C\u201D\u201E\u201F\u2033\u2036]/, '"')
       self.description.gsub!(/[\u2018\u2019\u201A\u201B\u2032\u2035\uFFFD]/, "'")
       self.description.gsub!(/[\u2013\u2014]/, "-")
@@ -291,6 +322,7 @@ class Animal < ActiveRecord::Base
       self.description.gsub!(/\u00BD/, "&frac12;")
       self.description.gsub!(/\u00BE/, "&frac34;")
       self.description.gsub!(/[\u02DC\u00A0]/, " ")
+      self.description.strip!
     end
   end
 
