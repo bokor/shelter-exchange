@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("users")
+ActiveRecord::Base.connection.execute("TRUNCATE users")
 
 after :"development:accounts" do
 

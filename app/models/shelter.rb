@@ -39,12 +39,11 @@ class Shelter < ActiveRecord::Base
   #----------------------------------------------------------------------------
   validates :name, :presence => true
   validates :phone, :presence => true, :phone_format => true
-  validates :email, :presence => true, :uniqueness => true, :allow_blank => true, :email_format => true
+  validates :email, :presence => true, :uniqueness => true, :email_format => true
   validates :time_zone, :inclusion => { :in => ActiveSupport::TimeZone.us_zones.map { |z| z.name }, :message => "is not a valid US Time Zone" }
   validates :website, :facebook, :allow_blank => true, :url_format => true
   validates :twitter, :twitter_format => true, :allow_blank => true
-  validates :access_token, :uniqueness => true, :on => :generate_access_token!
-
+  validates :access_token, :uniqueness => { :message => "has already been taken. Please generate another web token." }, :allow_blank => true
 
   # Scopes
   #----------------------------------------------------------------------------
@@ -71,7 +70,7 @@ class Shelter < ActiveRecord::Base
   def self.search_by_name(q, shelter)
     scope = self.scoped
     scope = scope.where(shelter)
-    scope = scope.where("name LIKE ? OR city LIKE ? OR zip_code LIKE ?", "%#{q}%", "%#{q}%", "%#{q}%") unless q.blank?
+    scope = scope.where("name LIKE ?", "%#{q}%") unless q.blank?
     scope
   end
 

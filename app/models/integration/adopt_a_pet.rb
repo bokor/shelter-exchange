@@ -13,7 +13,7 @@ class Integration::AdoptAPet < Integration
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
 
   def humanize
-    "Adpot a Pet"
+    "Adopt a Pet"
   end
 
   def to_s
@@ -35,5 +35,5 @@ class Integration::AdoptAPet < Integration
       errors.add(:connection_failed, "Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
   end
-
 end
+

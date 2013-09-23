@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("breeds")
+ActiveRecord::Base.connection.execute("TRUNCATE breeds")
 
 # Create Breeds
 #----------------------------------------------------------------------------

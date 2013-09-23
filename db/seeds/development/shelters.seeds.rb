@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("shelters")
+ActiveRecord::Base.connection.execute("TRUNCATE shelters")
 
 after :"development:accounts" do
 

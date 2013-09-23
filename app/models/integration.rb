@@ -18,15 +18,6 @@ class Integration < ActiveRecord::Base
     end
   end
 
-  def self.inherited(child)
-    child.instance_eval do
-      def model_name
-        self.superclass.model_name
-      end
-    end
-    super
-  end
-
 
   #----------------------------------------------------------------------------
   private
@@ -36,11 +27,7 @@ class Integration < ActiveRecord::Base
   end
 end
 
-#avoid type field warnings like:
+# avoid type field warnings like:
 # http://www.tatvartha.com/2009/08/rails-single-table-inheritance-changing-inheritance_column-name/
 # warning: Object#type is deprecated; use Object#class
-# self.inheritance_column = :task_type
-
-
-# @integration.becomes(params[:integration][:type].constantize)
 

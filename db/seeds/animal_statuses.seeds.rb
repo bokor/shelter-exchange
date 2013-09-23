@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("animal_statuses")
+ActiveRecord::Base.connection.execute("TRUNCATE animal_statuses")
 
 # Create Animal Statuses
 #----------------------------------------------------------------------------

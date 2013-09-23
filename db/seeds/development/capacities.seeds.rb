@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("capacities")
+ActiveRecord::Base.connection.execute("TRUNCATE capacities")
 
 after :animal_types, :"development:shelters" do
 

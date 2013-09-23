@@ -1,6 +1,6 @@
 # Truncate Data
 #----------------------------------------------------------------------------
-truncate_db_table("owners")
+ActiveRecord::Base.connection.execute("TRUNCATE owners")
 
 # Create Owner
 #----------------------------------------------------------------------------
