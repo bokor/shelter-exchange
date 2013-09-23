@@ -48,7 +48,7 @@ end
 
 describe Comment, "#commentable?" do
 
-  it "validates if the comment has an commentable association" do
+  it "returns true if the comment has an commentable association" do
     item     = Item.new
     comment1 = Comment.new :commentable => item
     comment2 = Comment.new

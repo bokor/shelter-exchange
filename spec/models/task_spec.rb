@@ -158,7 +158,7 @@ end
 
 describe Task, "#taskable?" do
 
-  it "validates if the task has an taskable association" do
+  it "returns true if the task is taskable" do
     item  = Item.new
     task1 = Task.new :taskable => item
     task2 = Task.new
@@ -170,7 +170,7 @@ end
 
 describe Task, "#completed?" do
 
-  it "validates if the task has been completed" do
+  it "returns true if the task has been completed" do
     task1 = Task.new :completed => true
     task2 = Task.new :completed => false
 
@@ -181,7 +181,7 @@ end
 
 describe Task, "#overdue?" do
 
-  it "validates if the task is overdue" do
+  it "returns true if the task has been overdue" do
     task1 = Task.new :due_date => Date.today - 1.day
     task2 = Task.new :due_date => Date.today + 1.day
 
@@ -192,7 +192,7 @@ end
 
 describe Task, "#today?" do
 
-  it "validates if the task is due today" do
+  it "returns true if the task is due today" do
     task1 = Task.new :due_date => Date.today
     task2 = Task.new :due_date => Date.today + 1.day
 
@@ -203,7 +203,7 @@ end
 
 describe Task, "#tomorrow?" do
 
-  it "validates if the task is due tomorrow" do
+  it "returns true if the task is due tomorrow" do
     task1 = Task.new :due_date => Date.today + 1.day
     task2 = Task.new :due_date => Date.today
 
@@ -214,7 +214,7 @@ end
 
 describe Task, "#later?" do
 
-  it "validates if the task is due later" do
+  it "returns true if the task is due later" do
     task1 = Task.new :due_date => Date.today + 2.days
     task2 = Task.new :due_category => "later"
     task3 = Task.new :due_date => Date.today
@@ -227,18 +227,7 @@ end
 
 describe Task, "#specific_date?" do
 
-  it "validates if the task is due later" do
-    task1 = Task.new :due_category => "specific_date"
-    task2 = Task.new :due_category => "later"
-
-    task1.specific_date?.should == true
-    task2.specific_date?.should == false
-  end
-end
-
-describe Task, "#due_section" do
-
-  it "validates if the task is due later" do
+  it "returns true if the task is due later" do
     task1 = Task.new :due_category => "specific_date"
     task2 = Task.new :due_category => "later"
 

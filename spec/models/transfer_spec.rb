@@ -200,7 +200,7 @@ end
 
 describe Transfer, "#new_request?" do
 
-  it "validates if the transfer is a new request" do
+  it "returns true if new request" do
     transfer1 = Transfer.gen :status => ""
     transfer2 = Transfer.gen :status => "completed"
 
@@ -211,7 +211,7 @@ end
 
 describe Transfer, "#approved?" do
 
-  it "validates if the transfer is approved" do
+  it "returns true if approved" do
     transfer1 = Transfer.gen :status => "approved"
     transfer2 = Transfer.gen :status => "completed"
 
@@ -222,7 +222,7 @@ end
 
 describe Transfer, "#rejected?" do
 
-  it "validates if the transfer is rejected" do
+  it "returns true if rejected" do
     transfer1 = Transfer.gen :status => "rejected"
     transfer2 = Transfer.gen :status => "completed"
 
@@ -233,7 +233,7 @@ end
 
 describe Transfer, "#completed?" do
 
-  it "validates if the transfer is completed" do
+  it "returns true if completed" do
     transfer1 = Transfer.gen :status => "completed"
     transfer2 = Transfer.gen :status => "approved"
 

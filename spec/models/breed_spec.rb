@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Breed do
+
   it_should_behave_like Typeable
 end
 

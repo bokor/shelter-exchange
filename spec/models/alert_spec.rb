@@ -130,7 +130,7 @@ end
 
 describe Alert, "#stopped?" do
 
-  it "validates if the alert is stopped" do
+  it "returns true if the alert is stopped" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
@@ -141,7 +141,7 @@ end
 
 describe Alert, "#active?" do
 
-  it "validates if the alert is active" do
+  it "returns true if the alert is active" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
@@ -152,7 +152,7 @@ end
 
 describe Alert, "#alertable?" do
 
-  it "validates if the note has an alertable association" do
+  it "returns true if the note has an alertable association" do
     animal = Animal.new
     alert1 = Alert.new :alertable => animal
     alert2 = Alert.new

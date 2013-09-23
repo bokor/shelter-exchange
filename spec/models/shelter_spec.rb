@@ -3,6 +3,7 @@ require "spec_helper"
 describe Shelter do
 
   it_should_behave_like Geocodeable
+  it_should_behave_like StreetAddressable
   it_should_behave_like Uploadable
 
   it "validates presence of name" do
@@ -559,7 +560,7 @@ end
 
 describe Shelter, "#kill_shelter?" do
 
-  it "validates if the shelter is a kill shelter" do
+  it "returns true if the shelter is a kill shelter" do
     shelter1 = Shelter.new :is_kill_shelter => true
     shelter2 = Shelter.new :is_kill_shelter => false
 
@@ -570,7 +571,7 @@ end
 
 describe Shelter, "#no_kill_shelter?" do
 
-  it "validates if the shelter is not kill shelter" do
+  it "returns true if the shelter is not kill shelter" do
     shelter1 = Shelter.new :is_kill_shelter => false
     shelter2 = Shelter.new :is_kill_shelter => true
 
@@ -581,7 +582,7 @@ end
 
 describe Shelter, "#active?" do
 
-  it "validates if the shelter is active" do
+  it "returns true if the shelter is active" do
     shelter1 = Shelter.new :status => "active"
     shelter2 = Shelter.new :status => "cancelled"
 
@@ -592,7 +593,7 @@ end
 
 describe Shelter, "#inactive?" do
 
-  it "validates if the shelter is inactive" do
+  it "returns true if the shelter is inactive" do
     shelter1 = Shelter.new :status => "cancelled"
     shelter2 = Shelter.new :status => "suspended"
     shelter3 = Shelter.new :status => "active"
@@ -605,7 +606,7 @@ end
 
 describe Shelter, "#suspended?" do
 
-  it "validates if the shelter is suspended" do
+  it "returns true if the shelter is suspended" do
     shelter1 = Shelter.new :status => "suspended"
     shelter2 = Shelter.new :status => "active"
 
@@ -616,7 +617,7 @@ end
 
 describe Shelter, "#cancelled?" do
 
-  it "validates if the shelter is cancelled" do
+  it "returns true if the shelter is cancelled" do
     shelter1 = Shelter.new :status => "cancelled"
     shelter2 = Shelter.new :status => "active"
 

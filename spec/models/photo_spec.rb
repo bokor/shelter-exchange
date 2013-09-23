@@ -99,7 +99,7 @@ end
 
 describe Photo, "#attachable?" do
 
-  it "validates if the photo has an attachable association" do
+  it "returns true if the photo has an attachable association" do
     animal  = Animal.new
     photo1 = Photo.new :attachable => animal
     photo2 = Photo.new
@@ -111,7 +111,7 @@ end
 
 describe Photo, "#main_photo?" do
 
-  it "validates if the photo is a main photo or not" do
+  it "returns true if the photo is a main photo or not" do
     photo1 = Photo.new :is_main_photo => true
     photo2 = Photo.new :is_main_photo => false
 
