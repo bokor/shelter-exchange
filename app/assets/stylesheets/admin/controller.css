@@ -137,9 +137,7 @@
 /* Animals Section :: Index :: Layout
 -----------------------------------------------------------------------------*/
 .animals_section{padding-bottom: 75px; cursor: pointer;}
-.animals_section h2{font-weight: bold;}
-.animals_section:hover h2{color:#cf7019;}
-.animals_section .animal_list{display:none;}
+.animals_section h2{font-weight: bold; color:#cf7019;}
 
 /* Animal List :: Layout
 -----------------------------------------------------------------------------*/
