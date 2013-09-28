@@ -49,6 +49,12 @@ end
 
 # Class Methods
 #----------------------------------------------------------------------------
+describe Integration::AdoptAPet, ".model_name" do
+
+  it "returns the model name" do
+    Integration::AdoptAPet.model_name.should == "Integration"
+  end
+end
 
 # Instance Methods
 #----------------------------------------------------------------------------

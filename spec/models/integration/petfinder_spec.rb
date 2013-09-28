@@ -61,6 +61,12 @@ end
 
 # Class Methods
 #----------------------------------------------------------------------------
+describe Integration::Petfinder, ".model_name" do
+
+  it "returns the model name" do
+    Integration::Petfinder.model_name.should == "Integration"
+  end
+end
 
 # Instance Methods
 #----------------------------------------------------------------------------
