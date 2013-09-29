@@ -28,7 +28,7 @@ class SettingsController < ApplicationController
   def exports
   end
 
-  def connect
+  def auto_upload
     @adopt_a_pet = Integration::AdoptAPet.where(:shelter_id => @current_shelter).first_or_initialize
     @petfinder   = Integration::Petfinder.where(:shelter_id => @current_shelter).first_or_initialize
   end
