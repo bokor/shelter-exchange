@@ -17,21 +17,13 @@ module UrlHelper
 
   def full_url
     url = [request.protocol, request.host].join
-
-    unless [80,443].include?(request.port)
-      url << ":#{request.port}"
-    end
-
+    url << ":#{request.port}" unless [80,443].include?(request.port)
     url
   end
 
   def api_url
-    url = [request.protocol, "api.", request.domain].join
-
-    unless [80,443].include?(request.port)
-      url << ":#{request.port}"
-    end
-
+    url = ["http://api.", request.domain].join
+    url << ":#{request.port}" unless [80,443].include?(request.port)
     url
   end
 
