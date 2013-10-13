@@ -27,7 +27,3 @@ class Integration < ActiveRecord::Base
   end
 end
 
-# avoid type field warnings like:
-# http://www.tatvartha.com/2009/08/rails-single-table-inheritance-changing-inheritance_column-name/
-# warning: Object#type is deprecated; use Object#class
-

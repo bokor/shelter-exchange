@@ -1,19 +1,16 @@
 require "spec_helper"
 
 describe "Delete: From the Index Capacity Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-    # Create Alert to get to the Index page
-    @capacity = Capacity.gen :shelter => @shelter, :max_capacity => 100
-  end
+  login_user
 
   it "should delete a capacity" do
+    capacity = Capacity.gen :shelter => current_shelter, :max_capacity => 100
+
     visit capacities_path
 
     Capacity.count.should == 1
 
-    within "##{dom_id(@capacity)}" do
+    within "##{dom_id(capacity)}" do
       click_link('Delete')
       accept_confirmation!
     end

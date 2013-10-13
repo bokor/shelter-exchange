@@ -1,6 +1,7 @@
 class AnimalsController < ApplicationController
   respond_to :html, :js
 
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # cache_sweeper :animal_sweeper, :only => [:create, :update, :destroy]
 
   def index

@@ -1,15 +1,5 @@
 <%= title "Animal Lookup" %>
 
-<%= content_for :javascripts do %>
-  <script type="text/javascript">
-    $(function() {
-      $(".animals_section").bind("click", function(){
-        $(this).children(".animal_list").slideToggle(500);
-      });
-    });
-  </script>
-<% end %>
-
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">

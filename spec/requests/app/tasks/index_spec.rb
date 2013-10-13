@@ -1,11 +1,10 @@
 require "spec_helper"
 
 describe "Index: Task Page", :js => :true do
+  login_user
 
   before do
-    @account, @user, @shelter = login
-    # Create Task to get to the Index page
-    @task = Task.gen :shelter => @shelter
+    @task = Task.gen :shelter => current_shelter # Create Task to get to the Index page
   end
 
   it "should contain correct page title" do
@@ -140,7 +139,7 @@ describe "Index: Task Page", :js => :true do
   end
 
   it "should not show specific date on today task" do
-    task = Task.gen :shelter => @shelter, :due_category => "specific_date", :due_date => Date.today
+    task = Task.gen :shelter => current_shelter, :due_category => "specific_date", :due_date => Date.today
 
     visit tasks_path
 
@@ -150,7 +149,7 @@ describe "Index: Task Page", :js => :true do
   end
 
   it "should not show specific date on tomorrow task" do
-    task = Task.gen :shelter => @shelter, :due_category => "specific_date", :due_date => Date.today + 1.day
+    task = Task.gen :shelter => current_shelter, :due_category => "specific_date", :due_date => Date.today + 1.day
 
     visit tasks_path
 
@@ -175,14 +174,14 @@ describe "Index: Task Page", :js => :true do
     it "should show icons on each tasks with a specific category" do
       @task.destroy
 
-      call_task        = Task.gen :details => "call details", :shelter => @shelter, :category => "call"
-      email_task       = Task.gen :details => "email details", :shelter => @shelter, :category => "email"
-      follow_up_task   = Task.gen :details => "follow_up details", :shelter => @shelter, :category => "follow-up"
-      meeting_task     = Task.gen :details => "meeting details", :shelter => @shelter, :category => "meeting"
-      to_do_task       = Task.gen :details => "to_do details", :shelter => @shelter, :category => "to-do"
-      educational_task = Task.gen :details => "educational details", :shelter => @shelter, :category => "educational"
-      behavioral_task  = Task.gen :details => "behavioral details", :shelter => @shelter, :category => "behavioral"
-      medical_task     = Task.gen :details => "medical details", :shelter => @shelter, :category => "medical"
+      call_task        = Task.gen :details => "call details", :shelter => current_shelter, :category => "call"
+      email_task       = Task.gen :details => "email details", :shelter => current_shelter, :category => "email"
+      follow_up_task   = Task.gen :details => "follow_up details", :shelter => current_shelter, :category => "follow-up"
+      meeting_task     = Task.gen :details => "meeting details", :shelter => current_shelter, :category => "meeting"
+      to_do_task       = Task.gen :details => "to_do details", :shelter => current_shelter, :category => "to-do"
+      educational_task = Task.gen :details => "educational details", :shelter => current_shelter, :category => "educational"
+      behavioral_task  = Task.gen :details => "behavioral details", :shelter => current_shelter, :category => "behavioral"
+      medical_task     = Task.gen :details => "medical details", :shelter => current_shelter, :category => "medical"
 
       visit tasks_path
 
@@ -199,7 +198,7 @@ describe "Index: Task Page", :js => :true do
     end
 
     it "should not icons or tooltips for tasks without a category" do
-      task = Task.gen :shelter => @shelter, :category => nil
+      task = Task.gen :shelter => current_shelter, :category => nil
       visit tasks_path
 
       within "##{dom_id(task)}" do
@@ -211,8 +210,8 @@ describe "Index: Task Page", :js => :true do
   context "Taskable" do
 
     it "should have a link to an animal record" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy Bob"
-      task   = Task.gen :shelter => @shelter, :taskable => animal
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy Bob"
+      task = Task.gen :shelter => current_shelter, :taskable => animal
 
       visit tasks_path
 
@@ -223,7 +222,7 @@ describe "Index: Task Page", :js => :true do
     end
 
     it "should not have a link to an animal record" do
-      task   = Task.gen :shelter => @shelter, :taskable => nil
+      task = Task.gen :shelter => current_shelter, :taskable => nil
 
       visit tasks_path
 

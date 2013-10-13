@@ -1,15 +1,10 @@
 require "spec_helper"
 
 describe "Edit: From the Index Task Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-    # Create Task to get to the Index page
-    @task = Task.gen :shelter => @shelter
-  end
+  login_user
 
   it "should update the details" do
-    task  = Task.gen :details => "old details", :shelter => @shelter
+    task  = Task.gen :details => "old details", :shelter => current_shelter
 
     visit tasks_path
 
@@ -28,7 +23,7 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 
   it "should change the category icon" do
-    task  = Task.gen :details => "call details", :shelter => @shelter, :category => "call"
+    task  = Task.gen :details => "call details", :shelter => current_shelter, :category => "call"
 
     visit tasks_path
 
@@ -53,7 +48,7 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 
   it "should move task from overdue to today" do
-    task = Task.gen :details => "Overdue task details", :shelter => @shelter, :due_date =>  Date.today - 1.day
+    task = Task.gen :details => "Overdue task details", :shelter => current_shelter, :due_date =>  Date.today - 1.day
 
     visit tasks_path
 
@@ -82,7 +77,7 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 
   it "should move task from today to tomorrow" do
-    task = Task.gen :details => "Today task details", :shelter => @shelter, :due_date =>  Date.today, :due_category => "today"
+    task = Task.gen :details => "Today task details", :shelter => current_shelter, :due_date =>  Date.today, :due_category => "today"
 
     visit tasks_path
 
@@ -111,7 +106,7 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 
   it "should move task from tomorrow to later" do
-    task = Task.gen :details => "Tomorrow task details", :shelter => @shelter, :due_date =>  Date.today + 1.day, :due_category => "tomorrow"
+    task = Task.gen :details => "Tomorrow task details", :shelter => current_shelter, :due_date =>  Date.today + 1.day, :due_category => "tomorrow"
 
     visit tasks_path
 
@@ -140,7 +135,7 @@ describe "Edit: From the Index Task Page", :js => :true do
   end
 
   it "should move task from later to today" do
-    task = Task.gen :details => "Later task details", :shelter => @shelter, :due_date =>  Date.today + 2.day, :due_category => "later"
+    task = Task.gen :details => "Later task details", :shelter => current_shelter, :due_date =>  Date.today + 2.day, :due_category => "later"
 
     visit tasks_path
 

@@ -1,10 +1,7 @@
 require "spec_helper"
 
 describe "New: Alert Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-  end
+  login_user
 
   it "should contain correct page title" do
     visit new_alert_path

@@ -1,10 +1,7 @@
 require "spec_helper"
 
 describe "Index: Dashboard Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-  end
+  login_user
 
   it "should contain the correct page title" do
     visit dashboard_path
@@ -36,7 +33,7 @@ describe "Index: Dashboard Page", :js => :true do
   context "Sidebar" do
 
     it "should have a getting started section" do
-      Task.gen :shelter => @shelter
+      Task.gen :shelter => current_shelter
 
       visit dashboard_path
 
@@ -52,7 +49,7 @@ describe "Index: Dashboard Page", :js => :true do
     end
 
     it "should have an auto upload section" do
-      Task.gen :shelter => @shelter
+      Task.gen :shelter => current_shelter
 
       visit dashboard_path
 
@@ -60,10 +57,10 @@ describe "Index: Dashboard Page", :js => :true do
         page.should have_content("Auto upload animals")
 
         list_item = all('ul li')
-        list_item[0].find("a")[:href].should include("/settings/connect")
+        list_item[0].find("a")[:href].should include("/settings/auto_upload")
         list_item[0].find("img")[:src].should include("/assets/partners/petfinder.png")
 
-        list_item[1].find("a")[:href].should include("/settings/connect")
+        list_item[1].find("a")[:href].should include("/settings/auto_upload")
         list_item[1].find("img")[:src].should include("/assets/partners/logo_adopt_a_pet_medium.gif")
       end
     end

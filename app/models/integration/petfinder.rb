@@ -16,6 +16,10 @@ class Integration::Petfinder < Integration
   validates :password, :presence => true
   validate :connection_successful?, :if => lambda { |integration| integration.errors.blank? }
 
+  def self.model_name
+    self.superclass.model_name
+  end
+
   def humanize
     "Petfinder"
   end

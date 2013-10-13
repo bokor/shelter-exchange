@@ -1,15 +1,12 @@
 require "spec_helper"
 
 describe "Activity List: For Dashboard Index Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-  end
+  login_user
 
   context "Animals" do
 
     it "should list animals that were created" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy"
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy"
 
       visit dashboard_path
 
@@ -30,7 +27,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     it "should list animals when the status updated" do
       status1 = AnimalStatus.gen :name => "old"
       status2 = AnimalStatus.gen :name => "Adopted"
-      animal  = Animal.gen! :shelter => @shelter, :name => "Billy", :animal_status => status1
+      animal  = Animal.gen! :shelter => current_shelter, :name => "Billy", :animal_status => status1
 
       animal.update_attributes!({
         :animal_status => status2,
@@ -54,7 +51,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list animals that were updated" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy"
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy"
 
       # Update any other field but status
       animal.name       = "Abbey"
@@ -81,9 +78,9 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
   context "Tasks" do
 
     it "should list tasks that were created" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy"
-      task1  = Task.gen :shelter => @shelter, :details => "a new task"
-      task2  = Task.gen :shelter => @shelter, :details => "a new task", :taskable => animal
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy"
+      task1  = Task.gen :shelter => current_shelter, :details => "a new task"
+      task2  = Task.gen :shelter => current_shelter, :details => "a new task", :taskable => animal
 
       visit dashboard_path
 
@@ -113,14 +110,14 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list tasks that were completed" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy", :updated_at => Time.now
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
       task1  = Task.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :details => "example task",
         :completed => true,
         :updated_at => Time.now + 1.hour
       task2  = Task.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :details => "example taskable task",
         :category => "email",
         :completed => true,
@@ -155,13 +152,13 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list tasks that were updated" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy", :updated_at => Time.now
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
       task1  = Task.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :details => "example task",
         :updated_at => Time.now + 1.hour
       task2  = Task.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :details => "example taskable task",
         :category => "email",
         :taskable => animal,
@@ -198,9 +195,9 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
   context "Alerts" do
 
     it "should list alerts that were created" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy"
-      alert1 = Alert.gen :shelter => @shelter, :title => "a new alert", :severity => "low"
-      alert2 = Alert.gen :shelter => @shelter, :title => "a new alert", :severity => "medium", :alertable => animal
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy"
+      alert1 = Alert.gen :shelter => current_shelter, :title => "a new alert", :severity => "low"
+      alert2 = Alert.gen :shelter => current_shelter, :title => "a new alert", :severity => "medium", :alertable => animal
 
       visit dashboard_path
 
@@ -230,15 +227,15 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list alerts that were stopped" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy", :updated_at => Time.now
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
       alert1  = Alert.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :title => "example alert",
         :stopped => true,
         :severity => "low",
         :updated_at => Time.now + 1.hour
       alert2  = Alert.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :title => "example alertable alert",
         :stopped => true,
         :severity => "medium",
@@ -273,14 +270,14 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
 
     it "should list alerts that were updated" do
-      animal = Animal.gen :shelter => @shelter, :name => "Billy", :updated_at => Time.now
+      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
       alert1  = Alert.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :title => "example alert",
         :severity => "high",
         :updated_at => Time.now + 1.hour
       alert2  = Alert.gen \
-        :shelter => @shelter,
+        :shelter => current_shelter,
         :title => "example alertable alert",
         :severity => "low",
         :alertable => animal,
@@ -317,12 +314,12 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
   context "Sorting" do
 
     it "should sort activities by lasted updated" do
-      animal1 = Animal.gen :shelter => @shelter, :name => "Animal1", :updated_at => Time.now - 3.minutes
-      animal2 = Animal.gen :shelter => @shelter, :name => "Animal2", :updated_at => Time.now - 2.minutes
-      task1  = Task.gen :shelter => @shelter, :details => "Task1", :updated_at => Time.now - 1.minutes
-      task2  = Task.gen :shelter => @shelter, :details => "Task2", :updated_at => Time.now + 1.minutes
-      alert1 = Alert.gen :shelter => @shelter, :title => "Alert1", :updated_at => Time.now + 2.minutes
-      alert2 = Alert.gen :shelter => @shelter, :title => "Alert2", :updated_at => Time.now + 3.minutes
+      animal1 = Animal.gen :shelter => current_shelter, :name => "Animal1", :updated_at => Time.now - 3.minutes
+      animal2 = Animal.gen :shelter => current_shelter, :name => "Animal2", :updated_at => Time.now - 2.minutes
+      task1  = Task.gen :shelter => current_shelter, :details => "Task1", :updated_at => Time.now - 1.minutes
+      task2  = Task.gen :shelter => current_shelter, :details => "Task2", :updated_at => Time.now + 1.minutes
+      alert1 = Alert.gen :shelter => current_shelter, :title => "Alert1", :updated_at => Time.now + 2.minutes
+      alert2 = Alert.gen :shelter => current_shelter, :title => "Alert2", :updated_at => Time.now + 3.minutes
 
       visit dashboard_path
 

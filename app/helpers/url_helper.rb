@@ -16,11 +16,15 @@ module UrlHelper
   end
 
   def full_url
-    request.port != 80 ? [request.protocol, request.host, ":", request.port].join : [request.protocol, request.host].join
+    url = [request.protocol, request.host].join
+    url << ":#{request.port}" unless [80,443].include?(request.port)
+    url
   end
 
   def api_url
-    request.port != 80 ? [request.protocol, "api.", request.domain, ":", request.port].join : [request.protocol, "api.", request.domain].join
+    url = ["http://api.", request.domain].join
+    url << ":#{request.port}" unless [80,443].include?(request.port)
+    url
   end
 
   def s3_url(file_name, last_modified = false)
