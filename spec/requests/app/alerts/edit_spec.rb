@@ -1,15 +1,10 @@
 require "spec_helper"
 
 describe "Edit: From the Index Alert Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-    # Create Alert to get to the Index page
-    @alert = Alert.gen :shelter => @shelter
-  end
+  login_user
 
   it "should update the title" do
-    alert = Alert.gen :title => "old title", :shelter => @shelter
+    alert = Alert.gen :title => "old title", :shelter => current_shelter
 
     visit alerts_path
 
@@ -28,7 +23,7 @@ describe "Edit: From the Index Alert Page", :js => :true do
   end
 
   it "should change the severity" do
-    alert = Alert.gen :title => "low severity title", :shelter => @shelter, :severity => "low"
+    alert = Alert.gen :title => "low severity title", :shelter => current_shelter, :severity => "low"
 
     visit alerts_path
 
@@ -49,7 +44,7 @@ describe "Edit: From the Index Alert Page", :js => :true do
   end
 
   it "should change the description" do
-    alert = Alert.gen :title => "low severity title", :shelter => @shelter, :severity => "low"
+    alert = Alert.gen :title => "low severity title", :shelter => current_shelter, :severity => "low"
 
     visit alerts_path
 

@@ -1,11 +1,10 @@
 require "spec_helper"
 
 describe "Index: Alert Page", :js => :true do
+  login_user
 
   before do
-    @account, @user, @shelter = login
-    # Create Alert to get to the Index page
-    @alert = Alert.gen :shelter => @shelter
+    @alert = Alert.gen :shelter => current_shelter # Create Alert to get to the Index page
   end
 
   it "should contain correct page title" do
@@ -96,9 +95,9 @@ describe "Index: Alert Page", :js => :true do
 
     it "should order the alerts from when they were created" do
       @alert.destroy
-      alert1 = Alert.gen :shelter => @shelter, :created_at => Time.now - 2.days
-      alert2 = Alert.gen :shelter => @shelter, :created_at => Time.now - 4.days
-      alert3 = Alert.gen :shelter => @shelter, :created_at => Time.now - 1.days
+      alert1 = Alert.gen :shelter => current_shelter, :created_at => Time.now - 2.days
+      alert2 = Alert.gen :shelter => current_shelter, :created_at => Time.now - 4.days
+      alert3 = Alert.gen :shelter => current_shelter, :created_at => Time.now - 1.days
 
       visit alerts_path
 
@@ -109,8 +108,8 @@ describe "Index: Alert Page", :js => :true do
   context "Alertable" do
 
     before do
-      animal        = Animal.gen :shelter => @shelter, :name => "Billy Bob"
-      @animal_alert = Alert.gen :shelter => @shelter, :alertable => animal
+      animal        = Animal.gen :shelter => current_shelter, :name => "Billy Bob"
+      @animal_alert = Alert.gen :shelter => current_shelter, :alertable => animal
     end
 
     it "should show a section title" do

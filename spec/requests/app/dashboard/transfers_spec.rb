@@ -1,10 +1,7 @@
 require "spec_helper"
 
 describe "Transfers: For Dashboard Index Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-  end
+  login_user
 end
 # Dashboard sidebar
   #<% unless @transfers.blank? %>

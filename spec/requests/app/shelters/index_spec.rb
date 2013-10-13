@@ -1,15 +1,14 @@
 require "spec_helper"
 
 describe "Index: Shelter Page", :js => :true do
+  login_user
 
   before do
-    @account, @user, @shelter = login
-
-    @shelter.update_attributes({
-      :name            => "Shelter's Name",
-      :phone           => "9999999999",
-      :fax             => "1111111111",
-      :email           => "email@shelterexchange.org"
+    current_shelter.update_attributes({
+      :name => "Shelter's Name",
+      :phone => "9999999999",
+      :fax => "1111111111",
+      :email=> "email@shelterexchange.org"
     })
   end
 
@@ -20,7 +19,7 @@ describe "Index: Shelter Page", :js => :true do
 
   it "should have a link to edit the shelter" do
     visit shelters_path
-    find(".page_heading .action_links a")[:href].should include(shelter_path(@shelter))
+    find(".page_heading .action_links a")[:href].should include(shelter_path(current_shelter))
   end
 
   it "should display whether is kill or no kill" do
@@ -30,7 +29,7 @@ describe "Index: Shelter Page", :js => :true do
       find(".shelter_type").text.should == "No Kill Shelter"
     end
 
-    @shelter.update_attributes({ :is_kill_shelter => true })
+    current_shelter.update_attribute(:is_kill_shelter, true)
 
     visit shelters_path
 
@@ -67,7 +66,7 @@ describe "Index: Shelter Page", :js => :true do
     end
 
     it "should not show contact detail values" do
-      @shelter.update_attributes({:fax => nil})
+      current_shelter.update_attribute(:fax, nil)
 
       visit shelters_path
 
@@ -84,19 +83,15 @@ describe "Index: Shelter Page", :js => :true do
 
       within "#website_details" do
         find("h3").text.should == "Website Details:"
-        find_link("Website")[:href].should include(@shelter.website)
+        find_link("Website")[:href].should include(current_shelter.website)
         find_link("Twitter")[:href].should == "http://twitter.com/#!/shelterexchange"
-        find_link("Facebook")[:href].should == @shelter.facebook
-        find_link("Help a Shelter")[:href].should == public_help_a_shelter_url(@shelter, :subdomain => "www")
+        find_link("Facebook")[:href].should == current_shelter.facebook
+        find_link("Help a Shelter")[:href].should == public_help_a_shelter_url(current_shelter, :subdomain => "www")
       end
     end
 
     it "should not show website details values" do
-      @shelter.update_attributes({
-        :website  => nil,
-        :twitter  => nil,
-        :facebook => nil
-      })
+      current_shelter.update_attributes({:website => nil, :twitter => nil, :facebook => nil})
 
       visit shelters_path
 

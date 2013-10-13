@@ -1,12 +1,12 @@
 require "spec_helper"
 
 describe "Index: Capacity Page", :js => :true do
+  login_user
 
   before do
-    @account, @user, @shelter = login
     # Create Capacity to get to the Index page
     @type     = AnimalType.gen :name => "animal_type"
-    @capacity = Capacity.gen :shelter => @shelter, :animal_type => @type
+    @capacity = Capacity.gen :shelter => current_shelter, :animal_type => @type
   end
 
   it "should contain correct page title" do
@@ -76,14 +76,14 @@ describe "Index: Capacity Page", :js => :true do
 
     before do
       @type     = AnimalType.gen :name => "Dog"
-      @capacity = Capacity.gen :shelter => @shelter, :animal_type => @type, :max_capacity => 4
+      @capacity = Capacity.gen :shelter => current_shelter, :animal_type => @type, :max_capacity => 4
     end
 
     it "should show current available space for available animals" do
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 3
 
       visit capacities_path
 
@@ -94,9 +94,9 @@ describe "Index: Capacity Page", :js => :true do
     end
 
     it "should show green warning when between less than 60% full" do
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 3
 
       visit capacities_path
 
@@ -106,10 +106,10 @@ describe "Index: Capacity Page", :js => :true do
     end
 
     it "should show yellow warning when between 60% - 80% full" do
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 3
 
       visit capacities_path
 
@@ -119,10 +119,10 @@ describe "Index: Capacity Page", :js => :true do
     end
 
     it "should show red warning when between greater than 80% full" do
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => @type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => @type, :animal_status_id => 16
 
       visit capacities_path
 
@@ -130,7 +130,6 @@ describe "Index: Capacity Page", :js => :true do
         page.should have_css ".circle.red"
       end
     end
-
   end
 end
 

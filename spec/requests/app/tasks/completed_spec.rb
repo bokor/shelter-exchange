@@ -1,23 +1,20 @@
 require "spec_helper"
 
 describe "Completed: From the Index Task Page", :js => :true do
-
-  before do
-    @account, @user, @shelter = login
-    # Create Task to get to the Index page
-    @task = Task.gen :shelter => @shelter
-  end
+  login_user
 
   it "should complete a task" do
+    task = Task.gen :shelter => current_shelter # Create Task to get to the Index page
+
     visit tasks_path
 
-    within "##{dom_id(@task)}" do
+    within "##{dom_id(task)}" do
       check('task_completed')
       accept_confirmation!
     end
 
-    page.should have_no_content @task.details
-    @task.reload.should be_completed
+    page.should have_no_content task.details
+    task.reload.should be_completed
   end
 end
 

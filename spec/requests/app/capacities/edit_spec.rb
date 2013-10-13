@@ -1,12 +1,10 @@
 require "spec_helper"
 
 describe "Edit: Capacity Page", :js => :true do
+  login_user
 
   before do
-    @account, @user, @shelter = login
-    # Create Capacity to get to the Index page
-    @type     = AnimalType.gen :name => "animal_type"
-    @capacity = Capacity.gen :shelter => @shelter, :animal_type => @type, :max_capacity => 4
+    @capacity = Capacity.gen :shelter => current_shelter, :max_capacity => 4 # Create Capacity to get to the Index page
   end
 
   it "should update the animal type" do
@@ -48,7 +46,7 @@ describe "Edit: Capacity Page", :js => :true do
 
   it "should not update capacity with duplicate Animal type" do
     type = AnimalType.gen :name => "Dog"
-    Capacity.gen :shelter => @shelter, :animal_type => type
+    Capacity.gen :shelter => current_shelter, :animal_type => type
 
     visit capacities_path
 
@@ -69,15 +67,14 @@ describe "Edit: Capacity Page", :js => :true do
 
     it "should show current available space for available animals" do
       type  = AnimalType.gen :name => "Dog"
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 3
 
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "animal_type"
         page.should have_content "Max capacity: 4"
         page.should have_content "Available space: 4"
       end
@@ -99,9 +96,9 @@ describe "Edit: Capacity Page", :js => :true do
 
     it "should show green warning when between less than 60% full" do
       type  = AnimalType.gen :name => "Dog"
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 3
 
       visit capacities_path
 
@@ -123,10 +120,10 @@ describe "Edit: Capacity Page", :js => :true do
 
     it "should show yellow warning when between 60% - 80% full" do
       type  = AnimalType.gen :name => "Dog"
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 2
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 3
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 2
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 3
 
       visit capacities_path
 
@@ -148,10 +145,10 @@ describe "Edit: Capacity Page", :js => :true do
 
     it "should show red warning when between greater than 80% full" do
       type  = AnimalType.gen :name => "Dog"
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 16
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 1
-      Animal.gen :shelter => @shelter, :animal_type => type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 16
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 1
+      Animal.gen :shelter => current_shelter, :animal_type => type, :animal_status_id => 16
 
       visit capacities_path
 
