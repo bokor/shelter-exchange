@@ -54,7 +54,7 @@ class AccommodationsController < ApplicationController
     @accommodations = {}
 
     unless query.blank?
-      @accommodations = @current_shelter.accommodations.search(query) #.paginate(:page => params[:page])
+      @accommodations = @current_shelter.accommodations.search(query).paginate(:page => params[:page])
     end
   end
 

@@ -316,7 +316,7 @@ describe AccommodationsController do
       context "with pagination" do
         it "should paginate the results" do
           paginated_accommodation = Accommodation.gen :shelter => current_shelter
-          Accommodation.expects(:paginate).with(:page => 2).returns([paginated_accommodation].paginate(:per_page => 1))
+          Accommodation.expect(:paginate).with(:page => 2).returns([paginated_accommodation].paginate(:per_page => 1))
 
           expect {
             get :search , { :q => "search", :page => 2, :format => :js }
