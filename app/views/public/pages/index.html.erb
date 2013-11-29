@@ -7,13 +7,13 @@
 	<script type="text/javascript">
 		$(function() {
 			HomePage.initialize([
-				'<%= image_path("public/home/mission_statement_puppies.png")%>', 
-				'<%= image_path("public/home/mission_statement_kittens.png")%>', 
+				'<%= image_path("public/home/mission_statement_puppies.png")%>',
+				'<%= image_path("public/home/mission_statement_kittens.png")%>',
 				'<%= image_path("public/home/mission_statement_bunnies.png")%>'
 			]);
 		});
 	</script>
-	
+
 <% end %>
 
 <%= content_for :page_content do %>
@@ -21,21 +21,18 @@
 	<!-- Slider Images -->
 	<div class="slider-wrapper theme-default">
         <div class="ribbon"></div>
-        <div id="slider" class="nivoSlider">    
-        	<a href="http://blog.shelterexchange.org/2012/11/20/shelter-exchange-and-petfinder-partner-to-streamline-nationwide-adoption-efforts-for-homeless-animals/" target="_blank">
-      			<%= image_tag("public/home/slider_1.png", :alt => "Petfinder.com partner to streamline nationwide adoption") %>
+        <div id="slider" class="nivoSlider">
+        	<a href="/campaigns/bark_box_giveaway.html" target="_blank">
+            <%= image_tag("public/home/slider_1.png", :alt => "Win a free 6 month BarkBox") %>
       		</a>
-      		<a href="http://blog.shelterexchange.org/2012/02/06/shelter-exchange-and-adopt-a-pet-com-partner-to-help-homeless-animals/" target="_blank">
-      			<%= image_tag("public/home/slider_2.png", :alt => "Adopt-a-Pet.com Partnership to help homeless animals") %>
-    			</a>
-					<%= image_tag("public/home/slider_3.png", :alt => "More rescue opportunities for animals between Shelters and Rescue Groups") %>
-					<%= image_tag("public/home/slider_4.png", :alt => "Shelters and Rescues working together as a Community") %>
-					<%= image_tag("public/home/slider_5.png", :alt => "Providing more exposure and increasing adoptions for animals") %>
-					<%= image_tag("public/home/slider_6.png", :alt => "Connecting shelters to save lives") %>
+					<%= image_tag("public/home/slider_2.png", :alt => "More rescue opportunities for animals between Shelters and Rescue Groups") %>
+					<%= image_tag("public/home/slider_3.png", :alt => "Shelters and Rescues working together as a Community") %>
+					<%= image_tag("public/home/slider_4.png", :alt => "Providing more exposure and increasing adoptions for animals") %>
+					<%= image_tag("public/home/slider_5.png", :alt => "Connecting shelters to save lives") %>
         </div>
     </div>
 	<!-- Slider Images -->
-	
+
 	<!-- Section :: Mission Statement -->
 	<section class="mission_statement">
 	    <div class="message">
@@ -48,7 +45,7 @@
     	</div>
 	</section>
 	<!-- Section :: Mission Statement -->
-	
+
 	<!-- Section :: Stats -->
 	<div class="stats">
 		<h2>Our progress so far</h2>
@@ -66,7 +63,7 @@
 		<div class="separator"></div>
 	</div>
 	<!-- Section :: Stats -->
-	
+
 	<!-- Section :: Latest Adoptions -->
 	<% unless @animals.blank? %>
 		<h2>Latest adoptions</h2>
@@ -85,10 +82,10 @@
 		</div>
 	<% end %>
 	<!-- Section :: Latest Adoptions-->
-	
+
 	<!-- Section :: Latest News -->
 	<h2>Latest news</h2>
-	
+
 	<div id="rss-feed"></div>
 	<!-- Section :: Latest News -->
 

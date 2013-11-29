@@ -260,6 +260,9 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 
 /* Shelters and Rescues */
 /******************************************************************/
+.shelters_and_rescues_page .partners{width: 100%;display:block;margin: 0 auto; text-align: center;}
+.shelters_and_rescues_page .partners h2{width:480px; text-align:center;margin: 0 auto;padding: 20px 0;padding-bottom:0px; position:relative; margin-bottom:-38px; background: url(/assets/public/background-body.jpg) repeat;}
+
 .shelters_and_rescues_page .feature{width: 100%;position: relative; }
 .shelters_and_rescues_page .feature:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .shelters_and_rescues_page .feature:last-child{padding-bottom: 20px;}

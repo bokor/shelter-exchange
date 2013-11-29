@@ -1,0 +1,52 @@
+<%= title "Win a 6 Month BarkBox Subscription!" %>
+
+<%= content_for :page_content do %>
+
+  <style type="text/css" media="all">
+    .rules { padding-bottom: 20px;}
+    .rules li { padding-left: 5px; margin-left: 20px; padding-bottom: 5px;}
+  </style>
+
+	<h1>Win a 6 Month BarkBox Subscription!
+		<span class="social">
+			<span class="facebook">
+				<div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>
+			</span>
+		</span>
+	</h1>
+
+  <div style="float:right;">
+    <%= image_tag("public/campaigns/icon_barkbox.png", :alt => "Win a free 6 month BarkBox") %>
+  </div>
+  <p>One lucky winner will receive a BarkBox delivered to their door filled with great surprises for their dog. Each monthly box contains a combination of 4-6 treats, toys, and hygiene products that have been hand selected, valued at $114.</p>
+
+  <p>Enter to win by filling out your details below. (Don't worry, we do not share or sell your information to anyone.)</p>
+
+  <h2>Rules</h2>
+  <ul class="rules">
+    <li>Limited to one entry per email address.</li>
+    <li>Giveaway will open on December 1st and close on December 15th.</li>
+    <li>The winner will be chosen through random.org and the results will be announced on December 16th.</li>
+  </ul>
+
+	<div class="form">
+		<script type="text/javascript">
+			var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");
+			document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+		<script type="text/javascript">
+			var z19y3akm0al77za = new WufooForm();
+			z19y3akm0al77za.initialize({
+				'userName':'shelterexchange',
+				'formHash':'z19y3akm0al77za',
+				'autoResize':true,
+				'height':'594',
+				'header':'hide',
+				'ssl':true
+			});
+			z19y3akm0al77za.display();
+		</script>
+	</div>
+<% end %>
+
