@@ -13,7 +13,7 @@ end
 # Update Crontab from Whenever
 if config.environment == "production"
   on_utilities("background_jobs"){
-    run "cd #{current_path} && bundle exec whenever --update-crontab '#{config.app}_#{config.environment}'"
+    run "cd #{config.current_path} && bundle exec whenever --update-crontab '#{config.app}_#{config.environment}'"
   }
 end
 
