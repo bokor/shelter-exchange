@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "animal_type_id"
     t.string   "name"
     t.integer  "max_capacity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "location_id"
   end
 
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "document"
     t.string   "document_type"
   end
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.text     "description"
     t.integer  "alertable_id"
     t.string   "alertable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.boolean  "stopped",        :default => false, :null => false
     t.integer  "shelter_id"
     t.string   "severity"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
 
   create_table "animal_statuses", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "sort_order"
   end
 
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
 
   create_table "animal_types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "animal_types", ["created_at"], :name => "index_animal_types_on_created_at"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "secondary_breed"
     t.integer  "animal_type_id"
     t.integer  "animal_status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "shelter_id"
     t.date     "status_change_date"
     t.date     "arrival_date"
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "category"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "announcements", ["starts_at", "ends_at", "updated_at"], :name => "index_announcements_on_starts_at_and_ends_at_and_updated_at"
@@ -137,8 +137,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
   create_table "breeds", :force => true do |t|
     t.string   "name"
     t.integer  "animal_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "breeds", ["animal_type_id", "name"], :name => "index_breeds_on_animal_type_id_and_name"
@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "shelter_id"
     t.integer  "animal_type_id"
     t.integer  "max_capacity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "capacities", ["animal_type_id"], :name => "index_capacities_on_animal_type_id"
@@ -162,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.text     "comment"
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "shelter_id"
   end
 
@@ -183,8 +183,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "queue"
   end
 
@@ -208,8 +208,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "username"
     t.string   "password"
     t.integer  "shelter_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "integrations", ["id", "type"], :name => "index_integrations_on_id_and_type"
@@ -220,8 +220,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
   create_table "items", :force => true do |t|
     t.integer  "shelter_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "items", ["shelter_id"], :name => "index_items_on_shelter_id"
@@ -229,8 +229,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.integer  "shelter_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "locations", ["name"], :name => "index_locations_on_name"
@@ -241,8 +241,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.text     "description"
     t.integer  "notable_id"
     t.string   "notable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "shelter_id"
     t.string   "category"
     t.boolean  "hidden",       :default => false
@@ -260,27 +260,26 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "name"
     t.string   "title"
     t.string   "role"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_salt"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                       :default => 0
+    t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "owners", ["authentication_token"], :name => "index_owners_on_authentication_token", :unique => true
@@ -298,8 +297,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "street_2"
     t.string   "email_2"
   end
@@ -312,8 +311,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.boolean  "is_main_photo",   :default => false
     t.integer  "attachable_id"
     t.string   "attachable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "original_name"
   end
 
@@ -329,8 +328,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "parent_id"
     t.integer  "shelter_id"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "placements", ["animal_id"], :name => "index_placements_on_animal_id"
@@ -349,8 +348,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
     t.integer  "account_id"
     t.boolean  "is_kill_shelter",                                 :default => false,    :null => false
     t.decimal  "lat",             :precision => 15, :scale => 10
@@ -377,8 +376,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "animal_id"
     t.integer  "animal_status_id"
     t.string   "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
@@ -393,8 +392,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "taskable_id"
     t.string   "taskable_type"
     t.string   "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "due_category"
     t.boolean  "completed",     :default => false, :null => false
     t.integer  "shelter_id"
@@ -414,8 +413,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.integer  "transfer_id"
     t.string   "status"
     t.text     "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "transfer_histories", ["shelter_id"], :name => "index_transfer_histories_on_shelter_id"
@@ -427,8 +426,8 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "requestor"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "shelter_id"
     t.string   "status"
   end
@@ -442,27 +441,26 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "title"
     t.string   "role"
     t.integer  "account_id"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => ""
+    t.string   "email",                                :default => "", :null => false
+    t.string   "encrypted_password",                   :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_salt"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                       :default => 0
+    t.integer  "failed_attempts",                      :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.integer  "invitation_limit"
