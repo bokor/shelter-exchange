@@ -5,8 +5,11 @@ gem "rails", "3.2.15"
 gem "rack"
 gem "rake"
 gem "mail"
+gem "oj"
 
-gem "pry-rails"
+group :development do
+  gem "pry-rails"
+end
 
 # Database
 #----------------------------------------------------------------------------
