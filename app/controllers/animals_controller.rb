@@ -74,10 +74,6 @@ class AnimalsController < ApplicationController
         # flash[:notice] = "Print format options have been update.  Please review the new print document." if params[:print_layout].present? # means that it was resubmitted with options
         render :template => "animals/print/#{@print_layout}", :layout => "app/print"
       }
-      # format.pdf {
-      #   pdf = AnimalPdf.new(@animal, @notes, @shelter, params, view_context)
-      #   send_data pdf.render, filename: "animal_#{@animal.id}.pdf", type: Mime::PDF, disposition: "inline"
-      # }
     end
   end
 

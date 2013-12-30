@@ -6,9 +6,6 @@
 		<span class="generate_pdf link">
 			<%= link_to "Print", "#", :class => "button", :onclick => "window.print(); return false;"  %>
 		</span>
-		<!-- <span class="generate_pdf link">
-			<%= link_to "Generate PDF", print_animal_path(@animal, params.except(:authenticity_token,:commit, :utf8).merge!(:format => :pdf)), :class => "button"  %>
-		</span>	 -->
 		<span class="back_to_animal_record link">
 			<%= link_to "Back to #{@animal.name.possessive} record", animal_path(@animal), :class => "button"  %>
 		</span>
