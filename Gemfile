@@ -28,7 +28,6 @@ gem "cancan"
 #----------------------------------------------------------------------------
 gem "will_paginate"
 gem "jquery-rails"
-gem "prawn"
 gem "sitemap_generator"
 
 group :assets do
@@ -37,7 +36,6 @@ group :assets do
   gem "uglifier"
   gem "yui-compressor"
   gem "asset_sync"
-  # gem "turbo-sprockets-rails3"
 end
 
 # Images
@@ -84,7 +82,6 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "debugger", :platforms => :ruby_19
-  #gem "parallel_tests"
 end
 
 group :test do
@@ -98,15 +95,3 @@ group :test do
   gem "webmock"
 end
 
-
-# gem "capybara-webkit"
-
-# Checkout Later
-# gem "mime_types"
-# gem "multi_json"
-# gem "redis"
-# gem "redis_namespace"
-# gem "redis_rails"
-# gem "resque"
-# gem "resque-lock"
-# gem "resque-mailer"
