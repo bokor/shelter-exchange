@@ -12,13 +12,13 @@ class ApplicationController < ActionController::Base
   layout :current_layout
 
   def current_account
-    unless request.subdomain.blank? or RESERVED_SUBDOMAINS.include?(request.subdomains.last)
+    unless request.subdomain.blank? || RESERVED_SUBDOMAINS.include?(request.subdomains.last)
       @current_account ||= Account.find_by_subdomain!(request.subdomains.last)
     end
   end
 
   def current_shelter
-    @current_shelter ||= @current_account.shelters.first if @current_account and user_signed_in?
+    @current_shelter ||= @current_account.shelters.first if @current_account && user_signed_in?
   end
 
   def local_request?
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def shelter_inactive?
-    raise ShelterExchange::Errors::ShelterInactive if @current_shelter and @current_shelter.inactive?
+    raise ShelterExchange::Errors::ShelterInactive if @current_shelter && @current_shelter.inactive?
   end
 
   def shelter_time_zone
