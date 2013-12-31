@@ -305,7 +305,6 @@ DEPENDENCIES
   rack
   rails (= 3.2.15)
   rake
-  rest-client
   rinku
   rspec-rails
   rubyzip

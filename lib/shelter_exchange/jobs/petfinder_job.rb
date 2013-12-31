@@ -1,5 +1,6 @@
-require 'csv'
-require 'stringio'
+require "csv"
+require "net/ftp"
+require "stringio"
 
 module ShelterExchange
   module Jobs
@@ -25,9 +26,6 @@ module ShelterExchange
           #ftp files to server
           ftp_files
 
-          # Delete the CSV File
-          #File.delete(@csv_filename)
-
           # Log Shelter name and how long it took for each shelter
           logger.info("#{@shelter.id} :: #{@shelter.name} :: finished in #{Time.now - @start_time}")
         else
@@ -50,7 +48,8 @@ module ShelterExchange
             @animals.each do |animal|
               animal.photos.take(3).each_with_index do |photo, index|
                 photo_url  = photo.image.url(:large)
-                temp_image = StringIO.new(RestClient.get(photo_url))
+                uri = URI(photo_url)
+                temp_image = StringIO.new(Net::HTTP.get(uri))
 
                 ftp.storbinary("STOR #{animal.id}-#{index+1}#{File.extname(photo_url)}", temp_image, 1024)
               end

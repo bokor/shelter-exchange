@@ -25,9 +25,6 @@ module ShelterExchange
           #ftp files to server
           ftp_files
 
-          # Delete the CSV File
-          #File.delete(@csv_filename)
-
           # Log Shelter name and how long it took for each shelter
           logger.info("#{@shelter.id} :: #{@shelter.name} :: finished in #{Time.now - @start_time}")
         else
