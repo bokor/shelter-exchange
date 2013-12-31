@@ -92,7 +92,6 @@ group :test do
   gem "factory_girl_extensions"
   gem "capybara"
   gem "capybara-email"
-  gem "launchy"
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"

@@ -296,7 +296,6 @@ DEPENDENCIES
   foreman
   geocoder
   jquery-rails
-  launchy
   mail
   mini_magick
   mysql2
