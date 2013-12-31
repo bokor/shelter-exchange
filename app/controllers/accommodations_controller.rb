@@ -2,7 +2,7 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @accommodations = current_shelter.accommodations.
+    @accommodations = @current_shelter.accommodations.
       includes(:location, :animal_type, :animals => [:animal_status, :photos]).
       paginate(:page => params[:page])
 
@@ -10,17 +10,17 @@ class AccommodationsController < ApplicationController
   end
 
   def edit
-    @accommodation = current_shelter.accommodations.find(params[:id])
+    @accommodation = @current_shelter.accommodations.find(params[:id])
     respond_with(@accommodation)
   end
 
   def new
-    @accommodation = current_shelter.accommodations.new
+    @accommodation = @current_shelter.accommodations.new
     respond_with(@accommodation)
   end
 
   def create
-    @accommodation = current_shelter.accommodations.new(params[:accommodation])
+    @accommodation = @current_shelter.accommodations.new(params[:accommodation])
 
     respond_with(@accommodation) do |format|
       if @accommodation.save
@@ -33,7 +33,7 @@ class AccommodationsController < ApplicationController
   end
 
   def update
-    @accommodation = current_shelter.accommodations.find(params[:id])
+    @accommodation = @current_shelter.accommodations.find(params[:id])
 
     if @accommodation.update_attributes(params[:accommodation])
       flash[:notice] = "#{@accommodation.name} accommodation has been updated."
@@ -43,7 +43,7 @@ class AccommodationsController < ApplicationController
   end
 
   def destroy
-    @accommodation = current_shelter.accommodations.find(params[:id])
+    @accommodation = @current_shelter.accommodations.find(params[:id])
     @accommodation.destroy
     flash[:notice] = "#{@accommodation.name} accommodation has been deleted."
     respond_with(@accommodation)
