@@ -2,6 +2,14 @@
 .index_users #main { margin: 1em 3em 0 3em; }
 .index_users #left { width: 100%;}
 .index_users #sidebar { width: 0;}*/
+
+/***********************************************************************/
+/* -------------------------- APP DISABLED  -------------------------- */
+/***********************************************************************/
+.app_disabled #main { margin: 1em 3em 0 3em; }
+.app_disabled #left{ width: 100%;}
+.app_disabled #sidebar { display: none;width: 0; }
+
 /******************************************************************/
 /* -------------------------- ANIMALS  -------------------------- */
 /******************************************************************/
@@ -1021,6 +1029,4 @@
 .integration .connection .connection_status{color: #209000; /*#CF7019*/ font-size: 18px; font-weight: bold;padding-right: 20px;}
 .integration .connection .revoke_access{}
 .integration .connection:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-
-
 

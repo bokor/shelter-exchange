@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
                 :current_shelter,
                 :shelter_inactive?,
                 :shelter_time_zone,
-                :store_location
+                :store_location,
+                :disable_application
 
   layout :current_layout
 
@@ -23,6 +24,12 @@ class ApplicationController < ActionController::Base
 
   def local_request?
     Rails.env.development? || Rails.env.test?
+  end
+
+  def disable_application
+    if Settings.app_disabled?
+      render 'errors/app_disabled', :format => :html
+    end
   end
 
   #-----------------------------------------------------------------------------

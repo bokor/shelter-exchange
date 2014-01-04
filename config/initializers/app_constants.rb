@@ -15,35 +15,3 @@ CURRENT_API_VERSION = "v1"
 VIDEO_URL_REGEX = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"'>]+)/
 RESERVED_SUBDOMAINS = %w[www support blog wiki billing help api secure authenticate launchpad forum admin manage account accounts user login logout signup register mail ftp pop smtp ssl sftp map maps community communities social administration manager calendar email imap authentication rss atom chat media video videos facebook twitter youtube picture pictures vimeo flickr shelterexchange shelter shelters images image css stylesheets javascript javascripts developer developers development].freeze
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

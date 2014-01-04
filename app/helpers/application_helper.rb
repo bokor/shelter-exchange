@@ -12,6 +12,16 @@ module ApplicationHelper
     content_for(:stylesheets) { stylesheet_link_tag(*files) }
   end
 
+  def body_class
+    body_class = if Settings.app_disabled?
+      "app_disabled"
+    else
+      "#{controller_name} #{action_name}_#{controller_name}"
+    end
+
+    body_class
+  end
+
   def selected_navigation(element)
     request.fullpath =~ /\/#{element.to_s}/ ? "current" : ""
   end

@@ -190,6 +190,8 @@ GEM
       activesupport (= 3.2.15)
       bundler (~> 1.0)
       railties (= 3.2.15)
+    rails_config (0.3.3)
+      activesupport (>= 3.0)
     railties (3.2.15)
       actionpack (= 3.2.15)
       activesupport (= 3.2.15)
@@ -304,6 +306,7 @@ DEPENDENCIES
   quiet_assets
   rack
   rails (= 3.2.15)
+  rails_config
   rake
   rinku
   rspec-rails

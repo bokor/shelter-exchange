@@ -4,80 +4,81 @@
 <!--[if IE 8 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="<%= ::I18n.locale %>" class="no-js ie ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= ::I18n.locale %>" class="no-js"> <!--<![endif]-->
-<head>
+  <head>
 
-	<!-- title -->
-	<title><%= yield(:title) %> | Shelter Exchange</title>
-	<!-- metatags -->
-  <meta charset="utf-8">
+    <!-- title -->
+    <title><%= yield(:title) %> | Shelter Exchange</title>
+    <!-- metatags -->
+    <meta charset="utf-8">
 
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-	<!-- icons -->
-	<%= favicon_link_tag 'favicon.ico' %>
-	<%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+    <!-- icons -->
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'shelterexchange_icon_128x128.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
-	<!-- stylesheets -->
-  <%= stylesheet_link_tag :application, :media => "all" %>
+    <!-- stylesheets -->
+    <%= stylesheet_link_tag :application, :media => "all" %>
 
-	<!-- javascripts -->
-	<%= javascript_include_tag :application %>
+    <!-- javascripts -->
+    <%= javascript_include_tag :application %>
 
-	<!--[if (lte IE 8)]>
-		<%= javascript_include_tag :selectivizr %>
-  <![endif]-->
+    <!--[if (lte IE 8)]>
+      <%= javascript_include_tag :selectivizr %>
+    <![endif]-->
 
-	<!--[if (lt IE 9)]>
-		<%= javascript_include_tag :html5 %>
-	<![endif]-->
+    <!--[if (lt IE 9)]>
+      <%= javascript_include_tag :html5 %>
+    <![endif]-->
 
-  <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
-	<%= yield(:javascripts) %>
+    <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
+    <%= yield(:javascripts) %>
 
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= controller_name %> <%= action_name %>_<%= controller_name %>">
+    <%= csrf_meta_tags %>
+  </head>
 
-  <div id="fb-root"></div>
+  <body class="<%= body_class %>">
 
-	<%= render "shared/ie6_warning" %>
-	<%= render "shared/header" %>
+    <div id="fb-root"></div>
 
-	<div id="main">
+    <%= render "shared/ie6_warning" %>
+    <%= render "shared/header" %>
 
-		<%= render "shared/flash_messages" %>
-		<%= render "shared/announcements" %>
+    <div id="main">
 
-		<div id="left">
+      <%= render "shared/flash_messages" %>
+      <%= render "shared/announcements" %>
 
-			<div id="content">
-				<% if content_for?(:page_content) %>
-			  		<%= yield(:page_content) %>
-				<% end %>
-			</div>
-			<!--//end screen -->
+      <div id="left">
 
-			<%= render "shared/footer" %>
+        <div id="content">
+          <% if content_for?(:page_content) %>
+              <%= yield(:page_content) %>
+          <% end %>
+        </div>
+        <!--//end screen -->
 
-		</div>
-		<!--//end left -->
+        <%= render "shared/footer" %>
 
-		<div id="right">
+      </div>
+      <!--//end left -->
 
-			<div id="sidebar">
-				<% if content_for?(:sidebar) %>
-			  		<%= yield(:sidebar) %>
-				<% end %>
-			</div>
-			<!--//end sidebar -->
+      <div id="right">
 
-		</div>
-		<!--//end right -->
+        <div id="sidebar">
+          <% if content_for?(:sidebar) %>
+              <%= yield(:sidebar) %>
+          <% end %>
+        </div>
+        <!--//end sidebar -->
 
-	</div>
-	<!--//end main -->
+      </div>
+      <!--//end right -->
 
-	<%= render "shared/analytics" %>
-</body>
+    </div>
+    <!--//end main -->
 
+    <%= render "shared/analytics" %>
+
+  </body>
 </html>
