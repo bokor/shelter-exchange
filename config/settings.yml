@@ -1,0 +1,18 @@
+# settings.yml
+defaults: &defaults
+  app_disabled?: false
+
+development:
+  <<: *defaults
+  app_disabled?: true
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+  app_disabled?: true
+
+production:
+  <<: *defaults
+

@@ -1,4 +1,6 @@
 class Public::AccountsController < Public::ApplicationController
+  before_filter :disable_account_creation
+
   respond_to :html
 
   def new
@@ -27,5 +29,12 @@ class Public::AccountsController < Public::ApplicationController
     @shelter = @account.shelters.first
   end
 
+  private
+
+  def disable_account_creation
+    if Rails.configuration.app_disabled?
+      render 'errors/app_disabled', :format => :html
+    end
+  end
 end
 

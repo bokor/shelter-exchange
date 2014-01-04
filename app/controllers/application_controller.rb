@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def disable_application
-    if Settings.app_disabled?
+    if Rails.configuration.app_disabled?
       render 'errors/app_disabled', :format => :html
     end
   end
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_layout
-    user_signed_in? ? 'app/application' : 'app/login'
+    user_signed_in? ? "app/application" : "app/login"
   end
 
   def shelter_inactive?
