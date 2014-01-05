@@ -268,8 +268,7 @@ GEM
       nokogiri (~> 1.3)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
-    zippy (0.2.1)
-      rubyzip (>= 0.9.1)
+    zipruby (0.3.6)
 
 PLATFORMS
   ruby
@@ -307,7 +306,6 @@ DEPENDENCIES
   rake
   rinku
   rspec-rails
-  rubyzip
   sass-rails
   seedbank (= 0.3.0.pre)
   sitemap_generator
@@ -318,4 +316,4 @@ DEPENDENCIES
   whenever
   will_paginate
   yui-compressor
-  zippy
+  zipruby
