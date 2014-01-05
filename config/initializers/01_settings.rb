@@ -30,9 +30,7 @@ module ShelterExchangeApp
     # Load environment settings from yaml files.
     ["config/settings.yml"].each do |path|
       yml = YAML.load_file(Rails.root.join(path))[Rails.env]
-      yml && yml.each do |key, value|
-        load_env(config, key, value)
-      end
+      yml && yml.each{|key, value| load_env(config, key, value) }
     end
 
   end
