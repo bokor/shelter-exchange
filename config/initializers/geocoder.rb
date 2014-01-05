@@ -5,3 +5,4 @@ Geocoder.configure({
   :units     => :mi,
   :distances => :spherical
 })
+

@@ -36,7 +36,7 @@ class Api::AnimalsController < Api::ApplicationController
   end
 
   def api_version
-    params[:version] || CURRENT_API_VERSION
+    params[:version] || ShelterExchange.settings.current_api_version
   end
 
   rescue_from Exception do |exception|

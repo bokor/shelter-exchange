@@ -1,17 +1,31 @@
 # settings.yml
 defaults: &defaults
   app_disabled?: false
+  current_api_version: "v1"
+
+amazon: &amazon
+  aws_access_key_id: AKIAIAYOGZBGGRGY46DA
+  aws_secret_access_key: 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
 
 development:
   <<: *defaults
+  <<: *amazon
+  s3_bucket: shelterexchange-development
 
 test:
   <<: *defaults
+  <<: *amazon
+  s3_bucket: shelterexchange-test
 
 staging:
   <<: *defaults
   app_disabled?: true
 
+  <<: *amazon
+  s3_bucket: shelterexchange-staging
+
 production:
   <<: *defaults
+  <<: *amazon
+  s3_bucket: shelterexchange
 

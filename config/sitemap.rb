@@ -6,13 +6,13 @@ SitemapGenerator::Sitemap.default_host = "http://www.shelterexchange.org"
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 # store on S3 using Fog
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new({
-  :aws_access_key_id => S3_ACCESS_KEY_ID,
-  :aws_secret_access_key => S3_SECRET_ACCESS_KEY,
+  :aws_access_key_id => ShelterExchange.settings.aws_access_key_id,
+  :aws_secret_access_key => ShelterExchange.settings.aws_secret_access_key,
   :fog_provider => 'AWS',
-  :fog_directory => S3_BUCKET
+  :fog_directory => ShelterExchange.settings.s3_bucket
 })
 # inform the map cross-linking where to find the other maps
-SitemapGenerator::Sitemap.sitemaps_host = "http://#{S3_BUCKET}.s3.amazonaws.com/"
+SitemapGenerator::Sitemap.sitemaps_host = "http://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/"
 # pick a namespace within your bucket to organize your maps
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
