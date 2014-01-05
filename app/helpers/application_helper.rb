@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def body_class
-    body_class = if Rails.configuration.app_disabled?
+    body_class = if ShelterExchange.settings.app_disabled?
       "app_disabled"
     else
       "#{controller_name} #{action_name}_#{controller_name}"

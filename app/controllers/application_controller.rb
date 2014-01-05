@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def disable_application
-    if Rails.configuration.app_disabled?
+    if ShelterExchange.settings.app_disabled?
       render 'errors/app_disabled', :format => :html
     end
   end

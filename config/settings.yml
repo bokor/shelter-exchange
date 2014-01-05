@@ -4,6 +4,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  app_disabled?: true
 
 test:
   <<: *defaults

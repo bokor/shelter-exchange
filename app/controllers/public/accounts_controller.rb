@@ -32,7 +32,7 @@ class Public::AccountsController < Public::ApplicationController
   private
 
   def disable_account_creation
-    if Rails.configuration.app_disabled?
+    if ShelterExchange.settings.app_disabled?
       render 'errors/app_disabled', :format => :html
     end
   end
