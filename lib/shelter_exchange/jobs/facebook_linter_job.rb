@@ -3,14 +3,9 @@ module ShelterExchange
     class FacebookLinterJob < Struct.new(:id)
 
       def perform
-        begin
-          if Animal.exists?(:id => id)
-            RestClient.post('https://graph.facebook.com', :id => "http://www.shelterexchange.org/save_a_life/#{id}", :scrape => true)
-          end
-        rescue
-        end
+        uri = URI("https://graph.facebook.com")
+        Net::HTTP.post_form(uri, :id => "http://www.shelterexchange.org/save_a_life/#{id}", :scrape => true)
       end
-
     end
   end
 end
