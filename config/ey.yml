@@ -6,6 +6,7 @@ defaults:
   precompile_assets: true
   copy_exclude:
     - .git
+    - spec
 
 # Environment specific options.
 # ------------------------------------------------
