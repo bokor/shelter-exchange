@@ -20,5 +20,5 @@ class AccountMailer < ActionMailer::Base
 
     mail(:to => @user.email, :subject => "Welcome to Shelter Exchange!")
   end
-
 end
+
