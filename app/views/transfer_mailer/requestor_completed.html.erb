@@ -20,7 +20,7 @@
 
 	<p>Congratulations! The transfer request for <%=@animal.name%> has been completed by <%=@shelter.name%> and the animal record in Shelter Exchange has been transferred to your shelter. You can now edit and update this record.  Please view the 'Animals' section within Shelter Exchange or search by animal name to view this record.</p>
 
-	<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional note: <strong><%=@transfer_history_reason%></strong></p><% end %>
+	<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional Notes: <strong><%=@transfer_history_reason%></strong></p><% end %>
 
 	<div class="closing">
 		<p>Many thanks,</p>

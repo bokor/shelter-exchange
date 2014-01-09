@@ -75,6 +75,5 @@ class TransferMailer < ActionMailer::Base
     mail(:to => @shelter.email,
          :subject => "Transfer Request for #{@animal.name} is now Complete")
   end
-
 end
 

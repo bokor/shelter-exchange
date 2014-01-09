@@ -20,12 +20,12 @@
 
 	<p>Thank you! You have completed the transfer for <%=@animal.name%> and the animal record in Shelter Exchange has now been moved to <%=@requestor_shelter.name%>. You will no longer be able to edit this record however you can view the record on the Community page by searching by the shelter name.</p>
 
-	<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional note: <strong><%=@transfer_history_reason%></strong></p><% end %>
+	<% unless @transfer_history_reason.blank? %><p class="additional_notes">Additional Notes: <strong><%=@transfer_history_reason%></strong></p><% end %>
 
 	<div class="closing">
 		<p>Many thanks,</p>
 		<p>Shelter Exchange Team</p>
 	</div>
-	
+
 </body>
 </html>
