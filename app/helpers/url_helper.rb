@@ -28,8 +28,12 @@ module UrlHelper
   end
 
   def s3_url(file_name, last_modified = false)
-    query_string = last_modified ? "?#{FOG_BUCKET.files.head(file_name).last_modified.to_i}" : ""
-    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/#{file_name}#{query_string}"
+    map_files = FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket, :prefix => "maps").files.select do |file|
+      file.key.include?("maps/overlay") && file.key.include?(".kmz")
+    end
+    filename = map_files.first.key
+
+    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/#{filename}"
   end
 
 end

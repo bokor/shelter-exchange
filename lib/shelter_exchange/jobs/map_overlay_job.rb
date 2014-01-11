@@ -5,7 +5,7 @@ module ShelterExchange
       def perform
         # write cache key(overlay-kmz-date) with date
         FOG_BUCKET.files.create(
-          :key => "maps/overlay.kmz",
+          :key => "maps/overlay-#{Time.now.to_i}.kmz",
           :body => zip_archive_data,
           :public => true,
           :content_type => Mime::KMZ,
