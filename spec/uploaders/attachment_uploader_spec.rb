@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe AttachmentUploader do
 
+  before do
+    @file = File.open(Rails.root.join("spec/data/documents/testing.pdf"))
+    @account = Account.gen :document => @file
+    @uploader = AttachmentUploader.new @account, :document
+  end
+
   it "contains a processor for setting content type" do
     AttachmentUploader.processors.should include [:set_content_type, true, nil]
   end
@@ -12,9 +18,6 @@ describe AttachmentUploader do
 
   describe '#store_dir' do
     it "has a correct store directory" do
-      @file = File.open(Rails.root.join("spec/data/documents/testing.pdf"))
-      @account = Account.gen :document => @file
-      @uploader = AttachmentUploader.new @account, :document
       @uploader.store_dir.should == "accounts/documents/#{@account.id}/original"
     end
   end

@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :document do
-    document { File.open(Rails.root.join("spec/data/documents/testing.pdf")) }
+    document { Rack::Test::UploadedFile.new(Rails.root.join("spec/data/documents/testing.pdf")) }
   end
 end
 
