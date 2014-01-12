@@ -17,9 +17,12 @@ namespace :spec do
       end
     end
 
+    # Specs
     ::STATS_DIRECTORIES << ["Uploader specs", "spec/uploaders",         /\.rb$/]
 
+    # Code
     ::STATS_DIRECTORIES << ["Views",          "app/views",              /\.erb$/]
+    ::STATS_DIRECTORIES << ["Uploaders",      "app/uploaders",          /\.rb$/]
     ::STATS_DIRECTORIES << ["Stylesheets",    "app/assets/stylesheets", /\.css$/]
     ::STATS_DIRECTORIES << ["Javascripts",    "app/assets/javascripts", /\.js$/]
   end
