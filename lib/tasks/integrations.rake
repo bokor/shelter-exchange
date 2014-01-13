@@ -7,9 +7,9 @@ namespace :integrations do
 
       case integration.to_sym
       when :petfinder
-        Delayed::Job.enqueue(ShelterExchange::Jobs::PetfinderJob.new(shelter.id))
+        Delayed::Job.enqueue(PetfinderJob.new(shelter.id))
       when :adopt_a_pet
-        Delayed::Job.enqueue(ShelterExchange::Jobs::AdoptAPetJob.new(shelter.id))
+        Delayed::Job.enqueue(AdoptAPetJob.new(shelter.id))
       end
     end
   end
