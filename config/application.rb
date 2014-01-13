@@ -19,13 +19,15 @@ end
 module ShelterExchangeApp
   class Application < Rails::Application
 
+    # Core Extension: Require any ruby extensions (Ex. String, Array)
+    config.autoload_paths += Dir["#{config.root}/lib/core_ext/*.rb"].each {|f| require f }
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
       #{config.root}/lib
-      #{config.root}/app/sweepers
+      #{config.root}/lib/validators
       #{config.root}/app/observers
       #{config.root}/app/presenters
-      #{config.root}/app/pdfs
       #{config.root}/app/uploaders
       #{config.root}/app/models/concerns
     )

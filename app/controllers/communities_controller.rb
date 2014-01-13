@@ -7,7 +7,7 @@ class CommunitiesController < ApplicationController
   def show
     @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos, :transfers).find(params[:id])
     @shelter = @animal.shelter
-    raise ShelterExchange::Errors::ShelterInactive if @shelter.inactive?
+    raise Errors::ShelterInactive if @shelter.inactive?
     @photos = @animal.photos
     @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
 
@@ -53,7 +53,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  rescue_from ActiveRecord::RecordNotFound, ShelterExchange::Errors::ShelterInactive do |exception|
+  rescue_from ActiveRecord::RecordNotFound, Errors::ShelterInactive do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
     flash[:error] = "You have requested an animal that is no longer listed!"
     redirect_to communities_path

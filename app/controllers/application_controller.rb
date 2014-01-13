@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def shelter_inactive?
-    raise ShelterExchange::Errors::ShelterInactive if @current_shelter && @current_shelter.inactive?
+    raise Errors::ShelterInactive if @current_shelter && @current_shelter.inactive?
   end
 
   def shelter_time_zone
@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
     nil
   end
 
-  rescue_from ShelterExchange::Errors::ShelterInactive do |exception|
+  rescue_from Errors::ShelterInactive do |exception|
     render :template => "errors/shelter_#{@current_shelter.status}", :format => :html
   end
 

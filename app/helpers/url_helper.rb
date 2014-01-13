@@ -27,14 +27,9 @@ module UrlHelper
     url
   end
 
-  def s3_url(file_name, last_modified = false)
-    map_files = FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket, :prefix => "maps").files.select do |file|
-      file.key.include?("maps/overlay") && file.key.include?(".kmz")
-    end
-    filename = map_files.first.key
-
-    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/#{filename}"
+  def map_overlay_url(filename)
+    query_string = "#{FOG_BUCKET.files.head("maps/overlay.kmz").last_modified.to_i}"
+    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/#{filename}?#{query_string}"
   end
-
 end
 
