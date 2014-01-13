@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe ShelterExchange::Jobs::FacebookLinterJob, ".perform" do
+describe FacebookLinterJob, ".perform" do
 
   it "does nothing when id is blank" do
-    ShelterExchange::Jobs::FacebookLinterJob.new().perform
+    FacebookLinterJob.new().perform
     Net::HTTP.should_not_receive(:post_form)
   end
 
@@ -14,7 +14,7 @@ describe ShelterExchange::Jobs::FacebookLinterJob, ".perform" do
     response = nil
     VCR.use_cassette('facebook_linter_job') do
       Net::HTTP.should_receive(:post_form).with(uri, params).and_call_original
-      response = ShelterExchange::Jobs::FacebookLinterJob.new(12345).perform
+      response = FacebookLinterJob.new(12345).perform
     end
 
     response.code.should == "200"

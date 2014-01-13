@@ -3,7 +3,7 @@ class AnimalObserver < ActiveRecord::Observer
   def after_update(animal)
     if animal.animal_status_id_changed?
       if Rails.env.production?
-        Delayed::Job.enqueue(ShelterExchange::Jobs::FacebookLinterJob.new(animal.id))
+        Delayed::Job.enqueue(FacebookLinterJob.new(animal.id))
       else
         animal.logger.debug("FAKE - Facebook Update with Animal ID: #{animal.id}")
       end
@@ -23,9 +23,9 @@ class AnimalObserver < ActiveRecord::Observer
     Integration.where(:shelter_id => shelter_id).each do |integration|
       case integration.to_sym
       when :petfinder
-        Delayed::Job.enqueue(ShelterExchange::Jobs::PetfinderJob.new(shelter_id))
+        Delayed::Job.enqueue(PetfinderJob.new(shelter_id))
       when :adopt_a_pet
-        Delayed::Job.enqueue(ShelterExchange::Jobs::AdoptAPetJob.new(shelter_id))
+        Delayed::Job.enqueue(AdoptAPetJob.new(shelter_id))
       end
     end
   end

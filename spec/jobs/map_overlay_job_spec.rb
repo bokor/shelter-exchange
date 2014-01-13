@@ -19,7 +19,7 @@ require "spec_helper"
 #   end
 # end
 
-describe ShelterExchange::Jobs::MapOverlayJob, ".perform" do
+describe MapOverlayJob, ".perform" do
 
   it "generates new kmz file" do
   end
