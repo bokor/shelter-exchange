@@ -238,7 +238,6 @@ describe AccommodationsController do
         WillPaginate::Collection.stub(:create).with(1, 50) { [accommodation] }
 
         get :search, :q => "paginated_search", :page => 1, :format => :js
-
         expect(assigns(:accommodations)).to eq([accommodation])
       end
     end
@@ -278,7 +277,6 @@ describe AccommodationsController do
         WillPaginate::Collection.stub(:create).with(1, 50) { [accommodation] }
 
         get :filter_by_type_location, :page => 1, :format => :js
-
         expect(assigns(:accommodations)).to eq([accommodation])
       end
     end
