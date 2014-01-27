@@ -1,0 +1,17 @@
+# features.yml
+development:
+  features:
+    crm: true
+
+test:
+  features:
+    crm: false
+
+staging:
+  features:
+    crm: false
+
+production:
+  features:
+    crm: false
+

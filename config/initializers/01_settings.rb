@@ -3,6 +3,10 @@ module ShelterExchange
   def self.settings
     ShelterExchangeApp::Application.config
   end
+
+  def self.features
+    ShelterExchangeApp::Application.config.features
+  end
 end
 
 module ShelterExchangeApp
@@ -28,7 +32,7 @@ module ShelterExchangeApp
     end
 
     # Load environment settings from yaml files.
-    ["config/settings.yml"].each do |path|
+    ["config/settings.yml", "config/features.yml"].each do |path|
       yml = YAML.load_file(Rails.root.join(path))[Rails.env]
       yml && yml.each{|key, value| load_env(config, key, value) }
     end
