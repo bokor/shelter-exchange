@@ -24,6 +24,15 @@ module Authentication
   end
 
   module Request
+    def login_owner
+      let(:current_owner) { Owner.gen }
+
+      before do
+        switch_to_subdomain("manage")
+        login_as(current_owner, :scope => :user)
+      end
+    end
+
     def login_user
       let(:current_account) { Account.gen }
       let(:current_user) { current_account.users.first }

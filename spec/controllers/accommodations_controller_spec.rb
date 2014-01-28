@@ -72,10 +72,6 @@ describe AccommodationsController do
 
   describe "GET new" do
 
-    before do
-      @accommodation = Accommodation.gen :shelter => current_shelter
-    end
-
     it "responds successfully" do
       get :new
       expect(response).to be_success
@@ -98,6 +94,12 @@ describe AccommodationsController do
     before do
       accommodation = Accommodation.build :name => "Controller Crate", :shelter => current_shelter
       @attributes = accommodation.attributes.symbolize_keys.except(:created_at, :updated_at, :id)
+    end
+
+    it "responds successfully" do
+      post :create, :accommodation => @attributes, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
     end
 
     it "creates a new Accomodation" do
@@ -137,6 +139,12 @@ describe AccommodationsController do
     before do
       @accommodation = Accommodation.gen :name => "Crate 1", :shelter => current_shelter
       @update_attrs = { :name => "Update Crate" }
+    end
+
+    it "responds successfully" do
+      put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
     end
 
     it "updates a Accomodation" do
@@ -186,7 +194,7 @@ describe AccommodationsController do
 
     it "deletes an Accomodation" do
       expect {
-      delete :destroy, :id => @accommodation.id, :format => :js
+        delete :destroy, :id => @accommodation.id, :format => :js
       }.to change(Accommodation, :count).by(-1)
     end
 
@@ -203,6 +211,15 @@ describe AccommodationsController do
     it "renders the :delete view" do
       delete :destroy, :id => @accommodation.id, :format => :js
       expect(response).to render_template(:destroy)
+    end
+
+    context "with a destroy error" do
+      it "does not set a flash message" do
+        Accommodation.any_instance.stub(:destroy).and_return(false)
+
+        delete :destroy, :id => @accommodation.id, :format => :js
+        expect(flash[:notice]).to be_nil
+      end
     end
   end
 

@@ -5,7 +5,7 @@ class AlertsController < ApplicationController
     @shelter_alerts = @current_shelter.alerts.for_shelter.active.all
     @animal_alerts = @current_shelter.alerts.for_animals.active.all
 
-    if @shelter_alerts.blank? and @animal_alerts.blank?
+    if @shelter_alerts.blank? && @animal_alerts.blank?
       redirect_to new_alert_path
     else
       @alert_validate = true

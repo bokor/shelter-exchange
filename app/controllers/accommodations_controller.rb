@@ -44,8 +44,7 @@ class AccommodationsController < ApplicationController
 
   def destroy
     @accommodation = @current_shelter.accommodations.find(params[:id])
-    @accommodation.destroy
-    flash[:notice] = "#{@accommodation.name} accommodation has been deleted."
+    flash[:notice] = "#{@accommodation.name} accommodation has been deleted." if @accommodation.destroy
     respond_with(@accommodation)
   end
 

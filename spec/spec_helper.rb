@@ -48,10 +48,3 @@ RSpec.configure do |config|
   end
 end
 
-    # Load Seed Data
-    # require rake, transactional fixures true, enabled shared connnection, remove database cleaner
-    # ShelterExchangeApp::Application.load_tasks
-    # Rake::Task["db:seed:common"].invoke
-
-
-

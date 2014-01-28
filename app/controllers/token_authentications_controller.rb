@@ -1,6 +1,6 @@
 class TokenAuthenticationsController < ApplicationController
   respond_to :html, :js
-  
+
   def create
     @shelter = @current_shelter
     authorize!(:generate_access_token, @shelter)
@@ -15,5 +15,5 @@ class TokenAuthenticationsController < ApplicationController
     @shelter.save
     redirect_to setting_path(:tab => :web_access)
   end
-  
+
 end
