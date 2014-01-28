@@ -9,19 +9,19 @@ describe Accommodation do
   it "requires a animal type" do
     accommodation = Accommodation.new :animal_type_id => nil
     expect(accommodation).to have(1).error_on(:animal_type_id)
-    expect(accommodation.errors[:animal_type_id]).to eq(["needs to be selected"])
+    expect(accommodation.errors[:animal_type_id]).to match_array(["needs to be selected"])
   end
 
   it "requires a name of the accommodation" do
     accommodation = Accommodation.new :name => nil
     expect(accommodation).to have(1).error_on(:name)
-    expect(accommodation.errors[:name]).to eq(["cannot be blank"])
+    expect(accommodation.errors[:name]).to match_array(["cannot be blank"])
   end
 
   it "validates a numerical value for max capacity" do
     accommodation = Accommodation.new :max_capacity => "abc"
     expect(accommodation).to have(1).error_on(:max_capacity)
-    expect(accommodation.errors[:max_capacity]).to eq(["requires a number"])
+    expect(accommodation.errors[:max_capacity]).to match_array(["requires a number"])
   end
 end
 
