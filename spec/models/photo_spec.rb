@@ -5,13 +5,13 @@ describe Photo do
   it_should_behave_like Uploadable
 
   it "has a default scope" do
-    Photo.scoped.to_sql.should == Photo.order('photos.is_main_photo DESC, photos.created_at DESC').to_sql
+    expect(Photo.scoped.to_sql).to eq(Photo.order('photos.is_main_photo DESC, photos.created_at DESC').to_sql)
   end
 
   it "sets the original name" do
     file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
     photo = Photo.gen(:image => file)
-    photo.original_name.should == "photo.jpg"
+    expect(photo.original_name).to eq("photo.jpg")
   end
 
   it "validates the max number of additional photos for an attachable" do
@@ -22,8 +22,8 @@ describe Photo do
     Photo.gen(:attachable => note, :is_main_photo => false)
 
     photo = Photo.gen(:attachable => note)
-    photo.should have(1).error
-    photo.errors[:base].should match_array(["Max number of files exceeded"])
+    expect(photo).to have(1).error
+    expect(photo.errors[:base]).to match_array(["Max number of files exceeded"])
   end
 end
 
@@ -32,21 +32,21 @@ end
 describe Photo, "::TOTAL_MAIN" do
 
   it "returns the total number of main photos" do
-    Photo::TOTAL_MAIN.should == 1
+    expect(Photo::TOTAL_MAIN).to eq(1)
   end
 end
 
 describe Photo, "::TOTAL_ADDITIONAL" do
 
   it "returns the total number of additional photos" do
-    Photo::TOTAL_ADDITIONAL.should == 3
+    expect(Photo::TOTAL_ADDITIONAL).to eq(3)
   end
 end
 
 describe Photo, "::MAX_TOTAL" do
 
   it "returns the total max total of photos" do
-    Photo::MAX_TOTAL.should == 4
+    expect(Photo::MAX_TOTAL).to eq(4)
   end
 end
 
@@ -61,7 +61,7 @@ describe Photo, ".main_photo" do
     Photo.gen(:is_main_photo => false)
 
     photos = Photo.main_photo
-    photos.should match_array([photo1, photo2])
+    expect(photos).to match_array([photo1, photo2])
   end
 end
 
@@ -74,7 +74,7 @@ describe Photo, ".not_main_photo" do
     Photo.gen(:is_main_photo => true)
 
     photos = Photo.not_main_photo
-    photos.should =~ [photo1, photo2]
+    expect(photos).to match_array([photo1, photo2])
   end
 end
 
@@ -89,11 +89,11 @@ describe Photo, "#attachable" do
     photo1 = Photo.new :attachable => note
     photo2 = Photo.new :attachable => animal
 
-    photo1.attachable.should == note
-    photo1.attachable.should be_instance_of(Note)
+    expect(photo1.attachable).to eq(note)
+    expect(photo1.attachable).to be_instance_of(Note)
 
-    photo2.attachable.should == animal
-    photo2.attachable.should be_instance_of(Animal)
+    expect(photo2.attachable).to eq(animal)
+    expect(photo2.attachable).to be_instance_of(Animal)
   end
 end
 
@@ -104,8 +104,8 @@ describe Photo, "#attachable?" do
     photo1 = Photo.new :attachable => animal
     photo2 = Photo.new
 
-    photo1.attachable?.should == true
-    photo2.attachable?.should == false
+    expect(photo1.attachable?).to eq(true)
+    expect(photo2.attachable?).to eq(false)
   end
 end
 
@@ -115,8 +115,8 @@ describe Photo, "#main_photo?" do
     photo1 = Photo.new :is_main_photo => true
     photo2 = Photo.new :is_main_photo => false
 
-    photo1.main_photo?.should == true
-    photo2.main_photo?.should == false
+    expect(photo1.main_photo?).to eq(true)
+    expect(photo2.main_photo?).to eq(false)
   end
 end
 

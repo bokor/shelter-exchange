@@ -148,7 +148,7 @@ describe AlertsController do
 
     context "with a save error" do
       it "renders the :new view" do
-        Alert.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Alert).to receive(:save).and_return(false)
 
         post :create, :alert => @attributes
         expect(response).to render_template(:new)
@@ -194,7 +194,7 @@ describe AlertsController do
 
     context "with a save error" do
       it "renders the :edit view" do
-        Alert.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Alert).to receive(:save).and_return(false)
 
         put :update, :id => @alert, :alert => @update_attrs, :format => :js
         expect(response).to render_template(:update)
@@ -237,7 +237,7 @@ describe AlertsController do
 
     context "with a destroy error" do
       it "does not set a flash message" do
-        Alert.any_instance.stub(:destroy).and_return(false)
+        allow_any_instance_of(Alert).to receive(:destroy).and_return(false)
 
         delete :destroy, :id => @alert.id, :format => :js
         expect(flash[:notice]).to be_nil
@@ -274,7 +274,7 @@ describe AlertsController do
 
     context "with a update error" do
       it "does not set a flash message" do
-        Alert.any_instance.stub(:update_attributes).and_return(false)
+        allow_any_instance_of(Alert).to receive(:update_attributes).and_return(false)
 
         post :stop, :id => @alert.id
         expect(flash[:notice]).to be_nil

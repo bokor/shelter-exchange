@@ -3,13 +3,13 @@ require "spec_helper"
 describe Task do
 
   it "has a default scope" do
-    Task.scoped.to_sql.should == Task.order('tasks.due_date ASC, tasks.updated_at DESC').to_sql
+    expect(Task.scoped.to_sql).to eq(Task.order('tasks.due_date ASC, tasks.updated_at DESC').to_sql)
   end
 
   it "requires presence of details" do
     task = Task.gen :details => nil
-    task.should have(1).error_on(:details)
-    task.errors[:details].should match_array(["cannot be blank"])
+    expect(task).to have(1).error_on(:details)
+    expect(task.errors[:details]).to match_array(["cannot be blank"])
   end
 end
 
@@ -18,14 +18,14 @@ end
 describe Task, "::CATEGORIES" do
 
   it "contains a default list of Categories" do
-    Task::CATEGORIES.should match_array(["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"])
+    expect(Task::CATEGORIES).to match_array(["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"])
   end
 end
 
 describe Task, "::DUE_CATEGORIES" do
 
   it "contains a default list of Due Categories" do
-    Task::DUE_CATEGORIES.should match_array(["today", "tomorrow", "later", "specific_date"])
+    expect(Task::DUE_CATEGORIES).to match_array(["today", "tomorrow", "later", "specific_date"])
   end
 end
 
@@ -39,8 +39,8 @@ describe Task, ".active" do
 
     tasks = Task.active.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -52,8 +52,8 @@ describe Task, ".completed" do
 
     tasks = Task.completed.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -65,8 +65,8 @@ describe Task, ".overdue" do
 
     tasks = Task.overdue.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -78,8 +78,8 @@ describe Task, ".today" do
 
     tasks = Task.overdue.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -91,8 +91,8 @@ describe Task, ".tomorrow" do
 
     tasks = Task.tomorrow.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -104,8 +104,8 @@ describe Task, ".later" do
 
     tasks = Task.later.all
 
-    tasks.count.should == 1
-    tasks.should match_array([task1])
+    expect(tasks.count).to eq(1)
+    expect(tasks).to match_array([task1])
   end
 end
 
@@ -118,8 +118,8 @@ describe Task, ".recent_activity" do
 
     results = Task.recent_activity(2).all
 
-    results.count.should == 2
-    results.should match_array([task1, task2])
+    expect(results.count).to eq(2)
+    expect(results).to match_array([task1, task2])
   end
 end
 
@@ -131,12 +131,12 @@ describe Task, "#shelter" do
     shelter = Shelter.new
     task = Task.new :shelter => shelter
 
-    task.shelter.should == shelter
+    expect(task.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     task = Task.gen
-    task.reload.shelter.should be_readonly
+    expect(task.reload.shelter).to be_readonly
   end
 end
 
@@ -148,11 +148,11 @@ describe Note, "#taskable" do
     task1 = Task.new :taskable => item
     task2 = Task.new :taskable => animal
 
-    task1.taskable.should == item
-    task1.taskable.should be_instance_of(Item)
+    expect(task1.taskable).to eq(item)
+    expect(task1.taskable).to be_instance_of(Item)
 
-    task2.taskable.should == animal
-    task2.taskable.should be_instance_of(Animal)
+    expect(task2.taskable).to eq(animal)
+    expect(task2.taskable).to be_instance_of(Animal)
   end
 end
 
@@ -163,8 +163,8 @@ describe Task, "#taskable?" do
     task1 = Task.new :taskable => item
     task2 = Task.new
 
-    task1.taskable?.should == true
-    task2.taskable?.should == false
+    expect(task1.taskable?).to eq(true)
+    expect(task2.taskable?).to eq(false)
   end
 end
 
@@ -174,8 +174,8 @@ describe Task, "#completed?" do
     task1 = Task.new :completed => true
     task2 = Task.new :completed => false
 
-    task1.completed?.should == true
-    task2.completed?.should == false
+    expect(task1.completed?).to eq(true)
+    expect(task2.completed?).to eq(false)
   end
 end
 
@@ -185,8 +185,8 @@ describe Task, "#overdue?" do
     task1 = Task.new :due_date => Date.today - 1.day
     task2 = Task.new :due_date => Date.today + 1.day
 
-    task1.overdue?.should == true
-    task2.overdue?.should == false
+    expect(task1.overdue?).to eq(true)
+    expect(task2.overdue?).to eq(false)
   end
 end
 
@@ -196,8 +196,8 @@ describe Task, "#today?" do
     task1 = Task.new :due_date => Date.today
     task2 = Task.new :due_date => Date.today + 1.day
 
-    task1.today?.should == true
-    task2.today?.should == false
+    expect(task1.today?).to eq(true)
+    expect(task2.today?).to eq(false)
   end
 end
 
@@ -207,8 +207,8 @@ describe Task, "#tomorrow?" do
     task1 = Task.new :due_date => Date.today + 1.day
     task2 = Task.new :due_date => Date.today
 
-    task1.tomorrow?.should == true
-    task2.tomorrow?.should == false
+    expect(task1.tomorrow?).to eq(true)
+    expect(task2.tomorrow?).to eq(false)
   end
 end
 
@@ -219,9 +219,9 @@ describe Task, "#later?" do
     task2 = Task.new :due_category => "later"
     task3 = Task.new :due_date => Date.today
 
-    task1.later?.should == true
-    task2.later?.should == true
-    task3.later?.should == false
+    expect(task1.later?).to eq(true)
+    expect(task2.later?).to eq(true)
+    expect(task3.later?).to eq(false)
   end
 end
 
@@ -231,8 +231,8 @@ describe Task, "#specific_date?" do
     task1 = Task.new :due_category => "specific_date"
     task2 = Task.new :due_category => "later"
 
-    task1.specific_date?.should == true
-    task2.specific_date?.should == false
+    expect(task1.specific_date?).to eq(true)
+    expect(task2.specific_date?).to eq(false)
   end
 end
 
@@ -240,22 +240,22 @@ describe Task, "#due_section" do
 
   it "returns overdue" do
     task = Task.new :due_date => Date.today - 1.day
-    task.due_section.should == "overdue"
+    expect(task.due_section).to eq("overdue")
   end
 
   it "returns today" do
     task = Task.new :due_date => Date.today
-    task.due_section.should == "today"
+    expect(task.due_section).to eq("today")
   end
 
   it "returns tomorrow" do
     task = Task.new :due_date => Date.today + 1.day
-    task.due_section.should == "tomorrow"
+    expect(task.due_section).to eq("tomorrow")
   end
 
   it "returns later" do
     task = Task.new :due_date => Date.today + 2.days
-    task.due_section.should == "later"
+    expect(task.due_section).to eq("later")
   end
 end
 

@@ -38,7 +38,7 @@ describe AccommodationsController do
     context "with pagination" do
       it "paginates :index results" do
         accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
-        WillPaginate::Collection.stub(:create).with(1, 50) { [accommodation] }
+        allow(WillPaginate::Collection).to receive(:create).with(1, 50) { [accommodation] }
 
         get :index, :page => 1, :format => :js
 
@@ -126,7 +126,7 @@ describe AccommodationsController do
 
     context "with a save error" do
       it "renders the :new view" do
-        Accommodation.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Accommodation).to receive(:save).and_return(false)
 
         post :create, :accommodation => @attributes
         expect(response).to render_template(:new)
@@ -172,7 +172,7 @@ describe AccommodationsController do
 
     context "with a save error" do
       it "renders the :create view" do
-        Accommodation.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Accommodation).to receive(:save).and_return(false)
 
         put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
         expect(response).to render_template(:update)
@@ -215,7 +215,7 @@ describe AccommodationsController do
 
     context "with a destroy error" do
       it "does not set a flash message" do
-        Accommodation.any_instance.stub(:destroy).and_return(false)
+        allow_any_instance_of(Accommodation).to receive(:destroy).and_return(false)
 
         delete :destroy, :id => @accommodation.id, :format => :js
         expect(flash[:notice]).to be_nil
@@ -252,7 +252,7 @@ describe AccommodationsController do
     context "with pagination" do
       it "paginates :search results" do
         accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
-        WillPaginate::Collection.stub(:create).with(1, 50) { [accommodation] }
+        allow(WillPaginate::Collection).to receive(:create).with(1, 50) { [accommodation] }
 
         get :search, :q => "paginated_search", :page => 1, :format => :js
         expect(assigns(:accommodations)).to eq([accommodation])
@@ -291,7 +291,7 @@ describe AccommodationsController do
 
       it "paginates :filter_by_type_location results" do
         accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
-        WillPaginate::Collection.stub(:create).with(1, 50) { [accommodation] }
+        allow(WillPaginate::Collection).to receive(:create).with(1, 50) { [accommodation] }
 
         get :filter_by_type_location, :page => 1, :format => :js
         expect(assigns(:accommodations)).to eq([accommodation])

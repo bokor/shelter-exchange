@@ -22,7 +22,7 @@ describe "Edit: Capacity Page", :js => :true do
     end
 
     within "##{dom_id(@capacity)}" do
-      page.should have_content("Dog")
+      expect(page).to have_content("Dog")
     end
   end
 
@@ -39,8 +39,8 @@ describe "Edit: Capacity Page", :js => :true do
     end
 
     within "##{dom_id(@capacity)}" do
-      find(".counts .max").text.should       == "Max capacity: 250"
-      find(".counts .available").text.should == "Available space: 250"
+      expect(find(".counts .max").text).to       eq("Max capacity: 250")
+      expect(find(".counts .available").text).to eq("Available space: 250")
     end
   end
 
@@ -58,8 +58,8 @@ describe "Edit: Capacity Page", :js => :true do
       select "Dog", :from => "Animal type *"
       click_button "Update Capacity"
 
-      page.should have_content "There was a problem with your submission."
-      find("#animal_type_container .error").text.should == "Is already in use"
+      expect(page).to have_content "There was a problem with your submission."
+      expect(find("#animal_type_container .error").text).to eq("Is already in use")
     end
   end
 
@@ -75,8 +75,8 @@ describe "Edit: Capacity Page", :js => :true do
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 4"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 4"
       end
 
       within "##{dom_id(@capacity)}" do
@@ -89,8 +89,8 @@ describe "Edit: Capacity Page", :js => :true do
       end
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 2"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 2"
       end
     end
 
@@ -112,9 +112,9 @@ describe "Edit: Capacity Page", :js => :true do
       end
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 3"
-        page.should have_css ".circle.green"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 3"
+        expect(page).to have_css ".circle.green"
       end
     end
 
@@ -137,9 +137,9 @@ describe "Edit: Capacity Page", :js => :true do
       end
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 2"
-        page.should have_css ".circle.yellow"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 2"
+        expect(page).to have_css ".circle.yellow"
       end
     end
 
@@ -162,9 +162,9 @@ describe "Edit: Capacity Page", :js => :true do
       end
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 0"
-        page.should have_css ".circle.red"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 0"
+        expect(page).to have_css ".circle.red"
       end
     end
 

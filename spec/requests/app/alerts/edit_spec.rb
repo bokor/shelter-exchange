@@ -18,7 +18,7 @@ describe "Edit: From the Index Alert Page", :js => :true do
     end
 
     within "##{dom_id(alert)}" do
-      page.should have_content "new title"
+      expect(page).to have_content "new title"
     end
   end
 
@@ -37,9 +37,9 @@ describe "Edit: From the Index Alert Page", :js => :true do
     end
 
     within "##{dom_id(alert)}" do
-      find(".details").text.should == "low severity title"
-      find(".high").text.should == "High"
-      find(".created_at_date").text.should == Date.today.strftime("%b %d")
+      expect(find(".details").text).to eq("low severity title")
+      expect(find(".high").text).to eq("High")
+      expect(find(".created_at_date").text).to eq(Date.today.strftime("%b %d"))
     end
   end
 
@@ -59,7 +59,7 @@ describe "Edit: From the Index Alert Page", :js => :true do
 
     within "##{dom_id(alert)}" do
       find(".title", :text => "low severity title").click
-      page.should have_content "changed description"
+      expect(page).to have_content "changed description"
     end
   end
 end

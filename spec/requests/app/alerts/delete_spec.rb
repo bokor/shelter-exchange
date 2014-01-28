@@ -8,15 +8,15 @@ describe "Delete: From the Index Alert Page", :js => :true do
 
     visit alerts_path
 
-    Alert.count.should == 1
+    expect(Alert.count).to eq(1)
 
     within "##{dom_id(alert)}" do
       click_link('Delete')
       accept_confirmation!
     end
 
-    page.should have_no_content alert.title
-    Alert.count.should == 0
+    expect(page).to have_no_content alert.title
+    expect(Alert.count).to eq(0)
   end
 end
 

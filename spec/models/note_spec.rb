@@ -3,19 +3,19 @@ require "spec_helper"
 describe Note do
 
   it "has a default scope" do
-    Note.scoped.to_sql.should == Note.order('notes.created_at DESC').to_sql
+    expect(Note.scoped.to_sql).to eq(Note.order('notes.created_at DESC').to_sql)
   end
 
   it "requires presence of title" do
     note = Note.new :title => nil
-    note.should have(1).error_on(:title)
-    note.errors[:title].should match_array(["cannot be blank"])
+    expect(note).to have(1).error_on(:title)
+    expect(note.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     note = Note.new :category => "#{Note::CATEGORIES[0]} blah"
-    note.should have(1).error_on(:category)
-    note.errors[:category].should match_array(["needs to be selected"])
+    expect(note).to have(1).error_on(:category)
+    expect(note.errors[:category]).to match_array(["needs to be selected"])
   end
 end
 
@@ -23,13 +23,13 @@ end
 #----------------------------------------------------------------------------
 describe Note, "::DEFAULT_CATEGORY" do
   it "contains a single value for the default category" do
-    Note::DEFAULT_CATEGORY.should == "general"
+    expect(Note::DEFAULT_CATEGORY).to eq("general")
   end
 end
 
 describe Note, "::CATEGORIES" do
   it "contains a default list of Categories" do
-    Note::CATEGORIES.should match_array([
+    expect(Note::CATEGORIES).to match_array([
       "general", "medical", "behavioral", "intake"
     ])
   end
@@ -45,7 +45,7 @@ describe Note, ".without_hidden" do
     Note.gen :hidden => true
 
     notes = Note.without_hidden
-    notes.should match_array([note1, note2])
+    expect(notes).to match_array([note1, note2])
   end
 end
 
@@ -57,12 +57,12 @@ describe Note, "#shelter" do
     shelter = Shelter.new
     note = Note.new :shelter => shelter
 
-    note.shelter.should == shelter
+    expect(note.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     note = Note.gen
-    note.reload.shelter.should be_readonly
+    expect(note.reload.shelter).to be_readonly
   end
 end
 
@@ -74,11 +74,11 @@ describe Note, "#notable" do
     note1 = Note.new :notable => item
     note2 = Note.new :notable => animal
 
-    note1.notable.should == item
-    note1.notable.should be_instance_of(Item)
+    expect(note1.notable).to eq(item)
+    expect(note1.notable).to be_instance_of(Item)
 
-    note2.notable.should == animal
-    note2.notable.should be_instance_of(Animal)
+    expect(note2.notable).to eq(animal)
+    expect(note2.notable).to be_instance_of(Animal)
   end
 end
 
@@ -95,14 +95,14 @@ describe Note, "#documents" do
   end
 
   it "has many documents" do
-    @note.documents.count.should == 2
-    @note.documents.should match_array([@document1, @document2])
+    expect(@note.documents.count).to eq(2)
+    expect(@note.documents).to match_array([@document1, @document2])
   end
 
   it "destroys the documents when a note is deleted" do
-    Document.count.should == 2
+    expect(Document.count).to eq(2)
     @note.destroy
-    Document.count.should == 0
+    expect(Document.count).to eq(0)
   end
 end
 
@@ -113,8 +113,8 @@ describe Note, "#notable?" do
     note1 = Note.new :notable => item
     note2 = Note.new
 
-    note1.notable?.should == true
-    note2.notable?.should == false
+    expect(note1.notable?).to eq(true)
+    expect(note2.notable?).to eq(false)
   end
 end
 

@@ -4,17 +4,17 @@ describe User do
 
   it "requires presence of name" do
     user = User.new :name => nil
-    user.should have(1).error_on(:name)
-    user.errors[:name].should match_array(["cannot be blank"])
+    expect(user).to have(1).error_on(:name)
+    expect(user.errors[:name]).to match_array(["cannot be blank"])
   end
 
   context "Before Create" do
     it "sets the default announcement hide time as now" do
       now = Time.now
-      Time.stub(:now).and_return(now)
+      allow(Time).to receive(:now).and_return(now)
 
       user = User.gen
-      user.announcement_hide_time.should == now
+      expect(user.announcement_hide_time).to eq(now)
     end
   end
 end
@@ -23,13 +23,13 @@ end
 #----------------------------------------------------------------------------
 describe User, "::ROLES" do
   it "contains a default list of roles" do
-    User::ROLES.should match_array(["user", "admin"])
+    expect(User::ROLES).to match_array(["user", "admin"])
   end
 end
 
 describe User, "::OWNER" do
   it "contains the owner value" do
-    User::OWNER.should == "owner"
+    expect(User::OWNER).to eq("owner")
   end
 end
 
@@ -44,8 +44,8 @@ describe User, ".owner" do
 
     users = User.owner.all
 
-    users.count.should == 1
-    users.should match_array([user1])
+    expect(users.count).to eq(1)
+    expect(users).to match_array([user1])
   end
 end
 
@@ -58,8 +58,8 @@ describe User, ".admin" do
 
     users = User.admin.all
 
-    users.count.should == 1
-    users.should match_array([user1])
+    expect(users.count).to eq(1)
+    expect(users).to match_array([user1])
   end
 end
 
@@ -72,8 +72,8 @@ describe User, ".default" do
 
     users = User.default.all
 
-    users.count.should == 1
-    users.should match_array([user1])
+    expect(users.count).to eq(1)
+    expect(users).to match_array([user1])
   end
 end
 
@@ -98,19 +98,19 @@ describe User, ".admin_list" do
 
     admin_list = User.admin_list
 
-    admin_list.count.should == 2
+    expect(admin_list.count).to eq(2)
 
     list_user1 = admin_list[0]
-    list_user1.email.should == "saver@se.test"
-    list_user1.name.should == "saver"
-    list_user1.shelter_id.should == shelter2.id
-    list_user1.shelter_name.should == "apples"
+    expect(list_user1.email).to eq("saver@se.test")
+    expect(list_user1.name).to eq("saver")
+    expect(list_user1.shelter_id).to eq(shelter2.id)
+    expect(list_user1.shelter_name).to eq("apples")
 
     list_user2 = admin_list[1]
-    list_user2.email.should == "helper@se.test"
-    list_user2.name.should == "helper"
-    list_user2.shelter_id.should == shelter1.id
-    list_user2.shelter_name.should == "oranges"
+    expect(list_user2.email).to eq("helper@se.test")
+    expect(list_user2.name).to eq("helper")
+    expect(list_user2.shelter_id).to eq(shelter1.id)
+    expect(list_user2.shelter_name).to eq("oranges")
   end
 end
 
@@ -121,7 +121,7 @@ describe User, ".find_for_authentication" do
     user = account.users.first
 
     authenicated_user = User.find_for_authentication(:subdomain => account.subdomain)
-    authenicated_user.should == user
+    expect(authenicated_user).to eq(user)
   end
 end
 
@@ -130,7 +130,7 @@ describe User, ".valid_token?" do
   it "returns the user for the given token" do
     user = User.gen(:authentication_token => "12345")
     token_user = User.valid_token?("12345")
-    token_user.should == user
+    expect(token_user).to eq(user)
   end
 end
 
@@ -157,43 +157,43 @@ describe User, ".admin_live_search" do
   it "returns all users from the admin_list when no params" do
     admin_list = User.admin_live_search("")
 
-    admin_list.count.should == 2
+    expect(admin_list.count).to eq(2)
 
     list_user1 = admin_list[0]
-    list_user1.email.should == "saver@se.test"
-    list_user1.name.should == "saver"
-    list_user1.shelter_id.should == @shelter2.id
-    list_user1.shelter_name.should == "apples"
+    expect(list_user1.email).to eq("saver@se.test")
+    expect(list_user1.name).to eq("saver")
+    expect(list_user1.shelter_id).to eq(@shelter2.id)
+    expect(list_user1.shelter_name).to eq("apples")
 
     list_user2 = admin_list[1]
-    list_user2.email.should == "helper@se.test"
-    list_user2.name.should == "helper"
-    list_user2.shelter_id.should == @shelter1.id
-    list_user2.shelter_name.should == "oranges"
+    expect(list_user2.email).to eq("helper@se.test")
+    expect(list_user2.name).to eq("helper")
+    expect(list_user2.shelter_id).to eq(@shelter1.id)
+    expect(list_user2.shelter_name).to eq("oranges")
   end
 
   it "returns all users with the email match" do
     admin_list = User.admin_live_search("saver@se")
 
-    admin_list.count.should == 1
+    expect(admin_list.count).to eq(1)
 
     list_user = admin_list[0]
-    list_user.email.should == "saver@se.test"
-    list_user.name.should == "saver"
-    list_user.shelter_id.should == @shelter2.id
-    list_user.shelter_name.should == "apples"
+    expect(list_user.email).to eq("saver@se.test")
+    expect(list_user.name).to eq("saver")
+    expect(list_user.shelter_id).to eq(@shelter2.id)
+    expect(list_user.shelter_name).to eq("apples")
   end
 
   it "returns all users from the admin_list" do
     admin_list = User.admin_live_search("help")
 
-    admin_list.count.should == 1
+    expect(admin_list.count).to eq(1)
 
     list_user = admin_list[0]
-    list_user.email.should == "helper@se.test"
-    list_user.name.should == "helper"
-    list_user.shelter_id.should == @shelter1.id
-    list_user.shelter_name.should == "oranges"
+    expect(list_user.email).to eq("helper@se.test")
+    expect(list_user.name).to eq("helper")
+    expect(list_user.shelter_id).to eq(@shelter1.id)
+    expect(list_user.shelter_name).to eq("oranges")
   end
 end
 
@@ -205,12 +205,12 @@ describe User, "#account" do
     account = Account.gen
     user = User.gen :account => account
 
-    user.account.should == account
+    expect(user.account).to eq(account)
   end
 
   it "should return a readonly shelter" do
     user = User.gen :account => Account.gen
-    user.reload.account.should be_readonly
+    expect(user.reload.account).to be_readonly
   end
 end
 
@@ -226,7 +226,7 @@ describe User, "#shelter" do
       :users => [user]
     )
 
-    user.shelters.should match_array([shelter1, shelter2])
+    expect(user.shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -234,7 +234,7 @@ describe User, "#first_name" do
 
   it "returns the user's first name" do
     user = User.new :name => "Jimmy Bob"
-    user.first_name.should == "Jimmy"
+    expect(user.first_name).to eq("Jimmy")
   end
 end
 
@@ -242,7 +242,7 @@ describe User, "#last_name" do
 
   it "returns the user's last name" do
     user = User.new :name => "Jimmy Bob"
-    user.last_name.should == "Bob"
+    expect(user.last_name).to eq("Bob")
   end
 end
 
@@ -250,23 +250,23 @@ describe User, "#is?(role)" do
 
   it "returns true if user is owner" do
     user = User.new :role => "owner"
-    user.is?(:owner).should == true
-    user.is?(:admin).should == false
-    user.is?(:user).should == false
+    expect(user.is?(:owner)).to eq(true)
+    expect(user.is?(:admin)).to eq(false)
+    expect(user.is?(:user)).to eq(false)
   end
 
   it "returns true if user is admin" do
     user = User.new :role => "admin"
-    user.is?(:owner).should == false
-    user.is?(:admin).should == true
-    user.is?(:user).should == false
+    expect(user.is?(:owner)).to eq(false)
+    expect(user.is?(:admin)).to eq(true)
+    expect(user.is?(:user)).to eq(false)
   end
 
   it "returns true if user is user" do
     user = User.new :role => "user"
-    user.is?(:owner).should == false
-    user.is?(:admin).should == false
-    user.is?(:user).should == true
+    expect(user.is?(:owner)).to eq(false)
+    expect(user.is?(:admin)).to eq(false)
+    expect(user.is?(:user)).to eq(true)
   end
 end
 

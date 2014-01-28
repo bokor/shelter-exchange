@@ -8,15 +8,15 @@ describe "Delete: From the Index Capacity Page", :js => :true do
 
     visit capacities_path
 
-    Capacity.count.should == 1
+    expect(Capacity.count).to eq(1)
 
     within "##{dom_id(capacity)}" do
       click_link('Delete')
       accept_confirmation!
     end
 
-    page.should have_no_content "Max capacity: 100"
-    Capacity.count.should == 0
+    expect(page).to have_no_content "Max capacity: 100"
+    expect(Capacity.count).to eq(0)
   end
 end
 

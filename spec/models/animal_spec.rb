@@ -7,68 +7,68 @@ describe Animal do
   it_should_behave_like Uploadable
 
   it "has a default scope" do
-    Animal.scoped.to_sql.should == Animal.order('animals.updated_at DESC').to_sql
+    expect(Animal.scoped.to_sql).to eq(Animal.order('animals.updated_at DESC').to_sql)
   end
 
   it "validates presence of name" do
     animal = Animal.new :name => nil
-    animal.should have(1).error_on(:name)
-    animal.errors[:name].should match_array(["cannot be blank"])
+    expect(animal).to have(1).error_on(:name)
+    expect(animal.errors[:name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of animal type id" do
     animal = Animal.new :animal_type_id => nil
-    animal.should have(1).error_on(:animal_type_id)
-    animal.errors[:animal_type_id].should match_array(["needs to be selected"])
+    expect(animal).to have(1).error_on(:animal_type_id)
+    expect(animal.errors[:animal_type_id]).to match_array(["needs to be selected"])
   end
 
   it "validates presence of animal status id" do
     animal = Animal.new :animal_status_id => nil
-    animal.should have(1).error_on(:animal_status_id)
-    animal.errors[:animal_status_id].should match_array(["needs to be selected"])
+    expect(animal).to have(1).error_on(:animal_status_id)
+    expect(animal.errors[:animal_status_id]).to match_array(["needs to be selected"])
   end
 
   it "validates breed of primary breed" do
     animal = Animal.gen :primary_breed => nil, :animal_type_id => 1
-    animal.should have(1).error_on(:primary_breed)
-    animal.errors[:primary_breed].should match_array(["cannot be blank"])
+    expect(animal).to have(1).error_on(:primary_breed)
+    expect(animal.errors[:primary_breed]).to match_array(["cannot be blank"])
 
     animal = Animal.new :primary_breed => "aaa", :animal_type_id => 1
-    animal.should have(1).error_on(:primary_breed)
-    animal.errors[:primary_breed].should match_array(["must contain a valid breed name"])
+    expect(animal).to have(1).error_on(:primary_breed)
+    expect(animal.errors[:primary_breed]).to match_array(["must contain a valid breed name"])
   end
 
   it "validates breed of secondary breed" do
     animal = Animal.new :is_mix_breed => true, :secondary_breed => nil, :animal_type_id => 1
-    animal.should have(0).error_on(:secondary_breed)
+    expect(animal).to have(0).error_on(:secondary_breed)
 
     animal = Animal.new :is_mix_breed => true, :secondary_breed => "aaa", :animal_type_id => 1
-    animal.should have(1).error_on(:secondary_breed)
-    animal.errors[:secondary_breed].should match_array(["must contain a valid breed name"])
+    expect(animal).to have(1).error_on(:secondary_breed)
+    expect(animal.errors[:secondary_breed]).to match_array(["must contain a valid breed name"])
   end
 
   it "validates presence of sex" do
     animal = Animal.new :sex => nil
-    animal.should have(1).error_on(:sex)
-    animal.errors[:sex].should match_array(["cannot be blank"])
+    expect(animal).to have(1).error_on(:sex)
+    expect(animal.errors[:sex]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of age if status is active" do
     animal = Animal.new :age => nil, :animal_status_id => 1
-    animal.should have(1).error_on(:age)
-    animal.errors[:age].should match_array(["needs to be selected"])
+    expect(animal).to have(1).error_on(:age)
+    expect(animal.errors[:age]).to match_array(["needs to be selected"])
 
     animal = Animal.new :age => nil, :animal_status_id => 2
-    animal.should have(0).error_on(:age)
+    expect(animal).to have(0).error_on(:age)
   end
 
   it "validates presence of size if status is active" do
     animal = Animal.new :size => nil, :animal_status_id => 1
-    animal.should have(1).error_on(:size)
-    animal.errors[:size].should match_array(["needs to be selected"])
+    expect(animal).to have(1).error_on(:size)
+    expect(animal.errors[:size]).to match_array(["needs to be selected"])
 
     animal = Animal.new :size => nil, :animal_status_id => 2
-    animal.should have(0).error_on(:size)
+    expect(animal).to have(0).error_on(:size)
   end
 
   it "validates uniqueness of microchip" do
@@ -76,36 +76,36 @@ describe Animal do
     Animal.gen :microchip => "microchip", :shelter => shelter
 
     animal = Animal.new :microchip => "microchip", :shelter => shelter
-    animal.should have(1).error_on(:microchip)
-    animal.errors[:microchip].should match_array([
+    expect(animal).to have(1).error_on(:microchip)
+    expect(animal.errors[:microchip]).to match_array([
       "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record."
     ])
 
     # Another Shelter
     animal = Animal.new :microchip => "microchip"
-    animal.should have(0).error_on(:microchip)
+    expect(animal).to have(0).error_on(:microchip)
   end
 
   it "validates allows blank for microchip" do
     animal = Animal.new :microchip => nil
-    animal.should have(0).error_on(:microchip)
+    expect(animal).to have(0).error_on(:microchip)
   end
 
   it "validates presence of special needs" do
     animal = Animal.new :has_special_needs => true
-    animal.should have(1).error_on(:special_needs)
-    animal.errors[:special_needs].should match_array(["cannot be blank"])
+    expect(animal).to have(1).error_on(:special_needs)
+    expect(animal.errors[:special_needs]).to match_array(["cannot be blank"])
   end
 
   it "validates video url format of video url" do
     animal = Animal.new :video_url => "http://vimeo.com/1234"
-    animal.should have(1).error_on(:video_url)
-    animal.errors[:video_url].should match_array(["incorrect You Tube URL format"])
+    expect(animal).to have(1).error_on(:video_url)
+    expect(animal.errors[:video_url]).to match_array(["incorrect You Tube URL format"])
   end
 
   it "validates allows blank for video url" do
     animal = Animal.new :video_url => nil
-    animal.should have(0).error_on(:video_url)
+    expect(animal).to have(0).error_on(:video_url)
   end
 
   it "validates date format of date of birth before today" do
@@ -115,8 +115,8 @@ describe Animal do
       :date_of_birth_month => today.month,
       :date_of_birth_year => today.year
     )
-    animal.should have(1).error_on(:date_of_birth)
-    animal.errors[:date_of_birth].should match_array(["has to be before today's date"])
+    expect(animal).to have(1).error_on(:date_of_birth)
+    expect(animal.errors[:date_of_birth]).to match_array(["has to be before today's date"])
   end
 
   it "validates date format of date of birth invalid date" do
@@ -126,8 +126,8 @@ describe Animal do
       :date_of_birth_month => today.month,
       :date_of_birth_year => nil
     )
-    animal.should have(1).error_on(:date_of_birth)
-    animal.errors[:date_of_birth].should match_array(["is an invalid date format"])
+    expect(animal).to have(1).error_on(:date_of_birth)
+    expect(animal.errors[:date_of_birth]).to match_array(["is an invalid date format"])
   end
 
   it "validates date format of arrival date invalid date" do
@@ -137,8 +137,8 @@ describe Animal do
       :arrival_date_month => today.month,
       :arrival_date_year => nil
     )
-    animal.should have(1).error_on(:arrival_date)
-    animal.errors[:arrival_date].should match_array(["is an invalid date format"])
+    expect(animal).to have(1).error_on(:arrival_date)
+    expect(animal.errors[:arrival_date]).to match_array(["is an invalid date format"])
   end
 
   it "validates date format of euthanasia date invalid date" do
@@ -148,8 +148,8 @@ describe Animal do
       :euthanasia_date_month => today.month,
       :euthanasia_date_year => nil
     )
-    animal.should have(1).error_on(:euthanasia_date)
-    animal.errors[:euthanasia_date].should match_array(["is an invalid date format"])
+    expect(animal).to have(1).error_on(:euthanasia_date)
+    expect(animal.errors[:euthanasia_date]).to match_array(["is an invalid date format"])
   end
 
   context "Nested Attributes" do
@@ -159,35 +159,35 @@ describe Animal do
     end
 
     it "accepts nested attributes for photos" do
-      Animal.count.should == 0
-      Photo.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(Photo.count).to eq(0)
 
       Animal.gen :photos_attributes => [{:image => @image}]
 
-      Animal.count.should == 1
-      Photo.count.should == 1
+      expect(Animal.count).to eq(1)
+      expect(Photo.count).to eq(1)
     end
 
     it "rejects nested attributes for photos" do
-      Animal.count.should == 0
-      Photo.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(Photo.count).to eq(0)
 
       Animal.gen :photos_attributes => [{:image => nil}]
 
-      Animal.count.should == 1
-      Photo.count.should == 0
+      expect(Animal.count).to eq(1)
+      expect(Photo.count).to eq(0)
     end
 
     it "destroys nested photos" do
       animal = Animal.gen :photos_attributes => [{:image => @image}]
 
-      Animal.count.should == 1
-      Photo.count.should == 1
+      expect(Animal.count).to eq(1)
+      expect(Photo.count).to eq(1)
 
       animal.destroy
 
-      Animal.count.should == 0
-      Photo.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(Photo.count).to eq(0)
     end
   end
 
@@ -197,14 +197,14 @@ describe Animal do
       animal = Animal.gen(
         :description => "\u2036\u201F\u2035\u2032\u2013\u02C6\u2039\u203A\u2013\u2014\u2026\u00A9\u00AE\u2122\u00BC\u00BD\u00BE\u02DC"
       )
-      animal.description.should == "\"\"''-^<>--...&copy;&reg;&trade;&frac14;&frac12;&frac34;"
+      expect(animal.description).to eq("\"\"''-^<>--...&copy;&reg;&trade;&frac14;&frac12;&frac34;")
     end
 
     it "strips the description" do
       animal = Animal.gen(
         :description => "   hi    "
       )
-      animal.description.should == "hi"
+      expect(animal.description).to eq("hi")
     end
 
     it "removed secondary breed when the mixed breed is false" do
@@ -212,7 +212,7 @@ describe Animal do
         :secondary_breed => "test",
         :is_mix_breed => false
       )
-      animal.secondary_breed.should be_nil
+      expect(animal.secondary_breed).to be_nil
     end
 
     it "removed special needs when the has special needs is false" do
@@ -220,23 +220,23 @@ describe Animal do
         :special_needs => "test",
         :has_special_needs => false
       )
-      animal.special_needs.should be_nil
+      expect(animal.special_needs).to be_nil
     end
 
     it "changes the status date for a new record" do
       animal = Animal.gen
-      animal.status_change_date.should == Date.today
+      expect(animal.status_change_date).to eq(Date.today)
     end
 
     it "changes the status date when the animal status changes" do
       animal = Animal.gen :animal_status_id => 1
       animal.update_attributes(:status_change_date => Date.today - 1.month)
 
-      animal.status_change_date.should == Date.today - 1.month
+      expect(animal.status_change_date).to eq(Date.today - 1.month)
 
       animal.update_attributes(:animal_status_id => 2)
 
-      animal.status_change_date.should == Date.today
+      expect(animal.status_change_date).to eq(Date.today)
     end
   end
 
@@ -251,63 +251,63 @@ describe Animal do
         :secondary_breed => " border collie  "
       )
 
-      animal.primary_breed.should == "Labrador Retriever"
-      animal.secondary_breed.should == "Border Collie"
+      expect(animal.primary_breed).to eq("Labrador Retriever")
+      expect(animal.secondary_breed).to eq("Border Collie")
     end
   end
 
   context "After Save" do
 
     it "creates status history for a new record" do
-      Animal.count.should == 0
-      StatusHistory.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(StatusHistory.count).to eq(0)
 
       Animal.gen
 
-      Animal.count.should == 1
-      StatusHistory.count.should == 1
+      expect(Animal.count).to eq(1)
+      expect(StatusHistory.count).to eq(1)
     end
 
     it "creates status history when the animal status has changed" do
-      Animal.count.should == 0
-      StatusHistory.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(StatusHistory.count).to eq(0)
 
       animal = Animal.gen :status_history_reason => "New Record"
 
-      Animal.count.should == 1
-      StatusHistory.count.should == 1
+      expect(Animal.count).to eq(1)
+      expect(StatusHistory.count).to eq(1)
 
       animal.animal_status = AnimalStatus.gen
       animal.status_history_reason = "Status Updated"
       animal.save
 
-      Animal.count.should == 1
-      StatusHistory.count.should == 2
+      expect(Animal.count).to eq(1)
+      expect(StatusHistory.count).to eq(2)
 
       histories = StatusHistory.all
-      histories.map(&:reason).should match_array(["New Record", "Status Updated"])
+      expect(histories.map(&:reason)).to match_array(["New Record", "Status Updated"])
     end
 
     it "creates status history when the shelter has changed" do
-      Animal.count.should == 0
-      StatusHistory.count.should == 0
+      expect(Animal.count).to eq(0)
+      expect(StatusHistory.count).to eq(0)
 
       animal = Animal.gen :status_history_reason => "New Record"
 
-      Animal.count.should == 1
-      StatusHistory.count.should == 1
+      expect(Animal.count).to eq(1)
+      expect(StatusHistory.count).to eq(1)
 
       shelter = Shelter.gen
       animal.shelter = shelter
       animal.status_history_reason = "New Transfer"
       animal.save
 
-      Animal.count.should == 1
-      StatusHistory.count.should == 2
+      expect(Animal.count).to eq(1)
+      expect(StatusHistory.count).to eq(2)
 
       histories = StatusHistory.all
-      histories[0].reason.should == "New Record"
-      histories[1].reason.should == "New Transfer"
+      expect(histories[0].reason).to eq("New Record")
+      expect(histories[1].reason).to eq("New Transfer")
     end
   end
 end
@@ -316,24 +316,24 @@ end
 #----------------------------------------------------------------------------
 describe Animal, "::SEX" do
   it "contains a default list of genders" do
-    Animal::SEX.should match_array(["male", "female"])
+    expect(Animal::SEX).to match_array(["male", "female"])
   end
 end
 
 describe Animal, "::AGES" do
   it "contains a default list of ages" do
-    Animal::AGES.should match_array(["baby", "young", "adult", "senior"])
+    expect(Animal::AGES).to match_array(["baby", "young", "adult", "senior"])
   end
 end
 
 describe Animal, "::SIZES" do
   it "contains a default list of sizes" do
-    Animal::SIZES.should == {
+    expect(Animal::SIZES).to eq({
       :S => "Small",
       :M => "Medium",
       :L => "Large",
       :XL => "X-Large"
-    }
+    })
   end
 end
 
@@ -353,8 +353,8 @@ describe Animal, ".latest" do
 
     animals = Animal.latest(:available_for_adoption, 4)
 
-    animals.count.should == 3
-    animals.should match_array([animal1, animal3, animal2])
+    expect(animals.count).to eq(3)
+    expect(animals).to match_array([animal1, animal3, animal2])
   end
 end
 
@@ -367,8 +367,8 @@ describe Animal, ".auto_complete" do
 
     animals = Animal.auto_complete("dog")
 
-    animals.count.should == 2
-    animals.should match_array([animal1, animal2])
+    expect(animals.count).to eq(2)
+    expect(animals).to match_array([animal1, animal2])
   end
 end
 
@@ -382,8 +382,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
   end
 
@@ -395,8 +395,8 @@ describe Animal, ".search" do
 
        animals = Animal.search("1234567")
 
-       animals.count.should == 1
-       animals.should match_array([animal2])
+       expect(animals.count).to eq(1)
+       expect(animals).to match_array([animal2])
      end
 
     it "returns animal that matches microchip" do
@@ -405,8 +405,8 @@ describe Animal, ".search" do
 
        animals = Animal.search("1234567")
 
-       animals.count.should == 1
-       animals.should match_array([animal2])
+       expect(animals.count).to eq(1)
+       expect(animals).to match_array([animal2])
      end
   end
 
@@ -419,8 +419,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("dog")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
 
     it "returns all animals with the microchip like" do
@@ -430,8 +430,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("dog")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
 
     it "returns all animals with the description like" do
@@ -441,8 +441,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("dog")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
 
     it "returns all animals with the primary breed like" do
@@ -452,8 +452,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("dog")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
 
     it "returns all animals with the secondary breed like" do
@@ -463,8 +463,8 @@ describe Animal, ".search" do
 
       animals = Animal.search("dog")
 
-      animals.count.should == 2
-      animals.should match_array([animal1, animal2])
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
     end
   end
 end
@@ -478,7 +478,7 @@ describe Animal, ".recent_activity" do
 
     animals = Animal.recent_activity(10)
 
-    animals.should match_array([animal2, animal1, animal3])
+    expect(animals).to match_array([animal2, animal1, animal3])
   end
 end
 
@@ -491,7 +491,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup(nil, nil)
 
-    animals.should match_array([animal1, animal2])
+    expect(animals).to match_array([animal1, animal2])
   end
 
   it "returns a list of animals per statuses provided" do
@@ -501,7 +501,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup(nil, [2])
 
-    animals.should match_array([animal1])
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals per types provided" do
@@ -514,7 +514,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup([type1.id], nil)
 
-    animals.should match_array([animal1])
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals per statuses and types provided" do
@@ -527,7 +527,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup([type1.id], [2])
 
-    animals.should match_array([animal1])
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals ordered by euthanasia_date" do
@@ -549,7 +549,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup(nil, nil)
 
-    animals.should match_array([animal2, animal1, animal3])
+    expect(animals).to match_array([animal2, animal1, animal3])
   end
 end
 
@@ -570,7 +570,7 @@ describe Animal, ".community_animals" do
 
   it "returns filtered animal by shelter ids" do
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id])
-    animals.should match_array([
+    expect(animals).to match_array([
       @available_kill,
       @pending_kill,
       @available_no_kill,
@@ -584,11 +584,11 @@ describe Animal, ".community_animals" do
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id])
 
-    animals.count.should == 4
+    expect(animals.count).to eq(4)
 
     # Only checking the kill shelter order because it is all that matters in the ordering
-    animals[0].should == @available_kill
-    animals[1].should == @pending_kill
+    expect(animals[0]).to eq(@available_kill)
+    expect(animals[1]).to eq(@pending_kill)
   end
 
   it "returns filtered animal by euthanasia" do
@@ -600,7 +600,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:euthanasia_date, Date.today)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@available_kill, @pending_kill])
+    expect(animals).to match_array([@available_kill, @pending_kill])
   end
 
   it "returns filtered animal by special needs" do
@@ -612,7 +612,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:has_special_needs, false)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@available_kill])
+    expect(animals).to match_array([@available_kill])
   end
 
   it "returns filtered animal by animal type" do
@@ -624,7 +624,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:animal_type_id, 1)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@available_kill, @pending_kill, @available_no_kill])
+    expect(animals).to match_array([@available_kill, @pending_kill, @available_no_kill])
   end
 
   it "returns filtered animal by breed" do
@@ -636,7 +636,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:secondary_breed, "lab")
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@available_kill, @pending_kill, @available_no_kill])
+    expect(animals).to match_array([@available_kill, @pending_kill, @available_no_kill])
   end
 
   it "returns filtered animal by sex" do
@@ -650,14 +650,14 @@ describe Animal, ".community_animals" do
     @adopted_no_kill.update_column(:sex, "male")
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@available_kill, @available_no_kill])
+    expect(animals).to match_array([@available_kill, @available_no_kill])
   end
 
   it "returns filtered animal by animal statuses" do
     filters = { :animal_status => "2" }
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should match_array([@adopted_kill, @adopted_no_kill])
+    expect(animals).to match_array([@adopted_kill, @adopted_no_kill])
   end
 end
 
@@ -668,8 +668,8 @@ describe Animal, ".search_by_name" do
     Animal.gen
 
     animals = Animal.search_by_name(animal1.id.to_s)
-    animals.count.should == 1
-    animals.should match_array([animal1])
+    expect(animals.count).to eq(1)
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals based on the name" do
@@ -678,8 +678,8 @@ describe Animal, ".search_by_name" do
     Animal.gen :name => "kittie"
 
     animals = Animal.search_by_name("dog")
-    animals.count.should == 2
-    animals.should match_array([animal1, animal2])
+    expect(animals.count).to eq(2)
+    expect(animals).to match_array([animal1, animal2])
   end
 end
 
@@ -691,8 +691,8 @@ describe Animal, ".filter_by_type_status" do
     Animal.gen :animal_status_id => 2
 
     animals = Animal.filter_by_type_status(nil, "active")
-    animals.count.should == 2
-    animals.should match_array([animal1, animal2])
+    expect(animals.count).to eq(2)
+    expect(animals).to match_array([animal1, animal2])
   end
 
   it "returns animals that are only non-active" do
@@ -701,8 +701,8 @@ describe Animal, ".filter_by_type_status" do
     Animal.gen :animal_status_id => 3
 
     animals = Animal.filter_by_type_status(nil, "non_active")
-    animals.count.should == 1
-    animals.should match_array([animal1])
+    expect(animals.count).to eq(1)
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals based on the type" do
@@ -714,8 +714,8 @@ describe Animal, ".filter_by_type_status" do
     Animal.gen :animal_type => animal_type2
 
     animals = Animal.filter_by_type_status(animal_type1.id, nil)
-    animals.count.should == 2
-    animals.should match_array([animal1, animal2])
+    expect(animals.count).to eq(2)
+    expect(animals).to match_array([animal1, animal2])
   end
 
   it "returns a list of animals based on the status" do
@@ -724,8 +724,8 @@ describe Animal, ".filter_by_type_status" do
     Animal.gen :animal_status_id => 2
 
     animals = Animal.filter_by_type_status(nil, 3)
-    animals.count.should == 1
-    animals.should match_array([animal1])
+    expect(animals.count).to eq(1)
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals based on the type and status" do
@@ -737,8 +737,8 @@ describe Animal, ".filter_by_type_status" do
     Animal.gen :animal_type => animal_type1, :animal_status_id => 3
 
     animals = Animal.filter_by_type_status(animal_type1.id, 1)
-    animals.count.should == 1
-    animals.should match_array([animal1])
+    expect(animals.count).to eq(1)
+    expect(animals).to match_array([animal1])
   end
 end
 
@@ -754,7 +754,7 @@ describe Animal, ".count_by_type" do
 
     results = Animal.count_by_type
 
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "count" => 2,
         "name" => type1.name
@@ -780,7 +780,7 @@ describe Animal, ".count_by_status" do
 
     results = Animal.count_by_status
 
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "count" => 2,
         "name" => status1.name
@@ -806,7 +806,7 @@ describe Animal, ".current_month" do
     animal3.update_column(:status_change_date, Date.today - 1.day)
 
     animals = Animal.current_month
-    animals.should match_array([animal1, animal3])
+    expect(animals).to match_array([animal1, animal3])
   end
 end
 
@@ -821,7 +821,7 @@ describe Animal, ".year_to_date" do
     animal3.update_column(:status_change_date, Date.today - 1.day)
 
     animals = Animal.year_to_date
-    animals.should match_array([animal1, animal3])
+    expect(animals).to match_array([animal1, animal3])
   end
 end
 
@@ -862,7 +862,7 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, nil)
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "count" => 2,
         "name" => type1.name
@@ -899,7 +899,7 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", shelter1.id, nil)
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "count" => 1,
         "name" => type1.name
@@ -931,7 +931,7 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, "CA")
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "count" => 1,
         "name" => type2.name
@@ -952,7 +952,7 @@ describe Animal, ".intake_totals_by_month" do
     Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013")
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "april" => 0,
         "august" => 0,
@@ -983,7 +983,7 @@ describe Animal, ".intake_totals_by_month" do
     Animal.gen :animal_type => type1, :created_at => DateTime.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013", true)
-    MultiJson.load(results.to_json).should match_array([{
+    expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
         "april" => 0, "august" => 0, "december" => 0, "february" => 0, "january" => 0, "july" => 2,
         "june" => 0, "march" => 0, "may" => 0, "november" => 1, "october" => 0, "september" => 1
@@ -1005,12 +1005,12 @@ describe Animal, "#animal_type" do
     animal_type = AnimalType.new
     animal = Animal.new :animal_type => animal_type
 
-    animal.animal_type.should == animal_type
+    expect(animal.animal_type).to eq(animal_type)
   end
 
   it "returns a readonly animal type" do
     animal = Animal.gen
-    animal.reload.animal_type.should be_readonly
+    expect(animal.reload.animal_type).to be_readonly
   end
 end
 
@@ -1020,12 +1020,12 @@ describe Animal, "#animal_status" do
     animal_status = AnimalStatus.new
     animal = Animal.new :animal_status => animal_status
 
-    animal.animal_status.should == animal_status
+    expect(animal.animal_status).to eq(animal_status)
   end
 
   it "returns a readonly animal status" do
     animal = Animal.gen
-    animal.reload.animal_status.should be_readonly
+    expect(animal.reload.animal_status).to be_readonly
   end
 end
 
@@ -1035,7 +1035,7 @@ describe Animal, "#accommodation" do
     accommodation = Accommodation.new
     animal = Animal.new :accommodation => accommodation
 
-    animal.accommodation.should == accommodation
+    expect(animal.accommodation).to eq(accommodation)
   end
 end
 
@@ -1045,7 +1045,7 @@ describe Animal, "#shelter" do
     shelter = Shelter.new
     animal = Animal.new :shelter => shelter
 
-    animal.shelter.should == shelter
+    expect(animal.shelter).to eq(shelter)
   end
 end
 
@@ -1058,14 +1058,14 @@ describe Animal, "#placements" do
   end
 
   it "returns a list of placements" do
-    @animal.placements.count.should == 2
-    @animal.placements.should match_array([@placement1, @placement2])
+    expect(@animal.placements.count).to eq(2)
+    expect(@animal.placements).to match_array([@placement1, @placement2])
   end
 
   it "destroy all placements associated to the animal" do
-    @animal.placements.count.should == 2
+    expect(@animal.placements.count).to eq(2)
     @animal.destroy
-    @animal.placements.count.should == 0
+    expect(@animal.placements.count).to eq(0)
   end
 end
 
@@ -1078,14 +1078,14 @@ describe Animal, "#notes" do
   end
 
   it "returns a list of notes" do
-    @animal.notes.count.should == 2
-    @animal.notes.should match_array([@note1, @note2])
+    expect(@animal.notes.count).to eq(2)
+    expect(@animal.notes).to match_array([@note1, @note2])
   end
 
   it "destroy all notes associated to the animal" do
-    @animal.notes.count.should == 2
+    expect(@animal.notes.count).to eq(2)
     @animal.destroy
-    @animal.notes.count.should == 0
+    expect(@animal.notes.count).to eq(0)
   end
 end
 
@@ -1098,14 +1098,14 @@ describe Animal, "#alerts" do
   end
 
   it "returns a list of alerts" do
-    @animal.alerts.count.should == 2
-    @animal.alerts.should match_array([@alert1, @alert2])
+    expect(@animal.alerts.count).to eq(2)
+    expect(@animal.alerts).to match_array([@alert1, @alert2])
   end
 
   it "destroy all alerts associated to the animal" do
-    @animal.alerts.count.should == 2
+    expect(@animal.alerts.count).to eq(2)
     @animal.destroy
-    @animal.alerts.count.should == 0
+    expect(@animal.alerts.count).to eq(0)
   end
 end
 
@@ -1118,14 +1118,14 @@ describe Animal, "#tasks" do
   end
 
   it "returns a list of tasks" do
-    @animal.tasks.count.should == 2
-    @animal.tasks.should match_array([@task1, @task2])
+    expect(@animal.tasks.count).to eq(2)
+    expect(@animal.tasks).to match_array([@task1, @task2])
   end
 
   it "destroy all tasks associated to the animal" do
-    @animal.tasks.count.should == 2
+    expect(@animal.tasks.count).to eq(2)
     @animal.destroy
-    @animal.tasks.count.should == 0
+    expect(@animal.tasks.count).to eq(0)
   end
 end
 
@@ -1138,14 +1138,14 @@ describe Animal, "#transfers" do
   end
 
   it "returns a list of transfers" do
-    @animal.transfers.count.should == 2
-    @animal.transfers.should match_array([@transfer1, @transfer2])
+    expect(@animal.transfers.count).to eq(2)
+    expect(@animal.transfers).to match_array([@transfer1, @transfer2])
   end
 
   it "destroy all transfers associated to the animal" do
-    @animal.transfers.count.should == 2
+    expect(@animal.transfers.count).to eq(2)
     @animal.destroy
-    @animal.transfers.count.should == 0
+    expect(@animal.transfers.count).to eq(0)
   end
 end
 
@@ -1158,14 +1158,14 @@ describe Animal, "#status_histories" do
   end
 
   it "returns a list of status_histories" do
-    @animal.status_histories.count.should == 3
-    @animal.status_histories.should include(@status_history1, @status_history2)
+    expect(@animal.status_histories.count).to eq(3)
+    expect(@animal.status_histories).to include(@status_history1, @status_history2)
   end
 
   it "destroy all status_histories associated to the animal" do
-    @animal.status_histories.count.should == 3
+    expect(@animal.status_histories.count).to eq(3)
     @animal.destroy
-    @animal.status_histories.count.should == 0
+    expect(@animal.status_histories.count).to eq(0)
   end
 end
 
@@ -1178,14 +1178,14 @@ describe Animal, "#photos" do
   end
 
   it "returns a list of photos" do
-    @animal.photos.count.should == 2
-    @animal.photos.should match_array([@photo1, @photo2])
+    expect(@animal.photos.count).to eq(2)
+    expect(@animal.photos).to match_array([@photo1, @photo2])
   end
 
   it "destroy all photos associated to the animal" do
-    @animal.photos.count.should == 2
+    expect(@animal.photos.count).to eq(2)
     @animal.destroy
-    @animal.photos.count.should == 0
+    expect(@animal.photos.count).to eq(0)
   end
 end
 
@@ -1193,7 +1193,7 @@ describe Animal, "#full_breed" do
 
   it "returns the full breed when only primary breed" do
     animal = Animal.new :primary_breed => "Labrador Retriever"
-    animal.full_breed.should == "Labrador Retriever"
+    expect(animal.full_breed).to eq("Labrador Retriever")
   end
 
   it "returns the full breed when primary breed and is a mix breed" do
@@ -1202,7 +1202,7 @@ describe Animal, "#full_breed" do
       :secondary_breed => "",
       :is_mix_breed => true
     )
-    animal.full_breed.should == "Labrador Retriever Mix"
+    expect(animal.full_breed).to eq("Labrador Retriever Mix")
   end
 
   it "returns the full breed when primary breed and is a mix breed with secondary breed" do
@@ -1211,7 +1211,7 @@ describe Animal, "#full_breed" do
       :secondary_breed => "Border Collie",
       :is_mix_breed => true
     )
-    animal.full_breed.should == "Labrador Retriever & Border Collie Mix"
+    expect(animal.full_breed).to eq("Labrador Retriever & Border Collie Mix")
   end
 end
 
@@ -1221,8 +1221,8 @@ describe Animal, "#stopped?" do
     animal1 = Animal.new :has_special_needs => true
     animal2 = Animal.new
 
-    animal1.special_needs?.should == true
-    animal2.special_needs?.should == false
+    expect(animal1.special_needs?).to eq(true)
+    expect(animal2.special_needs?).to eq(false)
   end
 end
 
@@ -1232,8 +1232,8 @@ describe Animal, "#mix_breed?" do
     animal1 = Animal.new :is_mix_breed => true
     animal2 = Animal.new :is_mix_breed => false
 
-    animal1.mix_breed?.should == true
-    animal2.mix_breed?.should == false
+    expect(animal1.mix_breed?).to eq(true)
+    expect(animal2.mix_breed?).to eq(false)
   end
 end
 
@@ -1243,8 +1243,8 @@ describe Animal, "#sterilized?" do
     animal1 = Animal.new :is_sterilized => true
     animal2 = Animal.new :is_sterilized => false
 
-    animal1.sterilized?.should == true
-    animal2.sterilized?.should == false
+    expect(animal1.sterilized?).to eq(true)
+    expect(animal2.sterilized?).to eq(false)
   end
 end
 

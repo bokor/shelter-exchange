@@ -8,7 +8,7 @@ describe "Ability: Permissions for the user role on the Index Task Page", :js =>
     Task.gen :shelter => current_shelter
 
     visit tasks_path
-    page.should have_no_content("Delete")
+    expect(page).to have_no_content("Delete")
   end
 end
 

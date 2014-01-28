@@ -17,11 +17,11 @@ describe "New: Alert Page", :js => :true do
 
     flash_message_should_be "Test Title has been created."
 
-    current_path.should == alerts_path
+    expect(current_path).to eq(alerts_path)
 
-    find(".title").text.should == "Test Title"
-    find(".high").text.should == "High"
-    find(".created_at_date").text.should == Date.today.strftime("%b %d")
+    expect(find(".title").text).to eq("Test Title")
+    expect(find(".high").text).to eq("High")
+    expect(find(".created_at_date").text).to eq(Date.today.strftime("%b %d"))
   end
 
   it "should not create a new alert" do
@@ -29,17 +29,17 @@ describe "New: Alert Page", :js => :true do
 
     click_button "Create Alert"
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#title_container" do
-      find(".error").text.should == "Cannot be blank"
+      expect(find(".error").text).to eq("Cannot be blank")
     end
 
     within "#severity_container" do
-      find(".error").text.should == "Needs to be selected"
+      expect(find(".error").text).to eq("Needs to be selected")
     end
 
-    current_path.should == alerts_path
+    expect(current_path).to eq(alerts_path)
     body_class_should_include "create_alerts"
   end
 end

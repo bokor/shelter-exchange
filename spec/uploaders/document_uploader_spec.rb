@@ -10,28 +10,28 @@ describe DocumentUploader do
   end
 
   it "contains a processor for setting content type" do
-    DocumentUploader.processors.should include [:set_content_type, true, nil]
+    expect(DocumentUploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do
-    DocumentUploader.storage.should == CarrierWave::Storage::Fog
+    expect(DocumentUploader.storage).to eq(CarrierWave::Storage::Fog)
   end
 
   describe '#store_dir' do
     it "has a correct storage path" do
-      @uploader.store_dir.should == "notes/documents/#{@document.id}/original"
+      expect(@uploader.store_dir).to eq("notes/documents/#{@document.id}/original")
     end
   end
 
   describe '#full_filename' do
     it "sets the full filename" do
-      @uploader.full_filename(@document.document.file).should == @document.document.file
+      expect(@uploader.full_filename(@document.document.file)).to eq(@document.document.file)
     end
   end
 
   describe '#filename' do
     it "returns a customized filename" do
-      @document.document.filename.should == "#{@document.guid}.pdf"
+      expect(@document.document.filename).to eq("#{@document.guid}.pdf")
     end
   end
 end

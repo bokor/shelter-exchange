@@ -3,37 +3,37 @@ require "spec_helper"
 describe Announcement do
 
   it "has a default scope" do
-    Announcement.scoped.to_sql.should == Announcement.order('announcements.created_at DESC').to_sql
+    expect(Announcement.scoped.to_sql).to eq(Announcement.order('announcements.created_at DESC').to_sql)
   end
 
   it "requires presence of title" do
     announcement = Announcement.new :title => nil
-    announcement.should have(1).error_on(:title)
-    announcement.errors[:title].should match_array(["cannot be blank"])
+    expect(announcement).to have(1).error_on(:title)
+    expect(announcement.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of message" do
     announcement = Announcement.new :title => nil
-    announcement.should have(1).error_on(:title)
-    announcement.errors[:title].should match_array(["cannot be blank"])
+    expect(announcement).to have(1).error_on(:title)
+    expect(announcement.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     announcement = Announcement.new :category => "#{Announcement::CATEGORIES[0]} blah"
-    announcement.should have(1).error_on(:category)
-    announcement.errors[:category].should match_array(["needs to be selected"])
+    expect(announcement).to have(1).error_on(:category)
+    expect(announcement.errors[:category]).to match_array(["needs to be selected"])
   end
 
   it "requires presence of starts at" do
     announcement = Announcement.new :starts_at => nil
-    announcement.should have(1).error_on(:starts_at)
-    announcement.errors[:starts_at].should match_array(["cannot be blank"])
+    expect(announcement).to have(1).error_on(:starts_at)
+    expect(announcement.errors[:starts_at]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of ends at" do
     announcement = Announcement.new :ends_at => nil
-    announcement.should have(1).error_on(:ends_at)
-    announcement.errors[:ends_at].should match_array(["cannot be blank"])
+    expect(announcement).to have(1).error_on(:ends_at)
+    expect(announcement.errors[:ends_at]).to match_array(["cannot be blank"])
   end
 end
 
@@ -41,7 +41,7 @@ end
 #----------------------------------------------------------------------------
 describe Announcement, "::CATEGORIES" do
   it "contains a default list of Categories" do
-    Announcement::CATEGORIES.should match_array(["general", "web_update", "help"])
+    expect(Announcement::CATEGORIES).to match_array(["general", "web_update", "help"])
   end
 end
 
@@ -54,7 +54,7 @@ describe Announcement, ".active" do
     Announcement.gen :starts_at => Time.now + 1.day, :ends_at => Time.now + 2.days
 
     announcements = Announcement.active(Time.now)
-    announcements.count.should == 1
+    expect(announcements.count).to eq(1)
   end
 end
 
@@ -65,7 +65,7 @@ describe Announcement, ".since" do
     Announcement.gen :starts_at => Time.now
 
     announcements = Announcement.since(Time.now)
-    announcements.count.should == 1
+    expect(announcements.count).to eq(1)
   end
 end
 
@@ -76,7 +76,7 @@ describe Announcement, ".current_announcements" do
     Announcement.gen :starts_at => Time.now + 1.day, :ends_at => Time.now + 2.days
 
     announcements = Announcement.current_announcements(Time.now - 1.hour)
-    announcements.count.should == 1
+    expect(announcements.count).to eq(1)
   end
 end
 

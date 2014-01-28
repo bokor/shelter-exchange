@@ -16,7 +16,7 @@ describe TokenAuthenticationsController do
     end
 
     it "create new shelter access token" do
-      SecureRandom.stub(:hex).and_return("xxx12345xxx")
+      allow(SecureRandom).to receive(:hex).and_return("xxx12345xxx")
 
       post :create
       expect(current_shelter.access_token).to eq("xxx12345xxx")
@@ -30,7 +30,7 @@ describe TokenAuthenticationsController do
     context "with failed authorization" do
 
       it "renders the errors/unauthorized template" do
-        controller.stub(:authorize!) { raise CanCan::AccessDenied }
+        allow(controller).to receive(:authorize!) { raise CanCan::AccessDenied }
         post :create
         expect(controller).to receive(:render)
         expect(response).to render_template("errors/unauthorize")

@@ -8,12 +8,12 @@ describe Item, "#shelter" do
     shelter = Shelter.new
     item = Item.new :shelter => shelter
 
-    item.shelter.should == shelter
+    expect(item.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     item = Item.gen
-    item.reload.shelter.should be_readonly
+    expect(item.reload.shelter).to be_readonly
   end
 end
 

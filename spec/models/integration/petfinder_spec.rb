@@ -23,7 +23,7 @@ describe Integration::Petfinder do
 
   it "validates the connection is successful" do
     double(Net::FTP).as_null_object
-    Net::FTP.should_receive(:open).and_return(true)
+    expect(Net::FTP).to receive(:open).and_return(true)
 
     integration = Integration::Petfinder.new :password => "test", :username => "test"
     expect(integration).to have(0).error_on(:connection_failed)
@@ -31,7 +31,7 @@ describe Integration::Petfinder do
 
   it "validates the connection is failed" do
     double(Net::FTP).as_null_object
-    Net::FTP.should_receive(:open).and_raise(Net::FTPPermError)
+    expect(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
 
     integration = Integration::Petfinder.new :password => "test", :username => "test"
     expect(integration).to have(1).error_on(:connection_failed)
@@ -42,7 +42,7 @@ describe Integration::Petfinder do
 
     it "upcases username" do
       double(Net::FTP).as_null_object
-      Net::FTP.should_receive(:open).and_return(true)
+      expect(Net::FTP).to receive(:open).and_return(true)
 
       integration = Integration::Petfinder.new :username => "test", :password => "test"
       integration.save!

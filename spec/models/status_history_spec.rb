@@ -4,7 +4,7 @@ require "spec_helper"
 describe StatusHistory do
 
   it "has a default scope" do
-    StatusHistory.scoped.to_sql.should == StatusHistory.order('status_histories.created_at DESC').to_sql
+    expect(StatusHistory.scoped.to_sql).to eq(StatusHistory.order('status_histories.created_at DESC').to_sql)
   end
 end
 
@@ -13,16 +13,16 @@ end
 describe StatusHistory, ".create_with" do
 
   it "creates a status history" do
-    StatusHistory.count.should == 0
+    expect(StatusHistory.count).to eq(0)
 
     status_history = StatusHistory.create_with(1, 2, 3, "testing")
 
-    StatusHistory.count.should == 1
+    expect(StatusHistory.count).to eq(1)
 
-    status_history.shelter_id.should == 1
-    status_history.animal_id.should == 2
-    status_history.animal_status_id.should == 3
-    status_history.reason.should == "testing"
+    expect(status_history.shelter_id).to eq(1)
+    expect(status_history.animal_id).to eq(2)
+    expect(status_history.animal_status_id).to eq(3)
+    expect(status_history.reason).to eq("testing")
   end
 end
 
@@ -56,8 +56,8 @@ describe "Reports" do
 
       status_histories = StatusHistory.by_month(range)
 
-      status_histories.count.should == 3
-      status_histories.should match_array([@status_history1.id, @status_history2.id, @status_history3.id])
+      expect(status_histories.count).to eq(3)
+      expect(status_histories).to match_array([@status_history1.id, @status_history2.id, @status_history3.id])
     end
   end
 
@@ -66,25 +66,25 @@ describe "Reports" do
     it "returns the status histories for the month year" do
       status_histories = StatusHistory.status_by_month_year(02, 2013).all
 
-      status_histories.count.should == 2
+      expect(status_histories.count).to eq(2)
 
-      status_histories[0].count.should == 1
-      status_histories[0].name.should == "Available for adoption"
+      expect(status_histories[0].count).to eq(1)
+      expect(status_histories[0].name).to eq("Available for adoption")
 
-      status_histories[1].count.should == 2
-      status_histories[1].name.should == "Adopted"
+      expect(status_histories[1].count).to eq(2)
+      expect(status_histories[1].name).to eq("Adopted")
     end
 
     it "returns the status histories for the month year and state" do
       status_histories = StatusHistory.status_by_month_year(02, 2013, "CA").all
 
-      status_histories.count.should == 2
+      expect(status_histories.count).to eq(2)
 
-      status_histories[0].count.should == 1
-      status_histories[0].name.should == "Available for adoption"
+      expect(status_histories[0].count).to eq(1)
+      expect(status_histories[0].name).to eq("Available for adoption")
 
-      status_histories[1].count.should == 1
-      status_histories[1].name.should == "Adopted"
+      expect(status_histories[1].count).to eq(1)
+      expect(status_histories[1].name).to eq("Adopted")
     end
   end
 
@@ -93,8 +93,8 @@ describe "Reports" do
     it "returns the totals by month per status" do
       status_histories = StatusHistory.totals_by_month(2013, :adopted)
 
-      status_histories[0].type.should == "Total"
-      status_histories[0].february.should == 2
+      expect(status_histories[0].type).to eq("Total")
+      expect(status_histories[0].february).to eq(2)
     end
 
     it "returns the totals per type and status" do
@@ -104,9 +104,9 @@ describe "Reports" do
       current_month = @date_for_status_history.strftime("%B").downcase
       next_month = (@date_for_status_history + 1.month).strftime("%B").downcase
 
-      status_histories[0].type.should == "Dog"
-      status_histories[0].send(current_month).should == 1
-      status_histories[0].send(next_month).should == 1
+      expect(status_histories[0].type).to eq("Dog")
+      expect(status_histories[0].send(current_month)).to eq(1)
+      expect(status_histories[0].send(next_month)).to eq(1)
     end
   end
 end
@@ -119,12 +119,12 @@ describe StatusHistory, "#shelter" do
     shelter = Shelter.new
     status_history = StatusHistory.new :shelter => shelter
 
-    status_history.shelter.should == shelter
+    expect(status_history.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     status_history = StatusHistory.gen
-    status_history.reload.shelter.should be_readonly
+    expect(status_history.reload.shelter).to be_readonly
   end
 end
 
@@ -134,12 +134,12 @@ describe StatusHistory, "#animal" do
     animal = Animal.new
     status_history = StatusHistory.new :animal => animal
 
-    status_history.animal.should == animal
+    expect(status_history.animal).to eq(animal)
   end
 
   it "returns a readonly animal" do
     status_history = StatusHistory.gen
-    status_history.reload.animal.should be_readonly
+    expect(status_history.reload.animal).to be_readonly
   end
 end
 
@@ -149,12 +149,12 @@ describe StatusHistory, "#animal_status" do
     animal_status = AnimalStatus.new
     status_history = StatusHistory.new :animal_status => animal_status
 
-    status_history.animal_status.should == animal_status
+    expect(status_history.animal_status).to eq(animal_status)
   end
 
   it "returns a readonly animal status" do
     status_history = StatusHistory.gen
-    status_history.reload.animal_status.should be_readonly
+    expect(status_history.reload.animal_status).to be_readonly
   end
 end
 

@@ -8,8 +8,8 @@ describe Integration do
 
     it "should clean the attribute values" do
       integration = Integration.gen :username => "    testing    ", :password => "   blah blah blah    "
-      integration.username.should == "testing"
-      integration.password.should == "blah blah blah"
+      expect(integration.username).to eq("testing")
+      expect(integration.password).to eq("blah blah blah")
     end
   end
 end
@@ -23,16 +23,16 @@ describe Integration, ".factory" do
 
   it "returns an integration object" do
     integration = Integration.factory({:username => "username", :password => "password"})
-    integration.should be_instance_of(Integration)
-    integration.username.should == "username"
-    integration.password.should == "password"
+    expect(integration).to be_instance_of(Integration)
+    expect(integration.username).to eq("username")
+    expect(integration.password).to eq("password")
   end
 
   it "returns a type class integration object" do
     integration = Integration.factory({ :type => "TestIntegration", :username => "username", :password => "password"})
-    integration.should be_instance_of(TestIntegration)
-    integration.username.should == "username"
-    integration.password.should == "password"
+    expect(integration).to be_instance_of(TestIntegration)
+    expect(integration.username).to eq("username")
+    expect(integration.password).to eq("password")
   end
 end
 
@@ -44,12 +44,12 @@ describe Integration, "#shelter" do
     shelter = Shelter.new
     integration = Integration.new :shelter => shelter
 
-    integration.shelter.should == shelter
+    expect(integration.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     integration = Integration.gen
-    integration.reload.shelter.should be_readonly
+    expect(integration.reload.shelter).to be_readonly
   end
 end
 

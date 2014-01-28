@@ -16,7 +16,7 @@ describe "Index: Task Page", :js => :true do
     @task.destroy
 
     visit tasks_path
-    current_path.should == new_task_path
+    expect(current_path).to eq(new_task_path)
     body_class_should_include "new_tasks"
   end
 
@@ -27,7 +27,7 @@ describe "Index: Task Page", :js => :true do
       click_button "Create Task"
     end
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#create_task #details_container" do
       find ".error", :text => "Cannot be blank"
@@ -48,8 +48,8 @@ describe "Index: Task Page", :js => :true do
 
     within "#overdue_tasks" do
       previous_month = (Date.today - 1.month).strftime("%b")
-      page.should have_content "#{previous_month} 15"
-      page.should have_content "Overdue task details"
+      expect(page).to have_content "#{previous_month} 15"
+      expect(page).to have_content "Overdue task details"
     end
   end
 
@@ -64,7 +64,7 @@ describe "Index: Task Page", :js => :true do
     end
 
     within "#today_tasks" do
-      page.should have_content "Today task details"
+      expect(page).to have_content "Today task details"
     end
   end
 
@@ -79,7 +79,7 @@ describe "Index: Task Page", :js => :true do
     end
 
     within "#tomorrow_tasks" do
-      page.should have_content "Tomorrow task details"
+      expect(page).to have_content "Tomorrow task details"
     end
   end
 
@@ -94,7 +94,7 @@ describe "Index: Task Page", :js => :true do
     end
 
     within "#later_tasks" do
-      page.should have_content "Later task details"
+      expect(page).to have_content "Later task details"
     end
   end
 
@@ -112,9 +112,9 @@ describe "Index: Task Page", :js => :true do
 
     within "#overdue_tasks" do
       previous_month = (Date.today - 1.month).strftime("%b")
-      page.should have_css "span.task_due_date"
-      page.should have_content "#{previous_month} 15"
-      page.should have_content "Specific date task details"
+      expect(page).to have_css "span.task_due_date"
+      expect(page).to have_content "#{previous_month} 15"
+      expect(page).to have_content "Specific date task details"
     end
   end
 
@@ -132,9 +132,9 @@ describe "Index: Task Page", :js => :true do
 
     within "#later_tasks" do
       previous_month = (Date.today + 1.month).strftime("%b")
-      page.should have_css "span.task_due_date"
-      page.should have_content "#{previous_month} 15"
-      page.should have_content "Specific date task details"
+      expect(page).to have_css "span.task_due_date"
+      expect(page).to have_content "#{previous_month} 15"
+      expect(page).to have_content "Specific date task details"
     end
   end
 
@@ -144,7 +144,7 @@ describe "Index: Task Page", :js => :true do
     visit tasks_path
 
     within "##{dom_id(task)}" do
-      page.should have_no_css "span.task_due_date"
+      expect(page).to have_no_css "span.task_due_date"
     end
   end
 
@@ -154,7 +154,7 @@ describe "Index: Task Page", :js => :true do
     visit tasks_path
 
     within "##{dom_id(task)}" do
-      page.should have_no_css "span.task_due_date"
+      expect(page).to have_no_css "span.task_due_date"
     end
   end
 
@@ -162,12 +162,12 @@ describe "Index: Task Page", :js => :true do
 
     def should_have_icon_and_tooltip_for(task)
       within "##{dom_id(task)}" do
-        page.should have_content "#{task.category.underscore} details"
+        expect(page).to have_content "#{task.category.underscore} details"
 
         image = find(".type img")
-        image[:src].should include("icon_#{task.category.underscore}.png")
-        image[:class].should include("tooltip")
-        image[:"data-tip"].should == "#{task.category.humanize}"
+        expect(image[:src]).to include("icon_#{task.category.underscore}.png")
+        expect(image[:class]).to include("tooltip")
+        expect(image[:"data-tip"]).to eq("#{task.category.humanize}")
       end
     end
 
@@ -185,7 +185,7 @@ describe "Index: Task Page", :js => :true do
 
       visit tasks_path
 
-      all(".task").count.should == Task::CATEGORIES.count
+      expect(all(".task").count).to eq(Task::CATEGORIES.count)
 
       should_have_icon_and_tooltip_for(call_task)
       should_have_icon_and_tooltip_for(email_task)
@@ -202,7 +202,7 @@ describe "Index: Task Page", :js => :true do
       visit tasks_path
 
       within "##{dom_id(task)}" do
-        page.should have_no_css("span.type img.toolip")
+        expect(page).to have_no_css("span.type img.toolip")
       end
     end
   end
@@ -216,8 +216,8 @@ describe "Index: Task Page", :js => :true do
       visit tasks_path
 
       within "##{dom_id(task)}" do
-        page.should have_css "span.taskable_link"
-        page.should have_link "Billy Bob"
+        expect(page).to have_css "span.taskable_link"
+        expect(page).to have_link "Billy Bob"
       end
     end
 
@@ -227,7 +227,7 @@ describe "Index: Task Page", :js => :true do
       visit tasks_path
 
       within "##{dom_id(task)}" do
-        page.should have_no_css "span.taskable_link"
+        expect(page).to have_no_css "span.taskable_link"
       end
     end
   end

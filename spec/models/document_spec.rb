@@ -7,7 +7,7 @@ describe Document do
   it "sets the original name" do
     file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
     document = Document.gen(:document => file)
-    document.original_name.should == "testing.pdf"
+    expect(document.original_name).to eq("testing.pdf")
   end
 
   it "validates the max number of documents for an attachable" do
@@ -18,8 +18,8 @@ describe Document do
     Document.gen(:attachable => note)
 
     document = Document.gen(:attachable => note)
-    document.should have(1).error
-    document.errors[:base].should match_array(["Max number of files exceeded"])
+    expect(document).to have(1).error
+    expect(document.errors[:base]).to match_array(["Max number of files exceeded"])
   end
 end
 
@@ -28,7 +28,7 @@ end
 describe Document, "::MAX_TOTAL" do
 
   it "returns the default max total of documents" do
-    Document::MAX_TOTAL.should == 4
+    expect(Document::MAX_TOTAL).to eq(4)
   end
 end
 
@@ -43,11 +43,11 @@ describe Document, "#attachable" do
     document1 = Document.new :attachable => note
     document2 = Document.new :attachable => animal
 
-    document1.attachable.should == note
-    document1.attachable.should be_instance_of(Note)
+    expect(document1.attachable).to eq(note)
+    expect(document1.attachable).to be_instance_of(Note)
 
-    document2.attachable.should == animal
-    document2.attachable.should be_instance_of(Animal)
+    expect(document2.attachable).to eq(animal)
+    expect(document2.attachable).to be_instance_of(Animal)
   end
 end
 
@@ -58,8 +58,8 @@ describe Document, "#attachable?" do
     document1 = Document.new :attachable => animal
     document2 = Document.new
 
-    document1.attachable?.should == true
-    document2.attachable?.should == false
+    expect(document1.attachable?).to eq(true)
+    expect(document2.attachable?).to eq(false)
   end
 end
 

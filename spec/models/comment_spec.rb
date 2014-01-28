@@ -3,13 +3,13 @@ require "spec_helper"
 describe Comment do
 
   it "has a default scope" do
-    Comment.scoped.to_sql.should == Comment.order('comments.created_at DESC').to_sql
+    expect(Comment.scoped.to_sql).to eq(Comment.order('comments.created_at DESC').to_sql)
   end
 
   it "requires presence of comment" do
     comment = Comment.gen :comment => nil
-    comment.should have(1).error_on(:comment)
-    comment.errors[:comment].should match_array(["cannot be blank"])
+    expect(comment).to have(1).error_on(:comment)
+    expect(comment.errors[:comment]).to match_array(["cannot be blank"])
   end
 end
 
@@ -21,12 +21,12 @@ describe Comment, "#shelter" do
     shelter = Shelter.new
     comment = Comment.new :shelter => shelter
 
-    comment.shelter.should == shelter
+    expect(comment.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     comment = Comment.gen
-    comment.reload.shelter.should be_readonly
+    expect(comment.reload.shelter).to be_readonly
   end
 end
 
@@ -38,11 +38,11 @@ describe Comment, "#commentable" do
     comment1 = Comment.new :commentable => item
     comment2 = Comment.new :commentable => animal
 
-    comment1.commentable.should == item
-    comment1.commentable.should be_instance_of(Item)
+    expect(comment1.commentable).to eq(item)
+    expect(comment1.commentable).to be_instance_of(Item)
 
-    comment2.commentable.should == animal
-    comment2.commentable.should be_instance_of(Animal)
+    expect(comment2.commentable).to eq(animal)
+    expect(comment2.commentable).to be_instance_of(Animal)
   end
 end
 
@@ -53,8 +53,8 @@ describe Comment, "#commentable?" do
     comment1 = Comment.new :commentable => item
     comment2 = Comment.new
 
-    comment1.commentable?.should == true
-    comment2.commentable?.should == false
+    expect(comment1.commentable?).to eq(true)
+    expect(comment2.commentable?).to eq(false)
   end
 end
 

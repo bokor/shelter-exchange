@@ -8,91 +8,91 @@ describe Shelter do
 
   it "validates presence of name" do
     shelter = Shelter.new :name => nil
-    shelter.should have(1).error_on(:name)
-    shelter.errors[:name].should match_array(["cannot be blank"])
+    expect(shelter).to have(1).error_on(:name)
+    expect(shelter.errors[:name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of phone" do
     shelter = Shelter.new :phone => nil
-    shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should match_array(["cannot be blank"])
+    expect(shelter).to have(1).error_on(:phone)
+    expect(shelter.errors[:phone]).to match_array(["cannot be blank"])
   end
 
   it "validates format of phone" do
     shelter = Shelter.new :phone => "aaa"
-    shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should match_array(["invalid phone number format"])
+    expect(shelter).to have(1).error_on(:phone)
+    expect(shelter.errors[:phone]).to match_array(["invalid phone number format"])
 
     shelter = Shelter.new :phone => "+011.999.00000"
-    shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should match_array(["invalid phone number format"])
+    expect(shelter).to have(1).error_on(:phone)
+    expect(shelter.errors[:phone]).to match_array(["invalid phone number format"])
   end
 
   it "validates uniqueness of email" do
     Shelter.gen :email => "test@test.com"
     shelter = Shelter.new :email => "test@test.com"
-    shelter.should have(1).error_on(:email)
-    shelter.errors[:email].should match_array(["has already been taken"])
+    expect(shelter).to have(1).error_on(:email)
+    expect(shelter.errors[:email]).to match_array(["has already been taken"])
   end
 
   it "validates format of email" do
     shelter = Shelter.new :email => "blah.com"
-    shelter.should have(1).error_on(:email)
-    shelter.errors[:email].should match_array(["format is incorrect"])
+    expect(shelter).to have(1).error_on(:email)
+    expect(shelter.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "validates inclusion of timezone" do
     shelter = Shelter.new :time_zone => "London"
-    shelter.should have(1).error_on(:time_zone)
-    shelter.errors[:time_zone].should match_array(["is not a valid US Time Zone"])
+    expect(shelter).to have(1).error_on(:time_zone)
+    expect(shelter.errors[:time_zone]).to match_array(["is not a valid US Time Zone"])
 
     shelter = Shelter.new :time_zone => "Eastern Time (US & Canada)"
-    shelter.should have(0).error_on(:time_zone)
+    expect(shelter).to have(0).error_on(:time_zone)
   end
 
   it "validates url format for website" do
     shelter = Shelter.new :website => "save-the_doggies.com"
-    shelter.should have(1).error_on(:website)
-    shelter.errors[:website].should match_array(["format is incorrect"])
+    expect(shelter).to have(1).error_on(:website)
+    expect(shelter.errors[:website]).to match_array(["format is incorrect"])
   end
 
   it "validates allows blank for website" do
     shelter = Shelter.new :website => nil
-    shelter.should have(0).error_on(:website)
+    expect(shelter).to have(0).error_on(:website)
   end
 
   it "validates url format for facebook" do
     shelter = Shelter.new :facebook => "facebook.com/test"
-    shelter.should have(1).error_on(:facebook)
-    shelter.errors[:facebook].should match_array(["format is incorrect"])
+    expect(shelter).to have(1).error_on(:facebook)
+    expect(shelter.errors[:facebook]).to match_array(["format is incorrect"])
   end
 
   it "validates allows blank for facebook" do
     shelter = Shelter.new :facebook => nil
-    shelter.should have(0).error_on(:facebook)
+    expect(shelter).to have(0).error_on(:facebook)
   end
 
   it "validates twitter format for twitter" do
     shelter = Shelter.new :twitter => "savethedoggies"
-    shelter.should have(1).error_on(:twitter)
-    shelter.errors[:twitter].should match_array(["format is incorrect. Example @shelterexchange"])
+    expect(shelter).to have(1).error_on(:twitter)
+    expect(shelter.errors[:twitter]).to match_array(["format is incorrect. Example @shelterexchange"])
   end
 
   it "validates allows blank for twitter" do
     shelter = Shelter.new :twitter => nil
-    shelter.should have(0).error_on(:twitter)
+    expect(shelter).to have(0).error_on(:twitter)
   end
 
   it "validates uniqueness of access token" do
     Shelter.gen :access_token => "access-token"
     shelter = Shelter.gen :access_token => "access-token"
-    shelter.should have(1).error_on(:access_token)
-    shelter.errors[:access_token].should match_array(["has already been taken. Please generate another web token."])
+    expect(shelter).to have(1).error_on(:access_token)
+    expect(shelter.errors[:access_token]).to match_array(["has already been taken. Please generate another web token."])
   end
 
   it "validates allows blank for access_token" do
     shelter = Shelter.new :access_token => nil
-    shelter.should have(0).error_on(:access_token)
+    expect(shelter).to have(0).error_on(:access_token)
   end
 
   context "Before Save" do
@@ -102,8 +102,8 @@ describe Shelter do
         :phone => "123-456-7890",
         :fax => "098-765-4321"
       )
-      shelter.phone.should == "1234567890"
-      shelter.fax.should == "0987654321"
+      expect(shelter.phone).to eq("1234567890")
+      expect(shelter.fax).to eq("0987654321")
     end
 
     it "cleans the status reason when status changes" do
@@ -111,27 +111,27 @@ describe Shelter do
         :status => "cancelled",
         :status_reason => "Not nice :("
       )
-      shelter.status.should == "cancelled"
-      shelter.status_reason.should == "Not nice :("
+      expect(shelter.status).to eq("cancelled")
+      expect(shelter.status_reason).to eq("Not nice :(")
 
       shelter.status = "active"
       shelter.save!
 
-      shelter.status.should == "active"
-      shelter.status_reason.should == ""
+      expect(shelter.status).to eq("active")
+      expect(shelter.status_reason).to eq("")
     end
   end
 
   context "Nested Attributes" do
 
     it "accepts nested attributes for items" do
-      Shelter.count.should == 0
-      Item.count.should == 0
+      expect(Shelter.count).to eq(0)
+      expect(Item.count).to eq(0)
 
       Shelter.gen :items_attributes => [Item.attributes, Item.attributes]
 
-      Shelter.count.should == 1
-      Item.count.should == 2
+      expect(Shelter.count).to eq(1)
+      expect(Item.count).to eq(2)
     end
   end
 
@@ -139,7 +139,7 @@ describe Shelter do
 
     it "returns a logo uploader for the logo" do
       shelter = Shelter.gen
-      shelter.logo.should be_kind_of(LogoUploader)
+      expect(shelter.logo).to be_kind_of(LogoUploader)
     end
   end
 end
@@ -148,7 +148,7 @@ end
 #----------------------------------------------------------------------------
 describe Shelter, "::STATUSES" do
   it "contains a default list of statuses" do
-    Shelter::STATUSES.should match_array(["active", "suspended", "cancelled"])
+    expect(Shelter::STATUSES).to match_array(["active", "suspended", "cancelled"])
   end
 end
 
@@ -162,8 +162,8 @@ describe Shelter, ".auto_complete" do
     Shelter.gen :name => "Kitty Haven"
 
     shelters = Shelter.auto_complete("dog")
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -175,8 +175,8 @@ describe Shelter, ".kill_shelters" do
     Shelter.gen :is_kill_shelter => false
 
     shelters = Shelter.kill_shelters
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -188,8 +188,8 @@ describe Shelter, ".no_kill_shelters" do
     Shelter.gen :is_kill_shelter => true
 
     shelters = Shelter.no_kill_shelters
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -202,8 +202,8 @@ describe Shelter, ".latest" do
     shelter4 = Shelter.gen :created_at => Time.now - 5.days
 
     shelters = Shelter.latest(4)
-    shelters.count.should == 4
-    shelters.should match_array([shelter3, shelter4, shelter1, shelter2])
+    expect(shelters.count).to eq(4)
+    expect(shelters).to match_array([shelter3, shelter4, shelter1, shelter2])
   end
 end
 
@@ -215,8 +215,8 @@ describe Shelter, ".active" do
     Shelter.gen :status => "suspended"
 
     shelters = Shelter.active
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -228,8 +228,8 @@ describe Shelter, ".inactive" do
     Shelter.gen :status => "active"
 
     shelters = Shelter.inactive
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -241,8 +241,8 @@ describe Shelter, ".suspended" do
     Shelter.gen :status => "active"
 
     shelters = Shelter.suspended
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -254,8 +254,8 @@ describe Shelter, ".cancelled" do
     Shelter.gen :status => "active"
 
     shelters = Shelter.cancelled
-    shelters.count.should == 2
-    shelters.should match_array([shelter1, shelter2])
+    expect(shelters.count).to eq(2)
+    expect(shelters).to match_array([shelter1, shelter2])
   end
 end
 
@@ -266,7 +266,7 @@ describe Shelter, ".by_access_token" do
     Shelter.gen :access_token => "access-token-1"
 
     shelter = Shelter.by_access_token("access-token").first
-    shelter.should == shelter1
+    expect(shelter).to eq(shelter1)
   end
 end
 
@@ -278,7 +278,7 @@ describe Shelter, "#account" do
     account = Account.new
     shelter = Shelter.new :account => account
 
-    shelter.account.should == account
+    expect(shelter.account).to eq(account)
   end
 end
 
@@ -293,8 +293,8 @@ describe Shelter, "#users" do
   end
 
   it "returns a list of users" do
-    @shelter.users.count.should == 2
-    @shelter.users.should match_array([@user1, @user2])
+    expect(@shelter.users.count).to eq(2)
+    expect(@shelter.users).to match_array([@user1, @user2])
   end
 end
 
@@ -307,14 +307,14 @@ describe Shelter, "#locations" do
   end
 
   it "returns a list of locations" do
-    @shelter.locations.count.should == 2
-    @shelter.locations.should match_array([@location1, @location2])
+    expect(@shelter.locations.count).to eq(2)
+    expect(@shelter.locations).to match_array([@location1, @location2])
   end
 
   it "destroy all locations associated to the shelter" do
-    @shelter.locations.count.should == 2
+    expect(@shelter.locations.count).to eq(2)
     @shelter.destroy
-    @shelter.locations.count.should == 0
+    expect(@shelter.locations.count).to eq(0)
   end
 end
 
@@ -327,14 +327,14 @@ describe Shelter, "#accommodations" do
   end
 
   it "returns a list of accommodations" do
-    @shelter.accommodations.count.should == 2
-    @shelter.accommodations.should match_array([@accommodation1, @accommodation2])
+    expect(@shelter.accommodations.count).to eq(2)
+    expect(@shelter.accommodations).to match_array([@accommodation1, @accommodation2])
   end
 
   it "destroy all accommodations associated to the shelter" do
-    @shelter.accommodations.count.should == 2
+    expect(@shelter.accommodations.count).to eq(2)
     @shelter.destroy
-    @shelter.accommodations.count.should == 0
+    expect(@shelter.accommodations.count).to eq(0)
   end
 end
 
@@ -347,14 +347,14 @@ describe Shelter, "#placements" do
   end
 
   it "returns a list of placements" do
-    @shelter.placements.count.should == 2
-    @shelter.placements.should match_array([@placement1, @placement2])
+    expect(@shelter.placements.count).to eq(2)
+    expect(@shelter.placements).to match_array([@placement1, @placement2])
   end
 
   it "destroy all placements associated to the shelter" do
-    @shelter.placements.count.should == 2
+    expect(@shelter.placements.count).to eq(2)
     @shelter.destroy
-    @shelter.placements.count.should == 0
+    expect(@shelter.placements.count).to eq(0)
   end
 end
 
@@ -367,14 +367,14 @@ describe Shelter, "#animals" do
   end
 
   it "returns a list of animals" do
-    @shelter.animals.count.should == 2
-    @shelter.animals.should match_array([@animal1, @animal2])
+    expect(@shelter.animals.count).to eq(2)
+    expect(@shelter.animals).to match_array([@animal1, @animal2])
   end
 
   it "destroy all animals associated to the shelter" do
-    @shelter.animals.count.should == 2
+    expect(@shelter.animals.count).to eq(2)
     @shelter.destroy
-    @shelter.animals.count.should == 0
+    expect(@shelter.animals.count).to eq(0)
   end
 end
 
@@ -387,14 +387,14 @@ describe Shelter, "#notes" do
   end
 
   it "returns a list of notes" do
-    @shelter.notes.count.should == 2
-    @shelter.notes.should match_array([@note1, @note2])
+    expect(@shelter.notes.count).to eq(2)
+    expect(@shelter.notes).to match_array([@note1, @note2])
   end
 
   it "destroy all notes associated to the shelter" do
-    @shelter.notes.count.should == 2
+    expect(@shelter.notes.count).to eq(2)
     @shelter.destroy
-    @shelter.notes.count.should == 0
+    expect(@shelter.notes.count).to eq(0)
   end
 end
 
@@ -407,14 +407,14 @@ describe Shelter, "#tasks" do
   end
 
   it "returns a list of tasks" do
-    @shelter.tasks.count.should == 2
-    @shelter.tasks.should match_array([@task1, @task2])
+    expect(@shelter.tasks.count).to eq(2)
+    expect(@shelter.tasks).to match_array([@task1, @task2])
   end
 
   it "destroy all tasks associated to the shelter" do
-    @shelter.tasks.count.should == 2
+    expect(@shelter.tasks.count).to eq(2)
     @shelter.destroy
-    @shelter.tasks.count.should == 0
+    expect(@shelter.tasks.count).to eq(0)
   end
 end
 
@@ -427,14 +427,14 @@ describe Shelter, "#alerts" do
   end
 
   it "returns a list of alerts" do
-    @shelter.alerts.count.should == 2
-    @shelter.alerts.should match_array([@alert1, @alert2])
+    expect(@shelter.alerts.count).to eq(2)
+    expect(@shelter.alerts).to match_array([@alert1, @alert2])
   end
 
   it "destroy all alerts associated to the shelter" do
-    @shelter.alerts.count.should == 2
+    expect(@shelter.alerts.count).to eq(2)
     @shelter.destroy
-    @shelter.alerts.count.should == 0
+    expect(@shelter.alerts.count).to eq(0)
   end
 end
 
@@ -447,14 +447,14 @@ describe Shelter, "#comments" do
   end
 
   it "returns a list of comments" do
-    @shelter.comments.count.should == 2
-    @shelter.comments.should match_array([@comment1, @comment2])
+    expect(@shelter.comments.count).to eq(2)
+    expect(@shelter.comments).to match_array([@comment1, @comment2])
   end
 
   it "destroy all comments associated to the shelter" do
-    @shelter.comments.count.should == 2
+    expect(@shelter.comments.count).to eq(2)
     @shelter.destroy
-    @shelter.comments.count.should == 0
+    expect(@shelter.comments.count).to eq(0)
   end
 end
 
@@ -467,14 +467,14 @@ describe Shelter, "#items" do
   end
 
   it "returns a list of items" do
-    @shelter.items.count.should == 2
-    @shelter.items.should match_array([@item1, @item2])
+    expect(@shelter.items.count).to eq(2)
+    expect(@shelter.items).to match_array([@item1, @item2])
   end
 
   it "destroy all items associated to the shelter" do
-    @shelter.items.count.should == 2
+    expect(@shelter.items.count).to eq(2)
     @shelter.destroy
-    @shelter.items.count.should == 0
+    expect(@shelter.items.count).to eq(0)
   end
 end
 
@@ -487,14 +487,14 @@ describe Shelter, "#capacities" do
   end
 
   it "returns a list of capacities" do
-    @shelter.capacities.count.should == 2
-    @shelter.capacities.should match_array([@capacity1, @capacity2])
+    expect(@shelter.capacities.count).to eq(2)
+    expect(@shelter.capacities).to match_array([@capacity1, @capacity2])
   end
 
   it "destroy all capacities associated to the shelter" do
-    @shelter.capacities.count.should == 2
+    expect(@shelter.capacities.count).to eq(2)
     @shelter.destroy
-    @shelter.capacities.count.should == 0
+    expect(@shelter.capacities.count).to eq(0)
   end
 end
 
@@ -507,14 +507,14 @@ describe Shelter, "#status_histories" do
   end
 
   it "returns a list of status histories" do
-    @shelter.status_histories.count.should == 2
-    @shelter.status_histories.should match_array([@status_history1, @status_history2])
+    expect(@shelter.status_histories.count).to eq(2)
+    expect(@shelter.status_histories).to match_array([@status_history1, @status_history2])
   end
 
   it "destroy all status histories associated to the shelter" do
-    @shelter.status_histories.count.should == 2
+    expect(@shelter.status_histories.count).to eq(2)
     @shelter.destroy
-    @shelter.status_histories.count.should == 0
+    expect(@shelter.status_histories.count).to eq(0)
   end
 end
 
@@ -527,14 +527,14 @@ describe Shelter, "#transfers" do
   end
 
   it "returns a list of transfers" do
-    @shelter.transfers.count.should == 2
-    @shelter.transfers.should match_array([@transfer1, @transfer2])
+    expect(@shelter.transfers.count).to eq(2)
+    expect(@shelter.transfers).to match_array([@transfer1, @transfer2])
   end
 
   it "destroy all transfers associated to the shelter" do
-    @shelter.transfers.count.should == 2
+    expect(@shelter.transfers.count).to eq(2)
     @shelter.destroy
-    @shelter.transfers.count.should == 0
+    expect(@shelter.transfers.count).to eq(0)
   end
 end
 
@@ -547,14 +547,14 @@ describe Shelter, "#integrations" do
   end
 
   it "returns a list of integrations" do
-    @shelter.integrations.count.should == 2
-    @shelter.integrations.should match_array([@integration1, @integration2])
+    expect(@shelter.integrations.count).to eq(2)
+    expect(@shelter.integrations).to match_array([@integration1, @integration2])
   end
 
   it "destroy all integrations associated to the shelter" do
-    @shelter.integrations.count.should == 2
+    expect(@shelter.integrations.count).to eq(2)
     @shelter.destroy
-    @shelter.integrations.count.should == 0
+    expect(@shelter.integrations.count).to eq(0)
   end
 end
 
@@ -564,8 +564,8 @@ describe Shelter, "#kill_shelter?" do
     shelter1 = Shelter.new :is_kill_shelter => true
     shelter2 = Shelter.new :is_kill_shelter => false
 
-    shelter1.kill_shelter?.should == true
-    shelter2.kill_shelter?.should == false
+    expect(shelter1.kill_shelter?).to eq(true)
+    expect(shelter2.kill_shelter?).to eq(false)
   end
 end
 
@@ -575,8 +575,8 @@ describe Shelter, "#no_kill_shelter?" do
     shelter1 = Shelter.new :is_kill_shelter => false
     shelter2 = Shelter.new :is_kill_shelter => true
 
-    shelter1.no_kill_shelter?.should == true
-    shelter2.no_kill_shelter?.should == false
+    expect(shelter1.no_kill_shelter?).to eq(true)
+    expect(shelter2.no_kill_shelter?).to eq(false)
   end
 end
 
@@ -586,8 +586,8 @@ describe Shelter, "#active?" do
     shelter1 = Shelter.new :status => "active"
     shelter2 = Shelter.new :status => "cancelled"
 
-    shelter1.active?.should == true
-    shelter2.active?.should == false
+    expect(shelter1.active?).to eq(true)
+    expect(shelter2.active?).to eq(false)
   end
 end
 
@@ -598,9 +598,9 @@ describe Shelter, "#inactive?" do
     shelter2 = Shelter.new :status => "suspended"
     shelter3 = Shelter.new :status => "active"
 
-    shelter1.inactive?.should == true
-    shelter2.inactive?.should == true
-    shelter3.inactive?.should == false
+    expect(shelter1.inactive?).to eq(true)
+    expect(shelter2.inactive?).to eq(true)
+    expect(shelter3.inactive?).to eq(false)
   end
 end
 
@@ -610,8 +610,8 @@ describe Shelter, "#suspended?" do
     shelter1 = Shelter.new :status => "suspended"
     shelter2 = Shelter.new :status => "active"
 
-    shelter1.suspended?.should == true
-    shelter2.suspended?.should == false
+    expect(shelter1.suspended?).to eq(true)
+    expect(shelter2.suspended?).to eq(false)
   end
 end
 
@@ -621,19 +621,19 @@ describe Shelter, "#cancelled?" do
     shelter1 = Shelter.new :status => "cancelled"
     shelter2 = Shelter.new :status => "active"
 
-    shelter1.cancelled?.should == true
-    shelter2.cancelled?.should == false
+    expect(shelter1.cancelled?).to eq(true)
+    expect(shelter2.cancelled?).to eq(false)
   end
 end
 
 describe Shelter, "#generate_access_token!" do
 
   it "generates a new access token for the shelter" do
-    SecureRandom.stub(:hex).and_return("access_token")
+    allow(SecureRandom).to receive(:hex).and_return("access_token")
 
     shelter = Shelter.gen
     shelter.generate_access_token!
-    shelter.access_token.should == "access_token"
+    expect(shelter.access_token).to eq("access_token")
   end
 end
 
@@ -652,14 +652,14 @@ describe Shelter, ".live_search" do
 
     it "returns all shelters when no params" do
       shelters = Shelter.live_search("", {})
-      shelters.count.should == 3
-      shelters.should match_array([@shelter1, @shelter2, @shelter3])
+      expect(shelters.count).to eq(3)
+      expect(shelters).to match_array([@shelter1, @shelter2, @shelter3])
     end
 
     it "returns all shelters with state only" do
       shelters = Shelter.live_search("", { :shelters => { :state => "CA" } })
-      shelters.count.should == 2
-      shelters.should match_array([@shelter1, @shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([@shelter1, @shelter2])
     end
   end
 
@@ -672,8 +672,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :name => "CatTown"
 
       shelters = Shelter.live_search("dog",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the email like" do
@@ -683,8 +683,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :email => "doggie2@test.com"
 
       shelters = Shelter.live_search("kitty",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the city like" do
@@ -693,8 +693,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :city => "Redwood City"
 
       shelters = Shelter.live_search("town",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the zip_code like" do
@@ -704,8 +704,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :zip_code => "96063"
 
       shelters = Shelter.live_search("9406",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the facebook like" do
@@ -714,8 +714,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :facebook => "http://facebook.com/rescue"
 
       shelters = Shelter.live_search("daycare",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
     it "returns all shelters with the twitter like" do
       shelter1 = Shelter.gen :twitter => "@daycare1"
@@ -723,8 +723,8 @@ describe Shelter, ".live_search" do
       Shelter.gen :twitter => "@shelterexchange"
 
       shelters = Shelter.live_search("daycare",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
   end
 end
@@ -741,14 +741,14 @@ describe Shelter, ".search_by_name" do
 
     it "returns all shelters when no params" do
       shelters = Shelter.search_by_name("", {})
-      shelters.count.should == 3
-      shelters.should match_array([@shelter1, @shelter2, @shelter3])
+      expect(shelters.count).to eq(3)
+      expect(shelters).to match_array([@shelter1, @shelter2, @shelter3])
     end
 
     it "returns all shelters with state only" do
       shelters = Shelter.search_by_name("", { :shelters => { :state => "CA" } })
-      shelters.count.should == 2
-      shelters.should match_array([@shelter1, @shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([@shelter1, @shelter2])
     end
   end
 
@@ -761,8 +761,8 @@ describe Shelter, ".search_by_name" do
       Shelter.gen :name => "CatTown"
 
       shelters = Shelter.search_by_name("dog",{})
-      shelters.count.should == 2
-      shelters.should match_array([shelter1, shelter2])
+      expect(shelters.count).to eq(2)
+      expect(shelters).to match_array([shelter1, shelter2])
     end
   end
 end

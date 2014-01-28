@@ -8,6 +8,6 @@ describe "Ability: Permissions for the user role on the Index Capacity Page", :j
     Capacity.gen :shelter => @shelter
 
     visit capacities_path
-    page.should have_no_content("Delete")
+    expect(page).to have_no_content("Delete")
   end
 end

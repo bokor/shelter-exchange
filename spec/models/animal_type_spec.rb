@@ -4,7 +4,7 @@ require "spec_helper"
 #----------------------------------------------------------------------------
 describe AnimalType, "::TYPES" do
   it "contains a default list of types" do
-    AnimalType::TYPES.should == {
+    expect(AnimalType::TYPES).to eq({
       :dog => 1,
       :cat => 2,
       :horse => 3,
@@ -12,7 +12,7 @@ describe AnimalType, "::TYPES" do
       :bird => 5,
       :reptile => 6,
       :other => 7
-    }
+    })
   end
 end
 
@@ -30,13 +30,13 @@ describe AnimalType, "#animals" do
   end
 
   it "returns a list of animals" do
-    @animal_type.animals.count.should == 2
-    @animal_type.animals.should match_array([@animal1, @animal2])
+    expect(@animal_type.animals.count).to eq(2)
+    expect(@animal_type.animals).to match_array([@animal1, @animal2])
   end
 
   it "returns readonly animals" do
-    @animal_type.animals[0].should be_readonly
-    @animal_type.animals[1].should be_readonly
+    expect(@animal_type.animals[0]).to be_readonly
+    expect(@animal_type.animals[1]).to be_readonly
   end
 end
 
@@ -49,13 +49,13 @@ describe AnimalType, "#breeds" do
   end
 
   it "returns a list of breeds" do
-    @animal_type.breeds.count.should == 2
-    @animal_type.breeds.should match_array([@breed1, @breed2])
+    expect(@animal_type.breeds.count).to eq(2)
+    expect(@animal_type.breeds).to match_array([@breed1, @breed2])
   end
 
   it "returns readonly breeds" do
-    @animal_type.breeds[0].should be_readonly
-    @animal_type.breeds[1].should be_readonly
+    expect(@animal_type.breeds[0]).to be_readonly
+    expect(@animal_type.breeds[1]).to be_readonly
   end
 end
 
@@ -68,13 +68,13 @@ describe AnimalType, "#accommodations" do
   end
 
   it "returns a list of accommodations" do
-    @animal_type.accommodations.count.should == 2
-    @animal_type.accommodations.should match_array([@accommodation1, @accommodation2])
+    expect(@animal_type.accommodations.count).to eq(2)
+    expect(@animal_type.accommodations).to match_array([@accommodation1, @accommodation2])
   end
 
   it "returns readonly accommodations" do
-    @animal_type.accommodations[0].should be_readonly
-    @animal_type.accommodations[1].should be_readonly
+    expect(@animal_type.accommodations[0]).to be_readonly
+    expect(@animal_type.accommodations[1]).to be_readonly
   end
 end
 
@@ -87,13 +87,13 @@ describe AnimalType, "#capacities" do
   end
 
   it "returns a list of capacities" do
-    @animal_type.capacities.count.should == 2
-    @animal_type.capacities.should match_array([@capacity1, @capacity2])
+    expect(@animal_type.capacities.count).to eq(2)
+    expect(@animal_type.capacities).to match_array([@capacity1, @capacity2])
   end
 
   it "returns readonly capacities" do
-    @animal_type.capacities[0].should be_readonly
-    @animal_type.capacities[1].should be_readonly
+    expect(@animal_type.capacities[0]).to be_readonly
+    expect(@animal_type.capacities[1]).to be_readonly
   end
 end
 

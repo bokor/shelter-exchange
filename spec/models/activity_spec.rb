@@ -4,13 +4,13 @@ require "spec_helper"
 #----------------------------------------------------------------------------
 describe Activity, "::LIMIT" do
   it "returns the limit of each activity" do
-    Activity::LIMIT.should == 10
+    expect(Activity::LIMIT).to eq(10)
   end
 end
 
 describe Activity, "::PAGE_TOTAL" do
   it "returns the number of total activities per page" do
-    Activity::PAGE_TOTAL.should == 20
+    expect(Activity::PAGE_TOTAL).to eq(20)
   end
 end
 
@@ -30,8 +30,8 @@ describe Activity, ".recent" do
     Animal.gen :shelter => @shelter, :updated_at => Time.now - 1.day
 
     results = Activity.recent(@shelter)
-    results.count.should == 5
-    results.collect(&:class).collect(&:name).should match_array(["Animal", "Alert", "Task", "Animal", "Task"])
+    expect(results.count).to eq(5)
+    expect(results.collect(&:class).collect(&:name)).to match_array(["Animal", "Alert", "Task", "Animal", "Task"])
   end
 
   it "returns a total of 20 of the recent (Tasks, Alerts, Animals)" do
@@ -40,7 +40,7 @@ describe Activity, ".recent" do
     8.times{ Alert.gen :shelter => @shelter }
 
     results = Activity.recent(@shelter)
-    results.count.should == 20
+    expect(results.count).to eq(20)
   end
 end
 

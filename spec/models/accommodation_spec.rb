@@ -3,25 +3,25 @@ require "spec_helper"
 describe Accommodation do
 
   it "has a default scope" do
-    Accommodation.scoped.to_sql.should == Accommodation.order("accommodations.name ASC").to_sql
+    expect(Accommodation.scoped.to_sql).to eq(Accommodation.order("accommodations.name ASC").to_sql)
   end
 
   it "requires a animal type" do
     accommodation = Accommodation.new :animal_type_id => nil
-    accommodation.should have(1).error_on(:animal_type_id)
-    accommodation.errors[:animal_type_id].should == ["needs to be selected"]
+    expect(accommodation).to have(1).error_on(:animal_type_id)
+    expect(accommodation.errors[:animal_type_id]).to eq(["needs to be selected"])
   end
 
   it "requires a name of the accommodation" do
     accommodation = Accommodation.new :name => nil
-    accommodation.should have(1).error_on(:name)
-    accommodation.errors[:name].should == ["cannot be blank"]
+    expect(accommodation).to have(1).error_on(:name)
+    expect(accommodation.errors[:name]).to eq(["cannot be blank"])
   end
 
   it "validates a numerical value for max capacity" do
     accommodation = Accommodation.new :max_capacity => "abc"
-    accommodation.should have(1).error_on(:max_capacity)
-    accommodation.errors[:max_capacity].should == ["requires a number"]
+    expect(accommodation).to have(1).error_on(:max_capacity)
+    expect(accommodation.errors[:max_capacity]).to eq(["requires a number"])
   end
 end
 
@@ -29,7 +29,7 @@ end
 #----------------------------------------------------------------------------
 describe Accommodation, ".per_page" do
   it "returns the per page value for pagination" do
-    Accommodation.per_page.should == 50
+    expect(Accommodation.per_page).to eq(50)
   end
 end
 
@@ -40,8 +40,8 @@ describe Accommodation, ".search" do
     Accommodation.gen :name => "Cage"
 
     results = Accommodation.search("Cra")
-    results.count.should == 1
-    results.should match_array([accommodation1])
+    expect(results.count).to eq(1)
+    expect(results).to match_array([accommodation1])
   end
 end
 
@@ -67,20 +67,20 @@ describe Accommodation, ".filter_by_type_location" do
 
   it "filters by animal type" do
     results = Accommodation.filter_by_type_location(@dog, nil)
-    results.count.should == 3
-    results.should match_array([@accommodation1, @accommodation2, @accommodation3])
+    expect(results.count).to eq(3)
+    expect(results).to match_array([@accommodation1, @accommodation2, @accommodation3])
   end
 
   it "filters by location" do
     results = Accommodation.filter_by_type_location(nil, @west_side)
-    results.count.should == 2
-    results.should match_array([@accommodation1, @accommodation2])
+    expect(results.count).to eq(2)
+    expect(results).to match_array([@accommodation1, @accommodation2])
   end
 
   it "filters by animal type and location" do
     results = Accommodation.filter_by_type_location(@dog, @east_side)
-    results.count.should == 1
-    results.should match_array([@accommodation3])
+    expect(results.count).to eq(1)
+    expect(results).to match_array([@accommodation3])
   end
 end
 
@@ -92,12 +92,12 @@ describe Accommodation, "#shelter" do
     shelter = Shelter.new
     accommodation = Accommodation.new :shelter => shelter
 
-    accommodation.shelter.should == shelter
+    expect(accommodation.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     accommodation = Accommodation.gen
-    accommodation.reload.shelter.should be_readonly
+    expect(accommodation.reload.shelter).to be_readonly
   end
 end
 
@@ -107,12 +107,12 @@ describe Accommodation, "#animal_type" do
     animal_type = AnimalType.gen
     accommodation = Accommodation.gen :animal_type => animal_type
 
-    accommodation.animal_type.should == animal_type
+    expect(accommodation.animal_type).to eq(animal_type)
   end
 
   it "returns a readonly animal type" do
     accommodation = Accommodation.gen
-    accommodation.reload.animal_type.should be_readonly
+    expect(accommodation.reload.animal_type).to be_readonly
   end
 end
 
@@ -122,12 +122,12 @@ describe Accommodation, "#location" do
     location = Location.new
     accommodation = Accommodation.new :location => location
 
-    accommodation.location.should == location
+    expect(accommodation.location).to eq(location)
   end
 
   it "returns a readonly location" do
     accommodation = Accommodation.gen
-    accommodation.reload.location.should be_readonly
+    expect(accommodation.reload.location).to be_readonly
   end
 end
 
@@ -140,13 +140,13 @@ describe Accommodation, "#animals" do
   end
 
   it "returns a list of animals" do
-    @accommodation.animals.count.should == 2
-    @accommodation.animals.should match_array([@animal1, @animal2])
+    expect(@accommodation.animals.count).to eq(2)
+    expect(@accommodation.animals).to match_array([@animal1, @animal2])
   end
 
   it "returns readonly animals" do
-    @accommodation.animals[0].should be_readonly
-    @accommodation.animals[1].should be_readonly
+    expect(@accommodation.animals[0]).to be_readonly
+    expect(@accommodation.animals[1]).to be_readonly
   end
 end
 

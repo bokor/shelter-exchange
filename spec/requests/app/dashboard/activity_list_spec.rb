@@ -12,15 +12,15 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(animal)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_animal.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Animal"
+        expect(icon[:src]).to include("icon_animal.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Animal")
 
-        find(".title").text.should   == "A new animal record for Billy has been created."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("A new animal record for Billy has been created.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == animal.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(animal.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -38,15 +38,15 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(animal)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_animal.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Animal"
+        expect(icon[:src]).to include("icon_animal.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Animal")
 
-        find(".title").text.should   == "Billy's status was changed to 'Adopted'"
-        find(".title a").text.should == "Billy's"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Billy's status was changed to 'Adopted'")
+        expect(find(".title a").text).to eq("Billy's")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == animal.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(animal.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -62,15 +62,15 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(animal)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_animal.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Animal"
+        expect(icon[:src]).to include("icon_animal.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Animal")
 
-        find(".title").text.should   == "Abbey's record has been updated."
-        find(".title a").text.should == "Abbey's"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Abbey's record has been updated.")
+        expect(find(".title a").text).to eq("Abbey's")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == animal.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(animal.updated_at.strftime("%b %d, %Y"))
       end
     end
   end
@@ -86,26 +86,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(task1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should == "New - a new task."
+        expect(find(".title").text).to eq("New - a new task.")
 
-        find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task2.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(task2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should   == "New - a new task for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("New - a new task for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task1.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -128,26 +128,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(task1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should == "example task is complete."
+        expect(find(".title").text).to eq("example task is complete.")
 
-        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task1.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(task2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should   == "Email - example taskable task is complete for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Email - example taskable task is complete for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task2.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -168,26 +168,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(task1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should == "example task was updated."
+        expect(find(".title").text).to eq("example task was updated.")
 
-        find(".created_at_date").text.should == task1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task1.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(task2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_task.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Task"
+        expect(icon[:src]).to include("icon_task.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Task")
 
-        find(".title").text.should   == "Email - example taskable task was updated for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Email - example taskable task was updated for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == task2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(task2.updated_at.strftime("%b %d, %Y"))
       end
     end
   end
@@ -203,26 +203,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(alert1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should == "New - Low - a new alert."
+        expect(find(".title").text).to eq("New - Low - a new alert.")
 
-        find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(alert2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should   == "New - Medium - a new alert for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("New - Medium - a new alert for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -246,26 +246,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(alert1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should == "Low - example alert has been stopped."
+        expect(find(".title").text).to eq("Low - example alert has been stopped.")
 
-        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(alert2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should   == "Medium - example alertable alert has been stopped for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Medium - example alertable alert has been stopped for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
       end
     end
 
@@ -287,26 +287,26 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       within "##{dom_id(alert1)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should == "High - example alert was updated."
+        expect(find(".title").text).to eq("High - example alert was updated.")
 
-        find(".created_at_date").text.should == alert1.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
       end
 
       within "##{dom_id(alert2)}" do
         icon = find(".type img")
-        icon[:src].should include("icon_alert.png")
-        icon[:class].should include("tooltip")
-        icon[:"data-tip"].should == "Alert"
+        expect(icon[:src]).to include("icon_alert.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Alert")
 
-        find(".title").text.should   == "Low - example alertable alert was updated for Billy."
-        find(".title a").text.should == "Billy"
-        find(".title a")[:href].should include(animal_path(animal))
+        expect(find(".title").text).to   eq("Low - example alertable alert was updated for Billy.")
+        expect(find(".title a").text).to eq("Billy")
+        expect(find(".title a")[:href]).to include(animal_path(animal))
 
-        find(".created_at_date").text.should == alert2.updated_at.strftime("%b %d, %Y")
+        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
       end
     end
   end
@@ -323,7 +323,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      page.body.should match(/#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
+      expect(page.body).to match(/#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
     end
   end
 end

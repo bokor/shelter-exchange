@@ -13,8 +13,8 @@ describe "Completed: From the Index Task Page", :js => :true do
       accept_confirmation!
     end
 
-    page.should have_no_content task.details
-    task.reload.should be_completed
+    expect(page).to have_no_content task.details
+    expect(task.reload).to be_completed
   end
 end
 

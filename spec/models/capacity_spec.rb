@@ -4,8 +4,8 @@ describe Capacity do
 
   it "requires presence of animal type id" do
     capacity = Capacity.new :animal_type_id => nil
-    capacity.should have(1).error_on(:animal_type_id)
-    capacity.errors[:animal_type_id].should match_array(["needs to be selected"])
+    expect(capacity).to have(1).error_on(:animal_type_id)
+    expect(capacity.errors[:animal_type_id]).to match_array(["needs to be selected"])
   end
 
   it "requires uniqueness scoped by shelter id of animal type id" do
@@ -14,16 +14,16 @@ describe Capacity do
     capacity1   = Capacity.gen :animal_type => animal_type, :shelter => shelter
     capacity2   = Capacity.gen :animal_type => animal_type, :shelter => shelter
 
-    capacity1.should have(0).errors
+    expect(capacity1).to have(0).errors
 
-    capacity2.should have(1).error_on(:animal_type_id)
-    capacity2.errors[:animal_type_id].should match_array(["is already in use"])
+    expect(capacity2).to have(1).error_on(:animal_type_id)
+    expect(capacity2.errors[:animal_type_id]).to match_array(["is already in use"])
   end
 
   it "requires a number for max capacity" do
     capacity = Capacity.new :max_capacity => "abc"
-    capacity.should have(1).error_on(:max_capacity)
-    capacity.errors[:max_capacity].should match_array(["requires a number"])
+    expect(capacity).to have(1).error_on(:max_capacity)
+    expect(capacity.errors[:max_capacity]).to match_array(["requires a number"])
   end
 end
 
@@ -35,12 +35,12 @@ describe Capacity, "#shelter" do
     shelter  = Shelter.new
     capacity = Capacity.new :shelter => shelter
 
-    capacity.shelter.should == shelter
+    expect(capacity.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     capacity = Capacity.gen
-    capacity.reload.shelter.should be_readonly
+    expect(capacity.reload.shelter).to be_readonly
   end
 end
 
@@ -50,12 +50,12 @@ describe Capacity, "#animal_type" do
     animal_type = AnimalType.new
     capacity = Capacity.new :animal_type => animal_type
 
-    capacity.animal_type.should == animal_type
+    expect(capacity.animal_type).to eq(animal_type)
   end
 
   it "returns a readonly animal type" do
     capacity = Capacity.gen
-    capacity.reload.animal_type.should be_readonly
+    expect(capacity.reload.animal_type).to be_readonly
   end
 end
 
@@ -70,7 +70,7 @@ describe Capacity, "#animal_count" do
     end
 
     count = capacity.animal_count(shelter)
-    count.should == AnimalStatus::CAPACITY.count
+    expect(count).to eq(AnimalStatus::CAPACITY.count)
   end
 end
 

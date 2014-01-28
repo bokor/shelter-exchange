@@ -3,53 +3,53 @@ require "spec_helper"
 describe Placement do
 
   it "has a default scope" do
-    Placement.scoped.to_sql.should == Placement.order('placements.created_at DESC').to_sql
+    expect(Placement.scoped.to_sql).to eq(Placement.order('placements.created_at DESC').to_sql)
   end
 
   it "requires presence of animal id" do
     placement = Placement.new :animal_id => nil
-    placement.should have(1).error_on(:animal_id)
-    placement.errors[:animal_id].should match_array(["needs to be selected"])
+    expect(placement).to have(1).error_on(:animal_id)
+    expect(placement.errors[:animal_id]).to match_array(["needs to be selected"])
   end
 
   it "requires inclusion of status" do
     placement = Placement.new :status => "#{Placement::STATUS[0]} blah"
-    placement.should have(1).error_on(:status)
-    placement.errors[:status].should match_array(["needs to be selected"])
+    expect(placement).to have(1).error_on(:status)
+    expect(placement.errors[:status]).to match_array(["needs to be selected"])
   end
 
   context "Nested Attributes" do
 
     it "accepts nested attributes for comments" do
-      Placement.count.should == 0
-      Comment.count.should   == 0
+      expect(Placement.count).to eq(0)
+      expect(Comment.count).to   eq(0)
 
       Placement.gen :comments_attributes => [{:comment => "placement comment"}]
 
-      Placement.count.should == 1
-      Comment.count.should   == 1
+      expect(Placement.count).to eq(1)
+      expect(Comment.count).to   eq(1)
     end
 
     it "rejects nested attributes for comments" do
-      Placement.count.should == 0
-      Comment.count.should   == 0
+      expect(Placement.count).to eq(0)
+      expect(Comment.count).to   eq(0)
 
       Placement.gen :comments_attributes => [{:comment => nil}]
 
-      Placement.count.should == 1
-      Comment.count.should   == 0
+      expect(Placement.count).to eq(1)
+      expect(Comment.count).to   eq(0)
     end
 
     it "destroys nested comments" do
       placement = Placement.gen :comments_attributes => [{:comment => "destroy comment"}]
 
-      Placement.count.should == 1
-      Comment.count.should   == 1
+      expect(Placement.count).to eq(1)
+      expect(Comment.count).to   eq(1)
 
       placement.destroy
 
-      Placement.count.should == 0
-      Comment.count.should   == 0
+      expect(Placement.count).to eq(0)
+      expect(Comment.count).to   eq(0)
     end
   end
 end
@@ -58,7 +58,7 @@ end
 #----------------------------------------------------------------------------
 describe Placement, "::STATUS" do
   it "contains a default list of statuses" do
-    Placement::STATUS.should match_array(["adopted", "foster_care"])
+    expect(Placement::STATUS).to match_array(["adopted", "foster_care"])
   end
 end
 
@@ -72,8 +72,8 @@ describe Placement, ".adopted" do
 
     placements = Placement.adopted.all
 
-    placements.count.should == 1
-    placements.should match_array([placement1])
+    expect(placements.count).to eq(1)
+    expect(placements).to match_array([placement1])
   end
 end
 
@@ -85,8 +85,8 @@ describe Placement, ".foster_care" do
 
     placements = Placement.foster_care.all
 
-    placements.count.should == 1
-    placements.should match_array([placement1])
+    expect(placements.count).to eq(1)
+    expect(placements).to match_array([placement1])
   end
 end
 
@@ -98,12 +98,12 @@ describe Placement, "#shelter" do
     shelter = Shelter.new
     placement = Placement.new :shelter => shelter
 
-    placement.shelter.should == shelter
+    expect(placement.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     placement = Placement.gen
-    placement.reload.shelter.should be_readonly
+    expect(placement.reload.shelter).to be_readonly
   end
 end
 
@@ -113,12 +113,12 @@ describe Placement, "#animal" do
     animal = Animal.new
     placement = Placement.new :animal => animal
 
-    placement.animal.should == animal
+    expect(placement.animal).to eq(animal)
   end
 
   it "returns a readonly animal" do
     placement = Placement.gen
-    placement.reload.animal.should be_readonly
+    expect(placement.reload.animal).to be_readonly
   end
 end
 
@@ -128,12 +128,12 @@ describe Placement, "#parent" do
     parent = Parent.new
     placement = Placement.new :parent => parent
 
-    placement.parent.should == parent
+    expect(placement.parent).to eq(parent)
   end
 
   it "returns a readonly parent" do
     placement = Placement.gen
-    placement.reload.parent.should be_readonly
+    expect(placement.reload.parent).to be_readonly
   end
 end
 
@@ -146,14 +146,14 @@ describe Placement, "#comments" do
   end
 
   it "returns a list of comments" do
-    @placement.comments.count.should == 2
-    @placement.comments.should match_array([@comment1, @comment2])
+    expect(@placement.comments.count).to eq(2)
+    expect(@placement.comments).to match_array([@comment1, @comment2])
   end
 
   it "destroys the comments when a placement is deleted" do
-    @placement.comments.count.should == 2
+    expect(@placement.comments.count).to eq(2)
     @placement.destroy
-    @placement.comments.count.should == 0
+    expect(@placement.comments.count).to eq(0)
   end
 end
 

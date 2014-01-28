@@ -13,8 +13,8 @@ describe "Stopped: From the Index Alert Page", :js => :true do
       accept_confirmation!
     end
 
-    page.should have_no_content alert.title
-    alert.reload.should be_stopped
+    expect(page).to have_no_content alert.title
+    expect(alert.reload).to be_stopped
   end
 end
 

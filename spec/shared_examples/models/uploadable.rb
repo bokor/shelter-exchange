@@ -3,7 +3,7 @@ shared_examples_for Uploadable do
   describe described_class, "#guid" do
 
     it "generates a random guid" do
-      SecureRandom.stub(:hex).and_return("abcdef12345")
+      allow(SecureRandom).to receive(:hex).and_return("abcdef12345")
 
       uploadable = described_class.gen
       expect(uploadable.guid).to eq("abcdef12345")
@@ -14,7 +14,7 @@ shared_examples_for Uploadable do
 
     it "generates a timestamp" do
       now = Time.now
-      Time.stub(:now).and_return(now)
+      allow(Time).to receive(:now).and_return(now)
 
       uploadable = described_class.gen
       expect(uploadable.timestamp).to eq(now.to_i)

@@ -3,48 +3,48 @@ require "spec_helper"
 describe Transfer do
 
   it "has a default scope" do
-    Transfer.scoped.to_sql.should == Transfer.order('transfers.created_at DESC').to_sql
+    expect(Transfer.scoped.to_sql).to eq(Transfer.order('transfers.created_at DESC').to_sql)
   end
 
   it "requires presence of requestor" do
     transfer = Transfer.new :requestor => nil
-    transfer.should have(1).error_on(:requestor)
-    transfer.errors[:requestor].should match_array(["cannot be blank"])
+    expect(transfer).to have(1).error_on(:requestor)
+    expect(transfer.errors[:requestor]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of phone" do
     transfer = Transfer.new :phone => nil
-    transfer.should have(1).error_on(:phone)
-    transfer.errors[:phone].should match_array(["cannot be blank"])
+    expect(transfer).to have(1).error_on(:phone)
+    expect(transfer.errors[:phone]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of email" do
     transfer = Transfer.new :email => nil
-    transfer.should have(1).error_on(:email)
-    transfer.errors[:email].should match_array(["cannot be blank"])
+    expect(transfer).to have(1).error_on(:email)
+    expect(transfer.errors[:email]).to match_array(["cannot be blank"])
   end
 
   it "requires correctly formatted email" do
     transfer = Transfer.new :email => "puppy.com"
-    transfer.should have(1).error_on(:email)
-    transfer.errors[:email].should match_array(["format is incorrect"])
+    expect(transfer).to have(1).error_on(:email)
+    expect(transfer.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "validates transfer history reason when required" do
     transfer = Transfer.new :status => "rejected"
-    transfer.should have(1).error_on(:transfer_history_reason)
-    transfer.errors[:transfer_history_reason].should match_array(["cannot be blank"])
+    expect(transfer).to have(1).error_on(:transfer_history_reason)
+    expect(transfer.errors[:transfer_history_reason]).to match_array(["cannot be blank"])
   end
 
   context "After Save" do
 
     it "creates transfer history" do
-      TransferHistory.count.should == 0
+      expect(TransferHistory.count).to eq(0)
 
       transfer = Transfer.gen :status => "rejected", :transfer_history_reason => "testing"
 
-      TransferHistory.count.should == 1
-      transfer.transfer_history_reason.should == "testing"
+      expect(TransferHistory.count).to eq(1)
+      expect(transfer.transfer_history_reason).to eq("testing")
     end
 
     it "transfers the animal record" do
@@ -54,7 +54,7 @@ describe Transfer do
 
       transfer = Transfer.gen :animal_id => animal.id, :shelter => shelter, :requestor_shelter => requestor_shelter, :status => "completed"
 
-      transfer.reload.animal.shelter.should == requestor_shelter
+      expect(transfer.reload.animal.shelter).to eq(requestor_shelter)
     end
   end
 end
@@ -63,19 +63,19 @@ end
 #----------------------------------------------------------------------------
 describe Transfer, "::APPROVED" do
   it "returns the correct value for the approved constant" do
-    Transfer::APPROVED.should == "approved"
+    expect(Transfer::APPROVED).to eq("approved")
   end
 end
 
 describe Transfer, "::REJECTED" do
   it "returns the correct value for the rejected constant" do
-    Transfer::REJECTED.should == "rejected"
+    expect(Transfer::REJECTED).to eq("rejected")
   end
 end
 
 describe Transfer, "::COMPLETED" do
   it "returns the correct value for the completed constant" do
-    Transfer::COMPLETED.should == "completed"
+    expect(Transfer::COMPLETED).to eq("completed")
   end
 end
 
@@ -89,8 +89,8 @@ describe Transfer, ".approved" do
 
     transfers = Transfer.approved.all
 
-    transfers.count.should == 1
-    transfers.should match_array([transfer1])
+    expect(transfers.count).to eq(1)
+    expect(transfers).to match_array([transfer1])
   end
 end
 
@@ -102,8 +102,8 @@ describe Transfer, ".rejected" do
 
     transfers = Transfer.rejected.all
 
-    transfers.count.should == 1
-    transfers.should match_array([transfer1])
+    expect(transfers.count).to eq(1)
+    expect(transfers).to match_array([transfer1])
   end
 end
 
@@ -115,8 +115,8 @@ describe Transfer, ".completed" do
 
     transfers = Transfer.completed.all
 
-    transfers.count.should == 1
-    transfers.should match_array([transfer1])
+    expect(transfers.count).to eq(1)
+    expect(transfers).to match_array([transfer1])
   end
 end
 
@@ -130,8 +130,8 @@ describe Transfer, ".active" do
 
     transfers = Transfer.active.all
 
-    transfers.count.should == 3
-    transfers.should match_array([transfer1, transfer2, transfer3])
+    expect(transfers.count).to eq(3)
+    expect(transfers).to match_array([transfer1, transfer2, transfer3])
   end
 end
 
@@ -143,12 +143,12 @@ describe Transfer, "#shelter" do
     shelter = Shelter.new
     transfer = Transfer.new :shelter => shelter
 
-    transfer.shelter.should == shelter
+    expect(transfer.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     transfer = Transfer.gen
-    transfer.reload.shelter.should be_readonly
+    expect(transfer.reload.shelter).to be_readonly
   end
 end
 
@@ -158,13 +158,13 @@ describe Transfer, "#requestor_shelter" do
     shelter = Shelter.new
     transfer = Transfer.new :requestor_shelter => shelter
 
-    transfer.requestor_shelter.should == shelter
-    transfer.requestor_shelter.class.should == Shelter
+    expect(transfer.requestor_shelter).to eq(shelter)
+    expect(transfer.requestor_shelter.class).to eq(Shelter)
   end
 
   it "returns a readonly requestor shelter" do
     transfer = Transfer.gen
-    transfer.reload.requestor_shelter.should be_readonly
+    expect(transfer.reload.requestor_shelter).to be_readonly
   end
 end
 
@@ -174,7 +174,7 @@ describe Transfer, "#animal" do
     animal = Animal.new
     transfer = Transfer.new :animal => animal
 
-    transfer.animal.should == animal
+    expect(transfer.animal).to eq(animal)
   end
 end
 
@@ -187,14 +187,14 @@ describe Transfer, "#transfer_histories" do
   end
 
   it "returns a list of transfer histories" do
-    @transfer.transfer_histories.count.should == 2
-    @transfer.transfer_histories.should match_array([@transfer_history1, @transfer_history2])
+    expect(@transfer.transfer_histories.count).to eq(2)
+    expect(@transfer.transfer_histories).to match_array([@transfer_history1, @transfer_history2])
   end
 
   it "destroys the transfer histories when a transfer is deleted" do
-    @transfer.transfer_histories.count.should == 2
+    expect(@transfer.transfer_histories.count).to eq(2)
     @transfer.destroy
-    @transfer.transfer_histories.count.should == 0
+    expect(@transfer.transfer_histories.count).to eq(0)
   end
 end
 
@@ -204,8 +204,8 @@ describe Transfer, "#new_request?" do
     transfer1 = Transfer.gen :status => ""
     transfer2 = Transfer.gen :status => "completed"
 
-    transfer1.new_request?.should == true
-    transfer2.new_request?.should == false
+    expect(transfer1.new_request?).to eq(true)
+    expect(transfer2.new_request?).to eq(false)
   end
 end
 
@@ -215,8 +215,8 @@ describe Transfer, "#approved?" do
     transfer1 = Transfer.gen :status => "approved"
     transfer2 = Transfer.gen :status => "completed"
 
-    transfer1.approved?.should == true
-    transfer2.approved?.should == false
+    expect(transfer1.approved?).to eq(true)
+    expect(transfer2.approved?).to eq(false)
   end
 end
 
@@ -226,8 +226,8 @@ describe Transfer, "#rejected?" do
     transfer1 = Transfer.gen :status => "rejected"
     transfer2 = Transfer.gen :status => "completed"
 
-    transfer1.rejected?.should == true
-    transfer2.rejected?.should == false
+    expect(transfer1.rejected?).to eq(true)
+    expect(transfer2.rejected?).to eq(false)
   end
 end
 
@@ -237,8 +237,8 @@ describe Transfer, "#completed?" do
     transfer1 = Transfer.gen :status => "completed"
     transfer2 = Transfer.gen :status => "approved"
 
-    transfer1.completed?.should == true
-    transfer2.completed?.should == false
+    expect(transfer1.completed?).to eq(true)
+    expect(transfer2.completed?).to eq(false)
   end
 end
 

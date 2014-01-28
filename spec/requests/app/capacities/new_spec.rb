@@ -19,11 +19,11 @@ describe "New: Capacity Page", :js => :true do
 
     flash_message_should_be "Shelter Capacity has been created."
 
-    current_path.should == capacities_path
+    expect(current_path).to eq(capacities_path)
 
-    find(".status .green").text.should     == "Dog"
-    find(".counts .max").text.should       == "Max capacity: 100"
-    find(".counts .available").text.should == "Available space: 100"
+    expect(find(".status .green").text).to     eq("Dog")
+    expect(find(".counts .max").text).to       eq("Max capacity: 100")
+    expect(find(".counts .available").text).to eq("Available space: 100")
   end
 
   it "should not create a new capacity" do
@@ -31,17 +31,17 @@ describe "New: Capacity Page", :js => :true do
 
     click_button "Create Capacity"
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#animal_type_container" do
-      find(".error").text.should == "Needs to be selected"
+      expect(find(".error").text).to eq("Needs to be selected")
     end
 
     within "#max_capacity_container" do
-      find(".error").text.should == "Requires a number"
+      expect(find(".error").text).to eq("Requires a number")
     end
 
-    current_path.should == capacities_path
+    expect(current_path).to eq(capacities_path)
     body_class_should_include "create_capacities"
   end
 end

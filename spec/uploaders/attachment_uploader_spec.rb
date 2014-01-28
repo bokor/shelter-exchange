@@ -9,16 +9,16 @@ describe AttachmentUploader do
   end
 
   it "contains a processor for setting content type" do
-    AttachmentUploader.processors.should include [:set_content_type, true, nil]
+    expect(AttachmentUploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do
-    AttachmentUploader.storage.should == CarrierWave::Storage::Fog
+    expect(AttachmentUploader.storage).to eq(CarrierWave::Storage::Fog)
   end
 
   describe '#store_dir' do
     it "has a correct store directory" do
-      @uploader.store_dir.should == "accounts/documents/#{@account.id}/original"
+      expect(@uploader.store_dir).to eq("accounts/documents/#{@account.id}/original")
     end
   end
 end

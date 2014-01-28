@@ -16,8 +16,8 @@ describe "New: Task Page", :js => :true do
 
     flash_message_should_be "Task has been created."
 
-    current_path.should == tasks_path
-    find(".details").text.should == "Test Title"
+    expect(current_path).to eq(tasks_path)
+    expect(find(".details").text).to eq("Test Title")
   end
 
   it "should not create a new task" do
@@ -25,13 +25,13 @@ describe "New: Task Page", :js => :true do
 
     click_button "Create Task"
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#details_container" do
-      find(".error").text.should == "Cannot be blank"
+      expect(find(".error").text).to eq("Cannot be blank")
     end
 
-    current_path.should == tasks_path
+    expect(current_path).to eq(tasks_path)
     body_class_should_include "create_tasks"
   end
 end

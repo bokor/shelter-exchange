@@ -3,7 +3,7 @@ require "spec_helper"
 describe TransferHistory do
 
   it "has a default scope" do
-    TransferHistory.scoped.to_sql.should == TransferHistory.order('transfer_histories.created_at DESC').to_sql
+    expect(TransferHistory.scoped.to_sql).to eq(TransferHistory.order('transfer_histories.created_at DESC').to_sql)
   end
 end
 
@@ -12,16 +12,16 @@ end
 describe TransferHistory, ".create_with" do
 
   it "creates a status history" do
-    TransferHistory.count.should == 0
+    expect(TransferHistory.count).to eq(0)
 
     transfer_history = TransferHistory.create_with(1, 2, "adopted", "testing")
 
-    TransferHistory.count.should == 1
+    expect(TransferHistory.count).to eq(1)
 
-    transfer_history.shelter_id.should == 1
-    transfer_history.transfer_id.should == 2
-    transfer_history.status.should == "adopted"
-    transfer_history.reason.should == "testing"
+    expect(transfer_history.shelter_id).to eq(1)
+    expect(transfer_history.transfer_id).to eq(2)
+    expect(transfer_history.status).to eq("adopted")
+    expect(transfer_history.reason).to eq("testing")
   end
 end
 
@@ -33,12 +33,12 @@ describe TransferHistory, "#transfer" do
     transfer = Transfer.new
     transfer_history = TransferHistory.new :transfer => transfer
 
-    transfer_history.transfer.should == transfer
+    expect(transfer_history.transfer).to eq(transfer)
   end
 
   it "returns a readonly transfer" do
     transfer_history = TransferHistory.gen
-    transfer_history.reload.transfer.should be_readonly
+    expect(transfer_history.reload.transfer).to be_readonly
   end
 end
 
@@ -48,12 +48,12 @@ describe TransferHistory, "#shelter" do
     shelter = Shelter.new
     transfer_history = TransferHistory.new :shelter => shelter
 
-    transfer_history.shelter.should == shelter
+    expect(transfer_history.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     transfer_history = TransferHistory.gen
-    transfer_history.reload.shelter.should be_readonly
+    expect(transfer_history.reload.shelter).to be_readonly
   end
 end
 

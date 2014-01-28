@@ -3,7 +3,7 @@ require "spec_helper"
 describe AnimalStatus do
 
   it "has a default scope" do
-    AnimalStatus.scoped.to_sql.should == AnimalStatus.order("animal_statuses.sort_order ASC").to_sql
+    expect(AnimalStatus.scoped.to_sql).to eq(AnimalStatus.order("animal_statuses.sort_order ASC").to_sql)
   end
 end
 
@@ -11,7 +11,7 @@ end
 #----------------------------------------------------------------------------
 describe AnimalStatus, "::STATUSES" do
   it "contains a default list of statuses" do
-    AnimalStatus::STATUSES.should == {
+    expect(AnimalStatus::STATUSES).to eq({
       :available_for_adoption => 1,
       :adopted => 2,
       :foster_care => 3,
@@ -28,37 +28,37 @@ describe AnimalStatus, "::STATUSES" do
       :euthanized => 14,
       :transferred => 15,
       :adoption_pending => 16
-    }
+    })
   end
 end
 
 describe AnimalStatus, "::CAPACITY" do
   it "contains a list of statuses for capacity counts" do
-    AnimalStatus::CAPACITY.should match_array([1,4,5,6,7,8,9,10,11,16])
+    expect(AnimalStatus::CAPACITY).to match_array([1,4,5,6,7,8,9,10,11,16])
   end
 end
 
 describe AnimalStatus, "::ACTIVE" do
   it "contains a list active statuses" do
-    AnimalStatus::ACTIVE.should match_array([1,3,4,5,6,7,8,9,10,11,16])
+    expect(AnimalStatus::ACTIVE).to match_array([1,3,4,5,6,7,8,9,10,11,16])
   end
 end
 
 describe AnimalStatus, "::NON_ACTIVE" do
   it "contains a list non active statuses" do
-    AnimalStatus::NON_ACTIVE.should match_array([2,12,13,14,15])
+    expect(AnimalStatus::NON_ACTIVE).to match_array([2,12,13,14,15])
   end
 end
 
 describe AnimalStatus, "::AVAILABLE" do
   it "contains a list available statuses" do
-    AnimalStatus::AVAILABLE.should match_array([1,16])
+    expect(AnimalStatus::AVAILABLE).to match_array([1,16])
   end
 end
 
 describe AnimalStatus, "::EXTRA_STATUS_FILTERS" do
   it "contains extra statuses for filter dropdowns" do
-    AnimalStatus::EXTRA_STATUS_FILTERS.should match_array([
+    expect(AnimalStatus::EXTRA_STATUS_FILTERS).to match_array([
       ["All Active", :active],
       ["All Non-Active", :non_active]
     ])
@@ -73,7 +73,7 @@ describe AnimalStatus, ".active" do
     AnimalStatus::ACTIVE.each do |status|
       AnimalStatus.gen! :id => status
     end
-    AnimalStatus.active.pluck(:id).should match_array(AnimalStatus::ACTIVE)
+    expect(AnimalStatus.active.pluck(:id)).to match_array(AnimalStatus::ACTIVE)
   end
 end
 
@@ -83,7 +83,7 @@ describe AnimalStatus, ".non_active" do
     AnimalStatus::NON_ACTIVE.each do |status|
       AnimalStatus.gen! :id => status
     end
-    AnimalStatus.non_active.pluck(:id).should match_array(AnimalStatus::NON_ACTIVE)
+    expect(AnimalStatus.non_active.pluck(:id)).to match_array(AnimalStatus::NON_ACTIVE)
   end
 end
 
@@ -98,13 +98,13 @@ describe AnimalStatus, "#animals" do
   end
 
   it "has many animals" do
-    @animal_status.animals.count.should == 2
-    @animal_status.animals.should match_array([@animal1, @animal2])
+    expect(@animal_status.animals.count).to eq(2)
+    expect(@animal_status.animals).to match_array([@animal1, @animal2])
   end
 
   it "returns readonly animals" do
-    @animal_status.animals[0].should be_readonly
-    @animal_status.animals[1].should be_readonly
+    expect(@animal_status.animals[0]).to be_readonly
+    expect(@animal_status.animals[1]).to be_readonly
   end
 end
 
@@ -117,14 +117,14 @@ describe AnimalStatus, "#status_histories" do
   end
 
   it "has many status histories" do
-    @animal_status.status_histories.count.should == 2
-    @animal_status.status_histories.should match_array([@status_history1, @status_history2])
+    expect(@animal_status.status_histories.count).to eq(2)
+    expect(@animal_status.status_histories).to match_array([@status_history1, @status_history2])
   end
 
   it "destroys the status histories when a status is deleted" do
-    @animal_status.status_histories.count.should == 2
+    expect(@animal_status.status_histories.count).to eq(2)
     @animal_status.destroy
-    @animal_status.status_histories.count.should == 0
+    expect(@animal_status.status_histories.count).to eq(0)
   end
 end
 

@@ -18,7 +18,7 @@ describe "Index: Capacity Page", :js => :true do
     @capacity.destroy
 
     visit capacities_path
-    current_path.should == new_capacity_path
+    expect(current_path).to eq(new_capacity_path)
     body_class_should_include "new_capacities"
   end
 
@@ -29,14 +29,14 @@ describe "Index: Capacity Page", :js => :true do
       click_button "Create Capacity"
     end
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#animal_type_container" do
-      find(".error").text.should == "Needs to be selected"
+      expect(find(".error").text).to eq("Needs to be selected")
     end
 
     within "#max_capacity_container" do
-      find(".error").text.should == "Requires a number"
+      expect(find(".error").text).to eq("Requires a number")
     end
   end
 
@@ -49,10 +49,10 @@ describe "Index: Capacity Page", :js => :true do
       click_button "Create Capacity"
     end
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#animal_type_container" do
-      find(".error").text.should == "Is already in use"
+      expect(find(".error").text).to eq("Is already in use")
     end
   end
 
@@ -67,9 +67,9 @@ describe "Index: Capacity Page", :js => :true do
       click_button "Create Capacity"
     end
 
-    page.should have_content "Dog"
-    page.should have_content "Max capacity: 100"
-    page.should have_content "Available space: 100"
+    expect(page).to have_content "Dog"
+    expect(page).to have_content "Max capacity: 100"
+    expect(page).to have_content "Available space: 100"
   end
 
   context "Available Space" do
@@ -88,8 +88,8 @@ describe "Index: Capacity Page", :js => :true do
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_content "Max capacity: 4"
-        page.should have_content "Available space: 2"
+        expect(page).to have_content "Max capacity: 4"
+        expect(page).to have_content "Available space: 2"
       end
     end
 
@@ -101,7 +101,7 @@ describe "Index: Capacity Page", :js => :true do
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_css ".circle.green"
+        expect(page).to have_css ".circle.green"
       end
     end
 
@@ -114,7 +114,7 @@ describe "Index: Capacity Page", :js => :true do
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_css ".circle.yellow"
+        expect(page).to have_css ".circle.yellow"
       end
     end
 
@@ -127,7 +127,7 @@ describe "Index: Capacity Page", :js => :true do
       visit capacities_path
 
       within "##{dom_id(@capacity)}" do
-        page.should have_css ".circle.red"
+        expect(page).to have_css ".circle.red"
       end
     end
   end

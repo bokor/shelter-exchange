@@ -4,7 +4,7 @@ describe FacebookLinterJob, ".perform" do
 
   it "does nothing when id is blank" do
     FacebookLinterJob.new().perform
-    Net::HTTP.should_not_receive(:post_form)
+    expect(Net::HTTP).not_to receive(:post_form)
   end
 
   it "posts data to the facebook scrape endpoint" do
@@ -13,12 +13,12 @@ describe FacebookLinterJob, ".perform" do
 
     response = nil
     VCR.use_cassette('facebook_linter_job') do
-      Net::HTTP.should_receive(:post_form).with(uri, params).and_call_original
+      expect(Net::HTTP).to receive(:post_form).with(uri, params).and_call_original
       response = FacebookLinterJob.new(12345).perform
     end
 
-    response.code.should == "200"
-    MultiJson.load(response.body)["url"].should == "http://www.shelterexchange.org/save_a_life/12345"
+    expect(response.code).to eq("200")
+    expect(MultiJson.load(response.body)["url"]).to eq("http://www.shelterexchange.org/save_a_life/12345")
   end
 end
 

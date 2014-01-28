@@ -18,7 +18,7 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "##{dom_id(task)}" do
-      page.should have_content "new details"
+      expect(page).to have_content "new details"
     end
   end
 
@@ -38,12 +38,12 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "##{dom_id(task)}" do
-      page.should have_content("updated category to email")
+      expect(page).to have_content("updated category to email")
 
       image = find(".type img")
-      image[:src].should include("icon_email.png")
-      image[:class].should include("tooltip")
-      image[:"data-tip"].should == "Email"
+      expect(image[:src]).to include("icon_email.png")
+      expect(image[:class]).to include("tooltip")
+      expect(image[:"data-tip"]).to eq("Email")
     end
   end
 
@@ -53,7 +53,7 @@ describe "Edit: From the Index Task Page", :js => :true do
     visit tasks_path
 
     within "#overdue_tasks" do
-      page.should have_content "Overdue task details"
+      expect(page).to have_content "Overdue task details"
     end
 
     within "##{dom_id(task)}" do
@@ -67,12 +67,12 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "#today_tasks" do
-      page.should have_content "Today task details"
+      expect(page).to have_content "Today task details"
     end
 
     within "#overdue_tasks" do
-      page.should have_no_content "Overdue task details"
-      page.should have_no_content "Today task details"
+      expect(page).to have_no_content "Overdue task details"
+      expect(page).to have_no_content "Today task details"
     end
   end
 
@@ -82,7 +82,7 @@ describe "Edit: From the Index Task Page", :js => :true do
     visit tasks_path
 
     within "#today_tasks" do
-      page.should have_content "Today task details"
+      expect(page).to have_content "Today task details"
     end
 
     within "##{dom_id(task)}" do
@@ -96,12 +96,12 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "#tomorrow_tasks" do
-      page.should have_content "Tomorrow task details"
+      expect(page).to have_content "Tomorrow task details"
     end
 
     within "#today_tasks" do
-      page.should have_no_content "Today task details"
-      page.should have_no_content "Tomorrow task details"
+      expect(page).to have_no_content "Today task details"
+      expect(page).to have_no_content "Tomorrow task details"
     end
   end
 
@@ -111,7 +111,7 @@ describe "Edit: From the Index Task Page", :js => :true do
     visit tasks_path
 
     within "#tomorrow_tasks" do
-      page.should have_content "Tomorrow task details"
+      expect(page).to have_content "Tomorrow task details"
     end
 
     within "##{dom_id(task)}" do
@@ -125,12 +125,12 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "#later_tasks" do
-      page.should have_content "Later task details"
+      expect(page).to have_content "Later task details"
     end
 
     within "#tomorrow_tasks" do
-      page.should have_no_content "Tomorrow task details"
-      page.should have_no_content "Later task details"
+      expect(page).to have_no_content "Tomorrow task details"
+      expect(page).to have_no_content "Later task details"
     end
   end
 
@@ -140,7 +140,7 @@ describe "Edit: From the Index Task Page", :js => :true do
     visit tasks_path
 
     within "#later_tasks" do
-      page.should have_content "Later task details"
+      expect(page).to have_content "Later task details"
     end
 
     within "##{dom_id(task)}" do
@@ -154,12 +154,12 @@ describe "Edit: From the Index Task Page", :js => :true do
     end
 
     within "#today_tasks" do
-      page.should have_content "Today task details"
+      expect(page).to have_content "Today task details"
     end
 
     within "#later_tasks" do
-      page.should have_no_content "Today task details"
-      page.should have_no_content "Later task details"
+      expect(page).to have_no_content "Today task details"
+      expect(page).to have_no_content "Later task details"
     end
   end
 end

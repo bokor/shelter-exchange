@@ -1,17 +1,17 @@
 module CapybaraHelper
 
   def page_title_should_be(title)
-   find("h1").text.should == title
+   expect(find("h1").text).to eq(title)
   end
 
   def flash_message_should_be(message)
     within "#flash_messages" do
-      page.should have_content message
+      expect(page).to have_content message
     end
   end
 
   def body_class_should_include(action_and_controller)
-    find("body")[:class].should include(action_and_controller)
+    expect(find("body")[:class]).to include(action_and_controller)
   end
 
   def calendar_datepicker_from(element, timeframe=:current_month)

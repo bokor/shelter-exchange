@@ -16,7 +16,7 @@ describe "Index: Alert Page", :js => :true do
     @alert.destroy
 
     visit alerts_path
-    current_path.should == new_alert_path
+    expect(current_path).to eq(new_alert_path)
     body_class_should_include "new_alerts"
   end
 
@@ -27,20 +27,20 @@ describe "Index: Alert Page", :js => :true do
       click_button "Create Alert"
     end
 
-    page.should have_content "There was a problem with your submission."
+    expect(page).to have_content "There was a problem with your submission."
 
     within "#create_alert #title_container" do
-      find(".error").text.should == "Cannot be blank"
+      expect(find(".error").text).to eq("Cannot be blank")
     end
 
     within "#create_alert #severity_container" do
-      find(".error").text.should == "Needs to be selected"
+      expect(find(".error").text).to eq("Needs to be selected")
     end
   end
 
   it "should show a section title" do
     visit alerts_path
-    find("#shelter_alerts_section h3").text.should == "Shelter"
+    expect(find("#shelter_alerts_section h3").text).to eq("Shelter")
   end
 
   it "should create new shelter alerts" do
@@ -61,13 +61,13 @@ describe "Index: Alert Page", :js => :true do
     end
 
     within "#shelter_alerts" do
-      page.should have_content "High alert"
-      page.should have_content "High"
-      page.should have_content Date.today.strftime("%b %d")
+      expect(page).to have_content "High alert"
+      expect(page).to have_content "High"
+      expect(page).to have_content Date.today.strftime("%b %d")
 
-      page.should have_content "Low alert"
-      page.should have_content "Low"
-      page.should have_content Date.today.strftime("%b %d")
+      expect(page).to have_content "Low alert"
+      expect(page).to have_content "Low"
+      expect(page).to have_content Date.today.strftime("%b %d")
     end
   end
 
@@ -83,11 +83,11 @@ describe "Index: Alert Page", :js => :true do
     end
 
     within "#shelter_alerts" do
-      page.should have_no_content "This is a high alert description"
+      expect(page).to have_no_content "This is a high alert description"
       find(".title", :text => "High alert").click
-      page.should have_content "This is a high alert description"
+      expect(page).to have_content "This is a high alert description"
       find(".title", :text => "High alert").click
-      page.should have_no_content "This is a high alert description"
+      expect(page).to have_no_content "This is a high alert description"
     end
   end
 
@@ -101,7 +101,7 @@ describe "Index: Alert Page", :js => :true do
 
       visit alerts_path
 
-      page.body.should match(/#{dom_id(alert3)}.*?#{dom_id(alert1)}.*?#{dom_id(alert2)}/m)
+      expect(page.body).to match(/#{dom_id(alert3)}.*?#{dom_id(alert1)}.*?#{dom_id(alert2)}/m)
     end
   end
 
@@ -114,15 +114,15 @@ describe "Index: Alert Page", :js => :true do
 
     it "should show a section title" do
       visit alerts_path
-      find("#animal_alerts_section h3").text.should == "Animal"
+      expect(find("#animal_alerts_section h3").text).to eq("Animal")
     end
 
     it "should have a link to an animal record" do
       visit alerts_path
 
       within "##{dom_id(@animal_alert)}" do
-        page.should have_css "span.alertable_link"
-        page.should have_link "Billy Bob"
+        expect(page).to have_css "span.alertable_link"
+        expect(page).to have_link "Billy Bob"
       end
     end
 
@@ -130,7 +130,7 @@ describe "Index: Alert Page", :js => :true do
       visit alerts_path
 
       within "##{dom_id(@alert)}" do
-        page.should have_no_css "span.alertable_link"
+        expect(page).to have_no_css "span.alertable_link"
       end
     end
   end

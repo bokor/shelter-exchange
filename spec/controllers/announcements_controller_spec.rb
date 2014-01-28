@@ -12,7 +12,7 @@ describe AnnouncementsController do
 
     it "updates current user announcement hide time" do
       @now = Time.now
-      Time.stub(:now).and_return(@now)
+      allow(Time).to receive(:now).and_return(@now)
 
       expect(current_user.announcement_hide_time).to be < @now
       post :hide, :format => :js

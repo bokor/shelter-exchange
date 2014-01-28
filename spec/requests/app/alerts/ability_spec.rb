@@ -8,6 +8,6 @@ describe "Ability: Permissions for the user role on the Index Alert Page", :js =
     Alert.gen :shelter => current_shelter # Create Alert to get to the Index page
 
     visit alerts_path
-    page.should have_no_content("Delete")
+    expect(page).to have_no_content("Delete")
   end
 end

@@ -3,13 +3,13 @@ require "spec_helper"
 describe Location do
 
   it "has a default scope" do
-    Location.scoped.to_sql.should == Location.order('locations.name ASC').to_sql
+    expect(Location.scoped.to_sql).to eq(Location.order('locations.name ASC').to_sql)
   end
 
   it "requires presence of name" do
     location = Location.new :name => nil
-    location.should have(1).error_on(:name)
-    location.errors[:name].should match_array(["cannot be blank"])
+    expect(location).to have(1).error_on(:name)
+    expect(location.errors[:name]).to match_array(["cannot be blank"])
   end
 end
 
@@ -21,12 +21,12 @@ describe Location, "#shelter" do
     shelter = Shelter.new
     location = Location.new :shelter => shelter
 
-    location.shelter.should == shelter
+    expect(location.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     location = Location.gen
-    location.reload.shelter.should be_readonly
+    expect(location.reload.shelter).to be_readonly
   end
 end
 
@@ -39,13 +39,13 @@ describe Location, "#accommodations" do
   end
 
   it "has many accommodations" do
-    @location.accommodations.count.should == 2
-    @location.accommodations.should match_array([@accommodation1, @accommodation2])
+    expect(@location.accommodations.count).to eq(2)
+    expect(@location.accommodations).to match_array([@accommodation1, @accommodation2])
   end
 
   it "returns a readonly accommodations" do
-    @location.accommodations[0].should be_readonly
-    @location.accommodations[1].should be_readonly
+    expect(@location.accommodations[0]).to be_readonly
+    expect(@location.accommodations[1]).to be_readonly
   end
 end
 

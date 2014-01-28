@@ -3,19 +3,19 @@ require "spec_helper"
 describe Alert do
 
   it "has a default scope" do
-    Alert.scoped.to_sql.should == Alert.order('alerts.created_at DESC').to_sql
+    expect(Alert.scoped.to_sql).to eq(Alert.order('alerts.created_at DESC').to_sql)
   end
 
   it "validates presence of title" do
     alert = Alert.new :title => nil
-    alert.should have(1).error_on(:title)
-    alert.errors[:title].should match_array(["cannot be blank"])
+    expect(alert).to have(1).error_on(:title)
+    expect(alert.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "validates inclusion of severity" do
     alert = Alert.new :severity => "#{Alert::SEVERITIES[0]} blah"
-    alert.should have(1).error_on(:severity)
-    alert.errors[:severity].should match_array(["needs to be selected"])
+    expect(alert).to have(1).error_on(:severity)
+    expect(alert.errors[:severity]).to match_array(["needs to be selected"])
   end
 end
 
@@ -23,7 +23,7 @@ end
 #----------------------------------------------------------------------------
 describe Alert, "::SEVERITIES" do
   it "contains a default list of severities" do
-    Alert::SEVERITIES.should match_array(["high", "medium", "low"])
+    expect(Alert::SEVERITIES).to match_array(["high", "medium", "low"])
   end
 end
 
@@ -37,8 +37,8 @@ describe Alert, ".active" do
 
     alerts = Alert.active.all
 
-    alerts.count.should == 1
-    alerts.should match_array([alert1])
+    expect(alerts.count).to eq(1)
+    expect(alerts).to match_array([alert1])
   end
 end
 
@@ -50,8 +50,8 @@ describe Alert, ".stopped" do
 
     alerts = Alert.stopped.all
 
-    alerts.count.should == 1
-    alerts.should match_array([alert1])
+    expect(alerts.count).to eq(1)
+    expect(alerts).to match_array([alert1])
   end
 end
 
@@ -63,8 +63,8 @@ describe Alert, ".for_shelter" do
 
     alerts = Alert.for_shelter.all
 
-    alerts.count.should == 1
-    alerts.should match_array([alert1])
+    expect(alerts.count).to eq(1)
+    expect(alerts).to match_array([alert1])
   end
 end
 
@@ -76,8 +76,8 @@ describe Alert, ".for_animals" do
 
     alerts = Alert.for_animals.all
 
-    alerts.count.should == 1
-    alerts.should match_array([alert1])
+    expect(alerts.count).to eq(1)
+    expect(alerts).to match_array([alert1])
   end
 end
 
@@ -90,8 +90,8 @@ describe Alert, ".recent_activity" do
 
     alerts = Alert.recent_activity(2).all
 
-    alerts.count.should == 2
-    alerts.should match_array([alert1, alert2])
+    expect(alerts.count).to eq(2)
+    expect(alerts).to match_array([alert1, alert2])
   end
 end
 
@@ -103,12 +103,12 @@ describe Alert, "#shelter" do
     shelter = Shelter.new
     alert = Alert.new :shelter => shelter
 
-    alert.shelter.should == shelter
+    expect(alert.shelter).to eq(shelter)
   end
 
   it "returns a readonly shelter" do
     alert = Alert.gen
-    alert.reload.shelter.should be_readonly
+    expect(alert.reload.shelter).to be_readonly
   end
 end
 
@@ -120,11 +120,11 @@ describe Alert, "#alertable" do
     alert1 = Alert.new :alertable => item
     alert2 = Alert.new :alertable => animal
 
-    alert1.alertable.should == item
-    alert1.alertable.should be_instance_of(Item)
+    expect(alert1.alertable).to eq(item)
+    expect(alert1.alertable).to be_instance_of(Item)
 
-    alert2.alertable.should == animal
-    alert2.alertable.should be_instance_of(Animal)
+    expect(alert2.alertable).to eq(animal)
+    expect(alert2.alertable).to be_instance_of(Animal)
   end
 end
 
@@ -134,8 +134,8 @@ describe Alert, "#stopped?" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
-    alert1.stopped?.should == true
-    alert2.stopped?.should == false
+    expect(alert1.stopped?).to eq(true)
+    expect(alert2.stopped?).to eq(false)
   end
 end
 
@@ -145,8 +145,8 @@ describe Alert, "#active?" do
     alert1 = Alert.new :stopped => true
     alert2 = Alert.new
 
-    alert1.active?.should == false
-    alert2.active?.should == true
+    expect(alert1.active?).to eq(false)
+    expect(alert2.active?).to eq(true)
   end
 end
 
@@ -157,8 +157,8 @@ describe Alert, "#alertable?" do
     alert1 = Alert.new :alertable => animal
     alert2 = Alert.new
 
-    alert1.alertable?.should == true
-    alert2.alertable?.should == false
+    expect(alert1.alertable?).to eq(true)
+    expect(alert2.alertable?).to eq(false)
   end
 end
 
