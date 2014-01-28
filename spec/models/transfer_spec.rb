@@ -9,31 +9,31 @@ describe Transfer do
   it "requires presence of requestor" do
     transfer = Transfer.new :requestor => nil
     transfer.should have(1).error_on(:requestor)
-    transfer.errors[:requestor].should == ["cannot be blank"]
+    transfer.errors[:requestor].should match_array(["cannot be blank"])
   end
 
   it "requires presence of phone" do
     transfer = Transfer.new :phone => nil
     transfer.should have(1).error_on(:phone)
-    transfer.errors[:phone].should == ["cannot be blank"]
+    transfer.errors[:phone].should match_array(["cannot be blank"])
   end
 
   it "requires presence of email" do
     transfer = Transfer.new :email => nil
     transfer.should have(1).error_on(:email)
-    transfer.errors[:email].should == ["cannot be blank"]
+    transfer.errors[:email].should match_array(["cannot be blank"])
   end
 
   it "requires correctly formatted email" do
     transfer = Transfer.new :email => "puppy.com"
     transfer.should have(1).error_on(:email)
-    transfer.errors[:email].should == ["format is incorrect"]
+    transfer.errors[:email].should match_array(["format is incorrect"])
   end
 
   it "validates transfer history reason when required" do
     transfer = Transfer.new :status => "rejected"
     transfer.should have(1).error_on(:transfer_history_reason)
-    transfer.errors[:transfer_history_reason].should == ["cannot be blank"]
+    transfer.errors[:transfer_history_reason].should match_array(["cannot be blank"])
   end
 
   context "After Save" do
@@ -48,9 +48,9 @@ describe Transfer do
     end
 
     it "transfers the animal record" do
-      shelter           = Shelter.gen
+      shelter = Shelter.gen
       requestor_shelter = Shelter.gen
-      animal            = Animal.gen :shelter => shelter
+      animal = Animal.gen :shelter => shelter
 
       transfer = Transfer.gen :animal_id => animal.id, :shelter => shelter, :requestor_shelter => requestor_shelter, :status => "completed"
 
@@ -85,12 +85,12 @@ describe Transfer, ".approved" do
 
   it "returns all of the approved transfers" do
     transfer1 = Transfer.gen :status => "approved"
-    transfer2 = Transfer.gen :status => ""
+    Transfer.gen :status => ""
 
     transfers = Transfer.approved.all
 
     transfers.count.should == 1
-    transfers.should       =~ [transfer1]
+    transfers.should match_array([transfer1])
   end
 end
 
@@ -98,12 +98,12 @@ describe Transfer, ".rejected" do
 
   it "returns all of the rejected transfers" do
     transfer1 = Transfer.gen :status => "rejected", :transfer_history_reason => "transfer reason"
-    transfer2 = Transfer.gen :status => ""
+    Transfer.gen :status => ""
 
     transfers = Transfer.rejected.all
 
     transfers.count.should == 1
-    transfers.should       =~ [transfer1]
+    transfers.should match_array([transfer1])
   end
 end
 
@@ -111,12 +111,12 @@ describe Transfer, ".completed" do
 
   it "returns all of the completed transfers" do
     transfer1 = Transfer.gen :status => "completed"
-    transfer2 = Transfer.gen :status => ""
+    Transfer.gen :status => ""
 
     transfers = Transfer.completed.all
 
     transfers.count.should == 1
-    transfers.should       =~ [transfer1]
+    transfers.should match_array([transfer1])
   end
 end
 
@@ -125,13 +125,13 @@ describe Transfer, ".active" do
   it "returns all of the active transfers" do
     transfer1 = Transfer.gen :status => "approved"
     transfer2 = Transfer.gen :status => "approved"
-    transfer3 = Transfer.gen :status => "completed"
-    transfer4 = Transfer.gen :status => nil
+    transfer3 = Transfer.gen :status => nil
+    Transfer.gen :status => "completed"
 
     transfers = Transfer.active.all
 
     transfers.count.should == 3
-    transfers.should       =~ [transfer1, transfer2, transfer4]
+    transfers.should match_array([transfer1, transfer2, transfer3])
   end
 end
 
@@ -140,7 +140,7 @@ end
 describe Transfer, "#shelter" do
 
   it "belongs to a shelter" do
-    shelter  = Shelter.new
+    shelter = Shelter.new
     transfer = Transfer.new :shelter => shelter
 
     transfer.shelter.should == shelter
@@ -155,7 +155,7 @@ end
 describe Transfer, "#requestor_shelter" do
 
   it "belongs to a requestor shelter" do
-    shelter  = Shelter.new
+    shelter = Shelter.new
     transfer = Transfer.new :requestor_shelter => shelter
 
     transfer.requestor_shelter.should == shelter
@@ -171,7 +171,7 @@ end
 describe Transfer, "#animal" do
 
   it "belongs to an animal" do
-    animal   = Animal.new
+    animal = Animal.new
     transfer = Transfer.new :animal => animal
 
     transfer.animal.should == animal
@@ -181,14 +181,14 @@ end
 describe Transfer, "#transfer_histories" do
 
   before do
-    @transfer          = Transfer.gen
+    @transfer = Transfer.gen
     @transfer_history1 = TransferHistory.gen :transfer => @transfer
     @transfer_history2 = TransferHistory.gen :transfer => @transfer
   end
 
   it "returns a list of transfer histories" do
     @transfer.transfer_histories.count.should == 2
-    @transfer.transfer_histories.should       =~ [@transfer_history1, @transfer_history2]
+    @transfer.transfer_histories.should match_array([@transfer_history1, @transfer_history2])
   end
 
   it "destroys the transfer histories when a transfer is deleted" do

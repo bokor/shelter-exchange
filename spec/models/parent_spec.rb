@@ -11,47 +11,47 @@ describe Parent do
   it "validates presence of name" do
     parent = Parent.new :name => nil
     parent.should have(1).error_on(:name)
-    parent.errors[:name].should == ["cannot be blank"]
+    parent.errors[:name].should match_array(["cannot be blank"])
   end
 
   it "validates presence of phone" do
     parent = Parent.new :phone => nil
     parent.should have(1).error_on(:phone)
-    parent.errors[:phone].should == ["cannot be blank"]
+    parent.errors[:phone].should match_array(["cannot be blank"])
   end
 
   it "validates uniqueness of phone" do
     Parent.gen(:phone => "9999999999")
     parent = Parent.new :phone => "9999999999"
     parent.should have(1).error_on(:phone)
-    parent.errors[:phone].should == ["has already been taken"]
+    parent.errors[:phone].should match_array(["has already been taken"])
   end
 
   it "validates format of phone" do
     parent = Parent.new :phone => "aaa"
     parent.should have(1).error_on(:phone)
-    parent.errors[:phone].should == ["invalid phone number format"]
+    parent.errors[:phone].should match_array(["invalid phone number format"])
 
     parent = Parent.new :phone => "+011.999.00000"
     parent.should have(1).error_on(:phone)
-    parent.errors[:phone].should == ["invalid phone number format"]
+    parent.errors[:phone].should match_array(["invalid phone number format"])
   end
 
   it "validates uniqueness of mobile" do
     Parent.gen :mobile => "9999999999"
     parent = Parent.new :mobile => "9999999999"
     parent.should have(1).error_on(:mobile)
-    parent.errors[:mobile].should == ["has already been taken"]
+    parent.errors[:mobile].should match_array(["has already been taken"])
   end
 
   it "validates format of mobile" do
     parent = Parent.new :mobile => "aaa"
     parent.should have(1).error_on(:mobile)
-    parent.errors[:mobile].should == ["invalid phone number format"]
+    parent.errors[:mobile].should match_array(["invalid phone number format"])
 
     parent = Parent.new :mobile => "+011.999.00000"
     parent.should have(1).error_on(:mobile)
-    parent.errors[:mobile].should == ["invalid phone number format"]
+    parent.errors[:mobile].should match_array(["invalid phone number format"])
   end
 
   it "validates allows blank for mobile" do
@@ -63,13 +63,13 @@ describe Parent do
     Parent.gen :email => "test@test.com"
     parent = Parent.new :email => "test@test.com"
     parent.should have(1).error_on(:email)
-    parent.errors[:email].should == ["There is an existing Parent associated with these details, please use the 'Look up' to locate the record."]
+    parent.errors[:email].should match_array(["There is an existing Parent associated with these details, please use the 'Look up' to locate the record."])
   end
 
   it "validates format of email" do
     parent = Parent.new :email => "blah.com"
     parent.should have(1).error_on(:email)
-    parent.errors[:email].should == ["format is incorrect"]
+    parent.errors[:email].should match_array(["format is incorrect"])
   end
 
   it "validates allows blank of email" do
@@ -81,13 +81,13 @@ describe Parent do
     Parent.gen :email_2 => "test@test.com"
     parent = Parent.new :email_2 => "test@test.com"
     parent.should have(1).error_on(:email_2)
-    parent.errors[:email_2].should == ["There is an existing Parent associated with these details, please use the 'Look up' to locate the record."]
+    parent.errors[:email_2].should match_array(["There is an existing Parent associated with these details, please use the 'Look up' to locate the record."])
   end
 
   it "validates format of email_2" do
     parent = Parent.new :email_2 => "test@test"
     parent.should have(1).error_on(:email_2)
-    parent.errors[:email_2].should == ["format is incorrect"]
+    parent.errors[:email_2].should match_array(["format is incorrect"])
   end
 
   it "validates allows blank of email_2" do
@@ -129,18 +129,18 @@ describe Parent, ".search" do
 
   it "returns search results based on phone or mobile" do
     parents = Parent.search("123-456-7890")
-    parents.should =~ [@parent1]
+    parents.should match_array([@parent1])
 
     parents = Parent.search("666-777-8888")
-    parents.should =~ [@parent2]
+    parents.should match_array([@parent2])
   end
 
   it "returns search results based on email, email_2, or name" do
     parents = Parent.search("who@example.com")
-    parents.should =~ [@parent1]
+    parents.should match_array([@parent1])
 
     parents = Parent.search("dude")
-    parents.should =~ [@parent2]
+    parents.should match_array([@parent2])
   end
 
   it "returns search results based with state params" do
@@ -154,13 +154,13 @@ describe Parent, ".search" do
     parents.should =~ [parent]
 
     parents = Parent.search("dude", { :state => "CA" })
-    parents.should =~ [@parent2]
+    parents.should match_array([@parent2])
 
     parents = Parent.search("thedude@example.com", { :state => "NV" })
-    parents.should =~ []
+    parents.should match_array([])
 
     parents = Parent.search("thedude@example.com", { :state => "CA" })
-    parents.should =~ [@parent2]
+    parents.should match_array([@parent2])
   end
 end
 
@@ -176,7 +176,7 @@ describe Parent, "#placements" do
 
   it "returns a list of placements" do
     @parent.placements.count.should == 2
-    @parent.placements.should =~ [@placement1, @placement2]
+    @parent.placements.should match_array([@placement1, @placement2])
   end
 
   it "destroy all placements associated to the parent" do
@@ -199,7 +199,7 @@ describe Parent, "#animals" do
 
   it "returns a list of animals" do
     @parent.animals.count.should == 2
-    @parent.animals.should =~ [@animal1, @animal2]
+    @parent.animals.should match_array([@animal1, @animal2])
   end
 end
 
@@ -216,7 +216,7 @@ describe Parent, "#shelters" do
 
   it "returns a list of shelters" do
     @parent.shelters.count.should == 2
-    @parent.shelters.should =~ [@shelter1, @shelter2]
+    @parent.shelters.should match_array([@shelter1, @shelter2])
   end
 end
 
@@ -230,7 +230,7 @@ describe Parent, "#notes" do
 
   it "returns a list of notes" do
     @parent.notes.count.should == 2
-    @parent.notes.should =~ [@note1, @note2]
+    @parent.notes.should match_array([@note1, @note2])
   end
 
   it "destroy all notes associated to the parent" do

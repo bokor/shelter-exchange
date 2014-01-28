@@ -23,7 +23,7 @@ describe Photo do
 
     photo = Photo.gen(:attachable => note)
     photo.should have(1).error
-    photo.errors[:base].should == ["Max number of files exceeded"]
+    photo.errors[:base].should match_array(["Max number of files exceeded"])
   end
 end
 
@@ -57,11 +57,11 @@ describe Photo, ".main_photo" do
   it "returns only the main photos" do
     photo1 = Photo.gen(:is_main_photo => true)
     photo2 = Photo.gen(:is_main_photo => true)
-    photo3 = Photo.gen(:is_main_photo => false)
-    photo4 = Photo.gen(:is_main_photo => false)
+    Photo.gen(:is_main_photo => false)
+    Photo.gen(:is_main_photo => false)
 
     photos = Photo.main_photo
-    photos.should =~ [photo1, photo2]
+    photos.should match_array([photo1, photo2])
   end
 end
 
@@ -70,8 +70,8 @@ describe Photo, ".not_main_photo" do
   it "returns only the main photos" do
     photo1 = Photo.gen(:is_main_photo => false)
     photo2 = Photo.gen(:is_main_photo => false)
-    photo3 = Photo.gen(:is_main_photo => true)
-    photo4 = Photo.gen(:is_main_photo => true)
+    Photo.gen(:is_main_photo => true)
+    Photo.gen(:is_main_photo => true)
 
     photos = Photo.not_main_photo
     photos.should =~ [photo1, photo2]
@@ -100,7 +100,7 @@ end
 describe Photo, "#attachable?" do
 
   it "returns true if the photo has an attachable association" do
-    animal  = Animal.new
+    animal = Animal.new
     photo1 = Photo.new :attachable => animal
     photo2 = Photo.new
 

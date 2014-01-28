@@ -19,7 +19,7 @@ describe Document do
 
     document = Document.gen(:attachable => note)
     document.should have(1).error
-    document.errors[:base].should == ["Max number of files exceeded"]
+    document.errors[:base].should match_array(["Max number of files exceeded"])
   end
 end
 

@@ -7,43 +7,43 @@ describe Account do
   it "requires presence of subdomain" do
     account = Account.new :subdomain => nil
     account.should have(2).error_on(:subdomain)
-    account.errors[:subdomain].should == [
+    account.errors[:subdomain].should match_array([
       "cannot be blank",
       "can only contain letters, numbers, or hyphens.  No spaces allowed!"
-    ]
+    ])
   end
 
   it "requires uniqueness of subdomain" do
     Account.gen(:subdomain => "testing")
     account = Account.new :subdomain => "testing"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["has already been taken"]
+    account.errors[:subdomain].should match_array(["has already been taken"])
   end
 
   it "requires format of subdomain containing only letters, numbers, or hyphens" do
     account = Account.new :subdomain => "testing_testing"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
+    account.errors[:subdomain].should match_array(["can only contain letters, numbers, or hyphens.  No spaces allowed!"])
 
     account = Account.new :subdomain => "testing testing"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["can only contain letters, numbers, or hyphens.  No spaces allowed!"]
+    account.errors[:subdomain].should match_array(["can only contain letters, numbers, or hyphens.  No spaces allowed!"])
   end
 
   it "requires format of subdomain to start with a letter" do
     account = Account.new :subdomain => "007testing"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["has to start and end with a letter"]
+    account.errors[:subdomain].should match_array(["has to start and end with a letter"])
 
     account = Account.new :subdomain => "---testing"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["has to start and end with a letter"]
+    account.errors[:subdomain].should match_array(["has to start and end with a letter"])
   end
 
   it "requires format of subdomain to end with a letter or number" do
     account = Account.new :subdomain => "testing---"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["has to start and end with a letter"]
+    account.errors[:subdomain].should match_array(["has to start and end with a letter"])
 
     account = Account.new :subdomain => "testing007"
     account.should have(0).error_on(:subdomain)
@@ -52,27 +52,27 @@ describe Account do
   it "requires format of subdomain not being a reserved name" do
     account = Account.new :subdomain => "www"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["is reserved and unavailable."]
+    account.errors[:subdomain].should match_array(["is reserved and unavailable."])
 
     account = Account.new :subdomain => "admin"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["is reserved and unavailable."]
+    account.errors[:subdomain].should match_array(["is reserved and unavailable."])
 
     account = Account.new :subdomain => "help"
     account.should have(1).error_on(:subdomain)
-    account.errors[:subdomain].should == ["is reserved and unavailable."]
+    account.errors[:subdomain].should match_array(["is reserved and unavailable."])
   end
 
   it "requires inclusion of document type" do
     account = Account.gen(:document_type => "document_type")
     account.should have(1).error_on(:document_type)
-    account.errors[:document_type].should == ["is not included in the list"]
+    account.errors[:document_type].should match_array(["is not included in the list"])
   end
 
   it "require presence of a document" do
     account = Account.gen(:document => nil)
     account.should have(1).error_on(:document)
-    account.errors[:document].should == ["cannot be blank"]
+    account.errors[:document].should match_array(["cannot be blank"])
   end
 
   context "Before Create" do
@@ -121,7 +121,7 @@ end
 #----------------------------------------------------------------------------
 describe Account, "::DOCUMENT_TYPE" do
   it "contains an array of document type values" do
-    Account::DOCUMENT_TYPE.should == ["501(c)(3) determination letter", "990 tax form", "Your adoption contract"]
+    Account::DOCUMENT_TYPE.should match_array(["501(c)(3) determination letter", "990 tax form", "Your adoption contract"])
   end
 end
 
@@ -140,7 +140,7 @@ describe Account, "#shelters" do
 
   it "has many shelters" do
     @account.shelters.count.should == 2
-    @account.shelters.should       =~ [@shelter1, @shelter2]
+    @account.shelters.should match_array([@shelter1, @shelter2])
   end
 
   it "destroys the shelters when an account is deleted" do
@@ -161,7 +161,7 @@ describe Account, "#users" do
 
   it "has many users" do
     @account.users.count.should == 2
-    @account.users.should =~ [@user1, @user2]
+    @account.users.should match_array([@user1, @user2])
   end
 
   it "destroys the users when an account is deleted" do

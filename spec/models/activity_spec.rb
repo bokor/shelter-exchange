@@ -31,7 +31,7 @@ describe Activity, ".recent" do
 
     results = Activity.recent(@shelter)
     results.count.should == 5
-    results.collect(&:class).collect(&:name).should == ["Animal", "Alert", "Task", "Animal", "Task"]
+    results.collect(&:class).collect(&:name).should match_array(["Animal", "Alert", "Task", "Animal", "Task"])
   end
 
   it "returns a total of 20 of the recent (Tasks, Alerts, Animals)" do

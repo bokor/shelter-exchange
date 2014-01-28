@@ -9,13 +9,13 @@ describe Note do
   it "requires presence of title" do
     note = Note.new :title => nil
     note.should have(1).error_on(:title)
-    note.errors[:title].should == ["cannot be blank"]
+    note.errors[:title].should match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     note = Note.new :category => "#{Note::CATEGORIES[0]} blah"
     note.should have(1).error_on(:category)
-    note.errors[:category].should == ["needs to be selected"]
+    note.errors[:category].should match_array(["needs to be selected"])
   end
 end
 
@@ -29,9 +29,9 @@ end
 
 describe Note, "::CATEGORIES" do
   it "contains a default list of Categories" do
-    Note::CATEGORIES.should == [
+    Note::CATEGORIES.should match_array([
       "general", "medical", "behavioral", "intake"
-    ]
+    ])
   end
 end
 
@@ -42,10 +42,10 @@ describe Note, ".without_hidden" do
   it "returns notes that aren't hidden" do
     note1 = Note.gen
     note2 = Note.gen
-    note3 = Note.gen :hidden => true
+    Note.gen :hidden => true
 
     notes = Note.without_hidden
-    notes.should =~ [note1, note2]
+    notes.should match_array([note1, note2])
   end
 end
 
@@ -69,10 +69,10 @@ end
 describe Note, "#notable" do
 
   it "belongs to a notable object" do
-    item   = Item.new
+    item = Item.new
     animal = Animal.new
-    note1  = Note.new :notable => item
-    note2  = Note.new :notable => animal
+    note1 = Note.new :notable => item
+    note2 = Note.new :notable => animal
 
     note1.notable.should == item
     note1.notable.should be_instance_of(Item)
@@ -85,18 +85,18 @@ end
 describe Note, "#documents" do
 
   before do
-    @note      = Note.gen
+    @note = Note.gen
     @document1 = Document.gen \
       :attachable => @note,
-      :document   => File.open("#{Rails.root}/spec/data/documents/testing.pdf")
+      :document => File.open("#{Rails.root}/spec/data/documents/testing.pdf")
     @document2 = Document.gen \
       :attachable => @note,
-      :document   => File.open("#{Rails.root}/spec/data/documents/testing.docx")
+      :document => File.open("#{Rails.root}/spec/data/documents/testing.docx")
   end
 
   it "has many documents" do
     @note.documents.count.should == 2
-    @note.documents.should       =~ [@document1, @document2]
+    @note.documents.should match_array([@document1, @document2])
   end
 
   it "destroys the documents when a note is deleted" do
@@ -109,7 +109,7 @@ end
 describe Note, "#notable?" do
 
   it "returns true if the note has an notable association" do
-    item  = Item.new
+    item = Item.new
     note1 = Note.new :notable => item
     note2 = Note.new
 

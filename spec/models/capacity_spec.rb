@@ -5,7 +5,7 @@ describe Capacity do
   it "requires presence of animal type id" do
     capacity = Capacity.new :animal_type_id => nil
     capacity.should have(1).error_on(:animal_type_id)
-    capacity.errors[:animal_type_id].should == ["needs to be selected"]
+    capacity.errors[:animal_type_id].should match_array(["needs to be selected"])
   end
 
   it "requires uniqueness scoped by shelter id of animal type id" do
@@ -17,13 +17,13 @@ describe Capacity do
     capacity1.should have(0).errors
 
     capacity2.should have(1).error_on(:animal_type_id)
-    capacity2.errors[:animal_type_id].should == ["is already in use"]
+    capacity2.errors[:animal_type_id].should match_array(["is already in use"])
   end
 
   it "requires a number for max capacity" do
     capacity = Capacity.new :max_capacity => "abc"
     capacity.should have(1).error_on(:max_capacity)
-    capacity.errors[:max_capacity].should == ["requires a number"]
+    capacity.errors[:max_capacity].should match_array(["requires a number"])
   end
 end
 
@@ -48,7 +48,7 @@ describe Capacity, "#animal_type" do
 
   it "belongs to a animal type" do
     animal_type = AnimalType.new
-    capacity    = Capacity.new :animal_type => animal_type
+    capacity = Capacity.new :animal_type => animal_type
 
     capacity.animal_type.should == animal_type
   end
@@ -61,9 +61,9 @@ end
 
 describe Capacity, "#animal_count" do
   it "returns a count of the active animals per animal type" do
-    shelter     = Shelter.gen
+    shelter = Shelter.gen
     animal_type = AnimalType.gen
-    capacity    = Capacity.gen :animal_type => animal_type, :shelter => shelter
+    capacity = Capacity.gen :animal_type => animal_type, :shelter => shelter
 
     AnimalStatus::STATUSES.values.each do |status|
       Animal.gen :animal_type => animal_type, :shelter => shelter, :animal_status_id => status

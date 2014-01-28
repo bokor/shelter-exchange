@@ -18,7 +18,7 @@ describe LogoUploader do
 
   describe "#extension_white_list" do
     it "has an extension white list" do
-      @uploader.extension_white_list.should =~ ["jpg", "jpeg", "gif", "png"]
+      @uploader.extension_white_list.should match_array(["jpg", "jpeg", "gif", "png"])
     end
   end
 

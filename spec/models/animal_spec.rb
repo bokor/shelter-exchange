@@ -13,29 +13,29 @@ describe Animal do
   it "validates presence of name" do
     animal = Animal.new :name => nil
     animal.should have(1).error_on(:name)
-    animal.errors[:name].should == ["cannot be blank"]
+    animal.errors[:name].should match_array(["cannot be blank"])
   end
 
   it "validates presence of animal type id" do
     animal = Animal.new :animal_type_id => nil
     animal.should have(1).error_on(:animal_type_id)
-    animal.errors[:animal_type_id].should == ["needs to be selected"]
+    animal.errors[:animal_type_id].should match_array(["needs to be selected"])
   end
 
   it "validates presence of animal status id" do
     animal = Animal.new :animal_status_id => nil
     animal.should have(1).error_on(:animal_status_id)
-    animal.errors[:animal_status_id].should == ["needs to be selected"]
+    animal.errors[:animal_status_id].should match_array(["needs to be selected"])
   end
 
   it "validates breed of primary breed" do
     animal = Animal.gen :primary_breed => nil, :animal_type_id => 1
     animal.should have(1).error_on(:primary_breed)
-    animal.errors[:primary_breed].should == ["cannot be blank"]
+    animal.errors[:primary_breed].should match_array(["cannot be blank"])
 
     animal = Animal.new :primary_breed => "aaa", :animal_type_id => 1
     animal.should have(1).error_on(:primary_breed)
-    animal.errors[:primary_breed].should == ["must contain a valid breed name"]
+    animal.errors[:primary_breed].should match_array(["must contain a valid breed name"])
   end
 
   it "validates breed of secondary breed" do
@@ -44,19 +44,19 @@ describe Animal do
 
     animal = Animal.new :is_mix_breed => true, :secondary_breed => "aaa", :animal_type_id => 1
     animal.should have(1).error_on(:secondary_breed)
-    animal.errors[:secondary_breed].should == ["must contain a valid breed name"]
+    animal.errors[:secondary_breed].should match_array(["must contain a valid breed name"])
   end
 
   it "validates presence of sex" do
     animal = Animal.new :sex => nil
     animal.should have(1).error_on(:sex)
-    animal.errors[:sex].should == ["cannot be blank"]
+    animal.errors[:sex].should match_array(["cannot be blank"])
   end
 
   it "validates presence of age if status is active" do
     animal = Animal.new :age => nil, :animal_status_id => 1
     animal.should have(1).error_on(:age)
-    animal.errors[:age].should == ["needs to be selected"]
+    animal.errors[:age].should match_array(["needs to be selected"])
 
     animal = Animal.new :age => nil, :animal_status_id => 2
     animal.should have(0).error_on(:age)
@@ -65,7 +65,7 @@ describe Animal do
   it "validates presence of size if status is active" do
     animal = Animal.new :size => nil, :animal_status_id => 1
     animal.should have(1).error_on(:size)
-    animal.errors[:size].should == ["needs to be selected"]
+    animal.errors[:size].should match_array(["needs to be selected"])
 
     animal = Animal.new :size => nil, :animal_status_id => 2
     animal.should have(0).error_on(:size)
@@ -77,9 +77,9 @@ describe Animal do
 
     animal = Animal.new :microchip => "microchip", :shelter => shelter
     animal.should have(1).error_on(:microchip)
-    animal.errors[:microchip].should == [
+    animal.errors[:microchip].should match_array([
       "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record."
-    ]
+    ])
 
     # Another Shelter
     animal = Animal.new :microchip => "microchip"
@@ -94,13 +94,13 @@ describe Animal do
   it "validates presence of special needs" do
     animal = Animal.new :has_special_needs => true
     animal.should have(1).error_on(:special_needs)
-    animal.errors[:special_needs].should == ["cannot be blank"]
+    animal.errors[:special_needs].should match_array(["cannot be blank"])
   end
 
   it "validates video url format of video url" do
     animal = Animal.new :video_url => "http://vimeo.com/1234"
     animal.should have(1).error_on(:video_url)
-    animal.errors[:video_url].should == ["incorrect You Tube URL format"]
+    animal.errors[:video_url].should match_array(["incorrect You Tube URL format"])
   end
 
   it "validates allows blank for video url" do
@@ -116,7 +116,7 @@ describe Animal do
       :date_of_birth_year => today.year
     )
     animal.should have(1).error_on(:date_of_birth)
-    animal.errors[:date_of_birth].should == ["has to be before today's date"]
+    animal.errors[:date_of_birth].should match_array(["has to be before today's date"])
   end
 
   it "validates date format of date of birth invalid date" do
@@ -127,7 +127,7 @@ describe Animal do
       :date_of_birth_year => nil
     )
     animal.should have(1).error_on(:date_of_birth)
-    animal.errors[:date_of_birth].should == ["is an invalid date format"]
+    animal.errors[:date_of_birth].should match_array(["is an invalid date format"])
   end
 
   it "validates date format of arrival date invalid date" do
@@ -138,7 +138,7 @@ describe Animal do
       :arrival_date_year => nil
     )
     animal.should have(1).error_on(:arrival_date)
-    animal.errors[:arrival_date].should == ["is an invalid date format"]
+    animal.errors[:arrival_date].should match_array(["is an invalid date format"])
   end
 
   it "validates date format of euthanasia date invalid date" do
@@ -149,7 +149,7 @@ describe Animal do
       :euthanasia_date_year => nil
     )
     animal.should have(1).error_on(:euthanasia_date)
-    animal.errors[:euthanasia_date].should == ["is an invalid date format"]
+    animal.errors[:euthanasia_date].should match_array(["is an invalid date format"])
   end
 
   context "Nested Attributes" do
@@ -160,34 +160,34 @@ describe Animal do
 
     it "accepts nested attributes for photos" do
       Animal.count.should == 0
-      Photo.count.should   == 0
+      Photo.count.should == 0
 
       Animal.gen :photos_attributes => [{:image => @image}]
 
+      Animal.count.should == 1
       Photo.count.should == 1
-      Photo.count.should   == 1
     end
 
     it "rejects nested attributes for photos" do
       Animal.count.should == 0
-      Photo.count.should   == 0
+      Photo.count.should == 0
 
       Animal.gen :photos_attributes => [{:image => nil}]
 
       Animal.count.should == 1
-      Photo.count.should   == 0
+      Photo.count.should == 0
     end
 
     it "destroys nested photos" do
       animal = Animal.gen :photos_attributes => [{:image => @image}]
 
       Animal.count.should == 1
-      Photo.count.should   == 1
+      Photo.count.should == 1
 
       animal.destroy
 
       Animal.count.should == 0
-      Photo.count.should   == 0
+      Photo.count.should == 0
     end
   end
 
@@ -243,8 +243,8 @@ describe Animal do
   context "After Validation" do
 
     it "updates the breed names to exactly match the ones in the database" do
-      primary_breed = Breed.gen(:name => "Labrador Retriever")
-      secondary_breed = Breed.gen(:name => "Border Collie")
+      Breed.gen(:name => "Labrador Retriever")
+      Breed.gen(:name => "Border Collie")
 
       animal = Animal.gen(
         :primary_breed => " labrador retriever    ",
@@ -262,7 +262,7 @@ describe Animal do
       Animal.count.should == 0
       StatusHistory.count.should == 0
 
-      animal = Animal.gen
+      Animal.gen
 
       Animal.count.should == 1
       StatusHistory.count.should == 1
@@ -285,7 +285,7 @@ describe Animal do
       StatusHistory.count.should == 2
 
       histories = StatusHistory.all
-      histories.map(&:reason).should == ["New Record", "Status Updated"]
+      histories.map(&:reason).should match_array(["New Record", "Status Updated"])
     end
 
     it "creates status history when the shelter has changed" do
@@ -316,13 +316,13 @@ end
 #----------------------------------------------------------------------------
 describe Animal, "::SEX" do
   it "contains a default list of genders" do
-    Animal::SEX.should == ["male", "female"]
+    Animal::SEX.should match_array(["male", "female"])
   end
 end
 
 describe Animal, "::AGES" do
   it "contains a default list of ages" do
-    Animal::AGES.should == ["baby", "young", "adult", "senior"]
+    Animal::AGES.should match_array(["baby", "young", "adult", "senior"])
   end
 end
 
@@ -345,7 +345,7 @@ describe Animal, ".latest" do
     animal1 = Animal.gen(:animal_status_id => 1)
     animal2 = Animal.gen(:animal_status_id => 1)
     animal3 = Animal.gen(:animal_status_id => 1)
-    animal4 = Animal.gen(:animal_status_id => 2)
+    Animal.gen(:animal_status_id => 2)
 
     animal1.update_attribute(:status_change_date, Date.today)
     animal2.update_attribute(:status_change_date, Date.today - 2.days)
@@ -354,7 +354,7 @@ describe Animal, ".latest" do
     animals = Animal.latest(:available_for_adoption, 4)
 
     animals.count.should == 3
-    animals.should =~ [animal1, animal3, animal2]
+    animals.should match_array([animal1, animal3, animal2])
   end
 end
 
@@ -363,12 +363,12 @@ describe Animal, ".auto_complete" do
   it "returns the animals like the name parameter" do
     animal1 = Animal.gen(:name => "Doggie")
     animal2 = Animal.gen(:name => "Dog")
-    animal3 = Animal.gen(:name => "Cat")
+    Animal.gen(:name => "Cat")
 
     animals = Animal.auto_complete("dog")
 
     animals.count.should == 2
-    animals.should =~ [animal1, animal2]
+    animals.should match_array([animal1, animal2])
   end
 end
 
@@ -383,30 +383,30 @@ describe Animal, ".search" do
       animals = Animal.search("")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
   end
 
   context "with numeric search term" do
 
     it "returns animal that matches id" do
-       animal1 = Animal.gen :id => 1234567890
+       Animal.gen :id => 1234567890
        animal2 = Animal.gen :id => 1234567
 
        animals = Animal.search("1234567")
 
        animals.count.should == 1
-       animals.should == [animal2]
+       animals.should match_array([animal2])
      end
 
     it "returns animal that matches microchip" do
-       animal1 = Animal.gen :microchip => 1234567890
+       Animal.gen :microchip => 1234567890
        animal2 = Animal.gen :microchip => 1234567
 
        animals = Animal.search("1234567")
 
        animals.count.should == 1
-       animals.should == [animal2]
+       animals.should match_array([animal2])
      end
   end
 
@@ -415,56 +415,56 @@ describe Animal, ".search" do
     it "returns all animals with the name like" do
       animal1 = Animal.gen :name => "DoggieTown"
       animal2 = Animal.gen :name => "DogTown"
-      animal3 = Animal.gen :name => "KittyTown"
+      Animal.gen :name => "KittyTown"
 
       animals = Animal.search("dog")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
 
     it "returns all animals with the microchip like" do
       animal1 = Animal.gen :microchip => "DoggieTown"
       animal2 = Animal.gen :microchip => "DogTown"
-      animal3 = Animal.gen :microchip => "KittyTown"
+      Animal.gen :microchip => "KittyTown"
 
       animals = Animal.search("dog")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
 
     it "returns all animals with the description like" do
       animal1 = Animal.gen :description => "DoggieTown"
       animal2 = Animal.gen :description => "DogTown"
-      animal3 = Animal.gen :description => "KittyTown"
+      Animal.gen :description => "KittyTown"
 
       animals = Animal.search("dog")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
 
     it "returns all animals with the primary breed like" do
       animal1 = Animal.gen :primary_breed => "DoggieTown"
       animal2 = Animal.gen :primary_breed => "DogTown"
-      animal3 = Animal.gen :primary_breed => "KittyTown"
+      Animal.gen :primary_breed => "KittyTown"
 
       animals = Animal.search("dog")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
 
     it "returns all animals with the secondary breed like" do
       animal1 = Animal.gen :secondary_breed => "DoggieTown"
       animal2 = Animal.gen :secondary_breed => "DogTown"
-      animal3 = Animal.gen :secondary_breed => "KittyTown"
+      Animal.gen :secondary_breed => "KittyTown"
 
       animals = Animal.search("dog")
 
       animals.count.should == 2
-      animals.should =~ [animal1, animal2]
+      animals.should match_array([animal1, animal2])
     end
   end
 end
@@ -478,7 +478,7 @@ describe Animal, ".recent_activity" do
 
     animals = Animal.recent_activity(10)
 
-    animals.should == [animal2, animal1, animal3]
+    animals.should match_array([animal2, animal1, animal3])
   end
 end
 
@@ -486,22 +486,22 @@ describe Animal, ".api_lookup" do
 
   it "returns a list of available animals because no status provided" do
     animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 2
-    animal3 = Animal.gen :animal_status_id => 16
+    animal2 = Animal.gen :animal_status_id => 16
+    Animal.gen :animal_status_id => 2
 
     animals = Animal.api_lookup(nil, nil)
 
-    animals.should == [animal1, animal3]
+    animals.should match_array([animal1, animal2])
   end
 
   it "returns a list of animals per statuses provided" do
-    animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 2
-    animal3 = Animal.gen :animal_status_id => 16
+    animal1 = Animal.gen :animal_status_id => 2
+    Animal.gen :animal_status_id => 1
+    Animal.gen :animal_status_id => 16
 
     animals = Animal.api_lookup(nil, [2])
 
-    animals.should == [animal2]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals per types provided" do
@@ -509,25 +509,25 @@ describe Animal, ".api_lookup" do
     type2 = AnimalType.gen
 
     animal1 = Animal.gen :animal_status_id => 1, :animal_type => type1
-    animal2 = Animal.gen :animal_status_id => 2, :animal_type => type1
-    animal3 = Animal.gen :animal_status_id => 16, :animal_type => type2
+    Animal.gen :animal_status_id => 2, :animal_type => type1
+    Animal.gen :animal_status_id => 16, :animal_type => type2
 
     animals = Animal.api_lookup([type1.id], nil)
 
-    animals.should == [animal1]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals per statuses and types provided" do
     type1 = AnimalType.gen
     type2 = AnimalType.gen
 
-    animal1 = Animal.gen :animal_status_id => 1, :animal_type => type1
-    animal2 = Animal.gen :animal_status_id => 2, :animal_type => type1
-    animal3 = Animal.gen :animal_status_id => 16, :animal_type => type2
+    animal1 = Animal.gen :animal_status_id => 2, :animal_type => type1
+    Animal.gen :animal_status_id => 1, :animal_type => type1
+    Animal.gen :animal_status_id => 16, :animal_type => type2
 
     animals = Animal.api_lookup([type1.id], [2])
 
-    animals.should == [animal2]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals ordered by euthanasia_date" do
@@ -549,7 +549,7 @@ describe Animal, ".api_lookup" do
 
     animals = Animal.api_lookup(nil, nil)
 
-    animals.should == [animal2, animal1, animal3]
+    animals.should match_array([animal2, animal1, animal3])
   end
 end
 
@@ -570,12 +570,12 @@ describe Animal, ".community_animals" do
 
   it "returns filtered animal by shelter ids" do
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id])
-    animals.should =~ [
+    animals.should match_array([
       @available_kill,
       @pending_kill,
       @available_no_kill,
       @pending_no_kill
-    ]
+    ])
   end
 
   it "returns a sorted list of animals" do
@@ -600,7 +600,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:euthanasia_date, Date.today)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@available_kill, @pending_kill]
+    animals.should match_array([@available_kill, @pending_kill])
   end
 
   it "returns filtered animal by special needs" do
@@ -612,7 +612,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:has_special_needs, false)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@available_kill]
+    animals.should match_array([@available_kill])
   end
 
   it "returns filtered animal by animal type" do
@@ -624,7 +624,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:animal_type_id, 1)
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@available_kill, @pending_kill, @available_no_kill]
+    animals.should match_array([@available_kill, @pending_kill, @available_no_kill])
   end
 
   it "returns filtered animal by breed" do
@@ -636,7 +636,7 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:secondary_breed, "lab")
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@available_kill, @pending_kill, @available_no_kill]
+    animals.should match_array([@available_kill, @pending_kill, @available_no_kill])
   end
 
   it "returns filtered animal by sex" do
@@ -650,14 +650,14 @@ describe Animal, ".community_animals" do
     @adopted_no_kill.update_column(:sex, "male")
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@available_kill, @available_no_kill]
+    animals.should match_array([@available_kill, @available_no_kill])
   end
 
   it "returns filtered animal by animal statuses" do
     filters = { :animal_status => "2" }
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
-    animals.should =~ [@adopted_kill, @adopted_no_kill]
+    animals.should match_array([@adopted_kill, @adopted_no_kill])
   end
 end
 
@@ -665,21 +665,21 @@ describe Animal, ".search_by_name" do
 
   it "returns an animal based on the id" do
     animal1 = Animal.gen
-    animal2 = Animal.gen
+    Animal.gen
 
     animals = Animal.search_by_name(animal1.id.to_s)
     animals.count.should == 1
-    animals.should == [animal1]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals based on the name" do
     animal1 = Animal.gen :name => "doggie"
     animal2 = Animal.gen :name => "dog"
-    animal3 = Animal.gen :name => "kittie"
+    Animal.gen :name => "kittie"
 
     animals = Animal.search_by_name("dog")
     animals.count.should == 2
-    animals.should =~ [animal1, animal2]
+    animals.should match_array([animal1, animal2])
   end
 end
 
@@ -688,21 +688,21 @@ describe Animal, ".filter_by_type_status" do
   it "returns animals that are only active" do
     animal1 = Animal.gen :animal_status_id => 1
     animal2 = Animal.gen :animal_status_id => 3
-    animal3 = Animal.gen :animal_status_id => 2
+    Animal.gen :animal_status_id => 2
 
     animals = Animal.filter_by_type_status(nil, "active")
     animals.count.should == 2
-    animals.should =~ [animal1, animal2]
+    animals.should match_array([animal1, animal2])
   end
 
   it "returns animals that are only non-active" do
-    animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 3
-    animal3 = Animal.gen :animal_status_id => 2
+    animal1 = Animal.gen :animal_status_id => 2
+    Animal.gen :animal_status_id => 1
+    Animal.gen :animal_status_id => 3
 
     animals = Animal.filter_by_type_status(nil, "non_active")
     animals.count.should == 1
-    animals.should =~ [animal3]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals based on the type" do
@@ -710,22 +710,22 @@ describe Animal, ".filter_by_type_status" do
     animal_type2 = AnimalType.gen
 
     animal1 = Animal.gen :animal_type => animal_type1
-    animal2 = Animal.gen :animal_type => animal_type2
-    animal3 = Animal.gen :animal_type => animal_type1
+    animal2 = Animal.gen :animal_type => animal_type1
+    Animal.gen :animal_type => animal_type2
 
     animals = Animal.filter_by_type_status(animal_type1.id, nil)
     animals.count.should == 2
-    animals.should =~ [animal1, animal3]
+    animals.should match_array([animal1, animal2])
   end
 
   it "returns a list of animals based on the status" do
-    animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 3
-    animal3 = Animal.gen :animal_status_id => 2
+    animal1 = Animal.gen :animal_status_id => 3
+    Animal.gen :animal_status_id => 1
+    Animal.gen :animal_status_id => 2
 
     animals = Animal.filter_by_type_status(nil, 3)
     animals.count.should == 1
-    animals.should =~ [animal2]
+    animals.should match_array([animal1])
   end
 
   it "returns a list of animals based on the type and status" do
@@ -733,12 +733,12 @@ describe Animal, ".filter_by_type_status" do
     animal_type2 = AnimalType.gen
 
     animal1 = Animal.gen :animal_type => animal_type1, :animal_status_id => 1
-    animal2 = Animal.gen :animal_type => animal_type2, :animal_status_id => 2
-    animal3 = Animal.gen :animal_type => animal_type1, :animal_status_id => 3
+    Animal.gen :animal_type => animal_type2, :animal_status_id => 2
+    Animal.gen :animal_type => animal_type1, :animal_status_id => 3
 
     animals = Animal.filter_by_type_status(animal_type1.id, 1)
     animals.count.should == 1
-    animals.should =~ [animal1]
+    animals.should match_array([animal1])
   end
 end
 
@@ -748,13 +748,13 @@ describe Animal, ".count_by_type" do
     type1 = AnimalType.gen
     type2 = AnimalType.gen
 
-    animal1 = Animal.gen :animal_type => type1
-    animal2 = Animal.gen :animal_type => type2
-    animal3 = Animal.gen :animal_type => type1
+    Animal.gen :animal_type => type1
+    Animal.gen :animal_type => type2
+    Animal.gen :animal_type => type1
 
     results = Animal.count_by_type
 
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "count" => 2,
         "name" => type1.name
@@ -764,7 +764,7 @@ describe Animal, ".count_by_type" do
         "count" => 1,
         "name" => type2.name
       }
-    }]
+    }])
   end
 end
 
@@ -774,13 +774,13 @@ describe Animal, ".count_by_status" do
     status1 = AnimalStatus.gen
     status2 = AnimalStatus.gen
 
-    animal1 = Animal.gen :animal_status => status1
-    animal2 = Animal.gen :animal_status => status2
-    animal3 = Animal.gen :animal_status => status1
+    Animal.gen :animal_status => status1
+    Animal.gen :animal_status => status2
+    Animal.gen :animal_status => status1
 
     results = Animal.count_by_status
 
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "count" => 2,
         "name" => status1.name
@@ -790,7 +790,7 @@ describe Animal, ".count_by_status" do
         "count" => 1,
         "name" => status2.name
       }
-    }]
+    }])
   end
 end
 
@@ -806,7 +806,7 @@ describe Animal, ".current_month" do
     animal3.update_column(:status_change_date, Date.today - 1.day)
 
     animals = Animal.current_month
-    animals.should =~ [animal1, animal3]
+    animals.should match_array([animal1, animal3])
   end
 end
 
@@ -821,7 +821,7 @@ describe Animal, ".year_to_date" do
     animal3.update_column(:status_change_date, Date.today - 1.day)
 
     animals = Animal.year_to_date
-    animals.should =~ [animal1, animal3]
+    animals.should match_array([animal1, animal3])
   end
 end
 
@@ -836,25 +836,25 @@ describe Animal, ".type_by_month_year" do
     animal1 = Animal.gen :shelter => shelter, :animal_type => type1
     animal2 = Animal.gen :shelter => shelter, :animal_type => type2
 
-    history1 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
       :created_at => DateTime.parse("July 1, 2013")
     )
-    history2 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter,
       :animal => animal2,
       :animal_status_id => 1,
       :created_at => DateTime.parse("July 1, 2013")
     )
-    history3 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
       :created_at => DateTime.parse("July 1, 2013")
     )
-    history4 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
@@ -862,7 +862,7 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, nil)
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "count" => 2,
         "name" => type1.name
@@ -872,7 +872,7 @@ describe Animal, ".type_by_month_year" do
         "count" => 1,
         "name" => type2.name
       }
-    }]
+    }])
   end
 
   it "returns a count and animal type for the month and year based on a shelter id" do
@@ -885,13 +885,13 @@ describe Animal, ".type_by_month_year" do
     animal1 = Animal.gen :shelter => shelter1, :animal_type => type1
     animal2 = Animal.gen :shelter => shelter2, :animal_type => type2
 
-    history1 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
       :created_at => DateTime.parse("July 1, 2013")
     )
-    history3 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
@@ -899,12 +899,12 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", shelter1.id, nil)
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "count" => 1,
         "name" => type1.name
       }
-    }]
+    }])
   end
 
   it "returns a count and animal type for the month and year based on a state" do
@@ -917,13 +917,13 @@ describe Animal, ".type_by_month_year" do
     animal1 = Animal.gen :shelter => shelter1, :animal_type => type1
     animal2 = Animal.gen :shelter => shelter2, :animal_type => type2
 
-    history1 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
       :created_at => DateTime.parse("July 1, 2013")
     )
-    history3 = StatusHistory.gen(
+    StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
@@ -931,12 +931,12 @@ describe Animal, ".type_by_month_year" do
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, "CA")
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "count" => 1,
         "name" => type2.name
       }
-    }]
+    }])
   end
 end
 
@@ -952,7 +952,7 @@ describe Animal, ".intake_totals_by_month" do
     Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013")
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "april" => 0,
         "august" => 0,
@@ -967,7 +967,7 @@ describe Animal, ".intake_totals_by_month" do
         "october" => 0,
         "september" => 2
       }
-    }]
+    }])
   end
 
   it "returns counts for a year with animal types" do
@@ -983,7 +983,7 @@ describe Animal, ".intake_totals_by_month" do
     Animal.gen :animal_type => type1, :created_at => DateTime.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013", true)
-    MultiJson.load(results.to_json).should =~ [{
+    MultiJson.load(results.to_json).should match_array([{
       "animal" => {
         "april" => 0, "august" => 0, "december" => 0, "february" => 0, "january" => 0, "july" => 2,
         "june" => 0, "march" => 0, "may" => 0, "november" => 1, "october" => 0, "september" => 1
@@ -993,7 +993,7 @@ describe Animal, ".intake_totals_by_month" do
         "april" => 0, "august" => 0, "december" => 0, "february" => 0, "january" => 1, "july" => 0,
         "june" => 0, "march" => 0, "may" => 1, "november" => 0, "october" => 0, "september" => 1
       }
-    }]
+    }])
   end
 end
 
@@ -1059,7 +1059,7 @@ describe Animal, "#placements" do
 
   it "returns a list of placements" do
     @animal.placements.count.should == 2
-    @animal.placements.should =~ [@placement1, @placement2]
+    @animal.placements.should match_array([@placement1, @placement2])
   end
 
   it "destroy all placements associated to the animal" do
@@ -1079,7 +1079,7 @@ describe Animal, "#notes" do
 
   it "returns a list of notes" do
     @animal.notes.count.should == 2
-    @animal.notes.should =~ [@note1, @note2]
+    @animal.notes.should match_array([@note1, @note2])
   end
 
   it "destroy all notes associated to the animal" do
@@ -1099,7 +1099,7 @@ describe Animal, "#alerts" do
 
   it "returns a list of alerts" do
     @animal.alerts.count.should == 2
-    @animal.alerts.should =~ [@alert1, @alert2]
+    @animal.alerts.should match_array([@alert1, @alert2])
   end
 
   it "destroy all alerts associated to the animal" do
@@ -1119,7 +1119,7 @@ describe Animal, "#tasks" do
 
   it "returns a list of tasks" do
     @animal.tasks.count.should == 2
-    @animal.tasks.should =~ [@task1, @task2]
+    @animal.tasks.should match_array([@task1, @task2])
   end
 
   it "destroy all tasks associated to the animal" do
@@ -1139,7 +1139,7 @@ describe Animal, "#transfers" do
 
   it "returns a list of transfers" do
     @animal.transfers.count.should == 2
-    @animal.transfers.should =~ [@transfer1, @transfer2]
+    @animal.transfers.should match_array([@transfer1, @transfer2])
   end
 
   it "destroy all transfers associated to the animal" do
@@ -1179,7 +1179,7 @@ describe Animal, "#photos" do
 
   it "returns a list of photos" do
     @animal.photos.count.should == 2
-    @animal.photos.should =~ [@photo1, @photo2]
+    @animal.photos.should match_array([@photo1, @photo2])
   end
 
   it "destroy all photos associated to the animal" do

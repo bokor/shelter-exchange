@@ -5,7 +5,7 @@ describe User do
   it "requires presence of name" do
     user = User.new :name => nil
     user.should have(1).error_on(:name)
-    user.errors[:name].should == ["cannot be blank"]
+    user.errors[:name].should match_array(["cannot be blank"])
   end
 
   context "Before Create" do
@@ -23,7 +23,7 @@ end
 #----------------------------------------------------------------------------
 describe User, "::ROLES" do
   it "contains a default list of roles" do
-    User::ROLES.should == ["user", "admin"]
+    User::ROLES.should match_array(["user", "admin"])
   end
 end
 
@@ -39,41 +39,41 @@ describe User, ".owner" do
 
   it "returns all of the users that are role owner" do
     user1 = User.gen :role => "owner"
-    user2 = User.gen :role => "admin"
-    user3 = User.gen :role => "user"
+    User.gen :role => "admin"
+    User.gen :role => "user"
 
     users = User.owner.all
 
     users.count.should == 1
-    users.should       == [user1]
+    users.should match_array([user1])
   end
 end
 
 describe User, ".admin" do
 
   it "returns all of the users that are role admin" do
-    user1 = User.gen :role => "owner"
-    user2 = User.gen :role => "admin"
-    user3 = User.gen :role => "user"
+    user1 = User.gen :role => "admin"
+    User.gen :role => "owner"
+    User.gen :role => "user"
 
     users = User.admin.all
 
     users.count.should == 1
-    users.should       == [user2]
+    users.should match_array([user1])
   end
 end
 
 describe User, ".default" do
 
   it "returns all of the users that are role user" do
-    user1 = User.gen :role => "owner"
-    user2 = User.gen :role => "admin"
-    user3 = User.gen :role => "user"
+    user1 = User.gen :role => "user"
+    User.gen :role => "owner"
+    User.gen :role => "admin"
 
     users = User.default.all
 
     users.count.should == 1
-    users.should       == [user3]
+    users.should match_array([user1])
   end
 end
 
@@ -86,12 +86,12 @@ describe User, ".admin_list" do
     shelter2 = Shelter.gen(:name => "apples")
     user2 = User.gen(:name => "saver", :email => "saver@se.test")
 
-    account1 = Account.gen(
+    Account.gen(
       :users => [user1],
       :shelters => [shelter1]
     )
 
-    account2 = Account.gen(
+    Account.gen(
       :users => [user2],
       :shelters => [shelter2]
     )
@@ -118,7 +118,7 @@ describe User, ".find_for_authentication" do
 
   it "returns a user that matches the authentication criteria" do
     account = Account.gen
-    user    = account.users.first
+    user = account.users.first
 
     authenicated_user = User.find_for_authentication(:subdomain => account.subdomain)
     authenicated_user.should == user
@@ -219,14 +219,14 @@ describe User, "#shelter" do
   it "should have many shelters through an account" do
     shelter1 = Shelter.gen
     shelter2 = Shelter.gen
-    user     = User.gen
+    user = User.gen
 
-    account  = Account.gen(
+    Account.gen(
       :shelters => [shelter1, shelter2],
       :users => [user]
     )
 
-    user.shelters.should =~ [shelter1, shelter2]
+    user.shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -252,21 +252,21 @@ describe User, "#is?(role)" do
     user = User.new :role => "owner"
     user.is?(:owner).should == true
     user.is?(:admin).should == false
-    user.is?(:user).should  == false
+    user.is?(:user).should == false
   end
 
   it "returns true if user is admin" do
     user = User.new :role => "admin"
     user.is?(:owner).should == false
     user.is?(:admin).should == true
-    user.is?(:user).should  == false
+    user.is?(:user).should == false
   end
 
   it "returns true if user is user" do
     user = User.new :role => "user"
     user.is?(:owner).should == false
     user.is?(:admin).should == false
-    user.is?(:user).should  == true
+    user.is?(:user).should == true
   end
 end
 

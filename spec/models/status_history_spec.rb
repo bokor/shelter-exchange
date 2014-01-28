@@ -19,10 +19,10 @@ describe StatusHistory, ".create_with" do
 
     StatusHistory.count.should == 1
 
-    status_history.shelter_id.should       == 1
-    status_history.animal_id.should        == 2
+    status_history.shelter_id.should == 1
+    status_history.animal_id.should == 2
     status_history.animal_status_id.should == 3
-    status_history.reason.should           == "testing"
+    status_history.reason.should == "testing"
   end
 end
 
@@ -36,7 +36,7 @@ describe "Reports" do
 
     AnimalStatus.destroy_all
     status1 = AnimalStatus.gen :id => AnimalStatus::STATUSES[:available_for_adoption], :name => "Available for adoption"
-    status2 = AnimalStatus.gen :id => AnimalStatus::STATUSES[:adopted], :name => "Adopted"
+    AnimalStatus.gen :id => AnimalStatus::STATUSES[:adopted], :name => "Adopted"
 
     animal = Animal.gen :animal_type => animal_type, :animal_status => status1
 
@@ -52,12 +52,12 @@ describe "Reports" do
 
     it "returns status history ids and animal ids for a month range" do
       start_date = Date.civil(2013, 02, 01)
-      range      = start_date.beginning_of_month..start_date.end_of_month
+      range = start_date.beginning_of_month..start_date.end_of_month
 
       status_histories = StatusHistory.by_month(range)
 
       status_histories.count.should == 3
-      status_histories.should       == [@status_history1.id, @status_history2.id, @status_history3.id]
+      status_histories.should match_array([@status_history1.id, @status_history2.id, @status_history3.id])
     end
   end
 
@@ -66,25 +66,25 @@ describe "Reports" do
     it "returns the status histories for the month year" do
       status_histories = StatusHistory.status_by_month_year(02, 2013).all
 
-      status_histories.count.should    == 2
+      status_histories.count.should == 2
 
       status_histories[0].count.should == 1
-      status_histories[0].name.should  == "Available for adoption"
+      status_histories[0].name.should == "Available for adoption"
 
       status_histories[1].count.should == 2
-      status_histories[1].name.should  == "Adopted"
+      status_histories[1].name.should == "Adopted"
     end
 
     it "returns the status histories for the month year and state" do
       status_histories = StatusHistory.status_by_month_year(02, 2013, "CA").all
 
-      status_histories.count.should    == 2
+      status_histories.count.should == 2
 
       status_histories[0].count.should == 1
-      status_histories[0].name.should  == "Available for adoption"
+      status_histories[0].name.should == "Available for adoption"
 
       status_histories[1].count.should == 1
-      status_histories[1].name.should  == "Adopted"
+      status_histories[1].name.should == "Adopted"
     end
   end
 
@@ -93,7 +93,7 @@ describe "Reports" do
     it "returns the totals by month per status" do
       status_histories = StatusHistory.totals_by_month(2013, :adopted)
 
-      status_histories[0].type.should     == "Total"
+      status_histories[0].type.should == "Total"
       status_histories[0].february.should == 2
     end
 
@@ -102,11 +102,11 @@ describe "Reports" do
 
       # Setting this because the Animal creates another Status history
       current_month = @date_for_status_history.strftime("%B").downcase
-      next_month    = (@date_for_status_history + 1.month).strftime("%B").downcase
+      next_month = (@date_for_status_history + 1.month).strftime("%B").downcase
 
-      status_histories[0].type.should                == "Dog"
+      status_histories[0].type.should == "Dog"
       status_histories[0].send(current_month).should == 1
-      status_histories[0].send(next_month).should    == 1
+      status_histories[0].send(next_month).should == 1
     end
   end
 end
@@ -116,7 +116,7 @@ end
 describe StatusHistory, "#shelter" do
 
   it "belongs to a shelter" do
-    shelter        = Shelter.new
+    shelter = Shelter.new
     status_history = StatusHistory.new :shelter => shelter
 
     status_history.shelter.should == shelter
@@ -131,7 +131,7 @@ end
 describe StatusHistory, "#animal" do
 
   it "belongs to an animal" do
-    animal         = Animal.new
+    animal = Animal.new
     status_history = StatusHistory.new :animal => animal
 
     status_history.animal.should == animal
@@ -146,7 +146,7 @@ end
 describe StatusHistory, "#animal_status" do
 
   it "belongs to an animal status" do
-    animal_status  = AnimalStatus.new
+    animal_status = AnimalStatus.new
     status_history = StatusHistory.new :animal_status => animal_status
 
     status_history.animal_status.should == animal_status

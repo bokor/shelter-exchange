@@ -9,13 +9,13 @@ describe Placement do
   it "requires presence of animal id" do
     placement = Placement.new :animal_id => nil
     placement.should have(1).error_on(:animal_id)
-    placement.errors[:animal_id].should == ["needs to be selected"]
+    placement.errors[:animal_id].should match_array(["needs to be selected"])
   end
 
   it "requires inclusion of status" do
     placement = Placement.new :status => "#{Placement::STATUS[0]} blah"
     placement.should have(1).error_on(:status)
-    placement.errors[:status].should == ["needs to be selected"]
+    placement.errors[:status].should match_array(["needs to be selected"])
   end
 
   context "Nested Attributes" do
@@ -58,7 +58,7 @@ end
 #----------------------------------------------------------------------------
 describe Placement, "::STATUS" do
   it "contains a default list of statuses" do
-    Placement::STATUS.should == ["adopted", "foster_care"]
+    Placement::STATUS.should match_array(["adopted", "foster_care"])
   end
 end
 
@@ -68,12 +68,12 @@ describe Placement, ".adopted" do
 
   it "returns all of the adopted placements" do
     placement1 = Placement.gen :status => "adopted"
-    placement2 = Placement.gen :status => "other"
+    Placement.gen :status => "other"
 
     placements = Placement.adopted.all
 
     placements.count.should == 1
-    placements.should       == [placement1]
+    placements.should match_array([placement1])
   end
 end
 
@@ -81,12 +81,12 @@ describe Placement, ".foster_care" do
 
   it "returns all of the foster care placements" do
     placement1 = Placement.gen :status => "foster_care"
-    placement2 = Placement.gen :status => "other"
+    Placement.gen :status => "other"
 
     placements = Placement.foster_care.all
 
     placements.count.should == 1
-    placements.should       == [placement1]
+    placements.should match_array([placement1])
   end
 end
 
@@ -95,7 +95,7 @@ end
 describe Placement, "#shelter" do
 
   it "belongs to a shelter" do
-    shelter   = Shelter.new
+    shelter = Shelter.new
     placement = Placement.new :shelter => shelter
 
     placement.shelter.should == shelter
@@ -110,7 +110,7 @@ end
 describe Placement, "#animal" do
 
   it "belongs to a animal" do
-    animal    = Animal.new
+    animal = Animal.new
     placement = Placement.new :animal => animal
 
     placement.animal.should == animal
@@ -125,7 +125,7 @@ end
 describe Placement, "#parent" do
 
   it "belongs to a parent" do
-    parent    = Parent.new
+    parent = Parent.new
     placement = Placement.new :parent => parent
 
     placement.parent.should == parent
@@ -141,13 +141,13 @@ describe Placement, "#comments" do
 
   before do
     @placement = Placement.gen
-    @comment1  = Comment.gen :commentable => @placement
-    @comment2  = Comment.gen :commentable => @placement
+    @comment1 = Comment.gen :commentable => @placement
+    @comment2 = Comment.gen :commentable => @placement
   end
 
   it "returns a list of comments" do
     @placement.comments.count.should == 2
-    @placement.comments.should       =~ [@comment1, @comment2]
+    @placement.comments.should match_array([@comment1, @comment2])
   end
 
   it "destroys the comments when a placement is deleted" do

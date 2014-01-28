@@ -37,50 +37,50 @@ describe Accommodation, ".search" do
 
   it "returns search results" do
     accommodation1 = Accommodation.gen :name => "Crate"
-    accommodation2 = Accommodation.gen :name => "Cage"
+    Accommodation.gen :name => "Cage"
 
     results = Accommodation.search("Cra")
     results.count.should == 1
-    results.should =~ [accommodation1]
+    results.should match_array([accommodation1])
   end
 end
 
 describe Accommodation, ".filter_by_type_location" do
 
   before do
-    @dog   = AnimalType.gen :name => "Dog"
-    @cat   = AnimalType.gen :name => "Cat"
+    @dog = AnimalType.gen :name => "Dog"
+    @cat = AnimalType.gen :name => "Cat"
 
-    @west_side      = Location.gen :name => "West Side"
-    @east_side      = Location.gen :name => "East Side"
+    @west_side = Location.gen :name => "West Side"
+    @east_side = Location.gen :name => "East Side"
 
     @accommodation1 = Accommodation.gen \
       :animal_type => @dog,
-      :location    => @west_side
+      :location => @west_side
     @accommodation2 = Accommodation.gen \
       :animal_type => @dog,
-      :location    => @west_side
+      :location => @west_side
     @accommodation3 = Accommodation.gen \
       :animal_type => @dog,
-      :location    => @east_side
+      :location => @east_side
   end
 
   it "filters by animal type" do
     results = Accommodation.filter_by_type_location(@dog, nil)
     results.count.should == 3
-    results.should =~ [@accommodation1, @accommodation2, @accommodation3]
+    results.should match_array([@accommodation1, @accommodation2, @accommodation3])
   end
 
   it "filters by location" do
     results = Accommodation.filter_by_type_location(nil, @west_side)
     results.count.should == 2
-    results.should =~ [@accommodation1, @accommodation2]
+    results.should match_array([@accommodation1, @accommodation2])
   end
 
   it "filters by animal type and location" do
     results = Accommodation.filter_by_type_location(@dog, @east_side)
     results.count.should == 1
-    results.should =~ [@accommodation3]
+    results.should match_array([@accommodation3])
   end
 end
 
@@ -89,7 +89,7 @@ end
 describe Accommodation, "#shelter" do
 
   it "belongs to a shelter" do
-    shelter       = Shelter.new
+    shelter = Shelter.new
     accommodation = Accommodation.new :shelter => shelter
 
     accommodation.shelter.should == shelter
@@ -104,7 +104,7 @@ end
 describe Accommodation, "#animal_type" do
 
   it "belongs to an animal type" do
-    animal_type   = AnimalType.gen
+    animal_type = AnimalType.gen
     accommodation = Accommodation.gen :animal_type => animal_type
 
     accommodation.animal_type.should == animal_type
@@ -119,7 +119,7 @@ end
 describe Accommodation, "#location" do
 
   it "belongs to an location" do
-    location      = Location.new
+    location = Location.new
     accommodation = Accommodation.new :location => location
 
     accommodation.location.should == location
@@ -141,7 +141,7 @@ describe Accommodation, "#animals" do
 
   it "returns a list of animals" do
     @accommodation.animals.count.should == 2
-    @accommodation.animals.should =~ [@animal1, @animal2]
+    @accommodation.animals.should match_array([@animal1, @animal2])
   end
 
   it "returns readonly animals" do

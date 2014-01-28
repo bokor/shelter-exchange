@@ -101,7 +101,7 @@ describe "Index: Alert Page", :js => :true do
 
       visit alerts_path
 
-      page.body.should =~ /#{dom_id(alert3)}.*?#{dom_id(alert1)}.*?#{dom_id(alert2)}/m
+      page.body.should match(/#{dom_id(alert3)}.*?#{dom_id(alert1)}.*?#{dom_id(alert2)}/m)
     end
   end
 

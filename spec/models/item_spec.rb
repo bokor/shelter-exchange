@@ -6,7 +6,7 @@ describe Item, "#shelter" do
 
   it "belongs to a shelter" do
     shelter = Shelter.new
-    item    = Item.new :shelter => shelter
+    item = Item.new :shelter => shelter
 
     item.shelter.should == shelter
   end

@@ -18,10 +18,10 @@ describe TransferHistory, ".create_with" do
 
     TransferHistory.count.should == 1
 
-    transfer_history.shelter_id.should  == 1
+    transfer_history.shelter_id.should == 1
     transfer_history.transfer_id.should == 2
-    transfer_history.status.should      == "adopted"
-    transfer_history.reason.should      == "testing"
+    transfer_history.status.should == "adopted"
+    transfer_history.reason.should == "testing"
   end
 end
 
@@ -30,7 +30,7 @@ end
 describe TransferHistory, "#transfer" do
 
   it "belongs to a transfer" do
-    transfer         = Transfer.new
+    transfer = Transfer.new
     transfer_history = TransferHistory.new :transfer => transfer
 
     transfer_history.transfer.should == transfer
@@ -45,7 +45,7 @@ end
 describe TransferHistory, "#shelter" do
 
   it "belongs to a shelter" do
-    shelter          = Shelter.new
+    shelter = Shelter.new
     transfer_history = TransferHistory.new :shelter => shelter
 
     transfer_history.shelter.should == shelter

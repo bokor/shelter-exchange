@@ -323,7 +323,7 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
 
       visit dashboard_path
 
-      page.body.should =~ /#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m
+      page.body.should match(/#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
     end
   end
 end

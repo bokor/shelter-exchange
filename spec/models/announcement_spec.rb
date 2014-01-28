@@ -9,31 +9,31 @@ describe Announcement do
   it "requires presence of title" do
     announcement = Announcement.new :title => nil
     announcement.should have(1).error_on(:title)
-    announcement.errors[:title].should == ["cannot be blank"]
+    announcement.errors[:title].should match_array(["cannot be blank"])
   end
 
   it "requires presence of message" do
     announcement = Announcement.new :title => nil
     announcement.should have(1).error_on(:title)
-    announcement.errors[:title].should == ["cannot be blank"]
+    announcement.errors[:title].should match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     announcement = Announcement.new :category => "#{Announcement::CATEGORIES[0]} blah"
     announcement.should have(1).error_on(:category)
-    announcement.errors[:category].should == ["needs to be selected"]
+    announcement.errors[:category].should match_array(["needs to be selected"])
   end
 
   it "requires presence of starts at" do
     announcement = Announcement.new :starts_at => nil
     announcement.should have(1).error_on(:starts_at)
-    announcement.errors[:starts_at].should == ["cannot be blank"]
+    announcement.errors[:starts_at].should match_array(["cannot be blank"])
   end
 
   it "requires presence of ends at" do
     announcement = Announcement.new :ends_at => nil
     announcement.should have(1).error_on(:ends_at)
-    announcement.errors[:ends_at].should == ["cannot be blank"]
+    announcement.errors[:ends_at].should match_array(["cannot be blank"])
   end
 end
 
@@ -41,7 +41,7 @@ end
 #----------------------------------------------------------------------------
 describe Announcement, "::CATEGORIES" do
   it "contains a default list of Categories" do
-    Announcement::CATEGORIES.should == ["general", "web_update", "help"]
+    Announcement::CATEGORIES.should match_array(["general", "web_update", "help"])
   end
 end
 

@@ -9,7 +9,7 @@ describe Comment do
   it "requires presence of comment" do
     comment = Comment.gen :comment => nil
     comment.should have(1).error_on(:comment)
-    comment.errors[:comment].should == ["cannot be blank"]
+    comment.errors[:comment].should match_array(["cannot be blank"])
   end
 end
 
@@ -33,8 +33,8 @@ end
 describe Comment, "#commentable" do
 
   it "belongs to a commentable object" do
-    item    = Item.new
-    animal  = Animal.new
+    item = Item.new
+    animal = Animal.new
     comment1 = Comment.new :commentable => item
     comment2 = Comment.new :commentable => animal
 
@@ -49,7 +49,7 @@ end
 describe Comment, "#commentable?" do
 
   it "returns true if the comment has an commentable association" do
-    item     = Item.new
+    item = Item.new
     comment1 = Comment.new :commentable => item
     comment2 = Comment.new
 

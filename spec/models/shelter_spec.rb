@@ -9,42 +9,42 @@ describe Shelter do
   it "validates presence of name" do
     shelter = Shelter.new :name => nil
     shelter.should have(1).error_on(:name)
-    shelter.errors[:name].should == ["cannot be blank"]
+    shelter.errors[:name].should match_array(["cannot be blank"])
   end
 
   it "validates presence of phone" do
     shelter = Shelter.new :phone => nil
     shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should == ["cannot be blank"]
+    shelter.errors[:phone].should match_array(["cannot be blank"])
   end
 
   it "validates format of phone" do
     shelter = Shelter.new :phone => "aaa"
     shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should == ["invalid phone number format"]
+    shelter.errors[:phone].should match_array(["invalid phone number format"])
 
     shelter = Shelter.new :phone => "+011.999.00000"
     shelter.should have(1).error_on(:phone)
-    shelter.errors[:phone].should == ["invalid phone number format"]
+    shelter.errors[:phone].should match_array(["invalid phone number format"])
   end
 
   it "validates uniqueness of email" do
     Shelter.gen :email => "test@test.com"
     shelter = Shelter.new :email => "test@test.com"
     shelter.should have(1).error_on(:email)
-    shelter.errors[:email].should == ["has already been taken"]
+    shelter.errors[:email].should match_array(["has already been taken"])
   end
 
   it "validates format of email" do
     shelter = Shelter.new :email => "blah.com"
     shelter.should have(1).error_on(:email)
-    shelter.errors[:email].should == ["format is incorrect"]
+    shelter.errors[:email].should match_array(["format is incorrect"])
   end
 
   it "validates inclusion of timezone" do
     shelter = Shelter.new :time_zone => "London"
     shelter.should have(1).error_on(:time_zone)
-    shelter.errors[:time_zone].should == ["is not a valid US Time Zone"]
+    shelter.errors[:time_zone].should match_array(["is not a valid US Time Zone"])
 
     shelter = Shelter.new :time_zone => "Eastern Time (US & Canada)"
     shelter.should have(0).error_on(:time_zone)
@@ -53,7 +53,7 @@ describe Shelter do
   it "validates url format for website" do
     shelter = Shelter.new :website => "save-the_doggies.com"
     shelter.should have(1).error_on(:website)
-    shelter.errors[:website].should == ["format is incorrect"]
+    shelter.errors[:website].should match_array(["format is incorrect"])
   end
 
   it "validates allows blank for website" do
@@ -64,7 +64,7 @@ describe Shelter do
   it "validates url format for facebook" do
     shelter = Shelter.new :facebook => "facebook.com/test"
     shelter.should have(1).error_on(:facebook)
-    shelter.errors[:facebook].should == ["format is incorrect"]
+    shelter.errors[:facebook].should match_array(["format is incorrect"])
   end
 
   it "validates allows blank for facebook" do
@@ -75,7 +75,7 @@ describe Shelter do
   it "validates twitter format for twitter" do
     shelter = Shelter.new :twitter => "savethedoggies"
     shelter.should have(1).error_on(:twitter)
-    shelter.errors[:twitter].should == ["format is incorrect. Example @shelterexchange"]
+    shelter.errors[:twitter].should match_array(["format is incorrect. Example @shelterexchange"])
   end
 
   it "validates allows blank for twitter" do
@@ -83,11 +83,11 @@ describe Shelter do
     shelter.should have(0).error_on(:twitter)
   end
 
-  it "validates uniqueness of access token"  do
+  it "validates uniqueness of access token" do
     Shelter.gen :access_token => "access-token"
     shelter = Shelter.gen :access_token => "access-token"
     shelter.should have(1).error_on(:access_token)
-    shelter.errors[:access_token].should == ["has already been taken. Please generate another web token."]
+    shelter.errors[:access_token].should match_array(["has already been taken. Please generate another web token."])
   end
 
   it "validates allows blank for access_token" do
@@ -148,7 +148,7 @@ end
 #----------------------------------------------------------------------------
 describe Shelter, "::STATUSES" do
   it "contains a default list of statuses" do
-    Shelter::STATUSES.should == ["active", "suspended", "cancelled"]
+    Shelter::STATUSES.should match_array(["active", "suspended", "cancelled"])
   end
 end
 
@@ -159,11 +159,11 @@ describe Shelter, ".auto_complete" do
   it "returns shelters that are like the name parameter for any case" do
     shelter1 = Shelter.gen :name => "Saving Doggies"
     shelter2 = Shelter.gen :name => "Save the dogs"
-    shelter3 = Shelter.gen :name => "Kitty Haven"
+    Shelter.gen :name => "Kitty Haven"
 
     shelters = Shelter.auto_complete("dog")
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -172,11 +172,11 @@ describe Shelter, ".kill_shelters" do
   it "returns shelters that are kill shelters" do
     shelter1 = Shelter.gen :is_kill_shelter => true
     shelter2 = Shelter.gen :is_kill_shelter => true
-    shelter3 = Shelter.gen :is_kill_shelter => false
+    Shelter.gen :is_kill_shelter => false
 
     shelters = Shelter.kill_shelters
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -185,11 +185,11 @@ describe Shelter, ".no_kill_shelters" do
   it "returns shelters that are not kill shelters" do
     shelter1 = Shelter.gen :is_kill_shelter => false
     shelter2 = Shelter.gen :is_kill_shelter => false
-    shelter3 = Shelter.gen :is_kill_shelter => true
+    Shelter.gen :is_kill_shelter => true
 
     shelters = Shelter.no_kill_shelters
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -199,11 +199,11 @@ describe Shelter, ".latest" do
     shelter1 = Shelter.gen :created_at => Time.now - 10.days
     shelter2 = Shelter.gen :created_at => Time.now - 20.days
     shelter3 = Shelter.gen :created_at => Time.now
-    shelter4 = Shelter.gen :created_at => Time.now  - 5.days
+    shelter4 = Shelter.gen :created_at => Time.now - 5.days
 
     shelters = Shelter.latest(4)
     shelters.count.should == 4
-    shelters.should == [shelter3, shelter4, shelter1, shelter2]
+    shelters.should match_array([shelter3, shelter4, shelter1, shelter2])
   end
 end
 
@@ -212,11 +212,11 @@ describe Shelter, ".active" do
   it "returns the active shelters" do
     shelter1 = Shelter.gen :status => "active"
     shelter2 = Shelter.gen :status => "active"
-    shelter3 = Shelter.gen :status => "suspended"
+    Shelter.gen :status => "suspended"
 
     shelters = Shelter.active
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -225,11 +225,11 @@ describe Shelter, ".inactive" do
   it "returns the inactive shelters" do
     shelter1 = Shelter.gen :status => "suspended"
     shelter2 = Shelter.gen :status => "suspended"
-    shelter3 = Shelter.gen :status => "active"
+    Shelter.gen :status => "active"
 
     shelters = Shelter.inactive
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -238,11 +238,11 @@ describe Shelter, ".suspended" do
   it "returns the suspended shelters" do
     shelter1 = Shelter.gen :status => "suspended"
     shelter2 = Shelter.gen :status => "suspended"
-    shelter3 = Shelter.gen :status => "active"
+    Shelter.gen :status => "active"
 
     shelters = Shelter.suspended
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -251,11 +251,11 @@ describe Shelter, ".cancelled" do
   it "returns the cancelled shelters" do
     shelter1 = Shelter.gen :status => "cancelled"
     shelter2 = Shelter.gen :status => "cancelled"
-    shelter3 = Shelter.gen :status => "active"
+    Shelter.gen :status => "active"
 
     shelters = Shelter.cancelled
     shelters.count.should == 2
-    shelters.should =~ [shelter1, shelter2]
+    shelters.should match_array([shelter1, shelter2])
   end
 end
 
@@ -263,7 +263,7 @@ describe Shelter, ".by_access_token" do
 
   it "returns one shelter by access_token" do
     shelter1 = Shelter.gen :access_token => "access-token"
-    shelter2 = Shelter.gen :access_token => "access-token-1"
+    Shelter.gen :access_token => "access-token-1"
 
     shelter = Shelter.by_access_token("access-token").first
     shelter.should == shelter1
@@ -294,7 +294,7 @@ describe Shelter, "#users" do
 
   it "returns a list of users" do
     @shelter.users.count.should == 2
-    @shelter.users.should =~ [@user1, @user2]
+    @shelter.users.should match_array([@user1, @user2])
   end
 end
 
@@ -308,7 +308,7 @@ describe Shelter, "#locations" do
 
   it "returns a list of locations" do
     @shelter.locations.count.should == 2
-    @shelter.locations.should =~ [@location1, @location2]
+    @shelter.locations.should match_array([@location1, @location2])
   end
 
   it "destroy all locations associated to the shelter" do
@@ -328,7 +328,7 @@ describe Shelter, "#accommodations" do
 
   it "returns a list of accommodations" do
     @shelter.accommodations.count.should == 2
-    @shelter.accommodations.should =~ [@accommodation1, @accommodation2]
+    @shelter.accommodations.should match_array([@accommodation1, @accommodation2])
   end
 
   it "destroy all accommodations associated to the shelter" do
@@ -348,7 +348,7 @@ describe Shelter, "#placements" do
 
   it "returns a list of placements" do
     @shelter.placements.count.should == 2
-    @shelter.placements.should =~ [@placement1, @placement2]
+    @shelter.placements.should match_array([@placement1, @placement2])
   end
 
   it "destroy all placements associated to the shelter" do
@@ -368,7 +368,7 @@ describe Shelter, "#animals" do
 
   it "returns a list of animals" do
     @shelter.animals.count.should == 2
-    @shelter.animals.should =~ [@animal1, @animal2]
+    @shelter.animals.should match_array([@animal1, @animal2])
   end
 
   it "destroy all animals associated to the shelter" do
@@ -388,7 +388,7 @@ describe Shelter, "#notes" do
 
   it "returns a list of notes" do
     @shelter.notes.count.should == 2
-    @shelter.notes.should =~ [@note1, @note2]
+    @shelter.notes.should match_array([@note1, @note2])
   end
 
   it "destroy all notes associated to the shelter" do
@@ -408,7 +408,7 @@ describe Shelter, "#tasks" do
 
   it "returns a list of tasks" do
     @shelter.tasks.count.should == 2
-    @shelter.tasks.should =~ [@task1, @task2]
+    @shelter.tasks.should match_array([@task1, @task2])
   end
 
   it "destroy all tasks associated to the shelter" do
@@ -428,7 +428,7 @@ describe Shelter, "#alerts" do
 
   it "returns a list of alerts" do
     @shelter.alerts.count.should == 2
-    @shelter.alerts.should =~ [@alert1, @alert2]
+    @shelter.alerts.should match_array([@alert1, @alert2])
   end
 
   it "destroy all alerts associated to the shelter" do
@@ -448,7 +448,7 @@ describe Shelter, "#comments" do
 
   it "returns a list of comments" do
     @shelter.comments.count.should == 2
-    @shelter.comments.should =~ [@comment1, @comment2]
+    @shelter.comments.should match_array([@comment1, @comment2])
   end
 
   it "destroy all comments associated to the shelter" do
@@ -468,7 +468,7 @@ describe Shelter, "#items" do
 
   it "returns a list of items" do
     @shelter.items.count.should == 2
-    @shelter.items.should =~ [@item1, @item2]
+    @shelter.items.should match_array([@item1, @item2])
   end
 
   it "destroy all items associated to the shelter" do
@@ -488,7 +488,7 @@ describe Shelter, "#capacities" do
 
   it "returns a list of capacities" do
     @shelter.capacities.count.should == 2
-    @shelter.capacities.should =~ [@capacity1, @capacity2]
+    @shelter.capacities.should match_array([@capacity1, @capacity2])
   end
 
   it "destroy all capacities associated to the shelter" do
@@ -508,7 +508,7 @@ describe Shelter, "#status_histories" do
 
   it "returns a list of status histories" do
     @shelter.status_histories.count.should == 2
-    @shelter.status_histories.should =~ [@status_history1, @status_history2]
+    @shelter.status_histories.should match_array([@status_history1, @status_history2])
   end
 
   it "destroy all status histories associated to the shelter" do
@@ -528,7 +528,7 @@ describe Shelter, "#transfers" do
 
   it "returns a list of transfers" do
     @shelter.transfers.count.should == 2
-    @shelter.transfers.should =~ [@transfer1, @transfer2]
+    @shelter.transfers.should match_array([@transfer1, @transfer2])
   end
 
   it "destroy all transfers associated to the shelter" do
@@ -548,7 +548,7 @@ describe Shelter, "#integrations" do
 
   it "returns a list of integrations" do
     @shelter.integrations.count.should == 2
-    @shelter.integrations.should =~ [@integration1, @integration2]
+    @shelter.integrations.should match_array([@integration1, @integration2])
   end
 
   it "destroy all integrations associated to the shelter" do
@@ -653,13 +653,13 @@ describe Shelter, ".live_search" do
     it "returns all shelters when no params" do
       shelters = Shelter.live_search("", {})
       shelters.count.should == 3
-      shelters.should =~ [@shelter1, @shelter2, @shelter3]
+      shelters.should match_array([@shelter1, @shelter2, @shelter3])
     end
 
     it "returns all shelters with state only" do
       shelters = Shelter.live_search("", { :shelters => { :state => "CA" } })
       shelters.count.should == 2
-      shelters.should =~ [@shelter1, @shelter2]
+      shelters.should match_array([@shelter1, @shelter2])
     end
   end
 
@@ -668,63 +668,63 @@ describe Shelter, ".live_search" do
     it "returns all shelters with the name like" do
       shelter1 = Shelter.gen :name => "DoggieTown"
       shelter2 = Shelter.gen :name => "DogTown"
-      shelter3 = Shelter.gen :name => "KittyTown"
-      shelter4 = Shelter.gen :name => "CatTown"
+      Shelter.gen :name => "KittyTown"
+      Shelter.gen :name => "CatTown"
 
       shelters = Shelter.live_search("dog",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the email like" do
-      shelter1 = Shelter.gen :email => "doggie1@test.com"
-      shelter2 = Shelter.gen :email => "doggie2@test.com"
-      shelter3 = Shelter.gen :email => "kitty1@test.com"
-      shelter4 = Shelter.gen :email => "kitty2@test.com"
+      shelter1 = Shelter.gen :email => "kitty1@test.com"
+      shelter2 = Shelter.gen :email => "kitty2@test.com"
+      Shelter.gen :email => "doggie1@test.com"
+      Shelter.gen :email => "doggie2@test.com"
 
       shelters = Shelter.live_search("kitty",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter3, shelter4]
+      shelters.should match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the city like" do
       shelter1 = Shelter.gen :city => "animaltown"
       shelter2 = Shelter.gen :city => "sleepytown"
-      shelter3 = Shelter.gen :city => "Redwood City"
+      Shelter.gen :city => "Redwood City"
 
       shelters = Shelter.live_search("town",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the zip_code like" do
 
       shelter1 = Shelter.gen :zip_code => "94063"
       shelter2 = Shelter.gen :zip_code => "94061"
-      shelter3 = Shelter.gen :zip_code => "96063"
+      Shelter.gen :zip_code => "96063"
 
       shelters = Shelter.live_search("9406",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
 
     it "returns all shelters with the facebook like" do
       shelter1 = Shelter.gen :facebook => "http://facebook.com/daycare1"
       shelter2 = Shelter.gen :facebook => "http://facebook.com/daycare2"
-      shelter3 = Shelter.gen :facebook => "http://facebook.com/rescue"
+      Shelter.gen :facebook => "http://facebook.com/rescue"
 
       shelters = Shelter.live_search("daycare",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
     it "returns all shelters with the twitter like" do
       shelter1 = Shelter.gen :twitter => "@daycare1"
       shelter2 = Shelter.gen :twitter => "@daycare2"
-      shelter3 = Shelter.gen :twitter => "@shelterexchange"
+      Shelter.gen :twitter => "@shelterexchange"
 
       shelters = Shelter.live_search("daycare",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
   end
 end
@@ -742,13 +742,13 @@ describe Shelter, ".search_by_name" do
     it "returns all shelters when no params" do
       shelters = Shelter.search_by_name("", {})
       shelters.count.should == 3
-      shelters.should =~ [@shelter1, @shelter2, @shelter3]
+      shelters.should match_array([@shelter1, @shelter2, @shelter3])
     end
 
     it "returns all shelters with state only" do
       shelters = Shelter.search_by_name("", { :shelters => { :state => "CA" } })
       shelters.count.should == 2
-      shelters.should =~ [@shelter1, @shelter2]
+      shelters.should match_array([@shelter1, @shelter2])
     end
   end
 
@@ -757,12 +757,12 @@ describe Shelter, ".search_by_name" do
     it "returns all shelters with the name like" do
       shelter1 = Shelter.gen :name => "DoggieTown"
       shelter2 = Shelter.gen :name => "DogTown"
-      shelter3 = Shelter.gen :name => "KittyTown"
-      shelter4 = Shelter.gen :name => "CatTown"
+      Shelter.gen :name => "KittyTown"
+      Shelter.gen :name => "CatTown"
 
       shelters = Shelter.search_by_name("dog",{})
       shelters.count.should == 2
-      shelters.should =~ [shelter1, shelter2]
+      shelters.should match_array([shelter1, shelter2])
     end
   end
 end

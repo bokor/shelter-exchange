@@ -5,20 +5,20 @@ describe Integration::AdoptAPet do
   it "validates presence of username" do
     integration = Integration::AdoptAPet.new :username => nil
     expect(integration).to have(1).error_on(:username)
-    expect(integration.errors[:username]).to include("cannot be blank")
+    expect(integration.errors[:username]).to match_array(["cannot be blank"])
   end
 
   it "validates uniqueness of username" do
     Integration.gen(:adopt_a_pet, :username => "test")
     integration = Integration::AdoptAPet.new :username => "test"
     expect(integration).to have(1).error_on(:username)
-    expect(integration.errors[:username]).to include("Already in use with another shelter's account")
+    expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
   end
 
   it "validates presence of password" do
     integration = Integration::AdoptAPet.new :password => nil
     expect(integration).to have(1).error_on(:password)
-    expect(integration.errors[:password]).to include("cannot be blank")
+    expect(integration.errors[:password]).to match_array(["cannot be blank"])
   end
 
   it "validates the connection is successful" do
@@ -35,7 +35,7 @@ describe Integration::AdoptAPet do
 
     integration = Integration::AdoptAPet.new :password => "test", :username => "test"
     expect(integration).to have(1).error_on(:connection_failed)
-    expect(integration.errors[:connection_failed]).to include("Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
+    expect(integration.errors[:connection_failed]).to match_array(["Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!"])
   end
 end
 

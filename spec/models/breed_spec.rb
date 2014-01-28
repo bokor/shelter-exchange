@@ -32,7 +32,7 @@ describe Breed, ".auto_complete" do
     breeds = Breed.auto_complete(animal_type.id, "Labrador").all
 
     breeds.count.should == 2
-    breeds.should       =~ [breed1, breed2]
+    breeds.should match_array([breed1, breed2])
   end
 end
 
@@ -42,7 +42,7 @@ describe Breed, "#animal_type" do
 
   it "belongs to an animal type" do
     animal_type = AnimalType.new :name => "Dog"
-    breed       = Breed.new :animal_type => animal_type
+    breed = Breed.new :animal_type => animal_type
 
     breed.animal_type.should == animal_type
   end
