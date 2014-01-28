@@ -5,14 +5,9 @@ describe TokenAuthenticationsController do
 
   describe "POST create" do
 
-    it "responds successfully" do
-      # ability = Object.new
-      # ability.extend(CanCan::Ability)
-      # controller.stub!(:current_ability).and_return(ability)
-
+    it "redirects to the :settings_path" do
       post :create
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+      expect(response).to redirect_to("/settings/web_access")
     end
 
     it "create new shelter access token" do
@@ -22,18 +17,15 @@ describe TokenAuthenticationsController do
       expect(current_shelter.access_token).to eq("xxx12345xxx")
     end
 
-    it "redirects to the :settings_path" do
-      post :create
-      expect(response).to redirect_to("/settings/web_access")
-    end
-
     context "with failed authorization" do
 
       it "renders the errors/unauthorized template" do
-        allow(controller).to receive(:authorize!) { raise CanCan::AccessDenied }
-        post :create
-        expect(controller).to receive(:render)
-        expect(response).to render_template("errors/unauthorize")
+        allow(controller).to receive(:authorize!).
+          with(:generate_access_token, current_shelter).
+          and_raise(CanCan::AccessDenied)
+
+        post :create, :format => :html
+        expect(response).to render_template("errors/unauthorized")
       end
     end
   end
