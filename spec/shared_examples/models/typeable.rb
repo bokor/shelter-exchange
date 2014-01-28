@@ -16,7 +16,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @dog)
       described_class.gen(:animal_type => @cat)
 
-      described_class.dogs.count.should == 1
+      typeables = described_class.dogs
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -26,7 +27,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @cat)
       described_class.gen(:animal_type => @dog)
 
-      described_class.cats.count.should == 1
+      typeables = described_class.cats
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -36,7 +38,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @horse)
       described_class.gen(:animal_type => @dog)
 
-      described_class.horses.count.should == 1
+      typeables = described_class.horses
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -46,7 +49,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @rabbit)
       described_class.gen(:animal_type => @dog)
 
-      described_class.rabbits.count.should == 1
+      typeables = described_class.rabbits
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -56,7 +60,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @bird)
       described_class.gen(:animal_type => @dog)
 
-      described_class.birds.count.should == 1
+      typeables = described_class.birds
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -66,7 +71,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @reptile)
       described_class.gen(:animal_type => @dog)
 
-      described_class.reptiles.count.should == 1
+      typeables = described_class.reptiles
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -76,7 +82,8 @@ shared_examples_for Typeable do
       described_class.gen(:animal_type => @other)
       described_class.gen(:animal_type => @dog)
 
-      described_class.other.count.should == 1
+      typeables = described_class.other
+      expect(typeables.count).to eq(1)
     end
   end
 
@@ -86,8 +93,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @dog)
       typeable2 = described_class.gen(:animal_type => @cat)
 
-      typeable1.dog?.should == true
-      typeable2.dog?.should == false
+      expect(typeable1.dog?).to be_true
+      expect(typeable2.dog?).to be_false
     end
   end
 
@@ -97,8 +104,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @cat)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.cat?.should == true
-      typeable2.cat?.should == false
+      expect(typeable1.cat?).to be_true
+      expect(typeable2.cat?).to be_false
     end
   end
 
@@ -108,8 +115,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @horse)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.horse?.should == true
-      typeable2.horse?.should == false
+      expect(typeable1.horse?).to be_true
+      expect(typeable2.horse?).to be_false
     end
   end
 
@@ -119,8 +126,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @rabbit)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.rabbit?.should == true
-      typeable2.rabbit?.should == false
+      expect(typeable1.rabbit?).to be_true
+      expect(typeable2.rabbit?).to be_false
     end
   end
 
@@ -130,8 +137,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @bird)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.bird?.should == true
-      typeable2.bird?.should == false
+      expect(typeable1.bird?).to be_true
+      expect(typeable2.bird?).to be_false
     end
   end
 
@@ -141,8 +148,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @reptile)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.reptile?.should == true
-      typeable2.reptile?.should == false
+      expect(typeable1.reptile?).to be_true
+      expect(typeable2.reptile?).to be_false
     end
   end
 
@@ -152,8 +159,8 @@ shared_examples_for Typeable do
       typeable1 = described_class.gen(:animal_type => @other)
       typeable2 = described_class.gen(:animal_type => @dog)
 
-      typeable1.other?.should == true
-      typeable2.other?.should == false
+      expect(typeable1.other?).to be_true
+      expect(typeable2.other?).to be_false
     end
   end
 end

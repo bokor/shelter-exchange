@@ -11,7 +11,7 @@ describe Ability, ".owner" do
   end
 
   it "can manage everything" do
-    @ability.should be_able_to(:manage, :all)
+    expect(@ability).to be_able_to(:manage, :all)
   end
 end
 
@@ -23,11 +23,11 @@ describe Ability, ".admin" do
   end
 
   it "can manage everything" do
-    @ability.should be_able_to(:manage, :all)
+    expect(@ability).to be_able_to(:manage, :all)
   end
 
   it "can not to change the owner" do
-    @ability.should_not be_able_to(:change_owner, User)
+    expect(@ability).to_not be_able_to(:change_owner, User)
   end
 end
 
@@ -39,39 +39,39 @@ describe Ability, ".user" do
   end
 
   it "can read everything" do
-    @ability.should be_able_to(:read, :all)
+    expect(@ability).to be_able_to(:read, :all)
   end
 
   it "can create everything" do
-    @ability.should be_able_to(:create, :all)
+    expect(@ability).to be_able_to(:create, :all)
   end
 
   it "can update everything" do
-    @ability.should be_able_to(:update, :all)
+    expect(@ability).to be_able_to(:update, :all)
   end
 
   it "can not attach a file to a note" do
-    @ability.should_not be_able_to(:attach_files, Note)
+    expect(@ability).to_not be_able_to(:attach_files, Note)
   end
 
   it "can not generate access token for the shelter" do
-    @ability.should_not be_able_to(:generate_access_token, Shelter)
+    expect(@ability).to_not be_able_to(:generate_access_token, Shelter)
   end
 
   it "can not invite a user" do
-    @ability.should_not be_able_to(:intive, User)
+    expect(@ability).to_not be_able_to(:intive, User)
   end
 
   it "can not change the role a user" do
-    @ability.should_not be_able_to(:change_role, User)
+    expect(@ability).to_not be_able_to(:change_role, User)
   end
 
   it "can not view settings for a user" do
-    @ability.should_not be_able_to(:view_settings, User)
+    expect(@ability).to_not be_able_to(:view_settings, User)
   end
 
   it "can not request a transfer of an animal" do
-    @ability.should_not be_able_to(:request_transfer, Animal)
+    expect(@ability).to_not be_able_to(:request_transfer, Animal)
   end
 end
 

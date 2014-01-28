@@ -629,7 +629,7 @@ end
 describe Shelter, "#generate_access_token!" do
 
   it "generates a new access token for the shelter" do
-    SecureRandom.stub!(:hex).and_return("access_token")
+    SecureRandom.stub(:hex).and_return("access_token")
 
     shelter = Shelter.gen
     shelter.generate_access_token!

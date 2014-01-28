@@ -11,7 +11,7 @@ describe User do
   context "Before Create" do
     it "sets the default announcement hide time as now" do
       now = Time.now
-      Time.stub!(:now).and_return(now)
+      Time.stub(:now).and_return(now)
 
       user = User.gen
       user.announcement_hide_time.should == now

@@ -6,11 +6,11 @@ shared_examples_for Statusable do
     it "returns all of the active records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
       statusables = described_class.active
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -18,11 +18,11 @@ shared_examples_for Statusable do
     it "returns all of the non active records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
       statusables = described_class.non_active
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -30,11 +30,11 @@ shared_examples_for Statusable do
     it "returns all of the available records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
       statusables = described_class.available
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -42,11 +42,11 @@ shared_examples_for Statusable do
     it "returns all of the for capacity records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
       statusables = described_class.for_capacity
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -54,11 +54,11 @@ shared_examples_for Statusable do
     it "returns all of the available for adoption records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
       statusables = described_class.available_for_adoption
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -66,11 +66,11 @@ shared_examples_for Statusable do
     it "returns all of the adoption pending records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
       statusables = described_class.adoption_pending
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -78,11 +78,11 @@ shared_examples_for Statusable do
     it "returns all of the adopted records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
 
       statusables = described_class.adopted
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -90,11 +90,11 @@ shared_examples_for Statusable do
     it "returns all of the foster care records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
 
       statusables = described_class.foster_care
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -102,11 +102,11 @@ shared_examples_for Statusable do
     it "returns all of the reclaimed records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
 
       statusables = described_class.reclaimed
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -114,11 +114,11 @@ shared_examples_for Statusable do
     it "returns all of the euthanized records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
       statusables = described_class.euthanized
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -126,11 +126,11 @@ shared_examples_for Statusable do
     it "returns all of the transferred records" do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:transferred])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:transferred])
-      statusable3 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
+      described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
       statusables = described_class.transferred
-      statusables.count.should == 2
-      statusables.should =~ [statusable1, statusable2]
+      expect(statusables.count).to eq(2)
+      expect(statusables).to match_array([statusable1, statusable2])
     end
   end
 
@@ -141,8 +141,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
-      statusable1.available?.should be_true
-      statusable2.available?.should be_false
+      expect(statusable1.available?).to be_true
+      expect(statusable2.available?).to be_false
     end
   end
 
@@ -151,8 +151,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
 
-      statusable1.available_for_adoption?.should be_true
-      statusable2.available_for_adoption?.should be_false
+      expect(statusable1.available_for_adoption?).to be_true
+      expect(statusable2.available_for_adoption?).to be_false
     end
   end
 
@@ -161,8 +161,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adopted])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:new_intake])
 
-      statusable1.adopted?.should be_true
-      statusable2.adopted?.should be_false
+      expect(statusable1.adopted?).to be_true
+      expect(statusable2.adopted?).to be_false
     end
   end
 
@@ -171,8 +171,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoption_pending])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:adoped])
 
-      statusable1.adoption_pending?.should be_true
-      statusable2.adoption_pending?.should be_false
+      expect(statusable1.adoption_pending?).to be_true
+      expect(statusable2.adoption_pending?).to be_false
     end
   end
 
@@ -181,8 +181,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:reclaimed])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
-      statusable1.reclaimed?.should be_true
-      statusable2.reclaimed?.should be_false
+      expect(statusable1.reclaimed?).to be_true
+      expect(statusable2.reclaimed?).to be_false
     end
   end
 
@@ -191,8 +191,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:foster_care])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
-      statusable1.foster_care?.should be_true
-      statusable2.foster_care?.should be_false
+      expect(statusable1.foster_care?).to be_true
+      expect(statusable2.foster_care?).to be_false
     end
   end
 
@@ -201,8 +201,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:deceased])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
-      statusable1.deceased?.should be_true
-      statusable2.deceased?.should be_false
+      expect(statusable1.deceased?).to be_true
+      expect(statusable2.deceased?).to be_false
     end
   end
 
@@ -211,8 +211,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:euthanized])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
-      statusable1.euthanized?.should be_true
-      statusable2.euthanized?.should be_false
+      expect(statusable1.euthanized?).to be_true
+      expect(statusable2.euthanized?).to be_false
     end
   end
 
@@ -221,8 +221,8 @@ shared_examples_for Statusable do
       statusable1 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:transferred])
       statusable2 = described_class.gen(:animal_status_id => AnimalStatus::STATUSES[:available_for_adoption])
 
-      statusable1.transferred?.should be_true
-      statusable2.transferred?.should be_false
+      expect(statusable1.transferred?).to be_true
+      expect(statusable2.transferred?).to be_false
     end
   end
 end

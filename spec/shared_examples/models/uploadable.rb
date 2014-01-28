@@ -6,7 +6,7 @@ shared_examples_for Uploadable do
       SecureRandom.stub(:hex).and_return("abcdef12345")
 
       uploadable = described_class.gen
-      uploadable.guid.should == "abcdef12345"
+      expect(uploadable.guid).to eq("abcdef12345")
     end
   end
 
@@ -14,10 +14,10 @@ shared_examples_for Uploadable do
 
     it "generates a timestamp" do
       now = Time.now
-      Time.stub!(:now).and_return(now)
+      Time.stub(:now).and_return(now)
 
       uploadable = described_class.gen
-      uploadable.timestamp.should == now.to_i
+      expect(uploadable.timestamp).to eq(now.to_i)
     end
   end
 end

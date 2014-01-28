@@ -4,26 +4,26 @@ shared_examples_for StreetAddressable do
 
     it "validates street blank" do
       addressable = described_class.new :street => nil
-      addressable.should have(1).error_on(:address)
-      addressable.errors[:address].should == ["Street, City, State and Zip code are all required"]
+      expect(addressable).to have(1).error_on(:address)
+      expect(addressable.errors[:address]).to include("Street, City, State and Zip code are all required")
     end
 
     it "validates city blank" do
       addressable = described_class.new :city => nil
-      addressable.should have(1).error_on(:address)
-      addressable.errors[:address].should == ["Street, City, State and Zip code are all required"]
+      expect(addressable).to have(1).error_on(:address)
+      expect(addressable.errors[:address]).to include("Street, City, State and Zip code are all required")
     end
 
     it "validates state blank" do
       addressable = described_class.new :state => nil
-      addressable.should have(1).error_on(:address)
-      addressable.errors[:address].should == ["Street, City, State and Zip code are all required"]
+      expect(addressable).to have(1).error_on(:address)
+      expect(addressable.errors[:address]).to include("Street, City, State and Zip code are all required")
     end
 
     it "validates zip code blank" do
       addressable = described_class.new :zip_code => nil
-      addressable.should have(1).error_on(:address)
-      addressable.errors[:address].should == ["Street, City, State and Zip code are all required"]
+      expect(addressable).to have(1).error_on(:address)
+      expect(addressable.errors[:address]).to include("Street, City, State and Zip code are all required")
     end
   end
 
@@ -31,37 +31,37 @@ shared_examples_for StreetAddressable do
 
     it "returns true a new record" do
       addressable = described_class.new
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
 
     it "returns true if street changed" do
       addressable = described_class.gen
       addressable.street = "testing testing"
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
 
     it "returns true if street_2 changed" do
       addressable = described_class.gen
       addressable.street_2 = "testing testing"
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
 
     it "returns true if city changed" do
       addressable = described_class.gen
       addressable.city = "testing testing"
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
 
     it "returns true if state changed" do
       addressable = described_class.gen
       addressable.state = "testing testing"
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
 
     it "returns true if zip_code changed" do
       addressable = described_class.gen
       addressable.zip_code = "testing testing"
-      addressable.address_changed?.should == true
+      expect(addressable.address_changed?).to be_true
     end
   end
 
@@ -74,7 +74,8 @@ shared_examples_for StreetAddressable do
         :state => "CA",
         :zip_code => "94063"
       )
-      addressable.geocode_address.should == "123 Main St., #101, Redwood City, CA, 94063"
+      expect(addressable.geocode_address).to eq("123 Main St., #101, Redwood City, CA, 94063")
     end
   end
 end
+
