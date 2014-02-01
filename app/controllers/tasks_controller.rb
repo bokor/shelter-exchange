@@ -56,6 +56,5 @@ class TasksController < ApplicationController
     flash[:notice] = "Task has been completed." if @task.update_attributes({ :completed => true })
     respond_with(@task)
   end
-
 end
 

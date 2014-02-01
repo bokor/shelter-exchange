@@ -39,6 +39,5 @@ class CapacitiesController < ApplicationController
     flash[:notice] = "Shelter Capacity has been deleted." if @capacity.destroy
     respond_with(@capacity)
   end
-
 end
 

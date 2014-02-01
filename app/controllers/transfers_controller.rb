@@ -22,7 +22,5 @@ class TransfersController < ApplicationController
     @transfer = Transfer.find(params[:id])
     @transfer.destroy
   end
-
 end
-
 

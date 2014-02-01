@@ -1,9 +1,6 @@
 class AnimalsController < ApplicationController
   respond_to :html, :js
 
-  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  # cache_sweeper :animal_sweeper, :only => [:create, :update, :destroy]
-
   def index
     @total_animals = @current_shelter.animals.count
     @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
@@ -113,11 +110,11 @@ class AnimalsController < ApplicationController
     render :json => @animals.collect{ |animal| {:id => animal.id, :name => "#{animal.name}" } }.to_json
   end
 
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
     flash[:error] = "You have requested an invalid animal!"
     redirect_to animals_path and return
   end
-
 end
 

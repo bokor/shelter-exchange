@@ -4,7 +4,7 @@ FactoryGirl.define do
     sequence(:requestor) {|n| "Requestor #{n}" }
     sequence(:phone) {|n| "999999#{n+1000}" }
     sequence(:email) {|n| "shelter#{n}@example.com" }
-    status "" #Blank is the default
+    status nil
     shelter
     animal
     requestor_shelter

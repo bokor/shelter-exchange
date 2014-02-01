@@ -25,3 +25,4 @@ class NotesController < ApplicationController
     @note.destroy
   end
 end
+

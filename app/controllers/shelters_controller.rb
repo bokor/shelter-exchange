@@ -20,6 +20,5 @@ class SheltersController < ApplicationController
       end
     end
   end
-
 end
 

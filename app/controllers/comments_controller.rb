@@ -20,5 +20,4 @@ class CommentsController < ApplicationController
     @comment = @current_shelter.comments.find(params[:id])
     @comment.destroy
   end
-
 end

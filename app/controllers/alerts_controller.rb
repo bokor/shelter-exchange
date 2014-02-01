@@ -59,6 +59,5 @@ class AlertsController < ApplicationController
     flash[:notice] = "Alert has been stopped." if @alert.update_attributes({ :stopped => true })
     respond_with(@alert)
   end
-
 end
 

@@ -170,10 +170,8 @@ describe AlertsController do
     end
 
     it "updates a Alert" do
-      expect {
-        put :update, :id => @alert, :alert => @update_attrs, :format => :js
-        @alert.reload
-      }.to change(@alert, :title).to("Update Alert Title")
+      put :update, :id => @alert, :alert => @update_attrs, :format => :js
+      expect(@alert.reload.title).to eq("Update Alert Title")
     end
 
     it "assigns a newly updated alert as @alert" do

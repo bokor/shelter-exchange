@@ -803,10 +803,10 @@ describe Animal, ".current_month" do
 
     animal1.update_column(:status_change_date, Date.today)
     animal2.update_column(:status_change_date, Date.today + 1.month)
-    animal3.update_column(:status_change_date, Date.today - 1.day)
+    animal3.update_column(:status_change_date, Date.today - 1.month)
 
     animals = Animal.current_month
-    expect(animals).to match_array([animal1, animal3])
+    expect(animals).to match_array([animal1])
   end
 end
 
@@ -818,10 +818,10 @@ describe Animal, ".year_to_date" do
 
     animal1.update_column(:status_change_date, Date.today)
     animal2.update_column(:status_change_date, Date.today + 1.year)
-    animal3.update_column(:status_change_date, Date.today - 1.day)
+    animal3.update_column(:status_change_date, Date.today - 1.year)
 
     animals = Animal.year_to_date
-    expect(animals).to match_array([animal1, animal3])
+    expect(animals).to match_array([animal1])
   end
 end
 

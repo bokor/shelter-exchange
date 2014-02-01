@@ -5,6 +5,5 @@ class MapsController < ApplicationController
     @shelters = Shelter.active.all
     render_to_string 'overlay', :format => :kml
   end
-
 end
 

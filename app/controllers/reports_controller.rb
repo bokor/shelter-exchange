@@ -77,12 +77,3 @@ class ReportsController < ApplicationController
   end
 end
 
-#  Might be a way to do this dynamically
-#  /reports/:type/:year/:name/     :type = pie_chart or :bar_chart  :name = status_by_current_year (move into model)
-#  /reports/:type/:name/?selected_year=
-#
-
-#
-#   send("pie_chart",@current_shelter.animals.send("count_by_status"))
-#
-
