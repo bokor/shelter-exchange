@@ -36,8 +36,7 @@ class ParentsController < ApplicationController
 
   def destroy
     @parent = Parent.find(params[:id])
-    @parent.destroy
-    flash[:notice] = "#{@parent.name} has been deleted."
+    flash[:notice] = "#{@parent.name} has been deleted." if @parent.destroy
     respond_with(@parent)
   end
 

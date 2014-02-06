@@ -8,6 +8,7 @@ class CapacitiesController < ApplicationController
 
   def new
     @capacity = @current_shelter.capacities.new
+    respond_with(@capacity)
   end
 
   def create
@@ -24,16 +25,19 @@ class CapacitiesController < ApplicationController
 
   def edit
     @capacity = @current_shelter.capacities.find(params[:id])
+    respond_with(@capacity)
   end
 
   def update
     @capacity = @current_shelter.capacities.find(params[:id])
     flash[:notice] = "Shelter Capacity has been updated." if @capacity.update_attributes(params[:capacity])
+    respond_with(@capacity)
   end
 
   def destroy
     @capacity = @current_shelter.capacities.find(params[:id])
     flash[:notice] = "Shelter Capacity has been deleted." if @capacity.destroy
+    respond_with(@capacity)
   end
 end
 

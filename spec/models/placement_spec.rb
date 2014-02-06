@@ -22,34 +22,34 @@ describe Placement do
 
     it "accepts nested attributes for comments" do
       expect(Placement.count).to eq(0)
-      expect(Comment.count).to   eq(0)
+      expect(Comment.count).to eq(0)
 
       Placement.gen :comments_attributes => [{:comment => "placement comment"}]
 
       expect(Placement.count).to eq(1)
-      expect(Comment.count).to   eq(1)
+      expect(Comment.count).to eq(1)
     end
 
     it "rejects nested attributes for comments" do
       expect(Placement.count).to eq(0)
-      expect(Comment.count).to   eq(0)
+      expect(Comment.count).to eq(0)
 
       Placement.gen :comments_attributes => [{:comment => nil}]
 
       expect(Placement.count).to eq(1)
-      expect(Comment.count).to   eq(0)
+      expect(Comment.count).to eq(0)
     end
 
     it "destroys nested comments" do
       placement = Placement.gen :comments_attributes => [{:comment => "destroy comment"}]
 
       expect(Placement.count).to eq(1)
-      expect(Comment.count).to   eq(1)
+      expect(Comment.count).to eq(1)
 
       placement.destroy
 
       expect(Placement.count).to eq(0)
-      expect(Comment.count).to   eq(0)
+      expect(Comment.count).to eq(0)
     end
   end
 end

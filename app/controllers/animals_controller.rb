@@ -47,10 +47,10 @@ class AnimalsController < ApplicationController
   end
 
   def destroy
-     @animal = @current_shelter.animals.find(params[:id])
-     @animal.destroy
-     flash[:notice] = "#{@animal.name} has been deleted."
-     respond_with(@animal)
+    @animal = @current_shelter.animals.find(params[:id])
+    @animal.destroy
+    flash[:notice] = "#{@animal.name} has been deleted."
+    respond_with(@animal)
   end
 
   def print

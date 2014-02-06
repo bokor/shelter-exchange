@@ -14,10 +14,12 @@ class TasksController < ApplicationController
 
   def new
     @task = @current_shelter.tasks.new
+    respond_with(@task)
   end
 
   def edit
     @task = @current_shelter.tasks.find(params[:id])
+    respond_with(@task)
   end
 
   def create
@@ -40,16 +42,19 @@ class TasksController < ApplicationController
     @task.attributes = params[:task]
     @due_date_changed = @task.due_date_changed?
     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])
+    respond_with(@task)
   end
 
   def destroy
     @task = @current_shelter.tasks.find(params[:id])
     flash[:notice] = "Task has been deleted." if @task.destroy
+    respond_with(@task)
   end
 
   def complete
     @task = @current_shelter.tasks.find(params[:id])
     flash[:notice] = "Task has been completed." if @task.update_attributes({ :completed => true })
+    respond_with(@task)
   end
 end
 
