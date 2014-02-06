@@ -77,10 +77,6 @@ describe AlertsController do
 
   describe "GET new" do
 
-    before do
-      @accommodation = Accommodation.gen :shelter => current_shelter
-    end
-
     it "responds successfully" do
       get :new
       expect(response).to be_success
@@ -185,17 +181,17 @@ describe AlertsController do
       expect(flash[:notice]).to eq("Update Alert Title has been updated.")
     end
 
-    it "renders the :edit view" do
+    it "renders the :update view" do
       put :update, :id => @alert, :alert => @update_attrs, :format => :js
       expect(response).to render_template(:update)
     end
 
     context "with a save error" do
-      it "renders the :edit view" do
-        allow_any_instance_of(Alert).to receive(:save).and_return(false)
+      it "does not set the flash message" do
+        allow_any_instance_of(Alert).to receive(:update_attributes).and_return(false)
 
         put :update, :id => @alert, :alert => @update_attrs, :format => :js
-        expect(response).to render_template(:update)
+        expect(flash[:notice]).to be_nil
       end
     end
   end

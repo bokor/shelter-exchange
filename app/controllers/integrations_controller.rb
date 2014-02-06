@@ -6,16 +6,6 @@ class IntegrationsController < ApplicationController
     flash[:notice] = "#{@integration.type.demodulize.underscore.humanize} has been connected." if @integration.save
   end
 
-  def edit
-    @integration = @current_shelter.integrations.find(params[:id])
-    respond_with(@integration)
-  end
-
-  def update
-    @integration = @current_shelter.integrations.find(params[:id])
-    flash[:notice] = "#{@integration.type.demodulize.underscore.humanize} has been updated." if @integration.update_attributes(params[:integration])
-  end
-
   def destroy
     @old_integration = @current_shelter.integrations.find(params[:id])
     # Create a new Integration for the type of the old one

@@ -27,7 +27,9 @@ class Admin::ExportsController < Admin::ApplicationController
   #----------------------------------------------------------------------------
   def all_emails
     results = Shelter.select('DISTINCT email').active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active"}).all
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active"}).all
 
     generate_csv_with_emails(results)
   end
@@ -36,24 +38,34 @@ class Admin::ExportsController < Admin::ApplicationController
   #----------------------------------------------------------------------------
   def petfinder_emails
     shelter_ids = Integration::Petfinder.all.map(&:shelter_id)
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
 
   def adopt_a_pet_emails
     shelter_ids = Integration::AdoptAPet.all.map(&:shelter_id)
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
 
   def all_integrations_emails
     shelter_ids = Integration.all.map(&:shelter_id)
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
@@ -61,34 +73,41 @@ class Admin::ExportsController < Admin::ApplicationController
   # Shelter Exports
   #----------------------------------------------------------------------------
   def signed_up_last_thirty_days_emails
-    shelter_ids = Shelter.select(:id).where(:created_at, [Date.today..Date.today - 30.days])
+    shelter_ids = Shelter.select(:id).where(:created_at => [Date.today - 30.days..Date.today])
 
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-      User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
 
   def never_used_before_emails
     shelter_ids = Shelter.select("DISTINCT(shelters.id)").
-                          joins("LEFT OUTER JOIN animals on animals.shelter_id = shelters.id").
-                          where("animals.shelter_id is NULL")
+                    joins(:animals).
+                    where("animals.shelter_id is NULL")
+
     results     = Shelter.select('DISTINCT email').
-                          where(:id => shelter_ids).active.all +
+                    where(:id => shelter_ids).active.all +
                   User.select('DISTINCT users.email').
-                       joins(:account => :shelters).
-                       where(:shelters => {:status => "active", :id => shelter_ids}).all
+                    joins(:account => :shelters).
+                    where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
 
   def not_used_past_thirty_days_emails
     shelter_ids = Shelter.select("DISTINCT(shelters.id)").
-                          joins("LEFT OUTER JOIN animals on animals.shelter_id = shelters.id").
-                          where("animals.shelter_id is NULL or animals.updated_at <= ?", Date.today - 30.days)
+                    joins(:animals).
+                    where("animals.shelter_id is NULL or animals.updated_at < ?", Date.today - 30.days)
 
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end
@@ -97,8 +116,12 @@ class Admin::ExportsController < Admin::ApplicationController
   #----------------------------------------------------------------------------
   def web_token_emails
     shelter_ids = Shelter.select(:id).where("shelters.access_token IS NOT NULL")
-    results = Shelter.select('DISTINCT email').where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+
+    results = Shelter.select('DISTINCT email').
+                where(:id => shelter_ids).active.all +
+              User.select('DISTINCT users.email').
+                joins(:account => :shelters).
+                where(:shelters => {:status => "active", :id => shelter_ids}).all
 
     generate_csv_with_emails(results)
   end

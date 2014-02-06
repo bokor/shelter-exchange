@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+  respond_to :kml
   layout false
 
   def overlay

@@ -7,19 +7,17 @@ class TasksController < ApplicationController
     @tomorrow_tasks = @current_shelter.tasks.tomorrow.active.includes(:taskable).all
     @later_tasks = @current_shelter.tasks.later.active.includes(:taskable).all
 
-    if @overdue_tasks.blank? and @today_tasks.blank? and @tomorrow_tasks.blank? and @later_tasks.blank?
+    if @overdue_tasks.blank? && @today_tasks.blank? && @tomorrow_tasks.blank? && @later_tasks.blank?
       redirect_to new_task_path
     end
   end
 
   def new
     @task = @current_shelter.tasks.new
-    respond_with(@task)
   end
 
   def edit
     @task = @current_shelter.tasks.find(params[:id])
-    respond_with(@task)
   end
 
   def create
@@ -42,19 +40,16 @@ class TasksController < ApplicationController
     @task.attributes = params[:task]
     @due_date_changed = @task.due_date_changed?
     flash[:notice] = "Task has been updated." if @task.update_attributes(params[:task])
-    respond_with(@task)
   end
 
   def destroy
     @task = @current_shelter.tasks.find(params[:id])
     flash[:notice] = "Task has been deleted." if @task.destroy
-    respond_with(@task)
   end
 
   def complete
     @task = @current_shelter.tasks.find(params[:id])
     flash[:notice] = "Task has been completed." if @task.update_attributes({ :completed => true })
-    respond_with(@task)
   end
 end
 

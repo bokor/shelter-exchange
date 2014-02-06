@@ -179,7 +179,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Integrations
     #----------------------------------------------------------------------------
-    resources :integrations
+    resources :integrations, :only => [:create, :destroy]
 
 
     # Announcements
@@ -388,7 +388,7 @@ ShelterExchangeApp::Application.routes.draw do
 
   # Catch All - If route isn't found then Four oh Four
   #----------------------------------------------------------------------------
-  match "*path", :to => 'errors#routing', :status => 404
+  match "*path", :to => redirect("/404.html")
 
 end
 
