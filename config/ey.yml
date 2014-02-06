@@ -15,6 +15,9 @@ environments:
   shelter_exchange_app_production:
     branch: production
 
+  production_app:
+    branch: production
+
   staging_app:
     branch: staging
 
