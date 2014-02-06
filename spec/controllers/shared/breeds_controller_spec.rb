@@ -33,7 +33,7 @@ describe Shared::BreedsController do
     context "without an animal type" do
       it "returns without results" do
         get :auto_complete, :q => "test", :format => :json
-        expect(MultiJson.load(response.body)).to eq([{}])
+        expect(MultiJson.load(response.body)).to eq([])
       end
     end
   end
