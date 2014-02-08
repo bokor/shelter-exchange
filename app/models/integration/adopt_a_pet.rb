@@ -6,6 +6,10 @@ class Integration::AdoptAPet < Integration
   #----------------------------------------------------------------------------
   FTP_URL = "autoupload.adoptapet.com"
 
+  # Callbacks
+  #----------------------------------------------------------------------------
+  after_save :update_remote_animals
+
   # Validations
   #----------------------------------------------------------------------------
   validates :username, :presence => true, :uniqueness => {:message => "Already in use with another shelter's account"}
@@ -38,6 +42,10 @@ class Integration::AdoptAPet < Integration
     rescue
       errors.add(:connection_failed, "Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
+  end
+
+  def update_remote_animals
+    Delayed::Job.enqueue(AdoptAPetJob.new(self.shelter_id))
   end
 end
 

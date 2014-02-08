@@ -17,8 +17,12 @@ class Animal < ActiveRecord::Base
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :change_status_date!, :clean_fields
+
   after_validation :update_breed_names # FIXME: Remove later when we store the breed ids
+
   after_save :create_status_history!
+  after_save :enqueue_integrations
+  after_update :lint_facebook_url
 
   # Getters/Setters
   #----------------------------------------------------------------------------
@@ -332,6 +336,25 @@ class Animal < ActiveRecord::Base
 
   def clean_special_needs
     self.special_needs = nil unless self.special_needs?
+  end
+
+  def lint_facebook_url
+    if self.animal_status_id_changed? && Rails.env.production?
+      Delayed::Job.enqueue(FacebookLinterJob.new(self.id))
+    end
+  end
+
+  def enqueue_integrations
+    if [self.animal_status_id_was, self.animal_status_id].any? { |status| AnimalStatus::AVAILABLE.include?(status) }
+      Integration.where(:shelter_id => self.shelter_id).each do |integration|
+        case integration.to_sym
+        when :petfinder
+          Delayed::Job.enqueue(PetfinderJob.new(self.shelter_id))
+        when :adopt_a_pet
+          Delayed::Job.enqueue(AdoptAPetJob.new(self.shelter_id))
+        end
+      end
+    end
   end
 end
 

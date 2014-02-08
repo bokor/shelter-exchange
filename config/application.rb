@@ -26,16 +26,8 @@ module ShelterExchangeApp
     config.autoload_paths += %W(
       #{config.root}/lib
       #{config.root}/lib/validators
-      #{config.root}/app/observers
-      #{config.root}/app/presenters
-      #{config.root}/app/uploaders
       #{config.root}/app/models/concerns
     )
-
-    # Activate observers that should always be running.
-    Dir.chdir("#{Rails.root}/app/observers") do
-      config.active_record.observers = Dir["*_observer.rb"].collect {|ob_name| ob_name.split(".").first }
-    end
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

@@ -44,9 +44,25 @@ describe Integration::Petfinder do
       double(Net::FTP).as_null_object
       expect(Net::FTP).to receive(:open).and_return(true)
 
-      integration = Integration::Petfinder.new :username => "test", :password => "test"
+      shelter = Shelter.gen
+      integration = Integration::Petfinder.new :username => "test", :password => "test", :shelter => shelter
       integration.save!
+
       expect(integration.username).to eq("TEST")
+    end
+  end
+
+  context "After Save" do
+    it "enqueues a job to update remote animals" do
+      double(Net::FTP).as_null_object
+      expect(Net::FTP).to receive(:open).and_return(true)
+
+      shelter = Shelter.gen
+      integration = Integration::Petfinder.new :username => "test", :password => "test", :shelter => shelter
+
+      expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
+
+      integration.save!
     end
   end
 end

@@ -309,6 +309,30 @@ describe Animal do
       expect(histories[0].reason).to eq("New Record")
       expect(histories[1].reason).to eq("New Transfer")
     end
+
+    it "enqueues a job to update remote animals" do
+      shelter = Shelter.gen
+      Integration.gen :shelter => shelter, :type => "Integration::AdoptAPet"
+      Integration.gen :shelter => shelter, :type => "Integration::Petfinder"
+      animal = Animal.build :shelter => shelter
+
+      expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
+      expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
+
+      animal.save!
+    end
+
+    it "lints the facebook url for an updated animal" do
+      shelter = Shelter.gen
+      animal_status_old = AnimalStatus.gen
+      animal_status_new = AnimalStatus.gen
+      animal = Animal.gen :shelter => shelter, :animal_status => animal_status_old
+
+      allow(Rails.env).to receive(:production?).and_return(true)
+      expect(Delayed::Job).to receive(:enqueue).with(FacebookLinterJob.new(animal.id))
+
+      animal.update_attribute(:animal_status_id, animal_status_new.id)
+    end
   end
 end
 

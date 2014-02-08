@@ -37,11 +37,6 @@ RSpec.configure do |config|
   # Custom Helper Files
   config.include CapybaraHelper, :type => :request
 
-  config.before :suite do
-    # Disable All Observers
-    ActiveRecord::Base.observers.disable :all
-  end
-
   config.after :suite do
     # Remove Carrierwave Files
     FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])

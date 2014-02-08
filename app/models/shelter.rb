@@ -8,6 +8,7 @@ class Shelter < ActiveRecord::Base
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :clean_fields
+  after_save :update_map_details
 
   # Assocations
   #----------------------------------------------------------------------------
@@ -107,6 +108,10 @@ class Shelter < ActiveRecord::Base
 
   #----------------------------------------------------------------------------
   private
+
+  def update_map_details
+    Delayed::Job.enqueue(MapOverlayJob.new) unless self.changes.blank?
+  end
 
   def clean_fields
     clean_status_reason

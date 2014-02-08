@@ -7,15 +7,11 @@ class ExportsController < ApplicationController
     @animals = @current_shelter.animals.includes(:animal_type, :animal_status, :photos).all
 
     respond_to do |format|
-      format.csv{ send_data(all_animals_csv(@animals), :filename => "#{@current_shelter.name.parameterize}-animals.csv") }
+      format.csv{
+        csvfile = CSV.generate{|csv| Animal::ExportPresenter.as_csv(@animals, csv) }
+        send_data(csvfile, :filename => "#{@current_shelter.name.parameterize}-animals.csv")
+      }
     end
-  end
-
-  #-----------------------------------------------------------------------------
-  private
-
-  def all_animals_csv(results)
-    CSV.generate{|csv| Animal::ExportPresenter.as_csv(results, csv) }
   end
 end
 

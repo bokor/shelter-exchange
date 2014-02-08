@@ -36,6 +36,21 @@ describe Transfer do
     expect(transfer.errors[:transfer_history_reason]).to match_array(["cannot be blank"])
   end
 
+  context "After Create" do
+
+    it "sends a notification for a new request" do
+      TransferMailer.stub(:delay => TransferMailer)
+
+      shelter = Shelter.gen
+      transfer = Transfer.build :shelter => shelter, :transfer_history_reason => "transfer history reason"
+
+      expect(TransferMailer).to receive(:requestor_new_request).with(transfer)
+      expect(TransferMailer).to receive(:requestee_new_request).with(transfer, "transfer history reason")
+
+      transfer.save!
+    end
+  end
+
   context "After Save" do
 
     it "creates transfer history" do
@@ -56,26 +71,49 @@ describe Transfer do
 
       expect(transfer.reload.animal.shelter).to eq(requestor_shelter)
     end
-  end
-end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Transfer, "::APPROVED" do
-  it "returns the correct value for the approved constant" do
-    expect(Transfer::APPROVED).to eq("approved")
-  end
-end
+    it "sends notification when approved" do
+      TransferMailer.stub(:delay => TransferMailer)
 
-describe Transfer, "::REJECTED" do
-  it "returns the correct value for the rejected constant" do
-    expect(Transfer::REJECTED).to eq("rejected")
-  end
-end
+      shelter = Shelter.gen
+      transfer = Transfer.gen :shelter => shelter
 
-describe Transfer, "::COMPLETED" do
-  it "returns the correct value for the completed constant" do
-    expect(Transfer::COMPLETED).to eq("completed")
+      expect(TransferMailer).to receive(:approved).with(transfer, "updated to approved")
+
+      transfer.update_attributes({
+        :status => "approved",
+        :transfer_history_reason => "updated to approved"
+      })
+    end
+
+    it "sends notification when rejected" do
+      TransferMailer.stub(:delay => TransferMailer)
+
+      shelter = Shelter.gen
+      transfer = Transfer.gen :shelter => shelter
+
+      expect(TransferMailer).to receive(:rejected).with(transfer, "updated to rejected")
+
+      transfer.update_attributes({
+        :status => "rejected",
+        :transfer_history_reason => "updated to rejected"
+      })
+    end
+
+    it "sends notification when completed" do
+      TransferMailer.stub(:delay => TransferMailer)
+
+      shelter = Shelter.gen
+      transfer = Transfer.gen :shelter => shelter
+
+      expect(TransferMailer).to receive(:requestor_completed).with(transfer, "updated to completed")
+      expect(TransferMailer).to receive(:requestee_completed).with(transfer, "updated to completed")
+
+      transfer.update_attributes({
+        :status => "completed",
+        :transfer_history_reason => "updated to completed"
+      })
+    end
   end
 end
 

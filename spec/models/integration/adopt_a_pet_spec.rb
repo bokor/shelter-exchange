@@ -37,6 +37,20 @@ describe Integration::AdoptAPet do
     expect(integration).to have(1).error_on(:connection_failed)
     expect(integration.errors[:connection_failed]).to match_array(["Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!"])
   end
+
+  context "After Save" do
+    it "enqueues a job to update remote animals" do
+      double(Net::FTP).as_null_object
+      expect(Net::FTP).to receive(:open).and_return(true)
+
+      shelter = Shelter.gen
+      integration = Integration::AdoptAPet.new :username => "test", :password => "test", :shelter => shelter
+
+      expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
+
+      integration.save!
+    end
+  end
 end
 
 # Constants

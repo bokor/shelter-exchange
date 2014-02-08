@@ -1,8 +1,6 @@
 class MapOverlayJob
 
   def perform
-    # write cache key(overlay-kmz-date) with date
-    puts "\n\n\n\nTIME NOW =====> #{Time.now.to_i}\n\n\n\n"
     FOG_BUCKET.files.create(
       :key => "maps/overlay.kmz",
       :body => zip_archive_data,

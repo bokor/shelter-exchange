@@ -9,6 +9,7 @@ class Integration::Petfinder < Integration
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :upcase_username
+  after_save :update_remote_animals
 
   # Validations
   #----------------------------------------------------------------------------
@@ -46,6 +47,10 @@ class Integration::Petfinder < Integration
     rescue
       errors.add(:connection_failed, "Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
+  end
+
+  def update_remote_animals
+    Delayed::Job.enqueue(PetfinderJob.new(self.shelter_id))
   end
 end
 

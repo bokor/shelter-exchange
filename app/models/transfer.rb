@@ -3,18 +3,15 @@ class Transfer < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
+  after_create :send_notification_of_transfer_request
+
   after_save :create_transfer_history!, :if => :transfer_history_reason
   after_save :transfer_animal_record!, :if => :completed?
+  after_save :send_notification_of_status_change
 
   # Getter/Setter
   #----------------------------------------------------------------------------
   attr_accessor :transfer_history_reason
-
-  # Constants
-  #----------------------------------------------------------------------------
-  APPROVED  = "approved"
-  REJECTED  = "rejected"
-  COMPLETED = "completed"
 
   # Associations
   #----------------------------------------------------------------------------
@@ -34,10 +31,10 @@ class Transfer < ActiveRecord::Base
 
   # Scopes
   #----------------------------------------------------------------------------
-  scope :approved, where(:status => APPROVED)
-  scope :rejected, where(:status => REJECTED)
-  scope :completed, where(:status => COMPLETED)
-  scope :active, where("transfers.status IS NULL or transfers.status = ?", APPROVED)
+  scope :approved, where(:status => "approved")
+  scope :rejected, where(:status => "rejected")
+  scope :completed, where(:status => "completed")
+  scope :active, where("transfers.status IS NULL or transfers.status = ?", "approved")
 
   # Instance Methods
   #----------------------------------------------------------------------------
@@ -46,20 +43,39 @@ class Transfer < ActiveRecord::Base
   end
 
   def approved?
-    self.status == APPROVED
+    self.status == "approved"
   end
 
   def rejected?
-    self.status == REJECTED
+    self.status == "rejected"
   end
 
   def completed?
-    self.status == COMPLETED
+    self.status == "completed"
   end
 
 
   #----------------------------------------------------------------------------
   private
+
+  def send_notification_of_transfer_request
+    TransferMailer.delay.requestor_new_request(self)
+    TransferMailer.delay.requestee_new_request(self, self.transfer_history_reason)
+  end
+
+  def send_notification_of_status_change
+    unless self.new_record? || self.new_request?
+      case self.status
+      when "approved"
+        TransferMailer.delay.approved(self, self.transfer_history_reason)
+      when "rejected"
+        TransferMailer.delay.rejected(self, self.transfer_history_reason)
+      when "completed"
+        TransferMailer.delay.requestor_completed(self, self.transfer_history_reason)
+        TransferMailer.delay.requestee_completed(self, self.transfer_history_reason)
+      end
+    end
+  end
 
   def create_transfer_history!
     TransferHistory.create_with(self.shelter_id, self.id, self.status, self.transfer_history_reason)
