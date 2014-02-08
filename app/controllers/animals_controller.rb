@@ -48,8 +48,7 @@ class AnimalsController < ApplicationController
 
   def destroy
     @animal = @current_shelter.animals.find(params[:id])
-    @animal.destroy
-    flash[:notice] = "#{@animal.name} has been deleted."
+    flash[:notice] = "#{@animal.name} has been deleted." if @animal.destroy
     respond_with(@animal)
   end
 
@@ -68,7 +67,6 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        # flash[:notice] = "Print format options have been update.  Please review the new print document." if params[:print_layout].present? # means that it was resubmitted with options
         render :template => "animals/print/#{@print_layout}", :layout => "app/print"
       }
     end
@@ -99,15 +97,25 @@ class AnimalsController < ApplicationController
   end
 
   def find_animals_by_name
-    q = params[:q].strip
+    @animals = {}
     @from_controller = params[:from_controller]
-    @animals = q.blank? ? {} : @current_shelter.animals.search_by_name(q).paginate(:page => params[:page]).all
+
+    unless params[:q].blank?
+      q = params[:q].strip
+      @animals = @current_shelter.animals.search_by_name(q).paginate(:page => params[:page]).all
+    end
   end
 
   def auto_complete
-    q = params[:q].strip
-    @animals = q.blank? ? {} : @current_shelter.animals.auto_complete(q)
-    render :json => @animals.collect{ |animal| {:id => animal.id, :name => "#{animal.name}" } }.to_json
+    json = []
+
+    unless params[:q].blank?
+      q = params[:q].strip
+      @animals = @current_shelter.animals.auto_complete(q)
+      json = @animals.collect{ |animal| { :id => animal.id, :name => animal.name } }
+    end
+
+    render :json => json.to_json
   end
 
   #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

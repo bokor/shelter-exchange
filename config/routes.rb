@@ -136,10 +136,11 @@ ShelterExchangeApp::Application.routes.draw do
       resources :photos, :only => [:create, :destroy] do
         get :refresh_gallery, :on => :collection
       end
+
       member do
         match :print, :via => [:get, :post]
-        # get :print
       end
+
       collection do
         get :search
         get :filter_notes

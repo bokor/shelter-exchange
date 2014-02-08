@@ -142,39 +142,39 @@ describe AccommodationsController do
     end
 
     it "responds successfully" do
-      put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+      put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
 
-    it "updates a Accomodation" do
+    it "updates an Accomodation" do
       expect {
-        put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+        put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
         @accommodation.reload
       }.to change(@accommodation, :name).to("Update Crate")
     end
 
-    it "assigns a newly updated accommodation as @accomodation" do
-      put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+    it "assigns @accomodation" do
+      put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
       expect(assigns(:accommodation)).to be_a(Accommodation)
       expect(assigns(:accommodation)).to be_persisted
     end
 
     it "sets the flash message" do
-      put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+      put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
       expect(flash[:notice]).to eq("Update Crate accommodation has been updated.")
     end
 
-    it "renders the :edit view" do
-      put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+    it "renders the :update view" do
+      put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
       expect(response).to render_template(:update)
     end
 
     context "with a save error" do
-      it "renders the :create view" do
-        allow_any_instance_of(Accommodation).to receive(:save).and_return(false)
+      it "renders the :update view" do
+        allow_any_instance_of(Accommodation).to receive(:update_attributes).and_return(false)
 
-        put :update, :id => @accommodation, :accommodation => @update_attrs, :format => :js
+        put :update, :id => @accommodation.id, :accommodation => @update_attrs, :format => :js
         expect(response).to render_template(:update)
       end
     end
