@@ -314,10 +314,10 @@ describe Animal do
       shelter = Shelter.gen
       Integration.gen :shelter => shelter, :type => "Integration::AdoptAPet"
       Integration.gen :shelter => shelter, :type => "Integration::Petfinder"
-      animal = Animal.build :shelter => shelter
+      animal = Animal.build :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
 
-      expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
       expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
+      expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
 
       animal.save!
     end
