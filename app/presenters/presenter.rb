@@ -28,8 +28,5 @@ class Presenter
     include PhotosHelper
     include UrlHelper
   end
-
 end
-
-
 

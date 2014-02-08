@@ -17,10 +17,6 @@ namespace :spec do
       end
     end
 
-    # Specs
-    ::STATS_DIRECTORIES << ["Uploader specs", "spec/uploaders",         /\.rb$/]
-    ::STATS_DIRECTORIES << ["Job specs",      "spec/jobs",              /\.rb$/]
-
     # Code
     ::STATS_DIRECTORIES << ["Views",          "app/views",              /\.erb$/]
     ::STATS_DIRECTORIES << ["Jobs",           "app/jobs",               /\.rb$/]
@@ -29,4 +25,6 @@ namespace :spec do
     ::STATS_DIRECTORIES << ["Javascripts",    "app/assets/javascripts", /\.js$/]
   end
 end
+
 task :stats => "spec:statsetup"
+
