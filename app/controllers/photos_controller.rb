@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
       respond_to do |format|
         json = PhotoPresenter.new(@photo).to_uploader
         format.html { render :json => json, :content_type => 'text/html', :layout => false }
-        format.json { render :json => json	}
+        format.json { render :json => json }
       end
     else
       render :json => [{:error => @photo.errors[:base].to_sentence}]

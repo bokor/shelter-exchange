@@ -22,14 +22,15 @@ describe AnimalsController do
     end
 
     it "assigns @total_animals" do
-      Animal.gen :shelter => current_shelter
+      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
 
       get :index
       expect(assigns(:total_animals)).to eq(2)
     end
 
     it "assigns @animals" do
-      another_animal = Animal.gen :shelter => current_shelter
+      @animal.update_attribute(:animal_status_id, AnimalStatus::ACTIVE[0])
+      another_animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::NON_ACTIVE[0]
 
       get :index

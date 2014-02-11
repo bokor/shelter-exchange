@@ -6,18 +6,18 @@ describe Document do
 
   it "sets the original name" do
     file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
-    document = Document.gen(:document => file)
+    document = Document.gen :document => file
     expect(document.original_name).to eq("testing.pdf")
   end
 
   it "validates the max number of documents for an attachable" do
     note = Note.new
-    Document.gen(:attachable => note)
-    Document.gen(:attachable => note)
-    Document.gen(:attachable => note)
-    Document.gen(:attachable => note)
+    Document.gen :attachable => note
+    Document.gen :attachable => note
+    Document.gen :attachable => note
+    Document.gen :attachable => note
 
-    document = Document.gen(:attachable => note)
+    document = Document.gen :attachable => note
     expect(document).to have(1).error
     expect(document.errors[:base]).to match_array(["Max number of files exceeded"])
   end

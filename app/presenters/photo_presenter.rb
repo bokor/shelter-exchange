@@ -28,10 +28,10 @@ class PhotoPresenter < Presenter
 
   def to_gallery
     [{
-      :thumb       => @photo.image.url(:thumb),
-      :image       => @photo.image.url(:large),
-      :big         => @photo.image.url,
-      :title       => @photo.attachable.name,
+      :thumb => @photo.image.url(:thumb),
+      :image => @photo.image.url(:large),
+      :big => @photo.image.url,
+      :title => @photo.attachable.name,
       :description => @photo.attachable.full_breed
     }]
   end
@@ -40,7 +40,7 @@ class PhotoPresenter < Presenter
     [{
       :thumb => help.polymorphic_photo_url(nil, :large),
       :image => help.polymorphic_photo_url(nil, :large),
-      :big   => help.polymorphic_photo_url(nil, :large),
+      :big => help.polymorphic_photo_url(nil, :large),
       :title => "No photo provided"
     }]
   end
