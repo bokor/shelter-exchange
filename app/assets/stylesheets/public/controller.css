@@ -212,16 +212,6 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .ie8 .about_us_board_of_directors_page .board_member img{ behavior: url(/assets/pie/PIE.htc);}
 
 
-/* About us :: Financials */
-/******************************************************************/
-.about_us_financials_page .documents .year{float: left;width:48%;padding-right: 2%;}
-.about_us_financials_page .documents .year:last-child{ padding-right: 0;padding-left: 2%;}
-.about_us_financials_page .documents h2{ border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb; padding: 10px 0; margin:0px;}
-.about_us_financials_page .documents ul{padding: 10px 0; list-style-type: none;}
-.about_us_financials_page .documents ul li{height: 39px;padding: 10px 0;background: transparent url(/assets/icon_pdf.png) no-repeat; padding-left: 50px; }
-.about_us_financials_page .documents .general ul li {display:inline-block; min-width: 100px; *display:inline; padding-right: 30px;}
-
-
 /****************************************************************/
 /* -------------------------- DONATE -------------------------- */
 /****************************************************************/
