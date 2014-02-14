@@ -15,6 +15,6 @@ FactoryGirl.define do
     time_zone       "Pacific Time (US & Canada)"
     status          "active"
     is_kill_shelter false
-    # logo { Rack::Test::UploadedFile.new(Rails.root.join("spec/data/images/photo.jpg")) }
   end
 end
+

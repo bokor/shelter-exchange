@@ -73,7 +73,6 @@ gem "airbrake"
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development do
-  gem "pry-rails"
   gem "thin"
   gem "foreman"
   gem "engineyard"
@@ -81,6 +80,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "pry-rails"
   gem "rspec-rails"
   gem "debugger", :platforms => :ruby_19
 end

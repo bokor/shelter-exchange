@@ -22,7 +22,6 @@ FactoryGirl.define do
     animal_type
     animal_status
     shelter
-    accommodation
     primary_breed { Breed.gen(:animal_type => animal_type).name }
     secondary_breed { Breed.gen(:animal_type => animal_type).name }
 

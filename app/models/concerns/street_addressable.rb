@@ -32,5 +32,5 @@ module StreetAddressable
   def full_address
     errors.add(:address, "Street, City, State and Zip code are all required") if address_valid?
   end
-
 end
+

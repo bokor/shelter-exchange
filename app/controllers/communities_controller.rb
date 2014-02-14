@@ -45,6 +45,7 @@ class CommunitiesController < ApplicationController
 
   def find_animals_for_shelter
     @shelter = Shelter.active.find(params[:filters][:shelter_id])
+
     unless @shelter.blank?
       @capacities = @shelter.capacities.includes(:animal_type).all
       @animals = Animal.
