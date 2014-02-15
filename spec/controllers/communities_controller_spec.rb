@@ -182,14 +182,69 @@ describe CommunitiesController do
     end
   end
 
-  # def find_animals_for_shelter
-  #   @shelter = Shelter.active.find(params[:filters][:shelter_id])
-  #   unless @shelter.blank?
-  #     @capacities = @shelter.capacities.includes(:animal_type).all
-  #     @animals = Animal.
-  #       community_animals(@shelter.id, params[:filters]).
-  #       paginate(:page => params[:page], :per_page => 10).all || {}
-  #   end
-  # end
+  describe "GET find_animals_for_shelter" do
+
+    before do
+      Geocoder::Lookup::Test.add_stub("street, street_2, city, state, zip_code", [
+        { "latitude" => 37.27, "longitude" => -122.22 }
+      ])
+
+      @shelter = Shelter.gen :street => "street", :street_2 => "street_2", :city => "city", :state => "state", :zip_code => "zip_code"
+      @animal = Animal.gen :shelter => @shelter, :animal_status_id => 1
+      @capacity = Capacity.gen :shelter => @shelter
+
+      @filters = {
+        :map_center => "37.27,-122.22",
+        :distance => "5",
+        :sw => "37.25,-122.25",
+        :ne => "37.30,-122.20",
+        :shelter_id => @shelter.id
+      }
+    end
+
+    it "responds successfully" do
+      get :find_animals_for_shelter, :filters => @filters, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :find_animals_for_shelter view" do
+      get :find_animals_for_shelter, :filters => @filters, :format => :js
+      expect(response).to render_template(:find_animals_for_shelter)
+    end
+
+    it "assigns @animals" do
+      get :find_animals_for_shelter, :filters => @filters, :format => :js
+      expect(assigns(:animals)).to eq([@animal])
+    end
+
+    it "assigns @capacities" do
+      get :find_animals_for_shelter, :filters => @filters, :format => :js
+      expect(assigns(:capacities)).to eq([@capacity])
+    end
+
+    context "with no active shelter" do
+      it "does not assign @animals" do
+        @shelter.update_attribute(:status, "suspended")
+        get :find_animals_for_shelter, :filters => @filters, :format => :js
+        expect(assigns(:animals)).to be_nil
+      end
+
+      it "does not assign @capacities" do
+        @shelter.update_attribute(:status, "suspended")
+        get :find_animals_for_shelter, :filters => @filters, :format => :js
+        expect(assigns(:capacities)).to be_nil
+      end
+    end
+
+    context "with pagination" do
+      it "paginates :find_animals_for_shelter results" do
+        allow(WillPaginate::Collection).to receive(:create).with(1, 10) { [@animal] }
+
+        get :find_animals_for_shelter, :page => 1, :filters => @filters, :format => :js
+        expect(assigns(:animals)).to eq([@animal])
+      end
+    end
+  end
 end
 
