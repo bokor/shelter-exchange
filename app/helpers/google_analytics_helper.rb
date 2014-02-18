@@ -19,6 +19,5 @@ module GoogleAnalyticsHelper
 
     trackable_path
   end
-
 end
 

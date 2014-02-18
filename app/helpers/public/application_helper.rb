@@ -7,6 +7,5 @@ module Public::ApplicationHelper
       @path.blank? ? "home_page" : "#{@path.parameterize('_')}_page"
     end
   end
-
 end
 

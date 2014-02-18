@@ -47,6 +47,5 @@ module DashboardHelper
       return (" for <span class='polymorphic_link'>#{link}</span>").html_safe
     end
   end
-
 end
 

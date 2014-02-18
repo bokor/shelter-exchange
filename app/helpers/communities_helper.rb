@@ -32,6 +32,5 @@ module CommunitiesHelper
       "&nbsp;".html_safe
     end
   end
-
 end
 
