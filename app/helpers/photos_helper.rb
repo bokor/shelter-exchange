@@ -17,6 +17,5 @@ module PhotosHelper
       version.blank? ? PhotoUploader.new.default_url : PhotoUploader.new.send(version).default_url
     end
   end
-
 end
 

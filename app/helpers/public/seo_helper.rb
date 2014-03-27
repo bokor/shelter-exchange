@@ -57,6 +57,5 @@ module Public::SeoHelper
   def pinterest_shelter_description(shelter)
     "Help the #{shelter.name}, located in #{shelter.city}, #{shelter.state}, by adopting an animal or donating items most needed at this shelter or rescue group."
   end
-
 end
 

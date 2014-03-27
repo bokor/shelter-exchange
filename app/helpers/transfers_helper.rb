@@ -9,6 +9,5 @@ module TransfersHelper
       "Reject"
     end
   end
-
 end
 
