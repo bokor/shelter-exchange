@@ -41,5 +41,10 @@ RSpec.configure do |config|
     # Remove Carrierwave Files
     FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
   end
+
+  config.after :each do
+    # Resets time for freezes and allows for sloppy code
+    Timecop.return
+  end
 end
 

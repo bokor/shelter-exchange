@@ -10,11 +10,10 @@ describe User do
 
   context "Before Create" do
     it "sets the default announcement hide time as now" do
-      now = Time.now
-      allow(Time).to receive(:now).and_return(now)
+      Timecop.freeze(Time.now)
 
       user = User.gen
-      expect(user.announcement_hide_time).to eq(now)
+      expect(user.announcement_hide_time).to eq(Time.now)
     end
   end
 end

@@ -106,7 +106,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -136,7 +136,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -173,7 +173,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -206,7 +206,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -243,7 +243,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -276,7 +276,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -313,7 +313,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
@@ -344,7 +344,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -381,7 +381,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
@@ -412,7 +412,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -448,7 +448,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      allow_any_instance_of(Animal).to receive(:status_change_date).and_return("Fri, 14 Feb 2014")
+      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:new_intake]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:new_intake]

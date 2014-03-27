@@ -13,11 +13,10 @@ shared_examples_for Uploadable do
   describe described_class, "#timestamp" do
 
     it "generates a timestamp" do
-      now = Time.now
-      allow(Time).to receive(:now).and_return(now)
+      Timecop.freeze(Time.now)
 
       uploadable = described_class.gen
-      expect(uploadable.timestamp).to eq(now.to_i)
+      expect(uploadable.timestamp).to eq(Time.now.to_i)
     end
   end
 end

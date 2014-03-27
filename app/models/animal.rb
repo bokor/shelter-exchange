@@ -279,13 +279,13 @@ class Animal < ActiveRecord::Base
     # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
 
     unless self.primary_breed.blank?
-      primary_breed_from_db = Breed.where(:name => self.primary_breed.strip!).first
-      self.primary_breed = primary_breed_from_db.name if primary_breed_from_db
+      primary_breed_from_db = Breed.where(:name => self.primary_breed.strip!)
+      self.primary_breed = primary_breed_from_db.first.name unless primary_breed_from_db.empty?
     end
 
     unless self.secondary_breed.blank?
-      secondary_breed_from_db = Breed.where(:name => self.secondary_breed.strip!).first
-      self.secondary_breed = secondary_breed_from_db.name if secondary_breed_from_db
+      secondary_breed_from_db = Breed.where(:name => self.secondary_breed.strip!)
+      self.secondary_breed = secondary_breed_from_db.first.name unless secondary_breed_from_db.empty?
     end
   end
 
