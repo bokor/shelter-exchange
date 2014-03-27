@@ -1,0 +1,5 @@
+# SSL Cert
+cat STAR_shelterexchange_org.crt >> shelterexchange_org.crt
+
+# Chain Cert
+cat EssentialSSLCA_2.crt ComodoUTNSGCCA.crt UTNAddTrustSGCCA.crt AddTrustExternalCARoot.crt >> shelterexchange_org_chain.crt
