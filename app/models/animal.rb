@@ -16,9 +16,9 @@ class Animal < ActiveRecord::Base
 
   # Callbacks
   #----------------------------------------------------------------------------
-  before_save :change_status_date!, :clean_fields
+  after_validation :update_breed_names
 
-  after_validation :update_breed_names # FIXME: Remove later when we store the breed ids
+  before_save :change_status_date!, :clean_fields
 
   after_save :create_status_history!
   after_save :enqueue_integrations
@@ -276,16 +276,17 @@ class Animal < ActiveRecord::Base
 
   def update_breed_names
     # FIXME: Hack to set the name based on what is should be, view can be lowercase
-    # Please fix this by adding the breed ids instead of the names to the animal model primary_breed_id, secondary_breed_id
 
-    unless self.primary_breed.blank?
-      primary_breed_from_db = Breed.where(:name => self.primary_breed.strip!)
-      self.primary_breed = primary_breed_from_db.first.name unless primary_breed_from_db.empty?
-    end
+    if self.animal_type_id
+      if self.primary_breed
+        primary_breed_from_db = Breed.valid_for_animal(self.primary_breed.strip, self.animal_type_id).first
+        self.primary_breed = primary_breed_from_db.name unless primary_breed_from_db.blank?
+      end
 
-    unless self.secondary_breed.blank?
-      secondary_breed_from_db = Breed.where(:name => self.secondary_breed.strip!)
-      self.secondary_breed = secondary_breed_from_db.first.name unless secondary_breed_from_db.empty?
+      if self.secondary_breed
+        secondary_breed_from_db = Breed.valid_for_animal(self.secondary_breed.strip, self.animal_type_id).first
+        self.secondary_breed = secondary_breed_from_db.name unless secondary_breed_from_db.blank?
+      end
     end
   end
 

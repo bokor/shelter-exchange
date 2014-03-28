@@ -26,12 +26,16 @@ FactoryGirl.define do
     secondary_breed { Breed.gen(:animal_type => animal_type).name }
 
     after(:build) do |animal|
-      primary_breed = Breed.where(:name => animal.primary_breed).first
-      secondary_breed = Breed.where(:name => animal.secondary_breed).first
+      primary_breed = animal.primary_breed.strip unless animal.primary_breed.nil?
+      secondary_breed = animal.secondary_breed.strip unless animal.secondary_breed.nil?
 
-      Breed.gen(:animal_type => animal.animal_type, :name => animal.primary_breed) unless primary_breed
-      Breed.gen(:animal_type => animal.animal_type, :name => animal.secondary_breed) unless secondary_breed
+      primary_breed = Breed.where(:animal_type_id => animal.animal_type_id, :name => primary_breed).first
+      secondary_breed = Breed.where(:animal_type_id => animal.animal_type_id, :name => secondary_breed).first
+
+      Breed.gen(:animal_type_id => animal.animal_type_id, :name => animal.primary_breed) unless primary_breed
+      Breed.gen(:animal_type_id => animal.animal_type_id, :name => animal.secondary_breed) unless secondary_breed
     end
+
   end
 end
 

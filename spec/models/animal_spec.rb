@@ -243,12 +243,15 @@ describe Animal do
   context "After Validation" do
 
     it "updates the breed names to exactly match the ones in the database" do
-      Breed.gen(:name => "Labrador Retriever")
-      Breed.gen(:name => "Border Collie")
+      animal_type = AnimalType.gen
+
+      Breed.gen(:animal_type => animal_type, :name => "Labrador Retriever")
+      Breed.gen(:animal_type => animal_type, :name => "Border Collie")
 
       animal = Animal.gen(
+        :animal_type => animal_type,
         :primary_breed => " labrador retriever    ",
-        :secondary_breed => " border collie  "
+        :secondary_breed => "BORDER COLLIE"
       )
 
       expect(animal.primary_breed).to eq("Labrador Retriever")
