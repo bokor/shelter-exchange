@@ -1,5 +1,0 @@
-# SSL Cert
-cat STAR_se-staging_org.crt >> se_staging_org.cert
-
-# Chain Cert
-cat EssentialSSLCA_2.crt ComodoUTNSGCCA.crt UTNAddTrustSGCCA.crt AddTrustExternalCARoot.crt >> se_staging_org_chain.crt
