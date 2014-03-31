@@ -1,17 +1,17 @@
 # features.yml
 development:
   features:
-    crm: true
+    contacts: true
 
 test:
   features:
-    crm: false
+    contacts: true
 
 staging:
   features:
-    crm: false
+    contacts: false
 
 production:
   features:
-    crm: false
+    contacts: false
 
