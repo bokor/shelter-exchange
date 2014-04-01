@@ -201,7 +201,7 @@ class Animal < ActiveRecord::Base
   scope :year_to_date, where(:status_change_date => Time.zone.now.to_date.beginning_of_year..Time.zone.now.to_date.end_of_year)
 
   def self.type_by_month_year(month, year, shelter_id=nil, state=nil)
-    start_date = (month.blank? || year.blank?) ? Time.zone.now.to_date : Date.civil(year.to_i, month.to_i, 01)
+    start_date = (month.blank? || year.blank?) ? Time.zone.now : Date.civil(year.to_i, month.to_i, 01).to_time
     range = start_date.beginning_of_month..start_date.end_of_month
 
     status_histories = if shelter_id
@@ -225,8 +225,8 @@ class Animal < ActiveRecord::Base
   end
 
   def self.intake_totals_by_month(year, with_type=false)
-    start_date = year.blank? ? Time.zone.now.to_date.beginning_of_year : Date.parse("#{year}0101").beginning_of_year
-    end_date = year.blank? ? Time.zone.now.to_date.end_of_year : Date.parse("#{year}0101").end_of_year
+    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.parse("#{year}0101").to_time.beginning_of_year
+    end_date = year.blank? ? Time.zone.now.end_of_year : Date.parse("#{year}0101").to_time.end_of_year
     scope = self.scoped
 
     if with_type
