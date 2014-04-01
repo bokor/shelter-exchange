@@ -19,6 +19,10 @@ class Admin::ExportsController < Admin::ApplicationController
   #-----------------------------------------------------------------------------
   private
 
+  def current_date
+    Time.zone.now.to_date
+  end
+
   def generate_csv_with_emails(results)
     CSV.generate{|csv| results.collect(&:email).uniq.each{|email| csv << [email] } }
   end
@@ -73,7 +77,8 @@ class Admin::ExportsController < Admin::ApplicationController
   # Shelter Exports
   #----------------------------------------------------------------------------
   def signed_up_last_thirty_days_emails
-    shelter_ids = Shelter.select(:id).where(:created_at => [Date.today - 30.days..Date.today])
+
+    shelter_ids = Shelter.select(:id).where(:created_at => [current_date.beginning_of_month..current_date.end_of_month])
 
     results = Shelter.select('DISTINCT email').
                 where(:id => shelter_ids).active.all +
