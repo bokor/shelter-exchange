@@ -84,9 +84,9 @@ class Transfer < ActiveRecord::Base
   def transfer_animal_record!
     self.animal.animal_status_id      = AnimalStatus::STATUSES[:new_intake]
     self.animal.status_history_reason = "Transferred from #{self.shelter.name}"
-    self.animal.status_change_date    = Date.today
+    self.animal.status_change_date    = Time.zone.now.to_date
     self.animal.shelter_id            = self.requestor_shelter.id
-    self.animal.arrival_date          = Date.today
+    self.animal.arrival_date          = Time.zone.now.to_date
     self.animal.hold_time             = nil
     self.animal.euthanasia_date       = nil
     self.animal.accommodation_id      = nil

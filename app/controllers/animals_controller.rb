@@ -57,10 +57,10 @@ class AnimalsController < ApplicationController
     @shelter = @animal.shelter
     @note_categories = Note::CATEGORIES.select{|c| params[c].present? }
 
-    if params[:hidden]
-      @notes = @animal.notes.includes(:documents).where(:category => @note_categories).all
+    @notes = if params[:hidden]
+      @animal.notes.includes(:documents).where(:category => @note_categories).all
     else
-      @notes = @animal.notes.includes(:documents).without_hidden.where(:category => @note_categories).all
+      @animal.notes.includes(:documents).without_hidden.where(:category => @note_categories).all
     end
 
     @print_layout = params[:print_layout] || "kennel_card"
@@ -75,20 +75,21 @@ class AnimalsController < ApplicationController
 
   def search
     q = params[:q].strip.split.join("%")
-    if q.blank?
-      @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
+    @animals = if q.blank?
+      @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
     else
-      @animals = @current_shelter.animals.search(q).paginate(:page => params[:page]).all
+      @current_shelter.animals.search(q).paginate(:page => params[:page]).all
     end
   end
 
   def filter_notes
     filter_param = params[:filter]
     @animal = Animal.find(params[:id])
-    if filter_param.blank?
-      @notes = @animal.notes.includes(:documents).all
+
+    @notes = if filter_param.blank?
+      @animal.notes.includes(:documents).all
     else
-      @notes = @animal.notes.includes(:documents).where(:category => filter_param).all
+      @animal.notes.includes(:documents).where(:category => filter_param).all
     end
   end
 
