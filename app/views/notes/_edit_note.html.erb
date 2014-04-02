@@ -3,7 +3,7 @@
 	<div id="edit_note_errors_<%=@note.id %>"></div>
 	<%= form_for (@note), :remote => true, :format => :js, :html => { :id => "edit_note_form_#{@note.id}", :class => "edit_note_form"} do |f| %>
     <ul>
-	    <%= render "form", :f => f %>
+      <%= render "form", :f => f %>
       <li class="buttons">
 				<%= f.submit "Update Note", :disable_with => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
