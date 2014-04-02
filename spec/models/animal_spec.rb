@@ -867,25 +867,25 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2014")
+      :created_at => Time.zone.parse("July 1, 2014")
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, nil)
@@ -916,13 +916,13 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
 
     results = Animal.type_by_month_year("07", "2013", shelter1.id, nil)
@@ -948,13 +948,13 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => DateTime.parse("July 1, 2013")
+      :created_at => Time.zone.parse("July 1, 2013")
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, "CA")
@@ -970,13 +970,13 @@ end
 describe Animal, ".intake_totals_by_month" do
 
   it "returns counts for a year without animal types" do
-    Animal.gen :created_at => DateTime.parse("July 1, 2013")
-    Animal.gen :created_at => DateTime.parse("July 1, 2013")
-    Animal.gen :created_at => DateTime.parse("Jan 1, 2013")
-    Animal.gen :created_at => DateTime.parse("May 1, 2013")
-    Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
-    Animal.gen :created_at => DateTime.parse("Nov 1, 2013")
-    Animal.gen :created_at => DateTime.parse("Sept 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("July 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("July 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("Jan 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("May 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("Sept 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("Nov 1, 2013")
+    Animal.gen :created_at => Time.zone.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013")
     expect(MultiJson.load(results.to_json)).to match_array([{
@@ -1001,13 +1001,13 @@ describe Animal, ".intake_totals_by_month" do
     type1 = AnimalType.gen
     type2 = AnimalType.gen
 
-    Animal.gen :animal_type => type1, :created_at => DateTime.parse("July 1, 2013")
-    Animal.gen :animal_type => type1, :created_at => DateTime.parse("July 1, 2013")
-    Animal.gen :animal_type => type2, :created_at => DateTime.parse("Jan 1, 2013")
-    Animal.gen :animal_type => type2, :created_at => DateTime.parse("May 1, 2013")
-    Animal.gen :animal_type => type2, :created_at => DateTime.parse("Sept 1, 2013")
-    Animal.gen :animal_type => type1, :created_at => DateTime.parse("Nov 1, 2013")
-    Animal.gen :animal_type => type1, :created_at => DateTime.parse("Sept 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => Time.zone.parse("July 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => Time.zone.parse("July 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => Time.zone.parse("Jan 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => Time.zone.parse("May 1, 2013")
+    Animal.gen :animal_type => type2, :created_at => Time.zone.parse("Sept 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => Time.zone.parse("Nov 1, 2013")
+    Animal.gen :animal_type => type1, :created_at => Time.zone.parse("Sept 1, 2013")
 
     results = Animal.intake_totals_by_month("2013", true)
     expect(MultiJson.load(results.to_json)).to match_array([{
