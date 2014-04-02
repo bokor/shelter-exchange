@@ -110,6 +110,16 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :transfers, :except => [:index, :show]
 
+    # Contacts
+    #----------------------------------------------------------------------------
+    resources :contacts do
+      resources :notes
+      collection do
+        get :search
+        # get :filter_by_type or category
+      end
+    end
+
     # Parents
     #----------------------------------------------------------------------------
     resources :parents do
