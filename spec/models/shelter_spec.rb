@@ -338,6 +338,26 @@ describe Shelter, "#accommodations" do
   end
 end
 
+describe Shelter, "#contacts" do
+
+  before do
+    @shelter = Shelter.gen
+    @contact1 = Contact.gen :shelter => @shelter
+    @contact2 = Contact.gen :shelter => @shelter
+  end
+
+  it "returns a list of contacts" do
+    expect(@shelter.contacts.count).to eq(2)
+    expect(@shelter.contacts).to match_array([@contact1, @contact2])
+  end
+
+  it "destroy all contacts associated to the shelter" do
+    expect(@shelter.contacts.count).to eq(2)
+    @shelter.destroy
+    expect(@shelter.contacts.count).to eq(0)
+  end
+end
+
 describe Shelter, "#placements" do
 
   before do

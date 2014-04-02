@@ -19,6 +19,7 @@ class Shelter < ActiveRecord::Base
   has_many :users, :through => :account
   has_many :locations, :dependent => :destroy
   has_many :accommodations, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
   has_many :placements, :dependent => :destroy
   has_many :animals, :dependent => :destroy
   has_many :notes, :dependent => :destroy
