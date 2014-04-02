@@ -1,0 +1,108 @@
+<%= form_for(@contact) do |f| %>
+	<ul>
+    <li>
+      <%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
+      <span class="left">
+			  <%= f.text_field :first_name, :class => "field text", :size => 20 %>
+			  <%= f.label :first_name, "First" %>
+        <%= has_error_message?(@contact, :first_name)%>
+      </span>
+      <span class="leftPadded">
+		    <%= f.text_field :last_name, :class => "field text", :size => 40 %>
+	      <%= f.label :last_name, "Last" %>
+			  <%= has_error_message?(@contact, :last_name)%>
+      </span>
+		</li>
+		<li class="complex">
+			<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<span class="full addr1">
+					<%= f.text_field :street, :class => "field text addr", :maxlength => 255 %>
+					<%= f.label :street, "Street Address" %>
+				</span>
+				<span class="full addr2">
+					<%= f.text_field :street_2, :class => "field text addr", :maxlength => 255 %>
+					<%= f.label :street_2, "Address Line 2" %>
+				</span>
+				<span class="left">
+					<%= f.text_field :city, :class => "field text addr", :maxlength => 255 %>
+					<%= f.label :city, "City" %>
+				</span>
+				<span class="right">
+					<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, { :prompt => "Select State" }, { :class => "field select addr" }  %>
+					<%= f.label :state, "State" %>
+				</span>
+				<span class="clear left">
+					<%= f.text_field :zip_code, :class => "field text addr", :maxlength => 255 %>
+					<%= f.label :zip_code, "Zip Code" %>
+				</span>
+			</div>
+			<%= has_error_message?(@contact, :address)%>
+		</li>
+		<li>
+			<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.text_field :phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@contact.phone, :delimiter => "-") %>
+				<%= f.label :phone, "###-###-####" %>
+			</div>
+			<%= has_error_message?(@contact, :phone)%>
+		</li>
+		<li>
+			<%= f.label :mobile, "Mobile", :class => "desc" %>
+			<div>
+				<%= f.text_field :mobile, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@contact.mobile, :delimiter => "-") %>
+				<%= f.label :mobile, "###-###-####" %>
+			</div>
+			<%= has_error_message?(@contact, :mobile)%>
+		</li>
+		<li>
+			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
+			<%= has_error_message?(@contact, :email)%>
+    </li>
+    <li class="section">
+			<section>
+				<h3>Categories</h3>
+				<div>Select the balh blahlhahofijoad</div>
+			</section>
+    </li>
+    <li>
+	    <span class="left">
+			  <%= f.check_box :adopter, :class =>"field checkbox" %>
+				<%= f.label :adopter, "Adopter", :class => "desc choice" %>
+      </span>
+	    <span class="leftPadded">
+			  <%= f.check_box :foster, :class =>"field checkbox" %>
+				<%= f.label :foster, "Foster", :class => "desc choice" %>
+      </span>
+      <span class="leftPadded">
+			  <%= f.check_box :volunteer, :class =>"field checkbox" %>
+				<%= f.label :volunteer, "Volunteer", :class => "desc choice" %>
+			</span>
+	    <span class="leftPadded">
+			  <%= f.check_box :transporter, :class =>"field checkbox" %>
+				<%= f.label :transporter, "Transporter", :class => "desc choice" %>
+      </span>
+      <span class="leftPadded">
+			  <%= f.check_box :donor, :class =>"field checkbox" %>
+				<%= f.label :donor, "Donor", :class => "desc choice" %>
+      </span>
+      <span class="leftPadded">
+			  <%= f.check_box :staff, :class =>"field checkbox" %>
+				<%= f.label :staff, "Staff", :class => "desc choice" %>
+      </span>
+      <span class="leftPadded">
+			  <%= f.check_box :veterinarian, :class =>"field checkbox" %>
+				<%= f.label :veterinarian, "Veterinarian", :class => "desc choice" %>
+			</span>
+		</li>
+		<li class="buttons">
+			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+			<% unless action_name == "new" or action_name =="create" %>
+				&nbsp;&nbsp;or&nbsp;&nbsp;
+				<%= link_to "Cancel", contact_path(@contact) %>
+			<% end %>
+		</li>
+	</ul>
+<% end %>
+

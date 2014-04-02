@@ -191,15 +191,23 @@ ActiveRecord::Schema.define(:version => 20140330031412) do
     t.boolean  "transporter"
     t.boolean  "donor"
     t.boolean  "staff"
-    t.boolean  "vet"
-    t.boolean  "other"
-    t.string   "other_name"
+    t.boolean  "veterinarian"
     t.integer  "shelter_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
+  add_index "contacts", ["adopter"], :name => "index_contacts_on_adopter"
+  add_index "contacts", ["donor"], :name => "index_contacts_on_donor"
+  add_index "contacts", ["first_name"], :name => "index_contacts_on_first_name"
+  add_index "contacts", ["foster"], :name => "index_contacts_on_foster"
+  add_index "contacts", ["last_name", "first_name"], :name => "index_contacts_on_last_name_and_first_name"
+  add_index "contacts", ["last_name"], :name => "index_contacts_on_last_name"
   add_index "contacts", ["shelter_id"], :name => "index_contacts_on_shelter_id"
+  add_index "contacts", ["staff"], :name => "index_contacts_on_staff"
+  add_index "contacts", ["transporter"], :name => "index_contacts_on_transporter"
+  add_index "contacts", ["veterinarian"], :name => "index_contacts_on_veterinarian"
+  add_index "contacts", ["volunteer"], :name => "index_contacts_on_volunteer"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

@@ -300,6 +300,126 @@
 
 
 
+/*******************************************************************/
+/* -------------------------- CONTACTS  -------------------------- */
+/*******************************************************************/
+
+/* Contacts :: Global
+-----------------------------------------------------------------------------*/
+.contacts ul {list-style:none;}
+
+/* Contacts :: Page Layout
+ -----------------------------------------------------------------------------*/
+.show_contacts .page_heading h1{width:50%; float:left; }
+.show_contacts .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
+
+.edit_contacts .page_heading h1{width:100%;}
+
+/* Contacts :: Edit/Update/New/Create :: Layout
+-----------------------------------------------------------------------------*/
+.edit_contacts #main, .update_contacts #main, .new_contacts #main, .create_contacts #main { margin: 1em 3em 0 3em; }
+.edit_contacts #left, .update_contacts #left, .new_contacts #left, .create_contacts #left{ width: 100%;}
+.edit_contacts #sidebar, .update_contacts #sidebar, .new_contacts #sidebar, .create_contacts #sidebar { display: none;width: 0; }
+
+/* Index Contacts :: Print Heading
+-----------------------------------------------------------------------------*/
+.index_contacts .print_heading { display:none; }
+
+/* Index Contacts :: Contact List Layout
+-----------------------------------------------------------------------------*/
+.index_contacts table.contact_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
+.index_contacts table.contact_list tr {border-bottom:1px #ccc dotted; }
+.index_contacts table.contact_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_contacts table.contact_list td.details { width:380px;padding-left: 15px;color:#666; }
+.index_contacts table.contact_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+.index_contacts table.contact_list .action_links .select_link {display:none;}
+
+/* Index Contacts :: Search and Filters Layout
+-----------------------------------------------------------------------------*/
+.index_contacts table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
+.index_contacts table.search tr {vertical-align:top;}
+.index_contacts table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
+.index_contacts table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
+.index_contacts table.search td.full_search input[type=submit] {margin-left: 5px;}
+.index_contacts table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
+.index_contacts table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
+.index_contacts table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
+.index_contacts table.search td.filters table.filter_table tr{vertical-align:top;}
+.index_contacts table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
+.index_contacts table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+
+.index_contacts #contacts .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
+
+/* Show Parents :: Parent Details
+-----------------------------------------------------------------------------*/
+.show_contacts .contact {padding-bottom: 20px;}
+.show_contacts .contact #address {float:left; width: 45%; padding-right: 5%; }
+.show_contacts .contact #details {float:left; width: 50%;}
+.show_contacts .contact h3{border-bottom: 1px #bbb solid; font-weight: bold;}
+.show_contacts .contact:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+
+/* Show Contacts :: Notes
+-----------------------------------------------------------------------------*/
+.show_contacts #note_category{ display:none; }
+
+/* /* Parents :: Index/Edit/Update/New/Create :: Layout */
+/* -----------------------------------------------------------------------------*/ */
+/* .index_parents #main, .edit_parents #main, .update_parents #main, .new_parents #main, .create_parents #main { margin: 1em 3em 0 3em; } */
+/* .index_parents #left, .edit_parents #left, .update_parents #left, .new_parents #left, .create_parents #left{ width: 100%;} */
+/* .index_parents #sidebar, .edit_parents #sidebar, .update_parents #sidebar, .new_parents #sidebar, .create_parents #sidebar { display: none;width: 0; } */
+/*  */
+/* /* Index Parents :: Parent Search Layout */
+/* -----------------------------------------------------------------------------*/ */
+/* .index_parents #parent_search {padding: 0 0 20px 0; } */
+/* .index_parents #parent_search input[type=text] {margin-top:5px;width:40%;height:20px;font-size:14px;} */
+/* .index_parents #parent_search input[type=submit] {margin-left: 5px;} */
+/*  */
+/* /* Index Parents :: Search Results */
+/* -----------------------------------------------------------------------------*/ */
+/* .index_parents #parents {} */
+/* .index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; } */
+/* .index_parents #parents .no_results p{font-weight: bold; } */
+/*  */
+/* .index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;} */
+/* .index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;} */
+/* .index_parents table.parent_list td.details { width:380px; color:#666; } */
+/* .index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;} */
+/* .index_parents table.parent_list td .action_links{font-size: 10px;font-weight:bold;} */
+/*  */
+/* /* Show Parents :: Notes */
+/* -----------------------------------------------------------------------------*/ */
+/* .show_parents #note_category{display:none;} */
+/*  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**********************************************************************/
 /* -------------------------- COMMUNITIES --------------------------- */
@@ -728,7 +848,6 @@
 .show_parents table.placement_list td.image .action_links{ width:100px; text-align:center;font-size: 10px;font-weight:bold;height:auto;}
 .show_parents table.placement_list td.image .action_links .delete_link{padding-bottom: 10px;}
 .show_parents table.placement_list td.details { width:380px;color:#666; }
-/*.show_parents table.placement_list td.details h4{border-top: 1px #ccc solid; padding-top: 5px;}*/
 .show_parents table.placement_list td.status { width:175px;padding-left: 10px; text-align:right;}
 
 

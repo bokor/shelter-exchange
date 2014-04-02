@@ -1,0 +1,16 @@
+<%= title "Editing contact - #{@contact.name}" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1>Editing: <%= @contact.name %></h1>
+	</div>
+	<div class="page_content">
+		<%= render "shared/error_messages", :target => @contact %>
+		<%= render "form", :button_text => "Update contact"  %>
+	</div>
+<% end %>
+

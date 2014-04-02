@@ -1,6 +1,8 @@
 class Contact < ActiveRecord::Base
   include StreetAddressable
 
+  default_scope :order => 'contacts.last_name ASC, contacts.first_name ASC'
+
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :clean_phone_numbers
@@ -8,6 +10,9 @@ class Contact < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------------
   belongs_to :shelter
+
+  has_many :notes, :as => :notable, :dependent => :destroy
+  # not yet has_many :animals, :through => :status_histories
 
   # Validations
   #----------------------------------------------------------------------------
@@ -30,6 +35,12 @@ class Contact < ActiveRecord::Base
     end
 
     scope
+  end
+
+  # Instance Methods
+  #----------------------------------------------------------------------------
+  def name
+    "#{self.first_name} #{self.last_name}"
   end
 
   #----------------------------------------------------------------------------

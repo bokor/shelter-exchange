@@ -1,0 +1,66 @@
+<%= title "Contacts" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<% if @total_contacts > 0 %>
+
+		<div class="print_heading">
+			<h1>Contacts</h1>
+		</div>
+
+		<div class="page_content">
+
+			<table class="search">
+				<tr>
+					<td class="full_search">
+						<h3>Search for contacts:</h3>
+						<%= form_for :contacts, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
+							<%= text_field_tag "q", ""  %>
+							<%= f.submit "Go", :disable_with => "..." %>
+						<% end %>
+					</td>
+          <td class="filters">
+            <h3>Filter contacts by:</h3>
+						<table class="filter_table">
+							<tr>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+<!--  -->
+<!-- 			<div class="help_text"> -->
+<!-- 				<strong>Below are the active animals at your facility. Search all other animals using status filter.</strong> -->
+<!-- 			</div> -->
+
+			<div id="contacts">
+				<% if @contacts %>
+					<%= render "contact_list", :contacts => @contacts %>
+				<% else %>
+					<div class='no_results'><h2>Currently, No active contacts</h2></div>
+				<% end %>
+			</div>
+
+		</div>
+
+	<% else %>
+		<div class="page_heading">
+			<h1>Create your first contact</h1>
+			<p>Once you have clicked Create new contact, please complete the form with the contacts information.</p>
+		</div>
+	<% end %>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<ul class="action_links">
+		<%= link_to "Create new contact", new_contact_path, :class => "button red" %>
+	</ul>
+<% end %>

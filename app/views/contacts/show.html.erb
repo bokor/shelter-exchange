@@ -1,0 +1,89 @@
+<%= title "#{@contact.name}" %>
+
+<%= content_for :javascripts do %>
+  <%= render "file_uploader/upload_template" %>
+	<%= render "file_uploader/download_template" %>
+<% end %>
+
+<%= content_for :page_content do %>
+	<div class="page_heading blue">
+		<h1><%= @contact.name %></h1>
+    <div class="action_links">
+      <%= link_to "Create new contact", new_contact_path %>
+			<% if can?(:update, Contact) %>
+			  &nbsp;&nbsp;|&nbsp;&nbsp;
+			  <%= link_to "Edit", edit_contact_path(@contact)%>
+			<% end %>
+			<% if can?(:destroy, Contact) %>
+			  &nbsp;&nbsp;|&nbsp;&nbsp;
+			  <%= link_to "Delete", @contact, :confirm => "Are you sure you want to delete?", :method => :delete %>
+			<% end %>
+    </div>
+	</div>
+
+	<div class="page_content">
+
+		<div class="contact">
+			<div id="address">
+				<h3>Address:</h3>
+				<ul>
+					<li><%= @contact.street %></li>
+					<% unless @contact.street_2.blank? %>
+						<li><%= @contact.street_2 %></li>
+					<% end %>
+					<li><%= @contact.city %>, <%= @contact.state %> <%= @contact.zip_code %></li>
+				</ul>
+			</div>
+			<div id="details">
+				<h3>Contact details:</h3>
+				<ul>
+					<li>Phone:  <%=number_to_phone(@contact.phone, :delimiter => "-")%></li>
+					<% unless @contact.mobile.blank? %>
+						<li>Mobile: <%=number_to_phone(@contact.mobile, :delimiter => "-")%></li>
+					<% end %>
+					<li>Email:  <a href="mailto:<%=@contact.email %>"><%=@contact.email %></a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="notes_heading" class="section_heading orange">
+		<h2>Notes</h2>
+	</div>
+
+	<div class="page_content">
+		<div id="notes" class="note_list">
+			<%= render @notes %>
+		</div>
+	</div>
+
+	<!-- <div id="adoption_history_heading"  class="section_heading blue"> -->
+	<!-- 	<h2>Adoption History</h2> -->
+	<!-- </div> -->
+
+<% end %>
+
+<%= content_for :sidebar do %>
+
+	<ul class="action_links">
+		<li><%= link_to 'Add note to contact', "#", :id => "add_note_link", :class => "button" -%></li>
+	</ul>
+
+	<div id="create_note" class="box hide orange">
+		<h2>Add a note for <%= @contact.name %></h2>
+		<div id="create_note_errors"></div>
+		<%= form_for ([@contact, @note = Note.new]), :remote => true, :format => :js, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
+			<ul>
+				<%= render "notes/form", :f => f, :default_category => true %>
+		    	<li class="buttons">
+					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+					&nbsp;or&nbsp;&nbsp;
+					<%= link_to "Cancel", "#", :id => "cancel_note" -%>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+
+<% end %>
+

@@ -11,6 +11,7 @@ FactoryGirl.define do
     sequence(:phone)    {|n| "999999#{n+1000}" }
     sequence(:mobile)   {|n| "999999#{n+1000}" }
     sequence(:email)    {|n| "parent_email_#{n}@example.com" }
+    shelter
   end
 end
 

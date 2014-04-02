@@ -17,14 +17,22 @@ class CreateContacts < ActiveRecord::Migration
       t.boolean :transporter
       t.boolean :donor
       t.boolean :staff
-      t.boolean :vet
-      t.boolean :other
-      t.string :other_name
+      t.boolean :veterinarian
       t.integer :shelter_id
       t.timestamps
     end
 
     add_index :contacts, :shelter_id
+    add_index :contacts, :last_name
+    add_index :contacts, :first_name
+    add_index :contacts, [:last_name, :first_name]
+    add_index :contacts, :adopter
+    add_index :contacts, :foster
+    add_index :contacts, :volunteer
+    add_index :contacts, :transporter
+    add_index :contacts, :donor
+    add_index :contacts, :staff
+    add_index :contacts, :veterinarian
   end
 end
 

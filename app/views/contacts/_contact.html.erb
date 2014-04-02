@@ -1,0 +1,14 @@
+<tr id="<%= "contact_#{contact.id}" %>">
+	<td class="details">
+		<h2><%= link_to contact.name, contact %></h2>
+		<p><%= contact.street %></p>
+		<p><%= contact.city %>, <%= contact.state %> <%= contact.zip_code %></p>
+	</td>
+	<td class="status">
+		<p><%=number_to_phone(contact.phone, :delimiter => "-")%>(h)</p>
+		<% unless contact.mobile.blank? %>
+			<p><%=number_to_phone(contact.mobile, :delimiter => "-")%>(m)</p>
+		<% end %>
+		<p><%= contact.email %></p>
+	</td>
+</tr>

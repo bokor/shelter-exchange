@@ -4,6 +4,10 @@ describe Contact do
 
   it_should_behave_like StreetAddressable
 
+  it "has a default scope" do
+    expect(Contact.scoped.to_sql).to eq(Contact.order("contacts.last_name ASC, contacts.first_name ASC").to_sql)
+  end
+
   it "validates presence of first_name" do
     contact = Contact.new :first_name => nil
     expect(contact).to have(1).error_on(:first_name)
@@ -127,6 +131,34 @@ describe Contact, "#shelter" do
     contact = Contact.new :shelter => shelter
 
     expect(contact.shelter).to eq(shelter)
+  end
+end
+
+describe Contact, "#notes" do
+
+  before do
+    @contact = Contact.gen
+    @note1 = Note.gen :notable => @contact
+    @note2 = Note.gen :notable => @contact
+  end
+
+  it "returns a list of notes" do
+    expect(@contact.notes.count).to eq(2)
+    expect(@contact.notes).to match_array([@note1, @note2])
+  end
+
+  it "destroy all notes associated to the contact" do
+    expect(@contact.notes.count).to eq(2)
+    @contact.destroy
+    expect(@contact.notes.count).to eq(0)
+  end
+end
+
+describe Contact, "#name" do
+
+  it "returns the name concatinated" do
+    contact = Contact.new :first_name => "Jimmy", :last_name => "Smith"
+    expect(contact.name).to eq("Jimmy Smith")
   end
 end
 

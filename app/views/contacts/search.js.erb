@@ -1,0 +1,7 @@
+$('#contacts').html( "<%= escape_javascript( render 'contact_list', :contacts => @contacts) %>" );
+
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/contacts/search"]);
+<% end %>
+
