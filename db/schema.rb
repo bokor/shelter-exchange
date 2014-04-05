@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528020822) do
+ActiveRecord::Schema.define(:version => 20140402235112) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -173,6 +173,41 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
   add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["shelter_id", "commentable_type"], :name => "index_comments_on_shelter_id_and_commentable_type"
   add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
+
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "street_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.string   "mobile"
+    t.string   "email"
+    t.boolean  "adopter"
+    t.boolean  "foster"
+    t.boolean  "volunteer"
+    t.boolean  "transporter"
+    t.boolean  "donor"
+    t.boolean  "staff"
+    t.boolean  "veterinarian"
+    t.integer  "shelter_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "contacts", ["adopter"], :name => "index_contacts_on_adopter"
+  add_index "contacts", ["donor"], :name => "index_contacts_on_donor"
+  add_index "contacts", ["first_name"], :name => "index_contacts_on_first_name"
+  add_index "contacts", ["foster"], :name => "index_contacts_on_foster"
+  add_index "contacts", ["last_name", "first_name"], :name => "index_contacts_on_last_name_and_first_name"
+  add_index "contacts", ["last_name"], :name => "index_contacts_on_last_name"
+  add_index "contacts", ["shelter_id"], :name => "index_contacts_on_shelter_id"
+  add_index "contacts", ["staff"], :name => "index_contacts_on_staff"
+  add_index "contacts", ["transporter"], :name => "index_contacts_on_transporter"
+  add_index "contacts", ["veterinarian"], :name => "index_contacts_on_veterinarian"
+  add_index "contacts", ["volunteer"], :name => "index_contacts_on_volunteer"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -378,12 +413,15 @@ ActiveRecord::Schema.define(:version => 20130528020822) do
     t.string   "reason"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.date     "status_date"
   end
 
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
   add_index "status_histories", ["created_at", "animal_id"], :name => "index_status_histories_on_created_at_and_animal_id"
   add_index "status_histories", ["shelter_id"], :name => "index_status_histories_on_shelter_id"
+  add_index "status_histories", ["status_date", "created_at"], :name => "index_status_histories_on_status_date_and_created_at"
+  add_index "status_histories", ["status_date"], :name => "index_status_histories_on_status_date"
 
   create_table "tasks", :force => true do |t|
     t.string   "details"

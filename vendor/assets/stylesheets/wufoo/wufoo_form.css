@@ -39,6 +39,9 @@ span.rightPadded{padding-right: 10px;}
 /******************************************************************/
 .error_message{list-style:none;}
 
+/* USED FOR GROUPING ELEMENTS */
+form ul li ul { margin: -5px 0 -5px -8px; }
+
 /* END Customizations
 ##############################################################*/
 

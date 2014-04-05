@@ -19,9 +19,9 @@ var Animals = {
 		var has_value = $('#animal_status_history_reason').val() != "";
 
 		if (animal_status_id != animal_status_was) { //(changed || has_value) && (animal_status_id != animal_status_was)
-			$('#reason_field').show();
+			$('.status_history_details').show();
 		} else {
-			$('#reason_field').hide();
+			$('.status_history_details').hide();
 			$('#animal_status_history_reason').val("");
 		}
 	},
@@ -50,6 +50,11 @@ var Animals = {
 		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
 		Animals.showSecondaryBreed();
 		Animals.showAccommodationRemoveLink();
+
+    // Status History Date DatePicker
+    Animals.datePicker("#animal_status_history_date");
+    Animals.setDatePickerDate('#animal_status_history_date');
+    $('#status_history_date_trigger').bind("click", function(event) { $('#animal_status_history_date_datepicker').slideToggle();});
 
 		// Date of Birth DatePicker
 		Animals.datePicker("#animal_date_of_birth");

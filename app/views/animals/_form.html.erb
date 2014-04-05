@@ -35,17 +35,43 @@
 				<%= has_error_message?(@animal, :secondary_breed)%>
 			</div>
 		</li>
-		<li>
-			<%= f.label :animal_status_id, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div>
-			<%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select medium" } %>
-			</div>
-			<%= has_error_message?(@animal, :animal_status_id)%>
-			<div id="reason_field">
-				<%= f.label :status_history_reason, "Reason for the status change".html_safe, :class => "desc" %>
-				<%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
-			</div>
-			<%= has_error_message?(@animal, :status_history_reason)%>
+    <li>
+      <ul>
+        <li>
+          <%= f.label :animal_status_id, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
+          <div>
+            <%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select medium" } %>
+          </div>
+          <%= has_error_message?(@animal, :animal_status_id)%>
+        </li>
+        <li class="full date status_history_details">
+          <%= f.label :status_history_date, "Status Date".html_safe, :class => "desc" %>
+          <span>
+            <%= f.text_field :status_history_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => status_history_date_value(:month, @animal)  %>
+            <%= f.label :status_history_date, "MM" %>
+          </span>
+          <span class="symbol">/</span>
+          <span>
+            <%= f.text_field :status_history_date_day, :class => "field text", :maxlength => 2, :size => 2, :value => status_history_date_value(:day, @animal) %>
+            <%= f.label :status_history_date, "DD" %>
+          </span>
+          <span class="symbol">/</span>
+          <span>
+            <%= f.text_field :status_history_date_year, :class => "field text", :maxlength => 4, :size => 4, :value => status_history_date_value(:year, @animal) %>
+            <%= f.label :status_history_date, "YYYY" %>
+          </span>
+          <span>
+            <%= image_tag "icon_calendar.png", :id => "status_history_date_trigger", :class => "icon_calendar" %>
+          </span>
+			    <span id="animal_status_history_date_datepicker" class="calendar"></span>
+			    <%= has_error_message?(@animal, :status_history_date)%>
+       </li>
+       <li class="status_history_details">
+          <%= f.label :status_history_reason, "Reason for the status change".html_safe, :class => "desc" %>
+				  <%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
+          <%= has_error_message?(@animal, :status_history_reason)%>
+        </li>
+      </ul>
 		</li>
 		<li>
 			<%= f.label :sex, "Sex <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -60,6 +86,33 @@
 			<%= has_error_message?(@animal, :sex)%>
 		</li>
 		<li>
+			<%= f.label :age, "Age range <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div>
+				<%= f.collection_select :age, Animal::AGES, :to_s, :humanize, {:prompt => "Select one"}, {:class => "field select small" } %>
+			</div>
+			<%= has_error_message?(@animal, :age)%>
+		</li>
+		<li>
+			<%= f.label :size, "Size <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.collection_select :size, Animal::SIZES, :first, :last, {:prompt => "Select one"}, {:class => "field select small" } %></div>
+			<%= has_error_message?(@animal, :size)%>
+		</li>
+		<li>
+			<%= f.label :weight, "Weight", :class => "desc" %>
+			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>
+			<%= has_error_message?(@animal, :weight)%>
+		</li>
+		<li>
+			<%= f.label :color, "Color", :class => "desc" %>
+			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255, :placeholder => "Black and white" %></div>
+			<%= has_error_message?(@animal, :color)%>
+		</li>
+		<li>
+			<%= f.label :microchip, "Microchip#", :class => "desc" %>
+			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
+			<%= has_error_message?(@animal, :microchip)%>
+    </li>
+    <li>
 			<%= f.label :is_sterilized, "Sterilized?", :class => "desc" %>
 			<!-- <div> -->
 				<span class="left">
@@ -89,33 +142,7 @@
 				<%= has_error_message?(@animal, :special_needs)%>
 			</div>
 		</li>
-		<li>
-			<%= f.label :age, "Age range <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div>
-				<%= f.collection_select :age, Animal::AGES, :to_s, :humanize, {:prompt => "Select one"}, {:class => "field select small" } %>
-			</div>
-			<%= has_error_message?(@animal, :age)%>
-		</li>
-		<li>
-			<%= f.label :size, "Size <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.collection_select :size, Animal::SIZES, :first, :last, {:prompt => "Select one"}, {:class => "field select small" } %></div>
-			<%= has_error_message?(@animal, :size)%>
-		</li>
-		<li>
-			<%= f.label :weight, "Weight", :class => "desc" %>
-			<div><%= f.text_field :weight, :class => "field text medium", :maxlength => 255, :placeholder => "40 lbs" %></div>
-			<%= has_error_message?(@animal, :weight)%>
-		</li>
-		<li>
-			<%= f.label :color, "Color", :class => "desc" %>
-			<div><%= f.text_field :color, :class => "field text medium", :maxlength => 255, :placeholder => "Black and white" %></div>
-			<%= has_error_message?(@animal, :color)%>
-		</li>
-		<li>
-			<%= f.label :microchip, "Microchip#", :class => "desc" %>
-			<div><%= f.text_field :microchip, :class => "field text medium", :maxlength => 255, :placeholder => "Enter microchip number if known" %></div>
-			<%= has_error_message?(@animal, :microchip)%>
-		</li>
+
 	  <li class="date">
 			<%= f.label :date_of_birth, "Date of Birth (Est.)".html_safe, :class => "desc" %>
 
