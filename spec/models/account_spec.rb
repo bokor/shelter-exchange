@@ -77,11 +77,13 @@ describe Account do
 
   context "Before Create" do
 
-    it "downcases the subdomain" do
-      account = Account.new(:subdomain => "TESTING")
-      expect(account.subdomain).to eq("TESTING")
-      account.save(:validate => false)
-      expect(account.subdomain).to eq("testing")
+    describe "#downcase_subdomain" do
+      it "downcases the subdomain" do
+        account = Account.new(:subdomain => "TESTING")
+        expect(account.subdomain).to eq("TESTING")
+        account.save(:validate => false)
+        expect(account.subdomain).to eq("testing")
+      end
     end
   end
 

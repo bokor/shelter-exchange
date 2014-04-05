@@ -6,10 +6,12 @@ describe Integration do
 
   context "Before Validation" do
 
-    it "should clean the attribute values" do
-      integration = Integration.gen :username => "    testing    ", :password => "   blah blah blah    "
-      expect(integration.username).to eq("testing")
-      expect(integration.password).to eq("blah blah blah")
+    describe "#clean_data!" do
+      it "should clean the attribute values" do
+        integration = Integration.gen :username => "    testing    ", :password => "   blah blah blah    "
+        expect(integration.username).to eq("testing")
+        expect(integration.password).to eq("blah blah blah")
+      end
     end
   end
 end

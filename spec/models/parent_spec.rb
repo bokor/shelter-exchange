@@ -97,13 +97,16 @@ describe Parent do
 
   context "Before Save" do
 
-    it "cleans the phone numbers to store without hyphens" do
-      parent = Parent.gen(
-        :phone => "123-456-7890",
-        :mobile => "098-765-4321"
-      )
-      expect(parent.phone).to eq("1234567890")
-      expect(parent.mobile).to eq("0987654321")
+    describe "#clean_phone_numbers" do
+
+      it "cleans the phone numbers to store without hyphens" do
+        parent = Parent.gen(
+          :phone => "123-456-7890",
+          :mobile => "098-765-4321"
+        )
+        expect(parent.phone).to eq("1234567890")
+        expect(parent.mobile).to eq("0987654321")
+      end
     end
   end
 end
