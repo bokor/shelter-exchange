@@ -1,5 +1,5 @@
 class StatusHistory < ActiveRecord::Base
-  default_scope :order => 'status_histories.created_at DESC'
+  default_scope :order => 'status_histories.status_date DESC, status_histories.created_at DESC'
 
   # Associations
   #----------------------------------------------------------------------------
@@ -9,19 +9,25 @@ class StatusHistory < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def self.create_with(shelter_id, animal_id, animal_status_id, reason)
-    create!(:shelter_id => shelter_id, :animal_id => animal_id, :animal_status_id => animal_status_id, :reason => reason)
+  def self.create_with(shelter_id, animal_id, animal_status_id, date, reason)
+    create!({
+      :shelter_id => shelter_id,
+      :animal_id => animal_id,
+      :animal_status_id => animal_status_id,
+      :status_date => date || Time.zone.today,
+      :reason => reason
+    })
   end
 
   # Reports
   #----------------------------------------------------------------------------
   def self.by_month(range)
-    select([:id, :animal_id]).where(:created_at => range).reorder("animal_id, created_at DESC").uniq(&:animal_id).collect(&:id)
+    select([:id, :animal_id]).where(:status_date => range).reorder("animal_id, status_date DESC").uniq(&:animal_id).collect(&:id)
   end
 
   def self.status_by_month_year(month, year, state=nil)
-    start_date = (month.blank? or year.blank?) ? Time.zone.now : Date.civil(year.to_i, month.to_i, 01).to_time
-    range      = start_date.beginning_of_month..start_date.end_of_month
+    start_date = (month.blank? or year.blank?) ? Time.zone.today : Date.new(year.to_i, month.to_i, 01)
+    range = start_date.beginning_of_month..start_date.end_of_month
 
     scope = self.scoped
     scope = scope.select("count(*) count, animal_statuses.name")
@@ -38,8 +44,8 @@ class StatusHistory < ActiveRecord::Base
   end
 
   def self.totals_by_month(year, status, with_type=false)
-    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.parse("#{year}0101").to_time.beginning_of_year
-    end_date   = year.blank? ? Time.zone.now.end_of_year : Date.parse("#{year}0101").to_time.end_of_year
+    start_date = year.blank? ? Time.zone.today.beginning_of_year : Date.new(year.to_i, 01, 01).beginning_of_year
+    end_date   = year.blank? ? Time.zone.today.end_of_year : Date.new(year.to_i, 01, 01).end_of_year
 
     scope = self.scoped
 
@@ -50,7 +56,7 @@ class StatusHistory < ActiveRecord::Base
     end
 
     start_date.month.upto(end_date.month) do |month|
-      scope = scope.select("COUNT(CASE WHEN status_histories.created_at BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
+      scope = scope.select("COUNT(CASE WHEN status_histories.status_date BETWEEN '#{start_date.beginning_of_month}' AND '#{start_date.end_of_month}' THEN 1 END) AS #{Date::MONTHNAMES[month].downcase}")
       start_date = start_date.next_month
     end
 

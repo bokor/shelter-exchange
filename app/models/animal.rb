@@ -18,18 +18,30 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   after_validation :update_breed_names
 
-  before_save :change_status_date!, :clean_fields
+  before_save :set_status_change_date,
+              :parse_and_set_dates,
+              :clean_description,
+              :remove_secondary_breed,
+              :remove_special_needs
 
-  after_save :create_status_history!
-  after_save :enqueue_integrations
+  after_save :create_status_history!,
+             :enqueue_integrations
+
   after_update :lint_facebook_url
 
   # Getters/Setters
   #----------------------------------------------------------------------------
-  attr_accessor :status_history_reason,
+  attr_accessor :status_history_reason, :status_history_date,
+                :status_history_date_month, :status_history_date_day, :status_history_date_year,
                 :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
+
+  def status_history_date
+    if self.status_history_date_month.blank? && self.status_history_date_day.blank? && self.status_history_date_year.blank?
+      @status_history_date = Time.zone.today
+    end
+  end
 
   # Associations
   #----------------------------------------------------------------------------
@@ -73,6 +85,7 @@ class Animal < ActiveRecord::Base
   }
   validates :special_needs, :presence => { :if => :special_needs? }
   validates :video_url, :video_url_format => true, :allow_blank => true
+  validates :status_history_date, :date_format => true
   validates :date_of_birth, :date_format => true
   validates :arrival_date, :date_format => true
   validates :euthanasia_date, :date_format => true
@@ -128,7 +141,7 @@ class Animal < ActiveRecord::Base
     unless filters[:euthanasia_only].blank? || !filters[:euthanasia_only]
       scope = scope.joins(:shelter)
       scope = scope.where("shelters.is_kill_shelter = ?", true)
-      scope = scope.where("animals.euthanasia_date < ?", Time.zone.now.to_date + 2.weeks)
+      scope = scope.where("animals.euthanasia_date < ?", Time.zone.today + 2.weeks)
     end
 
     # Filter Special Needs
@@ -197,11 +210,11 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id)
   scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
-  scope :current_month, where(:status_change_date => Time.zone.now.to_date.beginning_of_month..Time.zone.now.to_date.end_of_month)
-  scope :year_to_date, where(:status_change_date => Time.zone.now.to_date.beginning_of_year..Time.zone.now.to_date.end_of_year)
+  scope :current_month, where(:status_change_date => Time.zone.today.beginning_of_month..Time.zone.today.end_of_month)
+  scope :year_to_date, where(:status_change_date => Time.zone.today.beginning_of_year..Time.zone.today.end_of_year)
 
   def self.type_by_month_year(month, year, shelter_id=nil, state=nil)
-    start_date = (month.blank? || year.blank?) ? Time.zone.now : Date.civil(year.to_i, month.to_i, 01).to_time
+    start_date = (month.blank? || year.blank?) ? Time.zone.today : Date.new(year.to_i, month.to_i, 01)
     range = start_date.beginning_of_month..start_date.end_of_month
 
     status_histories = if shelter_id
@@ -225,8 +238,8 @@ class Animal < ActiveRecord::Base
   end
 
   def self.intake_totals_by_month(year, with_type=false)
-    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.parse("#{year}0101").to_time.beginning_of_year
-    end_date = year.blank? ? Time.zone.now.end_of_year : Date.parse("#{year}0101").to_time.end_of_year
+    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.new(year.to_i, 01, 01).beginning_of_year
+    end_date = year.blank? ? Time.zone.now.end_of_year : Date.new(year.to_i, 01, 01).end_of_year
     scope = self.scoped
 
     if with_type
@@ -290,22 +303,31 @@ class Animal < ActiveRecord::Base
     end
   end
 
-  def change_status_date!
+  def set_status_change_date
     if self.new_record? || self.animal_status_id_changed?
-      self.status_change_date = Time.zone.now.to_date
+      self.status_change_date = Time.zone.today
+    end
+  end
+
+  def parse_and_set_dates
+    unless errors.has_key?(:date_of_birth)
+      self.date_of_birth = Date.new(self.date_of_birth_year.to_i, self.date_of_birth_month.to_i, self.date_of_birth_day.to_i) rescue nil
+    end
+
+    unless errors.has_key?(:arrival_date)
+      self.arrival_date = Date.new(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i) rescue nil
+    end
+
+    unless errors.has_key?(:euthanasia_date)
+      self.euthanasia_date = Date.new(self.euthanasia_date_year.to_i, self.euthanasia_date_month.to_i, self.euthanasia_date_day.to_i) rescue nil
     end
   end
 
   def create_status_history!
     if self.new_record? || self.animal_status_id_changed? || self.shelter_id_changed?
-      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, @status_history_reason)
+      date = Date.new(self.status_history_date_year.to_i, self.status_history_date_month.to_i, self.status_history_date_day.to_i) rescue nil
+      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, date, @status_history_reason)
     end
-  end
-
-  def clean_fields
-    clean_description
-    clean_secondary_breed
-    clean_special_needs
   end
 
   def clean_description
@@ -331,11 +353,11 @@ class Animal < ActiveRecord::Base
     end
   end
 
-  def clean_secondary_breed
+  def remove_secondary_breed
     self.secondary_breed = nil unless self.mix_breed?
   end
 
-  def clean_special_needs
+  def remove_special_needs
     self.special_needs = nil unless self.special_needs?
   end
 

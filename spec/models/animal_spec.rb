@@ -108,6 +108,17 @@ describe Animal do
     expect(animal).to have(0).error_on(:video_url)
   end
 
+  it "validates date format of status history date invalid date" do
+    today = Date.today
+    animal = Animal.new(
+      :status_history_date_day => today.day,
+      :status_history_date_month => today.month,
+      :status_history_date_year => nil
+    )
+    expect(animal).to have(1).error_on(:status_history_date)
+    expect(animal.errors[:status_history_date]).to match_array(["is an invalid date format"])
+  end
+
   it "validates date format of date of birth before today" do
     today = Date.today + 1.month
     animal = Animal.gen(
@@ -193,150 +204,235 @@ describe Animal do
 
   context "Before Save" do
 
-    it "cleans the description to remove all of the MS formatting" do
-      animal = Animal.gen(
-        :description => "\u2036\u201F\u2035\u2032\u2013\u02C6\u2039\u203A\u2013\u2014\u2026\u00A9\u00AE\u2122\u00BC\u00BD\u00BE\u02DC"
-      )
-      expect(animal.description).to eq("\"\"''-^<>--...&copy;&reg;&trade;&frac14;&frac12;&frac34;")
+    describe "#clean_description" do
+
+      it "cleans the description to remove all of the MS formatting" do
+        animal = Animal.gen(
+          :description => "\u2036\u201F\u2035\u2032\u2013\u02C6\u2039\u203A\u2013\u2014\u2026\u00A9\u00AE\u2122\u00BC\u00BD\u00BE\u02DC"
+        )
+        expect(animal.description).to eq("\"\"''-^<>--...&copy;&reg;&trade;&frac14;&frac12;&frac34;")
+      end
+
+      it "strips the description" do
+        animal = Animal.gen(
+          :description => "   hi    "
+        )
+        expect(animal.description).to eq("hi")
+      end
     end
 
-    it "strips the description" do
-      animal = Animal.gen(
-        :description => "   hi    "
-      )
-      expect(animal.description).to eq("hi")
+    describe "#remove_secondary_breed" do
+
+      it "removed secondary breed when the mixed breed is false" do
+        animal = Animal.gen(
+          :secondary_breed => "test",
+          :is_mix_breed => false
+        )
+        expect(animal.secondary_breed).to be_nil
+      end
     end
 
-    it "removed secondary breed when the mixed breed is false" do
-      animal = Animal.gen(
-        :secondary_breed => "test",
-        :is_mix_breed => false
-      )
-      expect(animal.secondary_breed).to be_nil
+    describe "#remove_special_needs" do
+
+      it "removed special needs when the has special needs is false" do
+        animal = Animal.gen(
+          :special_needs => "test",
+          :has_special_needs => false
+        )
+        expect(animal.special_needs).to be_nil
+      end
     end
 
-    it "removed special needs when the has special needs is false" do
-      animal = Animal.gen(
-        :special_needs => "test",
-        :has_special_needs => false
-      )
-      expect(animal.special_needs).to be_nil
+    describe "#set_status_change_date" do
+
+      it "changes the status date for a new record" do
+        animal = Animal.gen
+        expect(animal.status_change_date).to eq(Date.today)
+      end
+
+      it "changes the status date when the animal status changes" do
+        animal = Animal.gen :animal_status_id => 1
+        animal.update_attributes(:status_change_date => Date.today - 1.month)
+
+        expect(animal.status_change_date).to eq(Date.today - 1.month)
+
+        animal.update_attributes(:animal_status_id => 2)
+
+        expect(animal.status_change_date).to eq(Date.today)
+      end
     end
 
-    it "changes the status date for a new record" do
-      animal = Animal.gen
-      expect(animal.status_change_date).to eq(Date.today)
-    end
+    describe "#parse_and_set_dates" do
 
-    it "changes the status date when the animal status changes" do
-      animal = Animal.gen :animal_status_id => 1
-      animal.update_attributes(:status_change_date => Date.today - 1.month)
+      it "updates the date of birth when the date is valid" do
+        animal = Animal.gen \
+          :date_of_birth_month => "04",
+          :date_of_birth_day => "25",
+          :date_of_birth_year => "2010"
 
-      expect(animal.status_change_date).to eq(Date.today - 1.month)
+        expect(animal.date_of_birth).to eq(Date.new(2010,04,25))
+      end
 
-      animal.update_attributes(:animal_status_id => 2)
+      it "does not set a date of birth when date is invalid" do
+        animal = Animal.gen \
+          :date_of_birth_month => nil,
+          :date_of_birth_day => "25",
+          :date_of_birth_year => "2010"
 
-      expect(animal.status_change_date).to eq(Date.today)
+        expect(animal.date_of_birth).to be_nil
+      end
+
+      it "updates the arrival date when the date is valid" do
+        animal = Animal.gen \
+          :arrival_date_month => "04",
+          :arrival_date_day => "25",
+          :arrival_date_year => "2010"
+
+        expect(animal.arrival_date).to eq(Date.new(2010,04,25))
+      end
+
+      it "does not set a arrival date when date is invalid" do
+        animal = Animal.gen \
+          :arrival_date_month => nil,
+          :arrival_date_day => "25",
+          :arrival_date_year => "2010"
+
+        expect(animal.arrival_date).to be_nil
+      end
+
+      it "updates the euthanasia date when the date is valid" do
+        animal = Animal.gen \
+          :euthanasia_date_month => "04",
+          :euthanasia_date_day => "25",
+          :euthanasia_date_year => "2010"
+
+        expect(animal.euthanasia_date).to eq(Date.new(2010,04,25))
+      end
+
+      it "does not set a euthanasia date when date is invalid" do
+        animal = Animal.gen \
+          :euthanasia_date_month => nil,
+          :euthanasia_date_day => "25",
+          :euthanasia_date_year => "2010"
+
+        expect(animal.euthanasia_date).to be_nil
+      end
     end
   end
 
   context "After Validation" do
 
-    it "updates the breed names to exactly match the ones in the database" do
-      animal_type = AnimalType.gen
+    describe "#update_breed_names" do
 
-      Breed.gen(:animal_type => animal_type, :name => "Labrador Retriever")
-      Breed.gen(:animal_type => animal_type, :name => "Border Collie")
+      it "updates the breed names to exactly match the ones in the database" do
+        animal_type = AnimalType.gen
 
-      animal = Animal.gen(
-        :animal_type => animal_type,
-        :primary_breed => " labrador retriever    ",
-        :secondary_breed => "BORDER COLLIE"
-      )
+        Breed.gen(:animal_type => animal_type, :name => "Labrador Retriever")
+        Breed.gen(:animal_type => animal_type, :name => "Border Collie")
 
-      expect(animal.primary_breed).to eq("Labrador Retriever")
-      expect(animal.secondary_breed).to eq("Border Collie")
+        animal = Animal.gen(
+          :animal_type => animal_type,
+          :primary_breed => " labrador retriever    ",
+          :secondary_breed => "BORDER COLLIE"
+        )
+
+        expect(animal.primary_breed).to eq("Labrador Retriever")
+        expect(animal.secondary_breed).to eq("Border Collie")
+      end
     end
   end
 
   context "After Save" do
 
-    it "creates status history for a new record" do
-      expect(Animal.count).to eq(0)
-      expect(StatusHistory.count).to eq(0)
+    describe "#create_status_history!" do
 
-      Animal.gen
+      it "creates status history for a new record" do
+        expect(Animal.count).to eq(0)
+        expect(StatusHistory.count).to eq(0)
 
-      expect(Animal.count).to eq(1)
-      expect(StatusHistory.count).to eq(1)
+        Animal.gen
+
+        expect(Animal.count).to eq(1)
+        expect(StatusHistory.count).to eq(1)
+      end
+
+      it "creates status history when the animal status has changed" do
+        expect(Animal.count).to eq(0)
+        expect(StatusHistory.count).to eq(0)
+
+        animal = Animal.gen :status_history_reason => "New Record"
+
+        expect(Animal.count).to eq(1)
+        expect(StatusHistory.count).to eq(1)
+
+        animal.animal_status = AnimalStatus.gen
+        animal.status_history_reason = "Status Updated"
+        animal.save
+
+        expect(Animal.count).to eq(1)
+        expect(StatusHistory.count).to eq(2)
+
+        histories = StatusHistory.all
+        expect(histories.map(&:reason)).to match_array(["New Record", "Status Updated"])
+      end
+
+      it "creates status history when the shelter has changed" do
+        expect(Animal.count).to eq(0)
+        expect(StatusHistory.count).to eq(0)
+
+        animal = Animal.gen :status_history_reason => "New Record"
+
+        expect(Animal.count).to eq(1)
+        expect(StatusHistory.count).to eq(1)
+
+        shelter = Shelter.gen
+        animal.shelter = shelter
+        animal.status_history_reason = "New Transfer"
+        animal.save
+
+        expect(Animal.count).to eq(1)
+        expect(StatusHistory.count).to eq(2)
+
+        histories = StatusHistory.all
+        expect(histories[0].reason).to eq("New Record")
+        expect(histories[1].reason).to eq("New Transfer")
+      end
     end
 
-    it "creates status history when the animal status has changed" do
-      expect(Animal.count).to eq(0)
-      expect(StatusHistory.count).to eq(0)
+    describe "#enqueue_integrations" do
 
-      animal = Animal.gen :status_history_reason => "New Record"
+      it "enqueues a job to update remote animals" do
+        shelter = Shelter.gen
+        Integration.gen :shelter => shelter, :type => "Integration::AdoptAPet"
+        Integration.gen :shelter => shelter, :type => "Integration::Petfinder"
+        animal = Animal.build :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
 
-      expect(Animal.count).to eq(1)
-      expect(StatusHistory.count).to eq(1)
+        expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
+        expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
 
-      animal.animal_status = AnimalStatus.gen
-      animal.status_history_reason = "Status Updated"
-      animal.save
-
-      expect(Animal.count).to eq(1)
-      expect(StatusHistory.count).to eq(2)
-
-      histories = StatusHistory.all
-      expect(histories.map(&:reason)).to match_array(["New Record", "Status Updated"])
-    end
-
-    it "creates status history when the shelter has changed" do
-      expect(Animal.count).to eq(0)
-      expect(StatusHistory.count).to eq(0)
-
-      animal = Animal.gen :status_history_reason => "New Record"
-
-      expect(Animal.count).to eq(1)
-      expect(StatusHistory.count).to eq(1)
-
-      shelter = Shelter.gen
-      animal.shelter = shelter
-      animal.status_history_reason = "New Transfer"
-      animal.save
-
-      expect(Animal.count).to eq(1)
-      expect(StatusHistory.count).to eq(2)
-
-      histories = StatusHistory.all
-      expect(histories[0].reason).to eq("New Record")
-      expect(histories[1].reason).to eq("New Transfer")
-    end
-
-    it "enqueues a job to update remote animals" do
-      shelter = Shelter.gen
-      Integration.gen :shelter => shelter, :type => "Integration::AdoptAPet"
-      Integration.gen :shelter => shelter, :type => "Integration::Petfinder"
-      animal = Animal.build :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
-
-      expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
-      expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
-
-      animal.save!
-    end
-
-    it "lints the facebook url for an updated animal" do
-      shelter = Shelter.gen
-      animal_status_old = AnimalStatus.gen
-      animal_status_new = AnimalStatus.gen
-      animal = Animal.gen :shelter => shelter, :animal_status => animal_status_old
-
-      allow(Rails.env).to receive(:production?).and_return(true)
-      expect(Delayed::Job).to receive(:enqueue).with(FacebookLinterJob.new(animal.id))
-
-      animal.update_attribute(:animal_status_id, animal_status_new.id)
+        animal.save!
+      end
     end
   end
+
+  context "After update" do
+
+    describe "#lint_facebook_url" do
+
+      it "lints the facebook url for an updated animal" do
+        shelter = Shelter.gen
+        animal_status_old = AnimalStatus.gen
+        animal_status_new = AnimalStatus.gen
+        animal = Animal.gen :shelter => shelter, :animal_status => animal_status_old
+
+        allow(Rails.env).to receive(:production?).and_return(true)
+        expect(Delayed::Job).to receive(:enqueue).with(FacebookLinterJob.new(animal.id))
+
+        animal.update_attribute(:animal_status_id, animal_status_new.id)
+      end
+    end
+  end
+
 end
 
 # Constants
@@ -867,25 +963,25 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2014")
+      :status_date => Time.zone.parse("July 1, 2014")
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, nil)
@@ -916,13 +1012,13 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
 
     results = Animal.type_by_month_year("07", "2013", shelter1.id, nil)
@@ -948,13 +1044,13 @@ describe Animal, ".type_by_month_year" do
       :shelter => shelter1,
       :animal => animal1,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
     StatusHistory.gen(
       :shelter => shelter2,
       :animal => animal2,
       :animal_status_id => 1,
-      :created_at => Time.zone.parse("July 1, 2013")
+      :status_date => Time.zone.parse("July 1, 2013")
     )
 
     results = Animal.type_by_month_year("07", "2013", nil, "CA")

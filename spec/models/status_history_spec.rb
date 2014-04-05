@@ -4,7 +4,7 @@ require "spec_helper"
 describe StatusHistory do
 
   it "has a default scope" do
-    expect(StatusHistory.scoped.to_sql).to eq(StatusHistory.order('status_histories.created_at DESC').to_sql)
+    expect(StatusHistory.scoped.to_sql).to eq(StatusHistory.order('status_histories.status_date DESC, status_histories.created_at DESC').to_sql)
   end
 end
 
@@ -15,13 +15,14 @@ describe StatusHistory, ".create_with" do
   it "creates a status history" do
     expect(StatusHistory.count).to eq(0)
 
-    status_history = StatusHistory.create_with(1, 2, 3, "testing")
+    status_history = StatusHistory.create_with(1, 2, 3, Date.today, "testing")
 
     expect(StatusHistory.count).to eq(1)
 
     expect(status_history.shelter_id).to eq(1)
     expect(status_history.animal_id).to eq(2)
     expect(status_history.animal_status_id).to eq(3)
+    expect(status_history.status_date).to eq(Date.today)
     expect(status_history.reason).to eq("testing")
   end
 end
@@ -42,10 +43,10 @@ describe "Reports" do
 
     @date_for_status_history = Date.civil(2013, 02, 05)
 
-    @status_history1 = StatusHistory.gen :created_at => @date_for_status_history, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter1
-    @status_history2 = StatusHistory.gen :created_at => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter1
-    @status_history3 = StatusHistory.gen :created_at => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter2
-    @status_history4 = StatusHistory.gen :created_at => @date_for_status_history + 1.month, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter2
+    @status_history1 = StatusHistory.gen :status_date => @date_for_status_history, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter1
+    @status_history2 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter1
+    @status_history3 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter2
+    @status_history4 = StatusHistory.gen :status_date => @date_for_status_history + 1.month, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter2
   end
 
   describe StatusHistory, ".by_month" do
