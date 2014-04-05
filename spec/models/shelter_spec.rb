@@ -97,28 +97,44 @@ describe Shelter do
 
   context "Before Save" do
 
-    it "cleans the phone numbers to store without hyphens" do
-      shelter = Shelter.gen(
-        :phone => "123-456-7890",
-        :fax => "098-765-4321"
-      )
-      expect(shelter.phone).to eq("1234567890")
-      expect(shelter.fax).to eq("0987654321")
+    describe "#clean_phone_numbers" do
+      it "cleans the phone numbers to store without hyphens" do
+        shelter = Shelter.gen(
+          :phone => "123-456-7890",
+          :fax => "098-765-4321"
+        )
+        expect(shelter.phone).to eq("1234567890")
+        expect(shelter.fax).to eq("0987654321")
+      end
     end
 
-    it "cleans the status reason when status changes" do
-      shelter = Shelter.gen(
-        :status => "cancelled",
-        :status_reason => "Not nice :("
-      )
-      expect(shelter.status).to eq("cancelled")
-      expect(shelter.status_reason).to eq("Not nice :(")
+    describe "#clean_status_reason" do
+      it "cleans the status reason when status changes" do
+        shelter = Shelter.gen(
+          :status => "cancelled",
+          :status_reason => "Not nice :("
+        )
+        expect(shelter.status).to eq("cancelled")
+        expect(shelter.status_reason).to eq("Not nice :(")
 
-      shelter.status = "active"
-      shelter.save!
+        shelter.status = "active"
+        shelter.save!
 
-      expect(shelter.status).to eq("active")
-      expect(shelter.status_reason).to eq("")
+        expect(shelter.status).to eq("active")
+        expect(shelter.status_reason).to eq("")
+      end
+    end
+  end
+
+  context "After Save" do
+
+    describe "#update_map_details" do
+      it "enqueues map overlay job" do
+        job = MapOverlayJob.new
+        allow(MapOverlayJob).to receive(:new).and_return(job)
+        expect(Delayed::Job).to receive(:enqueue).with(job)
+        Shelter.gen
+      end
     end
   end
 

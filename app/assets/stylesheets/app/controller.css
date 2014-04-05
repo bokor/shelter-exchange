@@ -27,7 +27,6 @@
 
 /* Animals :: Form :: Layout
 -----------------------------------------------------------------------------*/
-.animals #reason_field{ padding-top:15px; }
 .animals #is_mixed_breed_field {padding: 5px 0px 5px 10px;}
 
 .animals .icon_calendar{padding-left: 10px; cursor: pointer;}

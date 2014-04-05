@@ -30,11 +30,11 @@ module Public::SeoHelper
 
   def open_graph_title_status(animal)
     if animal.foster_care?
-      "In #{animal.animal_status.name}! ".upcase
-    elsif animal.deceased? or animal.euthanized?
-      "Not available! ".upcase
-    elsif animal.adopted? or animal.reclaimed? or animal.adoption_pending?
-      "#{animal.animal_status.name}! ".upcase
+      "In #{animal.animal_status.name}!".upcase
+    elsif animal.deceased? || animal.euthanized?
+      "Not available!".upcase
+    elsif animal.adopted? || animal.reclaimed? || animal.adoption_pending?
+      "#{animal.animal_status.name}!".upcase
     end
   end
   #----------------------------------------------------------------------------

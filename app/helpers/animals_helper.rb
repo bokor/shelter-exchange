@@ -8,6 +8,19 @@ module AnimalsHelper
     time_diff_in_natural_language(dob, current_time) unless dob.blank?
   end
 
+  def status_history_date_value(type, animal)
+    return nil if type.blank?
+    case type
+      when :month
+        return animal.status_history_date_month unless animal.status_history_date_month.blank?
+      when :day
+        return animal.status_history_date_day unless animal.status_history_date_day.blank?
+      when :year
+        return animal.status_history_date_year unless animal.status_history_date_year.blank?
+    end
+    format_date(type, animal.status_history_date)
+  end
+
   def date_of_birth_value(type, animal)
     return nil if type.blank?
     case type
@@ -47,30 +60,12 @@ module AnimalsHelper
     format_date(type, animal.euthanasia_date)
   end
 
-  def community_animal_status(animal)
-    if animal.adopted? or animal.reclaimed? or animal.deceased? or animal.euthanized? or animal.transferred?
-      animal.animal_status.name + humanize_status_change_date(animal)
-    else
-      animal.animal_status.name
-    end
-  end
-
   def public_animal_status(animal)
-    if animal.adopted? or animal.reclaimed? or animal.transferred?
-      animal.animal_status.name + humanize_status_change_date(animal)
-    elsif animal.deceased? or animal.euthanized?
+    if animal.deceased? or animal.euthanized?
       "No longer available for adoption"
     else
       animal.animal_status.name
     end
-  end
-
-  def adoption_date(animal)
-    humanize_status_change_date(animal) if animal.adopted?
-  end
-
-  def humanize_status_change_date(animal)
-    " on #{format_date(:short_full_year, animal.status_change_date)}"
   end
 
   def fancybox_video_url(animal)
@@ -86,6 +81,5 @@ module AnimalsHelper
     # url.scan(Regexp.union(ANIMAL_VIDEO_URL_FORMAT)){|m| return m.join.strip unless m.blank?}
     url.match(VIDEO_URL_REGEX)[5]
   end
-
 end
 

@@ -6,13 +6,13 @@ FactoryGirl.define do
     description        "Sweetest animal eva!"
     sex                "male"
     weight             "55 lbs"
-    date_of_birth      2.years.ago
     is_sterilized      true
     color              "black"
     is_mix_breed       true
     size               "M"
     age                "adult"
     status_change_date nil
+    date_of_birth      nil
     arrival_date       nil
     hold_time          nil
     euthanasia_date    nil

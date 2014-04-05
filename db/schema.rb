@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140330031412) do
+ActiveRecord::Schema.define(:version => 20140402235112) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -413,12 +413,15 @@ ActiveRecord::Schema.define(:version => 20140330031412) do
     t.string   "reason"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.date     "status_date"
   end
 
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
   add_index "status_histories", ["created_at", "animal_id"], :name => "index_status_histories_on_created_at_and_animal_id"
   add_index "status_histories", ["shelter_id"], :name => "index_status_histories_on_shelter_id"
+  add_index "status_histories", ["status_date", "created_at"], :name => "index_status_histories_on_status_date_and_created_at"
+  add_index "status_histories", ["status_date"], :name => "index_status_histories_on_status_date"
 
   create_table "tasks", :force => true do |t|
     t.string   "details"

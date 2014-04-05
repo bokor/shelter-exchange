@@ -4,12 +4,6 @@ describe Document do
 
   it_should_behave_like Uploadable
 
-  it "sets the original name" do
-    file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
-    document = Document.gen :document => file
-    expect(document.original_name).to eq("testing.pdf")
-  end
-
   it "validates the max number of documents for an attachable" do
     note = Note.new
     Document.gen :attachable => note
@@ -20,6 +14,18 @@ describe Document do
     document = Document.gen :attachable => note
     expect(document).to have(1).error
     expect(document.errors[:base]).to match_array(["Max number of files exceeded"])
+  end
+
+  context "Before Save" do
+
+    describe "#clean_phone_numbers" do
+      it "sets the original name" do
+        file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
+        document = Document.gen :document => file
+        expect(document.original_name).to eq("testing.pdf")
+      end
+    end
+
   end
 end
 

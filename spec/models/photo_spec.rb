@@ -8,12 +8,6 @@ describe Photo do
     expect(Photo.scoped.to_sql).to eq(Photo.order('photos.is_main_photo DESC, photos.created_at DESC').to_sql)
   end
 
-  it "sets the original name" do
-    file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
-    photo = Photo.gen(:image => file)
-    expect(photo.original_name).to eq("photo.jpg")
-  end
-
   it "validates the max number of additional photos for an attachable" do
     note = Note.new
     Photo.gen(:attachable => note, :is_main_photo => false)
@@ -24,6 +18,17 @@ describe Photo do
     photo = Photo.gen(:attachable => note)
     expect(photo).to have(1).error
     expect(photo.errors[:base]).to match_array(["Max number of files exceeded"])
+  end
+
+  context "Before Create" do
+
+    describe "#set_original_name" do
+      it "sets the original name" do
+        file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
+        photo = Photo.gen(:image => file)
+        expect(photo.original_name).to eq("photo.jpg")
+      end
+    end
   end
 end
 

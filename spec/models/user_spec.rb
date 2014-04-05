@@ -9,11 +9,13 @@ describe User do
   end
 
   context "Before Create" do
-    it "sets the default announcement hide time as now" do
-      Timecop.freeze(Time.now)
+    describe "#hide_announcements_by_default" do
+      it "sets the default announcement hide time as now" do
+        Timecop.freeze(Time.now)
 
-      user = User.gen
-      expect(user.announcement_hide_time).to eq(Time.now)
+        user = User.gen
+        expect(user.announcement_hide_time).to eq(Time.now)
+      end
     end
   end
 end
