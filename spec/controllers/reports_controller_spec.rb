@@ -111,7 +111,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::ACTIVE[0]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::ACTIVE[0]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::NON_ACTIVE[0]
 
       get :type_by_month_year, :selected_month => "02", :selected_year => "2014", :format => :json
 
@@ -141,6 +141,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
 
       get :adoptions_monthly_total_by_type, :selected_year => 2014, :format => :json
@@ -178,6 +179,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
 
       get :adoptions_monthly_total, :selected_year => 2014, :format => :json
@@ -211,6 +213,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
 
       get :euthanized_monthly_total_by_type, :selected_year => 2014, :format => :json
@@ -248,6 +251,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
 
       get :euthanized_monthly_total, :selected_year => 2014, :format => :json
@@ -281,6 +285,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
 
       get :foster_care_monthly_total_by_type, :selected_year => 2014, :format => :json
@@ -316,6 +321,7 @@ describe ReportsController do
       Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
+      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
 
       get :foster_care_monthly_total, :selected_year => 2014, :format => :json
@@ -349,6 +355,7 @@ describe ReportsController do
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
       Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
 
       get :reclaimed_monthly_total_by_type, :selected_year => 2014, :format => :json
@@ -384,6 +391,7 @@ describe ReportsController do
       Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
+      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
 
       get :reclaimed_monthly_total, :selected_year => 2014, :format => :json
@@ -416,8 +424,8 @@ describe ReportsController do
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:new_intake]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:new_intake]
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type1
+      Animal.gen :shelter => current_shelter, :animal_type => animal_type2
 
       get :intake_monthly_total_by_type, :selected_year => 2014, :format => :json
 
@@ -450,8 +458,8 @@ describe ReportsController do
     it "renders json" do
       Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:new_intake]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:new_intake]
+      Animal.gen :shelter => current_shelter
+      Animal.gen :shelter => current_shelter
 
       get :intake_monthly_total, :selected_year => 2014, :format => :json
 
