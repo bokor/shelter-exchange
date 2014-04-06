@@ -26,7 +26,7 @@ class StatusHistory < ActiveRecord::Base
   end
 
   def self.status_by_month_year(month, year, state=nil)
-    start_date = (month.blank? or year.blank?) ? Time.zone.today : Date.new(year.to_i, month.to_i, 01)
+    start_date = (month.blank? || year.blank?) ? Time.zone.today : Date.parse("#{year}/#{month}/01")
     range = start_date.beginning_of_month..start_date.end_of_month
 
     scope = self.scoped
@@ -44,8 +44,8 @@ class StatusHistory < ActiveRecord::Base
   end
 
   def self.totals_by_month(year, status, with_type=false)
-    start_date = year.blank? ? Time.zone.today.beginning_of_year : Date.new(year.to_i, 01, 01).beginning_of_year
-    end_date   = year.blank? ? Time.zone.today.end_of_year : Date.new(year.to_i, 01, 01).end_of_year
+    start_date = year.blank? ? Time.zone.today.beginning_of_year : Date.parse("#{year}/01/01").beginning_of_year
+    end_date   = year.blank? ? Time.zone.today.end_of_year : Date.parse("#{year}/01/01").end_of_year
 
     scope = self.scoped
 

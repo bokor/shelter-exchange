@@ -214,7 +214,7 @@ class Animal < ActiveRecord::Base
   scope :year_to_date, where(:status_change_date => Time.zone.today.beginning_of_year..Time.zone.today.end_of_year)
 
   def self.type_by_month_year(month, year, shelter_id=nil, state=nil)
-    start_date = (month.blank? || year.blank?) ? Time.zone.today : Date.new(year.to_i, month.to_i, 01)
+    start_date = (month.blank? || year.blank?) ? Time.zone.today : Date.parse("#{year}/#{month}/01")
     range = start_date.beginning_of_month..start_date.end_of_month
 
     status_histories = if shelter_id
@@ -238,8 +238,8 @@ class Animal < ActiveRecord::Base
   end
 
   def self.intake_totals_by_month(year, with_type=false)
-    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.new(year.to_i, 01, 01).beginning_of_year
-    end_date = year.blank? ? Time.zone.now.end_of_year : Date.new(year.to_i, 01, 01).end_of_year
+    start_date = year.blank? ? Time.zone.now.beginning_of_year : Date.parse("#{year}/01/01").beginning_of_year
+    end_date = year.blank? ? Time.zone.now.end_of_year : Date.parse("#{year}/01/01").end_of_year
     scope = self.scoped
 
     if with_type
@@ -311,21 +311,21 @@ class Animal < ActiveRecord::Base
 
   def parse_and_set_dates
     unless errors.has_key?(:date_of_birth)
-      self.date_of_birth = Date.new(self.date_of_birth_year.to_i, self.date_of_birth_month.to_i, self.date_of_birth_day.to_i) rescue nil
+      self.date_of_birth = Date.parse("#{self.date_of_birth_year}/#{self.date_of_birth_month}/#{self.date_of_birth_day}") rescue nil
     end
 
     unless errors.has_key?(:arrival_date)
-      self.arrival_date = Date.new(self.arrival_date_year.to_i, self.arrival_date_month.to_i, self.arrival_date_day.to_i) rescue nil
+      self.arrival_date = Date.parse("#{self.arrival_date_year}/#{self.arrival_date_month}/#{self.arrival_date_day}") rescue nil
     end
 
     unless errors.has_key?(:euthanasia_date)
-      self.euthanasia_date = Date.new(self.euthanasia_date_year.to_i, self.euthanasia_date_month.to_i, self.euthanasia_date_day.to_i) rescue nil
+      self.euthanasia_date = Date.parse("#{self.euthanasia_date_year}/#{self.euthanasia_date_month}/#{self.euthanasia_date_day}") rescue nil
     end
   end
 
   def create_status_history!
     if self.new_record? || self.animal_status_id_changed? || self.shelter_id_changed?
-      date = Date.new(self.status_history_date_year.to_i, self.status_history_date_month.to_i, self.status_history_date_day.to_i) rescue nil
+      date = Date.parse("#{self.status_history_date_year}/#{self.status_history_date_month}/#{self.status_history_date_day}") rescue nil
       StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, date, @status_history_reason)
     end
   end
