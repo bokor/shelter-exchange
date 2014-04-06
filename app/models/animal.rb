@@ -232,7 +232,7 @@ class Animal < ActiveRecord::Base
       scope = scope.where(:shelters => { :state => state })
     end
 
-    scope = scope.where(:status_histories => { :id => status_histories, :animal_status_id => AnimalStatus::ACTIVE })
+    scope = scope.where(:status_histories => { :id => status_histories })
     scope = scope.group(:animal_type_id)
     scope
   end
