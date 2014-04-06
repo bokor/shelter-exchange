@@ -10,7 +10,7 @@ var StatusHistories = {
 			changeMonth: true,
 			changeYear: true,
 			dateFormat: 'yy-mm-dd',
-			altField: element + " .due_date_alt",
+			altField: element + " .status_date_alt",
 			altFormat: "D MM d, yy",
 			onSelect: function(dateText,picker) {
 				//HIDDEN FIELD

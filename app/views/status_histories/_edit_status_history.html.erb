@@ -1,5 +1,5 @@
 <div class="box green" id="<%= dom_id(@status_history, :edit) %>">
-	<h2>Update status_history</h2>
+	<h2>Update status history</h2>
 	<div id="edit_status_history_errors_<%=@status_history.id %>"></div>
 	<%= form_for (@status_history), :remote => true, :format => :js, :html => { :id => "edit_status_history_form_#{@status_history.id}", :class => "edit_status_history_form"} do |f| %>
     <ul>
