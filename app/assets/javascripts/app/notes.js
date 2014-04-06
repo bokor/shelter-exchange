@@ -10,6 +10,8 @@ var Notes = {
 		});
 	},
 	cancelForm: function(id){
+    event.preventDefault();
+
 		$("#edit_note_"+id).slideToggle(800,function() {
 			$(this).remove();
 		});

@@ -29,6 +29,10 @@ ShelterExchangeApp::Application.routes.draw do
       resources :documents, :only => [:create, :destroy]
     end
 
+    # Status Histories
+    #----------------------------------------------------------------------------
+    resources :status_histories, :only => [:edit, :update]
+
     # Comments
     #----------------------------------------------------------------------------
     resources :comments, :only => [:create, :edit, :update, :destroy]
