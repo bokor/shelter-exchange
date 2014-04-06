@@ -16,7 +16,7 @@ var Reports = {
 		var status_by_month_year_title = 'Animals by Status Monthly Total - ' + date_title;
 		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
 
-		var type_by_month_year_title = 'Active Animals by Type Monthly Total - ' + date_title;
+		var type_by_month_year_title = 'Animals by Type Monthly Total - ' + date_title;
 		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
 	},
 	pieChart: function(title, url_function){
