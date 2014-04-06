@@ -1,0 +1,22 @@
+$('#status_history_<%=@status_history.id%>').hide();
+$('#status_history_<%=@status_history.id%>').after("<%= escape_javascript(render 'edit_status_history', :collection => @status_history) %>");
+$('#edit_status_history_<%=@status_history.id%>').show();
+
+// Initialize the date picker
+StatusHistories.datePicker("#edit_status_history_<%=@status_history.id%>");
+
+// Sets the correct database date for the date picker
+var db_date = $('#edit_status_history_<%=@status_history.id%> .hidden_status_date').val();
+$('#edit_status_history_<%=@status_history.id%> .date_picker').datepicker("setDate", db_date);
+var tempDate = $('#edit_status_history_<%=@status_history.id%> .date_picker').datepicker("getDate");
+var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
+$('#edit_status_history_<%=@status_history.id%> .status_date_alt').html(setDate);
+
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/status_histories/{id}/edit"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
+
