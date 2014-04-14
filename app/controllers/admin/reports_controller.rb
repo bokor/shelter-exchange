@@ -45,11 +45,11 @@ class Admin::ReportsController < Admin::ApplicationController
   end
 
   def intake_monthly_total_by_type
-    bar_chart(Animal.intake_totals_by_month(params[:selected_year], true).all)
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :new_intake, true).all)
   end
 
   def intake_monthly_total
-    bar_chart(Animal.intake_totals_by_month(params[:selected_year]).all)
+    bar_chart(StatusHistory.totals_by_month(params[:selected_year], :new_intake).all)
   end
 
   def pie_chart(results)

@@ -122,354 +122,80 @@ describe ReportsController do
     end
   end
 
-  describe "GET adoptions_monthly_total_by_type" do
+  describe "GET custom" do
 
     it "responds successfully" do
-      get :adoptions_monthly_total_by_type, :format => :json
+      get :custom
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
 
-    it "renders :adoptions_monthly_total_by_type view" do
-      get :adoptions_monthly_total_by_type, :format => :html
-      expect(response).to render_template(:adoptions_monthly_total_by_type)
+    it "renders :custom view" do
+      get :custom
+      expect(response).to render_template(:custom)
     end
 
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+    context "with combined totals" do
+      it "renders json when by_type true" do
+        Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
 
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+        animal_type1 = AnimalType.gen :name => "Dog"
+        animal_type2 = AnimalType.gen :name => "Cat"
+        Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+        Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
+        Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
 
-      get :adoptions_monthly_total_by_type, :selected_year => 2014, :format => :json
+        get :custom, :status => "adopted", :by_type => "false", :format => :json
 
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Dog",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }, {
-          "type" => "Cat",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET adoptions_monthly_total" do
-
-    it "responds successfully" do
-      get :adoptions_monthly_total, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
+        expect(MultiJson.load(response.body)).to match_array([
+          {
+            "type" => "Total",
+            "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
+            "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
+          }
+        ])
+      end
     end
 
-    it "renders :adoptions_monthly_total view" do
-      get :adoptions_monthly_total, :format => :html
-      expect(response).to render_template(:adoptions_monthly_total)
+    context "with totals by animal type" do
+
+      it "renders json" do
+        Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+
+        animal_type1 = AnimalType.gen :name => "Dog"
+        animal_type2 = AnimalType.gen :name => "Cat"
+        Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+        Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+
+        get :custom, :status => "adopted", :by_type => "true", :format => :json
+
+        expect(MultiJson.load(response.body)).to match_array([
+          {
+            "type" => "Dog",
+            "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
+            "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
+          }, {
+            "type" => "Cat",
+            "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
+            "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
+          }
+        ])
+      end
     end
 
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+    context "with no parameters" do
 
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:adopted]
+      it "renders json" do
+        get :custom, :format => :json
 
-      get :adoptions_monthly_total, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Total",
-          "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET euthanized_monthly_total_by_type" do
-
-    it "responds successfully" do
-      get :euthanized_monthly_total_by_type, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :euthanized_monthly_total_by_type view" do
-      get :euthanized_monthly_total_by_type, :format => :html
-      expect(response).to render_template(:euthanized_monthly_total_by_type)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-
-      get :euthanized_monthly_total_by_type, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Dog",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }, {
-          "type" => "Cat",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET euthanized_monthly_total" do
-
-    it "responds successfully" do
-      get :euthanized_monthly_total, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :euthanized_monthly_total view" do
-      get :euthanized_monthly_total, :format => :html
-      expect(response).to render_template(:euthanized_monthly_total)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-
-      get :euthanized_monthly_total, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Total",
-          "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET foster_care_monthly_total_by_type" do
-
-    it "responds successfully" do
-      get :foster_care_monthly_total_by_type, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :foster_care_monthly_total_by_type view" do
-      get :foster_care_monthly_total_by_type, :format => :html
-      expect(response).to render_template(:foster_care_monthly_total_by_type)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
-
-      get :foster_care_monthly_total_by_type, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Dog",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }, {
-          "type" => "Cat",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET foster_care_monthly_total" do
-
-    it "responds successfully" do
-      get :foster_care_monthly_total, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :foster_care_monthly_total view" do
-      get :foster_care_monthly_total, :format => :html
-      expect(response).to render_template(:foster_care_monthly_total)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:foster_care]
-
-      get :foster_care_monthly_total, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Total",
-          "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET reclaimed_monthly_total_by_type" do
-
-    it "responds successfully" do
-      get :reclaimed_monthly_total_by_type, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :reclaimed_monthly_total_by_type view" do
-      get :reclaimed_monthly_total_by_type, :format => :html
-      expect(response).to render_template(:reclaimed_monthly_total_by_type)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
-
-      get :reclaimed_monthly_total_by_type, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Dog",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }, {
-          "type" => "Cat",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET reclaimed_monthly_total" do
-
-    it "responds successfully" do
-      get :reclaimed_monthly_total, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :reclaimed_monthly_total view" do
-      get :reclaimed_monthly_total, :format => :html
-      expect(response).to render_template(:reclaimed_monthly_total)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:reclaimed]
-
-      get :reclaimed_monthly_total, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Total",
-          "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET intake_monthly_total_by_type" do
-
-    it "responds successfully" do
-      get :intake_monthly_total_by_type, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :intake_monthly_total_by_type view" do
-      get :intake_monthly_total_by_type, :format => :html
-      expect(response).to render_template(:intake_monthly_total_by_type)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      animal_type1 = AnimalType.gen :name => "Dog"
-      animal_type2 = AnimalType.gen :name => "Cat"
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type1
-      Animal.gen :shelter => current_shelter, :animal_type => animal_type2
-
-      get :intake_monthly_total_by_type, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Dog",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }, {
-          "type" => "Cat",
-          "jan" => 0, "feb" => 1, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
-    end
-  end
-
-  describe "GET intake_monthly_total" do
-    it "responds successfully" do
-      get :intake_monthly_total, :format => :json
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders :intake_monthly_total_by_type view" do
-      get :intake_monthly_total, :format => :html
-      expect(response).to render_template(:intake_monthly_total)
-    end
-
-    it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
-
-      Animal.gen :shelter => current_shelter
-      Animal.gen :shelter => current_shelter
-
-      get :intake_monthly_total, :selected_year => 2014, :format => :json
-
-      expect(MultiJson.load(response.body)).to match_array([
-        {
-          "type" => "Total",
-          "jan" => 0, "feb" => 2, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
-          "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
-        }
-      ])
+        expect(MultiJson.load(response.body)).to match_array([
+          {
+            "type" => "Total",
+            "jan" => 0, "feb" => 0, "mar" => 0, "apr" => 0, "may" => 0, "jun" => 0,
+            "jul" => 0, "aug" => 0, "sep" => 0, "oct" => 0, "nov" => 0, "dec" => 0
+          }
+        ])
+      end
     end
   end
 end

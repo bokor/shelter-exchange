@@ -1,8 +1,6 @@
 /*!------------------------------------------------------------------------
- * shared/reports.js
+ * app/reports.js
  * ------------------------------------------------------------------------ */
-var ajaxUrl = (/\/admin\//.test(window.location.pathname)) ? "/admin/reports/" : "/reports/";
-
 var Reports = {
 	initialize: function(){
 		// Reload Report after Submit
@@ -21,7 +19,7 @@ var Reports = {
 	},
 	pieChart: function(title, url_function){
 		$.ajax({
-			url: ajaxUrl + url_function + ".json",
+			url: "/reports/" + url_function + ".json",
 			type: "get",
 			dataType: 'json',
 			data: {
@@ -56,7 +54,7 @@ var Reports = {
 						name: 'Type by Current Month',
 						data: []
 					}]
-			   	};
+			  };
 
 				$.each(data, function(i, item) {
 					var data = [item.name, item.count];
@@ -67,10 +65,10 @@ var Reports = {
 		 	}
 		});
 	},
-	barChart: function(title, url_function, yaxis_title){
+	barChart: function(title, status, by_type, yaxis_title){
 		$.ajax({
-			url: ajaxUrl + url_function + ".json",
-			type: "get",
+			url: "/reports/custom.json?status=" + status + "&by_type=" + by_type,
+			type: 'get',
 			dataType: 'json',
 			data: {
 				selected_month: $("#_selected_month").val(),
@@ -79,7 +77,7 @@ var Reports = {
 			},
 			success: function(data) {
 				var options = {
-					chart: { renderTo: url_function, defaultSeriesType: 'column' },
+					chart: { renderTo: 'custom_report', defaultSeriesType: 'column' },
 				    title: { text: title + ' - ' + $("#_selected_year").val() },
 				    xAxis: {
 				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

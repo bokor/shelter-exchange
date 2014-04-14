@@ -987,7 +987,7 @@ describe Animal, ".type_by_month_year" do
     results = Animal.type_by_month_year("07", "2013", nil, nil)
     expect(MultiJson.load(results.to_json)).to match_array([{
       "animal" => {
-        "count" => 2,
+        "count" => 1,
         "name" => type1.name
       }
     }, {

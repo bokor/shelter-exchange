@@ -217,22 +217,22 @@ class Animal < ActiveRecord::Base
     start_date = (month.blank? || year.blank?) ? Time.zone.today : Date.parse("#{year}/#{month}/01")
     range = start_date.beginning_of_month..start_date.end_of_month
 
-    status_histories = if shelter_id
-      StatusHistory.where(:shelter_id => shelter_id).by_month(range)
+    animal_ids = if shelter_id
+      StatusHistory.where(:shelter_id => shelter_id).by_month(range).collect(&:animal_id).uniq
     else
-      StatusHistory.by_month(range)
+      StatusHistory.by_month(range).collect(&:animal_id).uniq
     end
 
     scope = self.scoped
     scope = scope.select("count(*) count, animal_types.name")
-    scope = scope.joins(:status_histories, :animal_type)
+    scope = scope.joins(:animal_type)
 
     unless state.blank?
       scope = scope.joins(:shelter)
       scope = scope.where(:shelters => { :state => state })
     end
 
-    scope = scope.where(:status_histories => { :id => status_histories })
+    scope = scope.where(:id => animal_ids)
     scope = scope.group(:animal_type_id)
     scope
   end
