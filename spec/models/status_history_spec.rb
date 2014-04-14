@@ -58,7 +58,7 @@ describe "Reports" do
       status_histories = StatusHistory.by_month(range)
 
       expect(status_histories.count).to eq(3)
-      expect(status_histories).to match_array([@status_history1.id, @status_history2.id, @status_history3.id])
+      expect(status_histories).to match_array([@status_history1, @status_history2, @status_history3])
     end
   end
 

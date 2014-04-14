@@ -1,11 +1,11 @@
 module DateHelper
 
   def current_month
-    Time.zone.now.month
+    Time.zone.today.month
   end
 
   def current_year
-    Time.zone.now.year
+    Time.zone.today.year
   end
 
   def current_time

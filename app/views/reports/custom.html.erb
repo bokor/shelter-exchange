@@ -1,0 +1,39 @@
+<% by_type = params[:by_type] || false %>
+<% report_title = "#{params[:status].titleize} Monthly Total"  %>
+
+<% if by_type %>
+  <% report_title += " by Animal Type"  %>
+<% end %>
+
+<%= title report_title  %>
+
+<%= content_for :javascripts do %>
+  <script type="text/javascript">
+    $(function() {
+      Reports.barChart('<%= report_title %>', '<%= params[:status] %>', <%= by_type %>, '<%= params[:status].titleize %>');
+		});
+	</script>
+<% end %>
+
+<%= content_for :page_content do %>
+
+	<div class="page_heading blue">
+		<h1>Reports</h1>
+		<div class="action_links">
+			<%= label_tag :selected_year, "Select year" %>
+      <%= select_year Time.zone.today, {
+        :field_name => :selected_year, :prefix => "", :start_year => current_year - 3, :end_year => current_year
+      }, {
+        :onchange => "Reports.barChart('#{report_title}', '#{params[:status]}', #{by_type}, '#{params[:status].humanize}');"
+      } %>
+		</div>
+	</div>
+	<div class="page_content">
+		<div id="custom_report" class="report"></div>
+	</div>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<%= render "sidebar" %>
+<% end %>

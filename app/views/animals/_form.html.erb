@@ -75,14 +75,12 @@
 		</li>
 		<li>
 			<%= f.label :sex, "Sex <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<!-- <div> -->
-				<% Animal::SEX.each_with_index do |value, index| %>
-					<span class="left<%= "Padded" if index==1 %>">
-						<%= f.radio_button :sex, value, :class => "field radio" %>
-						<%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
-					</span>
-				<% end %>
-			<!-- </div> -->
+      <% Animal::SEX.each_with_index do |value, index| %>
+        <span class="left<%= "Padded" if index==1 %>">
+          <%= f.radio_button :sex, value, :class => "field radio" %>
+          <%= f.label "sex_#{value}", value.humanize, :class => "choice" %>
+        </span>
+      <% end %>
 			<%= has_error_message?(@animal, :sex)%>
 		</li>
 		<li>
