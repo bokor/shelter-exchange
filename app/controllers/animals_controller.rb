@@ -72,7 +72,6 @@ class AnimalsController < ApplicationController
     end
   end
 
-
   def search
     q = params[:q].strip.split.join("%")
     @animals = if q.blank?
@@ -119,7 +118,7 @@ class AnimalsController < ApplicationController
     render :json => json.to_json
   end
 
-  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # goes at the top rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid animal => #{params[:id]}")
     flash[:error] = "You have requested an invalid animal!"

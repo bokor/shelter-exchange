@@ -23,6 +23,7 @@ class Animal < ActiveRecord::Base
               :clean_description,
               :remove_secondary_breed,
               :remove_special_needs
+              # :remove_accommodation_for_non_active
 
   after_save :create_status_history!,
              :enqueue_integrations
@@ -360,6 +361,10 @@ class Animal < ActiveRecord::Base
   def remove_special_needs
     self.special_needs = nil unless self.special_needs?
   end
+
+  # def remove_accommodation_for_non_active
+  #   self.accommodation_id = nil if AnimalStatus::NON_ACTIVE.include?(self.animal_status_id)
+  # end
 
   def lint_facebook_url
     if self.animal_status_id_changed? && Rails.env.production?
