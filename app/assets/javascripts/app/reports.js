@@ -24,8 +24,7 @@ var Reports = {
 			dataType: 'json',
 			data: {
 				selected_month: $("#_selected_month").val(),
-				selected_year: $("#_selected_year").val(),
-				selected_state: $("#_selected_state").val()
+				selected_year: $("#_selected_year").val()
 			},
 			success: function(data) {
 				var options = {
@@ -71,14 +70,12 @@ var Reports = {
 			type: 'get',
 			dataType: 'json',
 			data: {
-				selected_month: $("#_selected_month").val(),
-				selected_year: $("#_selected_year").val(),
-				selected_state: $("#_selected_state").val()
+				selected_year: $("#selected_year").val()
 			},
 			success: function(data) {
 				var options = {
 					chart: { renderTo: 'custom_report', defaultSeriesType: 'column' },
-				    title: { text: title + ' - ' + $("#_selected_year").val() },
+				    title: { text: title + ' - ' + $("#selected_year").val() },
 				    xAxis: {
 				    	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 				    },
