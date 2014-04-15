@@ -622,21 +622,23 @@
 /* Reports :: Page Layout
 -----------------------------------------------------------------------------*/
 .reports .page_heading h1{width:25%; float:left; }
-.reports .page_heading .action_links{width:75%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-.reports .page_heading .action_links label {padding-left: 15px;}
-.reports .page_heading .action_links input {margin-left: 15px;}
 
 /* Reports :: Layout
 -----------------------------------------------------------------------------*/
-.reports .report {width: 100%; height: 100%; min-height:400px; margin: 20px auto 20px auto;}
+.reports .report {width: 100%; height: 100%; min-height:400px; margin: 0px auto 20px auto;}
+
+.reports .stats h2 { border-bottom: 1px #ccc solid;  padding-bottom: 10px;}
+.reports .stats .separator{ border-bottom: 1px #ccc solid; }
+.reports .stats .filters{ padding-top:5px; }
 
 /* Index Reports :: Stats and Count Sections
 -----------------------------------------------------------------------------*/
 .index_reports .stats:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .index_reports .count_sections div {float:left;margin-right:4%;width:25%;text-align:center;padding: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px #ddd solid;}
-.index_reports .count_sections h2 {padding-bottom: 5px; margin:0;}
-.index_reports .count_sections h2.euthanized_color {color:red;}
+.index_reports .count_sections h3 {font-size:18px; padding-bottom: 5px; margin:0;}
+.index_reports .count_sections h3.euthanized_color {color:red;}
 .index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
+.index_reports .count_sections:after {height:25px;}
 
 /* Reports :: Layout
 -----------------------------------------------------------------------------*/
