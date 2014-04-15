@@ -5,16 +5,16 @@ var Reports = {
 	initialize: function(){
 		// Reload Report after Submit
 		$('#submit_report').bind('click', function(){
-			Reports.loadReports();
+		  Reports.loadReports();
 		});
 		$('#submit_report').trigger('click');
 	},
 	loadReports: function(){
 		var date_title = $("#_selected_month option:selected").html() + " " + $("#_selected_year option:selected").html();
-		var status_by_month_year_title = 'Animals by Status Monthly Total - ' + date_title;
+		var status_by_month_year_title = 'Total Count by Animal Status - ' + date_title;
 		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
 
-		var type_by_month_year_title = 'Animals by Type Monthly Total - ' + date_title;
+		var type_by_month_year_title = 'Total Count by Animal Type - ' + date_title;
 		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
 	},
 	pieChart: function(title, url_function){
