@@ -1,12 +1,5 @@
 require "spec_helper"
 
-# module AnnouncementsHelper
-#
-#   def current_announcements
-#     Announcement.current_announcements(current_user.announcement_hide_time)
-#   end
-# end
-
 describe AnnouncementsHelper, "#current_announcements" do
 
   it "returns no announcements" do

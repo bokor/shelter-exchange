@@ -106,7 +106,7 @@ describe ReportsController do
     end
 
     it "renders json" do
-      Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+      Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
 
       animal_type1 = AnimalType.gen :name => "Dog"
       animal_type2 = AnimalType.gen :name => "Cat"
@@ -137,7 +137,7 @@ describe ReportsController do
 
     context "with combined totals" do
       it "renders json when by_type true" do
-        Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+        Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
 
         animal_type1 = AnimalType.gen :name => "Dog"
         animal_type2 = AnimalType.gen :name => "Cat"
@@ -160,7 +160,7 @@ describe ReportsController do
     context "with totals by animal type" do
 
       it "renders json" do
-        Timecop.freeze(Date.parse("Fri, 14 Feb 2014"))
+        Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
 
         animal_type1 = AnimalType.gen :name => "Dog"
         animal_type2 = AnimalType.gen :name => "Cat"
