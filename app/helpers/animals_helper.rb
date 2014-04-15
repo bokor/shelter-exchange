@@ -71,14 +71,13 @@ module AnimalsHelper
   def fancybox_video_url(animal)
     you_tube_id = find_you_tube_id(animal.video_url)
     unless you_tube_id.blank?
-      "//www.youtube.com/v/#{you_tube_id}" #"?version=3&enablejsapi=1"
+      "//www.youtube.com/v/#{you_tube_id}"
     else
       animal.video_url
     end
   end
 
   def find_you_tube_id(url)
-    # url.scan(Regexp.union(ANIMAL_VIDEO_URL_FORMAT)){|m| return m.join.strip unless m.blank?}
     url.match(VIDEO_URL_REGEX)[5]
   end
 end

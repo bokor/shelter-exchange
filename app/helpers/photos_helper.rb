@@ -2,10 +2,11 @@ module PhotosHelper
 
   def setup_photos(animal)
     animal.photos.reject!{|photo| !photo.main_photo? }
-    size = animal.photos.size
-    if size == 0
+
+    if animal.photos.size == 0
       1.times{|n| animal.photos.build(:is_main_photo => true) }
     end
+
     animal
   end
 
