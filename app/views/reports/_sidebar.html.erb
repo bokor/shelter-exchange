@@ -1,3 +1,5 @@
+<% years = (current_year-5..current_year).to_a.reverse %>
+
 <div class="box blue">
   <h2>Yearly Totals (by Month)</h2>
   <%= form_tag custom_reports_path, :method => :get, :id => "form_custom_reports" do %>
@@ -7,6 +9,12 @@
         <%= select_tag :status, options_for_select(
             AnimalStatus.all.map{|status| [status.name, status.name.parameterize.underscore] }, params[:status]
           ), :prompt => "Select one" %>
+      </li>
+      <li>
+        <%= label_tag :selected_year, "Year", :class => "desc" %>
+        <div>
+          <%= select_tag :selected_year, options_for_select(years, params[:selected_year]), :prompt => "Select one" %>
+        </div>
       </li>
       <li>
         <%= label_tag :by_type, "Display", :class => "desc" %>
