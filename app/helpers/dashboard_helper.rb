@@ -40,11 +40,11 @@ module DashboardHelper
 
   def show_polymorphic_link(object)
     if object.is_a?(Alert) and object.alertable
-        link = link_to object.alertable.name, polymorphic_path(object.alertable)
-        return (" for <span class='polymorphic_link'>#{link}</span>").html_safe
+      link = link_to object.alertable.name, polymorphic_path(object.alertable)
+      " for <span class='polymorphic_link'>#{link}</span>".html_safe
     elsif object.is_a?(Task) and object.taskable
       link = link_to object.taskable.name, polymorphic_path(object.taskable)
-      return (" for <span class='polymorphic_link'>#{link}</span>").html_safe
+      " for <span class='polymorphic_link'>#{link}</span>".html_safe
     end
   end
 end
