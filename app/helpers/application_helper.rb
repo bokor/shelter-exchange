@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def create_error_message(msg)
-    ['<p class="error">', msg.capitalize, '</p>'].join.html_safe
+    "<p class='error'>#{msg.capitalize}</p>".html_safe
   end
 end
 
