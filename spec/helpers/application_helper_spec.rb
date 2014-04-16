@@ -50,26 +50,68 @@ describe ApplicationHelper, "#body_class" do
 end
 
 describe ApplicationHelper, "#selected_navigation" do
-  # def selected_navigation(element)
-  #   request.fullpath =~ /\/#{element.to_s}/ ? "current" : ""
-  # end
+
+  it "returns class name current" do
+    allow(controller.request).to receive(:fullpath).and_return("/animals")
+
+    expect(
+      helper.selected_navigation(:animals)
+    ).to eq("current")
+  end
+
+  it "returns no class name" do
+    allow(controller.request).to receive(:fullpath).and_return("/tasks")
+
+    expect(
+      helper.selected_navigation(:animals)
+    ).to eq("")
+  end
 end
 
 describe ApplicationHelper, "#sub_navigation" do
-  # def sub_navigation(element)
-  #   (element.to_s == request.fullpath[1..-1].split('/').collect!{|p| p.to_s}.last) ? "current" : ""
-  # end
+
+  it "returns class name current" do
+    allow(controller.request).to receive(:fullpath).and_return("/animals/notes")
+
+    expect(
+      helper.sub_navigation(:notes)
+    ).to eq("current")
+  end
+
+  it "returns no class name" do
+    allow(controller.request).to receive(:fullpath).and_return("/tasks/notes")
+
+    expect(
+      helper.selected_navigation(:comments)
+    ).to eq("")
+  end
 end
 
 describe ApplicationHelper, "#has_error_message?" do
-  # def has_error_message?(object, field)
-  #   create_error_message(object.errors[field].to_sentence) unless object.errors[field].blank?
-  # end
+
+  it "returns nil when field has no errors" do
+    animal = Animal.gen
+
+    expect(
+      helper.has_error_message?(animal, "name")
+    ).to be_nil
+  end
+
+  it "returns field error in sentence form" do
+    animal = Animal.create :name => nil
+
+    expect(
+      helper.has_error_message?(animal, "name")
+    ).to eq("<p class='error'>Cannot be blank</p>")
+  end
 end
 
 describe ApplicationHelper, "#create_error_message" do
-  # def create_error_message(msg)
-  #   ['<p class="error">', msg.capitalize, '</p>'].join.html_safe
-  # end
+
+  it "returns field error in sentence form" do
+    expect(
+      helper.create_error_message("cannot be blank")
+    ).to eq("<p class='error'>Cannot be blank</p>")
+  end
 end
 

@@ -1,41 +1,90 @@
 require "spec_helper"
 
 describe MapsHelper, "#map_shelter_icon" do
-  # def map_shelter_icon
-  #   if hostname = Rails.application.config.action_controller.asset_host
-  #     "http://#{hostname}/assets/logo_xsmall.png"
-  #   else
-  #     image_path("logo_xsmall.png")
-  #   end
-  # end
-  # SAMPLE
-  # it "returns text when approved" do
-  #   transfer = Transfer.gen :status => "approved"
 
-  #   expect(
-  #     helper.status_action_name(transfer)
-  #   ).to eq("Approve")
-  # end
+  it "returns image with asset_host name" do
+    allow(Rails.application.config.action_controller).to receive(:asset_host).and_return("test.host")
+    expect(
+      helper.map_shelter_icon
+    ).to eq("http://test.host/assets/logo_xsmall.png")
+  end
+
+  it "returns default image path" do
+    allow(Rails.application.config.action_controller).to receive(:asset_host).and_return(nil)
+    expect(
+      helper.map_shelter_icon
+    ).to eq("/assets/logo_xsmall.png")
+  end
 end
 
 describe MapsHelper, "#shelter_info_window" do
-  # def shelter_info_window(shelter)
-  #   output =  "<h2><a href='#{Rails.application.routes.url_helpers.public_help_a_shelter_url(shelter, :subdomain => 'www')}'>#{shelter.name}</a></h2>"
-  #   output << '<ul>'
-  #   output << '<li>' << shelter.street << '</li>'
-  #   output << '<li>' << shelter.street_2 << '</li>' unless shelter.street_2.blank?
-  #   output << '<li>' << shelter.city << ', ' << shelter.state << ' ' << shelter.zip_code << '</li>'
-  #   output << '<li style="padding-bottom: 10px;">' << number_to_phone(shelter.phone, :delimiter => "-") << '</li>' unless shelter.phone.blank?
-  #   unless shelter.email.blank? and shelter.website.blank?
-  #     output << '<li>'
-  #     output << '<strong style="padding:0 5px 0 0;"><a href="mailto:' << shelter.email << '">Email us</a></strong>' unless shelter.email.blank?
-  #     output << '|' if shelter.email.present? and shelter.website.present?
-  #     output << '<strong style="padding:0 0 0 5px;"><a href="' << shelter.website << '" target="_blank">Visit Website</a>' unless shelter.website.blank?
-  #     output << '</li>'
-  #   end
-  #   output << '</ul>'
-  #   output << '<div style="width:100%; text-align:center; margin: 0 auto;"><img src="' << shelter.logo.url(:thumb) << '" alt="" /></div>' if shelter.logo?
-  #   output
-  # end
+
+  before do
+    @shelter = Shelter.gen \
+      :name => "HTML TEST",
+      :street => "123 Main St.", :street_2 => "Apt 101",
+      :city => "LALA Town", :state => "CA", :zip_code => "90210",
+      :phone => "999-111-1234",
+      :email => nil,
+      :website => nil
+
+    allow(
+      Rails.application.routes.url_helpers
+    ).to receive(:public_help_a_shelter_url).and_return("http://www.test.host/help_a_shelter")
+  end
+
+  it "returns info window html without email and website" do
+    html = "<h2><a href='http://www.test.host/help_a_shelter'>HTML TEST</a></h2>" +
+           "<ul>" +
+           "<li>123 Main St.</li>" +
+           "<li>Apt 101</li>" +
+           "<li>LALA Town, CA 90210</li>" +
+           "<li style='padding-bottom: 10px;'>999-111-1234</li>" +
+           "</ul>"
+    expect(
+      helper.shelter_info_window(@shelter)
+    ).to eq(html)
+  end
+
+  it "returns info window html with email and website" do
+    @shelter.update_attributes({
+      :email => "html.test@test.host",
+      :website => "http://www.html.test.host"
+    })
+
+    html = "<h2><a href='http://www.test.host/help_a_shelter'>HTML TEST</a></h2>" +
+           "<ul>" +
+           "<li>123 Main St.</li>" +
+           "<li>Apt 101</li>" +
+           "<li>LALA Town, CA 90210</li>" +
+           "<li style='padding-bottom: 10px;'>999-111-1234</li>" +
+           "<li><strong style='padding:0 5px 0 0;'><a href='mailto:html.test@test.host'>Email us</a></strong>" +
+           "|" +
+           "<strong style='padding:0 0 0 5px;'><a href='http://www.html.test.host' target='_blank'>Visit Website</a></strong>" +
+           "</li></ul>"
+    expect(
+      helper.shelter_info_window(@shelter)
+    ).to eq(html)
+  end
+
+  it "returns info window html with logo" do
+    @shelter.update_attributes({
+      :logo => File.open(Rails.root.join("spec/data/images/photo.jpg"))
+    })
+
+    html = "<h2><a href='http://www.test.host/help_a_shelter'>HTML TEST</a></h2>" +
+           "<ul>" +
+           "<li>123 Main St.</li>" +
+           "<li>Apt 101</li>" +
+           "<li>LALA Town, CA 90210</li>" +
+           "<li style='padding-bottom: 10px;'>999-111-1234</li>" +
+           "</ul>" +
+           "<div style='width:100%; text-align:center; margin: 0 auto;'>" +
+           "<img src='#{@shelter.logo.url(:thumb)}' alt='' />" +
+           "</div>"
+    expect(
+      helper.shelter_info_window(@shelter)
+    ).to eq(html)
+  end
 end
 
