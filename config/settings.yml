@@ -1,6 +1,6 @@
 # settings.yml
 defaults: &defaults
-  app_disabled?: true
+  app_disabled?: false
   current_api_version: "v1"
 
 amazon: &amazon
