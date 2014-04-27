@@ -1,6 +1,6 @@
 <li id="status_date_container">
 	<div class="status_date_field">
-		<div class="status_date_alt"><%=format_date(Time.zone.today, :long_day_of_week)%></div>
+		<div class="status_date_alt"><%=format_date_for(Time.zone.today, :long_day_of_week)%></div>
 		<div class="date_picker"></div>
 		<%= f.hidden_field :status_date, :class => "hidden_status_date" %>
 	</div>
