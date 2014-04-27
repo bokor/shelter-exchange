@@ -5,8 +5,8 @@
   <span class="breed"><%= animal.full_breed %></span>
   <span class="shelter_name"><%= link_to animal.shelter.name, admin_shelter_path(animal.shelter), :target => "_new" %></span>
   <% if show_created_at %>
-    <span class="created_at_date"><%= format_date(:short, animal.created_at) %></span>
+    <span class="created_at_date"><%= format_date_for(animal.created_at, :short) %></span>
   <% else %>
-    <span class="status_change_date"><%= format_date(:short, animal.status_change_date) %></span>
+    <span class="status_change_date"><%= format_date_for(animal.status_change_date, :short) %></span>
   <% end %>
 </div>

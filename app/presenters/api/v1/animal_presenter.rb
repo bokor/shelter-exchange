@@ -28,9 +28,9 @@ class Api::V1::AnimalPresenter < Presenter
         :weight => @animal.weight,
         :sex => @animal.sex.humanize,
         :euthanasia_info => {
-          :arrival_date => help.format_date(:default, @animal.arrival_date),
+          :arrival_date => help.format_date_for(@animal.arrival_date),
           :hold_time => @animal.hold_time.present? ? "#{@animal.hold_time} days" : "",
-          :euthanasia_date => help.format_date(:default, @animal.euthanasia_date)
+          :euthanasia_date => help.format_date_for(@animal.euthanasia_date)
         },
         :photos => photos,
         :video => you_tube_url,

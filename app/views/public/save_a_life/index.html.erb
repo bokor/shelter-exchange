@@ -7,7 +7,7 @@
 	<%= javascript_include_tag "//maps.google.com/maps/api/js?libraries=geometry&sensor=false" %>
 	<script type="text/javascript">
 		$(function() {
-			SaveALife.initialize(38.6,-98,"<%= map_overlay_url('maps/overlay.kmz') %>");
+			SaveALife.initialize(38.6,-98,"<%= map_overlay_url %>");
 		});
 	</script>
 <% end %>
@@ -19,7 +19,7 @@
 	<div class="search_content">
 		<span class="search_form">
 			<form action="#" id="form_city_zipcode_search">
-			    <%= text_field_tag :city_zipcode, "", :placeholder => "Please type a city, state or zipcode" %> <!-- #{city_zipcode_default} -->
+			    <%= text_field_tag :city_zipcode, "", :placeholder => "Please type a city, state or zipcode" %>
 			</form>
 			<ul class="toggle_buttons">
 				<li><a id="search_by_city_zipcode" href="#" class="current">City or Zip code</a></li>

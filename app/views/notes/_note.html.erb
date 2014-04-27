@@ -9,7 +9,7 @@
 </script>
 
 <div id="<%= "note_#{note.id}" %>" class="note">
-  <span class="created_date"><%= format_date(:short, note.created_at) %></span>
+  <span class="created_date"><%= format_date_for(note.created_at, :short) %></span>
 
   <% if @documents.present? && (note.shelter_id == @current_shelter.id || controller_name != "parents") %>
     <span class="attachment_icon"><%= image_tag "icon_paperclip.png" %></span>

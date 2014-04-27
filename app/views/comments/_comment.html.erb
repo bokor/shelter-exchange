@@ -1,5 +1,5 @@
 <div id="<%= "comment_#{comment.id}" %>" class="comment">
-	<span class="created_date"><%= format_date(:short, comment.created_at) %></span>
+	<span class="created_date"><%= format_date_for(comment.created_at, :short) %></span>
 	<span class="description"><p><%=comment.comment%></p></span>
 	<% if comment.shelter_id == @current_shelter.id %>
 		<div class="action_links">

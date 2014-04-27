@@ -1,5 +1,5 @@
 <div id="<%= "status_history_#{status_history.id}" %>" class="status_history">
-	<span class="status_date"><%= format_date(:short, status_history.status_date) %></span>
+	<span class="status_date"><%= format_date_for(status_history.status_date, :short) %></span>
 	<span class="details">
     <span class="status"><%= status_history.animal_status.name %>: <span class="reason"><%= status_history.reason.blank? ? "Not provided" : status_history.reason %></span></span>
 	</span>

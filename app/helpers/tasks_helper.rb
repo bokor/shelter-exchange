@@ -10,7 +10,7 @@ module TasksHelper
   def display_due_date(task)
     if task.due_date
       unless task.today? || task.tomorrow?
-        "<span class='task_due_date'>#{format_date(:short_no_year, task.due_date)}</span>".html_safe
+        "<span class='task_due_date'>#{format_date_for(task.due_date, :short_no_year)}</span>".html_safe
       end
     end
   end

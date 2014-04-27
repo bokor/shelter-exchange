@@ -58,11 +58,11 @@
       <div class="filters">
         <span class="left">
           <%= label_tag :selected_month, "Select month:" %>
-          <%= select_month(Date.today, :field_name => :selected_month, :prefix => "", :start_month => current_month )%>
+          <%= select_month(Time.zone.today, :field_name => :selected_month, :prefix => "", :start_month => Time.zone.today.month )%>
         </span>
         <span class="leftPadded">
           <%= label_tag :selected_year, "Select year:" %>
-          <%= select_year(Date.today, :field_name => :selected_year, :prefix => "", :start_year => current_year - 3, :end_year => current_year)%>
+          <%= select_year(Time.zone.today, :field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year)%>
         </span>
         <span class="leftPadded">
           <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>

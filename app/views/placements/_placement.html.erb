@@ -22,7 +22,7 @@
 	</td>
 	<td class="details">
 		<h3><%= animal.name %></h3>
-		<h3><%= placement.status.humanize%> (<%= format_date(:long, placement.created_at) %>)</h3>
+		<h3><%= placement.status.humanize%> (<%= format_date_for(placement.created_at, :long) %>)</h3>
 		<p><%= animal.full_breed %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %><% if animal.is_sterilized %>(Sterilized)<% end %></p>
 	</td>

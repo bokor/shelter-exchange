@@ -1,7 +1,7 @@
 <div id="transfer_<%=transfer.id %>" class="transfer">
 	<div class="date_actions">
 		<span class="created_at_date">
-			<%= format_date(:long, transfer.created_at) %>
+			<%= format_date_for(transfer.created_at, :long) %>
 		</span>
 		<span class="action_links">
 		<% if transfer.approved? %>

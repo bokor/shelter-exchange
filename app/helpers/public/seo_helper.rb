@@ -13,8 +13,6 @@ module Public::SeoHelper
   def robots(robots)
     content_for(:robots) { robots.to_s }
   end
-
-
   #----------------------------------------------------------------------------
 
 

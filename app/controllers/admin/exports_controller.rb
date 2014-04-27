@@ -19,10 +19,6 @@ class Admin::ExportsController < Admin::ApplicationController
   #-----------------------------------------------------------------------------
   private
 
-  def current_date
-    Time.zone.now.to_date
-  end
-
   def generate_csv_with_emails(results)
     CSV.generate{|csv| results.collect(&:email).uniq.each{|email| csv << [email] } }
   end
@@ -33,7 +29,7 @@ class Admin::ExportsController < Admin::ApplicationController
     results = Shelter.select('DISTINCT email').active.all +
               User.select('DISTINCT users.email').
                 joins(:account => :shelters).
-                where(:shelters => {:status => "active"}).all
+                where(:shelters => { :status => "active" }).all
 
     generate_csv_with_emails(results)
   end
@@ -46,30 +42,29 @@ class Admin::ExportsController < Admin::ApplicationController
                 where(:id => shelter_ids).active.all +
               User.select('DISTINCT users.email').
                 joins(:account => :shelters).
-                where(:shelters => {:status => "active", :id => shelter_ids}).all
+                where(:shelters => { :status => "active", :id => shelter_ids }).all
 
     generate_csv_with_emails(results)
   end
 
   def adopt_a_pet_emails
     shelter_ids = Integration::AdoptAPet.all.map(&:shelter_id)
-
     results = Shelter.select('DISTINCT email').
                 where(:id => shelter_ids).active.all +
               User.select('DISTINCT users.email').
-                joins(:account => :shelters).where(:shelters => {:status => "active", :id => shelter_ids}).all
+                joins(:account => :shelters).
+                where(:shelters => { :status => "active", :id => shelter_ids }).all
 
     generate_csv_with_emails(results)
   end
 
   def all_integrations_emails
     shelter_ids = Integration.all.map(&:shelter_id)
-
     results = Shelter.select('DISTINCT email').
                 where(:id => shelter_ids).active.all +
               User.select('DISTINCT users.email').
                 joins(:account => :shelters).
-                where(:shelters => {:status => "active", :id => shelter_ids}).all
+                where(:shelters => { :status => "active", :id => shelter_ids }).all
 
     generate_csv_with_emails(results)
   end
@@ -77,56 +72,35 @@ class Admin::ExportsController < Admin::ApplicationController
   # Shelter Exports
   #----------------------------------------------------------------------------
   def signed_up_last_thirty_days_emails
-
-    shelter_ids = Shelter.select(:id).where(:created_at => [current_date.beginning_of_month..current_date.end_of_month])
+    shelter_ids = Shelter.select(:id).
+                    where(:created_at => Time.zone.today-30.days..Time.zone.today).active.all
 
     results = Shelter.select('DISTINCT email').
-                where(:id => shelter_ids).active.all +
+                where(:id => shelter_ids).all +
               User.select('DISTINCT users.email').
                 joins(:account => :shelters).
-                where(:shelters => {:status => "active", :id => shelter_ids}).all
+                where(:shelters => { :id => shelter_ids }).all
 
     generate_csv_with_emails(results)
   end
 
   def never_used_before_emails
-    shelter_ids = Shelter.select("DISTINCT(shelters.id)").
-                    joins(:animals).
-                    where("animals.shelter_id is NULL")
-
-    results     = Shelter.select('DISTINCT email').
-                    where(:id => shelter_ids).active.all +
-                  User.select('DISTINCT users.email').
-                    joins(:account => :shelters).
-                    where(:shelters => {:status => "active", :id => shelter_ids}).all
-
-    generate_csv_with_emails(results)
+    # for each shelter get all users and if any user has signed in then discard users and shelter.
   end
 
   def not_used_past_thirty_days_emails
-    shelter_ids = Shelter.select("DISTINCT(shelters.id)").
-                    joins(:animals).
-                    where("animals.shelter_id is NULL or animals.updated_at < ?", Date.today - 30.days)
-
-    results = Shelter.select('DISTINCT email').
-                where(:id => shelter_ids).active.all +
-              User.select('DISTINCT users.email').
-                joins(:account => :shelters).
-                where(:shelters => {:status => "active", :id => shelter_ids}).all
-
-    generate_csv_with_emails(results)
+    # for each shelter get all users and if any user has signed in in the past 30 days then discard users and shelter.
   end
 
   # API Exports
   #----------------------------------------------------------------------------
   def web_token_emails
-    shelter_ids = Shelter.select(:id).where("shelters.access_token IS NOT NULL")
-
+    shelter_ids = Shelter.select(:id).where("shelters.access_token IS NOT NULL").active.all
     results = Shelter.select('DISTINCT email').
-                where(:id => shelter_ids).active.all +
+                where(:id => shelter_ids).all +
               User.select('DISTINCT users.email').
                 joins(:account => :shelters).
-                where(:shelters => {:status => "active", :id => shelter_ids}).all
+                where(:shelters => { :id => shelter_ids }).all
 
     generate_csv_with_emails(results)
   end

@@ -27,9 +27,9 @@ module UrlHelper
     url
   end
 
-  def map_overlay_url(filename)
+  def map_overlay_url
     query_string = "#{FOG_BUCKET.files.head("maps/overlay.kmz").last_modified.to_i}"
-    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/#{filename}?#{query_string}"
+    "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/maps/overlay.kmz?#{query_string}"
   end
 end
 

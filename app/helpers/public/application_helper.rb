@@ -4,7 +4,11 @@ module Public::ApplicationHelper
     if controller_name != "pages"
       "#{action_name}_#{controller_name}"
     else
-      @path.blank? ? "home_page" : "#{@path.parameterize('_')}_page"
+      if request.path == "/"
+        "home_page"
+      else
+        "#{request.path.parameterize('_')}_page"
+      end
     end
   end
 end
