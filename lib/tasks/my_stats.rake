@@ -20,6 +20,7 @@ namespace :spec do
     # Code
     ::STATS_DIRECTORIES << ["Views",          "app/views",              /\.erb$/]
     ::STATS_DIRECTORIES << ["Jobs",           "app/jobs",               /\.rb$/]
+    ::STATS_DIRECTORIES << ["Mailers",        "app/mailers",            /\.rb$/]
     ::STATS_DIRECTORIES << ["Uploaders",      "app/uploaders",          /\.rb$/]
     ::STATS_DIRECTORIES << ["Stylesheets",    "app/assets/stylesheets", /\.css$/]
     ::STATS_DIRECTORIES << ["Javascripts",    "app/assets/javascripts", /\.js$/]
