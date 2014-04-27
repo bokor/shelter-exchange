@@ -7,11 +7,18 @@ class Admin::ExportsController < Admin::ApplicationController
   end
 
   def show
-    csv_file = send(params[:export_type])
+    results = send(params[:export_type])
+
+    csv_string = CSV.generate do |csv|
+      results.collect(&:email).uniq.each{|email| csv << [email] }
+    end
 
     respond_to do |format|
-      format.csv{
-        send_data(csv_file, :filename => "#{params[:export_type]}.csv")
+      format.csv {
+        send_data(csv_string,
+          :type => "text/csv",
+          :filename => "#{params[:export_type]}.csv"
+        )
       }
     end
   end
@@ -19,19 +26,11 @@ class Admin::ExportsController < Admin::ApplicationController
   #-----------------------------------------------------------------------------
   private
 
-  def generate_csv_with_emails(results)
-    CSV.generate{|csv| results.collect(&:email).uniq.each{|email| csv << [email] } }
-  end
-
   # All Shelter and User Exports
   #----------------------------------------------------------------------------
   def all_emails
-    results = Shelter.select(:email).active +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :status => "active" })
-
-    generate_csv_with_emails(results)
+    Shelter.select(:email).active +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :status => "active" })
   end
 
   # Integration Exports
@@ -39,50 +38,31 @@ class Admin::ExportsController < Admin::ApplicationController
   def petfinder_emails
     shelter_ids = Integration::Petfinder.all.map(&:shelter_id)
 
-    results = Shelter.select(:email).
-                where(:id => shelter_ids).active +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :status => "active", :id => shelter_ids })
-
-    generate_csv_with_emails(results)
+    Shelter.select(:email).where(:id => shelter_ids).active +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :status => "active", :id => shelter_ids })
   end
 
   def adopt_a_pet_emails
     shelter_ids = Integration::AdoptAPet.all.map(&:shelter_id)
-    results = Shelter.select(:email).
-                where(:id => shelter_ids).active +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :status => "active", :id => shelter_ids })
 
-    generate_csv_with_emails(results)
+    Shelter.select(:email).where(:id => shelter_ids).active +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :status => "active", :id => shelter_ids })
   end
 
   def all_integrations_emails
     shelter_ids = Integration.all.map(&:shelter_id)
-    results = Shelter.select(:email).
-                where(:id => shelter_ids).active +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :status => "active", :id => shelter_ids })
 
-    generate_csv_with_emails(results)
+    Shelter.select(:email).where(:id => shelter_ids).active +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :status => "active", :id => shelter_ids })
   end
 
   # Shelter Exports
   #----------------------------------------------------------------------------
   def signed_up_last_thirty_days_emails
-    shelter_ids = Shelter.select(:id).
-                    where(:created_at => Time.zone.today-30.days..Time.zone.today).active.all
+    shelter_ids = Shelter.select(:id).where(:created_at => Time.zone.today-30.days..Time.zone.today).active
 
-    results = Shelter.select(:email).
-                where(:id => shelter_ids) +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :id => shelter_ids })
-
-    generate_csv_with_emails(results)
+    Shelter.select(:email).where(:id => shelter_ids) +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :id => shelter_ids })
   end
 
   def not_used_past_thirty_days_emails
@@ -97,15 +77,10 @@ class Admin::ExportsController < Admin::ApplicationController
       end
     end
 
-    non_active_shelter_ids = Shelter.where("ID NOT IN (?)", active_shelter_ids).active.pluck(:id)
+    non_active_shelter_ids = Shelter.select(:id).active.where("ID NOT IN (?)", active_shelter_ids)
 
-    results = Shelter.select(:email).
-                      where(:id => non_active_shelter_ids) +
-              User.select(:"users.email").
-                   joins(:account => :shelters).
-                   where(:shelters => { :id => non_active_shelter_ids })
-
-    generate_csv_with_emails(results.uniq)
+    Shelter.select(:email).where(:id => non_active_shelter_ids) +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :id => non_active_shelter_ids })
   end
 
   # API Exports
@@ -113,13 +88,8 @@ class Admin::ExportsController < Admin::ApplicationController
   def web_token_emails
     shelter_ids = Shelter.select(:id).where("shelters.access_token IS NOT NULL").active.all
 
-    results = Shelter.select(:email).
-                where(:id => shelter_ids) +
-              User.select(:"users.email").
-                joins(:account => :shelters).
-                where(:shelters => { :id => shelter_ids })
-
-    generate_csv_with_emails(results)
+    Shelter.select(:email).where(:id => shelter_ids) +
+    User.select(:"users.email").joins(:account => :shelters).where(:shelters => { :id => shelter_ids })
   end
 end
 
