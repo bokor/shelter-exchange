@@ -1,22 +1,18 @@
 module DateHelper
 
-  def current_month
-    Time.zone.today.month
+  def date_attribute_for(record, attribute, value)
+    return nil if value.blank?
+
+    if record.send("#{attribute}_#{value}")
+      record.send("#{attribute}_#{value}")
+    else
+      format_date_for(record.send(attribute), value)
+    end
   end
 
-  def current_year
-    Time.zone.today.year
-  end
-
-  def current_time
-    Time.zone.now
-  end
-
-  def format_date(type, date)
+  def format_date_for(date, type=:default)
     return nil if date.blank?
     case type
-      when :full_month_only
-        date.strftime("%B") #February
       when :short_no_year
         date.strftime("%b %d") #Feb 06
       when :short
@@ -65,8 +61,8 @@ module DateHelper
         end
       end
     end
-    components.blank? ? "Less than 1 week" : components.join(" and ")
 
+    components.blank? ? "Less than 1 week" : components.join(" and ")
   end
 
   # Presenters - Integration

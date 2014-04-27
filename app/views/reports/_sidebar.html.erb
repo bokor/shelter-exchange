@@ -1,4 +1,4 @@
-<% years = (current_year-5..current_year).to_a.reverse %>
+<% years = (Time.zone.today.year-5..Time.zone.today.year).to_a.reverse %>
 
 <div class="box blue">
   <h2>Yearly Totals (by Month)</h2>

@@ -4,7 +4,7 @@
 		<%= check_box_tag "alert[stopped]", 1, false, :onclick => "Alerts.stop(this, #{alert.id});" %>
 	</span>
 	<span class="type"><div class="<%= alert.severity %>"><%= alert.severity.humanize %></div></span>
-	<span class="created_at_date"><%= format_date(:short_no_year, alert.created_at) %></span>
+	<span class="created_at_date"><%= format_date_for(alert.created_at, :short_no_year) %></span>
 	<span class="details">
 		<span class="title"><%= alert.title %> <%= show_alertable_link(alert) %></span>
 	</span>

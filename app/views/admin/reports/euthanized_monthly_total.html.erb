@@ -14,7 +14,7 @@
 		<h1>Reports</h1>
 		<div class="action_links">
 			<%= label_tag :selected_year, "Select year" %>
-			<%= select_year(Date.today, {:field_name => :selected_year, :prefix => "", :start_year => current_year - 3, :end_year => current_year}, {:onchange => "Reports.barChart('Euthanized Monthly Total', 'euthanized_monthly_total', 'Euthanized');"})%>
+			<%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year}, {:onchange => "Reports.barChart('Euthanized Monthly Total', 'euthanized_monthly_total', 'Euthanized');"})%>
 		</div>
 	</div>
 	<div class="page_content">

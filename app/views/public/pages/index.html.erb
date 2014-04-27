@@ -72,7 +72,7 @@
 					</div>
 					<div class="animal">
 						<h3>Congratulations <%= link_to animal.name, public_save_a_life_path(animal) %>!</h3>
-						<p>Adopted on <%= format_date(:short_no_year, animal.status_change_date) %> from <%=link_to animal.shelter.name, public_help_a_shelter_path(animal.shelter) %>, <%=animal.shelter.city%>, <%=animal.shelter.state%></p>
+						<p>Adopted on <%= format_date_for(animal.status_change_date, :short_no_year) %> from <%=link_to animal.shelter.name, public_help_a_shelter_path(animal.shelter) %>, <%=animal.shelter.city%>, <%=animal.shelter.state%></p>
 					</div>
 				</div>
 			<% end %>

@@ -85,7 +85,7 @@
 						<li><p><b>Size:</b><span><%= Animal::SIZES[@animal.size.to_sym] || "N/A" %></span></p></li>
 						<li><p><b>Color:</b><span><%= @animal.color.present? ? @animal.color : "N/A" %></span></p></li>
 						<li><p><b>MicroChip:</b><span><%= @animal.microchip.present? ? @animal.microchip : "N/A" %></span></p></li>
-						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date(:default, @animal.arrival_date) : "N/A" %></span></p></li>
+						<li><p><b>Arrival/Intake Date:</b><span><%= @animal.arrival_date.present? ? format_date_for(@animal.arrival_date) : "N/A" %></span></p></li>
 					</ul>
 					<% if @animal.accommodation.present? %>
 					<h3>Accommodation:</h3>
@@ -141,7 +141,7 @@
 					<h3>Euthanasia Info:</h3>
 					<ul>
 						<li><p><b>Hold time:</b><span class="hold_time"><%= @animal.hold_time.present? ? "#{@animal.hold_time} days" : "N/A" %></span></p></li>
-						<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date(:default, @animal.euthanasia_date) : "N/A" %></span></p></li>
+						<li><p><b>Euthanasia Date:</b><span class="euthanasia_date"><%= @animal.euthanasia_date.present? ? format_date_for(@animal.euthanasia_date) : "N/A" %></span></p></li>
 					</ul>
 				</td>
 			</tr>

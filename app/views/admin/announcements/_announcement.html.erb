@@ -1,6 +1,6 @@
 <div id="<%= "announcement_#{announcement.id}" %>" class="announcement">
 	<span class="category"><div class="<%= announcement.category %>"><%= announcement.category.humanize %></div></span>
-	<span class="created_at_date"><%= format_date(:short_no_year, announcement.created_at) %></span>
+	<span class="created_at_date"><%= format_date_for(announcement.created_at, :short_no_year) %></span>
 	<span class="details">
 		<span class="title"><%= announcement.title %></span>
 	</span>

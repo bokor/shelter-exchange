@@ -3,5 +3,5 @@
 	<span class="name"><%= link_to shelter.name, admin_shelter_path(shelter) %></span>
 	<span class="city_state"><%= shelter.city %>, <%= shelter.state %></span>
 	<span class="email"><%= link_to shelter.email, "mailto:#{shelter.email}" %></span>
-	<span class="created_at"><%= format_date(:short, shelter.created_at) %></span>
+	<span class="created_at"><%= format_date_for(shelter.created_at, :short) %></span>
 </div>

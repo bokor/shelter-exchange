@@ -21,7 +21,7 @@
 						<span class="details">
 							<span class="title"><%= activity_message_for(activity)  %></span>
 						</span>
-						<span class="created_at_date"><%= format_date(:short_full_year, activity.updated_at) %></span>
+						<span class="created_at_date"><%= format_date_for(activity.updated_at, :short_full_year) %></span>
 					</div>
 				<% end %>
 			<% else %>

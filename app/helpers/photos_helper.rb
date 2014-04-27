@@ -11,7 +11,7 @@ module PhotosHelper
   end
 
   def polymorphic_photo_url(photo, version)
-    version = version == :original ? nil : version
+    version = (version == :original) ? nil : version
     if defined?(photo.image)
       photo.image.url(version)
     else
