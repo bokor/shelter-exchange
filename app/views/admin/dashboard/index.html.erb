@@ -20,7 +20,11 @@
 					<span class="status"><%= status %></span>
 					<span class="count"><%= count %></span>
 				</div>
-			<% end %>
+      <% end %>
+			<div class="counts_by_status">
+			  <span class="status">Totals</span>
+				<span class="count"><%= Animal.count %></span>
+			</div>
 		</div>
 
 		<h2>Active Shelter Counts</h2>
