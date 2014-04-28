@@ -1,29 +1,29 @@
 require "spec_helper"
 
 describe GoogleAnalyticsHelper, "#trackable_pageview" do
-  # def trackable_pageview
-  #   trackable_path = request.path
-  #   found          = Rails.application.routes.router.recognize(request){}
 
-  #   unless found.empty?
-  #     match, parameters, route = found.first
-  #     route_path = route.path.spec.to_s
+  it "returns the trackable path for public homepage" do
+    allow(controller.request).to receive(:url).and_return("http://test.host/pages")
 
-  #     unless route_path.include?("*path")
-  #       route_string   = route_path.gsub("(.:format)", "")
-
-  #       if route_string.include?(":id")
-  #         trackable_path = route_string.gsub(/:(\w+)?/, '{id}') # Replace dynamic segments with {id}
-  #       end
-  #     end
-  #   end
-
-  #   trackable_path
-  # end
-  it "" do
     expect(
       helper.trackable_pageview
-    ).to eq("")
+    ).to eq("/")
+  end
+
+  it "returns the trackable path for a base path" do
+    allow(controller.request).to receive(:url).and_return("http://test.host/save_a_life")
+
+    expect(
+      helper.trackable_pageview
+    ).to eq("/save_a_life")
+  end
+
+  it "returns the trackable path when a route has an id" do
+    allow(controller.request).to receive(:url).and_return("http://test.host/save_a_life/12345")
+
+    expect(
+      helper.trackable_pageview
+    ).to eq("/save_a_life/{id}")
   end
 end
 

@@ -3,11 +3,11 @@ module DateHelper
   def date_attribute_for(record, attribute, value)
     return nil if value.blank?
 
-    if record.send("#{attribute}_#{value}")
-      record.send("#{attribute}_#{value}")
-    else
-      format_date_for(record.send(attribute), value)
+    unless date_value = record.send("#{attribute}_#{value}")
+      date_value = format_date_for(record.send(attribute), value)
     end
+
+    date_value
   end
 
   def format_date_for(date, type=:default)
