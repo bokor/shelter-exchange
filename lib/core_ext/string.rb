@@ -1,7 +1,7 @@
 class String
 
   def is_numeric?
-    begin Float(self) ; true end rescue false
+    begin Float(self); true end rescue false
   end
 
   def possessive
@@ -9,8 +9,8 @@ class String
   end
 
   def to_boolean
-    return true if ['true', '1', 'yes', 'on', 't'].include? self
-    return false if ['false', '0', 'no', 'off', 'f'].include? self
+    return true if ['true', '1', 'yes', 'on'].include? self
+    return false if ['false', '0', 'no', 'off'].include? self
     return nil
   end
 end
