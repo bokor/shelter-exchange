@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  respond_to :html, :js, :json
+  respond_to :html, :js, :json, :csv
 
   def index
     @active_count_month = @current_shelter.animals.current_month.active.count
@@ -41,6 +41,14 @@ class ReportsController < ApplicationController
         results = @current_shelter.animals.type_by_month_year(params[:selected_month], params[:selected_year], @current_shelter.id)
         render :json => results.collect{ |result| { :name => result.name, :count => result.count.to_i } }.to_json
       }
+    end
+  end
+
+  def csv_export
+    respond_to do |format|
+      format.csv {
+        send_data(params[:csv_string], :type => "text/csv", :disposition => "attachment", :filename => "report_csv_export.csv")
+	    }
     end
   end
 end

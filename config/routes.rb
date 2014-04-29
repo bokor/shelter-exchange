@@ -48,6 +48,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :custom
         get :status_by_month_year
         get :type_by_month_year
+        post :csv_export
       end
     end
 

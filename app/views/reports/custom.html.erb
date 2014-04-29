@@ -11,6 +11,11 @@
   <script type="text/javascript">
     $(function() {
       Reports.barChart('<%= report_title %>', '<%= params[:status] %>', <%= by_type %>, '<%= params[:status].titleize %>');
+
+      $("#form_csv_export_reports").submit(function(e) {
+        $("#csv_string", this).val(barChart.getCSV());
+      });
+
 		});
 	</script>
 <% end %>
@@ -20,8 +25,20 @@
 	<div class="page_heading blue">
 		<h1>Reports</h1>
 	</div>
+
 	<div class="page_content">
+
 		<div id="custom_report" class="report"></div>
+
+    <%= form_tag csv_export_reports_path(:format => :csv), :method => :post, :id => "form_csv_export_reports" do %>
+      <ul>
+        <li class="buttons">
+          <%= hidden_field_tag :csv_string %>
+          <%= submit_tag "Export as CSV", :name => nil, :class => "button" %>
+        </li>
+      </ul>
+	  <% end %>
+
 	</div>
 
 <% end %>
