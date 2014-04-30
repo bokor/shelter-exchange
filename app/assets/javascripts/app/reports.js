@@ -12,10 +12,10 @@ var Reports = {
 	loadReports: function(){
 		var date_title = $("#_selected_month option:selected").html() + " " + $("#_selected_year option:selected").html();
 		var status_by_month_year_title = 'Total Count by Animal Status - ' + date_title;
-		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
-
 		var type_by_month_year_title = 'Total Count by Animal Type - ' + date_title;
+
 		Reports.pieChart(type_by_month_year_title, 'type_by_month_year');
+		Reports.pieChart(status_by_month_year_title, 'status_by_month_year');
 	},
 	pieChart: function(title, url_function){
 		$.ajax({
@@ -65,11 +65,19 @@ var Reports = {
 		});
 	},
 	barChart: function(title, status, by_type, yaxis_title){
+    var selected_year = $("#selected_year").val();
+    if (selected_year == "") {
+      selected_year = (new Date).getFullYear();
+      $("#selected_year").val(selected_year);
+    }
+
 		$.ajax({
-			url: "/reports/custom.json?status=" + status + "&by_type=" + by_type,
-			type: 'get',
-			dataType: 'json',
+			url: "/reports/custom.json",
+			type: "get",
+			dataType: "json",
 			data: {
+        status: status,
+        by_type: by_type,
 				selected_year: $("#selected_year").val()
 			},
 			success: function(data) {

@@ -1,4 +1,5 @@
 <% years = (Time.zone.today.year-5..Time.zone.today.year).to_a.reverse %>
+<% selected_year = params[:selected_year] || Time.zone.today.year %>
 
 <div class="box blue">
   <h2>Yearly Totals (by Month)</h2>
@@ -13,7 +14,7 @@
       <li>
         <%= label_tag :selected_year, "Year", :class => "desc" %>
         <div>
-          <%= select_tag :selected_year, options_for_select(years, params[:selected_year]), :prompt => "Select one" %>
+          <%= select_tag :selected_year, options_for_select(years, selected_year), :prompt => "Select one" %>
         </div>
       </li>
       <li>

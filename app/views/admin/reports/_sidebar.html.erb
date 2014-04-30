@@ -1,15 +1,38 @@
+<% years = (Time.zone.today.year-5..Time.zone.today.year).to_a.reverse %>
+<% selected_year = params[:selected_year] || Time.zone.today.year %>
+
 <div class="box blue">
-	<h2>Yearly Totals by Month</h2>
-	<ul>
-		<li><%= link_to_unless_current "Adoptions", adoptions_monthly_total_admin_reports_path %></li>
-		<li><%= link_to_unless_current "Adoptions by Animal Type", adoptions_monthly_total_by_type_admin_reports_path %></li><br />
-		<li><%= link_to_unless_current "Intake", intake_monthly_total_admin_reports_path %></li>
-		<li><%= link_to_unless_current "Intake by Animal Type", intake_monthly_total_by_type_admin_reports_path %></li><br />
-		<li><%= link_to_unless_current "Foster Care", foster_care_monthly_total_admin_reports_path %></li>
-		<li><%= link_to_unless_current "Foster Care by Animal Type", foster_care_monthly_total_by_type_admin_reports_path %></li><br />
-		<li><%= link_to_unless_current "Reclaimed", reclaimed_monthly_total_admin_reports_path %></li>
-		<li><%= link_to_unless_current "Reclaimed by Animal Type", reclaimed_monthly_total_by_type_admin_reports_path %></li><br />
-		<li><%= link_to_unless_current "Euthanized", euthanized_monthly_total_admin_reports_path %></li>
-		<li><%= link_to_unless_current "Euthanized by Animal Type", euthanized_monthly_total_by_type_admin_reports_path %></li>
-	</ul>
+  <h2>Yearly Totals (by Month)</h2>
+  <%= form_tag custom_admin_reports_path, :method => :get, :id => "form_custom_admin_reports" do %>
+    <ul>
+      <li>
+        <%= label_tag :status, "Animal Status", :class => "desc" %>
+        <%= select_tag :status, options_for_select(
+            AnimalStatus.all.map{|status| [status.name, status.name.parameterize.underscore] }, params[:status]
+          ), :prompt => "Select one" %>
+      </li>
+      <li>
+        <%= label_tag :selected_year, "Year", :class => "desc" %>
+        <div>
+          <%= select_tag :selected_year, options_for_select(years, selected_year), :prompt => "Select one" %>
+        </div>
+      </li>
+      <li>
+        <%= label_tag :by_type, "Display", :class => "desc" %>
+        <div>
+          <%= radio_button_tag :by_type, false, (params[:by_type] != "true"), :class => "field radio" %>
+          <%= label_tag "false", "Combined totals", :class => "choice" %>
+        </div>
+        <div>
+          <%= radio_button_tag :by_type, true, (params[:by_type] == "true"), :class => "field radio" %>
+          <%= label_tag "true", "Totals by animal type", :class => "choice" %>
+        </div>
+      </li>
+      <li class="buttons">
+        <%= submit_tag "Run report", :name => nil, :disable_with => "Running...", :class => 'button' %>
+      </li>
+    </ul>
+	<% end %>
 </div>
+
+

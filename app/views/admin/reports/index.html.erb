@@ -12,21 +12,31 @@
 
 	<div class="page_heading blue">
 		<h1>Reports</h1>
-		<div class="action_links">
-			<%= label_tag :selected_state, "Select State:" %>
-			<%= select "", :selected_state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All"}, {:onchange => ""}  %>
-
-			<%= label_tag :selected_month, "Select month:" %>
-			<%= select_month(Time.zone.today, {:field_name => :selected_month, :prefix => "", :start_month => Time.zone.today.month},{:onchange => ""} )%>
-
-			<%= label_tag :date_report_selected_year, "Select year:" %>
-			<%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year},{:onchange => ""})%>
-
-			<%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
-		</div>
 	</div>
 
-	<div class="page_content">
+  <div class="page_content">
+
+    <div class="separator"></div>
+
+    <div class="filters">
+      <span class="left">
+        <%= label_tag :selected_state, "Select State:" %>
+        <%= select "", :selected_state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All"}, {:onchange => ""}  %>
+      </span>
+      <span class="leftPadded">
+        <%= label_tag :selected_month, "Select month:" %>
+        <%= select_month(Time.zone.today, {:field_name => :selected_month, :prefix => "", :start_month => Time.zone.today.month},{:onchange => ""} )%>
+      </span>
+      <span class="leftPadded">
+        <%= label_tag :date_report_selected_year, "Select year:" %>
+        <%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year},{:onchange => ""})%>
+      </span>
+      <span class="leftPadded">
+        <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
+      </span>
+    </div>
+
+    <div class="separator"></div>
 
 		<div id="status_by_month_year" class="report"></div>
 		<div class="separator"></div>
