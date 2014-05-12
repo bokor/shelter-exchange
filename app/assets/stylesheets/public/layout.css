@@ -2,20 +2,17 @@
 
 /* Global */
 /******************************************************************/
-/*html{ display: block !important; }*/
 html, body { margin:0; padding:0; height: 100%; }
-body { width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
-	   background: url(/assets/public/background-body.jpg) repeat; color: #222;
-	   font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; -webkit-text-size-adjust:none;}
+body {
+  width: 100%; min-height: 100%; height:auto !important; height: 100%; position: relative;
+	background: url(/assets/public/background-body.jpg) repeat; color: #222;
+	font: normal 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+ }
 
 .ie body {font: normal 12px "Verdana", sans-serif;}
 
 h1, h2, h3, h4, h5 { position:relative;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 h1 { font-size: 28px; margin-bottom: 25px; border-bottom: 1px dotted #bbb; }
-h2 {  }
-h3 {  }
-h4 {  }
-h5 {  }
 
 p{ margin-bottom: 20px; line-height: 1.5;}
 a, img { color:#cf7019; font-weight: bold; text-decoration: none;border: none; outline: none;}
