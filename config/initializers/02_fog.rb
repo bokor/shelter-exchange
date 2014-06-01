@@ -13,5 +13,5 @@ if Rails.env.test?
   FOG_CONNECTION.directories.create(:key => ShelterExchange.settings.s3_bucket)
 end
 
-FOG_BUCKET = FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket)
+FOG_BUCKET = FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket) rescue nil
 
