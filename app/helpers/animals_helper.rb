@@ -4,10 +4,6 @@ module AnimalsHelper
     AnimalStatus::EXTRA_STATUS_FILTERS + AnimalStatus.all.map {|s| [s.name,s.id] }
   end
 
-  def humanize_dob(dob)
-    time_diff_in_natural_language(dob, Time.zone.now) unless dob.blank?
-  end
-
   def public_animal_status(animal)
     if animal.deceased? || animal.euthanized?
       "No longer available for adoption"
