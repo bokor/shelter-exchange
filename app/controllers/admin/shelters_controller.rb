@@ -33,6 +33,4 @@ class Admin::SheltersController < Admin::ApplicationController
     @kill_shelters    = Shelter.live_search(q, shelter_params).kill_shelters.paginate(:page => params[:kill_shelters_page])
     @no_kill_shelters = Shelter.live_search(q, shelter_params).no_kill_shelters.paginate(:page => params[:no_kill_shelters_page])
   end
-
 end
-

@@ -299,4 +299,3 @@ describe AccommodationsController do
     end
   end
 end
-
