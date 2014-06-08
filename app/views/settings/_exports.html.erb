@@ -9,7 +9,7 @@
   <%= form_for :exports, :url => exports_path(:format => :csv), :html => { :id => "form_exports", :method => :get } do |f| %>
     <ul>
       <li>
-        <%= f.label :animal_type_id, "", :class => "desc" %>
+        <%= f.label :animal_type_id, "By Type", :class => "desc" %>
         <div><%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, {:class => "field select small" } %></div>
       </li>
       <li>
