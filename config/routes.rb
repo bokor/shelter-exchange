@@ -177,11 +177,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Exports
     #----------------------------------------------------------------------------
-    resources :exports do
-      collection do
-        get :all_animals
-      end
-    end
+    resources :exports, :only => [:index]
 
     # Integrations
     #----------------------------------------------------------------------------

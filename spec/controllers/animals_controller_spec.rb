@@ -578,5 +578,3 @@ describe AnimalsController do
     end
   end
 end
-
-

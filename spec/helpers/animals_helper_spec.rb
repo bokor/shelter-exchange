@@ -14,24 +14,6 @@ describe AnimalsHelper, "#filter_by_animal_statuses" do
   end
 end
 
-describe AnimalsHelper, "#humanize_dob" do
-
-  it "returns a humanized version of the date" do
-    Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
-    date_of_birth = Date.parse("Dec 10, 2012")
-
-    expect(
-      helper.humanize_dob(date_of_birth)
-    ).to eq("1 year and 2 months")
-  end
-
-  it "returns nothing when date is blank" do
-    expect(
-      helper.humanize_dob("")
-    ).to be_nil
-  end
-end
-
 describe AnimalsHelper, "#public_animal_status" do
 
   it "returns text when animal is deceased" do

@@ -23,7 +23,6 @@ class Animal < ActiveRecord::Base
               :clean_description,
               :remove_secondary_breed,
               :remove_special_needs
-              # :remove_accommodation_for_non_active
 
   after_save :create_status_history!,
              :enqueue_integrations
@@ -68,8 +67,8 @@ class Animal < ActiveRecord::Base
   validates :name, :presence => true
   validates :animal_type_id, :presence => { :message => "needs to be selected" }
   validates :animal_status_id, :presence => { :message => "needs to be selected" }
-  validates :primary_breed, :breed_format => true
-  validates :secondary_breed, :breed_format => true
+  validate :primary_breed_against_db
+  validate :secondary_breed_against_db
   validates :sex, :presence => true
   validates :age, :presence => {
     :if => Proc.new { |a| AnimalStatus::ACTIVE.include?(a.animal_status_id) },
@@ -289,17 +288,37 @@ class Animal < ActiveRecord::Base
   end
 
   def update_breed_names
-    # FIXME: Hack to set the name based on what is should be, view can be lowercase
-
     if self.animal_type_id
       if self.primary_breed
-        primary_breed_from_db = Breed.valid_for_animal(self.primary_breed.strip, self.animal_type_id).first
-        self.primary_breed = primary_breed_from_db.name unless primary_breed_from_db.blank?
+        breed_lookup = Breed.valid_for_animal(self.primary_breed.strip, self.animal_type_id).first
+        self.primary_breed = breed_lookup.name unless breed_lookup.blank?
       end
 
       if self.secondary_breed
-        secondary_breed_from_db = Breed.valid_for_animal(self.secondary_breed.strip, self.animal_type_id).first
-        self.secondary_breed = secondary_breed_from_db.name unless secondary_breed_from_db.blank?
+        breed_lookup = Breed.valid_for_animal(self.secondary_breed.strip, self.animal_type_id).first
+        self.secondary_breed = breed_lookup.name unless breed_lookup.blank?
+      end
+    end
+  end
+
+  def primary_breed_against_db
+    unless self.animal_type_id.blank?
+      if self.primary_breed.blank?
+        self.errors.add_on_blank(:primary_breed)
+      else
+        unless self.other?  # Bypass Type = Other
+          if Breed.valid_for_animal(self.primary_breed, self.animal_type_id).blank?
+            self.errors.add(:primary_breed, "must contain a valid breed name")
+          end
+        end
+      end
+    end
+  end
+
+  def secondary_breed_against_db
+    unless self.secondary_breed.blank? || self.other? # Bypass Type = Other
+      if self.mix_breed? && Breed.valid_for_animal(self.secondary_breed, self.animal_type_id).blank?
+        self.errors.add(:secondary_breed, "must contain a valid breed name")
       end
     end
   end
