@@ -20,13 +20,25 @@ describe CommunitiesHelper, "#days_left" do
 
   it "returns a no break space when greater than 2 weeks" do
     expect(
-      helper.days_left(Time.zone.today, Time.zone.today - 2.weeks - 1.day)
+      helper.days_left(Time.zone.today + 15.days)
     ).to eq("&nbsp;")
   end
 
-  it "returns alert message when 2 weeks or less time left" do
+  it "returns 1 day left text singularized" do
     expect(
-      helper.days_left(Time.zone.today, Time.zone.today - 2.weeks)
+      helper.days_left(Time.zone.today + 1.day)
+    ).to eq("<img alt=\"Icon_community_alert\" src=\"/assets/icon_community_alert.png\" /> 1 DAY LEFT")
+  end
+
+  it "returns number of days pluralized when between 2 and 14 days" do
+    expect(
+      helper.days_left(Time.zone.today + 5.days)
+    ).to eq("<img alt=\"Icon_community_alert\" src=\"/assets/icon_community_alert.png\" /> 5 DAYS LEFT")
+  end
+
+  it "returns alert message days are 0 or less from today" do
+    expect(
+      helper.days_left(Time.zone.today)
     ).to eq("<img alt=\"Icon_community_alert\" src=\"/assets/icon_community_alert.png\" /> URGENT!")
   end
 end

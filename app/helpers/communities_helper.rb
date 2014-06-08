@@ -5,29 +5,18 @@ module CommunitiesHelper
     URI::encode(address)
   end
 
-  def days_left(from_time, to_time = Time.zone.today)
-    from_time = from_time.to_time if from_time.respond_to?(:to_time)
-    to_time = to_time.to_time if to_time.respond_to?(:to_time)
+  def days_left(euthanasia_date)
+    days_left = euthanasia_date.mjd - Time.zone.today.mjd
 
-    if from_time.present? && (from_time <= to_time + 2.weeks)
-      distance_in_seconds = ((to_time - from_time).abs).round
-      components = []
-
-      unless from_time < Time.zone.now
-        %w(day).each do |interval|
-          if distance_in_seconds >= 1.send(interval)
-            delta = (distance_in_seconds / 1.send(interval)).floor
-            distance_in_seconds -= delta.send(interval)
-            components << pluralize(delta, interval)
-          end
-        end
-      end
-      output = image_tag("icon_community_alert.png") + " "
-      output += (components.blank? ? "Urgent!" : components.join() << " left").upcase
-      output
-    else
-      "&nbsp;".html_safe
+    if days_left > 14
+      alert_text = "&nbsp;"
+    elsif days_left >= 1 && days_left <= 14
+      alert_text = image_tag('icon_community_alert.png') + " #{pluralize(days_left, 'day')} left".upcase
+    elsif days_left <= 0
+      alert_text = image_tag("icon_community_alert.png") + " urgent!".upcase
     end
+
+    alert_text.html_safe
   end
 end
 

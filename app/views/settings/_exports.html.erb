@@ -1,10 +1,24 @@
 <%= content_for :javascripts do %>
-	
+
 <% end %>
 
 <p>The page allows you to export your data in a CSV format.</p>
 
 <div class="section">
-	<h2>Animals</h2>
-	<%= link_to "Export all animals", all_animals_exports_path(:format => :csv), :class => "button red" %>
+  <h2>Animals</h2>
+  <%= form_for :exports, :url => exports_path(:format => :csv), :html => { :id => "form_exports", :method => :get } do |f| %>
+    <ul>
+      <li>
+        <%= f.label :animal_type_id, "", :class => "desc" %>
+        <div><%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, {:class => "field select small" } %></div>
+      </li>
+      <li>
+        <%= f.label :animal_status_id, "By Status", :class => "desc" %>
+        <div><%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, {:class => "field select medium" } %></div>
+      </li>
+      <li class="buttons">
+      <%= f.button "Export CSV", :class => 'button' %>
+      </li>
+    </ul>
+  <% end %>
 </div>

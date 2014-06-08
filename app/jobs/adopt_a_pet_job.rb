@@ -1,5 +1,17 @@
 require 'csv'
 
+
+# [18] pry(main)> ftp = Net::FTP.new(Integration::AdoptAPet::FTP_URL)
+# #<Net::FTP:0x007fd197bb3eb8 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Mutex:0x007fd197bb3e68>, @binary=true, @passive=false, @debug_mode=false, @resume=false, @sock=#<Net::FTP::BufferedSocket io=#<TCPSocket:0x007fd197bb3e18>>, @logged_in=false, @open_timeout=nil, @read_timeout=60, @last_response="220---------- Welcome to Pure-FTPd [privsep] [TLS] ----------\n220-You are user number 1 of 50 allowed.\n220-Local time is now 16:49. Server port: 21.\n220-This is a private system - No anonymous login\n220-IPv6 connections are also welcome on this server.\n220 You will be disconnected after 15 minutes of inactivity.\n", @last_response_code="220">
+# [19] pry(main)> ftp.login("test","test")
+# ftp.Net::FTPPermError: 530 Login authentication failed
+# from /Users/bokor/.rbenv/versions/2.0.0-p353/lib/ruby/2.0.0/net/ftp.rb:326:in `getresp'
+# [20] pry(main)> ftp.last_response
+# "530 Login authentication failed\n"
+# [21] pry(main)> ftp.last_response_code
+
+
+
 class AdoptAPetJob < Struct.new(:shelter_id)
 
   def perform
