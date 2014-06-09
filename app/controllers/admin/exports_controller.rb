@@ -67,7 +67,7 @@ class Admin::ExportsController < Admin::ApplicationController
   # Shelter Exports
   #----------------------------------------------------------------------------
   def signed_up_last_thirty_days_emails
-    shelter_ids = Shelter.select(:id).where(:created_at => Time.zone.today-30.days..Time.zone.today).active
+    shelter_ids = Shelter.select(:id).where(:created_at => (Time.zone.today - 30.days)..Time.zone.today).active
 
     Shelter.select([:email, :name, :created_at]).
             where(:id => shelter_ids) +
@@ -78,17 +78,15 @@ class Admin::ExportsController < Admin::ApplicationController
 
   def not_used_past_thirty_days_emails
     active_shelter_ids = []
-
     Shelter.active.includes(:users).each do |shelter|
       shelter.users.each do |user|
         if user.current_sign_in_at && user.current_sign_in_at > 30.days.ago
           active_shelter_ids << shelter.id
-          break
         end
       end
     end
 
-    non_active_shelter_ids = Shelter.select(:id).active.where("ID NOT IN (?)", active_shelter_ids)
+    non_active_shelter_ids = Shelter.select(:id).active.where("ID NOT IN (?)", active_shelter_ids.uniq)
 
     Shelter.select([:email, :name, :created_at]).
             where(:id => non_active_shelter_ids) +
