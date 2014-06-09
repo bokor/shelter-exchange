@@ -105,11 +105,11 @@ describe Admin::DashboardController do
     end
 
     it "assigns @latest_shelters" do
-      latest_shelters = []
-      11.times { latest_shelters << Shelter.gen }
+      shelter = Shelter.gen
+      allow(Shelter).to receive(:latest).with(10).and_return([shelter])
 
       get :index
-      expect(assigns(:latest_shelters)).to match_array(latest_shelters.shift(10))
+      expect(assigns(:latest_shelters)).to match_array([shelter])
     end
 
     it "renders the :index view" do

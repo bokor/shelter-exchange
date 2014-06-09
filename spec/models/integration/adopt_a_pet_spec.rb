@@ -9,7 +9,7 @@ describe Integration::AdoptAPet do
   end
 
   it "validates uniqueness of username" do
-    Integration.gen(:adopt_a_pet, :username => "test")
+    Integration.gen(:type => "Integration::AdoptAPet", :username => "test")
     integration = Integration::AdoptAPet.new :username => "test"
     expect(integration).to have(1).error_on(:username)
     expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
