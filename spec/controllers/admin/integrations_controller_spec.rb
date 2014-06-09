@@ -35,10 +35,9 @@ describe Admin::IntegrationsController do
       Integration.gen :type => "Integration::Petfinder", :shelter => cat_shelter
 
       get :index
-      expect(assigns(:integrations_hash)).to eq({
-        dog_shelter => [:adopt_a_pet, :petfinder],
-        cat_shelter => [:petfinder]
-      })
+
+      expect(assigns(:integrations_hash)[dog_shelter]).to match_array([:adopt_a_pet, :petfinder])
+      expect(assigns(:integrations_hash)[cat_shelter]).to match_array([:petfinder])
     end
 
     it "renders the :index view" do

@@ -8,5 +8,5 @@ class Admin::UsersController < Admin::ApplicationController
   def live_search
     @users = User.admin_live_search(params[:q].strip).paginate(:page => params[:page], :per_page => 50).all
   end
-
 end
+

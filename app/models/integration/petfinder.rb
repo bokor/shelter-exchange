@@ -45,7 +45,7 @@ class Integration::Petfinder < Integration
     begin
       Net::FTP.open(FTP_URL) {|ftp| ftp.login(self.username, self.password) }
     rescue
-      errors.add(:connection_failed, "Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!")
+      errors.add(:connection_failed, "#{self.humanize} FTP Username and/or FTP Password is incorrect.  Please Try again!")
     end
   end
 
