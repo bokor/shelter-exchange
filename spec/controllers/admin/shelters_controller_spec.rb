@@ -88,7 +88,9 @@ describe Admin::SheltersController do
     end
 
     it "assigns @integrations" do
-      Integration.gen :type => "Integration::Petfinder", :shelter => @shelter
+      allow(Net::FTP).to receive(:open).and_return(true)
+
+      Integration.gen :petfinder, :shelter => @shelter
 
       get :show, :id => @shelter.id
       expect(assigns(:integrations)).to match_array([:petfinder])

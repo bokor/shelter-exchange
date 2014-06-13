@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe Integration::AdoptAPet do
 
+  before do
+    allow(Net::FTP).to receive(:open).and_return(true)
+  end
+
   it "validates presence of username" do
     integration = Integration::AdoptAPet.new :username => nil
     expect(integration).to have(1).error_on(:username)
@@ -9,7 +13,7 @@ describe Integration::AdoptAPet do
   end
 
   it "validates uniqueness of username" do
-    Integration.gen(:type => "Integration::AdoptAPet", :username => "test")
+    Integration.gen :adopt_a_pet, :username => "test"
     integration = Integration::AdoptAPet.new :username => "test"
     expect(integration).to have(1).error_on(:username)
     expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
@@ -22,16 +26,12 @@ describe Integration::AdoptAPet do
   end
 
   it "validates the connection is successful" do
-    double(Net::FTP).as_null_object
-    expect(Net::FTP).to receive(:open).and_return(true)
-
     integration = Integration::AdoptAPet.new :password => "test", :username => "test"
     expect(integration).to have(0).error_on(:connection_failed)
   end
 
   it "validates the connection is failed" do
-    double(Net::FTP).as_null_object
-    expect(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
+    allow(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
 
     integration = Integration::AdoptAPet.new :password => "test", :username => "test"
     expect(integration).to have(1).error_on(:connection_failed)
@@ -40,12 +40,11 @@ describe Integration::AdoptAPet do
 
   context "After Save" do
     it "enqueues a job to update remote animals" do
-      double(Net::FTP).as_null_object
-      expect(Net::FTP).to receive(:open).and_return(true)
-
       shelter = Shelter.gen
       integration = Integration::AdoptAPet.new :username => "test", :password => "test", :shelter => shelter
+      adopt_a_pet_job = AdoptAPetJob.new(shelter.id)
 
+      allow(AdoptAPetJob).to receive(:new).and_return(adopt_a_pet_job)
       expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
 
       integration.save!
