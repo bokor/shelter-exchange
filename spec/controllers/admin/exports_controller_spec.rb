@@ -58,15 +58,16 @@ describe Admin::ExportsController do
     context "with petfinder_emails export type" do
 
       before do
+        allow(Net::FTP).to receive(:open).and_return(true)
         Timecop.freeze(Time.parse("Mon, 12 May 2014"))
 
         @shelter = Shelter.gen :name => "Doggie Rescue", :email => "shelter@gmail.com"
         @user = User.gen :name => "Brian", :email => "brian@gmail.com"
         Account.gen(:shelters => [@shelter], :users => [@user])
 
-        Integration.gen :type => "Integration::Petfinder", :shelter => @shelter
-        Integration.gen :type => "Integration::AdoptAPet", :shelter => Shelter.gen
-        Integration.gen :type => "Integration::Petfinder", :shelter => Shelter.gen(:status => "cancelled")
+        Integration.gen :petfinder, :shelter => @shelter
+        Integration.gen :adopt_a_pet, :shelter => Shelter.gen
+        Integration.gen :petfinder, :shelter => Shelter.gen(:status => "cancelled")
       end
 
       it "sends csv file" do
@@ -88,15 +89,16 @@ describe Admin::ExportsController do
     context "with adopt_a_pet_emails export type" do
 
       before do
+        allow(Net::FTP).to receive(:open).and_return(true)
         Timecop.freeze(Time.parse("Mon, 12 May 2014"))
 
         @shelter = Shelter.gen :name => "Doggie Rescue", :email => "shelter@gmail.com"
         @user = User.gen :name => "Brian", :email => "brian@gmail.com"
         Account.gen(:shelters => [@shelter], :users => [@user])
 
-        Integration.gen :type => "Integration::AdoptAPet", :shelter => @shelter
-        Integration.gen :type => "Integration::Petfinder", :shelter => Shelter.gen
-        Integration.gen :type => "Integration::AdoptAPet", :shelter => Shelter.gen(:status => "cancelled")
+        Integration.gen :adopt_a_pet, :shelter => @shelter
+        Integration.gen :petfinder, :shelter => Shelter.gen
+        Integration.gen :adopt_a_pet, :shelter => Shelter.gen(:status => "cancelled")
       end
 
       it "sends csv file" do
@@ -118,6 +120,7 @@ describe Admin::ExportsController do
     context "with all_integrations_emails export type" do
 
       before do
+        allow(Net::FTP).to receive(:open).and_return(true)
         Timecop.freeze(Time.parse("Mon, 12 May 2014"))
 
         @shelter = Shelter.gen :name => "Doggie Rescue", :email => "shelter@gmail.com"
@@ -126,10 +129,10 @@ describe Admin::ExportsController do
 
         @another_shelter = Shelter.gen :name => "Another Shelter", :email => "another_shelter@gmail.com"
 
-        Integration.gen :type => "Integration::AdoptAPet", :shelter => @shelter
-        Integration.gen :type => "Integration::Petfinder", :shelter => @shelter
-        Integration.gen :type => "Integration::Petfinder", :shelter => @another_shelter
-        Integration.gen :type => "Integration::AdoptAPet", :shelter => Shelter.gen(:status => "cancelled")
+        Integration.gen :adopt_a_pet, :shelter => @shelter
+        Integration.gen :petfinder, :shelter => @shelter
+        Integration.gen :petfinder, :shelter => @another_shelter
+        Integration.gen :adopt_a_pet, :shelter => Shelter.gen(:status => "cancelled")
       end
 
       it "sends csv file" do

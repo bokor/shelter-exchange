@@ -402,13 +402,21 @@ describe Animal do
     describe "#enqueue_integrations" do
 
       it "enqueues a job to update remote animals" do
+        allow(Net::FTP).to receive(:open).and_return(true)
+
         shelter = Shelter.gen
-        Integration.gen :shelter => shelter, :type => "Integration::AdoptAPet"
-        Integration.gen :shelter => shelter, :type => "Integration::Petfinder"
+        Integration.gen :adopt_a_pet, :shelter => shelter
+        Integration.gen :petfinder, :shelter => shelter
         animal = Animal.build :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
 
-        expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
-        expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
+        adopt_a_pet_job = AdoptAPetJob.new(shelter.id)
+        allow(AdoptAPetJob).to receive(:new).and_return(adopt_a_pet_job)
+
+        petfinder_job = PetfinderJob.new(shelter.id)
+        allow(PetfinderJob).to receive(:new).and_return(petfinder_job)
+
+        expect(Delayed::Job).to receive(:enqueue).with(adopt_a_pet_job)
+        expect(Delayed::Job).to receive(:enqueue).with(petfinder_job)
 
         animal.save!
       end
