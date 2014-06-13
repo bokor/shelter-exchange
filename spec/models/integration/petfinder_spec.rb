@@ -2,6 +2,10 @@ require "spec_helper"
 
 describe Integration::Petfinder do
 
+  before do
+    allow(Net::FTP).to receive(:open).and_return(true)
+  end
+
   it "validates presence of username" do
     integration = Integration::Petfinder.new :username => nil
     expect(integration).to have(1).error_on(:username)
@@ -9,8 +13,8 @@ describe Integration::Petfinder do
   end
 
   it "validates uniqueness of username" do
-    Integration.gen(:type => "Integration::Petfinder", :username => "test")
-    integration = Integration::Petfinder.new :username => "test"
+    Integration.gen :petfinder, :username => "TEST"
+    integration = Integration::Petfinder.new :username => "TEST"
     expect(integration).to have(1).error_on(:username)
     expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
   end
@@ -22,16 +26,12 @@ describe Integration::Petfinder do
   end
 
   it "validates the connection is successful" do
-    double(Net::FTP).as_null_object
-    expect(Net::FTP).to receive(:open).and_return(true)
-
     integration = Integration::Petfinder.new :password => "test", :username => "test"
     expect(integration).to have(0).error_on(:connection_failed)
   end
 
   it "validates the connection is failed" do
-    double(Net::FTP).as_null_object
-    expect(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
+    allow(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
 
     integration = Integration::Petfinder.new :password => "test", :username => "test"
     expect(integration).to have(1).error_on(:connection_failed)
@@ -41,9 +41,6 @@ describe Integration::Petfinder do
   context "Before Save" do
 
     it "upcases username" do
-      double(Net::FTP).as_null_object
-      expect(Net::FTP).to receive(:open).and_return(true)
-
       shelter = Shelter.gen
       integration = Integration::Petfinder.new :username => "test", :password => "test", :shelter => shelter
       integration.save!
@@ -54,12 +51,12 @@ describe Integration::Petfinder do
 
   context "After Save" do
     it "enqueues a job to update remote animals" do
-      double(Net::FTP).as_null_object
-      expect(Net::FTP).to receive(:open).and_return(true)
-
       shelter = Shelter.gen
       integration = Integration::Petfinder.new :username => "test", :password => "test", :shelter => shelter
 
+      petfinder_job = PetfinderJob.new(shelter.id)
+
+      allow(PetfinderJob).to receive(:new).and_return(petfinder_job)
       expect(Delayed::Job).to receive(:enqueue).with(PetfinderJob.new(shelter.id))
 
       integration.save!

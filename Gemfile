@@ -93,6 +93,7 @@ group :test do
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"
+  gem "fake_ftp"
   gem "timecop"
 end
 

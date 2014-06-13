@@ -30,22 +30,23 @@ describe SettingsController do
     end
 
     context "with tab as auto_upload" do
+
+      before do
+        allow(Net::FTP).to receive(:open).and_return(true)
+      end
+
       it "assigns @adopt_a_pet" do
-        Integration.gen \
-          :type => "Integration::AdoptAPet",
-          :shelter => current_shelter
+        integration = Integration.gen :adopt_a_pet, :shelter => current_shelter
 
         get :index, :tab => "auto_upload"
-        expect(assigns(:adopt_a_pet)).to eq(Integration::AdoptAPet.last)
+        expect(assigns(:adopt_a_pet)).to eq(integration)
       end
 
       it "assigns @petfinder" do
-        Integration.gen \
-          :type => "Integration::Petfinder",
-          :shelter => current_shelter
+        integration = Integration.gen :petfinder, :shelter => current_shelter
 
         get :index, :tab => "auto_upload"
-        expect(assigns(:petfinder)).to eq(Integration::Petfinder.last)
+        expect(assigns(:petfinder)).to eq(integration)
       end
     end
 

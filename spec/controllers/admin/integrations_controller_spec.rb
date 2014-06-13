@@ -3,6 +3,10 @@ require "spec_helper"
 describe Admin::IntegrationsController do
   login_owner
 
+  before do
+    allow(Net::FTP).to receive(:open).and_return(true)
+  end
+
   describe "GET index" do
 
     it "responds successfully" do
@@ -12,16 +16,16 @@ describe Admin::IntegrationsController do
     end
 
     it "assigns @petfinder_count" do
-      Integration.gen :type => "Integration::Petfinder"
-      Integration.gen :type => "Integration::Petfinder"
+      Integration.gen :petfinder
+      Integration.gen :petfinder
 
       get :index
       expect(assigns(:petfinder_count)).to eq(2)
     end
 
     it "assigns @adopt_a_pet_count" do
-      Integration.gen :type => "Integration::AdoptAPet"
-      Integration.gen :type => "Integration::AdoptAPet"
+      Integration.gen :adopt_a_pet
+      Integration.gen :adopt_a_pet
 
       get :index
       expect(assigns(:adopt_a_pet_count)).to eq(2)
@@ -30,9 +34,9 @@ describe Admin::IntegrationsController do
     it "assigns @integrations_hash" do
       dog_shelter = Shelter.gen :name => "Save Doggies"
       cat_shelter = Shelter.gen :name => "Save Kitties"
-      Integration.gen :type => "Integration::Petfinder", :shelter => dog_shelter
-      Integration.gen :type => "Integration::AdoptAPet", :shelter => dog_shelter
-      Integration.gen :type => "Integration::Petfinder", :shelter => cat_shelter
+      Integration.gen :petfinder, :shelter => dog_shelter
+      Integration.gen :adopt_a_pet, :shelter => dog_shelter
+      Integration.gen :petfinder, :shelter => cat_shelter
 
       get :index
 
@@ -46,3 +50,4 @@ describe Admin::IntegrationsController do
     end
   end
 end
+
