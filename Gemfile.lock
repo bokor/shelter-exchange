@@ -122,6 +122,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    fake_ftp (0.1.1)
     ffi (1.9.0)
     fog (1.7.0)
       builder
@@ -293,6 +294,7 @@ DEPENDENCIES
   engineyard
   factory_girl_extensions
   factory_girl_rails
+  fake_ftp
   fog
   foreman
   geocoder
