@@ -5,8 +5,9 @@ module CommunitiesHelper
     URI::encode(address)
   end
 
-  def days_left(euthanasia_date)
-    days_left = euthanasia_date.mjd - Time.zone.today.mjd
+  def days_left(from_date)
+    return "&nbsp;".html_safe if from_date.blank?
+    days_left = from_date.mjd - Time.zone.today.mjd
 
     if days_left > 14
       alert_text = "&nbsp;"
