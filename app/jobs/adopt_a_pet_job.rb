@@ -5,7 +5,7 @@ class AdoptAPetJob
   def initialize(shelter_id)
     @start_time = Time.now
     @shelter = Shelter.find(shelter_id)
-    @integration = Integration::AdoptAPet.where(:shelter => @shelter).first
+    @integration = Integration::AdoptAPet.where(:shelter_id => shelter_id).first
   end
 
   def perform
