@@ -18,6 +18,12 @@ end
 
 describe CommunitiesHelper, "#days_left" do
 
+  it "returns a no break space when date is blank" do
+    expect(
+      helper.days_left(nil)
+    ).to eq("&nbsp;")
+  end
+
   it "returns a no break space when greater than 2 weeks" do
     expect(
       helper.days_left(Time.zone.today + 15.days)
