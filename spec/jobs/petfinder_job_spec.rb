@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe AdoptAPetJob do
+describe PetfinderJob do
 
   before do
     Timecop.freeze(Time.parse("Mon, 12 May 2014"))
