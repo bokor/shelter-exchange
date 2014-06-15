@@ -8,8 +8,10 @@ class IntegrationMailer < ActionMailer::Base
     @integration = integration
     @shelter = integration.shelter
     @account = integration.shelter.account
-    @users = @account.users
-    mail_to = [@users.collect(&:email), @shelter.email].flatten.join(",")
+    mail_to = [
+      @account.users.collect(&:email),
+      @shelter.email
+    ].flatten.join(",")
 
     attachments.inline["logo_email.jpg"] = File.read(Rails.application.assets.find_asset('logo_email.jpg'))
 
@@ -19,7 +21,7 @@ class IntegrationMailer < ActionMailer::Base
     )
   end
 
-  def notify_app_owner(integration)
+  def notify_se_owner(integration)
     @integration = integration
     @shelter = integration.shelter
 
