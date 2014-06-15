@@ -38,8 +38,8 @@ class AdoptAPetJob
 
     # FTP Error: 530 Login authentication failed
     if ftp.last_response_code == "530"
-      IntegrationMailer.delay.notify_se_owner(@integration)
-      IntegrationMailer.delay.revoked_notification(@integration)
+      IntegrationMailer.delay.notify_se_owner(@shelter, @integration.humanize)
+      IntegrationMailer.delay.revoked_notification(@shelter, @integration.humanize)
       @integration.destroy
     end
 

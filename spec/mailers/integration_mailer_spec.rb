@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe IntegrationMailer do
 
+  before do
+    allow(Net::FTP).to receive(:open).and_return(true)
+  end
+
   it "has a default from email address" do
     expect(IntegrationMailer.default[:from]).to eq("ShelterExchange <do-not-reply@shelterexchange.org>")
   end
@@ -14,8 +18,8 @@ describe IntegrationMailer do
 
     before do
       @shelter = Shelter.gen :name => "Mailer Test Shelter"
-      @integration = Integration.gen :type => "Integration::AdoptAPet", :shelter => @shelter
-      @email = IntegrationMailer.notify_se_owner(Integration::AdoptAPet.last)
+      @integration = Integration.gen :adopt_a_pet, :shelter => @shelter
+      @email = IntegrationMailer.notify_se_owner(@shelter, @integration.humanize)
     end
 
     it "sending to the correct recipient" do
@@ -40,8 +44,8 @@ describe IntegrationMailer do
       @user2 = User.gen :name => "Joe User"
       Account.gen(:subdomain => "mailertest", :shelters => [@shelter], :users => [@user1, @user2])
 
-      @integration = Integration.gen :type => "Integration::AdoptAPet", :shelter => @shelter
-      @email = IntegrationMailer.revoked_notification(Integration::AdoptAPet.last)
+      @integration = Integration.gen :adopt_a_pet, :shelter => @shelter
+      @email = IntegrationMailer.revoked_notification(@shelter, @integration.humanize)
     end
 
     it "sending to the correct recipient" do
