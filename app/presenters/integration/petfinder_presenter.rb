@@ -34,8 +34,8 @@ class Integration::PetfinderPresenter < Presenter
 
   def description
     s = @animal.description.blank? ? "No description provided" : @animal.description
-    s << "<br>"
-    s << "#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org."
+    s += "<br>"
+    s += "#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org."
 
     # Simple format the html
     description = help.simple_format(s)
@@ -65,7 +65,7 @@ class Integration::PetfinderPresenter < Presenter
     1 if @animal.special_needs?
   end
 
-  # TO DO ::
+  # TODO ::
   def photos
     photos = []
     unless @animal.photos.blank?
