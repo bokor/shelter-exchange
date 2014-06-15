@@ -60,6 +60,13 @@ describe AdoptAPetJob do
         @ftp_server.stop
       end
 
+      it "connection to ftp server" do
+        ftp = double(Net::FTP).as_null_object
+        expect(Net::FTP).to receive(:new).and_return(ftp)
+        expect(ftp).to receive(:login).with(@integration.username, @integration.password)
+        AdoptAPetJob.new(@shelter.id).perform
+      end
+
       it "created a temp directory for csv file per shelter" do
         temp_dir = Rails.root.join("tmp/adopt_a_pet/#{@shelter.id}")
         AdoptAPetJob.new(@shelter.id).perform
@@ -117,7 +124,10 @@ describe AdoptAPetJob do
     context "with error ftp authentication" do
 
       before do
-        @integration.update_column(:username, "incorrect_username")
+        ftp = double("Net::FTP").as_null_object
+        allow(Net::FTP).to receive(:new).and_return(ftp)
+        allow(ftp).to receive(:last_response_code).and_return("530")
+        allow(ftp).to receive(:login).and_raise(Net::FTPPermError.new("530 Login Error"))
       end
 
       it "sends notify_se_owner email" do
@@ -143,7 +153,7 @@ describe AdoptAPetJob do
 
       it "logs message when failure" do
         expect(AdoptAPetJob.logger).to receive(:error).
-          with("#{@shelter.id} :: #{@shelter.name} :: failed :: 530 Login authentication failed\n")
+          with("#{@shelter.id} :: #{@shelter.name} :: failed :: 530 Login Error")
         AdoptAPetJob.new(@shelter.id).perform
       end
     end
