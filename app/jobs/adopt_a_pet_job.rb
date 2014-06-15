@@ -34,13 +34,13 @@ class AdoptAPetJob
     ftp.puttextfile(import_file)
 
   rescue Net::FTPPermError => e
-    AdoptAPetJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
+    AdoptAPetJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
 
     # FTP Error: 530 Login authentication failed
     if ftp.last_response_code == "530"
-      # send emails
-      # send email to shelter and users
-      # disable integration
+      IntegrationMailer.delay.notify_se_owner(@integration)
+      IntegrationMailer.delay.revoked_notification(@integration)
+      @integration.destroy
     end
 
   ensure

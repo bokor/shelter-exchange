@@ -10,12 +10,12 @@ describe IntegrationMailer do
     expect(IntegrationMailer.default[:content_type]).to eq("text/html")
   end
 
-  describe ".notify_app_owner" do
+  describe ".notify_se_owner" do
 
     before do
       @shelter = Shelter.gen :name => "Mailer Test Shelter"
       @integration = Integration.gen :type => "Integration::AdoptAPet", :shelter => @shelter
-      @email = IntegrationMailer.notify_app_owner(Integration::AdoptAPet.last)
+      @email = IntegrationMailer.notify_se_owner(Integration::AdoptAPet.last)
     end
 
     it "sending to the correct recipient" do

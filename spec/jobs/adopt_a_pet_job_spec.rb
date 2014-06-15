@@ -6,6 +6,7 @@ describe AdoptAPetJob do
     Timecop.freeze(Time.parse("Mon, 12 May 2014"))
 
     @shelter = Shelter.gen
+    Account.gen(:shelters => [@shelter])
 
     @available_for_adoption = Animal.gen \
       :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption],
@@ -113,19 +114,37 @@ describe AdoptAPetJob do
       end
     end
 
-    context "with error ftp connection" do
-        # rescue Net::FTPPermError => e
-  #   # or Exception => e
-  #   @logger.info("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e}")
-  #   # if 503
-  #   # send emails
-  #   # send email to shelter and users
-  #   # disable integration
+    context "with error ftp authentication" do
 
       before do
-        ftp = double(Net::FTP).as_null_object
-        allow(Net::FTP).to receive(:new).and_return(ftp)
-        allow(ftp).to receive(:login).with("username","password").and_raise(Net::FTPPermError)
+        @integration.update_column(:username, "incorrect_username")
+      end
+
+      it "sends notify_se_owner email" do
+        IntegrationMailer.stub(:delay => IntegrationMailer)
+        expect(IntegrationMailer).to receive(:notify_se_owner).with(@integration)
+        AdoptAPetJob.new(@shelter.id).perform
+      end
+
+      it "sends revoked_notification email" do
+        IntegrationMailer.stub(:delay => IntegrationMailer)
+        expect(IntegrationMailer).to receive(:revoked_notification).with(@integration)
+        AdoptAPetJob.new(@shelter.id).perform
+      end
+
+      it "revokes integration access (deletes from db)" do
+        expect {
+          AdoptAPetJob.new(@shelter.id).perform
+        }.to change(Integration, :count).by(-1)
+        expect(
+          Integration.where(:id => @integration.id)
+        ).to be_empty
+      end
+
+      it "logs message when failure" do
+        expect(AdoptAPetJob.logger).to receive(:error).
+          with("#{@shelter.id} :: #{@shelter.name} :: failed :: 530 Login authentication failed\n")
+        AdoptAPetJob.new(@shelter.id).perform
       end
     end
   end
