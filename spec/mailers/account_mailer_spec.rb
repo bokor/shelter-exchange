@@ -29,42 +29,6 @@ describe AccountMailer do
     expect(AccountMailer.default[:content_type]).to eq("text/html")
   end
 
-  describe ".account_created" do
-
-    before do
-      @email = AccountMailer.account_created(@account, @shelter, @user)
-    end
-
-    it "from the correct sender" do
-      expect(@email.from).to eq(["do-not-reply@shelterexchange.org"])
-    end
-
-    it "sending to the correct recipient" do
-      expect(@email.to).to eq(["application@shelterexchange.org"])
-    end
-
-    it "contains the correct subject" do
-      expect(@email.subject).to eq("Shelter Exchange [test] - A new account has been created (Mailer Test Shelter)")
-    end
-
-    it "contains the correct body" do
-      expect(@email).to have_content("A new account has been created at Shelter Exchange.")
-      expect(@email).to have_css("div#message.no_kill", :text => "NO KILL")
-
-      expect(@email).to have_css("h2", :text => "Shelter")
-      expect(@email).to have_content("Mailer Test Shelter")
-      expect(@email).to have_content("123 Main St Apt B")
-      expect(@email).to have_content("Redwood City, CA 94063")
-      expect(@email).to have_content("111-222-3333")
-      expect(@email).to have_content("blahblah@mailer.com")
-      expect(@email).to have_content("http://mailer_works.com")
-
-      expect(@email).to have_css("h2", :text => "Owner")
-      expect(@email).to have_content("FirstName LastName")
-      expect(@email).to have_content("account_tester@test.com")
-    end
-  end
-
   describe ".welcome" do
 
     before do
