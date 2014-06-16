@@ -130,15 +130,13 @@ describe AdoptAPetJob do
         allow(ftp).to receive(:login).and_raise(Net::FTPPermError.new("530 Login Error"))
       end
 
-      it "sends notify_se_owner email" do
-        IntegrationMailer.stub(:delay => IntegrationMailer)
-        expect(IntegrationMailer).to receive(:notify_se_owner).with(@shelter, @integration.humanize)
+      it "sends revoked_integration email" do
+        expect(OwnerMailer).to receive(:revoked_integration).with(@integration)
         AdoptAPetJob.new(@shelter.id).perform
       end
 
-      it "sends revoked_notification email" do
-        IntegrationMailer.stub(:delay => IntegrationMailer)
-        expect(IntegrationMailer).to receive(:revoked_notification).with(@shelter, @integration.humanize)
+      it "sends revoked email" do
+        expect(IntegrationMailer).to receive(:revoked).with(@integration)
         AdoptAPetJob.new(@shelter.id).perform
       end
 

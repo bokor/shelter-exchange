@@ -34,7 +34,7 @@ class Public::AccountsController < Public::ApplicationController
   private
 
   def notifications_for_new_account(account)
-    AccountMailer.delay.account_created(account, account.shelters.first, account.users.first)
+    OwnerMailer.delay.account_created(account, account.shelters.first, account.users.first)
     AccountMailer.delay.welcome(account, account.shelters.first, account.users.first)
   end
 

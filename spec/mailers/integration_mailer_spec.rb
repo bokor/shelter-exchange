@@ -14,29 +14,7 @@ describe IntegrationMailer do
     expect(IntegrationMailer.default[:content_type]).to eq("text/html")
   end
 
-  describe ".notify_se_owner" do
-
-    before do
-      @shelter = Shelter.gen :name => "Mailer Test Shelter"
-      @integration = Integration.gen :adopt_a_pet, :shelter => @shelter
-      @email = IntegrationMailer.notify_se_owner(@shelter, @integration.humanize)
-    end
-
-    it "sending to the correct recipient" do
-      expect(@email.to).to eq(["application@shelterexchange.org"])
-    end
-
-    it "contains the correct subject" do
-      expect(@email.subject).to eq("Auto Upload Error - Mailer Test Shelter(#{@shelter.id})")
-    end
-
-    it "contains the correct body" do
-      expect(@email).to have_content("Mailer Test Shelter(#{@shelter.id}) \"Adopt a Pet\" Upload not working.")
-      expect(@email).to have_link("Admin Page for Mailer Test Shelter", :href => "http://manage.se.test:9292/admin/shelters/#{@shelter.id}")
-    end
-  end
-
-  describe ".revoked_notification" do
+  describe ".revoked" do
 
     before do
       @shelter = Shelter.gen :name => "Mailer Test Shelter"
@@ -45,7 +23,7 @@ describe IntegrationMailer do
       Account.gen(:subdomain => "mailertest", :shelters => [@shelter], :users => [@user1, @user2])
 
       @integration = Integration.gen :adopt_a_pet, :shelter => @shelter
-      @email = IntegrationMailer.revoked_notification(@shelter, @integration.humanize)
+      @email = IntegrationMailer.revoked(@integration)
     end
 
     it "sending to the correct recipient" do
