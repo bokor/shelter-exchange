@@ -4,14 +4,6 @@ class AccountMailer < ActionMailer::Base
   default :from => "ShelterExchange <do-not-reply@shelterexchange.org>",
           :content_type => "text/html"
 
-  def account_created(account, shelter, user)
-    @account = account
-    @shelter = shelter
-    @user = user
-    mail(:to => "application@shelterexchange.org",
-         :subject => "Shelter Exchange [#{Rails.env}] - A new account has been created (#{shelter.name})")
-  end
-
   def welcome(account, shelter, user)
     @account = account
     @shelter = shelter
