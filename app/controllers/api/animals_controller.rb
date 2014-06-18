@@ -1,28 +1,11 @@
 class Api::AnimalsController < Api::ApplicationController
   respond_to :html, :json
-  before_filter :configure, :api_version
+  before_filter :configure
 
   def index
-    unless request.format.html?
-      @animals = @current_shelter.animals.api_lookup(@types, @statuses).all
-      @animal_presenter = "Api::#{api_version.upcase}::AnimalPresenter".constantize.as_collection(@animals)
-    else
-      @animals = @current_shelter.animals.api_lookup(@types, @statuses).paginate(:page => params[:page]).all
-    end
-
-    respond_to do |format|
-      format.html
-      format.json{ render :json => @animal_presenter.to_json, :callback => params[:callback] }
-    end
-  end
-
-  def show
-    @animal = @current_shelter.animals.find(params[:id])
-    @animal_presenter = "Api::#{api_version.upcase}::AnimalPresenter".constantize.new(@animal)
-
-    respond_to do |format|
-      format.json{ render :json => @animal_presenter.to_json, :callback => params[:callback] }
-    end
+    @animals = @current_shelter.animals.api_lookup(@types, @statuses)
+    @animals = @animals.paginate(:page => params[:page]) unless request.format.json?
+    respond_with(@animals)
   end
 
   #----------------------------------------------------------------------------
@@ -35,21 +18,12 @@ class Api::AnimalsController < Api::ApplicationController
     raise Errors::ApiIncorrectTypeStatus if @statuses.include?(AnimalStatus::STATUSES[:deceased]) or @statuses.include?(AnimalStatus::STATUSES[:euthanized])
   end
 
-  def api_version
-    params[:version] || ShelterExchange.settings.current_api_version
-  end
-
   rescue_from Exception do |exception|
     respond_with_error({ :error => "Unexpected error has occurred.  Please review the API documentation to make sure everything is correct." })
-  end
-
-  rescue_from NameError do |exception|
-    respond_with_error({ :error => "Incorrect API Version.  Please review the API documentation to make sure everything is correct." })
   end
 
   rescue_from Errors::ApiIncorrectTypeStatus do |exception|
     respond_with_error({ :error => "Contains Animal Types or Statuses that are not allowed.  Please refer to the help documentation to resolve this issue." })
   end
-
 end
 

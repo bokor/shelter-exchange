@@ -9,15 +9,11 @@ class Api::ApplicationController < ActionController::Base
   private
 
   def current_layout
-    (request.format.html? or request.format.js?) ? 'api/application' : false
-  end
-
-  def access_token
-    @access_token ||= params[:access_token]
+    request.format.html? ? 'api/application' : false
   end
 
   def shelter_lookup
-    @current_shelter = Shelter.by_access_token(access_token).first || respond_with_error({ :error => "Not Authorized to perform this action" })
+    @current_shelter = Shelter.by_access_token(params[:access_token]).first || respond_with_error({ :error => "Not Authorized to perform this action" })
   end
 
   def shelter_inactive?
@@ -29,7 +25,6 @@ class Api::ApplicationController < ActionController::Base
     respond_to do |format|
       format.html { render :template => "api/error", :format => :html }
       format.json { render :json => msg.to_json, :status => :forbidden }
-      format.xml { render :xml => msg.to_xml, :status => :forbidden }
     end
   end
 end
