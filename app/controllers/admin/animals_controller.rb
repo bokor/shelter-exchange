@@ -10,7 +10,7 @@ class Admin::AnimalsController < Admin::ApplicationController
     q = params[:q].strip
     animals = Animal.joins(:shelter).search_by_name(q)
 
-    if params[:shelters] && params[:shelters][:state]
+    if params[:shelters] && params[:shelters][:state].present?
       animals = animals.where(:shelters => params[:shelters])
     end
 

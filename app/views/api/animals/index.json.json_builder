@@ -36,4 +36,3 @@ array @animals do |animal|
   end
 end
 
-
