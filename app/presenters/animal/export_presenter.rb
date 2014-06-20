@@ -185,5 +185,10 @@ class Animal::ExportPresenter < Presenter
       "Location"
     ]
   end
+
+  def self.as_csv(collection, csv)
+    csv << self.csv_header
+    collection.each { |object| csv << self.new(object).to_csv }
+  end
 end
 

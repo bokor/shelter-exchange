@@ -1,11 +1,6 @@
 class Presenter
   include Rails.application.routes.url_helpers
 
-  def self.as_csv(collection, csv)
-    csv << self.csv_header
-    collection.each { |object| csv << self.new(object).to_csv }
-  end
-
   def help
     self.class.help
   end

@@ -141,39 +141,44 @@ class Integration::AdoptAPetPresenter < Presenter
     ]
   end
 
+  def self.as_csv(collection, csv)
+    csv << self.csv_header
+    collection.each { |object| csv << self.new(object).to_csv }
+  end
+
   private
 
-    def map_to_adopt_a_pet_types
-      types = {
-        'Other' => {
-          'Alpaca' => 'Farm Animal',
-          'Chinchilla' => 'Small Animal',
-          'Cow' => 'Farm Animal',
-          'Ferret' => 'Small Animal',
-          'Fish' => 'Reptile',
-          'Frog' => 'Reptile',
-          'Gerbil' => 'Small Animal',
-          'Goat' => 'Farm Animal',
-          'Guinea Pig' => 'Small Animal',
-          'Hamster' => 'Small Animal',
-          'Llama' => 'Farm Animal',
-          'Mouse' => 'Small Animal',
-          'Pig' => 'Farm Animal',
-          'Rat' => 'Small Animal',
-          'Sheep' => 'Farm Animal',
-          'Tarantula' => 'Reptile'
-        },
-        'Reptile' => {
-          'Chameleon' => 'Reptile',
-          'Gecko' => 'Reptile',
-          'Iguana' => 'Reptile',
-          'Lizard' => 'Reptile',
-          'Snake' => 'Reptile',
-          'Tortoise' => 'Reptile',
-          'Turtle' => 'Reptile'
-        }
+  def map_to_adopt_a_pet_types
+    types = {
+      'Other' => {
+        'Alpaca' => 'Farm Animal',
+        'Chinchilla' => 'Small Animal',
+        'Cow' => 'Farm Animal',
+        'Ferret' => 'Small Animal',
+        'Fish' => 'Reptile',
+        'Frog' => 'Reptile',
+        'Gerbil' => 'Small Animal',
+        'Goat' => 'Farm Animal',
+        'Guinea Pig' => 'Small Animal',
+        'Hamster' => 'Small Animal',
+        'Llama' => 'Farm Animal',
+        'Mouse' => 'Small Animal',
+        'Pig' => 'Farm Animal',
+        'Rat' => 'Small Animal',
+        'Sheep' => 'Farm Animal',
+        'Tarantula' => 'Reptile'
+      },
+      'Reptile' => {
+        'Chameleon' => 'Reptile',
+        'Gecko' => 'Reptile',
+        'Iguana' => 'Reptile',
+        'Lizard' => 'Reptile',
+        'Snake' => 'Reptile',
+        'Tortoise' => 'Reptile',
+        'Turtle' => 'Reptile'
       }
-     types[@animal.animal_type.name][@animal.primary_breed]
-    end
-
+    }
+   types[@animal.animal_type.name][@animal.primary_breed]
+  end
 end
+
