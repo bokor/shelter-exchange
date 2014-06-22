@@ -311,7 +311,7 @@ describe Animal::ExportPresenter do
     end
   end
 
-  describe ".csv_header" do
+  describe ".as_csv" do
     it "returns a collection in csv format" do
       animal1 = Animal.gen
       animal2 = Animal.gen
