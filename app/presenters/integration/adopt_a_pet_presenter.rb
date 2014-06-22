@@ -8,6 +8,10 @@ class Integration::AdoptAPetPresenter < Presenter
     @animal.id
   end
 
+  def name
+    @animal.name
+  end
+
   def type
     if @animal.other? || @animal.reptile?
       map_to_adopt_a_pet_types
@@ -24,12 +28,8 @@ class Integration::AdoptAPetPresenter < Presenter
     @animal.secondary_breed if @animal.dog? || @animal.horse? && @animal.mix_breed?
   end
 
-  def name
-    @animal.name
-  end
-
   def sex
-    @animal.sex == 'male' ? 'M' : 'F'
+    @animal.sex == "male" ? "M" : "F"
   end
 
   def description
@@ -43,27 +43,27 @@ class Integration::AdoptAPetPresenter < Presenter
     description = help.auto_link( help.simple_format(s), :all, :target => '_blank')
 
     # Removing any carriage returns or new lines
-    description.gsub(/\n\r?/, '<br>')
+    description.gsub(/\n\r?/, "<br>")
   end
 
   def status
-    'Available'
+    "Available"
   end
 
   def purebred
     if @animal.dog? || @animal.rabbit? || @animal.horse?
-      @animal.mix_breed? ? 'N' : 'Y'
+      @animal.mix_breed? ? "N" : "Y"
     end
   end
 
   def special_needs
-    @animal.special_needs? ? 'Y' : 'N'
+    @animal.special_needs? ? "Y" : "N"
   end
 
   def size
-    unless @animal.size.blank? || @animal.cat? || ['Small Animal'].include?(type)
-      if ['Rabbit', 'Small Animal', 'Farm Animal', 'Bird', 'Horse', 'Reptile'].include?(type) && @animal.size == 'XL'
-        'L'
+    unless @animal.size.blank? || @animal.cat? || ["Small Animal"].include?(type)
+      if ["Rabbit", "Farm Animal", "Bird", "Horse", "Reptile"].include?(type) && @animal.size == "XL"
+        "L"
       else
         @animal.size
       end
@@ -72,11 +72,11 @@ class Integration::AdoptAPetPresenter < Presenter
 
   def age
     unless @animal.age.blank?
-      if @animal.age == 'baby'
+      if @animal.age == "baby"
         if @animal.dog?
-          return 'Puppy'
+          return "Puppy"
         elsif @animal.cat?
-          return 'Kitten'
+          return "Kitten"
         end
       end
       @animal.age.humanize
@@ -96,7 +96,7 @@ class Integration::AdoptAPetPresenter < Presenter
 
   def you_tube_url
     unless @animal.video_url.blank?
-      you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5]
+      you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5] rescue nil
       "http://www.youtube.com/watch?v=#{you_tube_id}" unless you_tube_id.blank?
     end
   end
@@ -121,23 +121,23 @@ class Integration::AdoptAPetPresenter < Presenter
 
   def self.csv_header
     [
-      'Id',
-      'Animal',
-      'Breed',
-      'Breed2',
-      'Name',
-      'Sex',
-      'Description',
-      'Status',
-      'Purebred',
-      'SpecialNeeds',
-      'Size',
-      'Age',
-      'YouTubeVideoURL',
-      'PhotoURL',
-      'PhotoURL2',
-      'PhotoURL3',
-      'PhotoURL4'
+      "Id",
+      "Animal",
+      "Breed",
+      "Breed2",
+      "Name",
+      "Sex",
+      "Description",
+      "Status",
+      "Purebred",
+      "SpecialNeeds",
+      "Size",
+      "Age",
+      "YouTubeVideoURL",
+      "PhotoURL",
+      "PhotoURL2",
+      "PhotoURL3",
+      "PhotoURL4"
     ]
   end
 
@@ -150,35 +150,35 @@ class Integration::AdoptAPetPresenter < Presenter
 
   def map_to_adopt_a_pet_types
     types = {
-      'Other' => {
-        'Alpaca' => 'Farm Animal',
-        'Chinchilla' => 'Small Animal',
-        'Cow' => 'Farm Animal',
-        'Ferret' => 'Small Animal',
-        'Fish' => 'Reptile',
-        'Frog' => 'Reptile',
-        'Gerbil' => 'Small Animal',
-        'Goat' => 'Farm Animal',
-        'Guinea Pig' => 'Small Animal',
-        'Hamster' => 'Small Animal',
-        'Llama' => 'Farm Animal',
-        'Mouse' => 'Small Animal',
-        'Pig' => 'Farm Animal',
-        'Rat' => 'Small Animal',
-        'Sheep' => 'Farm Animal',
-        'Tarantula' => 'Reptile'
+      AnimalType::TYPES[:other] => {
+        "Alpaca" => "Farm Animal",
+        "Chinchilla" => "Small Animal",
+        "Cow" => "Farm Animal",
+        "Ferret" => "Small Animal",
+        "Fish" => "Reptile",
+        "Frog" => "Reptile",
+        "Gerbil" => "Small Animal",
+        "Goat" => "Farm Animal",
+        "Guinea Pig" => "Small Animal",
+        "Hamster" => "Small Animal",
+        "Llama" => "Farm Animal",
+        "Mouse" => "Small Animal",
+        "Pig" => "Farm Animal",
+        "Rat" => "Small Animal",
+        "Sheep" => "Farm Animal",
+        "Tarantula" => "Reptile"
       },
-      'Reptile' => {
-        'Chameleon' => 'Reptile',
-        'Gecko' => 'Reptile',
-        'Iguana' => 'Reptile',
-        'Lizard' => 'Reptile',
-        'Snake' => 'Reptile',
-        'Tortoise' => 'Reptile',
-        'Turtle' => 'Reptile'
+      AnimalType::TYPES[:reptile] => {
+        "Chameleon" => "Reptile",
+        "Gecko" => "Reptile",
+        "Iguana" => "Reptile",
+        "Lizard" => "Reptile",
+        "Snake" => "Reptile",
+        "Tortoise" => "Reptile",
+        "Turtle" => "Reptile"
       }
     }
-   types[@animal.animal_type.name][@animal.primary_breed]
+   types[@animal.animal_type_id][@animal.primary_breed]
   end
 end
 

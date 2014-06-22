@@ -6,7 +6,7 @@ describe DocumentsController do
   describe "POST create" do
 
     before do
-      document = Document.build
+      document = Document.build :original_name => "testing.pdf"
       @attributes = document.attributes.symbolize_keys.except(:created_at, :updated_at, :id)
     end
 

@@ -319,6 +319,3 @@ describe Integration::PetfinderPresenter do
   end
 end
 
-
-
-
