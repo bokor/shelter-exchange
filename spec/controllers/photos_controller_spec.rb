@@ -6,7 +6,7 @@ describe PhotosController do
   describe "POST create" do
 
     before do
-      photo = Photo.build
+      photo = Photo.build :original_name => "photo.jpg"
       @attributes = photo.attributes.symbolize_keys.except(:created_at, :updated_at, :id)
     end
 

@@ -66,6 +66,11 @@ describe Admin::AnimalsController do
         get :live_search, :q => "", :shelters => { :state => "NC" }, :format => :js
         expect(assigns(:animals)).to eq([@animal2])
       end
+
+      it "assigns @animals with empty params" do
+        get :live_search, :q => "", :shelters => { :state => "" }, :format => :js
+        expect(assigns(:animals)).to match_array([@animal1, @animal2, @animal3])
+      end
     end
   end
 end
