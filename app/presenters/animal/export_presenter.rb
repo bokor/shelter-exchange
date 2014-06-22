@@ -76,14 +76,6 @@ class Animal::ExportPresenter < Presenter
     @animal.special_needs
   end
 
-  def special_needs
-    @animal.special_needs?  ? "Y" : "N"
-  end
-
-  def special_needs_description
-    @animal.special_needs
-  end
-
   def description
     @animal.description.blank? ? "No description provided" : help.auto_link( help.simple_format(@animal.description), :all, :target => "_blank")
   end
@@ -100,10 +92,7 @@ class Animal::ExportPresenter < Presenter
   end
 
   def video_url
-    unless @animal.video_url.blank?
-      you_tube_id = @animal.video_url.match(VIDEO_URL_REGEX)[5]
-      you_tube_id.blank? ? @animal.video_url : "http://www.youtube.com/watch?v=#{you_tube_id}"
-    end
+    @animal.video_url
   end
 
   def accommodation
