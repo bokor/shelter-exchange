@@ -13,14 +13,16 @@
           <th>Name</th>
           <th>Petfinder (<%=@petfinder_count%>)</th>
           <th>Adopt a Pet (<%=@adopt_a_pet_count%>)</th>
+          <th>Web API Access (<%=@access_token_count%>)</th>
         </tr>
       </thead>
       <tbody>
-        <% @integrations_hash.each do |shelter, value| %>
+        <% @api_access.each do |shelter, value| %>
           <tr class="<%= cycle("odd", "even")%>">
             <td class="key"><%= link_to shelter.name, admin_shelter_path(shelter), :target => '_new' %></td>
             <td class="center"><%= image_tag("icon_task.png", :width => 15) if value.include?(:petfinder) %></td>
             <td class="center"><%= image_tag("icon_task.png", :width => 15) if value.include?(:adopt_a_pet) %></td>
+            <td class="center"><%= image_tag("icon_task.png", :width => 15) if value.include?(:access_token) %></td>
           </tr>
         <% end %>
       </tbody>
