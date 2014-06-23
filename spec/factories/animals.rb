@@ -22,7 +22,7 @@ FactoryGirl.define do
     animal_type
     animal_status
     shelter
-    primary_breed { Breed.gen(:animal_type => animal_type).name }
+    primary_breed { Breed.gen(:animal_type_id => animal_type_id).name }
     secondary_breed  nil
 
     after(:build) do |animal|
