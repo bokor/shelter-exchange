@@ -53,7 +53,7 @@ class PetfinderJob
     if ftp.last_response_code == "530"
       OwnerMailer.revoked_integration(@integration).deliver
       IntegrationMailer.revoked(@integration).deliver
-      @integration.destroy
+      # @integration.destroy
     end
 
   ensure
