@@ -52,7 +52,7 @@ class PetfinderJob
     # FTP Error: 530 Login authentication failed
     if ftp.last_response_code == "530"
       OwnerMailer.revoked_integration(@integration).deliver
-      IntegrationMailer.revoked(@integration).deliver
+      # IntegrationMailer.revoked(@integration).deliver
       # @integration.destroy
     end
 
