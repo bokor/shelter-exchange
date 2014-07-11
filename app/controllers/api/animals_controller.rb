@@ -15,7 +15,9 @@ class Api::AnimalsController < Api::ApplicationController
     @types =  params.has_key?(:types) ? params[:types].split(",").collect{|x| x.to_i } : []
     @statuses = params.has_key?(:statuses) ? params[:statuses].split(",").collect{|x| x.to_i } : []
 
-    raise Errors::ApiIncorrectTypeStatus if @statuses.include?(AnimalStatus::STATUSES[:deceased]) or @statuses.include?(AnimalStatus::STATUSES[:euthanized])
+    if @statuses.include?(AnimalStatus::STATUSES[:deceased]) || @statuses.include?(AnimalStatus::STATUSES[:euthanized])
+      raise Errors::ApiIncorrectTypeStatus
+    end
   end
 
   rescue_from Exception do |exception|
