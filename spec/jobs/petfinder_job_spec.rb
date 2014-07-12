@@ -182,24 +182,6 @@ describe PetfinderJob do
         allow(ftp).to receive(:login).and_raise(Net::FTPPermError.new("530 Login Error"))
       end
 
-      it "sends email notifications" do
-        expect(OwnerMailer).to receive(:revoked_integration).with(@integration).and_call_original
-        expect(IntegrationMailer).to receive(:revoked).with(@integration).and_call_original
-
-        PetfinderJob.new(@shelter.id).perform
-
-        expect(ActionMailer::Base.deliveries.count).to eq(2)
-      end
-
-      it "revokes integration access (deletes from db)" do
-        expect {
-          PetfinderJob.new(@shelter.id).perform
-        }.to change(Integration, :count).by(-1)
-        expect(
-          Integration.where(:id => @integration.id)
-        ).to be_empty
-      end
-
       it "logs message when failure" do
         expect(PetfinderJob.logger).to receive(:error).
           with("#{@shelter.id} :: #{@shelter.name} :: failed :: 530 Login Error")
