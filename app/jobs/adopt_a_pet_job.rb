@@ -36,14 +36,6 @@ class AdoptAPetJob
 
   rescue Net::FTPPermError => e
     AdoptAPetJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
-
-    # FTP Error: 530 Login authentication failed
-    if ftp.last_response_code == "530"
-      OwnerMailer.revoked_integration(@integration).deliver
-      # IntegrationMailer.revoked(@integration).deliver
-      # @integration.destroy
-    end
-
   ensure
     ftp.close
     AdoptAPetJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: finished in #{Time.now - @start_time}")
