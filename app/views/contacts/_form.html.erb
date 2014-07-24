@@ -38,7 +38,12 @@
 				</span>
 			</div>
 			<%= has_error_message?(@contact, :address)%>
-		</li>
+    </li>
+    <li>
+			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
+			<%= has_error_message?(@contact, :email)%>
+    </li>
 		<li>
 			<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
 			<div>
@@ -55,46 +60,19 @@
 			</div>
 			<%= has_error_message?(@contact, :mobile)%>
 		</li>
-		<li>
-			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
-			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
-			<%= has_error_message?(@contact, :email)%>
-    </li>
     <li class="section">
 			<section>
-				<h3>Categories</h3>
+				<h3>Roles</h3>
 				<div>Select the balh blahlhahofijoad</div>
 			</section>
     </li>
-    <li>
-	    <span class="left">
-			  <%= f.check_box :adopter, :class =>"field checkbox" %>
-				<%= f.label :adopter, "Adopter", :class => "desc choice" %>
-      </span>
-	    <span class="leftPadded">
-			  <%= f.check_box :foster, :class =>"field checkbox" %>
-				<%= f.label :foster, "Foster", :class => "desc choice" %>
-      </span>
-      <span class="leftPadded">
-			  <%= f.check_box :volunteer, :class =>"field checkbox" %>
-				<%= f.label :volunteer, "Volunteer", :class => "desc choice" %>
-			</span>
-	    <span class="leftPadded">
-			  <%= f.check_box :transporter, :class =>"field checkbox" %>
-				<%= f.label :transporter, "Transporter", :class => "desc choice" %>
-      </span>
-      <span class="leftPadded">
-			  <%= f.check_box :donor, :class =>"field checkbox" %>
-				<%= f.label :donor, "Donor", :class => "desc choice" %>
-      </span>
-      <span class="leftPadded">
-			  <%= f.check_box :staff, :class =>"field checkbox" %>
-				<%= f.label :staff, "Staff", :class => "desc choice" %>
-      </span>
-      <span class="leftPadded">
-			  <%= f.check_box :veterinarian, :class =>"field checkbox" %>
-				<%= f.label :veterinarian, "Veterinarian", :class => "desc choice" %>
-			</span>
+    <li class="full">
+      <% Contact::ROLES.each_with_index do |value, index| %>
+        <span class="left<%= "Padded" unless index == 0 %>">
+          <%= f.check_box value, :class =>"field checkbox" %>
+          <%= f.label value, value.humanize, :class => "desc choice" %>
+        </span>
+      <% end %>
 		</li>
 		<li class="buttons">
 			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>

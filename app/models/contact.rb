@@ -3,6 +3,22 @@ class Contact < ActiveRecord::Base
 
   default_scope :order => 'contacts.last_name ASC, contacts.first_name ASC'
 
+  # Pagination
+  #----------------------------------------------------------------------------
+  self.per_page = 25
+
+  # Constants
+  #----------------------------------------------------------------------------
+  ROLES = [
+    "adopter",
+    "foster",
+    "volunteer",
+    "transporter",
+    "donor",
+    "staff",
+    "veterinarian"
+  ].freeze
+
   # Callbacks
   #----------------------------------------------------------------------------
   before_save :clean_phone_numbers
@@ -34,6 +50,13 @@ class Contact < ActiveRecord::Base
       scope = scope.where("email = ? OR first_name like ? OR last_name like ? OR (first_name + ' ' + last_name) like ?", q, "%#{q}%", "%#{q}%", "%#{q}%")
     end
 
+    scope
+  end
+
+  def self.filter_by_last_name_role(by_last_name, by_role)
+    scope = self.scoped
+    scope = scope.where("contacts.last_name like ?", "#{by_last_name}%") unless by_last_name.blank?
+    scope = scope.where(by_role.to_sym => true) unless by_role.blank?
     scope
   end
 

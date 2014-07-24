@@ -111,7 +111,7 @@ ShelterExchangeApp::Application.routes.draw do
       resources :notes
       collection do
         get :search
-        # get :filter_by_type or category
+        get :filter_by_last_name_role
       end
     end
 

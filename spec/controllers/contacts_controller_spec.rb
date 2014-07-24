@@ -237,14 +237,7 @@ describe ContactsController do
   end
 
   describe "GET search" do
-  # def search
-  #   q = params[:q].strip.split.join("%")
-  #   @contacts = if q.blank?
-  #     @current_shelter.contacts.paginate(:page => params[:page]).all
-  #   else
-  #     @current_shelter.contacts.search(q).paginate(:page => params[:page]).all
-  #   end
-  # end
+
     before do
       @contact1 = Contact.gen :shelter => current_shelter, :first_name => "Brian", :last_name => "Bokor"
       @contact2 = Contact.gen :shelter => current_shelter, :first_name => "Claire", :last_name => "Bokor"
@@ -262,6 +255,11 @@ describe ContactsController do
       expect(assigns(:contacts)).to match_array([@contact1, @contact2])
     end
 
+    it "renders the :search view" do
+      get :search, :q => "bokor", :format => :js
+      expect(response).to render_template(:search)
+    end
+
     context "with no query parameters" do
       it "assigns @contacts" do
         get :search, :q => " ", :format => :js
@@ -276,6 +274,47 @@ describe ContactsController do
 
         get :search, :q => "paginated contact", :page => 1, :format => :js
         expect(assigns(:contacts)).to match_array([contact])
+      end
+    end
+  end
+
+  describe "GET filter_by_last_name_role" do
+
+    before do
+      @contact1 = Contact.gen :last_name => "A1", :adopter => "1", :foster => "0", :shelter => current_shelter
+      @contact2 = Contact.gen :last_name => "B1", :adopter => "1", :foster => "0", :shelter => current_shelter
+    end
+
+    it "responds successfully" do
+      get :filter_by_last_name_role, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :filter_by_last_name_role view" do
+      get :filter_by_last_name_role, :format => :js
+      expect(response).to render_template(:filter_by_last_name_role)
+    end
+
+    it "assigns @contacts" do
+      get :filter_by_last_name_role, :by_last_name => "A", :by_role => "adopter", :format => :js
+      expect(assigns(:contacts)).to match_array([@contact1])
+    end
+
+    context "with no parameters" do
+      it "assigns @contacts" do
+        get :filter_by_last_name_role, :format => :js
+        expect(assigns(:contacts)).to match_array([@contact1, @contact2])
+      end
+    end
+
+    context "with pagination" do
+      it "paginates :filter_by_last_initial_category results" do
+        contact = Contact.gen
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [contact] }
+
+        get :filter_by_last_name_role, :page => 1, :format => :js
+        expect(assigns(:contacts)).to eq([contact])
       end
     end
   end

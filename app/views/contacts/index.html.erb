@@ -22,29 +22,31 @@
 							<%= f.submit "Go", :disable_with => "..." %>
 						<% end %>
 					</td>
-          <td class="filters">
-            <h3>Filter contacts by:</h3>
+					<td class="filters">
+						<h3>Filter contacts by:</h3>
 						<table class="filter_table">
 							<tr>
-								<td></td>
+								<td><%= label_tag :by_last_name, "Last Name" %></td>
+                <td><%= select(:contact, :by_last_name, ('A'..'Z').to_a, {:prompt => "All"},
+								       { :name => "by_last_name", :onchange => "Contacts.filterByLastNameRole();" } ) %><br /><br />
+								</td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><%= label_tag :by_role, "Role" %></td>
+								<td><%= collection_select(:contact, :by_role, Contact::ROLES, :to_s, :humanize, {:prompt => "All"},
+								        {:name => "by_role", :onchange => "Contacts.filterByLastNameRole();"} ) %>
+								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			</table>
-<!--  -->
-<!-- 			<div class="help_text"> -->
-<!-- 				<strong>Below are the active animals at your facility. Search all other animals using status filter.</strong> -->
-<!-- 			</div> -->
 
 			<div id="contacts">
 				<% if @contacts %>
 					<%= render "contact_list", :contacts => @contacts %>
 				<% else %>
-					<div class='no_results'><h2>Currently, No active contacts</h2></div>
+					<%= render "no_contacts", :contacts => @contacts %>
 				<% end %>
 			</div>
 

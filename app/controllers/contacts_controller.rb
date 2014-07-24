@@ -50,6 +50,12 @@ class ContactsController < ApplicationController
     end
   end
 
+  def filter_by_last_name_role
+    @contacts = @current_shelter.contacts.
+      filter_by_last_name_role(params[:by_last_name], params[:by_role]).
+      paginate(:page => params[:page]).all
+  end
+
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid contact => #{params[:id]}")
     flash[:error] = "You have requested an invalid contact!"

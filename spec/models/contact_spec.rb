@@ -76,8 +76,30 @@ describe Contact do
   end
 end
 
+# Constants
+#----------------------------------------------------------------------------
+describe Contact, "::ROLES" do
+  it "contains a default list of roles" do
+    expect(Contact::ROLES).to match_array([
+      "adopter",
+      "foster",
+      "volunteer",
+      "transporter",
+      "donor",
+      "staff",
+      "veterinarian"
+    ])
+  end
+end
+
 # Class Methods
 #----------------------------------------------------------------------------
+describe Contact, ".per_page" do
+  it "returns the per page value for pagination" do
+    expect(Contact.per_page).to eq(25)
+  end
+end
+
 describe Contact, ".search" do
 
   before do
@@ -119,6 +141,31 @@ describe Contact, ".search" do
   it "returns search results based on last_name" do
     contacts = Contact.search("dude")
     expect(contacts).to match_array([@contact2])
+  end
+end
+
+describe Contact, ".filter_by_last_name_role" do
+
+  before do
+    @contact1 = Contact.gen :last_name => "A1", :adopter => "1", :foster => "0"
+    @contact2 = Contact.gen :last_name => "A2", :adopter => "0", :foster => "1"
+    @contact3 = Contact.gen :last_name => "B1", :adopter => "1", :foster => "0"
+    @contact4 = Contact.gen :last_name => "B2", :adopter => "0", :foster => "1"
+  end
+
+  it "returns results for last name initial" do
+    contacts = Contact.filter_by_last_name_role("A", "")
+    expect(contacts).to match_array([@contact1, @contact2])
+  end
+
+  it "returns results for category" do
+    contacts = Contact.filter_by_last_name_role("", "adopter")
+    expect(contacts).to match_array([@contact1, @contact3])
+  end
+
+  it "returns results for last name initial and category" do
+    contacts = Contact.filter_by_last_name_role("A", "adopter")
+    expect(contacts).to match_array([@contact1])
   end
 end
 

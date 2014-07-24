@@ -337,6 +337,11 @@ describe AnimalsController do
       expect(assigns(:animals)).to match_array([@animal1, @animal2])
     end
 
+    it "renders the :search view" do
+      get :search, :q => "", :format => :js
+      expect(response).to render_template(:search)
+    end
+
     context "with no parameters" do
       it "assigns @animals" do
         get :search, :q => "", :format => :js
@@ -373,6 +378,11 @@ describe AnimalsController do
     it "assigns @animals" do
       get :filter_by_type_status, :animal_type_id => @animal_type_id, :animal_status_id => @animal_status_id, :format => :js
       expect(assigns(:animals)).to eq([@animal1])
+    end
+
+    it "renders the :filter_by_type_status view" do
+      get :filter_by_type_status, :format => :js
+      expect(response).to render_template(:filter_by_type_status)
     end
 
     context "with no parameters" do

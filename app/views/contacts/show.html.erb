@@ -7,7 +7,10 @@
 
 <%= content_for :page_content do %>
 	<div class="page_heading blue">
-		<h1><%= @contact.name %></h1>
+    <h1>
+      <%= @contact.name %>
+    </h1>
+
     <div class="action_links">
       <%= link_to "Create new contact", new_contact_path %>
 			<% if can?(:update, Contact) %>
@@ -19,6 +22,17 @@
 			  <%= link_to "Delete", @contact, :confirm => "Are you sure you want to delete?", :method => :delete %>
 			<% end %>
     </div>
+      <style type="text/css" media="all">
+
+      </style>
+      <div class="roles">
+        <span class="title">Roles:</span>
+        <% Contact::ROLES.each do |value| %>
+          <% if @contact.send(value) %>
+            <span class="role"><%= value.humanize %></span>
+          <% end %>
+        <% end %>
+      </div>
 	</div>
 
 	<div class="page_content">
@@ -45,7 +59,6 @@
 				</ul>
 			</div>
 		</div>
-
 	</div>
 
 	<div id="notes_heading" class="section_heading orange">
@@ -58,9 +71,31 @@
 		</div>
 	</div>
 
-	<!-- <div id="adoption_history_heading"  class="section_heading blue"> -->
-	<!-- 	<h2>Adoption History</h2> -->
-	<!-- </div> -->
+	<div id="animal_heading"  class="section_heading blue">
+    <h2>Animal History</h2>
+    <%= form_for :contacts, :url => { :action => :filter_animal_list },
+        :remote => true, :format => :js, :html => { :id => "form_filter_animal_list", :method => :get } do |f| %>
+        <%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select status"} %>
+    <% end %>
+  </div>
+
+  <div class="filters">
+    <%= form_for :contacts, :url => { :action => :filter_animal_list },
+        :remote => true, :format => :js, :html => { :id => "form_filter_animal_list", :method => :get } do |f| %>
+      <span class="left">
+        <%= f.label :animal_status_id, "Select Status:" %>
+        <%= f.collection_select :animal_status_id,
+          AnimalStatus.all, :id, :name, {:prompt => "Select one"} %>
+      </span>
+      <span class="leftPadded">
+        <%= f.submit "Go", :disable_with => '...' %>
+      </span>
+    <% end %>
+  </div>
+
+  <div class="page_content">
+    <div id="animals" class="animal_list"></div>
+	</div>
 
 <% end %>
 
