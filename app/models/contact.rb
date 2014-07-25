@@ -25,7 +25,6 @@ class Contact < ActiveRecord::Base
 
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :status_histories, :readonly => true
-  # has_many :animals, :through => :status_histories, :readonly => true
 
   # Validations
   #----------------------------------------------------------------------------

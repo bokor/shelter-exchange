@@ -219,26 +219,6 @@ describe Contact, "#status_histories" do
   end
 end
 
-# describe Contact, "#animals" do
-#
-#   before do
-#     @contact = Contact.gen
-#     @animal1 = Animal.gen
-#     @animal2 = Animal.gen
-#     @status_history1 = StatusHistory.gen :contact => @contact, :animal => @animal1
-#     @status_history2 = StatusHistory.gen :contact => @contact, :animal => @animal2
-#   end
-#
-#   it "returns a list of animals" do
-#     expect(@contact.animals.count).to eq(2)
-#     expect(@contact.animals).to match_array([@animal1, @animal2])
-#   end
-#
-#   it "returns a readonly animal" do
-#     expect(@contact.animals.first).to be_readonly
-#   end
-# end
-
 describe Contact, "#name" do
 
   it "returns the name concatinated" do
