@@ -159,3 +159,18 @@ describe StatusHistory, "#animal_status" do
   end
 end
 
+describe StatusHistory, "#contact" do
+
+  it "belongs to a contact" do
+    contact = Contact.new
+    status_history = StatusHistory.new :contact => contact
+
+    expect(status_history.contact).to eq(contact)
+  end
+
+  it "returns a readonly contact" do
+    status_history = StatusHistory.gen
+    expect(status_history.reload.contact).to be_readonly
+  end
+end
+

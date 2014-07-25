@@ -4,6 +4,7 @@ FactoryGirl.define do
     shelter
     animal_status
     animal
+    contact
     reason "New status history"
   end
 end

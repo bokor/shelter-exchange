@@ -112,6 +112,7 @@ ShelterExchangeApp::Application.routes.draw do
       collection do
         get :search
         get :filter_by_last_name_role
+        get :filter_animals_by_status
       end
     end
 

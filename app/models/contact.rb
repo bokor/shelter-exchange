@@ -3,10 +3,6 @@ class Contact < ActiveRecord::Base
 
   default_scope :order => 'contacts.last_name ASC, contacts.first_name ASC'
 
-  # Pagination
-  #----------------------------------------------------------------------------
-  self.per_page = 25
-
   # Constants
   #----------------------------------------------------------------------------
   ROLES = [
@@ -28,7 +24,8 @@ class Contact < ActiveRecord::Base
   belongs_to :shelter
 
   has_many :notes, :as => :notable, :dependent => :destroy
-  # not yet has_many :animals, :through => :status_histories
+  has_many :status_histories, :readonly => true
+  # has_many :animals, :through => :status_histories, :readonly => true
 
   # Validations
   #----------------------------------------------------------------------------

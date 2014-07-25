@@ -9,7 +9,13 @@ class ContactsController < ApplicationController
 
   def show
     @contact = @current_shelter.contacts.includes(:notes).find(params[:id])
-    @notes = @contact.notes
+    @notes = @contact.notes.includes(:documents)
+    @animals = Animal.
+      includes(:status_histories).
+      preload(:photos, :animal_type, :animal_status, :status_histories => :animal_status).
+      where("status_histories.contact_id" => @contact.id).
+      reorder("status_histories.status_date DESC").
+      paginate(:page => params[:page])
     respond_with(@contact)
   end
 
@@ -54,6 +60,18 @@ class ContactsController < ApplicationController
     @contacts = @current_shelter.contacts.
       filter_by_last_name_role(params[:by_last_name], params[:by_role]).
       paginate(:page => params[:page]).all
+  end
+
+  def filter_animals_by_status
+    contact = @current_shelter.contacts.find(params[:id])
+    @animals = Animal.
+      includes(:status_histories).
+      preload(:photos, :animal_type, :animal_status, :status_histories => :animal_status).
+      where("status_histories.contact_id" => contact.id)
+    unless params[:by_status].blank?
+      @animals = @animals.where("status_histories.animal_status_id" => params[:by_status])
+    end
+    @animals = @animals.reorder("status_histories.status_date DESC").paginate(:page => params[:page])
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

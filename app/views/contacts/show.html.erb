@@ -72,29 +72,24 @@
 	</div>
 
 	<div id="animal_heading"  class="section_heading blue">
-    <h2>Animal History</h2>
-    <%= form_for :contacts, :url => { :action => :filter_animal_list },
-        :remote => true, :format => :js, :html => { :id => "form_filter_animal_list", :method => :get } do |f| %>
-        <%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select status"} %>
-    <% end %>
+    <h2>Assigned Animals by Status</h2>
+    <%= collection_select :filters, :by_status, AnimalStatus.all, :id, :name,
+        {:prompt => "All statuses"},
+        {:name => "by_status", :onchange => "Contacts.filterAnimalsByStatus(#{@contact.id})" } %>
   </div>
 
-  <div class="filters">
-    <%= form_for :contacts, :url => { :action => :filter_animal_list },
-        :remote => true, :format => :js, :html => { :id => "form_filter_animal_list", :method => :get } do |f| %>
-      <span class="left">
-        <%= f.label :animal_status_id, "Select Status:" %>
-        <%= f.collection_select :animal_status_id,
-          AnimalStatus.all, :id, :name, {:prompt => "Select one"} %>
-      </span>
-      <span class="leftPadded">
-        <%= f.submit "Go", :disable_with => '...' %>
-      </span>
-    <% end %>
+  <div class="help_text">
+    <strong>Below are the animals assigned to this contact. Customize your view by selecting a specific status.</strong>
   </div>
 
   <div class="page_content">
-    <div id="animals" class="animal_list"></div>
+	  <div id="animals">
+	    <% unless @animals.blank? %>
+			  <%= render "contacts/animal_list", :animals => @animals %>
+			<% else %>
+				<%= render "contacts/no_animals" %>
+			<% end %>
+		</div>
 	</div>
 
 <% end %>

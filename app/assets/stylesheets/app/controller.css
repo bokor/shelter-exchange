@@ -361,6 +361,10 @@
 .show_contacts .contact h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_contacts .contact:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
+/* Index Contacts :: Help Text
+-----------------------------------------------------------------------------*/
+.show_contacts .help_text{width: 100%; margin-top: 5px;padding: 10px 0; text-align:center;border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
+
 /* Show Contacts :: Animal List
 -----------------------------------------------------------------------------*/
 .show_contacts #animal_heading select {float:right;}

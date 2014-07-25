@@ -27,13 +27,13 @@
 						<table class="filter_table">
 							<tr>
 								<td><%= label_tag :by_last_name, "Last Name" %></td>
-                <td><%= select(:contact, :by_last_name, ('A'..'Z').to_a, {:prompt => "All"},
+                <td><%= select(:filters, :by_last_name, ('A'..'Z').to_a, {:prompt => "All"},
 								       { :name => "by_last_name", :onchange => "Contacts.filterByLastNameRole();" } ) %><br /><br />
 								</td>
 							</tr>
 							<tr>
 								<td><%= label_tag :by_role, "Role" %></td>
-								<td><%= collection_select(:contact, :by_role, Contact::ROLES, :to_s, :humanize, {:prompt => "All"},
+								<td><%= collection_select(:filters, :by_role, Contact::ROLES, :to_s, :humanize, {:prompt => "All"},
 								        {:name => "by_role", :onchange => "Contacts.filterByLastNameRole();"} ) %>
 								</td>
 							</tr>

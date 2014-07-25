@@ -1,0 +1,6 @@
+<table class="animal_list">
+  <% animals.each do |animal| %>
+    <%= render "animal", :animal => animal %>
+  <% end %>
+</table>
+<%= will_paginate animals %>

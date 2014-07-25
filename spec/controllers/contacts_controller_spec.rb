@@ -15,6 +15,12 @@ describe ContactsController do
       expect(response.status).to eq(200)
     end
 
+    it "responds successfully with js format" do
+      get :index, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
     it "assigns @total_contacts" do
       Contact.gen :shelter => current_shelter
 
@@ -33,6 +39,17 @@ describe ContactsController do
       get :index
       expect(response).to render_template(:index)
     end
+
+    context "with pagination" do
+      it "paginates :index results" do
+        contact = Contact.gen
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [contact] }
+
+        get :index, :page => 1, :format => :js
+
+        expect(assigns(:contacts)).to eq([contact])
+      end
+    end
   end
 
   describe "GET show" do
@@ -43,6 +60,12 @@ describe ContactsController do
 
     it "responds successfully" do
       get :show, :id => @contact.id
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "responds successfully with js format" do
+      get :show, :id => @contact.id, :format => :js
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
@@ -74,6 +97,17 @@ describe ContactsController do
       it "redirects to the :contacts_path" do
         get :show, :id => "123abc"
         expect(response).to redirect_to(contacts_path)
+      end
+    end
+
+    context "with pagination" do
+      it "paginates :index results" do
+        animal = Animal.gen
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
+
+        get :show, :id => @contact.id, :page => 1, :format => :js
+
+        expect(assigns(:animals)).to eq([animal])
       end
     end
   end
@@ -315,6 +349,61 @@ describe ContactsController do
 
         get :filter_by_last_name_role, :page => 1, :format => :js
         expect(assigns(:contacts)).to eq([contact])
+      end
+    end
+  end
+
+  describe "GET filter_animals_by_status" do
+
+    before do
+      @contact = Contact.gen :last_name => "A1", :adopter => "1", :foster => "0", :shelter => current_shelter
+
+      @animal1 = Animal.gen :shelter => current_shelter
+      @animal2 = Animal.gen :shelter => current_shelter
+
+      StatusHistory.gen :contact => @contact, :animal => @animal1, :animal_status_id => @animal1.animal_status_id
+      StatusHistory.gen :contact => @contact, :animal => @animal2, :animal_status_id => @animal2.animal_status_id
+    end
+
+    it "responds successfully" do
+      get :filter_animals_by_status, :id => @contact.id, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :filter_animals_by_status view" do
+      get :filter_animals_by_status, :id => @contact.id, :format => :js
+      expect(response).to render_template(:filter_animals_by_status)
+    end
+
+    it "assigns @animals" do
+      get :filter_animals_by_status, :id => @contact.id, :by_status => @animal1.animal_status_id, :format => :js
+      expect(assigns(:animals)).to match_array([@animal1])
+    end
+
+    context "with no parameters" do
+      it "assigns @animals" do
+        get :filter_animals_by_status, :id => @contact.id, :by_status => "", :format => :js
+        expect(assigns(:animals)).to match_array([@animal1, @animal2])
+      end
+    end
+
+    context "with pagination" do
+
+      it "paginates :filter_animals_by_status results with all" do
+        animal = Animal.gen
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
+
+        get :filter_animals_by_status, :id => @contact.id, :by_status => "", :page => 1, :format => :js
+        expect(assigns(:animals)).to eq([animal])
+      end
+
+      it "paginates :filter_animals_by_status results with status" do
+        animal = Animal.gen
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
+
+        get :filter_animals_by_status, :id => @contact.id, :by_status => 1, :page => 1, :format => :js
+        expect(assigns(:animals)).to eq([animal])
       end
     end
   end

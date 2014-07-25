@@ -6,6 +6,7 @@ class StatusHistory < ActiveRecord::Base
   belongs_to :shelter, :readonly => true
   belongs_to :animal, :readonly => true
   belongs_to :animal_status, :readonly => true
+  belongs_to :contact, :readonly => true
 
   # Class Methods
   #----------------------------------------------------------------------------
