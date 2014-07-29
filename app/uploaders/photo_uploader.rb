@@ -27,6 +27,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # S3 Directory
   #----------------------------------------------------------------------------
   def store_dir
+    # TODO: Move to /animals/{animal_id}/photos/{photo_id} or /photos/{photo_id}
+    #       instead of /animals/photos/{animal_id} (requires copy to new model (example AnimalPhotoUploader - can rename later)
     "#{model.attachable_type.to_s.pluralize.underscore}/#{model.class.to_s.pluralize.underscore}/#{model.attachable_id}/#{version_name || :original}"
   end
 
