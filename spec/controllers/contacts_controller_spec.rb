@@ -260,6 +260,11 @@ describe ContactsController do
       expect(response).to redirect_to(contacts_path)
     end
 
+    it "renders the :destroy view" do
+      delete :destroy, :id => @contact.id, :format => :js
+      expect(response).to render_template(:destroy)
+    end
+
     context "with a destroy error" do
       it "does not set a flash message" do
         allow_any_instance_of(Contact).to receive(:destroy).and_return(false)

@@ -77,7 +77,6 @@
 
 /* Show Animals :: Page Layout
 -----------------------------------------------------------------------------*/
-/*.show_animals .page_heading{border-bottom:1px solid #eee; }*/
 .show_animals table.animal{width:100%;}
 .show_animals table.animal td{vertical-align:top;width:50%;/*color:#666;*/}
 .show_animals table.animal td.action_links{text-align:right;font-size:12px;/*line-height:100%;height:100%;*/padding-top:5px;}
@@ -103,7 +102,6 @@
 
 .show_animals table.animal_details{text-align:left;}
 .show_animals table.animal_details td{vertical-align:top;}
-/*.show_animals table.animal_details td.image img{margin-bottom: 10px;-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;}*/
 .show_animals table.animal_details td.image .action_links{text-align:right;}
 .show_animals table.animal_details td.image .watch_video_link{}
 .show_animals table.animal_details td.image .add_photos_link{margin-left: 20px;}
@@ -111,8 +109,6 @@
 .show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
 .show_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals table.animal_details td.metadata ul li{ padding-bottom: 10px; }
-/*.show_animals table.animal_details td.metadata ul .hold_time{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
-.show_animals table.animal_details td.metadata ul .euthaniasia_date{color:#ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}*/
 
 .show_animals .dialog {width: 680px; height: 450px; }
 
@@ -330,12 +326,18 @@
 
 /* Index Contacts :: Contact List Layout
 -----------------------------------------------------------------------------*/
-.index_contacts table.contact_list{width: 100%; table-layout: auto;border-top:1px #ccc dotted; border-collapse: collapse; border-spacing: 0; }
-.index_contacts table.contact_list tr {border-bottom:1px #ccc dotted; }
-.index_contacts table.contact_list td{vertical-align:top;font-size:12px;padding:9px 0;}
+.index_contacts table.contact_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+.index_contacts table.contact_list .contact_row td {border-top:1px #ccc dotted; padding-top: 9px; }
+.index_contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
+.index_contacts table.contact_list td{vertical-align:top;font-size:12px;}
 .index_contacts table.contact_list td.details { width:380px;padding-left: 15px;color:#666; }
 .index_contacts table.contact_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-.index_contacts table.contact_list .action_links .select_link {display:none;}
+.index_contacts table.contact_list .role_row .action_links {text-align:right;padding-right: 5px;}
+
+.index_contacts table.contact_list .role_row .roles:before{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+.index_contacts table.contact_list .role_row .roles{ font-weight:normal; font-size: 11px; padding-left: 15px;}
+.index_contacts table.contact_list .role_row .roles .title{ font-weight:bold; font-size: 12px; padding-right: 5px;}
+.index_contacts table.contact_list .role_row .roles .role{padding-right: 5px;}
 
 /* Index Contacts :: Search and Filters Layout
 -----------------------------------------------------------------------------*/
@@ -363,13 +365,23 @@
 
 /* Index Contacts :: Help Text
 -----------------------------------------------------------------------------*/
-.show_contacts .help_text{width: 100%; margin-top: 5px;padding: 10px 0; text-align:center;border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
+.show_contacts .help_text{width: 100%; margin-top: 15px;padding: 10px 0; text-align:center;border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
 
 /* Show Contacts :: Animal List
 -----------------------------------------------------------------------------*/
 .show_contacts #animal_heading select {float:right;}
 .show_contacts .filters {padding: 1.5em 1.5em 1em 1.5em; margin:10px auto 0px auto; border-top:1px #ccc dotted; border-bottom:1px #ccc dotted;}
 .show_contacts .filters label {font-weight:bold; font-size: 11px; padding-right: 10px;}
+
+.show_contacts table.animal_list{ width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; }
+.show_contacts table.animal_list .animal_row {border-bottom:1px #ccc dotted; border-top:1px #ccc dotted; }
+.show_contacts table.animal_list .animal_row td{vertical-align:top;font-size:12px;padding:9px 0;}
+.show_contacts table.animal_list .animal_row td.image { width:100px; padding-left:5px; }
+.show_contacts table.animal_list .animal_row td.details { width:380px; color:#666; }
+.show_contacts table.animal_list .animal_row td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+
+.show_contacts table.animal_list .last_status .status_history { border-bottom: 0px none; }
+
 
 
 /**********************************************************************/

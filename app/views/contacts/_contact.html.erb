@@ -1,4 +1,4 @@
-<tr id="<%= "contact_#{contact.id}" %>">
+<tr class="<%= "contact_#{contact.id}" %> contact_row">
 	<td class="details">
     <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
 		<p><%= contact.street %></p>
@@ -9,6 +9,32 @@
 		<% unless contact.mobile.blank? %>
 			<p><%=number_to_phone(contact.mobile, :delimiter => "-")%>(m)</p>
 		<% end %>
-		<p><%= contact.email %></p>
+    <p><%= contact.email %></p>
 	</td>
+</tr>
+<tr class="<%= "contact_#{contact.id}" %> role_row">
+  <td>
+    <div class="roles">
+      <span class="title">Roles:</span>
+      <% Contact::ROLES.each do |value| %>
+        <% if contact.send(value) %>
+          <span class="role"><%= value.humanize %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <div class="action_links">
+			<% if can?(:update, Contact) %>
+			<span class="edit_link">
+		    	<%= link_to "Edit", edit_contact_path(contact) %>
+			</span>
+			<% end %>
+			<% if can?(:destroy, Contact) %>
+			<span class="delete_link">&nbsp;|&nbsp;
+				<%= link_to "Delete", contact, :confirm => "Are you sure you want to delete? Contact records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true, :format => :js %>
+			</span>
+			<% end %>
+		</div>
+  </td>
 </tr>
