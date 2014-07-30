@@ -1,6 +1,5 @@
 module Geocodeable
   extend ActiveSupport::Concern
-  include StreetAddressable
 
   included do
 

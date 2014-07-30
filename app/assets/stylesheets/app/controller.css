@@ -303,6 +303,9 @@
 -----------------------------------------------------------------------------*/
 .contacts ul {list-style:none;}
 
+.contacts #submit_message{display:none;font-weight:bold; font-size: 14px; color: red;padding-bottom:15px; height: 30px; vertical-align:middle;}
+.contacts #submit_message img{padding-right: 10px;vertical-align: middle;}
+
 /* Contacts :: Page Layout
  -----------------------------------------------------------------------------*/
 .show_contacts .page_heading h1{width:50%; float:left; }
@@ -382,6 +385,10 @@
 
 .show_contacts table.animal_list .last_status .status_history { border-bottom: 0px none; }
 
+/* Show Contacts :: Photo
+-----------------------------------------------------------------------------*/
+.show_contacts .photo {margin-top: 20px;}
+.show_contacts .photo h2{border-bottom:1px #ccc dotted;}
 
 
 /**********************************************************************/

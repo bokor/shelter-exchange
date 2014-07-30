@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  include StreetAddressable
+  include StreetAddressable, Geocodeable, Uploadable
 
   default_scope :order => 'contacts.last_name ASC, contacts.first_name ASC'
 
@@ -21,6 +21,8 @@ class Contact < ActiveRecord::Base
 
   # Associations
   #----------------------------------------------------------------------------
+  mount_uploader :photo, ContactPhotoUploader
+
   belongs_to :shelter
 
   has_many :notes, :as => :notable, :dependent => :destroy

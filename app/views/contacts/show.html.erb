@@ -7,9 +7,7 @@
 
 <%= content_for :page_content do %>
 	<div class="page_heading blue">
-    <h1>
-      <%= @contact.name %>
-    </h1>
+    <h1><%= @contact.name %></h1>
 
     <div class="action_links">
       <%= link_to "Create new contact", new_contact_path %>
@@ -26,7 +24,7 @@
 
       </style>
       <div class="roles">
-        <span class="title">Roles:</span>
+        <!-- <span class="title">Roles:</span> -->
         <% Contact::ROLES.each do |value| %>
           <% if @contact.send(value) %>
             <span class="role"><%= value.humanize %></span>
@@ -41,10 +39,7 @@
 			<div id="address">
 				<h3>Address:</h3>
 				<ul>
-					<li><%= @contact.street %></li>
-					<% unless @contact.street_2.blank? %>
-						<li><%= @contact.street_2 %></li>
-					<% end %>
+					<li><%= @contact.street %> <%= @contact.street_2 %></li>
 					<li><%= @contact.city %>, <%= @contact.state %> <%= @contact.zip_code %></li>
 				</ul>
 			</div>
@@ -113,7 +108,14 @@
 				</li>
 			</ul>
 		<% end %>
-	</div>
+  </div>
+
+  <% if @contact.photo? %>
+    <div class="photo">
+      <h2><%=@contact.name.possessive %> Photo</h2>
+      <%= image_tag @contact.photo.url(:small) %>
+    </div>
+  <% end %>
 
 <% end %>
 

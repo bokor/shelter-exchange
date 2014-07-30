@@ -9,7 +9,6 @@
 	</script>
 <% end %>
 
-
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
@@ -35,10 +34,7 @@
 				<h3>Address:</h3>
 				<ul>
 					<li><%= @shelter.name %></li>
-					<li><%= @shelter.street %></li>
-					<% unless @shelter.street_2.blank? %>
-						<li><%= @shelter.street_2 %></li>
-					<% end %>
+					<li><%= @shelter.street %> <%= @shelter.street_2 %></li>
 					<li><%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip_code %></li>
 				</ul>
 				<% if @shelter.kill_shelter? %>

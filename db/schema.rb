@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140724192457) do
+ActiveRecord::Schema.define(:version => 20140729231633) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -193,8 +193,11 @@ ActiveRecord::Schema.define(:version => 20140724192457) do
     t.boolean  "staff"
     t.boolean  "veterinarian"
     t.integer  "shelter_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.decimal  "lat",          :precision => 15, :scale => 10
+    t.decimal  "lng",          :precision => 15, :scale => 10
+    t.string   "photo"
   end
 
   add_index "contacts", ["adopter"], :name => "index_contacts_on_adopter"
@@ -203,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20140724192457) do
   add_index "contacts", ["foster"], :name => "index_contacts_on_foster"
   add_index "contacts", ["last_name", "first_name"], :name => "index_contacts_on_last_name_and_first_name"
   add_index "contacts", ["last_name"], :name => "index_contacts_on_last_name"
+  add_index "contacts", ["lat", "lng"], :name => "index_contacts_on_lat_and_lng"
   add_index "contacts", ["shelter_id"], :name => "index_contacts_on_shelter_id"
   add_index "contacts", ["staff"], :name => "index_contacts_on_staff"
   add_index "contacts", ["transporter"], :name => "index_contacts_on_transporter"
@@ -417,7 +421,6 @@ ActiveRecord::Schema.define(:version => 20140724192457) do
     t.integer  "contact_id"
   end
 
-  add_index "status_histories", ["animal_id", "contact_id", "status_date"], :name => "contact_animal_list"
   add_index "status_histories", ["animal_id"], :name => "index_status_histories_on_animal_id"
   add_index "status_histories", ["animal_status_id"], :name => "index_status_histories_on_animal_status_id"
   add_index "status_histories", ["contact_id", "animal_status_id"], :name => "index_status_histories_on_contact_id_and_animal_status_id"

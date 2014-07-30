@@ -1,7 +1,10 @@
 <tr class="<%= "contact_#{contact.id}" %> contact_row">
+  <td class="image">
+	  <%= link_to image_tag(contact.photo.url(:thumb)), contact_path(contact)  %>
+	</td>
 	<td class="details">
     <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
-		<p><%= contact.street %></p>
+		<p><%= contact.street %> <%= contact.street_2 %></p>
 		<p><%= contact.city %>, <%= contact.state %> <%= contact.zip_code %></p>
 	</td>
 	<td class="status">
@@ -9,13 +12,14 @@
 		<% unless contact.mobile.blank? %>
 			<p><%=number_to_phone(contact.mobile, :delimiter => "-")%>(m)</p>
 		<% end %>
-    <p><%= contact.email %></p>
+    <p><a href="mailto:<%= contact.email %>"><%= contact.email %></a></p>
 	</td>
 </tr>
 <tr class="<%= "contact_#{contact.id}" %> role_row">
+  <td>&nbsp;</td>
   <td>
     <div class="roles">
-      <span class="title">Roles:</span>
+      <!-- <span class="title">Roles:</span> -->
       <% Contact::ROLES.each do |value| %>
         <% if contact.send(value) %>
           <span class="role"><%= value.humanize %></span>

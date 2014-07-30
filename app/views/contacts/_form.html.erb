@@ -73,9 +73,39 @@
           <%= f.label value, value.humanize, :class => "desc choice" %>
         </span>
       <% end %>
-		</li>
+    </li>
+    <li class="section">
+      <section>
+        <h3>Photo</h3>
+				<div>Select a photo for the contact (File types allowed: <%=ContactPhotoUploader.new.extension_white_list.to_sentence %>)</div>
+      </section>
+    </li>
+    <li id="photo" class="full">
+      <span class="left center">
+        <%= image_tag @contact.photo.url(:small) %>
+        <%= f.hidden_field :photo_cache %>
+
+        <% if !@contact.new_record? && @contact.photo? %>
+          <br /><br />
+          <%= f.check_box :remove_photo %>
+          <%= f.label :remove_photo, "Delete photo", :class => "desc" %>
+        <% end %>
+      </span>
+      <span class="leftPadded">
+        <% if !@contact.new_record? && @contact.photo? %>
+          <%= f.label :photo, "Change photo", :class => "desc" %>
+        <% else %>
+          <%= f.label :photo, "Upload photo", :class => "desc" %>
+        <% end %>
+        <%= f.file_field :photo, :class => "field file" %>
+
+      </span>
+      <%= has_error_message?(@contact, :photo)%>
+	  </li>
 		<li class="buttons">
-			<%= f.submit button_text, :disable_with => "Submitting...", :class => 'button' %>
+		  <p id="submit_message"><%=image_tag("ajax-loader.gif", :width => "30", :height => "30")%>Large logo files may take a few seconds to upload!</p>
+		  <%= f.submit button_text, :disable_with => "Submitting...",
+								  :onclick => "$('#submit_message').delay(1500).slideToggle(1000);", :class => 'button' %>
 			<% unless action_name == "new" or action_name =="create" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
 				<%= link_to "Cancel", contact_path(@contact) %>

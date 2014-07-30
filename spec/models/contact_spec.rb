@@ -2,7 +2,9 @@ require "spec_helper"
 
 describe Contact do
 
+  it_should_behave_like Geocodeable
   it_should_behave_like StreetAddressable
+  it_should_behave_like Uploadable
 
   it "has a default scope" do
     expect(Contact.scoped.to_sql).to eq(Contact.order("contacts.last_name ASC, contacts.first_name ASC").to_sql)
@@ -72,6 +74,14 @@ describe Contact do
       )
       expect(contact.phone).to eq("1234567890")
       expect(contact.mobile).to eq("0987654321")
+    end
+  end
+
+  context "Mount Uploader" do
+
+    it "returns a photo uploader for the photo" do
+      contact = Contact.gen
+      expect(contact.photo).to be_kind_of(ContactPhotoUploader)
     end
   end
 end

@@ -1,5 +1,5 @@
 class Shelter < ActiveRecord::Base
-  include Geocodeable, Uploadable
+  include StreetAddressable, Geocodeable, Uploadable
 
   # Constants
   #----------------------------------------------------------------------------
