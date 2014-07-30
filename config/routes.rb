@@ -31,7 +31,9 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Status Histories
     #----------------------------------------------------------------------------
-    resources :status_histories, :only => [:edit, :update]
+    resources :status_histories, :only => [:edit, :update] do
+      resources :comments
+    end
 
     # Comments
     #----------------------------------------------------------------------------

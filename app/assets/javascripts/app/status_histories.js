@@ -2,7 +2,13 @@
  * app/status_histories.js
  * ------------------------------------------------------------------------ */
 var StatusHistories = {
-
+	getComments: function(id){
+		$.ajax({
+			url: "/status_histories/"+id+"/comments.js",
+			type: "get",
+			dataType: "script"
+		});
+	},
 	datePicker: function(element){
 		$(element + " .date_picker").datepicker({
 			numberOfMonths: 1,

@@ -383,7 +383,6 @@
 .show_contacts table.animal_list .animal_row td.details { width:380px; color:#666; }
 .show_contacts table.animal_list .animal_row td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
 
-.show_contacts table.animal_list .last_status .status_history { border-bottom: 0px none; }
 
 /* Show Contacts :: Photo
 -----------------------------------------------------------------------------*/
@@ -1066,7 +1065,10 @@
 .status_history .action_links{display:inline-block; float:right; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
 .status_history .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 
-
+/* Status Histories :: Show Contacts */
+.show_contacts table.animal_list .last_status .status_history { border-bottom: 0px none; }
+.show_contacts .status_history_row .status_history .details{width:63%;}
+.show_contacts .status_history_row .status_history .action_links{width:20%;}
 
 
 

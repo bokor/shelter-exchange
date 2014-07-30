@@ -10,7 +10,6 @@
 		<div class="clear"></div>
 
 		<div id="create_comment" class="box hide orange">
-			<!-- <h3>Add a new comment</h3> -->
 			<div id="create_comment_errors"></div>
 			<%= form_for (@comment = Comment.new), :remote => true, :format => :js, :html => { :id => "create_comment_form", :class => "create_comment_form" } do |f| %>
 				<ul>

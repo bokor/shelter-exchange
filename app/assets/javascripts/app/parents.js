@@ -7,6 +7,6 @@ var Parents = {
 		$('#placement_animal_id').val(id);
 		$('#animal_search_link').text("Change animal");
 		$('.qtip.ui-tooltip').qtip('hide');
-  	}
+  }
 };
 

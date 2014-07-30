@@ -3,6 +3,32 @@ require "spec_helper"
 describe CommentsController do
   login_user
 
+  describe "GET index" do
+
+    before do
+      @status_history = StatusHistory.gen
+      @comment = Comment.gen :shelter => current_shelter, :commentable => @status_history
+    end
+
+    it "responds successfully" do
+      get :index, :status_history_id => @status_history.id, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "assigns @comments" do
+      another_comment = Comment.gen :shelter => current_shelter, :commentable => @status_history
+
+      get :index, :status_history_id => @status_history.id, :format => :js
+      expect(assigns(:comments)).to eq([@comment, another_comment])
+    end
+
+    it "renders the :index view" do
+      get :index, :status_history_id => @status_history.id, :format => :js
+      expect(response).to render_template(:index)
+    end
+  end
+
   describe "GET edit" do
 
     before do
