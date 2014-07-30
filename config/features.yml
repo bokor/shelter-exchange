@@ -9,7 +9,7 @@ test:
 
 staging:
   features:
-    contacts: false
+    contacts: true
 
 production:
   features:
