@@ -412,5 +412,47 @@ describe ContactsController do
       end
     end
   end
+
+  describe "GET find_by_full_name" do
+
+    before do
+      @contact1 = Contact.gen :first_name => "jim", :last_name => "smith", :shelter => current_shelter
+      @contact2 = Contact.gen :first_name => "jimmy", :last_name => "smithy", :shelter => current_shelter
+    end
+
+    it "responds successfully" do
+      get :find_by_full_name, :q => "", :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :find_by_full_name view" do
+      get :find_by_full_name, :q => "", :format => :js
+      expect(response).to render_template(:find_by_full_name)
+    end
+
+    it "assigns @contacts" do
+      get :find_by_full_name, :q => "jim smith", :format => :js
+      expect(assigns(:contacts)).to eq([@contact1, @contact2])
+    end
+
+    context "with no parameters" do
+      it "assigns @contacts" do
+        get :find_by_full_name, :q => "", :format => :js
+        expect(assigns(:contacts)).to eq({})
+      end
+    end
+
+    context "with pagination" do
+      it "paginates :find_animals_by_name results" do
+        contact = Contact.gen :first_name => "billy", :shelter => current_shelter
+        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [contact] }
+
+        get :find_by_full_name, :q => "billy", :page => 1, :format => :js
+
+        expect(assigns(:contacts)).to eq([contact])
+      end
+    end
+  end
 end
 

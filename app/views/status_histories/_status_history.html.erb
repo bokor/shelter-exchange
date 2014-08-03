@@ -1,16 +1,25 @@
 <div id="<%= "status_history_#{status_history.id}" %>" class="status_history">
 	<span class="status_date"><%= format_date_for(status_history.status_date, :short) %></span>
 	<span class="details">
-    <span class="status"><%= status_history.animal_status.name %>: <span class="reason"><%= status_history.reason.blank? ? "Not provided" : status_history.reason %></span></span>
+    <span class="status">
+      <%= status_history.animal_status.name %>
+      <% if status_history.contact %>
+        <span class='contact_link'>(<%= link_to status_history.contact.name, contact_path(status_history.contact) %>)</span>
+      <% end %>
+      - <span class="reason"><%= status_history.reason.blank? ? "Not provided" : status_history.reason %></span></span>
   </span>
-  <span><%=status_history.contact %></span>
-
 	<span class="action_links">
     <% if can?(:update, StatusHistory) %>
-      <span class="edit_link">
+      <span class="change_date_link">
         <%= link_to "Change date", edit_status_history_path(status_history, :format => :js), :remote => true %>
       </span>
     <% end %>
+    <span class="add_contact_link">
+      <a href="#" class="tooltip_dialog"
+         data-dialog-element="#dialog_contact_search"
+         data-dialog-show="Contacts.updateSearchDialog('<%= status_history.id %>');"
+         data-dialog-title="&nbsp;">Add contact</a>
+    </span>
   </span>
-
 </div>
+

@@ -110,11 +110,14 @@
 .show_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 .show_animals table.animal_details td.metadata ul li{ padding-bottom: 10px; }
 
-.show_animals .dialog {width: 680px; height: 450px; }
-
 /* Show Animal :: Photo Gallery
 -----------------------------------------------------------------------------*/
 .show_animals #photo_gallery{width: 400px; height: 290px;margin-bottom: 10px;}
+
+/* Show Animal :: Contact Search Dialog
+-----------------------------------------------------------------------------*/
+.show_animals #dialog_contact_search input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
+.show_animals #dialog_contact_search input[type=submit] {margin-left: 5px;}
 
 /* Show Animal :: Special Needs Layout
 -----------------------------------------------------------------------------*/
@@ -779,10 +782,8 @@
 .show_parents .parent_details h3{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_parents .parent_details:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
-
 /* Show Parents :: Animal Search Dialog
 -----------------------------------------------------------------------------*/
-.show_parents #dialog_animal_search{height: 350px;}
 .show_parents #dialog_animal_search input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
 .show_parents #dialog_animal_search input[type=submit] {margin-left: 5px;}
 

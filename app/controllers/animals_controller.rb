@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
     @uploader_photos = PhotoPresenter.as_uploader_collection(@photos)
 
     @notes            = @animal.notes.includes(:documents).all
-    @status_histories = @animal.status_histories.includes(:animal_status).all
+    @status_histories = @animal.status_histories.includes(:animal_status, :contact).all
     @alerts           = @animal.alerts.active.all
     @overdue_tasks    = @animal.tasks.overdue.active.all
     @today_tasks      = @animal.tasks.today.active.all

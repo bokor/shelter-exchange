@@ -2,14 +2,15 @@
 	$('#edit_status_history_errors_<%=@status_history.id%>').html( "<%= escape_javascript(render 'shared/error_messages', :target => @status_history) %>" );
 	<%= render 'shared/ajax_form_errors', :target => @status_history, :form_id => "edit_status_history_form_#{@status_history.id}" %>
 <% else %>
-	$('#edit_status_history_<%=@status_history.id%>').slideToggle(1000, function() {
-		$(this).remove();
-	});
-	$('#status_history_<%=@status_history.id%>').replaceWith( "<%= escape_javascript(render @status_history) %>" );
+  $('#edit_status_history_<%=@status_history.id%>').slideToggle(1000, function() {
+    $(this).remove();
+  });
+
+	$('#status_history_<%=@status_history.id%>').replaceWith("<%= escape_javascript(render @status_history) %>");
 	$('#status_history_<%=@status_history.id%>').show().effect("highlight", {}, 2000);
 
-	// Remove Errors
-	$('#edit_status_history_errors_<%=@status_history.id %>').html("");
+  // Remove Errors
+  $('#edit_status_history_errors_<%=@status_history.id %>').html("");
 	$('#edit_status_history_form_<%=@status_history.id %> p.error').remove();
 	$('#edit_status_history_form_<%=@status_history.id %> li').removeClass("error");
 <% end %>

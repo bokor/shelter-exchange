@@ -26,7 +26,7 @@
 /*----------------------------------------------------------------------------*/
 $(function() {
 
-  $('.tooltip').live('mouseover', function(event) {
+  $(document).on('mouseover', '.tooltip', function(e) {
     var width  = $(this).width();
     var height = $(this).height();
 
@@ -36,24 +36,25 @@ $(function() {
 				text: function(api) { return $(this).attr('data-tip'); }
 			},
 			show: {
-				event: event.type, // Use the same show event as the one that triggered the event handler
+				event: e.type, // Use the same show event as the one that triggered the event handler
 				ready: true // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
 			},
-			style: { classes: 'ui-tooltip-dark ui-tooltip-tipsy ui-tooltip-shadow' },
+			style: { classes: 'qtip-tipsy' },
 			position: {
         viewport: $(window),
 				my: 'right center',
 				adjust: { y: -(height/2), x:-(width) }
 			}
-		}, event).each(function(i) { // IE ONLY NOT SURE IF IT WORKS YET
+		}, e).each(function(i) { // IE ONLY NOT SURE IF IT WORKS YET
 			$.attr(this, 'oldtitle', $.attr(this, 'title'));
 			this.removeAttribute('title');
 		});
 	});
 
-	$('.tooltip_dialog').live('click', function(event) {
-		event.preventDefault();
-		$(this).qtip({
+  $(document).on('click', '.tooltip_dialog', function(e) {
+		e.preventDefault();
+
+    $(this).qtip({
 			overwrite: true,
 			content: {
 				text: $($(this).attr('data-dialog-element')),
@@ -69,35 +70,35 @@ $(function() {
 				adjust: { resize: true }
 			},
 			show: {
-				event: event.type, // Use the same show event as the one that triggered the event handler
+				event: e.type, // Use the same show event as the one that triggered the event handler
 				ready: true, // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
 				solo: true,
-				modal: true
+        modal: true
 			},
-			hide: false,
+			hide: true,
 			style: {
-				classes: 'ui-tooltip-dialog ui-tooltip-light ui-tooltip-rounded'
+				classes: 'qtip-light qtip-rounded qtip-shadow qtip-dialog',
 			},
 			events: {
-				blur: function(event, api) {
+				blur: function(e, api) {
 					var fn = api.elements.target.attr('data-dialog-blur');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
 					}
 				},
-				show: function(event, api) {
+				show: function(e, api) {
 					var fn = api.elements.target.attr('data-dialog-show');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
 					}
 				}
 			}
-		});
-
+		}, e).removeData('qtip');
 	});
 
-	$('.photo_dialog, .document_dialog').live('click', function(event) {
-		event.preventDefault();
+  $(document).on('click', '.photo_dialog, .document_dialog', function(e) {
+		e.preventDefault();
+
 		$(this).qtip({
 			overwrite: false,
 			content: {
@@ -114,23 +115,23 @@ $(function() {
 				adjust: { resize: true }
 			},
 			show: {
-				event: event.type, // Use the same show event as the one that triggered the event handler
+				event: e.type, // Use the same show event as the one that triggered the event handler
 				ready: true, // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
 				solo: true,
 				modal: true
 			},
 			hide: false,
 			style: {
-				classes: 'ui-tooltip-dialog ui-tooltip-light ui-tooltip-rounded'
+				classes: 'qtip-light qtip-rounded qtip-shadow qtip-dialog'
 			},
 			events: {
-				blur: function(event, api) {
+				blur: function(e, api) {
 					var fn = api.elements.target.attr('data-dialog-blur');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);
 					}
 				},
-				show: function(event, api) {
+				show: function(e, api) {
 					var fn = api.elements.target.attr('data-dialog-show');
 					if (typeof fn != 'undefined' && fn.length > 0) {
 						eval(fn);

@@ -36,8 +36,6 @@ textarea.placeholder { color: #999; }
 -----------------------------------------------------------------------------*/
 .tooltip{cursor:pointer;}
 
-.ui-tooltip-dialog{max-width: 100%;font-size: 13px;}
-.ui-tooltip-dialog .ui-tooltip-titlebar{font-size: 11px;}
 
 /* ClearFix */
 /******************************************************************/
@@ -61,7 +59,8 @@ textarea.placeholder { color: #999; }
 
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.dialog {width: 680px; height: 425px; overflow:auto; display:none; }
+.qtip-dialog {min-width: 680px; max-width:680px; min-height: 425px;}
+.dialog {overflow:auto; display:none; }
 .dialog .wrapper { padding: 15px; color: #222; }
 .dialog .title{float:left;}
 .dialog .action_links{float:right;text-align: right;font-size: 11px; font-weight: bold; }

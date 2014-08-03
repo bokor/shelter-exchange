@@ -4,11 +4,26 @@
 var StatusHistories = {
 	getComments: function(id){
 		$.ajax({
-			url: "/status_histories/"+id+"/comments.js",
-			type: "get",
+			url: '/status_histories/' + id + '/comments.js',
+			type: 'get',
 			dataType: "script"
 		});
 	},
+	selectContact: function(contact_id) {
+    $('.qtip').qtip('hide');
+
+		var id = $('#status_history_id').val();
+    $.ajax({
+			url: '/status_histories/' + id + '.js',
+			type: 'put',
+			dataType: 'script',
+      data: {
+        status_history: {
+			  	contact_id: contact_id
+        }
+      }
+		});
+  },
 	datePicker: function(element){
 		$(element + " .date_picker").datepicker({
 			numberOfMonths: 1,

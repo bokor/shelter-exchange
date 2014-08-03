@@ -51,6 +51,16 @@ class Contact < ActiveRecord::Base
     scope
   end
 
+  def self.search_by_name(q)
+    scope = self.scoped
+
+    q.split(" ").each do |word|
+      scope = scope.where("contacts.first_name LIKE ? or contacts.last_name LIKE ?", "%#{word}%", "%#{word}%")
+    end
+
+    scope
+  end
+
   def self.filter_by_last_name_role(by_last_name, by_role)
     scope = self.scoped
     scope = scope.where("contacts.last_name like ?", "#{by_last_name}%") unless by_last_name.blank?

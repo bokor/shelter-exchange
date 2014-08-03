@@ -1,6 +1,6 @@
 <tr class="<%= "contact_#{contact.id}" %> contact_row">
   <td class="image">
-	  <%= link_to image_tag(contact.photo.url(:thumb)), contact_path(contact)  %>
+    <%= link_to image_tag(contact.photo.url(:thumb)), contact_path(contact) %>
 	</td>
 	<td class="details">
     <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
@@ -19,7 +19,6 @@
   <td>&nbsp;</td>
   <td>
     <div class="roles">
-      <!-- <span class="title">Roles:</span> -->
       <% Contact::ROLES.each do |value| %>
         <% if contact.send(value) %>
           <span class="role"><%= value.humanize %></span>
@@ -29,16 +28,23 @@
   </td>
   <td>
     <div class="action_links">
-			<% if can?(:update, Contact) %>
-			<span class="edit_link">
-		    	<%= link_to "Edit", edit_contact_path(contact) %>
-			</span>
-			<% end %>
-			<% if can?(:destroy, Contact) %>
-			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", contact, :confirm => "Are you sure you want to delete? Contact records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true, :format => :js %>
-			</span>
-			<% end %>
+      <% if action_name == "find_by_full_name" %>
+        <span class="select_link">
+			    <%= link_to "Select", "#", :onclick => "StatusHistories.selectContact(#{contact.id}); return false;", :class => "button green" %>
+				</span>
+      <% else %>
+        <% if can?(:update, Contact) %>
+          <span class="edit_link">
+            <%= link_to "Edit", edit_contact_path(contact) %>
+          </span>
+        <% end %>
+
+        <% if can?(:destroy, Contact) %>
+          <span class="delete_link">&nbsp;|&nbsp;
+            <%= link_to "Delete", contact, :confirm => "Are you sure you want to delete? Contact records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true, :format => :js %>
+          </span>
+        <% end %>
+      <% end %>
 		</div>
   </td>
 </tr>

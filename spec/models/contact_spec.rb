@@ -179,6 +179,39 @@ describe Contact, ".filter_by_last_name_role" do
   end
 end
 
+describe Contact, ".search_by_name" do
+
+  it "returns a list of contacts based on the first name" do
+    contact1 = Contact.gen :first_name => "jim"
+    contact2 = Contact.gen :first_name => "jimmy"
+    Contact.gen :first_name => "bob"
+
+    contacts = Contact.search_by_name("jim")
+    expect(contacts.count).to eq(2)
+    expect(contacts).to match_array([contact1, contact2])
+  end
+
+  it "returns a list of contacts based on the last name" do
+    contact1 = Contact.gen :last_name => "smith"
+    contact2 = Contact.gen :last_name => "smithy"
+    Contact.gen :last_name => "doe"
+
+    contacts = Contact.search_by_name("smith")
+    expect(contacts.count).to eq(2)
+    expect(contacts).to match_array([contact1, contact2])
+  end
+
+  it "returns a list of contacts based on the first and last name" do
+    contact1 = Contact.gen :first_name => "jim", :last_name => "smith"
+    contact2 = Contact.gen :first_name => "jimmy", :last_name => "smithy"
+    Contact.gen :first_name => "john", :last_name => "doe"
+
+    contacts = Contact.search_by_name("jim smith")
+    expect(contacts.count).to eq(2)
+    expect(contacts).to match_array([contact1, contact2])
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Contact, "#shelter" do
