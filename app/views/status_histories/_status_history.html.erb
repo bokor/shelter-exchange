@@ -14,11 +14,17 @@
         <%= link_to "Change date", edit_status_history_path(status_history, :format => :js), :remote => true %>
       </span>
     <% end %>
-    <span class="add_contact_link">
-      <a href="#" class="tooltip_dialog"
-         data-dialog-element="#dialog_contact_search"
-         data-dialog-show="Contacts.updateSearchDialog('<%= status_history.id %>');"
-         data-dialog-title="&nbsp;">Add contact</a>
+    <span class="contact_link">
+      <% if status_history.contact %>
+        <%= link_to "Remove contact",
+                    status_history_path(status_history, :status_history => { :contact_id => nil }, :format => :js),
+                    :method => :put, :remote => true, :confirm => "Are you sure you want to remove the contact?" %>
+      <% else %>
+        <a href="#" class="tooltip_dialog"
+           data-dialog-element="#dialog_contact_search"
+           data-dialog-show="Contacts.updateSearchDialog('<%= status_history.id %>');"
+           data-dialog-title="&nbsp;">Add contact</a>
+      <% end %>
     </span>
   </span>
 </div>
