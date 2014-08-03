@@ -59,7 +59,8 @@ textarea.placeholder { color: #999; }
 
 /* Dialog :: Layout
 -----------------------------------------------------------------------------*/
-.qtip-dialog {min-width: 680px; max-width:680px; min-height: 425px;}
+.qtip-dialog {min-width: 680px; max-width:680px; min-height: 425px; }
+.qtip-content{overflow:auto; max-height: 425px;}
 .dialog {overflow:auto; display:none; }
 .dialog .wrapper { padding: 15px; color: #222; }
 .dialog .title{float:left;}
