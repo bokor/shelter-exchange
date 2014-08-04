@@ -2,8 +2,12 @@
   <td class="image">
     <%= link_to image_tag(contact.photo.url(:thumb)), contact_path(contact) %>
 	</td>
-	<td class="details">
-    <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
+  <td class="details">
+    <% if action_name == "find_by_full_name" %>
+      <h2><%= "#{contact.last_name}, #{contact.first_name}" %></h2>
+    <% else %>
+      <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
+    <% end %>
 		<p><%= contact.street %> <%= contact.street_2 %></p>
 		<p><%= contact.city %>, <%= contact.state %> <%= contact.zip_code %></p>
 	</td>

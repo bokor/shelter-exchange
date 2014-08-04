@@ -332,18 +332,18 @@
 
 /* Index Contacts :: Contact List Layout
 -----------------------------------------------------------------------------*/
-.index_contacts table.contact_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
-.index_contacts table.contact_list .contact_row td {border-top:1px #ccc dotted; padding-top: 9px; }
-.index_contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
-.index_contacts table.contact_list td{vertical-align:top;font-size:12px;}
-.index_contacts table.contact_list td.details { width:380px;padding-left: 15px;color:#666; }
-.index_contacts table.contact_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
-.index_contacts table.contact_list .role_row .action_links {text-align:right;padding-right: 5px;}
+#contacts table.contact_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+#contacts table.contact_list .contact_row td {border-top:1px #ccc dotted; padding-top: 9px; }
+#contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
+#contacts table.contact_list td{vertical-align:top;font-size:12px;}
+#contacts table.contact_list td.details { width:380px;padding-left: 15px;color:#666; }
+#contacts table.contact_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+#contacts table.contact_list .role_row .action_links {text-align:right;padding-right: 5px;}
 
-.index_contacts table.contact_list .role_row .roles:before{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.index_contacts table.contact_list .role_row .roles{ font-weight:normal; font-size: 11px; padding-left: 15px;}
-.index_contacts table.contact_list .role_row .roles .title{ font-weight:bold; font-size: 12px; padding-right: 5px;}
-.index_contacts table.contact_list .role_row .roles .role{padding-right: 5px;}
+#contacts table.contact_list .role_row .roles:before{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
+#contacts table.contact_list .role_row .roles{ font-weight:normal; font-size: 11px; padding-left: 15px;}
+#contacts table.contact_list .role_row .roles .title{ font-weight:bold; font-size: 12px; padding-right: 5px;}
+#contacts table.contact_list .role_row .roles .role{padding-right: 5px;}
 
 /* Index Contacts :: Search and Filters Layout
 -----------------------------------------------------------------------------*/
@@ -360,6 +360,11 @@
 .index_contacts table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
 
 .index_contacts #contacts .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
+
+/* Dialog Contact Search :: Dialog
+-----------------------------------------------------------------------------*/
+#form_contact_search { padding-bottom: 10px;}
+#dialog_contact_search .no_results h2{ font-size: 24px; padding:10px 0;margin: 10px 0; border-bottom:1px dotted #ccc; }
 
 /* Show Contact :: Contact Details
 -----------------------------------------------------------------------------*/

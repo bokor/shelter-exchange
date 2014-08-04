@@ -1,1 +1,8 @@
-<div class='no_results'><h2>No Contacts Found</h2></div>
+<% create_new_link ||= false %>
+<div class='no_results'>
+  <h2>No Contacts Found</h2>
+  <% if create_new_link %>
+    <p><%= link_to "Create a new contact?", new_contact_path,
+        :class => "button blue", :target => "_new" %></p>
+  <% end %>
+</div>
