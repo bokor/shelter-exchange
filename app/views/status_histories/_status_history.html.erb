@@ -1,19 +1,15 @@
 <div id="<%= "status_history_#{status_history.id}" %>" class="status_history">
 	<span class="status_date"><%= format_date_for(status_history.status_date, :short) %></span>
-	<span class="details">
-    <span class="status">
-      <%= status_history.animal_status.name %>
-      <% if status_history.contact %>
-        <span class='contact_link'>(<%= link_to status_history.contact.name, contact_path(status_history.contact) %>)</span>
-      <% end %>
-      - <span class="reason"><%= status_history.reason.blank? ? "Not provided" : status_history.reason %></span></span>
-  </span>
-	<span class="action_links">
-    <% if can?(:update, StatusHistory) %>
-      <span class="change_date_link">
-        <%= link_to "Change date", edit_status_history_path(status_history, :format => :js), :remote => true %>
-      </span>
+
+  <span class="status">
+    <%= status_history.animal_status.name %>
+    <% if status_history.contact %>
+      <span class='contact_link'>(<%= link_to status_history.contact.name, contact_path(status_history.contact) %>)</span>
     <% end %>
+  </span>
+
+	<span class="action_links">
+
     <span class="contact_link">
       <% if status_history.contact %>
         <%= link_to "Remove contact",
@@ -26,6 +22,17 @@
            data-dialog-title="&nbsp;">Add contact</a>
       <% end %>
     </span>
+
+    <% if can?(:update, StatusHistory) %>
+      <span class="change_date_link">
+        <%= link_to "Change date", edit_status_history_path(status_history, :format => :js), :remote => true %>
+      </span>
+    <% end %>
+
   </span>
+
+  <div class="reason">
+    <%= status_history.reason.blank? ? "No reason provided" : status_history.reason %>
+  </div>
 </div>
 

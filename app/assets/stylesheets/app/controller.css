@@ -162,12 +162,7 @@
 /* Animal Form
 -----------------------------------------------------------------------------*/
 .animals form li#photo input.file{margin-bottom: 40px; display:block;}
-/* Leave here it was for the 4 images in columns
-.animals form li#photo{width: 45%;padding: 10px 2% 20px 0; display:inline-block; vertical-align:top;}
-.animals form li#photo span.left{width: 100px;}
-.animals form li#photo span.leftPadded{width: 40%;}
-.animals form li#photo.error{display:inline-block !important;}
-.animals form li#photo input.file{margin-bottom: 20px; display:block;}*/
+
 .animals #submit_message{display:none;font-weight:bold; font-size: 14px; color: red;padding-bottom:15px; height: 30px; vertical-align:middle;}
 .animals #submit_message img{padding-right: 10px;vertical-align: middle;}
 
@@ -333,6 +328,7 @@
 /* Index Contacts :: Contact List Layout
 -----------------------------------------------------------------------------*/
 #contacts table.contact_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
+#contacts table.contact_list h2{ line-height:21px; }
 #contacts table.contact_list .contact_row td {border-top:1px #ccc dotted; padding-top: 9px; }
 #contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
 #contacts table.contact_list td{vertical-align:top;font-size:12px;}
@@ -344,6 +340,11 @@
 #contacts table.contact_list .role_row .roles{ font-weight:normal; font-size: 11px; padding-left: 15px;}
 #contacts table.contact_list .role_row .roles .title{ font-weight:bold; font-size: 12px; padding-right: 5px;}
 #contacts table.contact_list .role_row .roles .role{padding-right: 5px;}
+
+
+/* Contacts :: Dialog search layout
+-----------------------------------------------------------------------------*/
+.show_animals .qtip {line-height:14px;}
 
 /* Index Contacts :: Search and Filters Layout
 -----------------------------------------------------------------------------*/
@@ -1045,7 +1046,6 @@
 .note .action_links {display:inline-block;float: right; width: 30%; text-align: right;font-size: 10px;}
 
 .note .description { clear:both; border-top: 1px solid #bbb; padding: 10px 4%; width: 92%; display:none; line-height: 2em;}
-
 .note .description p {display:inline-block;font-size: 13px; line-height: 1.75em; padding-top:8px; color: #222;}
 
 
@@ -1060,21 +1060,22 @@
 /* Status Histories List :: Layout */
 /******************************************************************/
 .status_history_list {border-top: 1px dotted #ccc; }
-.status_history {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
+.status_history {width: 100%; display:inline-block; line-height: 35px;text-align:left;border-bottom: 1px dotted #bbb;cursor: default;}
 
-.status_history .status_date {display:inline-block; width: 10%;color:#666; font-size: 10px; letter-spacing: -1px; }
+.status_history .status_date {display:inline-block; width: 48px;color:#666; font-size: 10px; letter-spacing: -1px; }
+.status_history .status {display:inline-block;width: 59%; vertical-align:top; padding-left: 5px;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:6px;}
 
-.status_history .details{display:inline-block; width: 75%; vertical-align:top; padding-left: 5px;}
-	.status_history .status {display:inline-block;color:#000; font-weight: bold;font-size: 13px;line-height: 1.75em; padding-top:8px;}
-	.status_history .reason {font-weight: normal;font-size: 12px;}
-
-.status_history .action_links{display:inline-block; float:right; width: 12%; text-align:right;font-size: 10px;font-weight:bold;}
+.status_history .action_links{display:inline-block; float:right; width: 28%; text-align:right;font-size: 10px;font-weight:bold;}
+.status_history .action_links span{padding-left: 5px;}
 .status_history .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+
+.status_history .reason {padding-left: 58px;font-weight: normal;font-size: 11px;}
+
 
 /* Status Histories :: Show Contacts */
 .show_contacts table.animal_list .last_status .status_history { border-bottom: 0px none; }
-.show_contacts .status_history_row .status_history .details{width:63%;}
-.show_contacts .status_history_row .status_history .action_links{width:20%;}
+.show_contacts .status_history_row .status_history .details{width:60%;}
+.show_contacts .status_history_row .status_history .action_links{width:22%;}
 
 
 
