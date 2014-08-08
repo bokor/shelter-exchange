@@ -7,8 +7,13 @@ class ParentsController < ApplicationController
 
   def search
     q = params[:q].strip.split.join("%")
-    parent_params = params[:parents].delete_if{|k,v| v.blank?} if params[:parents]
-    @parents = q.blank? ? {} : Parent.search(q, parent_params).paginate(:page => params[:page]).all
+
+    @parents = if q.blank?
+      Parent.paginate(:page => params[:page]).all
+    else
+      parent_params = params[:parents].delete_if{|k,v| v.blank?} if params[:parents]
+      Parent.search(q, parent_params).paginate(:page => params[:page]).all
+    end
   end
 
   def migrate
