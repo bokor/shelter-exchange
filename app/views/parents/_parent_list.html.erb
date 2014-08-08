@@ -1,12 +1,5 @@
-<% unless parents.blank? %>
-	<table class="parent_list">
-		<%= render parents %>
-	</table>
-	<%= will_paginate parents %>
-<% end %>
+<table class="parent_list">
+  <%= render parents %>
+</table>
+<%= will_paginate parents %>
 
-<div class="no_results">
-	<h3>Didn't find your results?  Try looking up with a different name, email address or phone number</h3>
-	<p>-- or --</p>
-	<p><%= link_to "create a new parent?", new_parent_path, :class => "button red" %></p>
-</div>

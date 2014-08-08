@@ -62,7 +62,14 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+  <style type="text/css" media="all">
+    .index_contacts #sidebar .action_links li:first-child { margin-bottom:15px; padding-bottom: 10px; border-bottom: 1px dotted #999; }
+  </style>
 	<ul class="action_links">
-		<%= link_to "Create new contact", new_contact_path, :class => "button red" %>
+		<li><%= link_to "Create new contact", new_contact_path, :class => "button red" %></li>
+    <li>
+      <%= link_to "Migrate Parents to Contacts", parents_path,
+        :class => "button blue tooltip",
+        "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
 	</ul>
 <% end %>

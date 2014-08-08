@@ -2,48 +2,44 @@ class ParentsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-  end
-
-  def show
-    @parent = Parent.includes(:notes).find(params[:id])
-
-    @adopted_placements = @parent.placements.adopted.includes(:shelter, :animal => [:animal_type, :photos]).all
-    @foster_care_placements = @parent.placements.foster_care.includes(:shelter, :animal => [:animal_type, :photos]).all
-    respond_with(@parent)
-  end
-
-  def edit
-    @parent = Parent.find(params[:id])
-    respond_with(@parent)
-  end
-
-  def new
-    @parent = Parent.new
-    respond_with(@parent)
-  end
-
-  def create
-    @parent = Parent.new(params[:parent])
-    flash[:notice] = "#{@parent.name} has been created." if @parent.save
-    respond_with(@parent)
-  end
-
-  def update
-    @parent = Parent.find(params[:id])
-    flash[:notice] = "#{@parent.name} has been updated." if @parent.update_attributes(params[:parent])
-    respond_with(@parent)
-  end
-
-  def destroy
-    @parent = Parent.find(params[:id])
-    flash[:notice] = "#{@parent.name} has been deleted." if @parent.destroy
-    respond_with(@parent)
+    @parents = Parent.paginate(:page => params[:page]).all
   end
 
   def search
     q = params[:q].strip.split.join("%")
     parent_params = params[:parents].delete_if{|k,v| v.blank?} if params[:parents]
     @parents = q.blank? ? {} : Parent.search(q, parent_params).paginate(:page => params[:page]).all
+  end
+
+  def migrate
+    parent = Parent.find(params[:id])
+    contact = @current_shelter.contacts.new(
+     :first_name => parent.name.split(" ").first,
+     :last_name => parent.name.split(" ").last,
+     :street => parent.street,
+     :city => parent.city,
+     :state => parent.state,
+     :zip_code => parent.zip_code,
+     :phone => parent.phone,
+     :mobile => parent.mobile,
+     :email => parent.email
+    )
+
+    if contact.save
+
+      parent.notes.each do |note|
+        note.notable = contact
+        note.shelter = @current_shelter
+        note.save!
+      end
+
+      parent.reload.destroy
+      flash[:notice] = "#{contact.first_name} #{contact.last_name} has been moved to Contacts."
+    else
+      flash[:error] = "Error with parent moving"
+    end
+
+    redirect_to parents_path and return
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|

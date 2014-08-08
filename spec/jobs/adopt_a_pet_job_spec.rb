@@ -88,7 +88,7 @@ describe AdoptAPetJob do
         AdoptAPetJob.new(@shelter.id).perform
 
         import_cfg_file = @ftp_server.file('import.cfg')
-        expect(import_cfg_file.bytes).to eq(10691)
+        expect(import_cfg_file.bytes).to eq(10735)
         expect(import_cfg_file).to be_passive
       end
 

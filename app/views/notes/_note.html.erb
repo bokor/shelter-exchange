@@ -11,7 +11,7 @@
 <div id="<%= "note_#{note.id}" %>" class="note">
   <span class="created_date"><%= format_date_for(note.created_at, :short) %></span>
 
-  <% if @documents.present? && (note.shelter_id == @current_shelter.id || controller_name != "parents") %>
+  <% if @documents.present? && (note.shelter_id == @current_shelter.id) %>
     <span class="attachment_icon"><%= image_tag "icon_paperclip.png" %></span>
   <% end %>
 
@@ -22,8 +22,7 @@
     </span>
 	</span>
 	<span class="action_links">
-    <%# Validation to make sure that a note on the parent page has to be owned by the shelter %>
-    <% if note.shelter_id == @current_shelter.id && controller_name != "communities" %>
+    <% if note.shelter_id == @current_shelter.id  %>
 
       <% if can?(:attach_files, Note) %>
         <span class="add_documents_link">
@@ -53,7 +52,7 @@
 
   <div class="description" id="description_note_<%=note.id%>">
     <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
-    <% if @documents.present? && (note.shelter_id == @current_shelter.id || controller_name != "parents") %>
+    <% if @documents.present? && (note.shelter_id == @current_shelter.id) %>
       <ul><strong>Attachments:</strong>
         <% @documents.each do |doc| %>
           <li><%= link_to doc.original_name, doc.document.url, :target => "_new" %></li>

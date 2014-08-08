@@ -1180,26 +1180,6 @@ describe Animal, "#shelter" do
   end
 end
 
-describe Animal, "#placements" do
-
-  before do
-    @animal = Animal.gen
-    @placement1 = Placement.gen :animal => @animal
-    @placement2 = Placement.gen :animal => @animal
-  end
-
-  it "returns a list of placements" do
-    expect(@animal.placements.count).to eq(2)
-    expect(@animal.placements).to match_array([@placement1, @placement2])
-  end
-
-  it "destroy all placements associated to the animal" do
-    expect(@animal.placements.count).to eq(2)
-    @animal.destroy
-    expect(@animal.placements.count).to eq(0)
-  end
-end
-
 describe Animal, "#notes" do
 
   before do

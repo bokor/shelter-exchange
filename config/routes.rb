@@ -82,13 +82,6 @@ ShelterExchangeApp::Application.routes.draw do
       post :stop, :on => :member
     end
 
-    # Placements
-    #----------------------------------------------------------------------------
-    resources :placements, :only => [:create, :destroy] do
-      get :find_comments, :on => :member
-      resources :comments
-    end
-
     # Communities
     #----------------------------------------------------------------------------
     resources :communities do
@@ -121,10 +114,14 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Parents
     #----------------------------------------------------------------------------
-    resources :parents do
-      resources :notes
+    resources :parents, :only => [:index] do
+
       collection do
         get :search
+      end
+
+      member do
+        post :migrate
       end
     end
 

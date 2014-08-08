@@ -1,7 +1,5 @@
-$('#parents').html( "<%= escape_javascript( render 'parent_list', :parents => @parents) %>" );
-
-// Google Anayltics
-<% if Rails.env.production? %>
-  _gaq.push(['_trackPageview', "/parents/search"]);
+<% if @parents.present? %>
+	$('#parents').html( "<%= escape_javascript( render 'parent_list', :parents => @parents ) %>" );
+<% else %>
+	$('#parents').html( "<%= escape_javascript( render 'no_parents' ) %>" );
 <% end %>
-

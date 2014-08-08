@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140729231633) do
+ActiveRecord::Schema.define(:version => 20140808051643) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -185,16 +185,16 @@ ActiveRecord::Schema.define(:version => 20140729231633) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "email"
-    t.boolean  "adopter"
-    t.boolean  "foster"
-    t.boolean  "volunteer"
-    t.boolean  "transporter"
-    t.boolean  "donor"
-    t.boolean  "staff"
-    t.boolean  "veterinarian"
+    t.boolean  "adopter",                                      :default => false
+    t.boolean  "foster",                                       :default => false
+    t.boolean  "volunteer",                                    :default => false
+    t.boolean  "transporter",                                  :default => false
+    t.boolean  "donor",                                        :default => false
+    t.boolean  "staff",                                        :default => false
+    t.boolean  "veterinarian",                                 :default => false
     t.integer  "shelter_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
     t.decimal  "lat",          :precision => 15, :scale => 10
     t.decimal  "lng",          :precision => 15, :scale => 10
     t.string   "photo"

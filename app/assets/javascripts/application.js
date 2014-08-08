@@ -162,13 +162,11 @@ $(function(){
 			$(".description", this).slideToggle();
 		}
 	});
+
 	$(".user").live("click", function(e){
-		var target = $(e.target);
-        if(target.is("a") || target.is("input")) { //checks if other things are clicked first
-            return;
-        } else {
-			// alert("select user");
-			// Users.selectUser(<%=user.id%>);
+	  var target = $(e.target);
+    if(target.is("a") || target.is("input")) { //checks if other things are clicked first
+      return;
 		}
 	});
 
@@ -187,16 +185,12 @@ $(function() {
 	$('#add_task_link, #cancel_task').click(function() {
 		$('#create_task').slideToggle();
 	});
-	$('#add_placement_link, #cancel_placement').click(function() {
-		$('#create_placement').slideToggle();
-	});
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
 	});
 	$('#add_transfer_link, #cancel_transfer').click(function() {
 		$('#create_transfer').slideToggle();
 	});
-
 });
 
 /* Settings Menu :: Toolbar

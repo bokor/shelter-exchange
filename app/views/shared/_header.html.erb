@@ -12,11 +12,11 @@
 			<span class="link_separator">|</span>
 			<span><%= link_to "Logout", destroy_user_session_path, :method => :delete, :confirm => "Are you sure?" %></span>
 			<ul class="settings_menu">
-		      	<li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
+		    <li class="<%= selected_navigation(:shelters) %>"><%= link_to "Shelter Details", shelters_path %></li>
 				<li class="<%= selected_navigation(:capacities) %>"><%= link_to "Shelter Capacity", capacities_path %></li>
 				<li class="<%= selected_navigation(:users) %>"><%= link_to "Manage Users", users_path %></li>
 				<% if can?(:update_settings, User)%>
-				<li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
+				  <li class="<%= selected_navigation(:settings) %>"><%= link_to "Account Settings", settings_path %></li>
 				<% end %>
 		    </ul>
 		</span>
@@ -26,7 +26,6 @@
 		<li class="<%= selected_navigation(:animals) %>"><%= link_to "Animals", animals_path %></li>
 		<li class="<%= selected_navigation(:tasks) %>"><%= link_to "Tasks", tasks_path %></li>
     <li class="<%= selected_navigation(:alerts) %>"><%= link_to "Alerts", alerts_path %></li>
-		<li class="<%= selected_navigation(:parents) %>"><%= link_to "Parents", parents_path %></li>
     <% if ShelterExchange.features.contacts %>
       <li class="<%= selected_navigation(:contacts) %>"><%= link_to "Contacts", contacts_path %></li>
     <% end %>

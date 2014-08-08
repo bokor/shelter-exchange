@@ -374,26 +374,6 @@ describe Shelter, "#contacts" do
   end
 end
 
-describe Shelter, "#placements" do
-
-  before do
-    @shelter = Shelter.gen
-    @placement1 = Placement.gen :shelter => @shelter
-    @placement2 = Placement.gen :shelter => @shelter
-  end
-
-  it "returns a list of placements" do
-    expect(@shelter.placements.count).to eq(2)
-    expect(@shelter.placements).to match_array([@placement1, @placement2])
-  end
-
-  it "destroy all placements associated to the shelter" do
-    expect(@shelter.placements.count).to eq(2)
-    @shelter.destroy
-    expect(@shelter.placements.count).to eq(0)
-  end
-end
-
 describe Shelter, "#animals" do
 
   before do

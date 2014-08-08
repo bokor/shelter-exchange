@@ -1,33 +1,21 @@
 <tr id="<%= "animal_#{animal.id}" %>">
 	<td class="image">
-		<% if @from_controller == "parents" %>
-			<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %>
-		<% else %>
-			<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), animal_path(animal)  %>
-		<% end %>
+		<%= link_to image_tag(polymorphic_photo_url(animal.photos.first, :thumb)), animal_path(animal)  %>
 	</td>
 	<td class="details">
-		<% if @from_controller == "parents" %>
-			<h3><%= link_to animal.name, "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;"  %></h3>
-		<% else %>
-			<h3><%= link_to animal.name, animal %></h3>
-		<% end %>
+		<h3><%= link_to animal.name, animal %></h3>
 		<p><%= animal.full_breed %></p>
 		<p><%= animal.animal_type.name %><% if animal.sex %>: <%= animal.sex.humanize %> <% end %> <% if animal.sterilized? %>(Sterilized)<% end %>
 	</td>
 	<td class="status">
 		<p><b><%= animal.animal_status.name %></b></p>
 		<div class="action_links">
-			<% if @from_controller == "parents" %>
-				<span class="select_link">
-			    	<%= link_to "Select", "#", :onclick => "Parents.selectAnimal('#{animal.id}','#{animal.name}');return false;", :class => "button green" %>
-				</span>
-			<% end %>
 			<% if can?(:update, Animal) %>
 			<span class="edit_link">
 		    	<%= link_to "Edit", edit_animal_path(animal) %>
 			</span>
 			<% end %>
+
 			<% if can?(:destroy, Animal) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 				<%= link_to "Delete", animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete, :remote => true, :format => :js %>
