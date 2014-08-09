@@ -19,15 +19,9 @@ class ParentsController < ApplicationController
   def migrate
     parent = Parent.find(params[:id])
     contact = @current_shelter.contacts.new(
-     :first_name => parent.name.split(" ")[0] || parent.name,
-     :last_name => parent.name.split(" ")[1] || "- Update first and last name",
-     :street => parent.street,
-     :city => parent.city,
-     :state => parent.state,
-     :zip_code => parent.zip_code,
-     :phone => parent.phone,
-     :mobile => parent.mobile,
-     :email => parent.email
+     :first_name => parent.first_name, :last_name => parent.last_name,
+     :street => parent.street, :city => parent.city, :state => parent.state, :zip_code => parent.zip_code,
+     :phone => parent.phone, :mobile => parent.mobile, :email => parent.email
     )
 
     if contact.save

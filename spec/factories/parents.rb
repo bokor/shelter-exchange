@@ -1,7 +1,8 @@
 FactoryGirl.define do
 
   factory :parent do
-    sequence(:name) {|n| "parent name #{n}" }
+    sequence(:first_name) {|n| "first name #{n}" }
+    sequence(:last_name) {|n| "last name #{n}" }
     street          "123 Main Street"
     street_2        "n/a"
     city            "Redwood City"

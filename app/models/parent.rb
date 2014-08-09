@@ -17,7 +17,8 @@ class Parent < ActiveRecord::Base
 
   # Validations
   #----------------------------------------------------------------------------
-  validates :name, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
   validates :phone, :presence => true,  :uniqueness => true, :phone_format => true
   validates :mobile, :uniqueness => true, :phone_format => true, :allow_blank => true
   validates :email, :uniqueness => {:message => "There is an existing Parent associated with these details, please use the 'Look up' to locate the record."},
@@ -34,11 +35,15 @@ class Parent < ActiveRecord::Base
     if phone.is_numeric?
       scope = scope.where("phone = ? OR mobile = ?", phone, phone)
     else
-      scope = scope.where("email = ? OR email_2 = ? OR name like ?", q, q, "%#{q}%")
+      scope = scope.where("email = ? OR email_2 = ? OR first_name like ? OR last_name like ?", q, q, "%#{q}%", "%#{q}%")
     end
 
     scope = scope.where(parent_params)
     scope
+  end
+
+  def name
+    "#{self.first_name} #{self.last_name}"
   end
 
   #----------------------------------------------------------------------------

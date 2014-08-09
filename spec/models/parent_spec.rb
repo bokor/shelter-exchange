@@ -8,10 +8,16 @@ describe Parent do
     expect(Parent.scoped.to_sql).to eq(Parent.order("parents.created_at DESC").to_sql)
   end
 
-  it "validates presence of name" do
-    parent = Parent.new :name => nil
-    expect(parent).to have(1).error_on(:name)
-    expect(parent.errors[:name]).to match_array(["cannot be blank"])
+  it "validates presence of first_name" do
+    parent = Parent.new :first_name => nil
+    expect(parent).to have(1).error_on(:first_name)
+    expect(parent.errors[:first_name]).to match_array(["cannot be blank"])
+  end
+
+  it "validates presence of last_name" do
+    parent = Parent.new :last_name => nil
+    expect(parent).to have(1).error_on(:last_name)
+    expect(parent.errors[:last_name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of phone" do
@@ -117,13 +123,15 @@ describe Parent, ".search" do
 
   before do
     @parent1 = Parent.gen(
-      :name => "Jimmy",
+      :first_name => "Jimmy",
+      :last_name => "Smith",
       :email => "who@example.com",
       :phone => "123-456-7890",
       :state => "CA"
     )
     @parent2 = Parent.gen(
-      :name => "The Dude",
+      :first_name => "The",
+      :last_name => "Dude",
       :email_2 => "thedude@example.com",
       :mobile => "666-777-8888",
       :state => "CA"
@@ -148,7 +156,8 @@ describe Parent, ".search" do
 
   it "returns search results based with state params" do
     parent = Parent.gen(
-      :name => "the duder",
+      :first_name => "the",
+      :last_name => "duder",
       :email => "theduder@example.com",
       :state => "NV"
     )
@@ -169,6 +178,14 @@ end
 
 # Instance Methods
 #----------------------------------------------------------------------------
+describe Parent, "#name" do
+
+  it "returns name" do
+    parent = Parent.gen :first_name => "Billy", :last_name => "Smith"
+    expect(parent.name).to eq("Billy Smith")
+  end
+end
+
 describe Parent, "#placements" do
 
   before do

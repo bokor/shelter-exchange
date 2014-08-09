@@ -20,9 +20,9 @@ describe ParentsController do
   describe "GET search" do
 
     before do
-      @parent1 = Parent.gen :name => "Brian Bokor", :state => "CA"
-      @parent2 = Parent.gen :name => "Claire Bokor", :state => "NC"
-      @parent3 = Parent.gen :name => "Jimmy John", :state => "CA"
+      @parent1 = Parent.gen :first_name => "Brian", :last_name => "Bokor", :state => "CA"
+      @parent2 = Parent.gen :first_name => "Claire", :last_name => "Bokor", :state => "NC"
+      @parent3 = Parent.gen :first_name => "Jimmy", :last_name => " John", :state => "CA"
     end
 
     it "responds successfully" do
@@ -46,16 +46,16 @@ describe ParentsController do
     context "with no query parameters" do
       it "assigns @parents" do
         get :search, :q => " ", :format => :js
-        expect(assigns(:parents)).to eq({})
+        expect(assigns(:parents)).to eq([@parent1, @parent2, @parent3])
       end
     end
 
     context "with pagination" do
       it "paginates :search results" do
-        parent = Parent.gen :name => "paginated_parent"
+        parent = Parent.gen :first_name => "paginated", :last_name => "parent"
         allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [parent] }
 
-        get :search, :q => "paginated_parent", :page => 1, :format => :js
+        get :search, :q => "paginated", :page => 1, :format => :js
         expect(assigns(:parents)).to eq([parent])
       end
     end
