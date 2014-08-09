@@ -4,22 +4,22 @@ class AnimalStatus < ActiveRecord::Base
   # Constants
   #----------------------------------------------------------------------------
   STATUSES = {
-      :available_for_adoption => 1,
-      :adopted                => 2,
-      :foster_care            => 3,
-      :new_intake             => 4,
-      :in_transit             => 5,
-      :rescue_candidate       => 6,
-      :stray_intake           => 7,
-      :on_hold_behavioral     => 8,
-      :on_hold_medical        => 9,
-      :on_hold_bite           => 10,
-      :on_hold_custody        => 11,
-      :reclaimed              => 12,
-      :deceased               => 13,
-      :euthanized             => 14,
-      :transferred            => 15,
-      :adoption_pending       => 16
+    :available_for_adoption => 1,
+    :adopted                => 2,
+    :foster_care            => 3,
+    :new_intake             => 4,
+    :in_transit             => 5,
+    :rescue_candidate       => 6,
+    :stray_intake           => 7,
+    :on_hold_behavioral     => 8,
+    :on_hold_medical        => 9,
+    :on_hold_bite           => 10,
+    :on_hold_custody        => 11,
+    :reclaimed              => 12,
+    :deceased               => 13,
+    :euthanized             => 14,
+    :transferred            => 15,
+    :adoption_pending       => 16
   }.freeze
 
   CAPACITY             = [1,4,5,6,7,8,9,10,11,16].freeze
