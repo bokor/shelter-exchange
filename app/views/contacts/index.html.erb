@@ -71,5 +71,19 @@
       <%= link_to "Migrate Parents to Contacts", parents_path,
         :class => "button blue tooltip",
         "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
-	</ul>
+  </ul>
+
+  <div class="imports">
+    <h2>Import from Outlook format</h2>
+    <%= form_for :contacts, :url => { :action => :import }, :html => { :id => "form_import", :method => :put, :multipart => true } do |f| %>
+      <ul>
+        <li><%= f.file_field :import_file, :class => "field file"  %><%= f.submit "Upload CSV", :disable_with => "...", :class => "button" %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="exports">
+    <h2>Export to Outlook format</h2>
+    <%= link_to "Download CSV", export_contacts_path(:format => :csv), :class => "button" %>
+	</div>
 <% end %>

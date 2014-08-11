@@ -1,5 +1,3 @@
-require 'csv'
-
 class ExportsController < ApplicationController
   respond_to :csv
 

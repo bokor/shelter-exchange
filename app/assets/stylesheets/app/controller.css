@@ -363,6 +363,16 @@
 
 .index_contacts #contacts .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
+
+/* Index Contact :: Sidebar Format
+-----------------------------------------------------------------------------*/
+.index_contacts #sidebar .imports {margin-top: 25px;}
+.index_contacts #sidebar .imports h2{margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px #bbb dotted;}
+
+.index_contacts #sidebar .exports {margin-top: 10px;}
+.index_contacts #sidebar .exports h2{margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px #bbb dotted;}
+.index_contacts #sidebar .exports .button{margin-top:5px;}
+
 /* Dialog Contact Search :: Dialog
 -----------------------------------------------------------------------------*/
 #form_contact_search { padding-bottom: 10px;}

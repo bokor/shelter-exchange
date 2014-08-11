@@ -109,6 +109,8 @@ ShelterExchangeApp::Application.routes.draw do
         get :filter_by_last_name_role
         get :filter_animals_by_status
         get :find_by_full_name
+        put :import
+        get :export
       end
     end
 
