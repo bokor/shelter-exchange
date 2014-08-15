@@ -3,7 +3,6 @@ require "spec_helper"
 describe Contact do
 
   it_should_behave_like Geocodeable
-  it_should_behave_like StreetAddressable
   it_should_behave_like Uploadable
 
   it "has a default scope" do
@@ -11,58 +10,15 @@ describe Contact do
   end
 
   it "validates presence of first_name" do
-    contact = Contact.new :first_name => nil
+    contact = Contact.new :first_name => nil, :last_name => nil
     expect(contact).to have(1).error_on(:first_name)
     expect(contact.errors[:first_name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of last_name" do
-    contact = Contact.new :last_name => nil
+    contact = Contact.new :first_name => nil, :last_name => nil
     expect(contact).to have(1).error_on(:last_name)
     expect(contact.errors[:last_name]).to match_array(["cannot be blank"])
-  end
-
-  it "validates presence of phone" do
-    contact = Contact.new :phone => nil
-    expect(contact).to have(1).error_on(:phone)
-    expect(contact.errors[:phone]).to match_array(["cannot be blank"])
-  end
-
-  it "validates format of phone" do
-    contact = Contact.new :phone => "aaa"
-    expect(contact).to have(1).error_on(:phone)
-    expect(contact.errors[:phone]).to match_array(["invalid phone number format"])
-
-    contact = Contact.new :phone => "+011.999.00000"
-    expect(contact).to have(1).error_on(:phone)
-    expect(contact.errors[:phone]).to match_array(["invalid phone number format"])
-  end
-
-  it "validates format of mobile" do
-    contact = Contact.new :mobile => "aaa"
-    expect(contact).to have(1).error_on(:mobile)
-    expect(contact.errors[:mobile]).to match_array(["invalid phone number format"])
-
-    contact = Contact.new :mobile => "+011.999.00000"
-    expect(contact).to have(1).error_on(:mobile)
-    expect(contact.errors[:mobile]).to match_array(["invalid phone number format"])
-  end
-
-  it "validates allows blank for mobile" do
-    contact = Contact.new :mobile => nil
-    expect(contact).to have(0).error_on(:mobile)
-  end
-
-  it "validates presence of email" do
-    contact = Contact.new :email => nil
-    expect(contact).to have(1).error_on(:email)
-    expect(contact.errors[:email]).to match_array(["cannot be blank"])
-  end
-
-  it "validates format of email" do
-    contact = Contact.new :email => "blah.com"
-    expect(contact).to have(1).error_on(:email)
-    expect(contact.errors[:email]).to match_array(["format is incorrect"])
   end
 
   context "Before Save" do

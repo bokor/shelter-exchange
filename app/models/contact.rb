@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  include StreetAddressable, Geocodeable, Uploadable
+  include Geocodeable, Uploadable
 
   default_scope :order => 'contacts.last_name ASC, contacts.first_name ASC'
 
@@ -30,11 +30,8 @@ class Contact < ActiveRecord::Base
 
   # Validations
   #----------------------------------------------------------------------------
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
-  validates :phone, :presence => true,  :phone_format => true
-  validates :mobile, :phone_format => true, :allow_blank => true
-  validates :email, :presence => true, :email_format => true
+  validates :first_name, :presence => true, :unless => lambda {|contact| contact.last_name.present? }
+  validates :last_name, :presence => true, :unless => lambda {|contact| contact.first_name.present? }
 
   # Class Methods
   #----------------------------------------------------------------------------

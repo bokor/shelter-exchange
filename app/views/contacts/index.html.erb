@@ -62,28 +62,40 @@
 <% end %>
 
 <%= content_for :sidebar do %>
+
+  <ul class="action_links">
+    <li><%= link_to "Create new contact", new_contact_path, :class => "button red" %></li>
+		<li><%= link_to 'Export contacts', "#", :id => "export_contacts_link", :class => "button" %></li>
+  </ul>
+
+  <div id="export_contacts" class="box hide orange">
+    <h2>Export contacts</h2>
+    <p>The export will provide a csv download of contact data</p>
+    <%= form_for :contact, :url => { :action => :export, :format => :csv },
+        :method => :post, :html => { :id => "export_contacts_form" } do |f| %>
+      <ul>
+        <li>
+			    <%= f.label :by_role, "By Role", :class => "desc" %>
+			    <div>
+          <%= f.collection_select :by_role, Contact::ROLES, :to_s, :humanize, { :prompt => "All" } %>
+          </div>
+        </li>
+        <li class="buttons">
+          <%= f.submit "Download CSV", :id => "create_note_button", :class => "button"  %>
+          &nbsp;or&nbsp;
+          <%= link_to "Cancel", "#", :id => "cancel_export" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+
   <style type="text/css" media="all">
-    .index_contacts #sidebar .action_links li:first-child { margin-bottom:15px; padding-bottom: 10px; border-bottom: 1px dotted #999; }
+    .index_contacts #sidebar .temp_links { margin-top:5px; padding-top: 15px; border-top: 1px dotted #999; }
   </style>
-	<ul class="action_links">
-		<li><%= link_to "Create new contact", new_contact_path, :class => "button red" %></li>
+  <ul class="temp_links">
     <li>
       <%= link_to "Migrate Parents to Contacts", parents_path,
         :class => "button blue tooltip",
         "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
   </ul>
-
-  <div class="imports">
-    <h2>Import from Outlook format</h2>
-    <%= form_for :contacts, :url => { :action => :import }, :html => { :id => "form_import", :method => :put, :multipart => true } do |f| %>
-      <ul>
-        <li><%= f.file_field :import_file, :class => "field file"  %><%= f.submit "Upload CSV", :disable_with => "...", :class => "button" %></li>
-      </ul>
-    <% end %>
-  </div>
-
-  <div class="exports">
-    <h2>Export to Outlook format</h2>
-    <%= link_to "Download CSV", export_contacts_path(:format => :csv), :class => "button" %>
-	</div>
 <% end %>

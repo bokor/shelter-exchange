@@ -110,7 +110,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :filter_animals_by_status
         get :find_by_full_name
         put :import
-        get :export
+        post :export
       end
     end
 

@@ -454,5 +454,46 @@ describe ContactsController do
       end
     end
   end
+
+  describe "POST export" do
+
+    before do
+      @contact1 = Contact.gen :shelter => current_shelter, :adopter => true
+      @contact2 = Contact.gen :shelter => current_shelter, :adopter => true, :staff => true
+      @contact3 = Contact.gen :shelter => current_shelter
+    end
+
+    it "responds successfully" do
+      get :export, :contact => { :by_role => "" }, :format => :csv
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    context "with no params" do
+
+      it "sends csv file" do
+        csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2, @contact3], csv) }
+
+        expect(controller).to receive(:send_data).
+          with(csv_string, :filename => "contacts.csv").
+          and_return { controller.render :nothing => true }
+
+        post :export, :contact => { :by_role => "" }, :format => :csv
+      end
+    end
+
+    context "with role filters" do
+
+      it "sends csv file" do
+        csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2], csv) }
+
+        expect(controller).to receive(:send_data).
+          with(csv_string, :filename => "contacts.csv").
+          and_return { controller.render :nothing => true }
+
+        post :export, :contact => { :by_role => "adopter" }, :format => :csv
+      end
+    end
+  end
 end
 

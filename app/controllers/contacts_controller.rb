@@ -83,39 +83,11 @@ class ContactsController < ApplicationController
     end
   end
 
-  def import
-    # Only handles Outlook format for now
-    row_count = 0
-
-    CSV.foreach(params[:contacts][:import_file].path, :headers => true) do |row|
-      contact = @current_shelter.contacts.new({
-        :first_name => row["First Name"],
-        :last_name => row["Last Name"],
-        :email => row["E-mail Address"],
-        :phone => row["Home Phone"],
-        :mobile => row["Mobile Phone"],
-        :street => row["Home Street"],
-        :street_2 => row["Home Street 2"],
-        :city => row["Home City"],
-        :state => row["Home State"],
-        :zip_code => row["Home Postal Code"]
-      })
-      row_count += 1 if contact.save(:validate => false)
-    end
-
-    flash[:notice] = "Imported #{row_count} contacts"
-    redirect_to contacts_path
-  end
-
   def export
-    csvfile = CSV.generate do |csv|
-      csv << ["First Name", "Last Name", "E-mail Address", "Home Phone", "Mobile Phone", "Home Street", "Home Street 2", "Home City", "Home State", "Home Postal Code", "Categories"]
+    @contacts = @current_shelter.contacts
+    @contacts = @contacts.where(params[:contact][:by_role].to_sym => true) unless params[:contact][:by_role].blank?
 
-      @current_shelter.contacts.each do |contact|
-        categories = Contact::ROLES.map{ |role| "#{role.humanize}" if contact.send(role) }.compact.join(";")
-        csv << [contact.first_name, contact.last_name, contact.email, contact.phone, contact.mobile, contact.street, contact.street_2, contact.city, contact.state, contact.zip_code, categories]
-      end
-    end
+    csvfile = CSV.generate{|csv| Contact::ExportPresenter.as_csv(@contacts, csv) }
 
     respond_to do |format|
       format.csv{ send_data(csvfile, :filename => "contacts.csv") }

@@ -191,6 +191,9 @@ $(function() {
 	$('#add_transfer_link, #cancel_transfer').click(function() {
 		$('#create_transfer').slideToggle();
 	});
+	$('#export_contacts_link, #cancel_export').click(function() {
+		$('#export_contacts').slideToggle();
+	});
 });
 
 /* Settings Menu :: Toolbar

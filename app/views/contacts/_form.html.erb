@@ -68,10 +68,10 @@
     </li>
     <li class="full">
       <% Contact::ROLES.each_with_index do |value, index| %>
-        <span class="left<%= "Padded" unless index == 0 %>">
+        <div>
           <%= f.check_box value, :class =>"field checkbox" %>
           <%= f.label value, value.humanize, :class => "desc choice" %>
-        </span>
+        </div>
       <% end %>
     </li>
     <li class="section">

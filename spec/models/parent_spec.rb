@@ -2,8 +2,6 @@ require "spec_helper"
 
 describe Parent do
 
-  it_should_behave_like StreetAddressable
-
   it "has a default scope" do
     expect(Parent.scoped.to_sql).to eq(Parent.order("parents.created_at DESC").to_sql)
   end

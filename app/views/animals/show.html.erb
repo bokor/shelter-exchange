@@ -211,7 +211,7 @@
 		<%= form_for ([@animal, @note = @animal.notes.build]), :remote => true, :format => :js, :html => { :id => "create_note_form", :class => "create_note_form" } do |f| %>
 			<ul>
         <%= render "notes/form", :f => f %>
-		    	<li class="buttons">
+		    <li class="buttons">
 					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
 					&nbsp;or&nbsp;
 					<%= link_to "Cancel", "#", :id => "cancel_note" %>

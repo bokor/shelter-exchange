@@ -1,6 +1,4 @@
 class Parent < ActiveRecord::Base
-  include StreetAddressable
-
   default_scope :order => 'parents.created_at DESC'
 
   # Callbacks
