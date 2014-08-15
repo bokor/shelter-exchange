@@ -16,7 +16,9 @@
     <h1><%= @contact.name %></h1>
 
     <div class="action_links">
-      <%= link_to "Create new contact", new_contact_path %>
+			<% if can?(:create, Contact) %>
+        <%= link_to "Create new contact", new_contact_path %>
+      <% end %>
 			<% if can?(:update, Contact) %>
 			  &nbsp;&nbsp;|&nbsp;&nbsp;
 			  <%= link_to "Edit", edit_contact_path(@contact)%>

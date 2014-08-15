@@ -23,6 +23,8 @@ class Ability
     cannot :change_role, User
     cannot :view_settings, User
     cannot :request_transfer, Animal
+    cannot :export, Animal
+    cannot :export, Contact
   end
 end
 

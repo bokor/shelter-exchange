@@ -64,8 +64,13 @@
 <%= content_for :sidebar do %>
 
   <ul class="action_links">
-    <li><%= link_to "Create new contact", new_contact_path, :class => "button red" %></li>
-		<li><%= link_to 'Export contacts', "#", :id => "export_contacts_link", :class => "button" %></li>
+	  <% if can?(:create, Contact) %>
+      <li><%= link_to "Create new contact", new_contact_path, :class => "button red" %></li>
+    <% end %>
+
+    <% if can?(:export, Contact) %>
+		  <li><%= link_to 'Export contacts', "#", :id => "export_contacts_link", :class => "button" %></li>
+    <% end %>
   </ul>
 
   <div id="export_contacts" class="box hide orange">
@@ -89,6 +94,7 @@
     <% end %>
   </div>
 
+  <% if can?(:export, Contact) %>
   <style type="text/css" media="all">
     .index_contacts #sidebar .temp_links { margin-top:5px; padding-top: 15px; border-top: 1px dotted #999; }
   </style>
@@ -98,4 +104,5 @@
         :class => "button blue tooltip",
         "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
   </ul>
+  <% end %>
 <% end %>

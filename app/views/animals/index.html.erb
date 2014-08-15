@@ -68,7 +68,9 @@
 <%= content_for :sidebar do %>
 	<ul class="action_links">
     <li><%= link_to "Create new animal", new_animal_path, :class => "button red" %></li>
-		<li><%= link_to 'Export animals', "#", :id => "export_animals_link", :class => "button" %></li>
+    <% if can?(:export, Animal) %>
+		  <li><%= link_to 'Export animals', "#", :id => "export_animals_link", :class => "button" %></li>
+    <% end %>
   </ul>
 
   <div id="export_animals" class="box hide orange">
