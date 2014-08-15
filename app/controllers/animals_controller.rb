@@ -119,8 +119,8 @@ class AnimalsController < ApplicationController
   end
 
   def export
-    type_id = params[:exports][:animal_type_id] rescue nil
-    status_id = params[:exports][:animal_status_id] rescue nil
+    type_id = params[:animal][:animal_type_id] rescue nil
+    status_id = params[:animal][:animal_status_id] rescue nil
     animals = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation).reorder(nil)
 
     # Adding Type and Status Filtering
