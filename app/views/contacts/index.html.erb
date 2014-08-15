@@ -58,7 +58,6 @@
 			<p>Once you have clicked Create new contact, please complete the form with the contacts information.</p>
 		</div>
 	<% end %>
-
 <% end %>
 
 <%= content_for :sidebar do %>
@@ -70,6 +69,10 @@
 
     <% if can?(:export, Contact) %>
 		  <li><%= link_to 'Export contacts', "#", :id => "export_contacts_link", :class => "button" %></li>
+    <% end %>
+
+    <% if can?(:import, Contact) %>
+		  <li><%= link_to 'Import contacts', "#", :id => "import_contacts_link", :class => "button" %></li>
     <% end %>
   </ul>
 
@@ -89,6 +92,22 @@
           <%= f.submit "Download CSV", :class => "button"  %>
           &nbsp;or&nbsp;
           <%= link_to "Cancel", "#", :id => "cancel_contact_export" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div id="import_contacts" class="box hide orange">
+    <h2>Import contacts</h2>
+    <p>Select a csv file containing your contacts (i.e. Google CSV format or Outlook CSV format)</p>
+    <%= form_for :contact, :url => import_contacts_path,
+        :method => :post, :html => { :id => "import_contacts_form" } do |f| %>
+      <ul>
+        <li><%= f.file_field :file, :class => "field file", :accept => ".csv" %></li>
+        <li class="buttons">
+          <%= f.submit "Upload CSV", :class => "button"  %>
+          &nbsp;or&nbsp;
+          <%= link_to "Cancel", "#", :id => "cancel_contact_import" %>
         </li>
       </ul>
     <% end %>

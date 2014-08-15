@@ -81,5 +81,9 @@ describe Ability, ".user" do
   it "can not export contacts" do
     expect(@ability).to_not be_able_to(:export, Contact)
   end
+
+  it "can not import contacts" do
+    expect(@ability).to_not be_able_to(:import, Contact)
+  end
 end
 

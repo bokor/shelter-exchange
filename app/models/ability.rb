@@ -25,6 +25,7 @@ class Ability
     cannot :request_transfer, Animal
     cannot :export, Animal
     cannot :export, Contact
+    cannot :import, Contact
   end
 end
 

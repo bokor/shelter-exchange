@@ -94,6 +94,53 @@ class ContactsController < ApplicationController
     end
   end
 
+  def import
+    file = params[:contact][:file]
+    file_reader = open(file.path).read
+
+    # Get the headers for mapping
+    @headers = CSV.parse(file_reader).first
+
+    # Create the directory and set up the filepath
+    directory = FileUtils::mkdir_p(Rails.root.join("tmp", "contacts", "import"))
+    @csv_filepath = File.join(
+      directory, "#{current_shelter.id}-#{current_user.id}-#{file.original_filename}"
+    )
+
+    # Save the CSV for use in the mapping
+    File.open(@csv_filepath, "wb") { |f| f.write(file_reader) }
+  end
+
+  def import_mapping
+    row_count = 0
+    filepath = params[:contact][:csv_filepath]
+
+    # Parse the CSV and create the contacts
+    CSV.foreach(filepath, :headers => true) do |row|
+
+      contact = @current_shelter.contacts.new({
+        :first_name => row[params[:contact][:first_name_mapping]],
+        :last_name => row[params[:contact][:last_name_mapping]],
+        :street => row[params[:contact][:street_mapping]],
+        :street_2 => row[params[:contact][:street_2_mapping]],
+        :city => row[params[:contact][:city_mapping]],
+        :state => row[params[:contact][:state_mapping]],
+        :zip_code => row[params[:contact][:zip_code_mapping]],
+        :email => row[params[:contact][:email_mapping]],
+        :phone => row[params[:contact][:phone_mapping]],
+        :mobile => row[params[:contact][:mobile_mapping]]
+      })
+
+      row_count += 1 if contact.save
+    end
+
+    # Delete the Original CSV file from the import action
+    File.delete(filepath) rescue nil
+
+    flash[:notice] = "Imported #{row_count} contacts."
+    redirect_to contacts_path
+  end
+
   rescue_from ActiveRecord::RecordNotFound do |exception|
     logger.error(":::Attempt to access invalid contact => #{params[:id]}")
     flash[:error] = "You have requested an invalid contact!"

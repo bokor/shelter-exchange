@@ -28,17 +28,14 @@
 			  <%= link_to "Delete", @contact, :confirm => "Are you sure you want to delete?", :method => :delete %>
 			<% end %>
     </div>
-      <style type="text/css" media="all">
 
-      </style>
-      <div class="roles">
-        <!-- <span class="title">Roles:</span> -->
-        <% Contact::ROLES.each do |value| %>
-          <% if @contact.send(value) %>
-            <span class="role"><%= value.humanize %></span>
-          <% end %>
+    <div class="roles">
+      <% Contact::ROLES.each do |value| %>
+        <% if @contact.send(value) %>
+          <span class="role"><%= value.humanize %></span>
         <% end %>
-      </div>
+      <% end %>
+    </div>
 	</div>
 
 	<div class="page_content">
@@ -48,16 +45,14 @@
 				<h3>Address:</h3>
 				<ul>
 					<li><%= @contact.street %> <%= @contact.street_2 %></li>
-					<li><%= @contact.city %>, <%= @contact.state %> <%= @contact.zip_code %></li>
+					<li><%= "#{@contact.city}," if @contact.city %> <%= @contact.state %> <%= @contact.zip_code %></li>
 				</ul>
 			</div>
 			<div id="details">
 				<h3>Contact details:</h3>
 				<ul>
 					<li>Phone:  <%=number_to_phone(@contact.phone, :delimiter => "-")%></li>
-					<% unless @contact.mobile.blank? %>
-						<li>Mobile: <%=number_to_phone(@contact.mobile, :delimiter => "-")%></li>
-					<% end %>
+					<li>Mobile: <%=number_to_phone(@contact.mobile, :delimiter => "-")%></li>
 					<li>Email:  <a href="mailto:<%=@contact.email %>"><%=@contact.email %></a></li>
 				</ul>
 			</div>

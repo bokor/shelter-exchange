@@ -191,6 +191,9 @@ $(function() {
 	$('#add_transfer_link, #cancel_transfer').click(function() {
 		$('#create_transfer').slideToggle();
 	});
+	$('#import_contacts_link, #cancel_contact_import').click(function() {
+		$('#import_contacts').slideToggle();
+	});
 	$('#export_contacts_link, #cancel_contact_export').click(function() {
 		$('#export_contacts').slideToggle();
 	});

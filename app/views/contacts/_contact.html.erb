@@ -3,15 +3,13 @@
     <%= link_to image_tag(contact.photo.url(:thumb)), contact_path(contact) %>
 	</td>
   <td class="details">
-      <h2><%= link_to "#{contact.last_name}, #{contact.first_name}", contact %></h2>
+    <h2><%= link_to formatted_name_for(contact), contact %></h2>
 		<p><%= contact.street %> <%= contact.street_2 %></p>
-		<p><%= contact.city %>, <%= contact.state %> <%= contact.zip_code %></p>
+    <p><%= "#{contact.city}," if contact.city %> <%= contact.state %> <%= contact.zip_code %></p>
 	</td>
 	<td class="status">
 		<p><%=number_to_phone(contact.phone, :delimiter => "-")%>(h)</p>
-		<% unless contact.mobile.blank? %>
-			<p><%=number_to_phone(contact.mobile, :delimiter => "-")%>(m)</p>
-		<% end %>
+    <p><%=number_to_phone(contact.mobile, :delimiter => "-")%>(m)</p>
     <p><a href="mailto:<%= contact.email %>"><%= contact.email %></a></p>
 	</td>
 </tr>

@@ -1,0 +1,78 @@
+<%= title "Import Contacts" %>
+
+<%= content_for :javascripts do %>
+<% end %>
+
+<%= content_for :page_content do %>
+
+  <div class="page_heading blue">
+    <h1>Next: Match your data with fields in Shelter Exchange</h1>
+  </div>
+
+  <div class="page_content">
+    <p><strong>Now help us match up your data with our fields</strong></p>
+    <p>Look at the table below and match up the field names with the your imported data.
+    Be sure to review a few people to make sure the fields line up across multiple contacts.</p>
+    <br>
+    <%= form_for :contact, :url => import_mapping_contacts_path,
+        :method => :post, :html => { :id => "import_contacts_form" } do |f| %>
+
+      <table class="mapping">
+        <tr>
+          <th>Shelter Exchange Field</th>
+          <th>Your fields</th>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td><%= f.select :first_name_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><%= f.select :last_name_mapping, @headers, { :prompt => "Select one" }, {:class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Street Address</td>
+          <td><%= f.select :street_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Street Address 2</td>
+          <td><%= f.select :street_2_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td><%= f.select :city_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td><%= f.select :state_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Zip Code</td>
+          <td><%= f.select :zip_code_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= f.select :email_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td><%= f.select :phone_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td><%= f.select :mobile_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
+        </tr>
+      </table>
+
+      <%= f.hidden_field :csv_filepath, :value => @csv_filepath %>
+
+      <div class="buttons">
+        <%= f.submit "Import these contacts", :class => "button"  %>
+        &nbsp;or&nbsp;
+        <%= link_to "Don't import", contacts_path %>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>
+
