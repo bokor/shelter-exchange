@@ -422,6 +422,7 @@
 -----------------------------------------------------------------------------*/
 .import_contacts .help_text{ padding-bottom: 10px; }
 .import_contacts .no_header_warning h4{ font-size: 14px; margin-bottom: 0px; }
+.import_contacts .no_header_warning .cancel_import{ float:right; }
 
 .import_contacts table.mapping{width:100%;border-collapse:collapse;}
 .import_contacts table.mapping tr{width:100%; line-height: 30px;}

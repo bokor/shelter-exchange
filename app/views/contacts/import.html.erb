@@ -19,7 +19,7 @@
 
     <% if @no_headers_warning %>
       <div class="no_header_warning box red">
-        <h4>The CSV file you have uploaded appears that it might not have a header row.  Please</h4>
+        <h4>The CSV file you have uploaded appears that it might not have a header row.  Please <%= link_to "Cancel import", contacts_path, :class => "cancel_import" %></h4>
       </div>
     <% end %>
 
@@ -77,7 +77,7 @@
       <div class="buttons">
         <%= f.submit "Import these contacts", :class => "button"  %>
         &nbsp;or&nbsp;
-        <%= link_to "Don't import", contacts_path %>
+        <%= link_to "Cancel import", contacts_path %>
       </div>
 
     <% end %>
