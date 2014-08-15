@@ -464,7 +464,7 @@ describe ContactsController do
     end
 
     it "responds successfully" do
-      get :export, :contact => { :by_role => "" }, :format => :csv
+      post :export, :contact => { :by_role => "" }, :format => :csv
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
@@ -492,6 +492,178 @@ describe ContactsController do
           and_return { controller.render :nothing => true }
 
         post :export, :contact => { :by_role => "adopter" }, :format => :csv
+      end
+    end
+  end
+
+  describe "POST import" do
+
+    before do
+      path = Rails.root.join("spec", "data", "documents", "contacts.csv")
+      @contacts_csv = Rack::Test::UploadedFile.new(path)
+    end
+
+    after do
+      # Delete all files in tmp dir
+      path = File.join(Rails.root, "tmp", "contacts", "import", "*")
+      FileUtils.rm_rf(Dir.glob(path))
+    end
+
+    it "responds successfully" do
+      post :import, :contact => { :file => @contacts_csv }
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "assigns @headers" do
+      post :import, :contact => { :file => @contacts_csv }
+      expect(assigns(:headers)).to eq([
+        "First Name",
+        "Last Name",
+        "E-mail Address",
+        "Home Phone",
+        "Mobile Phone",
+        "Home Street",
+        "Home Street 2",
+        "Home City",
+        "Home State",
+        "Home Postal Code",
+        "Home Country"
+      ])
+    end
+
+    it "assigns @no_headers_warning" do
+      post :import, :contact => { :file => @contacts_csv }
+      expect(assigns(:no_headers_warning)).to be_false
+    end
+
+    it "assigns @csv_filepath" do
+      csv_filepath = Rails.root.join("tmp", "contacts", "import", "#{current_shelter.id}-#{current_user.id}-contacts.csv")
+      post :import, :contact => { :file => @contacts_csv }
+      expect(assigns(:csv_filepath)).to eq(csv_filepath.to_path)
+    end
+
+    it "saves a local temp file" do
+      csv_filepath = Rails.root.join("tmp", "contacts", "import", "#{current_shelter.id}-#{current_user.id}-contacts.csv")
+      post :import, :contact => { :file => @contacts_csv }
+      expect(File).to exist(csv_filepath)
+    end
+
+    it "renders the :import view" do
+      post :import, :contact => { :file => @contacts_csv }
+      expect(response).to render_template(:import)
+    end
+
+    context "without csv headers" do
+      it "assigns @no_headers_warning" do
+        path = Rails.root.join("spec", "data", "documents", "contacts_without_headers.csv")
+        post :import, :contact => { :file => Rack::Test::UploadedFile.new(path) }
+        expect(assigns(:no_headers_warning)).to be_true
+      end
+    end
+  end
+
+  describe "POST import_mapping" do
+
+    before do
+      # Upload File to tmp directory location
+      @csv_filepath = File.join(Rails.root, "tmp", "contacts", "import", "#{current_shelter.id}-#{current_user.id}-contacts.csv")
+      uploaded_file_path = File.join(Rails.root, "spec", "data", "documents", "contacts.csv")
+      file_reader = open(uploaded_file_path).read
+      File.open(@csv_filepath, "wb") { |f| f.write(file_reader) }
+
+      @attributes = {
+        :csv_filepath => @csv_filepath,
+        :first_name_mapping => "First Name",
+        :last_name_mapping => "Last Name",
+        :street_mapping => "Home Street",
+        :street_2_mapping => "Home Street 2",
+        :city_mapping => "Home City",
+        :state_mapping => "Home State",
+        :zip_code_mapping => "Home Postal Code",
+        :email_mapping  => "E-mail Address",
+        :phone_mapping => "Home Phone",
+        :mobile_mapping => "Mobile Phone"
+      }
+    end
+
+    after do
+      # Delete all files in tmp dir
+      path = File.join(Rails.root, "tmp", "contacts", "import", "*")
+      FileUtils.rm_rf(Dir.glob(path))
+    end
+
+    it "responds successfully" do
+      post :import_mapping, :contact => @attributes
+      expect(response.status).to eq(302)
+    end
+
+    it "creates a new Contact" do
+      expect {
+        post :import_mapping, :contact => @attributes
+      }.to change(Contact, :count).by(2)
+    end
+
+    it "maps contact data" do
+      post :import_mapping, :contact => @attributes
+      contact = Contact.first
+      expect(contact.first_name).to eq("Brian")
+      expect(contact.last_name).to eq("Bokor")
+      expect(contact.street).to eq("123 main st")
+      expect(contact.street_2).to be_nil
+      expect(contact.city).to eq("Redwood City")
+      expect(contact.state).to eq("CA")
+      expect(contact.zip_code).to eq("94063")
+      expect(contact.phone).to eq("6509999999")
+      expect(contact.mobile).to eq("6509999999")
+      expect(contact.email).to eq("bb_test@example.com")
+    end
+
+    it "deletes the local temp file" do
+      csv_filepath = Rails.root.join("tmp", "contacts", "import", "#{current_shelter.id}-#{current_user.id}-contacts.csv")
+      post :import_mapping, :contact => @attributes
+      expect(File).to_not exist(csv_filepath)
+    end
+
+    it "set a flash message" do
+      post :import_mapping, :contact => @attributes
+      expect(flash[:notice]).to eq("Imported 2 contacts.")
+    end
+
+    it "redirects to the :contacts_path" do
+      post :import_mapping, :contact => @attributes
+      expect(response).to redirect_to(contacts_path)
+    end
+
+    context "with no mappings" do
+
+      before do
+        @attributes = {
+          :csv_filepath => @csv_filepath,
+          :first_name_mapping => "",
+          :last_name_mapping => "",
+          :street_mapping => "",
+          :street_2_mapping => "",
+          :city_mapping => "",
+          :state_mapping => "",
+          :zip_code_mapping => "",
+          :email_mapping  => "",
+          :phone_mapping => "",
+          :mobile_mapping => ""
+        }
+      end
+
+      it "does not create contacts" do
+        expect{
+          post :import_mapping, :contact => @attributes
+        }.to_not change{
+          Contact.count
+        }.from(0).to(2)
+      end
+
+      it "set a flash message" do
+        post :import_mapping, :contact => @attributes
+        expect(flash[:notice]).to eq("Imported 0 contacts.")
       end
     end
   end

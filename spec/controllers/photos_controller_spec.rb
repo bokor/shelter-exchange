@@ -116,13 +116,7 @@ describe PhotosController do
   end
 
   describe "GET refresh_gallery" do
-  # def refresh_gallery
-  #   @attachable = find_polymorphic_class
-  #   @photos = @attachable.photos
-  #   respond_to do |format|
-  #     format.json { render :json => @gallery_photos = PhotoPresenter.as_gallery_collection(@photos) }
-  #   end
-  # end
+
     before do
       @animal = Animal.gen :shelter => current_shelter
       @photo1 = Photo.gen :attachable => @animal
