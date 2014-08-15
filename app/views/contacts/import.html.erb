@@ -10,12 +10,20 @@
   </div>
 
   <div class="page_content">
-    <p><strong>Now help us match up your data with our fields</strong></p>
-    <p>Look at the table below and match up the field names with the your imported data.
-    Be sure to review a few people to make sure the fields line up across multiple contacts.</p>
-    <br>
-    <%= form_for :contact, :url => import_mapping_contacts_path,
-        :method => :post, :html => { :id => "import_contacts_form" } do |f| %>
+
+    <div class="help_text">
+      <p><strong>Now help us match up your data with our fields</strong></p>
+      <p>Look at the table below and match up the field names with the your imported data.
+      Be sure to review a few people to make sure the fields line up across multiple contacts.</p>
+    </div>
+
+    <% if @no_headers_warning %>
+      <div class="no_header_warning box red">
+        <h4>The CSV file you have uploaded appears that it might not have a header row.  Please</h4>
+      </div>
+    <% end %>
+
+    <%= form_for :contact, :url => import_mapping_contacts_path, :method => :post, :html => { :id => "import_contacts_form" } do |f| %>
 
       <table class="mapping">
         <tr>

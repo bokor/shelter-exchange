@@ -100,6 +100,7 @@ class ContactsController < ApplicationController
 
     # Get the headers for mapping
     @headers = CSV.parse(file_reader).first
+    @no_headers_warning = @headers.any?(&:blank?)
 
     # Create the directory and set up the filepath
     directory = FileUtils::mkdir_p(Rails.root.join("tmp", "contacts", "import"))

@@ -420,10 +420,14 @@
 
 /* Import Contacts :: Layout
 -----------------------------------------------------------------------------*/
+.import_contacts .help_text{ padding-bottom: 10px; }
+.import_contacts .no_header_warning h4{ font-size: 14px; margin-bottom: 0px; }
+
 .import_contacts table.mapping{width:100%;border-collapse:collapse;}
 .import_contacts table.mapping tr{width:100%; line-height: 30px;}
 .import_contacts table.mapping th{ padding: 5px 5px 5px 10px; background-color: #efefef; border-bottom: 1px solid #dcdcdc; }
 .import_contacts table.mapping td{border-bottom: 1px solid #ededed; padding: 5px 5px 5px 10px; }
+
 .import_contacts .buttons{margin-top: 15px;}
 
 
