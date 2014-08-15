@@ -191,8 +191,11 @@ $(function() {
 	$('#add_transfer_link, #cancel_transfer').click(function() {
 		$('#create_transfer').slideToggle();
 	});
-	$('#export_contacts_link, #cancel_export').click(function() {
+	$('#export_contacts_link, #cancel_contact_export').click(function() {
 		$('#export_contacts').slideToggle();
+	});
+  $('#export_animals_link, #cancel_animal_export').click(function() {
+		$('#export_animals').slideToggle();
 	});
 });
 

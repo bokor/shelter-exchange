@@ -793,6 +793,10 @@
 .index_users #left { width: 100%;}
 .index_users #sidebar { display: none;width: 0; }
 
+.index_users .actions{margin-bottom: 15px;}
+.index_users .actions .invite{width:49%; text-align: left; display: inline-block;}
+.index_users .actions .help{width:49%; text-align: right; display: inline-block;}
+
 /* Index Users :: Edit Form
 -----------------------------------------------------------------------------*/
 .user_list .profile_section{float: left; width: 45%; padding-right: 2%; border-right: 1px solid #74AFE3;}

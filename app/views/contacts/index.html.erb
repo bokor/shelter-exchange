@@ -70,8 +70,8 @@
 
   <div id="export_contacts" class="box hide orange">
     <h2>Export contacts</h2>
-    <p>The export will provide a csv download of contact data</p>
-    <%= form_for :contact, :url => { :action => :export, :format => :csv },
+    <p>The export will provide a csv download of contact data.</p>
+    <%= form_for :contact, :url => export_contacts_path(:format => :csv),
         :method => :post, :html => { :id => "export_contacts_form" } do |f| %>
       <ul>
         <li>
@@ -81,9 +81,9 @@
           </div>
         </li>
         <li class="buttons">
-          <%= f.submit "Download CSV", :id => "create_note_button", :class => "button"  %>
+          <%= f.submit "Download CSV", :class => "button"  %>
           &nbsp;or&nbsp;
-          <%= link_to "Cancel", "#", :id => "cancel_export" %>
+          <%= link_to "Cancel", "#", :id => "cancel_contact_export" %>
         </li>
       </ul>
     <% end %>

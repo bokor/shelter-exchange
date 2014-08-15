@@ -67,6 +67,30 @@
 
 <%= content_for :sidebar do %>
 	<ul class="action_links">
-		<%= link_to "Create new animal", new_animal_path, :class => "button red" %>
-	</ul>
+    <li><%= link_to "Create new animal", new_animal_path, :class => "button red" %></li>
+		<li><%= link_to 'Export animals', "#", :id => "export_animals_link", :class => "button" %></li>
+  </ul>
+
+  <div id="export_animals" class="box hide orange">
+    <h2>Export animals</h2>
+    <p>The export will provide a csv download of your animal data</p>
+    <%= form_for :animal, :url => export_animals_path(:format => :csv),
+        :method => :post, :html => { :id => "export_contacts_form" } do |f| %>
+      <ul>
+        <li>
+          <%= f.label :animal_type_id, "By Type", :class => "desc" %>
+          <div><%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"}, {:class => "field select small" } %></div>
+        </li>
+        <li>
+          <%= f.label :animal_status_id, "By Status", :class => "desc" %>
+          <div><%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "All"}, {:class => "field select medium" } %></div>
+        </li>
+        <li class="buttons">
+          <%= f.submit "Download CSV", :class => "button"  %>
+          &nbsp;or&nbsp;
+          <%= link_to "Cancel", "#", :id => "cancel_animal_export" %>
+        </li>
+      <ul>
+    <% end %>
+  </div>
 <% end %>

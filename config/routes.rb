@@ -155,6 +155,7 @@ ShelterExchangeApp::Application.routes.draw do
         get :filter_by_type_status
         get :find_animals_by_name
         get :auto_complete
+        post :export
       end
     end
 
@@ -177,10 +178,6 @@ ShelterExchangeApp::Application.routes.draw do
 
     resources :token_authentications, :only => [:create, :destroy]
 
-
-    # Exports
-    #----------------------------------------------------------------------------
-    resources :exports, :only => [:index]
 
     # Integrations
     #----------------------------------------------------------------------------

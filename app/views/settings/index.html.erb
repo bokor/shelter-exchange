@@ -8,7 +8,6 @@
 		<ul class="tabs blue">
 			<li class="<%= "current" if @tab.blank? %>"><%= link_to "Overview", settings_path %></li>
 			<li class="<%= selected_navigation(:change_owner) %>"><%= link_to "Change Owner", setting_path(:tab => :change_owner) %></li>
-			<li class="<%= selected_navigation(:exports) %>"><%= link_to "Exports", setting_path(:tab => :exports) %></li>
 			<li class="<%= selected_navigation(:web_access) %>"><%= link_to "Web Access", setting_path(:tab => :web_access) %></li>
 			<li class="<%= selected_navigation(:auto_upload) %>"><%= link_to "Auto Upload", setting_path(:tab => :auto_upload) %></li>
 		</ul>

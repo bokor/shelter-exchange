@@ -6,24 +6,32 @@
 <%= content_for :page_content do %>
 
 	<div class="page_heading blue">
-		<h1>Manage Users</h1>
+    <h1>Manage Users</h1>
 	</div>
-		
-	<div class="page_content">
-		<% if can?(:invite, User) %>
-			<%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);return false;", :class => "button" %><br /><br />
-			<div class="box hide blue" id="new_invitation">
-				<div id="new_invitation_errors"></div>
-				<%= render "form_invitation" %>
-			</div>
-		<% end %>
-		
-		<div id="users" class="user_list">
+
+  <div class="page_content">
+
+    <div class="actions">
+      <span class="invite">
+        <% if can?(:invite, User) %>
+          <%= link_to "Invite new user", "#", :onclick => "$('#new_invitation').slideToggle(1000);return false;", :class => "button" %>
+          <div class="box hide blue" id="new_invitation">
+            <div id="new_invitation_errors"></div>
+            <%= render "form_invitation" %>
+          </div>
+        <% end %>
+      </span>
+      <span class="help">
+        <a href="http://help.shelterexchange.org/help/kb/user-management/user-role-definitions" target="_new">User Role Definitions?</a>
+      </span>
+    </div>
+
+    <div id="users" class="user_list">
 			<%= render @users %>
 		</div>
-		
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
