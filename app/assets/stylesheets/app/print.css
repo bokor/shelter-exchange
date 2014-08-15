@@ -40,10 +40,6 @@
 	.index_animals table.search {display:none;}
 
 	/* -- SHOW --*/
-	/*.show_animals h1{font-size: 32px;}
-	.show_animals h2{font-size: 28px;}
-	.show_animals h3{font-size: 24px;}
-	.show_animals p{font-size:14px;}*/
 	.show_animals .page_heading.blue{border-bottom:0px; background-color: #fff;}
 	.show_animals .social{display:none;}
 	.show_animals #notes_heading, .show_animals #status_history_heading {display:none;}
@@ -62,16 +58,18 @@
 
 
 	/******************************************************************/
-	/* -------------------------- PARENTS --------------------------- */
+	/* ------------------------- CONTACTS --------------------------- */
 	/******************************************************************/
-	/* -- INDEX --*/
-	.parents .page_heading.blue{border-bottom:0px; background-color: #fff;}
+  /* -- INDEX --*/
+	.index_contacts .print_heading {display:block;}
+	.index_contacts table.search {display:none;}
 
 	/* -- SHOW --*/
-	.show_parents #notes_heading{ display: none; }
-	.show_parents #notes{ display: none; }
-	.show_parents #comments{ display: none; }
-
+	.show_contacts .page_heading.blue{border-bottom:0px; background-color: #fff;}
+	.show_contacts #notes_heading{display:none;}
+	.show_contacts #notes{display:none;}
+  .show_contacts #filters_by_status{display:none;}
+  .show_contacts .view_comments_link{display:none;}
 
 	/******************************************************************/
 	/* -------------------------- REPORTS --------------------------- */

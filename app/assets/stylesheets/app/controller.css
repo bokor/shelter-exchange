@@ -331,10 +331,11 @@
 #contacts table.contact_list{width: 100%; table-layout: auto;border-collapse: collapse; border-spacing: 0; }
 #contacts table.contact_list h2{ line-height:21px; }
 #contacts table.contact_list .contact_row td {border-top:1px #ccc dotted; padding-top: 9px; }
-#contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
 #contacts table.contact_list td{vertical-align:top;font-size:12px;}
+#contacts table.contact_list td.image { width:100px; padding-left:5px; }
 #contacts table.contact_list td.details { width:380px;padding-left: 15px;color:#666; }
 #contacts table.contact_list td.status { width:175px;padding-left: 10px; padding-right: 5px; text-align:right;}
+#contacts table.contact_list .role_row td {border-bottom:1px #ccc dotted; padding-bottom: 9px;}
 #contacts table.contact_list .role_row .action_links {text-align:right;padding-right: 5px;}
 
 #contacts table.contact_list .role_row .roles:before{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
