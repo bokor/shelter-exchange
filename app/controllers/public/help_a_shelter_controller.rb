@@ -9,7 +9,7 @@ class Public::HelpAShelterController < Public::ApplicationController
 
   def show
     @shelter = Shelter.active.find(params[:id])
-    @items = @shelter.items.select(:name).all
+    @item_names = @shelter.items.pluck(:name).reject(&:blank?)
   end
 
   def search_by_shelter_or_rescue_group

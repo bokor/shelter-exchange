@@ -88,14 +88,14 @@
 
 		<div class="wish_list">
 			<h2>Our wish list</h2>
-			<% unless @items.blank? %>
+			<% if @item_names.blank? %>
+				<p>Shelter has not provided a wish list</p>
+			<% else %>
 				<ol id="items">
-					<% @items.each do |item| %>
-						<% unless item.name.blank? %><li><%= item.name %></li><% end %>
+					<% @item_names.each do |name| %>
+						<li><%= name %></li>
 					<% end %>
 				</ol>
-			<% else %>
-				<p>Shelter has not provided a wish list</p>
 			<% end %>
 		</div>
 

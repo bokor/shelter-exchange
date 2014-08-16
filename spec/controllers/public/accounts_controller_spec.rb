@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Public::AccountsController do
-  login_user
 
   describe "GET new" do
 
@@ -88,7 +87,7 @@ describe Public::AccountsController do
       post :create, :account => @attributes
 
       account = Account.last
-      mailer = YAML.load(Delayed::Job.all[2].handler)
+      mailer = YAML.load(Delayed::Job.all[1].handler)
       expect(mailer.object).to eq(OwnerMailer)
       expect(mailer.args[0]).to eq(account)
       expect(mailer.args[1]).to eq(account.shelters.first)

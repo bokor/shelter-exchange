@@ -85,7 +85,7 @@
         <li>
 			    <%= f.label :by_role, "By Role", :class => "desc" %>
 			    <div>
-          <%= f.collection_select :by_role, Contact::ROLES, :to_s, :humanize, { :prompt => "All" } %>
+          <%= f.collection_select :by_role, Contact::ROLES, :to_s, :humanize, { :prompt => "All" }, { :class => "field select medium" } %>
           </div>
         </li>
         <li class="buttons">
