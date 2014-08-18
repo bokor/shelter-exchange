@@ -19,7 +19,7 @@
 
     <% if @no_headers_warning %>
       <div class="no_header_warning box red">
-        <h4>The CSV file you uploaded appears to not have a header row. Please fix your file and re-upload. <%= link_to "Cancel import", contacts_path, :class => "cancel_import" %></h4>
+        <h4>The CSV file you uploaded does not have a header row. Please fix your file and re-upload. <%= link_to "Cancel import", contacts_path, :class => "cancel_import" %></h4>
       </div>
     <% end %>
 
