@@ -1,17 +1,13 @@
 # features.yml
 development:
   features:
-    contacts: true
 
 test:
   features:
-    contacts: true
 
 staging:
   features:
-    contacts: true
 
 production:
   features:
-    contacts: false
 
