@@ -95,8 +95,17 @@ class ContactsController < ApplicationController
   end
 
   def import
-    file = params[:contact][:file]
-    file_reader = open(file.path).read
+    file = begin
+      params[:contact][:file]
+    rescue
+      flash[:error] = "When importing contacts, Please select a CSV file before clicking 'Upload CSV'."
+      redirect_to contacts_path and return
+    end
+
+    file_reader =
+      File.open(file.path, "r:UTF-16", &:read).encode("utf-8") rescue
+      File.open(file.path, "r:ISO-8859-1", &:read).encode("utf-8") rescue
+      File.open(file.path, "r:UTF-8", &:read)
 
     # Get the headers for mapping
     @headers = CSV.parse(file_reader).first
@@ -104,12 +113,10 @@ class ContactsController < ApplicationController
 
     # Create the directory and set up the filepath
     directory = FileUtils::mkdir_p(Rails.root.join("tmp", "contacts", "import"))
-    @csv_filepath = File.join(
-      directory, "#{current_shelter.id}-#{current_user.id}-#{file.original_filename}"
-    )
+    @csv_filepath = File.join(directory, "#{current_shelter.id}-#{current_user.id}-#{file.original_filename}")
 
     # Save the CSV for use in the mapping
-    File.open(@csv_filepath, "wb") { |f| f.write(file_reader) }
+    File.open(@csv_filepath, "w:UTF-8") { |f| f.write(file_reader) }
   end
 
   def import_mapping

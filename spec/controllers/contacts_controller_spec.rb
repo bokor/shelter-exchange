@@ -554,6 +554,18 @@ describe ContactsController do
       expect(response).to render_template(:import)
     end
 
+    context "without an attached file" do
+      it "set a flash message" do
+        post :import
+        expect(flash[:error]).to eq("When importing contacts, Please select a CSV file before clicking 'Upload CSV'.")
+      end
+
+      it "redirects to the :contacts_path" do
+        post :import
+        expect(response).to redirect_to(contacts_path)
+      end
+    end
+
     context "without csv headers" do
       it "assigns @no_headers_warning" do
         path = Rails.root.join("spec", "data", "documents", "contacts_without_headers.csv")
