@@ -113,15 +113,15 @@
     <% end %>
   </div>
 
-  <% if can?(:export, Contact) %>
-  <style type="text/css" media="all">
-    .index_contacts #sidebar .temp_links { margin-top:5px; padding-top: 15px; border-top: 1px dotted #999; }
-  </style>
-  <ul class="temp_links">
-    <li>
-      <%= link_to "Migrate Parents to Contacts", parents_path,
-        :class => "button blue tooltip",
-        "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
-  </ul>
-  <% end %>
+  <%# <% if can?(:export, Contact) %>
+  <%# <style type="text/css" media="all">
+  <%#   .index_contacts #sidebar .temp_links { margin-top:5px; padding-top: 15px; border-top: 1px dotted #999; }
+  <%# </style>
+  <%# <ul class="temp_links">
+  <%#   <li>
+  <%#     <%= link_to "Migrate Parents to Contacts", parents_path,
+  <%#       :class => "button blue tooltip",
+  <%#       "data-tip" => "Temporary feature for shelters who have existing Parent records to migrate them to the new contacts system" %></li>
+  <%# </ul>
+  <%# <% end %>
 <% end %>
