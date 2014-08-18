@@ -184,60 +184,6 @@ describe Parent, "#name" do
   end
 end
 
-describe Parent, "#placements" do
-
-  before do
-    @parent = Parent.gen
-    @placement1 = Placement.gen :parent => @parent
-    @placement2 = Placement.gen :parent => @parent
-  end
-
-  it "returns a list of placements" do
-    expect(@parent.placements.count).to eq(2)
-    expect(@parent.placements).to match_array([@placement1, @placement2])
-  end
-
-  it "destroy all placements associated to the parent" do
-    expect(@parent.placements.count).to eq(2)
-    @parent.destroy
-    expect(@parent.placements.count).to eq(0)
-  end
-end
-
-describe Parent, "#animals" do
-
-  before do
-    @parent = Parent.gen
-    @animal1 = Animal.gen
-    @animal2 = Animal.gen
-
-    Placement.gen :parent => @parent, :animal => @animal1
-    Placement.gen :parent => @parent, :animal => @animal2
-  end
-
-  it "returns a list of animals" do
-    expect(@parent.animals.count).to eq(2)
-    expect(@parent.animals).to match_array([@animal1, @animal2])
-  end
-end
-
-describe Parent, "#shelters" do
-
-  before do
-    @parent = Parent.gen
-    @shelter1 = Shelter.gen
-    @shelter2 = Shelter.gen
-
-    Placement.gen :parent => @parent, :shelter => @shelter1
-    Placement.gen :parent => @parent, :shelter => @shelter2
-  end
-
-  it "returns a list of shelters" do
-    expect(@parent.shelters.count).to eq(2)
-    expect(@parent.shelters).to match_array([@shelter1, @shelter2])
-  end
-end
-
 describe Parent, "#notes" do
 
   before do

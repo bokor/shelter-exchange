@@ -7,11 +7,7 @@ class Parent < ActiveRecord::Base
 
   # Associations
   #----------------------------------------------------------------------------
-  has_many :placements, :dependent => :destroy
   has_many :notes, :as => :notable, :dependent => :destroy
-
-  has_many :animals, :through => :placements
-  has_many :shelters, :through => :placements
 
   # Validations
   #----------------------------------------------------------------------------

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140809172159) do
+ActiveRecord::Schema.define(:version => 20140818051704) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -362,21 +362,6 @@ ActiveRecord::Schema.define(:version => 20140809172159) do
   add_index "photos", ["attachable_id", "is_main_photo"], :name => "index_photos_on_attachable_id_and_is_main_photo"
   add_index "photos", ["attachable_id"], :name => "index_photos_on_attachable_id"
   add_index "photos", ["attachable_type"], :name => "index_photos_on_attachable_type"
-
-  create_table "placements", :force => true do |t|
-    t.integer  "animal_id"
-    t.integer  "parent_id"
-    t.integer  "shelter_id"
-    t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "placements", ["animal_id"], :name => "index_placements_on_animal_id"
-  add_index "placements", ["parent_id", "shelter_id", "animal_id"], :name => "index_placements_on_parent_id_and_shelter_id_and_animal_id"
-  add_index "placements", ["parent_id", "status"], :name => "index_placements_on_parent_id_and_placement_type"
-  add_index "placements", ["parent_id"], :name => "index_placements_on_parent_id"
-  add_index "placements", ["shelter_id"], :name => "index_placements_on_shelter_id"
 
   create_table "shelters", :force => true do |t|
     t.string   "name"
