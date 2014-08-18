@@ -90,7 +90,7 @@ describe Public::HelpAShelterController do
     end
 
     context "with pagination" do
-      it "paginates :find_shelters_in_bounds results" do
+      it "paginates :search_by_shelter_or_rescue_group results" do
         allow(WillPaginate::Collection).to receive(:create).with(1, 15) { [@shelter1] }
 
         get :search_by_shelter_or_rescue_group, :page => 1, :q => "Dog", :format => :js

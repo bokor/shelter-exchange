@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe ApplicationController do
+describe Public::ApplicationController do
   # Testing this with Request Specs
   #
   # TODO: Might have a better way to do this once Devise is upgraded but not sure
 
-  # controller(ApplicationController) do
+  # controller(Public::ApplicationController) do
   #   def index
   #     render nothing: true
   #   end
