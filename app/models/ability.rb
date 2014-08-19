@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    send(user.role)
+    send(user.role) rescue send("read_only")
   end
 
   def owner

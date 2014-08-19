@@ -3,6 +3,21 @@ require "cancan/matchers"
 
 # Class Methods
 #----------------------------------------------------------------------------
+describe Ability do
+
+  it "defaults to read_only when role doesn't match existing list" do
+    expect_any_instance_of(Ability).to receive(:read_only)
+    user = User.new :role => "blah_blah_blah"
+    @ability = Ability.new(user)
+  end
+
+  it "can not manage anything by default" do
+    user = User.new :role => "blah_blah_blah"
+    @ability = Ability.new(user)
+    expect(@ability).to_not be_able_to(:manage, :all)
+  end
+end
+
 describe Ability, ".owner" do
 
   before do
@@ -94,7 +109,7 @@ describe Ability, ".read_only" do
     @ability = Ability.new(user)
   end
 
-  it "can manage everything" do
+  it "can not manage anything" do
     expect(@ability).to_not be_able_to(:manage, :all)
   end
 end
