@@ -11,15 +11,20 @@
 		</ul>
 	</span>
 
-	<span class="action_links">
-		<span class="edit_link">
-			<%= link_to "Edit", edit_capacity_path(capacity, :format => :js), :remote => true %>
-		</span>
+  <span class="action_links">
+
+    <% if can?(:update, Capacity) %>
+      <span class="edit_link">
+        <%= link_to "Edit", edit_capacity_path(capacity, :format => :js), :remote => true %>
+      </span>
+    <% end %>
+
 		<% if can?(:destroy, Capacity) %>
 			<span class="delete_link">&nbsp;|&nbsp;
 				<%= link_to "Delete", capacity, :confirm => "Are you sure?", :method => :delete, :remote => true, :format => :js %>
 			</span>
-		<% end %>
+    <% end %>
+
   </span>
 
 </div>

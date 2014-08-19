@@ -17,18 +17,20 @@
 
 <%= content_for :sidebar do %>
 
-	<div id="create_capacity" class="box orange">
-		<h2>Add a capacity</h2>
-		<div id="create_capacity_errors"></div>
-		<%= form_for (@capacity = Capacity.new), :remote => true, :format => :js, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>
-			<ul>
-				<%= render "form", :f => f  %>
-				<li class="buttons">
-					<%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => "button"  %>
-				</li>
-			</ul>
-		<% end %>
-	</div>
+  <% if can?(:create, Capacity) %>
+    <div id="create_capacity" class="box orange">
+      <h2>Add a capacity</h2>
+      <div id="create_capacity_errors"></div>
+      <%= form_for (@capacity = Capacity.new), :remote => true, :format => :js, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>
+        <ul>
+          <%= render "form", :f => f  %>
+          <li class="buttons">
+            <%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => "button"  %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
 
 
 <% end %>

@@ -15,19 +15,22 @@
 		</ul>
 	</div>
 
-	<div class="page_content">
-		<%= render "shared/error_messages", :target => @alert %>
-		<div id="create_alert">
-			<%= form_for @alert, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
-				<ul>
-					<%= render "form", :f => f %>
-		    		<li class="buttons">
-						<%= f.submit "Create Alert", :disable_with => "Submitting...", :class => "button" %>
-					</li>
-				</ul>
-			<% end %>
-		</div>	
-		
+  <div class="page_content">
+
+    <% if can?(:create, Alert) %>
+      <%= render "shared/error_messages", :target => @alert %>
+      <div id="create_alert">
+        <%= form_for @alert, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
+          <ul>
+            <%= render "form", :f => f %>
+              <li class="buttons">
+              <%= f.submit "Create Alert", :disable_with => "Submitting...", :class => "button" %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+
 	</div>
 
 <% end %>

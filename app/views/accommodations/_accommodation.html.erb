@@ -28,16 +28,19 @@
 			<span class="view_link">
 				<%= link_to "View", "#", :onclick => "$('#accommodation_details_#{accommodation.id}').slideToggle();return false;" %>
 			</span>
+
 			<% if can?(:update, Accommodation) %>
-			<span class="edit_link">&nbsp;|&nbsp;
-				<%= link_to "Edit", edit_accommodation_path(accommodation, :format => :js), :remote => true %>
-			</span>
-			<% end %>
+        <span class="edit_link">&nbsp;|&nbsp;
+          <%= link_to "Edit", edit_accommodation_path(accommodation, :format => :js), :remote => true %>
+        </span>
+      <% end %>
+
 			<% if can?(:destroy, Accommodation) %>
-			<span class="delete_link">&nbsp;|&nbsp;
-				<%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure you want to delete? This will no longer display as an accommodation.", :remote => true, :format => :js %>
-			</span>
-			<% end %>
+        <span class="delete_link">&nbsp;|&nbsp;
+          <%= link_to "Delete", accommodation, :method => :delete, :confirm => "Are you sure you want to delete? This will no longer display as an accommodation.", :remote => true, :format => :js %>
+        </span>
+      <% end %>
+
 		</div>
 	</div>
 

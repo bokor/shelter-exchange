@@ -4,25 +4,25 @@
 
 	<div class="page_heading">
 		<h1>Create your Shelter Capacity List</h1>
-
 		<p>Enter the maximum number of animals per type that your facility can house, include a warning level number to reflect when you are close to capacity.</p>
-
 		<p>This information will be shown on the Community and Public maps to encourage assistance to your facility by warning people when you are close or at capacity.</p>
 	</div>
 
 	<div class="page_content">
-		<%= render "shared/error_messages", :target => @capacity %>
-		<div id="create_capacity">
-			<%= form_for @capacity, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>
-				<ul>
-					<%= render "form", :f => f  %>
-		    		<li class="buttons">
-						<%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => 'button' %>
-					</li>
-				</ul>
-			<% end %>
-		</div>
-  </div>
+
+    <% if can?(:create, Capacity) %>
+      <%= render "shared/error_messages", :target => @capacity %>
+      <div id="create_capacity">
+        <%= form_for @capacity, :html => { :id => "create_capacity_form", :class => "create_capacity_form" } do |f| %>
+          <ul>
+            <%= render "form", :f => f  %>
+              <li class="buttons">
+              <%= f.submit "Create Capacity", :disable_with => "Submitting...", :class => 'button' %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
 
 <% end %>
 

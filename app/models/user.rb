@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Constants
   #----------------------------------------------------------------------------
-  ROLES = %w[user admin].freeze
+  ROLES = %w[user admin read_only].freeze
   OWNER = "owner"
 
   # Callbacks
@@ -30,9 +30,6 @@ class User < ActiveRecord::Base
 
   # Scopes
   #----------------------------------------------------------------------------
-  scope :owner, where(:role => :owner)
-  scope :admin, where(:role => :admin)
-  scope :default, where(:role => :user)
   scope :admin_list, joins(:shelters).
                      select("users.name as name, users.email as email, shelters.id as shelter_id, shelters.name as shelter_name").
                      order("shelters.name").limit(250)
@@ -54,6 +51,8 @@ class User < ActiveRecord::Base
   # Class Methods
   #----------------------------------------------------------------------------
   def self.find_for_authentication(conditions={})
+    # super_user = User.where(:email => conditions[:email], :role => "super_user")
+    # if super user then remove :subdomain else continue
     account = Account.find_by_subdomain(conditions.delete(:subdomain))
     conditions[:account_id] = account.id if account
     super(conditions)

@@ -87,3 +87,15 @@ describe Ability, ".user" do
   end
 end
 
+describe Ability, ".read_only" do
+
+  before do
+    user = User.new :role => :read_only
+    @ability = Ability.new(user)
+  end
+
+  it "can manage everything" do
+    expect(@ability).to_not be_able_to(:manage, :all)
+  end
+end
+

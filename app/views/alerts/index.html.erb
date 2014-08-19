@@ -31,17 +31,20 @@
 
 <%= content_for :sidebar do %>
 
-	<div id="create_alert" class="box red">
-		<h2>Add an alert</h2>
-		<div id="create_alert_errors"></div>
-		<%= form_for (@alert = Alert.new), :remote => true, :format => :js, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
-			<ul>
-				<%= render "form", :f => f  %>
-		    	<li class="buttons">
-					<%= f.submit "Create Alert", :disable_with => "Submitting...", :class => "button"  %>
-				</li>
-			</ul>
-		<% end %>
-	</div>
+  <% if can?(:create, Alert) %>
+    <div id="create_alert" class="box red">
+      <h2>Add an alert</h2>
+      <div id="create_alert_errors"></div>
+      <%= form_for (@alert = Alert.new), :remote => true, :format => :js, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
+        <ul>
+          <%= render "form", :f => f  %>
+            <li class="buttons">
+            <%= f.submit "Create Alert", :disable_with => "Submitting...", :class => "button"  %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+
 <% end %>
 

@@ -24,7 +24,7 @@ end
 #----------------------------------------------------------------------------
 describe User, "::ROLES" do
   it "contains a default list of roles" do
-    expect(User::ROLES).to match_array(["user", "admin"])
+    expect(User::ROLES).to match_array(["user", "admin", "read_only"])
   end
 end
 
@@ -36,48 +36,6 @@ end
 
 # Class Methods
 #----------------------------------------------------------------------------
-describe User, ".owner" do
-
-  it "returns all of the users that are role owner" do
-    user1 = User.gen :role => "owner"
-    User.gen :role => "admin"
-    User.gen :role => "user"
-
-    users = User.owner.all
-
-    expect(users.count).to eq(1)
-    expect(users).to match_array([user1])
-  end
-end
-
-describe User, ".admin" do
-
-  it "returns all of the users that are role admin" do
-    user1 = User.gen :role => "admin"
-    User.gen :role => "owner"
-    User.gen :role => "user"
-
-    users = User.admin.all
-
-    expect(users.count).to eq(1)
-    expect(users).to match_array([user1])
-  end
-end
-
-describe User, ".default" do
-
-  it "returns all of the users that are role user" do
-    user1 = User.gen :role => "user"
-    User.gen :role => "owner"
-    User.gen :role => "admin"
-
-    users = User.default.all
-
-    expect(users.count).to eq(1)
-    expect(users).to match_array([user1])
-  end
-end
-
 describe User, ".admin_list" do
 
   it "returns an ordered list of user names, emails, shelter ids, and shelter names" do

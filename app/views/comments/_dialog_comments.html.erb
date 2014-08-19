@@ -4,9 +4,12 @@
 		<span class="title">
 			<h2>View comments</h2>
 		</span>
-		<span class="action_links">
-			<span class="add_comment_link"><%= link_to "Add a comment", "#" %></span>
-		</span>
+    <span class="action_links">
+			<% if can?(:create, Comment) %>
+        <span class="add_comment_link"><%= link_to "Add a comment", "#" %></span>
+      <% end %>
+    </span>
+
 		<div class="clear"></div>
 
 		<div id="create_comment" class="box hide orange">

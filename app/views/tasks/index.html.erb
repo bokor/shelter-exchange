@@ -22,17 +22,19 @@
 
 <%= content_for :sidebar do %>
 
-	<div id="create_task" class="box blue">
-		<h2>Add a task</h2>
-		<div id="create_task_errors"></div>
-		<%= form_for (@task = Task.new), :remote => true, :format => :js, :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
-		<ul>
-			<%= render "form", :f => f  %>
-			<li class="buttons">
-				<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
-			</li>
-		</ul>
-		<% end %>
-	</div>
+  <% if can?(:create, Task) %>
+    <div id="create_task" class="box blue">
+      <h2>Add a task</h2>
+      <div id="create_task_errors"></div>
+      <%= form_for (@task = Task.new), :remote => true, :format => :js, :html => { :id => "create_task_form", :class => "create_task_form"} do |f| %>
+      <ul>
+        <%= render "form", :f => f  %>
+        <li class="buttons">
+          <%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+  <% end %>
 
 <% end %>

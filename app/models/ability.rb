@@ -27,5 +27,9 @@ class Ability
     cannot :export, Contact
     cannot :import, Contact
   end
+
+  def read_only
+    cannot :manage, :all
+  end
 end
 

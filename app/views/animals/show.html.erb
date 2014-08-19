@@ -21,19 +21,26 @@
 				<td>
 					<h1><%= @animal.name %><span>#<%= @animal.id %></span></h1>
 				</td>
-				<td class="action_links">
-					<%= link_to "Create new animal", new_animal_path %>
+        <td class="action_links">
+          <% if can?(:create, Animal) %>
+            <%= link_to "Create new animal", new_animal_path %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+          <% end %>
+
 					<!-- &nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www")%> -->
-					&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Print", print_animal_path(@animal)%>
-					<% if can?(:update, Animal) %>
-					&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Edit", edit_animal_path(@animal)%>
-					<% end %>
+
+
+          <%= link_to "Print", print_animal_path(@animal)%>
+
+          <% if can?(:update, Animal) %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to "Edit", edit_animal_path(@animal)%>
+          <% end %>
+
 					<% if can?(:destroy, Animal) %>
-					&nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Delete", @animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to "Delete", @animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete %>
 					<% end %>
 				</td>
 			</tr>
@@ -104,13 +111,16 @@
 						<span class="watch_video_link">
 							<%= link_to "Watch Video", fancybox_video_url(@animal), :class => "button video_player", :title => "Video of #{@animal.name}" %>
 						</span>
-						<% end %>
-            <span class="add_photos_link">
-              <%= link_to "Add additional photos", "#", :id => "add_photos_link", :class => "photo_dialog button red",
-                :"data-dialog-blur"    => "Photos.refreshGallery('animals', #{@animal.id})",
-                :"data-dialog-element" => "#dialog_add_photos",
-                :"data-dialog-title"   => "Add or Delete Photos for #{@animal.name}" %>
-						</span>
+            <% end %>
+            <% if can?(:update, Animal) && can?(:create, Photo) %>
+              <span class="add_photos_link">
+                <%= link_to "Add additional photos", "#",
+                    :id => "add_photos_link", :class => "photo_dialog button red",
+                    "data-dialog-blur" => "Photos.refreshGallery('animals', #{@animal.id})",
+                    "data-dialog-element" => "#dialog_add_photos",
+                    "data-dialog-title" => "Add or Delete Photos for #{@animal.name}" %>
+              </span>
+            <% end %>
 					</div>
 			    </td>
 			</tr>
@@ -184,11 +194,13 @@
 
 <%= content_for :sidebar do %>
 
-	<ul class="action_links">
-		<li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" %></li>
-		<li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
-		<li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
-	</ul>
+  <% if can?(:update, Animal) %>
+    <ul class="action_links">
+      <li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" %></li>
+      <li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
+      <li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
+    </ul>
+  <% end %>
 
 	<div id="create_alert" class="box hide red">
 		<h2>Add an alert for <%= @animal.name %></h2>
