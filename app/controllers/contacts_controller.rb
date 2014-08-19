@@ -48,12 +48,7 @@ class ContactsController < ApplicationController
   end
 
   def search
-    q = params[:q].strip.split.join("%")
-    @contacts = if q.blank?
-      @current_shelter.contacts.paginate(:page => params[:page]).all
-    else
-      @current_shelter.contacts.search(q).paginate(:page => params[:page]).all
-    end
+    @contacts = @current_shelter.contacts.search(params[:q]).paginate(:page => params[:page]).all
   end
 
   def filter_by_last_name_role
@@ -75,12 +70,8 @@ class ContactsController < ApplicationController
   end
 
   def find_by_full_name
-    @contacts = {}
-
-    unless params[:q].blank?
-      q = params[:q].strip
-      @contacts = @current_shelter.contacts.search_by_name(q).paginate(:page => params[:page]).all
-    end
+    #TODO: merge with search but need to handle create_new_link for animal status history page
+    @contacts = @current_shelter.contacts.search(params[:q]).paginate(:page => params[:page]).all
   end
 
   def export
@@ -129,6 +120,8 @@ class ContactsController < ApplicationController
       contact = @current_shelter.contacts.new({
         :first_name => row[params[:contact][:first_name_mapping]],
         :last_name => row[params[:contact][:last_name_mapping]],
+        :job_title => row[params[:contact][:job_title_mapping]],
+        :company_name => row[params[:contact][:company_name_mapping]],
         :street => row[params[:contact][:street_mapping]],
         :street_2 => row[params[:contact][:street_2_mapping]],
         :city => row[params[:contact][:city_mapping]],

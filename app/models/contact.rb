@@ -37,22 +37,23 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.search(q)
     scope = self.scoped
-    phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
 
-    if phone.is_numeric?
-      scope = scope.where("phone = ? OR mobile = ?", phone, phone)
-    else
-      scope = scope.where("email = ? OR first_name like ? OR last_name like ? OR (first_name + ' ' + last_name) like ?", q, "%#{q}%", "%#{q}%", "%#{q}%")
-    end
+    unless q.blank?
+      phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
+      valid_phone = phone.is_numeric?
+      valid_email = (q =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i)
 
-    scope
-  end
-
-  def self.search_by_name(q)
-    scope = self.scoped
-
-    q.split(" ").each do |word|
-      scope = scope.where("contacts.first_name LIKE ? or contacts.last_name LIKE ?", "%#{word}%", "%#{word}%")
+      if valid_phone
+        scope = scope.where("contacts.phone = ? OR contacts.mobile = ?", phone, phone)
+      elsif valid_email
+        scope = scope.where(:email => q)
+      else
+        q.split(" ").each do |word|
+          scope = scope.where(
+            "contacts.first_name LIKE ? OR contacts.last_name LIKE ? OR contacts.company_name LIKE ?",
+            "%#{word}%", "%#{word}%", "%#{word}%")
+        end
+      end
     end
 
     scope

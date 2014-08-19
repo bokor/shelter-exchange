@@ -39,6 +39,14 @@
           <td><%= f.select :last_name_mapping, @headers, { :prompt => "Select one" }, {:class => "field select medium" } %></td>
         </tr>
         <tr>
+          <td>Job Title</td>
+          <td><%= f.select :job_title_mapping, @headers, { :prompt => "Select one" }, {:class => "field select medium" } %></td>
+        </tr>
+        <tr>
+          <td>Company Name</td>
+          <td><%= f.select :company_name_mapping, @headers, { :prompt => "Select one" }, {:class => "field select medium" } %></td>
+        </tr>
+        <tr>
           <td>Street Address</td>
           <td><%= f.select :street_mapping, @headers, { :prompt => "Select one" }, { :class => "field select medium" } %></td>
         </tr>

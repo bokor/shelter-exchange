@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140818051704) do
+ActiveRecord::Schema.define(:version => 20140818220643) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -198,15 +198,20 @@ ActiveRecord::Schema.define(:version => 20140818051704) do
     t.decimal  "lat",          :precision => 15, :scale => 10
     t.decimal  "lng",          :precision => 15, :scale => 10
     t.string   "photo"
+    t.string   "company_name"
+    t.string   "job_title"
   end
 
   add_index "contacts", ["adopter"], :name => "index_contacts_on_adopter"
   add_index "contacts", ["donor"], :name => "index_contacts_on_donor"
+  add_index "contacts", ["email"], :name => "index_contacts_on_email"
   add_index "contacts", ["first_name"], :name => "index_contacts_on_first_name"
   add_index "contacts", ["foster"], :name => "index_contacts_on_foster"
+  add_index "contacts", ["last_name", "first_name", "company_name"], :name => "index_contacts_on_last_name_and_first_name_and_company_name"
   add_index "contacts", ["last_name", "first_name"], :name => "index_contacts_on_last_name_and_first_name"
   add_index "contacts", ["last_name"], :name => "index_contacts_on_last_name"
   add_index "contacts", ["lat", "lng"], :name => "index_contacts_on_lat_and_lng"
+  add_index "contacts", ["phone", "mobile"], :name => "index_contacts_on_phone_and_mobile"
   add_index "contacts", ["shelter_id"], :name => "index_contacts_on_shelter_id"
   add_index "contacts", ["staff"], :name => "index_contacts_on_staff"
   add_index "contacts", ["transporter"], :name => "index_contacts_on_transporter"

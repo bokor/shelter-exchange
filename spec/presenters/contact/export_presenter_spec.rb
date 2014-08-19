@@ -20,6 +20,20 @@ describe Contact::ExportPresenter do
     end
   end
 
+  describe "#job_title" do
+    it "returns the contact job_title" do
+      presenter = Contact::ExportPresenter.new(@contact)
+      expect(presenter.job_title).to eq(@contact.job_title)
+    end
+  end
+
+  describe "#company_name" do
+    it "returns the contact company_name" do
+      presenter = Contact::ExportPresenter.new(@contact)
+      expect(presenter.company_name).to eq(@contact.company_name)
+    end
+  end
+
   describe "#email" do
     it "returns the contact email" do
       presenter = Contact::ExportPresenter.new(@contact)
@@ -84,6 +98,8 @@ describe Contact::ExportPresenter do
       expect(presenter.to_csv).to eq([
         presenter.first_name,
         presenter.last_name,
+        presenter.job_title,
+        presenter.company_name,
         presenter.email,
         presenter.phone,
         presenter.mobile,
@@ -104,6 +120,8 @@ describe Contact::ExportPresenter do
       ).to eq([
         "First Name",
         "Last Name",
+        "Job Title",
+        "Company Name",
         "E-mail Address",
         "Home Phone",
         "Mobile Phone",

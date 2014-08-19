@@ -6,14 +6,13 @@
 			Comments.initializeDialog();
 		});
   </script>
-
-  <%= render "file_uploader/upload_template" %>
-	<%= render "file_uploader/download_template" %>
 <% end %>
 
 <%= content_for :page_content do %>
+
 	<div class="page_heading blue">
-    <h1><%= @contact.name %></h1>
+    <h1><%= @contact.name %>
+        <%= company_details_for(@contact) %></h1>
 
     <div class="action_links">
 			<% if can?(:create, Contact) %>

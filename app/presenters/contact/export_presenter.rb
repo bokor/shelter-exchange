@@ -12,6 +12,14 @@ class Contact::ExportPresenter < Presenter
     @contact.last_name
   end
 
+  def job_title
+    @contact.job_title
+  end
+
+  def company_name
+    @contact.company_name
+  end
+
   def email
     @contact.email
   end
@@ -53,7 +61,7 @@ class Contact::ExportPresenter < Presenter
   end
 
   def to_csv
-    [first_name, last_name, email, phone, mobile, street, street_2, city, state, zip_code, categories]
+    [first_name, last_name, job_title, company_name, email, phone, mobile, street, street_2, city, state, zip_code, categories]
   end
 
   def self.csv_header
@@ -61,6 +69,8 @@ class Contact::ExportPresenter < Presenter
     [
       "First Name",
       "Last Name",
+      "Job Title",
+      "Company Name",
       "E-mail Address",
       "Home Phone",
       "Mobile Phone",

@@ -9,8 +9,8 @@
 			Photos.initUploader(<%= raw @uploader_photos %>, <%=Photo::TOTAL_ADDITIONAL%>);
 		});
   </script>
-  <%= render "file_uploader/upload_template" %>
-	<%= render "file_uploader/download_template" %>
+  <%= render "shared/file_uploader/upload_template" %>
+	<%= render "shared/file_uploader/download_template" %>
 <% end %>
 
 <%= content_for :page_content do %>

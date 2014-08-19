@@ -281,6 +281,7 @@ describe ContactsController do
       @contact1 = Contact.gen :shelter => current_shelter, :first_name => "Brian", :last_name => "Bokor"
       @contact2 = Contact.gen :shelter => current_shelter, :first_name => "Claire", :last_name => "Bokor"
       @contact3 = Contact.gen :shelter => current_shelter, :first_name => "Jimmy", :last_name => "John"
+      @contact4 = Contact.gen :shelter => current_shelter, :company_name => "Bokor, Inc."
     end
 
     it "responds successfully" do
@@ -291,7 +292,7 @@ describe ContactsController do
 
     it "assigns @contacts" do
       get :search, :q => "bokor", :format => :js
-      expect(assigns(:contacts)).to match_array([@contact1, @contact2])
+      expect(assigns(:contacts)).to match_array([@contact1, @contact2, @contact4])
     end
 
     it "renders the :search view" do
@@ -302,7 +303,7 @@ describe ContactsController do
     context "with no query parameters" do
       it "assigns @contacts" do
         get :search, :q => " ", :format => :js
-        expect(assigns(:contacts)).to match_array([@contact1, @contact2, @contact3])
+        expect(assigns(:contacts)).to match_array([@contact1, @contact2, @contact3, @contact4])
       end
     end
 
@@ -418,6 +419,7 @@ describe ContactsController do
     before do
       @contact1 = Contact.gen :first_name => "jim", :last_name => "smith", :shelter => current_shelter
       @contact2 = Contact.gen :first_name => "jimmy", :last_name => "smithy", :shelter => current_shelter
+      @contact3 = Contact.gen :shelter => current_shelter
     end
 
     it "responds successfully" do
@@ -433,13 +435,13 @@ describe ContactsController do
 
     it "assigns @contacts" do
       get :find_by_full_name, :q => "jim smith", :format => :js
-      expect(assigns(:contacts)).to eq([@contact1, @contact2])
+      expect(assigns(:contacts)).to match_array([@contact1, @contact2])
     end
 
     context "with no parameters" do
       it "assigns @contacts" do
         get :find_by_full_name, :q => "", :format => :js
-        expect(assigns(:contacts)).to eq({})
+        expect(assigns(:contacts)).to match_array([@contact1, @contact2, @contact3])
       end
     end
 
@@ -520,6 +522,8 @@ describe ContactsController do
       expect(assigns(:headers)).to eq([
         "First Name",
         "Last Name",
+        "Job Title",
+        "Company Name",
         "E-mail Address",
         "Home Phone",
         "Mobile Phone",
@@ -588,6 +592,8 @@ describe ContactsController do
         :csv_filepath => @csv_filepath,
         :first_name_mapping => "First Name",
         :last_name_mapping => "Last Name",
+        :job_title_mapping => "Job Title",
+        :company_name_mapping => "Company Name",
         :street_mapping => "Home Street",
         :street_2_mapping => "Home Street 2",
         :city_mapping => "Home City",
@@ -621,6 +627,8 @@ describe ContactsController do
       contact = Contact.first
       expect(contact.first_name).to eq("Brian")
       expect(contact.last_name).to eq("Bokor")
+      expect(contact.job_title).to eq("cto")
+      expect(contact.company_name).to eq("Shelter Exchange Inc")
       expect(contact.street).to eq("123 main st")
       expect(contact.street_2).to be_nil
       expect(contact.city).to eq("Redwood City")
@@ -654,6 +662,8 @@ describe ContactsController do
           :csv_filepath => @csv_filepath,
           :first_name_mapping => "",
           :last_name_mapping => "",
+          :job_title_mapping => "",
+          :company_name_mapping => "",
           :street_mapping => "",
           :street_2_mapping => "",
           :city_mapping => "",

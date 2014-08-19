@@ -12,9 +12,22 @@
 	      <%= f.label :last_name, "Last" %>
 			  <%= has_error_message?(@contact, :last_name)%>
       </span>
+    </li>
+    <li>
+      <%= f.label :company, "Company Details", :class => "desc" %>
+      <span class="left">
+			  <%= f.text_field :job_title, :class => "field text", :size => 20 %>
+			  <%= f.label :job_title, "Job Title" %>
+        <%= has_error_message?(@contact, :job_title)%>
+      </span>
+      <span class="leftPadded">
+		    <%= f.text_field :company_name, :class => "field text", :size => 40 %>
+	      <%= f.label :company_name, "Company Name" %>
+			  <%= has_error_message?(@contact, :company_name)%>
+      </span>
 		</li>
 		<li class="complex">
-			<%= f.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :address, "Address", :class => "desc" %>
 			<div>
 				<span class="full addr1">
 					<%= f.text_field :street, :class => "field text addr", :maxlength => 255 %>
@@ -40,12 +53,12 @@
 			<%= has_error_message?(@contact, :address)%>
     </li>
     <li>
-			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :email, "Email", :class => "desc" %>
 			<div><%= f.text_field :email, :class => "field text medium", :maxlength => 255 %></div>
 			<%= has_error_message?(@contact, :email)%>
     </li>
 		<li>
-			<%= f.label :phone, "Phone <span class='req'>*</span>".html_safe, :class => "desc" %>
+			<%= f.label :phone, "Phone", :class => "desc" %>
 			<div>
 				<%= f.text_field :phone, :class => "field text medium", :maxlength => 12, :value => number_to_phone(@contact.phone, :delimiter => "-") %>
 				<%= f.label :phone, "###-###-####" %>

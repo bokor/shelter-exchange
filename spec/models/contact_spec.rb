@@ -72,6 +72,7 @@ describe Contact, ".search" do
     @contact1 = Contact.gen(
       :first_name => "Jimmy",
       :last_name => "Smith",
+      :company_name => "Shelter Exchange, Inc",
       :email => "who@example.com",
       :phone => "123-456-7890",
       :state => "CA"
@@ -79,6 +80,7 @@ describe Contact, ".search" do
     @contact2 = Contact.gen(
       :first_name => "The",
       :last_name => "Dude",
+      :company_name => "Shelter Exchange, Inc",
       :mobile => "666-777-8888",
       :state => "CA"
     )
@@ -108,6 +110,16 @@ describe Contact, ".search" do
     contacts = Contact.search("dude")
     expect(contacts).to match_array([@contact2])
   end
+
+  it "returns search results based on company_name" do
+    contacts = Contact.search("Shelter Exchange, Inc")
+    expect(contacts).to match_array([@contact1, @contact2])
+  end
+
+  it "returns search results based on multiple query terms" do
+    contacts = Contact.search("Dude Shelter Exchange")
+    expect(contacts).to match_array([@contact2])
+  end
 end
 
 describe Contact, ".filter_by_last_name_role" do
@@ -132,39 +144,6 @@ describe Contact, ".filter_by_last_name_role" do
   it "returns results for last name initial and category" do
     contacts = Contact.filter_by_last_name_role("A", "adopter")
     expect(contacts).to match_array([@contact1])
-  end
-end
-
-describe Contact, ".search_by_name" do
-
-  it "returns a list of contacts based on the first name" do
-    contact1 = Contact.gen :first_name => "jim"
-    contact2 = Contact.gen :first_name => "jimmy"
-    Contact.gen :first_name => "bob"
-
-    contacts = Contact.search_by_name("jim")
-    expect(contacts.count).to eq(2)
-    expect(contacts).to match_array([contact1, contact2])
-  end
-
-  it "returns a list of contacts based on the last name" do
-    contact1 = Contact.gen :last_name => "smith"
-    contact2 = Contact.gen :last_name => "smithy"
-    Contact.gen :last_name => "doe"
-
-    contacts = Contact.search_by_name("smith")
-    expect(contacts.count).to eq(2)
-    expect(contacts).to match_array([contact1, contact2])
-  end
-
-  it "returns a list of contacts based on the first and last name" do
-    contact1 = Contact.gen :first_name => "jim", :last_name => "smith"
-    contact2 = Contact.gen :first_name => "jimmy", :last_name => "smithy"
-    Contact.gen :first_name => "john", :last_name => "doe"
-
-    contacts = Contact.search_by_name("jim smith")
-    expect(contacts.count).to eq(2)
-    expect(contacts).to match_array([contact1, contact2])
   end
 end
 
