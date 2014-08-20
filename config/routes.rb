@@ -304,7 +304,7 @@ ShelterExchangeApp::Application.routes.draw do
   #----------------------------------------------------------------------------
   constraints(Subdomains::Api) do
 
-    namespace :api, :path => "/" do
+    namespace :api, :path => "/", :defaults => { :version => "v1" } do
 
       # Api :: Animals
       #----------------------------------------------------------------------------
