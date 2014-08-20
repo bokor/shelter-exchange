@@ -19,7 +19,7 @@ class SettingsController < ApplicationController
   #----------------------------------------------------------------------------
   def change_owner
     @users = @current_account.users.all
-    @owner = @current_account.users.owner.first
+    @owner = @current_account.users.where(:role => :owner).first
   end
 
   def web_access
