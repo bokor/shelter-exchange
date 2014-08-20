@@ -120,7 +120,7 @@ class Animal < ActiveRecord::Base
 
 # API
   #----------------------------------------------------------------------------
-  def self.api_lookup(types, statuses, filters={})
+  def self.api_lookup(types, statuses)
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
     scope = scope.where(:animal_type_id => types) unless types.blank?

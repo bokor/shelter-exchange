@@ -21,7 +21,7 @@
     </div>
 
     <div id="narrow_search_results" class="section_heading no_borders gray">
-      <%= form_for :animals, :url => api_search_animals_path, :remote => true, :format => :js, :html => { :id => "form_filters", :method => :get } do |f| %>
+      <%= form_for :animals, :url => search_api_animals_path, :remote => true, :format => :js, :html => { :id => "form_filters", :method => :get } do |f| %>
         <table class="filters">
           <tr>
             <td class="type">
@@ -51,15 +51,14 @@
         <% end %>
 
         <%= hidden_field_tag "access_token", params[:access_token] %>
-        <%= hidden_field_tag "version", params[:version] %>
       <% end %>
     </div>
 
 		<div id="animals">
 			<% unless @animals.blank? %>
-				<%= render 'api/animals/animal_list', :animals => @animals %>
+				<%= render "api/animals/animal_list", :animals => @animals %>
 			<% else %>
-				<%= render 'api/animals/no_animals' %>
+				<%= render "api/animals/no_animals" %>
 			<% end %>
 		</div>
   </div>
