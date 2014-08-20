@@ -95,9 +95,11 @@
 
 <%= content_for :sidebar do %>
 
-	<ul class="action_links">
-		<li><%= link_to "Add note", "#", :id => "add_note_link", :class => "button" -%></li>
-	</ul>
+  <% if can?(:update, Contact) %>
+    <ul class="action_links">
+      <li><%= link_to "Add note", "#", :id => "add_note_link", :class => "button" -%></li>
+    </ul>
+  <% end %>
 
 	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @contact.name %></h2>
