@@ -31,9 +31,10 @@ class Animal < ActiveRecord::Base
 
   # Getters/Setters
   #----------------------------------------------------------------------------
-  attr_accessor :status_history_reason, :status_history_date,
-                :status_history_date_month, :status_history_date_day, :status_history_date_year,
-                :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
+  attr_accessor :status_history_reason, :status_history_contact_id, :status_history_date,
+                :status_history_date_month, :status_history_date_day, :status_history_date_year
+
+  attr_accessor :date_of_birth_month, :date_of_birth_day, :date_of_birth_year,
                 :arrival_date_month, :arrival_date_day, :arrival_date_year,
                 :euthanasia_date_month, :euthanasia_date_day, :euthanasia_date_year
 
@@ -346,7 +347,7 @@ class Animal < ActiveRecord::Base
   def create_status_history!
     if self.new_record? || self.animal_status_id_changed? || self.shelter_id_changed?
       date = Date.parse("#{self.status_history_date_year}/#{self.status_history_date_month}/#{self.status_history_date_day}") rescue nil
-      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, date, @status_history_reason)
+      StatusHistory.create_with(self.shelter_id, self.id, self.animal_status_id, date, @status_history_reason, @status_history_contact_id)
     end
   end
 

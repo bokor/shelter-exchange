@@ -10,13 +10,14 @@ class StatusHistory < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def self.create_with(shelter_id, animal_id, animal_status_id, date, reason)
+  def self.create_with(shelter_id, animal_id, animal_status_id, date, reason, contact_id)
     create!({
       :shelter_id => shelter_id,
       :animal_id => animal_id,
       :animal_status_id => animal_status_id,
       :status_date => date || Time.zone.today,
-      :reason => reason
+      :reason => reason,
+      :contact_id => contact_id
     })
   end
 
