@@ -31,6 +31,7 @@
 
 .animals .icon_calendar{padding-left: 10px; cursor: pointer;}
 .animals .calendar{display:none;}
+.animals .help_text{font-weight:normal;font-size:11px;}
 
 /* Accommodation */
 .animals #accommodation_remove_link{display:none;padding-left: 5px;}
@@ -651,8 +652,7 @@
 .reports .report {width: 100%; height: 100%; min-height:400px; margin: 0px auto 20px auto;}
 
 .reports .stats h2 { border-bottom: 1px #ccc solid;  padding-bottom: 10px;}
-.reports .stats .separator{ border-bottom: 1px #ccc solid; }
-.reports .stats .filters{ padding-top:5px; }
+.reports .stats .filters{ padding:5px 0 15px 0;margin:0 0 15px 0;  border-bottom: 1px #ccc solid; }
 
 /* Index Reports :: Stats and Count Sections
 -----------------------------------------------------------------------------*/
@@ -662,6 +662,17 @@
 .index_reports .count_sections h3.euthanized_color {color:red;}
 .index_reports .count_sections p {color:black;font-size: 12px; letter-spacing: -1px;}
 .index_reports .count_sections:after {height:25px;}
+
+/* Index Reports :: Status Count Table  */
+/******************************************************************/
+.index_reports .status_counts { width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; margin-bottom: 30px; }
+.index_reports .status_counts { }
+.index_reports .status_counts th { line-height: 50px; border:1px #ddd solid; text-align: center; }
+.index_reports .status_counts tr { line-height: 30px; }
+.index_reports .status_counts tr.odd { background-color: #fff; }
+.index_reports .status_counts tr.even { background-color: #efefef; }
+.index_reports .status_counts tr td { border:1px #ddd solid; }
+.index_reports .status_counts tr td.status { padding-left: 5px; font-weight: bold; }
 
 /* Reports :: Layout
 -----------------------------------------------------------------------------*/

@@ -14,43 +14,28 @@
 		<h1>Reports</h1>
 	</div>
 
-	<div class="page_content">
+  <div class="page_content">
 
-		<div class="stats">
-			<h2>Current Month</h2>
-			<div class="count_sections">
-				<div>
-					<h3><%= @active_count_month %></h3>
-					<p>Total Active</p>
-				</div>
-				<div>
-					<h3><%= @total_adoptions_month %></h3>
-					<p>Total Adoptions</p>
-				</div>
-				<div>
-					<h3 class="euthanized_color"><%= @total_euthanized_month %></h3>
-					<p>Total Euthanized</p>
-				</div>
-			</div>
-		</div>
+    <h2>Animal Count Totals</h2>
+    <table class="status_counts">
+      <tr>
+        <th>Status</th>
+        <th>Total</th>
+        <th>2014</th>
+        <th>2013</th>
+        <th>2012</th>
+      </tr>
+			<% @status_counts.each do |status_history|  %>
+				<tr class="<%= cycle("odd", "even")%>">
+					<td class="status"><%= status_history["Status"] %></td>
+					<td class="center"><%= status_history["Total"] %></td>
+					<td class="center"><%= status_history["2014"] %></td>
+					<td class="center"><%= status_history["2013"] %></td>
+          <td class="center"><%= status_history["2012"] %></td>
+				</tr>
+      <% end %>
+    </table>
 
-		<div class="stats">
-			<h2>Year to Date</h2>
-			<div class="count_sections">
-				<div>
-					<h3><%= @active_count_ytd %></h3>
-					<p>Total Active</p>
-				</div>
-				<div>
-					<h3><%= @total_adoptions_ytd %></h3>
-					<p>Total Adoptions</p>
-				</div>
-				<div>
-					<h3 class="euthanized_color"><%= @total_euthanized_ytd %></h3>
-					<p>Total Euthanized</p>
-				</div>
-			</div>
-    </div>
 
     <div class="stats">
 			<h2>Monthly Totals</h2>
@@ -68,7 +53,6 @@
           <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
         </span>
       </div>
-      <div class="separator"></div>
     </div>
 
 		<div id="status_by_month_year" class="report"></div>

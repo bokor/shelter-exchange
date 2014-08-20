@@ -46,8 +46,8 @@
         </li>
         <li class="section status_history_section">
           <section>
-            <h3>Status History</h3>
-            <div>blah blah blah</div>
+            <h3>Status Change Info</h3>
+            <div>Below you can record the date the status changed, the reason for the change, and add a Contact to the new status. For example: Adopted - Status Date: 02/02/2014 - Reason: Adopter found at adoption event - Add a Contact: attach the adopter's contact details.</div>
           </section>
         </li>
         <li class="full date status_history_date_field">
@@ -73,12 +73,12 @@
           <%= has_error_message?(@animal, :status_history_date)%>
        </li>
        <li class="status_history_reason_field">
-         <%= f.label :status_history_reason, "Reason for status change".html_safe, :class => "desc" %>
+         <%= f.label :status_history_reason, "Reason".html_safe, :class => "desc" %>
 				 <%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
          <%= has_error_message?(@animal, :status_history_reason)%>
        </li>
        <li class="status_history_contact_field full">
-         <%= f.label :status_history_contact_id, "Add a Contact for the new status".html_safe, :class => "desc" %>
+         <%= f.label :status_history_contact_id, "Add a Contact <span class='help_text'>(i.e. #{Contact::ROLES.collect(&:humanize).to_sentence})</span>".html_safe, :class => "desc" %>
          <%= f.hidden_field :status_history_contact_id %>
 
          <span id="contact_name"></span>

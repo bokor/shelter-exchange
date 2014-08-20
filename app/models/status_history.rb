@@ -67,6 +67,25 @@ class StatusHistory < ActiveRecord::Base
     scope = scope.reorder(nil).limit(nil)
     scope
   end
+
+  def self.status_counts(years_ago=2)
+    years = (Date.today.year).downto(Date.today.year-years_ago).to_a
+    scope = self.scoped
+
+    scope = scope.joins(:animal_status)
+    scope = scope.select("animal_statuses.name as 'Status'")
+    scope = scope.select("COUNT(status_histories.animal_status_id) as 'Total'")
+
+    years.each do |year|
+      beginning_of_year = Date.parse("#{year}/01/01").beginning_of_year
+      end_of_year = Date.parse("#{year}/01/01").end_of_year
+      scope = scope.select("COUNT(CASE WHEN status_histories.status_date BETWEEN '#{beginning_of_year}' AND '#{end_of_year}' THEN 1 END) AS '#{year}'")
+    end
+
+    scope = scope.group(:animal_status_id)
+    scope = scope.reorder(nil).limit(nil)
+    scope
+  end
   #----------------------------------------------------------------------------
 
 end

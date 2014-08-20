@@ -2,12 +2,7 @@ class ReportsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @active_count_month = @current_shelter.animals.current_month.active.count
-    @total_adoptions_month = @current_shelter.animals.current_month.adopted.count
-    @total_euthanized_month = @current_shelter.animals.current_month.euthanized.count
-    @active_count_ytd = @current_shelter.animals.year_to_date.active.count
-    @total_adoptions_ytd = @current_shelter.animals.year_to_date.adopted.count
-    @total_euthanized_ytd = @current_shelter.animals.year_to_date.euthanized.count
+    @status_counts =  @current_shelter.status_histories.status_counts.all
   end
 
   def custom

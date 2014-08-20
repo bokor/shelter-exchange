@@ -617,12 +617,11 @@ describe Animal, ".api_lookup" do
 
   it "returns a list of available animals because no status provided" do
     animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 16
     Animal.gen :animal_status_id => 2
 
     animals = Animal.api_lookup(nil, nil)
 
-    expect(animals).to match_array([animal1, animal2])
+    expect(animals).to match_array([animal1])
   end
 
   it "returns a list of animals per statuses provided" do

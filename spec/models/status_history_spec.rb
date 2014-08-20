@@ -48,6 +48,7 @@ describe "Reports" do
     @status_history2 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter1
     @status_history3 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter2
     @status_history4 = StatusHistory.gen :status_date => @date_for_status_history + 1.month, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter2
+
   end
 
   describe StatusHistory, ".by_month" do
@@ -109,6 +110,29 @@ describe "Reports" do
       expect(status_histories[0].type).to eq("Dog")
       expect(status_histories[0].send(current_month)).to eq(1)
       expect(status_histories[0].send(next_month)).to eq(1)
+    end
+  end
+
+  describe StatusHistory, ".status_counts" do
+
+    it "returns list of counts per status with default of 2 previous years" do
+      status_counts = StatusHistory.status_counts
+
+      expect(MultiJson.load(status_counts.to_json)).to match_array([{
+        "status_history" => { "2012" => 0, "2013" => 2, "2014" => 1, "Status" => "Available for adoption", "Total" => 3 }
+      }, {
+        "status_history" => { "2012" => 0, "2013" => 2, "2014" => 0, "Status" => "Adopted", "Total" => 2 }
+      }])
+    end
+
+    it "returns list of counts per status with x previous years" do
+      status_counts = StatusHistory.status_counts(1)
+
+      expect(MultiJson.load(status_counts.to_json)).to match_array([{
+        "status_history" => { "2013" => 2, "2014" => 1, "Status" => "Available for adoption", "Total" => 3 }
+      }, {
+        "status_history" => { "2013" => 2, "2014" => 0, "Status" => "Adopted", "Total" => 2 }
+      }])
     end
   end
 end

@@ -11,62 +11,28 @@ describe ReportsController do
       expect(response.status).to eq(200)
     end
 
-    it "assigns @active_count_month" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-      animal.update_attribute(:status_change_date, Date.today - 1.month)
+    it "assigns @status_counts" do
+      Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
+
+      adopted = AnimalStatus.gen :name => "Adopted"
+      foster_care = AnimalStatus.gen :name => "Foster Care"
+      available_for_adoption = AnimalStatus.gen :name => "Available for adoption"
+
+      StatusHistory.gen :status_date => Date.new(2014, 02, 12), :animal_status => adopted, :shelter => current_shelter
+      StatusHistory.gen :status_date => Date.new(2014, 02, 12), :animal_status => foster_care, :shelter => current_shelter
+      StatusHistory.gen :status_date => Date.new(2013, 02, 12), :animal_status => available_for_adoption, :shelter => current_shelter
+      StatusHistory.gen :status_date => Date.new(2012, 02, 12), :animal_status => available_for_adoption, :shelter => current_shelter
+      StatusHistory.gen
 
       get :index
-      expect(assigns(:active_count_month)).to eq(1)
-    end
-
-    it "assigns @total_adoptions_month" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      animal.update_attribute(:status_change_date, Date.today - 1.month)
-
-      get :index
-      expect(assigns(:total_adoptions_month)).to eq(1)
-    end
-
-    it "assigns @total_euthanized_month" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-      animal.update_attribute(:status_change_date, Date.today - 1.month)
-
-      get :index
-      expect(assigns(:total_euthanized_month)).to eq(1)
-    end
-
-    it "assigns @active_count_ytd" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
-
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-      animal.update_attribute(:status_change_date, Date.today - 1.year)
-
-      get :index
-      expect(assigns(:active_count_ytd)).to eq(2)
-    end
-
-    it "assigns @total_adoptions_ytd" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      animal.update_attribute(:status_change_date, Date.today - 1.year)
-
-      get :index
-      expect(assigns(:total_adoptions_ytd)).to eq(1)
-    end
-
-    it "assigns @total_euthanized_ytd" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-
-      animal = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::STATUSES[:euthanized]
-      animal.update_attribute(:status_change_date, Date.today - 1.year)
-
-      get :index
-      expect(assigns(:total_euthanized_ytd)).to eq(1)
+      status_counts_hash = MultiJson.load(assigns(:status_counts).to_json)
+      expect(status_counts_hash).to match_array([{
+        "status_history" => { "2012" => 1, "2013" => 1, "2014" => 0, "Status" => "Available for adoption", "Total" => 2 }
+      }, {
+        "status_history" => { "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Adopted", "Total" => 1 }
+      }, {
+        "status_history" => { "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Foster Care", "Total" => 1 }
+      }])
     end
 
     it "renders the :index view" do
