@@ -1,17 +1,68 @@
 <%= title "Animals" %>
 
 <%= content_for :javascripts do %>
+  <script type="text/javascript">
+		$(function() {
+			Animals.filterInitialize();
+		});
+	</script>
 <% end %>
 
 <%= content_for :page_content do %>
-	<div class="page_content">
+
+  <div class="page_content">
+
+    <div class="search_content">
+      <span class="helper_links">
+        <ul class="toggle_buttons">
+          <li><a href="#narrow_search_results">Narrow your search results</a></li>
+        </ul>
+      </span>
+    </div>
+
+    <div id="narrow_search_results" class="section_heading no_borders gray">
+      <%= form_for :animals, :url => api_search_animals_path, :remote => true, :format => :js, :html => { :id => "form_filters", :method => :get } do |f| %>
+        <table class="filters">
+          <tr>
+            <td class="type">
+              <%= label_tag :filters_animal_type, "Type", :class => "desc" %>
+              <div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:selected => (@types.first if @types.count == 1), :prompt => "All"},{:class => "field select large"} %></div>
+            </td>
+            <td class="breed">
+              <%= label_tag :filters_breed, "Breed", :class => "desc" %>
+              <div><%= text_field_tag "filters[breed]", "", :disabled => true, :autocomplete => :off, :class => "field text", :maxlength => 255, :placeholder => "Please select type first" %>
+              </div>
+            </td>
+            <td class="sex">
+              <%= label_tag :filters_sex, "Sex", :class => "desc" %>
+              <div><%= collection_select :filters, :sex, Animal::SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select"} %></div>
+            </td>
+            <td class="extra_options">
+              <span class="only_one_checkbox">
+                <%= check_box_tag "filters[special_needs_only]", true, false, :class => "field checkbox" %>
+                <%= label_tag :filters_special_needs_only, "Special needs animals", :class => "choice special_needs" %>
+              </span>
+            </td>
+          </tr>
+        </table>
+
+        <% @statuses.each do |status| %>
+          <%= hidden_field_tag "filters[animal_status][]", status  %>
+        <% end %>
+
+        <%= hidden_field_tag "access_token", params[:access_token] %>
+        <%= hidden_field_tag "version", params[:version] %>
+      <% end %>
+    </div>
+
 		<div id="animals">
 			<% unless @animals.blank? %>
 				<%= render 'api/animals/animal_list', :animals => @animals %>
 			<% else %>
-				<h2>Currently, No animals available!</h2>
+				<%= render 'api/animals/no_animals' %>
 			<% end %>
 		</div>
-	</div>
+  </div>
+
 <% end %>
-	
+

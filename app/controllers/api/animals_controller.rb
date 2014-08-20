@@ -8,6 +8,12 @@ class Api::AnimalsController < Api::ApplicationController
     respond_with(@animals)
   end
 
+  def search
+    @animals = @current_shelter.animals.
+      api_filter(params[:filters]).
+      paginate(:page => params[:page], :per_page => 15).all || {}
+  end
+
   #----------------------------------------------------------------------------
   private
 

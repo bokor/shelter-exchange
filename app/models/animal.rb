@@ -117,15 +117,53 @@ class Animal < ActiveRecord::Base
   end
   #----------------------------------------------------------------------------
 
-  # API
+# API
   #----------------------------------------------------------------------------
-  def self.api_lookup(types, statuses)
+  def self.api_lookup(types, statuses, filters={})
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
-    scope = (statuses.blank? ? scope.available : scope.where(:animal_status_id => statuses))
     scope = scope.where(:animal_type_id => types) unless types.blank?
-    #TODO: Maybe just order by animal.name or nil(no order)
-    scope = scope.reorder("ISNULL(animals.euthanasia_date), animals.euthanasia_date ASC")
+
+    scope = if statuses.blank?
+      scope.available_for_adoption
+    else
+      scope.where(:animal_status_id => statuses)
+    end
+
+    scope
+  end
+
+  def self.api_filter(filters={})
+    scope = self.scoped
+    scope = scope.includes(:animal_type, :animal_status, :photos)
+
+    # Filter Animal Status
+    if filters[:animal_status].blank?
+      scope = scope.available_for_adoption
+    else
+      scope = scope.where(:animal_status_id => filters[:animal_status])
+    end
+
+    # Filter Animal Type
+    unless filters[:animal_type].blank?
+      scope = scope.where(:animal_type_id => filters[:animal_type])
+    end
+
+    # Filter Special Needs
+    unless filters[:special_needs_only].blank? || !filters[:special_needs_only]
+      scope = scope.where(:has_special_needs => true)
+    end
+
+    # Filter Breed
+    unless filters[:breed].blank?
+      scope = scope.where("animals.primary_breed = ? OR animals.secondary_breed = ?", filters[:breed], filters[:breed])
+    end
+
+    # Filter Sex
+    unless filters[:sex].blank?
+      scope = scope.where(:sex => filters[:sex].downcase)
+    end
+
     scope
   end
   #----------------------------------------------------------------------------

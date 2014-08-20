@@ -308,10 +308,14 @@ ShelterExchangeApp::Application.routes.draw do
 
       # Api :: Animals
       #----------------------------------------------------------------------------
-      resources :animals, :only => [:index, :show]
-      match '/:version/animals' => 'animals#index'
-      match '/:version/animals/:id' => 'animals#show'
+      resources :animals, :only => [:index] do
+        collection do
+          get :search
+        end
+      end
 
+      get '/:version/animals' => 'animals#index', :as => :list_animals
+      get '/:version/animals/search' => 'animals#search', :as => :search_animals
     end
 
   end

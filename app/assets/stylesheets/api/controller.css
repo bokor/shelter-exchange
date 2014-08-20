@@ -57,6 +57,7 @@
 .section_heading.green{border-color: #90e674;background-color:#d5f6ca;}
 .section_heading.orange{border-color: #f9d36f; background-color:#fdf1d0;}
 .section_heading.blue{border-color: #74afe3;background-color:#c9e0f4;}
+.section_heading.gray{border-color: #ccc;background-color:#eee;}
 .section_heading h2{float:left;}
 .section_heading .links{float:right; text-align: right;padding-top:5px;}
 .section_heading:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
@@ -137,46 +138,34 @@
 
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
-/* Show Animals :: Page Layout
------------------------------------------------------------------------------*/
-.show_animals table.animal{width:100%;}
-.show_animals table.animal td{vertical-align:top;width:50%;}
-.show_animals table.animal td.action_links{text-align:right;font-size:12px;padding-top:5px;}
-.show_animals table.animal td.action_links .toggle_buttons{margin: -4px 0 0 15px;}
-.show_animals table.animal td.status{text-align:right;}
-.show_animals table.animal td h1 {}
-.show_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
-.show_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
 
 
-/* Show Animal :: Animal Details
------------------------------------------------------------------------------*/
-.show_animals table.animal_details{text-align:left;}
-.show_animals table.animal_details h3{border-bottom: 1px #ccc dotted; font-weight: bold; padding-bottom:5px; margin-bottom:10px;}
-.show_animals table.animal_details td{vertical-align:top; }
-/*.show_animals table.animal_details td.image img{-webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}*/
-.show_animals table.animal_details td.metadata{width:100%; padding: 0 15px 0 0; margin:0 0 0 0; }
-.show_animals table.animal_details td.metadata ul {text-align:left;padding-bottom: 10px;}
-.show_animals table.animal_details td.metadata ul:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.show_animals table.animal_details td.metadata ul li{ padding-bottom: 0; float:left; width: 48%;}
-.show_animals table.animal_details td.metadata ul li p{padding-bottom: 5px;margin:0;}
+/* This is for the narrow your search results.  Should be a bit nicer */
 
-.show_animals p.euthanasia_info{color: #ee3124; font-weight: bold; font-size: 16px; letter-spacing: -1px;}
+/* Index Animals :: Search Section :: Search Bar */
+/******************************************************************/
+.index_animals .search_content {position:relative;width:100%; height: 40px; margin-bottom:0px;}
+.index_animals .helper_links{display:block; text-align:center;}
 
-/* Show Animal :: Shelter Details
------------------------------------------------------------------------------*/
-.show_animals .animal_shelter{border-top: 1px #ccc dotted; padding-top: 20px; margin-top: 10px;}
-.show_animals #shelter_details{padding-bottom: 20px;}
-.show_animals #shelter_details h1{color: #ccc;height: 100px; line-height: 100px; margin: 0 auto; text-align: center;}
-.show_animals #shelter_details .right_side{float:right; text-align:right;}
-.show_animals #shelter_details .logo{padding-bottom: 15px;}
-.show_animals #shelter_details .right_side:after{ content:"\0020"; display:block; height:10px; clear:both; visibility:hidden; overflow:hidden; }
+/* Index Animals :: Search Section :: Help Text */
+/******************************************************************/
+.index_animals #help_text{display:none;margin-bottom:5px;}
+.index_animals #help_text h3{color:#000; text-shadow:none;}
 
-
-/* Show Animal :: Description Layout
------------------------------------------------------------------------------*/
-
-
-
+/* Index Animals :: Search Section :: Filters */
+/******************************************************************/
+.index_animals #narrow_search_results{display:none; height: 65px;}
+.index_animals #form_filters table {vertical-align: top; width:100%;}
+.index_animals #form_filters table tr{vertical-align: top; width:100%;}
+.index_animals #form_filters table td{padding-left:40px;}
+.index_animals #form_filters table td.type {width: 15%;}
+.index_animals #form_filters table td.breed {width: 25%;}
+	.index_animals #form_filters table td.breed input {width: 99%;}
+.index_animals #form_filters table td.sex {width: 10%;}
+.index_animals #form_filters table td.extra_options {width: 30%;}
+.index_animals #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
+	.index_animals #form_filters table td.extra_options .only_one_checkbox{display:block;margin-top: 24px;}
+	.index_animals #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
+	.index_animals #form_filters table td.extra_options .euthanasia_list{color:#DF0000;font-weight:bold;}
 
 
