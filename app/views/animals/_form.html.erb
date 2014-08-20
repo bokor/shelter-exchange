@@ -36,15 +36,21 @@
 			</div>
 		</li>
     <li>
-      <ul>
-        <li>
+      <ul id="status_history_container">
+        <li class="animal_status_id_field">
           <%= f.label :animal_status_id, "Status <span class='req'>*</span>".html_safe, :class => "desc" %>
           <div>
             <%= f.collection_select :animal_status_id, AnimalStatus.all, :id, :name, {:prompt => "Select one"}, {:class => "field select medium" } %>
           </div>
           <%= has_error_message?(@animal, :animal_status_id)%>
         </li>
-        <li class="full date status_history_details">
+        <li class="section status_history_section">
+          <section>
+            <h3>Status History Info</h3>
+            <div>blah blah blah</div>
+          </section>
+        </li>
+        <li class="full date status_history_date_field">
           <%= f.label :status_history_date, "Status Date".html_safe, :class => "desc" %>
           <span>
             <%= f.text_field :status_history_date_month, :class => "field text", :maxlength => 2, :size => 2, :value => date_attribute_for(@animal, :status_history_date, :month)  %>
@@ -64,12 +70,29 @@
             <%= image_tag "icon_calendar.png", :id => "status_history_date_trigger", :class => "icon_calendar" %>
           </span>
 			    <span id="animal_status_history_date_datepicker" class="calendar"></span>
-			    <%= has_error_message?(@animal, :status_history_date)%>
+          <%= has_error_message?(@animal, :status_history_date)%>
        </li>
-       <li class="status_history_details">
-          <%= f.label :status_history_reason, "Reason for the status change".html_safe, :class => "desc" %>
-				  <%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
-          <%= has_error_message?(@animal, :status_history_reason)%>
+       <li class="status_history_reason_field">
+         <%= f.label :status_history_reason, "Reason for status change".html_safe, :class => "desc" %>
+				 <%= f.text_field :status_history_reason, :class => "field text large", :maxlength => 255 %>
+         <%= has_error_message?(@animal, :status_history_reason)%>
+       </li>
+       <li class="status_history_contact_field full">
+         <%= f.label :status_history_contact_id, "Add a Contact for the new status".html_safe, :class => "desc" %>
+         <%= f.hidden_field :status_history_contact_id %>
+
+         <span id="contact_name"></span>
+         <span>
+           <a href="#" id="add_contact_link" class="tooltip_dialog"
+              data-dialog-element="#dialog_contact_search"
+              data-dialog-show="Contacts.updateSearchDialog();"
+              data-dialog-title="&nbsp;">Search for contact</a>
+         </span>
+         <span>
+           <a href="#" id="remove_contact_link"
+              onclick="Animals.removeStatusHistoryContact(); return false;">Remove Contact</a>
+         </span>
+
         </li>
       </ul>
 		</li>
@@ -188,7 +211,6 @@
 			<%= has_error_message?(@animal, :arrival_date)%>
 		</li>
 
-		<%# if @current_shelter.accommodations.count > 0 %>
 		<li class="section accommodation_info">
 			<section>
 				<h3>Accommodation Info</h3>
@@ -209,7 +231,6 @@
 			</div>
 			<%= has_error_message?(@animal, :accommodation_id)%>
 		</li>
-		<%# end %>
 
 		<% if @current_shelter.kill_shelter? %>
 		<li class="section">
@@ -307,3 +328,4 @@
 <% end %>
 
 <%= render "accommodations/dialog_accommodation_search" %>
+<%= render "contacts/dialog_contact_search" %>

@@ -30,6 +30,7 @@ class Ability
 
   def read_only
     cannot :manage, :all
+    can :update, User
   end
 end
 

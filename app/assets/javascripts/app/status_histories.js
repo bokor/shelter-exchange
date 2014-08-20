@@ -9,20 +9,26 @@ var StatusHistories = {
 			dataType: "script"
 		});
 	},
-	selectContact: function(contact_id) {
+	selectContact: function(contact_id, contact_name) {
     $('.qtip').qtip('hide');
 
 		var id = $('#status_history_id').val();
-    $.ajax({
-			url: '/status_histories/' + id + '.js',
-			type: 'put',
-			dataType: 'script',
-      data: {
-        status_history: {
-			  	contact_id: contact_id
+    if(id == "") {
+      // If there is no status history id then we are using this
+      // on the animal form so set the contact id and name
+      Animals.addStatusHistoryContact(contact_id, contact_name);
+    } else {
+      $.ajax({
+        url: '/status_histories/' + id + '.js',
+        type: 'put',
+        dataType: 'script',
+        data: {
+          status_history: {
+            contact_id: contact_id
+          }
         }
-      }
-		});
+      });
+    }
   },
 	datePicker: function(element){
 		$(element + " .date_picker").datepicker({

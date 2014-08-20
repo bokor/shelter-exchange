@@ -15,7 +15,7 @@ describe StatusHistory, ".create_with" do
   it "creates a status history" do
     expect(StatusHistory.count).to eq(0)
 
-    status_history = StatusHistory.create_with(1, 2, 3, Date.today, "testing")
+    status_history = StatusHistory.create_with(1, 2, 3, Date.today, "testing", 1)
 
     expect(StatusHistory.count).to eq(1)
 
@@ -24,6 +24,7 @@ describe StatusHistory, ".create_with" do
     expect(status_history.animal_status_id).to eq(3)
     expect(status_history.status_date).to eq(Date.today)
     expect(status_history.reason).to eq("testing")
+    expect(status_history.contact_id).to eq(1)
   end
 end
 

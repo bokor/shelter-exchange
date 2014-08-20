@@ -18,13 +18,28 @@ var Animals = {
 		var animal_status_id = $('#animal_animal_status_id').val();
 		var has_value = $('#animal_status_history_reason').val() != "";
 
-		if (animal_status_id != animal_status_was) { //(changed || has_value) && (animal_status_id != animal_status_was)
-			$('.status_history_details').show();
+		if (animal_status_id != animal_status_was) {
+			$('.status_history_section, .status_history_date_field, .status_history_reason_field, .status_history_contact_field').show();
 		} else {
-			$('.status_history_details').hide();
-			$('#animal_status_history_reason').val("");
+			$('.status_history_section, .status_history_date_field, .status_history_reason_field, .status_history_contact_field').hide();
+
+      $('#animal_status_history_reason').val("");
+			$('#animal_status_history_contact_id').val("");
+			$('#contact_name').text("");
 		}
 	},
+  addStatusHistoryContact: function(contact_id, contact_name){
+    $('#animal_status_history_contact_id').val(contact_id);
+    $('#contact_name').text($.trim(contact_name));
+    $('#add_contact_link').hide();
+    $('#remove_contact_link').show();
+  },
+  removeStatusHistoryContact: function(){
+    $('#animal_status_history_contact_id').val("");
+    $('#contact_name').empty();
+    $('#add_contact_link').show();
+    $('#remove_contact_link').hide();
+  },
 	specialNeedsSelected: function() {
 		var hasSpecialNeeds = $('#animal_has_special_needs').is(':checked');
 

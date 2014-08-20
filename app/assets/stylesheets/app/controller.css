@@ -32,14 +32,29 @@
 .animals .icon_calendar{padding-left: 10px; cursor: pointer;}
 .animals .calendar{display:none;}
 
+/* Accommodation */
 .animals #accommodation_remove_link{display:none;padding-left: 5px;}
-
 .animals #accommodation_selected{padding: 0 0 10px 0;}
 .animals #accommodation_selected span {}
 .animals #accommodation_selected span b { font-weight: bold;padding: 0px 10px 0 0; font-size: 15px; letter-spacing:-1px;}
 .animals #accommodation_selected #accommodation_search_link{}
 
+/* Status History */
+.animals #status_history_container{margin-left: 20px;}
+.animals .animal_status_id_field{margin-left:-25px;}
+.animals .status_history_section{display:none;}
+.animals .status_history_date_field{display:none;}
+.animals .status_history_reason_field{display:none;}
+.animals .status_history_contact_field{display:none; border-bottom: 1px dotted #ccc; width: auto; padding-top: 10px; padding-bottom: 20px;}
+.animals .status_history_contact_field label{padding-bottom: 8px;}
+.animals #contact_name{font-size:14px; font-weight:bold; color: green;}
+.animals #add_contact_link{font-size:11px;}
+.animals #remove_contact_link{display:none;font-size:11px;margin-left: 15px;}
 
+/* Animals :: Contact Search Dialog
+-----------------------------------------------------------------------------*/
+.animals #dialog_contact_search input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
+.animals #dialog_contact_search input[type=submit] {margin-left: 5px;}
 
 /* Index Animals :: Print Heading
 -----------------------------------------------------------------------------*/
@@ -113,11 +128,6 @@
 /* Show Animal :: Photo Gallery
 -----------------------------------------------------------------------------*/
 .show_animals #photo_gallery{width: 400px; height: 290px;margin-bottom: 10px;}
-
-/* Show Animal :: Contact Search Dialog
------------------------------------------------------------------------------*/
-.show_animals #dialog_contact_search input[type=text] {margin-top:5px;width:60%;height:20px;font-size:14px;}
-.show_animals #dialog_contact_search input[type=submit] {margin-left: 5px;}
 
 /* Show Animal :: Special Needs Layout
 -----------------------------------------------------------------------------*/
