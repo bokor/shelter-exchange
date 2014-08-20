@@ -82,6 +82,12 @@ var HelpAShelter = {
 			HelpAShelter.findAnimalsForShelter();
 		});
 
+    $('#filters_breed').keyup(function(){
+      if(!$.trim(this.value).length){
+        HelpAShelter.findAnimalsForShelter();
+      }
+    });
+
 		$("#filters_sex").bind("change", function(e){
 			e.preventDefault();
 			HelpAShelter.findAnimalsForShelter();
