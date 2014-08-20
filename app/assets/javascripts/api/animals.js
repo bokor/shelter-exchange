@@ -37,9 +37,9 @@ var Animals = {
 		});
 
     $('#filters_breed').keyup(function(){
-        if(!$.trim(this.value).length){
-          Animals.findAnimalsForShelter();
-        }
+      if(!$.trim(this.value).length){
+        Animals.findAnimalsForShelter();
+      }
     });
 
     // Enable breed auto complete when a type is already available
