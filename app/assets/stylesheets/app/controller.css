@@ -40,8 +40,8 @@
 .animals #accommodation_selected #accommodation_search_link{}
 
 /* Status History */
-.animals #status_history_container{margin-left: 20px;}
-.animals .animal_status_id_field{margin-left:-25px;}
+.animals #status_history_container{}
+.animals .animal_status_id_field{}
 .animals .status_history_section{display:none;}
 .animals .status_history_date_field{display:none;}
 .animals .status_history_reason_field{display:none;}
