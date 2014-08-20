@@ -112,5 +112,9 @@ describe Ability, ".read_only" do
   it "can not manage anything" do
     expect(@ability).to_not be_able_to(:manage, :all)
   end
+
+  it "can edit their user record" do
+    expect(@ability).to be_able_to(:update, User)
+  end
 end
 
