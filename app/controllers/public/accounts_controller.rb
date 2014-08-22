@@ -1,8 +1,8 @@
 class Public::AccountsController < Public::ApplicationController
+  force_ssl :unless => :local_request?
+
   skip_before_filter :force_non_ssl
   before_filter :disable_account_creation
-
-  force_ssl :unless => :local_request?
 
   respond_to :html
 
