@@ -4,9 +4,9 @@
 
 /* Pagination Links :: AJAX Searches
 /*----------------------------------------------------------------------------*/
-$('.pagination a').live('click',function (e){
+$(document).on('click', '.pagination a', function(e) {
     e.preventDefault();
-    var href = $(this).attr('href');
+    var href = $(this).attr('href').replace(".html", "");
     $.getScript(href);
 });
 
