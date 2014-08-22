@@ -9,7 +9,7 @@
 
 <h2>Add Animals to Your Website</h2>
 
-<p>An API token must be generated so that <%= @current_shelter.name %> can display their animals on your website. This access token protects your shelters' data and acts as a login to Shelter Exchange. If you suspect that someone has stolen the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, as if you were reseting a password. </p>
+<p>Using the iFrame or JSON options below you can display your adoptable animals on your website, Facebook page or blog.  You can embed your adoptable pet list and it will update instantly as you update your pets. Click "Enable Web Access" below to generate the code you will need. We recommend consulting with your Developer or Webmaster to assist you with this.</p>
 
 <div class="separator"></div>
 
@@ -43,14 +43,15 @@
       <!-- iframe -->
       <div id="iframe">
         <h2>iFrame</h2>
-        <p>Below is a snippet of code to put onto your website to display your Shelter Exchange Animals.</p>
+        <p>Below is the code you will need to copy to display animals on your website, Facebook or blog.</p>
+
         <div class="code_container">
           <code>&lt;iframe src="<%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :html, :protocol => "http") %>"
             width="100%" height="1150px"
             frameborder="0" marginheight="0" marginwidth="0"
             scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code>
         </div>
-        <h3>Example of how it will look on your site</h3>
+        <h3>Preview of how your animals will display</h3>
         <iframe src="<%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :html) %>"
           width="100%" height="1150px" style="border: 1px #ccc solid;"
           frameborder="0" marginheight="0" marginwidth="0"
@@ -61,12 +62,13 @@
       <!-- json -->
       <div id="json">
         <h2>JSON</h2>
-        <p>Use the following url if you would like your animals in JSON. (<a href="http://api.jquery.com/jquery.ajax/">Example usage: jQuery AJAX</a>)</p>
+        <p>Below is the url you will need to return your animals in JSON format. (<a href="http://api.jquery.com/jquery.ajax/">Example usage: jQuery AJAX</a>)</p>
+
         <div class="code_container">
           <code><%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :json, :protocol => "http") %></code>
         </div>
 
-        <h3>JSON returned from this url</h3>
+        <h3>Preview of JSON data</h3>
         <pre id="json_pretty_print"></pre>
       </div>
       <!-- json -->
