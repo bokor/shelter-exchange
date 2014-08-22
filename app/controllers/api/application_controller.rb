@@ -1,7 +1,6 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :force_non_ssl
   before_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
   before_filter :shelter_lookup, :shelter_inactive?
   layout :current_layout
@@ -9,10 +8,6 @@ class Api::ApplicationController < ActionController::Base
 
   #-----------------------------------------------------------------------------
   private
-
-  def force_non_ssl
-    redirect_to :protocol => "http" if request.ssl?
-  end
 
   def cors_access_control_headers
     if request.format.json? || request.xhr?

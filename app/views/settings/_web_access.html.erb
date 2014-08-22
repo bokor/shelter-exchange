@@ -75,7 +75,7 @@
         <h2>JSON</h2>
         <p>Use the following url if you would like your animals in JSON. (<a href="http://api.jquery.com/jquery.ajax/">Example usage: jQuery AJAX</a>)</p>
         <div class="code_container">
-          <code><%= api_url %>/v1/animals.json?access_token=<%= @current_shelter.access_token %></code>
+          <code><%= api_url("http://") %>/v1/animals.json?access_token=<%= @current_shelter.access_token %></code>
         </div>
 
         <h3>JSON returned from this url</h3>
