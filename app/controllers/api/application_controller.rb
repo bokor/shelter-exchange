@@ -1,7 +1,7 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
 
-  # before_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
+  before_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
   before_filter :shelter_lookup, :shelter_inactive?
   layout :current_layout
 
@@ -9,14 +9,14 @@ class Api::ApplicationController < ActionController::Base
   #-----------------------------------------------------------------------------
   private
 
-  # def cors_access_control_headers
-  #   if request.format.json? || request.xhr?
-  #     headers['Access-Control-Allow-Origin'] = '*'
-  #     headers['Access-Control-Allow-Credentials'] = 'true'
-  #     headers['Access-Control-Allow-Methods'] = 'GET'
-  #     headers['Access-Control-Allow-Headers'] = 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'
-  #   end
-  # end
+  def cors_access_control_headers
+    if request.format.json? || request.xhr?
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Credentials'] = 'true'
+      headers['Access-Control-Allow-Methods'] = 'GET'
+      headers['Access-Control-Allow-Headers'] = 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'
+    end
+  end
 
   def current_layout
     request.format.html? ? 'api/application' : false
