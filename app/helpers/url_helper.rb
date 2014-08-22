@@ -20,12 +20,6 @@ module UrlHelper
     url
   end
 
-  def api_url(protocol=request.protocol)
-    url = [protocol, "api.", request.domain].join
-    url << ":#{request.port}" unless [80,443].include?(request.port)
-    url
-  end
-
   def map_overlay_url
     query_string = "#{FOG_BUCKET.files.head("maps/overlay.kmz").last_modified.to_i}"
     "https://#{ShelterExchange.settings.s3_bucket}.s3.amazonaws.com/maps/overlay.kmz?#{query_string}"

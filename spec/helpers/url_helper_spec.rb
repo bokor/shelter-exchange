@@ -38,7 +38,7 @@ end
 
 describe UrlHelper, "#full_url" do
 
-  it "returns the api url without default port" do
+  it "returns a full url without default port" do
    allow(controller.request).to receive(:protocol).and_return("http://")
    allow(controller.request).to receive(:port).and_return(80)
    allow(controller.request).to receive(:host).and_return("doggies.test.host")
@@ -48,7 +48,7 @@ describe UrlHelper, "#full_url" do
     ).to eq("http://doggies.test.host")
   end
 
-  it "returns the api url with specific port" do
+  it "returns a full url with specific port" do
    allow(controller.request).to receive(:protocol).and_return("https://")
    allow(controller.request).to receive(:port).and_return(1234)
    allow(controller.request).to receive(:host).and_return("doggies.test.host")
@@ -56,27 +56,6 @@ describe UrlHelper, "#full_url" do
     expect(
       helper.full_url
     ).to eq("https://doggies.test.host:1234")
-  end
-end
-
-describe UrlHelper, "#api_url" do
-
-  it "returns the api url without default port" do
-   allow(controller.request).to receive(:port).and_return(80)
-   allow(controller.request).to receive(:domain).and_return("test.host")
-
-    expect(
-      helper.api_url
-    ).to eq("http://api.test.host")
-  end
-
-  it "returns the api url with specific port" do
-   allow(controller.request).to receive(:port).and_return(1234)
-   allow(controller.request).to receive(:domain).and_return("test.host")
-
-    expect(
-      helper.api_url
-    ).to eq("http://api.test.host:1234")
   end
 end
 

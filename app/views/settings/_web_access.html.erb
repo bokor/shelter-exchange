@@ -2,7 +2,7 @@
   <script type="text/javascript">
     $(function() {
       Settings.initialize();
-      Settings.loadApiJson('<%= api_url %>/v1/animals.json', '<%= @current_shelter.access_token %>');
+      Settings.loadApiJson('<%= api_list_animals_url(:subdomain => "api", :format=> :json) %>', '<%= @current_shelter.access_token %>');
 		});
 	</script>
 <% end %>
@@ -56,14 +56,13 @@
         <h2>iFrame</h2>
         <p>Below is a snippet of code to put onto your website to display your Shelter Exchange Animals.</p>
         <div class="code_container">
-          <code>&lt;iframe src="<%= api_url("http://") %>/v1/animals.html?access_token=<%= @current_shelter.access_token %>"
+          <code>&lt;iframe src="<%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :html, :protocol => "http") %>"
             width="100%" height="1150px"
             frameborder="0" marginheight="0" marginwidth="0"
             scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code>
         </div>
-
         <h3>Example of how it will look on your site</h3>
-        <iframe src="<%= api_url %>/v1/animals.html?access_token=<%= @current_shelter.access_token %>"
+        <iframe src="<%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :html) %>"
           width="100%" height="1150px" style="border: 1px #ccc solid;"
           frameborder="0" marginheight="0" marginwidth="0"
           scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"></iframe>
@@ -75,7 +74,7 @@
         <h2>JSON</h2>
         <p>Use the following url if you would like your animals in JSON. (<a href="http://api.jquery.com/jquery.ajax/">Example usage: jQuery AJAX</a>)</p>
         <div class="code_container">
-          <code><%= api_url("http://") %>/v1/animals.json?access_token=<%= @current_shelter.access_token %></code>
+          <code><%= api_list_animals_url(:access_token => @current_shelter.access_token, :subdomain => "api", :format=> :json, :protocol => "http") %></code>
         </div>
 
         <h3>JSON returned from this url</h3>
