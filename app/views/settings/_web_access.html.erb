@@ -18,7 +18,7 @@
   <% if @current_shelter.access_token.blank? %>
     <%= link_to "Enable Web Access", token_authentications_path, :method => :post, :confirm => "Are you sure?", :class => "button"  %>
     <div class="separator"></div>
-		<h3>Web Access is currently not enabled.  Please Generate a Token to access your animals on your website.</h3>
+		<h3>Please "Enable Web Access" to generate the code for displaying your adoptable animals.</h3>
   <% else %>
 
     <%= link_to "Disable Web Access", token_authentication_path(@current_shelter),
