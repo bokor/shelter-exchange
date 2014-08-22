@@ -20,8 +20,8 @@ module UrlHelper
     url
   end
 
-  def api_url
-    url = ["http://api.", request.domain].join
+  def api_url(protocol="http")
+    url = [request.protocol, "api.", request.domain].join
     url << ":#{request.port}" unless [80,443].include?(request.port)
     url
   end
