@@ -13,6 +13,10 @@ class Public::ApplicationController < ActionController::Base
     redirect_to :protocol => "http://" if request.ssl?
   end
 
+  def local_request?
+    Rails.env.development? || Rails.env.test? || request.local?
+  end
+
   def current_layout
     if params[:layout].present? && template_exists?(params[:layout], "layouts/public")
       "public/#{params[:layout]}"

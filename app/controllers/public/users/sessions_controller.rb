@@ -28,7 +28,7 @@ class Public::Users::SessionsController < ::Devise::SessionsController
   private
 
   def local_request?
-    Rails.env.development? || Rails.env.test?
+    Rails.env.development? || Rails.env.test? || request.local?
   end
 
   def sign_in_and_redirect(resource_or_scope, resource=nil)
