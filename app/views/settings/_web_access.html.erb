@@ -1,5 +1,10 @@
 <%= content_for :javascripts do %>
-	
+  <script type="text/javascript">
+    $(function() {
+      Settings.initialize();
+      Settings.loadApiJson('<%= api_url %>/v1/animals.json', '<%= @current_shelter.access_token %>');
+		});
+	</script>
 <% end %>
 
 <h2>Web Access - API (For Developer Only)</h2>
@@ -7,46 +12,78 @@
 <p>An api token must be generated so that <%= @current_shelter.name %> can display their animals on their website. This access token protects your shelters' data and acts as a login to Shelter Exchange. If you suspect that someone has stolen the token or is using it for unintended purposes, please regenerate and update your shelter's website with this token, as if you were reseting a password. Please provide this token to a Web Developer.</p>
 
 <div class="section">
+  <div class="separator"></div>
+
+  <table class="generate_token">
+    <tr>
+      <td class="api_token">
+        <%= label_tag "token", "API Token".html_safe, :class => "desc" %>
+        <%= text_field_tag "token", @current_shelter.access_token, :readonly => true, :class => "field text large",
+          :placeholder => "Currently, No token generated!" %>
+      </td>
+      <td class="buttons">
+     	  <ul class="toggle_buttons">
+          <li><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %></li>
+          <li><%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
 	<div class="separator"></div>
-	<ul class="toggle_buttons">
-		<li><%= link_to "Generate Token", token_authentications_path, :method => :post, :confirm => "Are you sure?"  %></li>
-		<li><%= link_to "Delete Token", token_authentication_path(@current_shelter), :method => :delete, :confirm => "Are you sure?"  %></li>
-	</ul>
-	
-	<div class="separator"></div>
-	
-	<div>
-	<% if @current_shelter.access_token.blank? %>
+
+  <% if @current_shelter.access_token.blank? %>
 		<h3>Web Access is currently not enabled.  Please Generate a Token to access your animals on your website.</h3>
-	<% else %>
-		<%= label_tag "token", "API Token".html_safe, :class => "desc" %>
-		<div><%= text_field_tag "token", @current_shelter.access_token, :readonly => true, :class => "field text medium" %></div>
-		
-		<div class="separator"></div>
-		
-		<h2>API Documentation</h2>
-		<h3><%= link_to "How can I display animals on my shelter or rescue's website?", "http://help.shelterexchange.org/help/kb/website-integration-api/how-can-i-display-animals-on-my-shelter-or-rescues-website", :target => "_new" %></h3>
-		<h3><%= link_to "Can I display different animal types and statuses?", "http://help.shelterexchange.org/help/kb/website-integration-api/can-i-display-different-animal-types-and-statuses",:target => "_new" %></h3>
-		
-		<br /><br /><br /><br />
-		
-		<h2>Basic API - URL</h2>
-		<h3>HTML</h3>
-		<p><code><%= api_url %>/v1/animals.html?access_token=<%= @current_shelter.access_token %></code></p>
+  <% else %>
 
-		<h4>Below is code that can be put on your website to show your list of animals.  Some of the settings of this iframe tag may need to be customized to fit into your site's layout.</h4>
 
-		<p><code>&lt;iframe src="<%= api_url %>/v1/animals.html?access_token=<%= @current_shelter.access_token %>" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code></p>
-		
-		<br /><br />
+		<!-- <h2>API Documentation</h2> -->
+		<!-- <h3><%= link_to "How can I display animals on my shelter or rescue's website?", "http://help.shelterexchange.org/help/kb/website&#45;integration&#45;api/how&#45;can&#45;i&#45;display&#45;animals&#45;on&#45;my&#45;shelter&#45;or&#45;rescues&#45;website", :target => "_new" %></h3> -->
+		<!-- <h3><%= link_to "Can I display different animal types and statuses?", "http://help.shelterexchange.org/help/kb/website&#45;integration&#45;api/can&#45;i&#45;display&#45;different&#45;animal&#45;types&#45;and&#45;statuses",:target => "_new" %></h3> -->
 
-		<h2>Advanced API - URL</h2>
-		<h3>JSON</h3>
-		<p><code><%= api_url %>/v1/animals.json?access_token=<%= @current_shelter.access_token %></code></p>
 
-		<h3>JSONP</h3>
-		<p><code><%= api_url %>/v1/animals.json?access_token=<%= @current_shelter.access_token %>&callback=METHOD_NAME</code></p>
-		
+    <div id="api_integration">
+
+      <!-- actions -->
+      <ul class="toggle_buttons">
+        <li><a href="#iframe" class="current">iFrame</a></li>
+        <li><a href="#json">JSON</a></li>
+      </ul>
+      <!-- actions -->
+
+      <!-- iframe -->
+      <div id="iframe">
+        <h2>iFrame</h2>
+        <p>Below is a snippet of code to put onto your website to display your Shelter Exchange Animals.</p>
+        <div class="code_container">
+          <code>&lt;iframe src="<%= api_url %>/v1/animals.html?access_token=<%= @current_shelter.access_token %>"
+            width="100%" height="1150px"
+            frameborder="0" marginheight="0" marginwidth="0"
+            scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"&gt;&lt;/iframe&gt;</code>
+        </div>
+
+        <h3>Example of how it will look on your site</h3>
+        <iframe src="<%= api_url %>/v1/animals.html?access_token=<%= @current_shelter.access_token %>"
+          width="100%" height="1150px" style="border: 1px #ccc solid;"
+          frameborder="0" marginheight="0" marginwidth="0"
+          scrolling="yes" horizontalscrolling="no" verticalscrolling="yes"></iframe>
+      </div>
+      <!-- iframe -->
+
+      <!-- json -->
+      <div id="json">
+        <h2>JSON</h2>
+        <p>Use the following url if you would like your animals in JSON. (<a href="http://api.jquery.com/jquery.ajax/">Example usage: jQuery AJAX</a>)</p>
+        <div class="code_container">
+          <code><%= api_url %>/v1/animals.json?access_token=<%= @current_shelter.access_token %></code>
+        </div>
+
+        <h3>JSON returned from this url</h3>
+        <pre id="json_pretty_print"></pre>
+      </div>
+      <!-- json -->
+    </div>
+
 	<% end %>
 	</div>
 </div>

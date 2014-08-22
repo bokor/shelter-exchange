@@ -50,6 +50,7 @@
           <%= hidden_field_tag "filters[animal_status][]", status  %>
         <% end %>
 
+        <%= hidden_field_tag "version", params[:version] %>
         <%= hidden_field_tag "access_token", params[:access_token] %>
       <% end %>
     </div>

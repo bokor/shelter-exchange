@@ -112,11 +112,53 @@ describe Api::AnimalsController do
     context "with pagination" do
       it "paginates :index results" do
         animal = Animal.gen :name => "paginated_animals", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
+        allow(WillPaginate::Collection).to receive(:create).with(1, 15) { [animal] }
 
         get :index, :access_token => current_shelter.access_token, :page => 1
 
         expect(assigns(:animals)).to eq([animal])
+      end
+    end
+  end
+
+  describe "GET search" do
+
+    before do
+      @animal1 = Animal.gen :shelter => current_shelter, :animal_status_id => 1, :primary_breed => "Lab"
+      @animal2 = Animal.gen :shelter => current_shelter, :animal_status_id => 1
+      @animal3 = Animal.gen :shelter => current_shelter, :animal_status_id => 2
+    end
+
+    it "responds successfully" do
+      get :search, :access_token => current_shelter.access_token, :filters => {}, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "renders the :search view" do
+      get :search, :access_token => current_shelter.access_token, :filters => {}, :format => :js
+      expect(response).to render_template(:search)
+    end
+
+    it "assigns @animals" do
+      get :search, :access_token => current_shelter.access_token, :filters => {}, :format => :js
+      expect(assigns(:animals)).to eq([@animal1, @animal2])
+    end
+
+    context "with filters" do
+      it "assigns @animals" do
+        get :search, :access_token => current_shelter.access_token, :filters => {:breed => "Lab"}, :format => :js
+        expect(assigns(:animals)).to eq([@animal1])
+      end
+    end
+
+    context "with pagination" do
+      it "paginates :search results" do
+        allow(WillPaginate::Collection).to receive(:create).with(1, 15) { [@animal1] }
+
+        get :search, :access_token => current_shelter.access_token, :filters => {}, :page => 1, :format => :js
+        expect(assigns(:animals)).to eq([@animal1])
+
       end
     end
   end

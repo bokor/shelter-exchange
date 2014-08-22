@@ -1,17 +1,17 @@
 class Api::AnimalsController < Api::ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :js
   before_filter :configure
 
   def index
     @animals = @current_shelter.animals.api_lookup(@types, @statuses)
-    @animals = @animals.paginate(:page => params[:page]) unless request.format.json?
+    @animals = @animals.paginate(:page => params[:page], :per_page => 15).all unless request.format.json?
     respond_with(@animals)
   end
 
   def search
-    @animals = @current_shelter.animals.
-      api_filter(params[:filters]).
-      paginate(:page => params[:page], :per_page => 15).all || {}
+    @animals = @current_shelter.animals.api_filter(params[:filters])
+    @animals = @animals.paginate(:page => params[:page], :per_page => 15).all unless request.format.json?
+    respond_with(@animals)
   end
 
   #----------------------------------------------------------------------------

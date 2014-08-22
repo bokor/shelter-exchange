@@ -708,7 +708,24 @@
 .settings .section { padding-bottom: 25px;}
 
 
+/* Settings :: Web Access Layout
+-----------------------------------------------------------------------------*/
+.settings .generate_token .api_token{width:300px; padding-right:10px;}
+.settings .generate_token .buttons{vertical-align:bottom;}
+.settings .generate_token .buttons .toggle_buttons{ margin-bottom:0px;}
 
+.settings .toggle_buttons{margin-bottom: 20px;}
+.settings #api_integration{width: 100%; table-layout: auto; border-collapse: collapse; border-spacing: 0; margin-bottom: 20px; }
+.settings #api_integration #iframe{}
+.settings #api_integration #json{}
+.settings #api_integration .code_container{padding: 10px 5px 10px 10px; margin-bottom: 20px;border: 1px #ccc solid; background-color: #eee; -moz-border-radius: 8px;	-webkit-border-radius: 8px;	border-radius: 8px; }
+
+.settings #api_integration #json #json_pretty_print{ width: 100%; height: 1150px; border: 1px #ccc solid; overflow: auto;}
+.settings #api_integration #json #json_pretty_print .key { font-weight: bold; color: black; }
+.settings #api_integration #json #json_pretty_print .string { color: green; }
+.settings #api_integration #json #json_pretty_print .number { color: darkorange; }
+.settings #api_integration #json #json_pretty_print .boolean { color: blue; }
+.settings #api_integration #json #json_pretty_print .null { color: red; }
 
 
 
