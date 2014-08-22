@@ -10,7 +10,7 @@ class Public::ApplicationController < ActionController::Base
   private
 
   def force_non_ssl
-    redirect_to :protocol => "http" if request.ssl?
+    redirect_to :protocol => "http://" if request.ssl?
   end
 
   def current_layout
