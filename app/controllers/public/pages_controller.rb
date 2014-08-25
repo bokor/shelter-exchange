@@ -16,7 +16,7 @@ class Public::PagesController < Public::ApplicationController
     template_with_index = template + "/index"      # About Page /about/index.html.erb
     render :template => template, :format => :html rescue
     render :template => template_with_index, :format => :html rescue
-    render :file => "public/404", :format => :html, :layout => false, :status => :not_found
+    render :file => "public/404", :formats => [:html], :layout => false, :status => :not_found
   end
 
   def sitemap

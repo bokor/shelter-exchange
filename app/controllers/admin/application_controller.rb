@@ -5,15 +5,15 @@ class Admin::ApplicationController < ActionController::Base
   before_filter :authenticate_owner!, :store_location
   layout :current_layout
 
-  def local_request?
-    Rails.env.development? || Rails.env.test?
-  end
-
   #-----------------------------------------------------------------------------
   private
 
   def current_layout
     owner_signed_in? ? 'admin/application' : 'admin/login'
+  end
+
+  def local_request?
+    Rails.env.development? || Rails.env.test?
   end
 
   def store_location
@@ -24,7 +24,7 @@ class Admin::ApplicationController < ActionController::Base
   protected
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    render :file => "public/404", :format => :html, :layout => false, :status => :not_found
+    render :file => "public/404", :formats => [:html], :layout => false, :status => :not_found
   end
 
 end
