@@ -23,6 +23,6 @@ var Notes = {
       type: "get",
    	  dataType: "script"
     });
-  },
+  }
 };
 

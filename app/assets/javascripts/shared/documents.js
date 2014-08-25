@@ -20,7 +20,7 @@ var Documents = {
     });
    },
    closeDialog: function(){
-    $('.qtip.ui-tooltip').qtip('hide');
+    $('.qtip').qtip('hide');
     return false;
    }
 };

@@ -103,8 +103,8 @@ var Animals = {
 		$('#accommodation_search_link').html("Change");
 		$("#accommodation_remove_link").show();
 		//Hide QTip
-		$('.qtip.ui-tooltip').qtip('hide');
-  	},
+		$('.qtip').qtip('hide');
+ 	},
 	removeAccommodation: function() {
 		$('#accommodation_selected span').html('');
 		$('#animal_accommodation_id').val('');
