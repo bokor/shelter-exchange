@@ -42,7 +42,7 @@
 					<%= f.label :city, "City" %>
 				</span>
 				<span class="right">
-					<%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, { :prompt => "Select State" }, { :class => "field select addr" }  %>
+		      <%= f.text_field :state, :class => "field text addr", :maxlength => 255 %>
 					<%= f.label :state, "State" %>
 				</span>
 				<span class="clear left">
