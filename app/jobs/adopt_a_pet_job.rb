@@ -23,7 +23,7 @@ class AdoptAPetJob
     import_file = Rails.application.assets.find_asset("integrations/adopt_a_pet/import.cfg")
 
     # Get Animals for Auto Upload CSV
-    @animals = @shelter.animals.includes(:animal_type, :photos).available.all
+    @animals = @shelter.animals.includes(:animal_type, :photos).available_for_adoption.all
 
     # Build CSV
     CSV.open(csv_file , "w+:UTF-8") do |csv|

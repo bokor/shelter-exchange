@@ -11,9 +11,6 @@ describe AdoptAPetJob do
     @available_for_adoption = Animal.gen \
       :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption],
       :shelter => @shelter
-    @adoption_pending = Animal.gen \
-      :animal_status_id => AnimalStatus::STATUSES[:adoption_pending],
-      :shelter => @shelter
     @adopted = Animal.gen \
       :animal_status_id => AnimalStatus::STATUSES[:adopted],
       :shelter => @shelter
@@ -80,7 +77,7 @@ describe AdoptAPetJob do
         expect(
           job.instance_variable_get(:@animals)
         ).to match_array([
-          @available_for_adoption, @adoption_pending
+          @available_for_adoption
         ])
       end
 
@@ -100,13 +97,11 @@ describe AdoptAPetJob do
 
         file = @ftp_server.file('pets.csv')
         row1 = Integration::AdoptAPetPresenter.new(@available_for_adoption).to_csv
-        row2 = Integration::AdoptAPetPresenter.new(@adoption_pending).to_csv
 
         expect(file).to be_passive
         expect(CSV.parse(file.data)).to match_array([
           Integration::AdoptAPetPresenter.csv_header,
-          row1.map{|r| r.to_s unless r.nil? },
-          row2.map{|r| r.to_s unless r.nil? }
+          row1.map{|r| r.to_s unless r.nil? }
         ])
       end
 
