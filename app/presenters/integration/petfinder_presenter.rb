@@ -34,14 +34,14 @@ class Integration::PetfinderPresenter < Presenter
 
   def description
     s = @animal.description.blank? ? "No description provided" : @animal.description
-    s += "<br>"
+    s += "\r\r"
     s += "#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org."
 
     # Simple format the html
     description = help.simple_format(s)
-
+    description
     # Removing any carriage returns or new lines
-    description.gsub(/\n\r?/, "<br>")
+    # description.gsub(/\n\r?/, "<br>")
   end
 
   def type
