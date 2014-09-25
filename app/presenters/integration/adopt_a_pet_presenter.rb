@@ -166,6 +166,7 @@ class Integration::AdoptAPetPresenter < Presenter
         "Pig" => "Farm Animal",
         "Rat" => "Small Animal",
         "Sheep" => "Farm Animal",
+        "Sugar Glider" => "Small Animal",
         "Tarantula" => "Reptile"
       },
       AnimalType::TYPES[:reptile] => {
