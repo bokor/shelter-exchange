@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140818220643) do
+ActiveRecord::Schema.define(:version => 20141004232658) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -331,25 +331,6 @@ ActiveRecord::Schema.define(:version => 20140818220643) do
   add_index "owners", ["email"], :name => "index_owners_on_email", :unique => true
   add_index "owners", ["reset_password_token"], :name => "index_owners_on_reset_password_token", :unique => true
   add_index "owners", ["unlock_token"], :name => "index_owners_on_unlock_token", :unique => true
-
-  create_table "parents", :force => true do |t|
-    t.string   "first_name"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "phone"
-    t.string   "mobile"
-    t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "street_2"
-    t.string   "email_2"
-    t.string   "last_name"
-  end
-
-  add_index "parents", ["created_at"], :name => "index_parents_on_created_at"
-  add_index "parents", ["phone", "mobile", "email", "email_2"], :name => "full_search"
 
   create_table "photos", :force => true do |t|
     t.string   "image"

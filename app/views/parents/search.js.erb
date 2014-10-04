@@ -1,5 +1,0 @@
-<% if @parents.present? %>
-	$('#parents').html( "<%= escape_javascript( render 'parent_list', :parents => @parents ) %>" );
-<% else %>
-	$('#parents').html( "<%= escape_javascript( render 'no_parents' ) %>" );
-<% end %>

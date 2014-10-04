@@ -497,11 +497,6 @@ describe AnimalsController do
       expect(assigns(:animals)).to eq([@animal1])
     end
 
-    it "assigns @from_controller" do
-      get :find_animals_by_name, :q => "", :from_controller => "parents", :format => :js
-      expect(assigns(:from_controller)).to eq("parents")
-    end
-
     context "with no parameters" do
       it "assigns @animals" do
         get :find_animals_by_name, :q => "", :format => :js

@@ -795,52 +795,6 @@
 
 
 
-/******************************************************************/
-/* -------------------------- PARENTS --------------------------- */
-/******************************************************************/
-
-/* Parents :: Global
------------------------------------------------------------------------------*/
-.parents ul {list-style:none;}
-
-/* Parents :: Page Layout
------------------------------------------------------------------------------*/
-.parents .page_heading h1{width:50%; float:left; }
-.parents .page_heading .action_links{width:50%; float:left; text-align:right; padding-top: 5px; font-size:12px;}
-
-
-/* Index Parents :: Help Text
------------------------------------------------------------------------------*/
-.index_parents .help_text ul{list-style: disc;}
-.index_parents .help_text ul li {margin-left: 20px; padding-bottom: 10px;}
-
-
-
-/* Parents :: Index/Edit/Update/New/Create :: Layout
------------------------------------------------------------------------------*/
-.index_parents #main { margin: 1em 3em 0 3em; }
-.index_parents #left{ width: 100%;}
-.index_parents #sidebar { display: none;width: 0; }
-
-/* Index Parents :: Parent Search Layout
------------------------------------------------------------------------------*/
-.index_parents #parent_search {padding: 0 0 20px 0; }
-.index_parents #parent_search input[type=text] {margin-top:5px;width:40%;height:20px;font-size:14px;}
-.index_parents #parent_search input[type=submit] {margin-left: 5px;}
-
-/* Index Parents :: Search Results
------------------------------------------------------------------------------*/
-.index_parents #parents {}
-.index_parents #parents .no_results {padding: 20px 0 0 0; border-top:1px #ccc dotted; }
-.index_parents #parents .no_results p{font-weight: bold; }
-
-.index_parents table.parent_list{width:100%;padding:0 0 5px 0; border-top:1px #ccc dotted;}
-.index_parents table.parent_list td{vertical-align:top;font-size:12px;padding:8px 0;border-bottom:1px #ccc dotted;}
-.index_parents table.parent_list td.details { width:380px; color:#666; }
-.index_parents table.parent_list td.status { width:175px;padding-left: 10px; text-align:right;}
-.index_parents table.parent_list td.action_links{ width: 150px;vertical-align:middle; text-align: right; }
-
-
 /***************************************************************/
 /* -------------------------- USERS -------------------------- */
 /***************************************************************/

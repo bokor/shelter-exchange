@@ -115,19 +115,6 @@ ShelterExchangeApp::Application.routes.draw do
       end
     end
 
-    # Parents
-    #----------------------------------------------------------------------------
-    resources :parents, :only => [:index] do
-
-      collection do
-        get :search
-      end
-
-      member do
-        post :migrate
-      end
-    end
-
     # Photos
     #----------------------------------------------------------------------------
     resources :photos, :only => [:destroy]

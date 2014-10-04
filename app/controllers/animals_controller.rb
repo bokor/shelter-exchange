@@ -98,7 +98,6 @@ class AnimalsController < ApplicationController
 
   def find_animals_by_name
     @animals = {}
-    @from_controller = params[:from_controller]
 
     unless params[:q].blank?
       q = params[:q].strip
