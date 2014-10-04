@@ -446,7 +446,7 @@ describe ContactsController do
     end
 
     context "with pagination" do
-      it "paginates :find_animals_by_name results" do
+      it "paginates :find_by_full_name results" do
         contact = Contact.gen :first_name => "billy", :shelter => current_shelter
         allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [contact] }
 

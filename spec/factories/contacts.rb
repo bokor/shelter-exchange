@@ -10,7 +10,7 @@ FactoryGirl.define do
     zip_code        "94063"
     sequence(:phone)    {|n| "999999#{n+1000}" }
     sequence(:mobile)   {|n| "999999#{n+1000}" }
-    sequence(:email)    {|n| "parent_email_#{n}@example.com" }
+    sequence(:email)    {|n| "email_#{n}@example.com" }
     shelter
   end
 end
