@@ -20,6 +20,8 @@ class Api::AnimalsController < Api::ApplicationController
   def configure
     @types =  params.has_key?(:types) ? params[:types].split(",").collect{|x| x.to_i } : []
     @statuses = params.has_key?(:statuses) ? params[:statuses].split(",").collect{|x| x.to_i } : []
+    @gender = params[:gender]
+    @size = params[:size]
 
     if @statuses.include?(AnimalStatus::STATUSES[:deceased]) || @statuses.include?(AnimalStatus::STATUSES[:euthanized])
       raise Errors::ApiIncorrectTypeStatus
