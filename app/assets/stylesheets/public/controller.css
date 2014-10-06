@@ -372,11 +372,12 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .index_save_a_life #narrow_search_results{display:none;}
 .index_save_a_life #form_filters table {vertical-align: top; width:100%;}
 .index_save_a_life #form_filters table tr{vertical-align: top; width:100%;}
-.index_save_a_life #form_filters table td{padding-left:40px;}
+.index_save_a_life #form_filters table td{padding-left:30px;}
 .index_save_a_life #form_filters table td.type {width: 15%;}
 .index_save_a_life #form_filters table td.breed {width: 25%;}
 	.index_save_a_life #form_filters table td.breed input {width: 99%;}
 .index_save_a_life #form_filters table td.sex {width: 10%;}
+.index_save_a_life #form_filters table td.size {width: 10%;}
 .index_save_a_life #form_filters table td.extra_options {width: 30%;}
 .index_save_a_life #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.index_save_a_life #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}
@@ -598,13 +599,14 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Show Help a Shelter :: Search Section :: Filters */
 /******************************************************************/
 .show_help_a_shelter #narrow_search_results{display:none; height: 65px;}
-.show_help_a_shelter #form_filters table {vertical-align: top; width:100%;}
+.show_help_a_shelter #form_filters table {vertical-align: top; width:100%; margin-left:20px;}
 .show_help_a_shelter #form_filters table tr{vertical-align: top; width:100%;}
-.show_help_a_shelter #form_filters table td{padding-left:40px;}
+.show_help_a_shelter #form_filters table td{padding-left:30px;}
 .show_help_a_shelter #form_filters table td.type {width: 15%;}
 .show_help_a_shelter #form_filters table td.breed {width: 25%;}
 	.show_help_a_shelter #form_filters table td.breed input {width: 99%;}
 .show_help_a_shelter #form_filters table td.sex {width: 10%;}
+.show_help_a_shelter #form_filters table td.size {width: 15%;}
 .show_help_a_shelter #form_filters table td.extra_options {width: 30%;}
 .show_help_a_shelter #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.show_help_a_shelter #form_filters table td.extra_options .only_one_checkbox{display:block;margin-top: 24px;}

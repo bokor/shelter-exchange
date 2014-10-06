@@ -88,7 +88,7 @@ var HelpAShelter = {
       }
     });
 
-		$("#filters_sex").bind("change", function(e){
+		$("#filters_sex, #filters_size").bind("change", function(e){
 			e.preventDefault();
 			HelpAShelter.findAnimalsForShelter();
 		});

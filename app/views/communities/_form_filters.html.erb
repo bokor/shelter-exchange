@@ -2,7 +2,7 @@
 	<table class="filters">
 		<tr>
 			<td class="type">
-				<%= label_tag :filters_animal_type, "Animal type", :class => "desc" %>
+				<%= label_tag :filters_animal_type, "Type", :class => "desc" %>
 				<div><%= collection_select :filters, :animal_type, AnimalType.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>
 			</td>
 			<td class="breed">
@@ -13,7 +13,11 @@
 			<td class="sex">
 				<%= label_tag :filters_sex, "Sex", :class => "desc" %>
 				<div><%= collection_select :filters, :sex, Animal::SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
-			</td>
+      </td>
+			<td class="size">
+        <%= label_tag :filter_size, "Size".html_safe, :class => "desc" %>
+        <div><%= collection_select :filters, :size, Animal::SIZES, :first, :last, {:prompt => "All"}, {:class => "field select large" } %></div>
+      </td>
 			<td class="status">
 				<%= label_tag :filters_animal_status, "Status", :class => "desc" %>
 				<div><%= collection_select :filters, :animal_status, AnimalStatus.active.all, :id, :name, {:prompt => "All"},{:class => "field select large"} %></div>

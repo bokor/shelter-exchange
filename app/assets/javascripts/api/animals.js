@@ -48,12 +48,7 @@ var Animals = {
 			$("#filters_breed").attr("placeholder", "Enter Breed Name");
     }
 
-		$("#filters_sex").bind("change", function(e){
-			e.preventDefault();
-			Animals.findAnimalsForShelter();
-		});
-
-		$("#filters_size").bind("change", function(e){
+		$("#filters_sex, #filters_size").bind("change", function(e){
 			e.preventDefault();
 			Animals.findAnimalsForShelter();
 		});

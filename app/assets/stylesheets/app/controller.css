@@ -483,12 +483,9 @@
 /******************************************************************/
 .communities #form_filters table {vertical-align: top; width:100%;}
 .communities #form_filters table tr{vertical-align: top; width:100%;}
-.communities #form_filters table td{padding-right:20px;}
-.communities #form_filters table td.type {width: 15%;}
+.communities #form_filters table td{padding-left:30px;}
 .communities #form_filters table td.breed {width: 25%;}
-	.communities #form_filters table td.breed input {width: 99%;}
-.communities #form_filters table td.sex {width: 10%;}
-.communities #form_filters table td.status {width: 20%;}
+	.communities #form_filters table td.breed input {width: 99%; height:20px;}
 .communities #form_filters table td.extra_options {width: 30%;}
 .communities #form_filters table td.extra_options label{margin-left: 0px;padding-left:25px;}
 	.communities #form_filters table td.extra_options .special_needs{color:#000;font-weight:bold;}

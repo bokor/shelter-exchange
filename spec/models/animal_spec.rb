@@ -683,6 +683,64 @@ describe Animal, ".api_lookup" do
   end
 end
 
+describe Animal, ".api_filter" do
+
+  it "returns default filter animals for available for adoption" do
+    available = Animal.gen :animal_status_id => 1
+    adopted = Animal.gen :animal_status_id => 2
+
+    animals = Animal.api_filter
+    expect(animals).to match_array([available])
+  end
+
+  it "returns filtered animal by animal type" do
+    cat = Animal.gen :animal_type_id => 2, :animal_status_id => 1
+
+    animals = Animal.api_filter({ :animal_type => 2 })
+    puts animals.to_sql
+    expect(animals).to match_array([cat])
+  end
+
+  it "returns filtered animal by animal status" do
+    adopted = Animal.gen :animal_status_id => 2
+
+    animals = Animal.api_filter({ :animal_status => 2 })
+    expect(animals).to match_array([adopted])
+  end
+
+  it "returns filtered animal by special needs" do
+    special_needs = Animal.gen :animal_status_id => 1, :has_special_needs => true, :special_needs => "special needs desc"
+    no_special_needs = Animal.gen :animal_status_id => 1, :has_special_needs => false
+
+    animals = Animal.api_filter({ :special_needs_only => true })
+    expect(animals).to match_array([special_needs])
+  end
+
+  it "returns filtered animal by breed" do
+    primary_breed = Animal.gen :animal_status_id => 1, :primary_breed => "lab"
+    secondary_breed = Animal.gen :animal_status_id => 1, :secondary_breed => "lab"
+
+    animals = Animal.api_filter({ :breed => "lab" })
+    expect(animals).to match_array([primary_breed, secondary_breed])
+  end
+
+  it "returns filtered animal by sex" do
+    male = Animal.gen :animal_status_id => 1, :sex => "male"
+    female = Animal.gen :animal_status_id => 1, :sex => "female"
+
+    animals = Animal.api_filter({ :sex => "male" })
+    expect(animals).to match_array([male])
+  end
+
+  it "returns filtered animal by size" do
+    small = Animal.gen :animal_status_id => 1, :size => "S"
+    large = Animal.gen :animal_status_id => 1, :size => "L"
+
+    animals = Animal.api_filter({ :size => "S" })
+    expect(animals).to match_array([small])
+  end
+end
+
 describe Animal, ".community_animals" do
 
   before do
@@ -778,6 +836,20 @@ describe Animal, ".community_animals" do
     @available_no_kill.update_column(:sex, "male")
     @pending_no_kill.update_column(:sex, "female")
     @adopted_no_kill.update_column(:sex, "male")
+
+    animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
+    expect(animals).to match_array([@available_kill, @available_no_kill])
+  end
+
+  it "returns filtered animal by size" do
+    filters = { :size => "L" }
+
+    @available_kill.update_column(:size, "L")
+    @pending_kill.update_column(:size, "S")
+    @adopted_kill.update_column(:size, "L")
+    @available_no_kill.update_column(:size, "L")
+    @pending_no_kill.update_column(:size, "M")
+    @adopted_no_kill.update_column(:size, "L")
 
     animals = Animal.community_animals([@kill_shelter.id, @no_kill_shelter.id], filters)
     expect(animals).to match_array([@available_kill, @available_no_kill])

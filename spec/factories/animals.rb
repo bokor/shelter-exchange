@@ -17,7 +17,7 @@ FactoryGirl.define do
     hold_time          nil
     euthanasia_date    nil
     has_special_needs  false
-    special_needs      nil
+    special_needs      ""
     video_url          nil
     animal_type
     animal_status

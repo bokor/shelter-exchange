@@ -81,7 +81,7 @@ var SaveALife = {
 			SaveALife.findAnimalsInBounds();
 		});
 
-		$("#filters_sex").bind("change", function(e){
+		$("#filters_sex, #filters_size").bind("change", function(e){
 			e.preventDefault();
 			SaveALife.findAnimalsInBounds();
 		});

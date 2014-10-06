@@ -208,6 +208,11 @@ class Animal < ActiveRecord::Base
       scope = scope.where(:sex => filters[:sex].downcase)
     end
 
+    # Filter Size
+    unless filters[:size].blank?
+      scope = scope.where(:size => filters[:size])
+    end
+
     # Filter Animal Status
     if filters[:animal_status].blank?
       scope = scope.active
