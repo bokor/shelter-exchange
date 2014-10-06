@@ -420,6 +420,7 @@ after :animal_types do
     { :animal_type_id => rabbit.id, :name => "Beveren" },
     { :animal_type_id => rabbit.id, :name => "Blanc de Hotot" },
     { :animal_type_id => rabbit.id, :name => "Britannia Petite" },
+    { :animal_type_id => rabbit.id, :name => "Bunny Rabbit" },
     { :animal_type_id => rabbit.id, :name => "Californian" },
     { :animal_type_id => rabbit.id, :name => "Champagne D'Argent" },
     { :animal_type_id => rabbit.id, :name => "Checkered Giant" },

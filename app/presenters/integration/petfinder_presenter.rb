@@ -34,7 +34,7 @@ class Integration::PetfinderPresenter < Presenter
 
   def description
     s = @animal.description.blank? ? "No description provided" : @animal.description
-    s += "&#10;"
+    s += "&#10;&#10;"
     s += "#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org."
 
     # Simple format the html
