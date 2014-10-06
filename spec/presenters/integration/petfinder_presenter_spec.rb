@@ -109,19 +109,19 @@ describe Integration::PetfinderPresenter do
     it "returns generic description when blank" do
       @animal.update_column(:description, nil)
       presenter = Integration::PetfinderPresenter.new(@animal)
-      expect(presenter.description).to eq("<p>No description provided<br>#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
+      expect(presenter.description).to eq("<p>No description provided&#10;&#10;#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
     end
 
     it "returns formatted description" do
       @animal.update_column(:description, "this is cool.  www.example.org")
       presenter = Integration::PetfinderPresenter.new(@animal)
-      expect(presenter.description).to eq("<p>this is cool.  www.example.org<br>#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
+      expect(presenter.description).to eq("<p>this is cool.  www.example.org&#10;&#10;#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
     end
 
     it "returns formatted description with carriage returns" do
       @animal.update_column(:description, "hi\n bye\n\r")
       presenter = Integration::PetfinderPresenter.new(@animal)
-      expect(presenter.description).to eq("<p>hi<br><br /> bye</p><br><br><p><br>#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
+      expect(presenter.description).to eq("<p>hi&#10;<br /> bye</p>&#10;&#10;<p>&#10;&#10;#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.</p>")
     end
   end
 
