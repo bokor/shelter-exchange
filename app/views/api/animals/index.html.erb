@@ -37,6 +37,10 @@
               <%= label_tag :filters_sex, "Sex", :class => "desc" %>
               <div><%= collection_select :filters, :sex, Animal::SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select"} %></div>
             </td>
+            <td class="size">
+              <%= label_tag :filter_size, "Size".html_safe, :class => "desc" %>
+              <div><%= collection_select :filters, :size, Animal::SIZES, :first, :last, {:prompt => "All"}, {:class => "field select large" } %></div>
+            </td>
             <td class="extra_options">
               <span class="only_one_checkbox">
                 <%= check_box_tag "filters[special_needs_only]", true, false, :class => "field checkbox" %>

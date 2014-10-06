@@ -53,6 +53,11 @@ var Animals = {
 			Animals.findAnimalsForShelter();
 		});
 
+		$("#filters_size").bind("change", function(e){
+			e.preventDefault();
+			Animals.findAnimalsForShelter();
+		});
+
 		$("#filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
 		  	e.preventDefault();
 			Animals.findAnimalsForShelter();
