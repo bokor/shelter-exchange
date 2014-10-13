@@ -1,0 +1,12 @@
+/*!------------------------------------------------------------------------
+ * shared/breeds.js
+ * ------------------------------------------------------------------------ */
+var Breeds = {
+  dogs: <%= Breed.where(:animal_type_id => 1).collect(&:name) %>,
+  cats: <%= Breed.where(:animal_type_id => 2).collect(&:name) %>,
+  byType: {
+    1: <%= Breed.where(:animal_type_id => 1).collect(&:name) %>,
+    2: <%= Breed.where(:animal_type_id => 2).collect(&:name) %>
+  }
+};
+

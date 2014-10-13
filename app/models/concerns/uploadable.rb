@@ -21,5 +21,5 @@ module Uploadable
   def generate_timestamp!
     self.timestamp = Time.now.to_i if self.timestamp.blank?
   end
-
 end
+

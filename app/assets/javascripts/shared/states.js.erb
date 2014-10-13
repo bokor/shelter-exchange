@@ -1,0 +1,10 @@
+/*!------------------------------------------------------------------------
+ * shared/states.js
+ * ------------------------------------------------------------------------ */
+var States = {
+  values: <%= US_STATES.to_json %>,
+	lookup: function(shorthand){
+    return States.values[shorthand];
+	}
+};
+

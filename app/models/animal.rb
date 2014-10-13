@@ -1,5 +1,5 @@
 class Animal < ActiveRecord::Base
-  include Statusable, Typeable, Uploadable
+  include Uploadable
 
   default_scope :order => "animals.updated_at DESC"
 
