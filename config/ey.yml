@@ -12,11 +12,14 @@ defaults:
 # ------------------------------------------------
 environments:
 
-  shelter_exchange_app_production:
+  production:
     branch: production
 
   production_app:
     branch: production
+
+  staging:
+    branch: staging
 
   staging_app:
     branch: staging
