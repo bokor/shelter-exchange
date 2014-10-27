@@ -3,9 +3,10 @@ sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
 # Update Crontab from Whenever
 if config.environment == "production"
-  on_utilities("background_jobs"){
-    run "cd #{config.current_path} && bundle exec whenever --update-crontab '#{config.app}_#{config.environment}'"
-  }
+  on_app_master do
+    run "cd #{config.release_path} && " +
+        "bundle exec whenever --set environment=#{config.framework_env} --update-crontab '#{config.app}_#{config.framework_env}'"
+  end
 end
 
 # Clear Temp Cache
