@@ -1,7 +1,7 @@
 # Set Current TimeZone
 sudo "ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime"
 
-# Update Crontab from Whenever
+# Update Crontab from Whenever (http://saratrice.com/2011/09/28/using-javanwhenever-on-engine-yard/)
 if config.environment == "production"
   on_app_master do
     run "cd #{config.release_path} && " +
