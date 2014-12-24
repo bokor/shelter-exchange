@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe MapsHelper, "#map_shelter_icon" do
 

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe AnimalsHelper, "#filter_by_animal_statuses" do
 

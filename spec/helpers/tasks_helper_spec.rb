@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe TasksHelper, "#show_taskable_link" do
 

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 class VideoUrlFormatValidatable
   include ActiveModel::Validations
@@ -34,7 +34,7 @@ describe VideoUrlFormatValidator do
     subject.url = "www.shelterexchange.org"
 
     expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:url)
+    expect(subject.error_on(:url).size).to eq(1)
     expect(subject.errors[:url]).to match_array(["incorrect You Tube URL format"])
   end
 end

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe AccommodationsController do
   login_user

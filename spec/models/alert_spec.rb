@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Alert do
 
@@ -8,13 +8,13 @@ describe Alert do
 
   it "validates presence of title" do
     alert = Alert.new :title => nil
-    expect(alert).to have(1).error_on(:title)
+    expect(alert.error_on(:title).size).to eq(1)
     expect(alert.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "validates inclusion of severity" do
     alert = Alert.new :severity => "#{Alert::SEVERITIES[0]} blah"
-    expect(alert).to have(1).error_on(:severity)
+    expect(alert.error_on(:severity).size).to eq(1)
     expect(alert.errors[:severity]).to match_array(["needs to be selected"])
   end
 end

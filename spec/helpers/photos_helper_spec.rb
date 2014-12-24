@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe PhotosHelper, "#setup_photos" do
 
@@ -23,7 +23,7 @@ describe PhotosHelper, "#setup_photos" do
     }.to change(animal.photos, :size).by(-1)
 
     photo = animal.photos.first
-    expect(photo.is_main_photo).to be_true
+    expect(photo.is_main_photo).to be_truthy
   end
 end
 

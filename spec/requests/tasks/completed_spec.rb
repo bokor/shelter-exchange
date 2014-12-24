@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Completed: From the Index Task Page", :js => :true do
   login_user

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 class EmailFormatValidatable
   include ActiveModel::Validations
@@ -28,14 +28,14 @@ describe EmailFormatValidator do
   it "invalid when format does not contain an @ symbol" do
     subject.email = "aaaabbbb.com"
     expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:email)
+    expect(subject.error_on(:email).size).to eq(1)
     expect(subject.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "invalid when format contains incorrect symbols after @" do
     subject.email = "brian@brian(*)bokor.com"
     expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:email)
+    expect(subject.error_on(:email).size).to eq(1)
     expect(subject.errors[:email]).to match_array(["format is incorrect"])
   end
 end

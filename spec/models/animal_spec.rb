@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Animal do
 
@@ -12,63 +12,63 @@ describe Animal do
 
   it "validates presence of name" do
     animal = Animal.new :name => nil
-    expect(animal).to have(1).error_on(:name)
+    expect(animal.error_on(:name).size).to eq(1)
     expect(animal.errors[:name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of animal type id" do
     animal = Animal.new :animal_type_id => nil
-    expect(animal).to have(1).error_on(:animal_type_id)
+    expect(animal.error_on(:animal_type_id).size).to eq(1)
     expect(animal.errors[:animal_type_id]).to match_array(["needs to be selected"])
   end
 
   it "validates presence of animal status id" do
     animal = Animal.new :animal_status_id => nil
-    expect(animal).to have(1).error_on(:animal_status_id)
+    expect(animal.error_on(:animal_status_id).size).to eq(1)
     expect(animal.errors[:animal_status_id]).to match_array(["needs to be selected"])
   end
 
   it "validates breed of primary breed" do
     animal = Animal.gen :primary_breed => nil, :animal_type_id => 1
-    expect(animal).to have(1).error_on(:primary_breed)
+    expect(animal.error_on(:primary_breed).size).to eq(1)
     expect(animal.errors[:primary_breed]).to match_array(["cannot be blank"])
 
     animal = Animal.new :primary_breed => "aaa", :animal_type_id => 1
-    expect(animal).to have(1).error_on(:primary_breed)
+    expect(animal.error_on(:primary_breed).size).to eq(1)
     expect(animal.errors[:primary_breed]).to match_array(["must contain a valid breed name"])
   end
 
   it "validates breed of secondary breed" do
     animal = Animal.new :is_mix_breed => true, :secondary_breed => nil, :animal_type_id => 1
-    expect(animal).to have(0).error_on(:secondary_breed)
+    expect(animal.error_on(:secondary_breed).size).to eq(0)
 
     animal = Animal.new :is_mix_breed => true, :secondary_breed => "aaa", :animal_type_id => 1
-    expect(animal).to have(1).error_on(:secondary_breed)
+    expect(animal.error_on(:secondary_breed).size).to eq(1)
     expect(animal.errors[:secondary_breed]).to match_array(["must contain a valid breed name"])
   end
 
   it "validates presence of sex" do
     animal = Animal.new :sex => nil
-    expect(animal).to have(1).error_on(:sex)
+    expect(animal.error_on(:sex).size).to eq(1)
     expect(animal.errors[:sex]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of age if status is active" do
     animal = Animal.new :age => nil, :animal_status_id => 1
-    expect(animal).to have(1).error_on(:age)
+    expect(animal.error_on(:age).size).to eq(1)
     expect(animal.errors[:age]).to match_array(["needs to be selected"])
 
     animal = Animal.new :age => nil, :animal_status_id => 2
-    expect(animal).to have(0).error_on(:age)
+    expect(animal.error_on(:age).size).to eq(0)
   end
 
   it "validates presence of size if status is active" do
     animal = Animal.new :size => nil, :animal_status_id => 1
-    expect(animal).to have(1).error_on(:size)
+    expect(animal.error_on(:size).size).to eq(1)
     expect(animal.errors[:size]).to match_array(["needs to be selected"])
 
     animal = Animal.new :size => nil, :animal_status_id => 2
-    expect(animal).to have(0).error_on(:size)
+    expect(animal.error_on(:size).size).to eq(0)
   end
 
   it "validates uniqueness of microchip" do
@@ -76,36 +76,36 @@ describe Animal do
     Animal.gen :microchip => "microchip", :shelter => shelter
 
     animal = Animal.new :microchip => "microchip", :shelter => shelter
-    expect(animal).to have(1).error_on(:microchip)
+    expect(animal.error_on(:microchip).size).to eq(1)
     expect(animal.errors[:microchip]).to match_array([
       "already exists in your shelter. Please return to the main Animal page and search by this microchip number to locate this record."
     ])
 
     # Another Shelter
     animal = Animal.new :microchip => "microchip"
-    expect(animal).to have(0).error_on(:microchip)
+    expect(animal.error_on(:microchip).size).to eq(0)
   end
 
   it "validates allows blank for microchip" do
     animal = Animal.new :microchip => nil
-    expect(animal).to have(0).error_on(:microchip)
+    expect(animal.error_on(:microchip).size).to eq(0)
   end
 
   it "validates presence of special needs" do
     animal = Animal.new :has_special_needs => true
-    expect(animal).to have(1).error_on(:special_needs)
+    expect(animal.error_on(:special_needs).size).to eq(1)
     expect(animal.errors[:special_needs]).to match_array(["cannot be blank"])
   end
 
   it "validates video url format of video url" do
     animal = Animal.new :video_url => "http://vimeo.com/1234"
-    expect(animal).to have(1).error_on(:video_url)
+    expect(animal.error_on(:video_url).size).to eq(1)
     expect(animal.errors[:video_url]).to match_array(["incorrect You Tube URL format"])
   end
 
   it "validates allows blank for video url" do
     animal = Animal.new :video_url => nil
-    expect(animal).to have(0).error_on(:video_url)
+    expect(animal.error_on(:video_url).size).to eq(0)
   end
 
   it "validates date format of status history date invalid date" do
@@ -115,7 +115,7 @@ describe Animal do
       :status_history_date_month => today.month,
       :status_history_date_year => nil
     )
-    expect(animal).to have(1).error_on(:status_history_date)
+    expect(animal.error_on(:status_history_date).size).to eq(1)
     expect(animal.errors[:status_history_date]).to match_array(["is an invalid date format"])
   end
 
@@ -126,7 +126,7 @@ describe Animal do
       :date_of_birth_month => today.month,
       :date_of_birth_year => today.year
     )
-    expect(animal).to have(1).error_on(:date_of_birth)
+    expect(animal.error_on(:date_of_birth).size).to eq(1)
     expect(animal.errors[:date_of_birth]).to match_array(["has to be before today's date"])
   end
 
@@ -137,7 +137,7 @@ describe Animal do
       :date_of_birth_month => today.month,
       :date_of_birth_year => nil
     )
-    expect(animal).to have(1).error_on(:date_of_birth)
+    expect(animal.error_on(:date_of_birth).size).to eq(1)
     expect(animal.errors[:date_of_birth]).to match_array(["is an invalid date format"])
   end
 
@@ -148,7 +148,7 @@ describe Animal do
       :arrival_date_month => today.month,
       :arrival_date_year => nil
     )
-    expect(animal).to have(1).error_on(:arrival_date)
+    expect(animal.error_on(:arrival_date).size).to eq(1)
     expect(animal.errors[:arrival_date]).to match_array(["is an invalid date format"])
   end
 
@@ -159,7 +159,7 @@ describe Animal do
       :euthanasia_date_month => today.month,
       :euthanasia_date_year => nil
     )
-    expect(animal).to have(1).error_on(:euthanasia_date)
+    expect(animal.error_on(:euthanasia_date).size).to eq(1)
     expect(animal.errors[:euthanasia_date]).to match_array(["is an invalid date format"])
   end
 

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe PetfinderJob do
 
@@ -194,7 +194,7 @@ describe PetfinderJob do
     it "returns a logger" do
       logger = PetfinderJob.logger
       expect(logger).to be_instance_of(Logger)
-      expect(Logger.respond_to?(:filename)).to be_false
+      expect(Logger.respond_to?(:filename)).to be_falsey
     end
   end
 end

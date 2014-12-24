@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ContactsController do
   login_user
@@ -477,8 +477,7 @@ describe ContactsController do
         csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2, @contact3], csv) }
 
         expect(controller).to receive(:send_data).
-          with(csv_string, :filename => "contacts.csv").
-          and_return { controller.render :nothing => true }
+          with(csv_string, :filename => "contacts.csv") { controller.render :nothing => true }
 
         post :export, :contact => { :by_role => "" }, :format => :csv
       end
@@ -490,8 +489,7 @@ describe ContactsController do
         csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2], csv) }
 
         expect(controller).to receive(:send_data).
-          with(csv_string, :filename => "contacts.csv").
-          and_return { controller.render :nothing => true }
+          with(csv_string, :filename => "contacts.csv") { controller.render :nothing => true }
 
         post :export, :contact => { :by_role => "adopter" }, :format => :csv
       end
@@ -538,7 +536,7 @@ describe ContactsController do
 
     it "assigns @no_headers_warning" do
       post :import, :contact => { :file => @contacts_csv }
-      expect(assigns(:no_headers_warning)).to be_false
+      expect(assigns(:no_headers_warning)).to be_falsey
     end
 
     it "assigns @csv_filepath" do
@@ -574,7 +572,7 @@ describe ContactsController do
       it "assigns @no_headers_warning" do
         path = Rails.root.join("spec", "data", "documents", "contacts_without_headers.csv")
         post :import, :contact => { :file => Rack::Test::UploadedFile.new(path) }
-        expect(assigns(:no_headers_warning)).to be_true
+        expect(assigns(:no_headers_warning)).to be_truthy
       end
     end
   end

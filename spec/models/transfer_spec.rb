@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Transfer do
 
@@ -8,31 +8,31 @@ describe Transfer do
 
   it "requires presence of requestor" do
     transfer = Transfer.new :requestor => nil
-    expect(transfer).to have(1).error_on(:requestor)
+    expect(transfer.error_on(:requestor).size).to eq(1)
     expect(transfer.errors[:requestor]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of phone" do
     transfer = Transfer.new :phone => nil
-    expect(transfer).to have(1).error_on(:phone)
+    expect(transfer.error_on(:phone).size).to eq(1)
     expect(transfer.errors[:phone]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of email" do
     transfer = Transfer.new :email => nil
-    expect(transfer).to have(1).error_on(:email)
+    expect(transfer.error_on(:email).size).to eq(1)
     expect(transfer.errors[:email]).to match_array(["cannot be blank"])
   end
 
   it "requires correctly formatted email" do
     transfer = Transfer.new :email => "puppy.com"
-    expect(transfer).to have(1).error_on(:email)
+    expect(transfer.error_on(:email).size).to eq(1)
     expect(transfer.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "validates transfer history reason when required" do
     transfer = Transfer.new :status => "rejected"
-    expect(transfer).to have(1).error_on(:transfer_history_reason)
+    expect(transfer.error_on(:transfer_history_reason).size).to eq(1)
     expect(transfer.errors[:transfer_history_reason]).to match_array(["cannot be blank"])
   end
 
@@ -40,7 +40,7 @@ describe Transfer do
 
     describe "#send_notification_of_transfer_request" do
       it "sends a notification for a new request" do
-        TransferMailer.stub(:delay => TransferMailer)
+        allow(TransferMailer).to receive_messages(:delay => TransferMailer)
 
         shelter = Shelter.gen
         transfer = Transfer.build :shelter => shelter, :transfer_history_reason => "transfer history reason"
@@ -81,7 +81,7 @@ describe Transfer do
     describe "#send_notification_of_status_change" do
 
       it "sends notification when approved" do
-        TransferMailer.stub(:delay => TransferMailer)
+        allow(TransferMailer).to receive_messages(:delay => TransferMailer)
 
         shelter = Shelter.gen
         transfer = Transfer.gen :shelter => shelter
@@ -95,7 +95,7 @@ describe Transfer do
       end
 
       it "sends notification when rejected" do
-        TransferMailer.stub(:delay => TransferMailer)
+        allow(TransferMailer).to receive_messages(:delay => TransferMailer)
 
         shelter = Shelter.gen
         transfer = Transfer.gen :shelter => shelter
@@ -109,7 +109,7 @@ describe Transfer do
       end
 
       it "sends notification when completed" do
-        TransferMailer.stub(:delay => TransferMailer)
+        allow(TransferMailer).to receive_messages(:delay => TransferMailer)
 
         shelter = Shelter.gen
         transfer = Transfer.gen :shelter => shelter

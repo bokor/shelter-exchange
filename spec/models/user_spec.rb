@@ -1,10 +1,10 @@
-require "spec_helper"
+require "rails_helper"
 
 describe User do
 
   it "requires presence of name" do
     user = User.new :name => nil
-    expect(user).to have(1).error_on(:name)
+    expect(user.error_on(:name).size).to eq(1)
     expect(user.errors[:name]).to match_array(["cannot be blank"])
   end
 
