@@ -41,6 +41,7 @@ RSpec.configure do |config|
     # Remove later when Type and Status are moved to just lib or model rather than db
     allow_message_expectations_on_nil
   end
+
   config.after :suite do
     # Remove Carrierwave Files
     FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])

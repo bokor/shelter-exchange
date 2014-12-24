@@ -22,7 +22,7 @@ gem "fog"
 
 # Zip Files
 #----------------------------------------------------------------------------
-gem "zipruby"
+gem "rubyzip", :require => "zip"
 
 # Login - Authentication - Authorization
 #----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ gem "whenever", :require => false
 
 # Performance
 #----------------------------------------------------------------------------
-gem "dalli"
+# gem "dalli"
 
 # Monitoring & Notification
 #----------------------------------------------------------------------------
@@ -77,7 +77,7 @@ group :development do
   gem "thin"
   gem "foreman"
   gem "engineyard"
-  gem 'quiet_assets'
+  gem "quiet_assets"
 end
 
 group :development, :test do
@@ -91,8 +91,8 @@ group :test do
   gem "factory_girl_extensions"
   gem "capybara"
   gem "capybara-email"
+  gem "selenium-webdriver"
   gem "database_cleaner"
-  gem "vcr"
   gem "webmock"
   gem "fake_ftp"
   gem "timecop"

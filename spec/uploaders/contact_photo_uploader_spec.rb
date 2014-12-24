@@ -8,10 +8,6 @@ describe ContactPhotoUploader do
     @uploader = ContactPhotoUploader.new @contact, :photo
   end
 
-  it "contains a processor for setting content type" do
-    expect(@uploader.processors).to include [:set_content_type, true, nil]
-  end
-
   it "has storage set correctly" do
     expect(ContactPhotoUploader.storage).to eq(CarrierWave::Storage::Fog)
   end

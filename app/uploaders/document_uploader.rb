@@ -1,11 +1,5 @@
 class DocumentUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MimeTypes
-
   storage :fog
-
-  # File Versions
-  #----------------------------------------------------------------------------
-  process :set_content_type => true
 
   # S3 Directory
   #----------------------------------------------------------------------------

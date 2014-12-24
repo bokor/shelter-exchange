@@ -14,9 +14,13 @@ class MapOverlayJob
   private
 
   def zip_kml_file
-    Zip::Archive.open_buffer(Zip::CREATE) do |archive|
-      archive.add_buffer("overlay.kml", MapsController.new.overlay);
+    stringio = Zip::OutputStream.write_buffer do |zio|
+      zio.put_next_entry('overlay.kml')
+      zio.write(MapsController.new.overlay)
     end
+
+    stringio.rewind
+    stringio.sysread
   end
 end
 

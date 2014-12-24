@@ -8,10 +8,6 @@ describe LogoUploader do
     @uploader = LogoUploader.new @shelter, :logo
   end
 
-  it "contains a processor for setting content type" do
-    expect(@uploader.processors).to include [:set_content_type, true, nil]
-  end
-
   it "has storage set correctly" do
     expect(LogoUploader.storage).to eq(CarrierWave::Storage::Fog)
   end

@@ -8,10 +8,6 @@ describe AttachmentUploader do
     @uploader = AttachmentUploader.new @account, :document
   end
 
-  it "contains a processor for setting content type" do
-    expect(AttachmentUploader.processors).to include [:set_content_type, true, nil]
-  end
-
   it "has storage set correctly" do
     expect(AttachmentUploader.storage).to eq(CarrierWave::Storage::Fog)
   end

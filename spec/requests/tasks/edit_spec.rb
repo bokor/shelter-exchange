@@ -70,10 +70,7 @@ describe "Edit: From the Index Task Page", :js => :true do
       expect(page).to have_content "Today task details"
     end
 
-    within "#overdue_tasks" do
-      expect(page).to have_no_content "Overdue task details"
-      expect(page).to have_no_content "Today task details"
-    end
+    expect(page).to have_no_content "Overdue task details"
   end
 
   it "should move task from today to tomorrow" do
@@ -99,10 +96,7 @@ describe "Edit: From the Index Task Page", :js => :true do
       expect(page).to have_content "Tomorrow task details"
     end
 
-    within "#today_tasks" do
-      expect(page).to have_no_content "Today task details"
-      expect(page).to have_no_content "Tomorrow task details"
-    end
+    expect(page).to have_no_content "Today task details"
   end
 
   it "should move task from tomorrow to later" do
@@ -128,10 +122,7 @@ describe "Edit: From the Index Task Page", :js => :true do
       expect(page).to have_content "Later task details"
     end
 
-    within "#tomorrow_tasks" do
-      expect(page).to have_no_content "Tomorrow task details"
-      expect(page).to have_no_content "Later task details"
-    end
+    expect(page).to have_no_content "Tomorrow task details"
   end
 
   it "should move task from later to today" do
@@ -157,10 +148,7 @@ describe "Edit: From the Index Task Page", :js => :true do
       expect(page).to have_content "Today task details"
     end
 
-    within "#later_tasks" do
-      expect(page).to have_no_content "Today task details"
-      expect(page).to have_no_content "Later task details"
-    end
+    expect(page).to have_no_content "Later task details"
   end
 end
 
