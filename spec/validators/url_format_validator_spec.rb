@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 class UrlFormatValidatable
   include ActiveModel::Validations
@@ -19,7 +19,7 @@ describe UrlFormatValidator do
     subject.url = "www.shelterexchange.org"
 
     expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:url)
+    expect(subject.error_on(:url).size).to eq(1)
     expect(subject.errors[:url]).to match_array(["format is incorrect"])
   end
 
@@ -27,7 +27,7 @@ describe UrlFormatValidator do
     subject.url = "http://www.shelterexchange"
 
     expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:url)
+    expect(subject.error_on(:url).size).to eq(1)
     expect(subject.errors[:url]).to match_array(["format is incorrect"])
   end
 end

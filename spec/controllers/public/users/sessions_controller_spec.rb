@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Public::Users::SessionsController do
   # Testing this with Request Specs

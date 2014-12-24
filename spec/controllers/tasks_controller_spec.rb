@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe TasksController do
   login_user
@@ -191,7 +191,7 @@ describe TasksController do
       task_attributes = @update_attrs.merge!(:due_date => Date.today - 1.month)
 
       put :update, :id => @task, :task => task_attributes, :format => :js
-      expect(assigns(:due_date_changed)).to be_true
+      expect(assigns(:due_date_changed)).to be_truthy
     end
 
     it "sets the flash message" do
@@ -270,13 +270,13 @@ describe TasksController do
     end
 
     it "completes an task" do
-      expect(@task.completed).to be_false
+      expect(@task.completed).to be_falsey
 
       expect {
         post :complete, :id => @task.id, :format => :js
       }.to change(Task, :count).by(0)
 
-      expect(@task.reload.completed).to be_true
+      expect(@task.reload.completed).to be_truthy
     end
 
     it "sets the flash message" do

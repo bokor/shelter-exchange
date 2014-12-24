@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe PhotosController do
   login_user
@@ -111,7 +111,7 @@ describe PhotosController do
 
     it "renders json" do
       delete :destroy, :id => @photo.id, :format => :json
-      expect(response.body).to be_true
+      expect(response.body).to be_truthy
     end
   end
 

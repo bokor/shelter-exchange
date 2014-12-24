@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 class DateFormatValidatable
   include ActiveModel::Validations
@@ -36,7 +36,7 @@ describe DateFormatValidator do
       subject.random_date_day = ""
 
       expect(subject).not_to be_valid
-      expect(subject).to have(1).error_on(:random_date)
+      expect(subject.error_on(:random_date).size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -46,7 +46,7 @@ describe DateFormatValidator do
       subject.random_date_day = "12"
 
       expect(subject).not_to be_valid
-      expect(subject).to have(1).error_on(:random_date)
+      expect(subject.error_on(:random_date).size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -56,7 +56,7 @@ describe DateFormatValidator do
       subject.random_date_day = "12"
 
       expect(subject).not_to be_valid
-      expect(subject).to have(1).error_on(:random_date)
+      expect(subject.error_on(:random_date).size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -66,7 +66,7 @@ describe DateFormatValidator do
       subject.random_date_day = "12"
 
       expect(subject).not_to be_valid
-      expect(subject).to have(1).error_on(:random_date)
+      expect(subject.error_on(:random_date).size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
   end
@@ -87,7 +87,7 @@ describe DateFormatValidator do
       subject.date_of_birth_day = "12"
 
       expect(subject).not_to be_valid
-      expect(subject).to have(1).error_on(:date_of_birth)
+      expect(subject.error_on(:date_of_birth).size).to eq(1)
       expect(subject.errors[:date_of_birth]).to match_array(["has to be before today's date"])
     end
   end

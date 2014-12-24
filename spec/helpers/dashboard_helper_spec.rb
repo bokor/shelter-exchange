@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe DashboardHelper, "#activity_message_for" do
 

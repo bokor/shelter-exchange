@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Note do
 
@@ -8,13 +8,13 @@ describe Note do
 
   it "requires presence of title" do
     note = Note.new :title => nil
-    expect(note).to have(1).error_on(:title)
+    expect(note.error_on(:title).size).to eq(1)
     expect(note.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     note = Note.new :category => "#{Note::CATEGORIES[0]} blah"
-    expect(note).to have(1).error_on(:category)
+    expect(note.error_on(:category).size).to eq(1)
     expect(note.errors[:category]).to match_array(["needs to be selected"])
   end
 end

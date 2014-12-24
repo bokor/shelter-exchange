@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe AlertsHelper, "#show_alertable_link" do
 

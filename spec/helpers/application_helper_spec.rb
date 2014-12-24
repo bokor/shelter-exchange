@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ApplicationHelper, "#title" do
   it "returns content_for title" do

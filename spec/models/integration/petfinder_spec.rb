@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Integration::Petfinder do
 
@@ -8,33 +8,33 @@ describe Integration::Petfinder do
 
   it "validates presence of username" do
     integration = Integration::Petfinder.new :username => nil
-    expect(integration).to have(1).error_on(:username)
+    expect(integration.error_on(:username).size).to eq(1)
     expect(integration.errors[:username]).to match_array(["cannot be blank"])
   end
 
   it "validates uniqueness of username" do
     Integration.gen :petfinder, :username => "TEST"
     integration = Integration::Petfinder.new :username => "TEST"
-    expect(integration).to have(1).error_on(:username)
+    expect(integration.error_on(:username).size).to eq(1)
     expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
   end
 
   it "validates presence of password" do
     integration = Integration::Petfinder.new :password => nil
-    expect(integration).to have(1).error_on(:password)
+    expect(integration.error_on(:password).size).to eq(1)
     expect(integration.errors[:password]).to match_array(["cannot be blank"])
   end
 
   it "validates the connection is successful" do
     integration = Integration::Petfinder.new :password => "test", :username => "test"
-    expect(integration).to have(0).error_on(:connection_failed)
+    expect(integration.error_on(:connection_failed).size).to eq(0)
   end
 
   it "validates the connection is failed" do
     allow(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
 
     integration = Integration::Petfinder.new :password => "test", :username => "test"
-    expect(integration).to have(1).error_on(:connection_failed)
+    expect(integration.error_on(:connection_failed).size).to eq(1)
     expect(integration.errors[:connection_failed]).to match_array(["Petfinder FTP Username and/or FTP Password is incorrect.  Please Try again!"])
   end
 

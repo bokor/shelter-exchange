@@ -1,20 +1,20 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Subdomains::Public, ".matches?" do
 
   it "returns true when matches www subdomain" do
     request = OpenStruct.new(:subdomain => "www")
-    expect(Subdomains::Public.matches?(request)).to be_true
+    expect(Subdomains::Public.matches?(request)).to be_truthy
   end
 
   it "returns true when request doesn't contain a subdomain" do
     request = OpenStruct.new(:subdomain => nil)
-    expect(Subdomains::Public.matches?(request)).to be_true
+    expect(Subdomains::Public.matches?(request)).to be_truthy
   end
 
   it "returns false when doesn't match subdomain" do
     request = OpenStruct.new(:subdomain => "api")
-    expect(Subdomains::Public.matches?(request)).to be_false
+    expect(Subdomains::Public.matches?(request)).to be_falsey
   end
 end
 

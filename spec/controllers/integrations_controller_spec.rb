@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe IntegrationsController do
   login_user

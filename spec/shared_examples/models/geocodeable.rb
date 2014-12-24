@@ -10,37 +10,37 @@ shared_examples_for Geocodeable do
 
     it "returns true a new record" do
       geocodeable = described_class.new
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
 
     it "returns true if street changed" do
       geocodeable = described_class.gen
       geocodeable.street = "testing testing"
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
 
     it "returns true if street_2 changed" do
       geocodeable = described_class.gen
       geocodeable.street_2 = "testing testing"
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
 
     it "returns true if city changed" do
       geocodeable = described_class.gen
       geocodeable.city = "testing testing"
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
 
     it "returns true if state changed" do
       geocodeable = described_class.gen
       geocodeable.state = "testing testing"
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
 
     it "returns true if zip_code changed" do
       geocodeable = described_class.gen
       geocodeable.zip_code = "testing testing"
-      expect(geocodeable.address_changed?).to be_true
+      expect(geocodeable.address_changed?).to be_truthy
     end
   end
 

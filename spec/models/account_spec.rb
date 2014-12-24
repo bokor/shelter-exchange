@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Account do
 
@@ -6,7 +6,7 @@ describe Account do
 
   it "requires presence of subdomain" do
     account = Account.new :subdomain => nil
-    expect(account).to have(2).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(2)
     expect(account.errors[:subdomain]).to match_array([
       "cannot be blank",
       "can only contain letters, numbers, or hyphens.  No spaces allowed!"
@@ -16,62 +16,62 @@ describe Account do
   it "requires uniqueness of subdomain" do
     Account.gen(:subdomain => "testing")
     account = Account.new :subdomain => "testing"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["has already been taken"])
   end
 
   it "requires format of subdomain containing only letters, numbers, or hyphens" do
     account = Account.new :subdomain => "testing_testing"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["can only contain letters, numbers, or hyphens.  No spaces allowed!"])
 
     account = Account.new :subdomain => "testing testing"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["can only contain letters, numbers, or hyphens.  No spaces allowed!"])
   end
 
   it "requires format of subdomain to start with a letter" do
     account = Account.new :subdomain => "007testing"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["has to start and end with a letter"])
 
     account = Account.new :subdomain => "---testing"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["has to start and end with a letter"])
   end
 
   it "requires format of subdomain to end with a letter or number" do
     account = Account.new :subdomain => "testing---"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["has to start and end with a letter"])
 
     account = Account.new :subdomain => "testing007"
-    expect(account).to have(0).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(0)
   end
 
   it "requires format of subdomain not being a reserved name" do
     account = Account.new :subdomain => "www"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["is reserved and unavailable."])
 
     account = Account.new :subdomain => "admin"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["is reserved and unavailable."])
 
     account = Account.new :subdomain => "help"
-    expect(account).to have(1).error_on(:subdomain)
+    expect(account.error_on(:subdomain).size).to eq(1)
     expect(account.errors[:subdomain]).to match_array(["is reserved and unavailable."])
   end
 
   it "requires inclusion of document type" do
     account = Account.gen(:document_type => "document_type")
-    expect(account).to have(1).error_on(:document_type)
+    expect(account.error_on(:document_type).size).to eq(1)
     expect(account.errors[:document_type]).to match_array(["is not included in the list"])
   end
 
   it "require presence of a document" do
     account = Account.gen(:document => nil)
-    expect(account).to have(1).error_on(:document)
+    expect(account.error_on(:document).size).to eq(1)
     expect(account.errors[:document]).to match_array(["cannot be blank"])
   end
 

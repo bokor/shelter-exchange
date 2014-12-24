@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Public::ApplicationController do
   # Testing this with Request Specs

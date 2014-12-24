@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Location do
 
@@ -8,7 +8,7 @@ describe Location do
 
   it "requires presence of name" do
     location = Location.new :name => nil
-    expect(location).to have(1).error_on(:name)
+    expect(location.error_on(:name).size).to eq(1)
     expect(location.errors[:name]).to match_array(["cannot be blank"])
   end
 end

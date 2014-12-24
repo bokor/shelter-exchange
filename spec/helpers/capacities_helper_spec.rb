@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CapacitiesHelper, "#capacity_status" do
 

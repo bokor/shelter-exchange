@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Document do
 
@@ -12,7 +12,7 @@ describe Document do
     Document.gen :attachable => note
 
     document = Document.gen :attachable => note
-    expect(document).to have(1).error
+    expect(document.size).to eq(1)
     expect(document.errors[:base]).to match_array(["Max number of files exceeded"])
   end
 
