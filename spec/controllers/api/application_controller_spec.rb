@@ -9,7 +9,7 @@ describe Api::ApplicationController do
   end
 
   it "renders current layout" do
-    pending "Do not know how to test this. Might be a job for request specs"
+    skip "Do not know how to test this. Might be a job for request specs"
   end
 
   it "assigns @current_shelter" do
