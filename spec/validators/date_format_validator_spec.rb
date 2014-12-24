@@ -19,7 +19,7 @@ describe DateFormatValidator do
       subject.random_date_month = ""
       subject.random_date_day = ""
 
-      expect(subject).to be_valid
+      expect(subject.valid?).to be_truthy
     end
 
     it "valid when correct format" do
@@ -27,7 +27,7 @@ describe DateFormatValidator do
       subject.random_date_month = "05"
       subject.random_date_day = "12"
 
-      expect(subject).to be_valid
+      expect(subject.valid?).to be_truthy
     end
 
     it "invalid when day is missing" do
@@ -35,8 +35,8 @@ describe DateFormatValidator do
       subject.random_date_month = "05"
       subject.random_date_day = ""
 
-      expect(subject).not_to be_valid
-      expect(subject.error_on(:random_date).size).to eq(1)
+      expect(subject.valid?).to be_falsey
+      expect(subject.errors[:random_date].size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -45,8 +45,8 @@ describe DateFormatValidator do
       subject.random_date_month = ""
       subject.random_date_day = "12"
 
-      expect(subject).not_to be_valid
-      expect(subject.error_on(:random_date).size).to eq(1)
+      expect(subject.valid?).to be_falsey
+      expect(subject.errors[:random_date].size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -55,8 +55,8 @@ describe DateFormatValidator do
       subject.random_date_month = "05"
       subject.random_date_day = "12"
 
-      expect(subject).not_to be_valid
-      expect(subject.error_on(:random_date).size).to eq(1)
+      expect(subject.valid?).to be_falsey
+      expect(subject.errors[:random_date].size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
 
@@ -65,8 +65,8 @@ describe DateFormatValidator do
       subject.random_date_month = "05"
       subject.random_date_day = "12"
 
-      expect(subject).not_to be_valid
-      expect(subject.error_on(:random_date).size).to eq(1)
+      expect(subject.valid?).to be_falsey
+      expect(subject.errors[:random_date].size).to eq(1)
       expect(subject.errors[:random_date]).to match_array(["is an invalid date format"])
     end
   end
@@ -78,7 +78,7 @@ describe DateFormatValidator do
       subject.date_of_birth_month = Date.today.month
       subject.date_of_birth_day = Date.today.day
 
-      expect(subject).to be_valid
+      expect(subject.valid?).to be_truthy
     end
 
     it "invalid when the date is greater than today" do
@@ -86,8 +86,8 @@ describe DateFormatValidator do
       subject.date_of_birth_month = "05"
       subject.date_of_birth_day = "12"
 
-      expect(subject).not_to be_valid
-      expect(subject.error_on(:date_of_birth).size).to eq(1)
+      expect(subject.valid?).to be_falsey
+      expect(subject.errors[:date_of_birth].size).to eq(1)
       expect(subject.errors[:date_of_birth]).to match_array(["has to be before today's date"])
     end
   end

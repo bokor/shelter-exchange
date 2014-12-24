@@ -676,9 +676,7 @@ describe ContactsController do
       it "does not create contacts" do
         expect{
           post :import_mapping, :contact => @attributes
-        }.to_not change{
-          Contact.count
-        }.from(0).to(2)
+        }.to_not change(Contact, :count)
       end
 
       it "set a flash message" do

@@ -32,7 +32,7 @@ describe Public::AccountsController do
 
     context "when app disabled" do
       it "renders errors/app_disabled" do
-        allow(ShelterExchange.settings).to receive(:app_disabled?).and_return(true)
+        allow(ShelterExchange).to receive_message_chain(:settings, :app_disabled?).and_return(true)
         get :new
         expect(response).to render_template("errors/app_disabled")
       end
@@ -127,7 +127,7 @@ describe Public::AccountsController do
 
     context "when app disabled" do
       it "renders errors/app_disabled" do
-        allow(ShelterExchange.settings).to receive(:app_disabled?).and_return(true)
+        allow(ShelterExchange).to receive_message_chain(:settings, :app_disabled?).and_return(true)
         post :create, :account => @attributes
         expect(response).to render_template("errors/app_disabled")
       end

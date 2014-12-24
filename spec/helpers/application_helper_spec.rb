@@ -40,7 +40,7 @@ describe ApplicationHelper, "#body_class" do
 
   context "with application disabled" do
     it "returns body class name as an identifier" do
-      allow(ShelterExchange.settings).to receive(:app_disabled?).and_return(true)
+      allow(ShelterExchange).to receive_message_chain(:settings, :app_disabled?).and_return(true)
 
       expect(
         helper.body_class
