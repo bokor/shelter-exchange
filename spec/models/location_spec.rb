@@ -8,7 +8,9 @@ describe Location do
 
   it "requires presence of name" do
     location = Location.new :name => nil
-    expect(location.error_on(:name).size).to eq(1)
+
+    expect(location.valid?).to be_falsey
+    expect(location.errors[:name].size).to eq(1)
     expect(location.errors[:name]).to match_array(["cannot be blank"])
   end
 end

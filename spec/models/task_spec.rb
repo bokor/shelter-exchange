@@ -8,7 +8,9 @@ describe Task do
 
   it "requires presence of details" do
     task = Task.gen :details => nil
-    expect(task.error_on(:details).size).to eq(1)
+
+    expect(task.valid?).to be_falsey
+    expect(task.errors[:details].size).to eq(1)
     expect(task.errors[:details]).to match_array(["cannot be blank"])
   end
 end

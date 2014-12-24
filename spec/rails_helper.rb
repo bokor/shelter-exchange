@@ -13,6 +13,8 @@ Dir[Rails.root.join("spec/shared_examples/**/*.rb")].each {|s| require s }
 RSpec.configure do |config|
   config.mock_with :rspec
 
+  config.infer_spec_type_from_file_location!
+
   config.use_transactional_fixtures = false
   config.expect_with :rspec do |c|
     c.syntax = :expect

@@ -8,7 +8,9 @@ describe Comment do
 
   it "requires presence of comment" do
     comment = Comment.gen :comment => nil
-    expect(comment.error_on(:comment).size).to eq(1)
+
+    expect(comment.valid?).to be_falsey
+    expect(comment.errors[:comment].size).to eq(1)
     expect(comment.errors[:comment]).to match_array(["cannot be blank"])
   end
 end

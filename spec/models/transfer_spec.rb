@@ -8,31 +8,41 @@ describe Transfer do
 
   it "requires presence of requestor" do
     transfer = Transfer.new :requestor => nil
-    expect(transfer.error_on(:requestor).size).to eq(1)
+
+    expect(transfer.valid?).to be_falsey
+    expect(transfer.errors[:requestor].size).to eq(1)
     expect(transfer.errors[:requestor]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of phone" do
     transfer = Transfer.new :phone => nil
-    expect(transfer.error_on(:phone).size).to eq(1)
+
+    expect(transfer.valid?).to be_falsey
+    expect(transfer.errors[:phone].size).to eq(1)
     expect(transfer.errors[:phone]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of email" do
     transfer = Transfer.new :email => nil
-    expect(transfer.error_on(:email).size).to eq(1)
+
+    expect(transfer.valid?).to be_falsey
+    expect(transfer.errors[:email].size).to eq(1)
     expect(transfer.errors[:email]).to match_array(["cannot be blank"])
   end
 
   it "requires correctly formatted email" do
     transfer = Transfer.new :email => "puppy.com"
-    expect(transfer.error_on(:email).size).to eq(1)
+
+    expect(transfer.valid?).to be_falsey
+    expect(transfer.errors[:email].size).to eq(1)
     expect(transfer.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "validates transfer history reason when required" do
     transfer = Transfer.new :status => "rejected"
-    expect(transfer.error_on(:transfer_history_reason).size).to eq(1)
+
+    expect(transfer.valid?).to be_falsey
+    expect(transfer.errors[:transfer_history_reason].size).to eq(1)
     expect(transfer.errors[:transfer_history_reason]).to match_array(["cannot be blank"])
   end
 

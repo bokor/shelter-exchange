@@ -11,13 +11,17 @@ describe Contact do
 
   it "validates presence of first_name" do
     contact = Contact.new :first_name => nil, :last_name => nil
-    expect(contact.error_on(:first_name).size).to eq(1)
+
+    expect(contact.valid?).to be_falsey
+    expect(contact.errors[:first_name].size).to eq(1)
     expect(contact.errors[:first_name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of last_name" do
     contact = Contact.new :first_name => nil, :last_name => nil
-    expect(contact.error_on(:last_name).size).to eq(1)
+
+    expect(contact.valid?).to be_falsey
+    expect(contact.errors[:last_name].size).to eq(1)
     expect(contact.errors[:last_name]).to match_array(["cannot be blank"])
   end
 

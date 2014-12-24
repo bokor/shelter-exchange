@@ -4,7 +4,9 @@ describe Capacity do
 
   it "requires presence of animal type id" do
     capacity = Capacity.new :animal_type_id => nil
-    expect(capacity.error_on(:animal_type_id).size).to eq(1)
+
+    expect(capacity.valid?).to be_falsey
+    expect(capacity.errors[:animal_type_id].size).to eq(1)
     expect(capacity.errors[:animal_type_id]).to match_array(["needs to be selected"])
   end
 
@@ -14,15 +16,18 @@ describe Capacity do
     capacity1   = Capacity.gen :animal_type => animal_type, :shelter => shelter
     capacity2   = Capacity.gen :animal_type => animal_type, :shelter => shelter
 
-    expect(capacity1.size).to eq(0)
+    expect(capacity1.errors.size).to eq(0)
 
-    expect(capacity2.error_on(:animal_type_id).size).to eq(1)
+    expect(capacity2.valid?).to be_falsey
+    expect(capacity2.errors[:animal_type_id].size).to eq(1)
     expect(capacity2.errors[:animal_type_id]).to match_array(["is already in use"])
   end
 
   it "requires a number for max capacity" do
     capacity = Capacity.new :max_capacity => "abc"
-    expect(capacity.error_on(:max_capacity).size).to eq(1)
+
+    expect(capacity.valid?).to be_falsey
+    expect(capacity.errors[:max_capacity].size).to eq(1)
     expect(capacity.errors[:max_capacity]).to match_array(["requires a number"])
   end
 end

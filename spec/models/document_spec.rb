@@ -12,7 +12,9 @@ describe Document do
     Document.gen :attachable => note
 
     document = Document.gen :attachable => note
-    expect(document.size).to eq(1)
+
+    expect(document.valid?).to be_falsey
+    expect(document.errors[:base].size).to eq(1)
     expect(document.errors[:base]).to match_array(["Max number of files exceeded"])
   end
 
