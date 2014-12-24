@@ -5,7 +5,7 @@ Capybara.register_driver :firefox do |app|
   driver
 end
 
-# Register Chrome with Capybara
+# Register Chrome with Capybara - requires chromedriver installed
 Capybara.register_driver :chrome do |app|
   driver = Capybara::Selenium::Driver.new(app, :browser => :chrome)
   driver.browser.manage.window.resize_to 1200, 1200 # (width, height) wide enough to view the whole layout
