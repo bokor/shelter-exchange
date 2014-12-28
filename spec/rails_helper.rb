@@ -11,10 +11,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|s| require s }
 Dir[Rails.root.join("spec/shared_examples/**/*.rb")].each {|s| require s }
 
 RSpec.configure do |config|
+
+  config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
 
   # Matchers and Helpers
   config.include Capybara::DSL
@@ -36,6 +35,9 @@ RSpec.configure do |config|
   config.before :each do
     # Remove later when Type and Status are moved to just lib or model rather than db
     allow_message_expectations_on_nil
+
+    # Clear out Mailers
+    ActionMailer::Base.deliveries = []
   end
 
   config.after :suite do
