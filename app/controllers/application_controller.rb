@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
                 :current_shelter,
                 :shelter_inactive?,
                 :shelter_time_zone,
-                :store_location,
                 :disable_application
 
   layout :current_layout
@@ -45,28 +44,6 @@ class ApplicationController < ActionController::Base
 
   def shelter_time_zone
     Time.zone = @current_shelter.time_zone unless @current_shelter.blank?
-  end
-
-  def store_location
-    session[:"user_return_to"] = request.fullpath if request.get? && request.format.html? && !request.xhr? && !devise_controller?
-  end
-
-  def after_sign_in_path_for(resource_or_scope)
-    case resource_or_scope
-      when :user, User
-        session[:"user_return_to"].blank? ? dashboard_path.to_s : session[:"user_return_to"].to_s
-      else
-        super
-    end
-  end
-
-  def after_sign_out_path_for(resource_or_scope)
-    case resource_or_scope
-      when :user, User
-        new_user_session_path
-      else
-        super
-    end
   end
 
   #-----------------------------------------------------------------------------
