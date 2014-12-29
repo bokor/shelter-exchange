@@ -202,7 +202,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # ROOT
     #----------------------------------------------------------------------------
-    root :to => redirect("/dashboard")
+    root :to => redirect("/dashboard"), :via => [:get]
   end
 
 
@@ -278,7 +278,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Root
     #----------------------------------------------------------------------------
-    root :to => redirect("/admin/dashboard")
+    root :to => redirect("/admin/dashboard"), :via => [:get]
   end
 
 
@@ -362,7 +362,7 @@ ShelterExchangeApp::Application.routes.draw do
       match "/get_involved/shelters_and_rescues", :to => redirect("/shelters_and_rescues")
 
       match '*path' => 'pages#show'
-      root :to => 'pages#index'
+      root :to => 'pages#index', :via => [:get]
     end
 
   end
