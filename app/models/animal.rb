@@ -1,7 +1,7 @@
 class Animal < ActiveRecord::Base
   include Statusable, Typeable, Uploadable
 
-  default_scope :order => "animals.updated_at DESC"
+  default_scope :order => "animals.name ASC"
 
   # Constants
   #----------------------------------------------------------------------------

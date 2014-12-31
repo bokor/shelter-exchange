@@ -7,7 +7,7 @@ describe Animal do
   it_should_behave_like Uploadable
 
   it "has a default scope" do
-    expect(Animal.scoped.to_sql).to eq(Animal.order('animals.updated_at DESC').to_sql)
+    expect(Animal.scoped.to_sql).to eq(Animal.order('animals.name ASC').to_sql)
   end
 
   it "validates presence of name" do
