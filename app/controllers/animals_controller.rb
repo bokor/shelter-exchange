@@ -30,7 +30,7 @@ class AnimalsController < ApplicationController
   end
 
   def new
-    @animal = @current_shelter.animals.new
+    @animal = @current_shelter.animals.build(params[:animal])
     respond_with(@animal)
   end
 
