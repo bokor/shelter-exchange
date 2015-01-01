@@ -599,7 +599,14 @@ describe ContactsController do
         :zip_code_mapping => "Home Postal Code",
         :email_mapping  => "E-mail Address",
         :phone_mapping => "Home Phone",
-        :mobile_mapping => "Mobile Phone"
+        :mobile_mapping => "Mobile Phone",
+        :adopter_mapping => 1,
+        :foster_mapping => 0,
+        :volunteer_mapping => 1,
+        :transporter_mapping => 0,
+        :donor_mapping => 0,
+        :staff_mapping => 0,
+        :veterinarian_mapping => 1,
       }
     end
 
@@ -635,6 +642,13 @@ describe ContactsController do
       expect(contact.phone).to eq("6509999999")
       expect(contact.mobile).to eq("6509999999")
       expect(contact.email).to eq("bb_test@example.com")
+      expect(contact.adopter).to be_truthy
+      expect(contact.foster).to be_falsey
+      expect(contact.volunteer).to be_truthy
+      expect(contact.transporter).to be_falsey
+      expect(contact.donor).to be_falsey
+      expect(contact.staff).to be_falsey
+      expect(contact.veterinarian).to be_truthy
     end
 
     it "deletes the local temp file" do
@@ -669,7 +683,14 @@ describe ContactsController do
           :zip_code_mapping => "",
           :email_mapping  => "",
           :phone_mapping => "",
-          :mobile_mapping => ""
+          :mobile_mapping => "",
+          :adopter_mapping => 0,
+          :foster_mapping => 0,
+          :volunteer_mapping => 0,
+          :transporter_mapping => 0,
+          :donor_mapping => 0,
+          :staff_mapping => 0,
+          :veterinarian_mapping => 0,
         }
       end
 

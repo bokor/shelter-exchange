@@ -80,6 +80,21 @@
         </tr>
       </table>
 
+      <style>
+        .assign_roles { padding-left: 10px; margin:10px 0px; border-bottom: 1px dotted #bbb; }
+        .assign_roles span { display:inline-block; padding-right: 15px; }
+        .assign_roles label { margin-left:17px; }
+      </style>
+      <div class="assign_roles">
+        <p>Assign all of these contacts with a role:</p>
+        <% Contact::ROLES.each_with_index do |value, index| %>
+          <span>
+            <%= f.check_box value + "_mapping", :class =>"field checkbox" %>
+            <%= f.label value + "_mapping", value.humanize, :class => "desc choice" %>
+          </span>
+        <% end %>
+      </div>
+
       <%= f.hidden_field :csv_filepath, :value => @csv_filepath %>
 
       <div class="buttons">
