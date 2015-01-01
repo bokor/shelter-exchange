@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Index: Dashboard Page", :js => :true do
   login_user

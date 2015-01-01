@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "New: Task Page", :js => :true do
   login_user

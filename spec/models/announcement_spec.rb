@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Announcement do
 
@@ -8,31 +8,41 @@ describe Announcement do
 
   it "requires presence of title" do
     announcement = Announcement.new :title => nil
-    expect(announcement).to have(1).error_on(:title)
+
+    expect(announcement.valid?).to be_falsey
+    expect(announcement.errors[:title].size).to eq(1)
     expect(announcement.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of message" do
     announcement = Announcement.new :title => nil
-    expect(announcement).to have(1).error_on(:title)
+
+    expect(announcement.valid?).to be_falsey
+    expect(announcement.errors[:title].size).to eq(1)
     expect(announcement.errors[:title]).to match_array(["cannot be blank"])
   end
 
   it "requires inclusion of category" do
     announcement = Announcement.new :category => "#{Announcement::CATEGORIES[0]} blah"
-    expect(announcement).to have(1).error_on(:category)
+
+    expect(announcement.valid?).to be_falsey
+    expect(announcement.errors[:category].size).to eq(1)
     expect(announcement.errors[:category]).to match_array(["needs to be selected"])
   end
 
   it "requires presence of starts at" do
     announcement = Announcement.new :starts_at => nil
-    expect(announcement).to have(1).error_on(:starts_at)
+
+    expect(announcement.valid?).to be_falsey
+    expect(announcement.errors[:starts_at].size).to eq(1)
     expect(announcement.errors[:starts_at]).to match_array(["cannot be blank"])
   end
 
   it "requires presence of ends at" do
     announcement = Announcement.new :ends_at => nil
-    expect(announcement).to have(1).error_on(:ends_at)
+
+    expect(announcement.valid?).to be_falsey
+    expect(announcement.errors[:ends_at].size).to eq(1)
     expect(announcement.errors[:ends_at]).to match_array(["cannot be blank"])
   end
 end

@@ -2,14 +2,11 @@ class LogoUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
   include CarrierWave::MiniMagick
-  include CarrierWave::MimeTypes
 
   storage :fog
 
   # File Versions
   #----------------------------------------------------------------------------
-  process :set_content_type => true
-
   process :resize_to_limit => [500,500]
 
   version :small do

@@ -27,9 +27,10 @@
             &nbsp;&nbsp;|&nbsp;&nbsp;
           <% end %>
 
-					<!-- &nbsp;&nbsp;|&nbsp;&nbsp;
-					<%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www")%> -->
-
+          <% if can?(:create, Animal) %>
+            <%= link_to "Duplicate", new_animal_path(:animal => @animal.attributes) %>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+          <% end %>
 
           <%= link_to "Print", print_animal_path(@animal)%>
 

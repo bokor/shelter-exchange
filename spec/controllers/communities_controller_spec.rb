@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CommunitiesController do
   login_user
@@ -64,7 +64,7 @@ describe CommunitiesController do
       Transfer.gen :requestor_shelter => current_shelter, :animal => @animal
 
       get :show, :id => @animal.id
-      expect(assigns(:transfer_requested)).to be_true
+      expect(assigns(:transfer_requested)).to be_truthy
     end
 
     it "renders the :show view" do

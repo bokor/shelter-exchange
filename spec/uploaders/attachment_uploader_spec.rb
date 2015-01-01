@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AttachmentUploader do
 
@@ -6,10 +6,6 @@ describe AttachmentUploader do
     @file = File.open(Rails.root.join("spec/data/documents/testing.pdf"))
     @account = Account.gen :document => @file
     @uploader = AttachmentUploader.new @account, :document
-  end
-
-  it "contains a processor for setting content type" do
-    expect(AttachmentUploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do

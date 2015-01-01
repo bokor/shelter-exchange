@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141004232658) do
+ActiveRecord::Schema.define(:version => 20141223184757) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -485,6 +485,7 @@ ActiveRecord::Schema.define(:version => 20141004232658) do
     t.string   "invited_by_type"
     t.datetime "announcement_hide_time"
     t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

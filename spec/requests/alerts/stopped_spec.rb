@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Stopped: From the Index Alert Page", :js => :true do
   login_user

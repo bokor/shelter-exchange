@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Shelter do
 
@@ -8,91 +8,121 @@ describe Shelter do
 
   it "validates presence of name" do
     shelter = Shelter.new :name => nil
-    expect(shelter).to have(1).error_on(:name)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:name].size).to eq(1)
     expect(shelter.errors[:name]).to match_array(["cannot be blank"])
   end
 
   it "validates presence of phone" do
     shelter = Shelter.new :phone => nil
-    expect(shelter).to have(1).error_on(:phone)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:phone].size).to eq(1)
     expect(shelter.errors[:phone]).to match_array(["cannot be blank"])
   end
 
   it "validates format of phone" do
     shelter = Shelter.new :phone => "aaa"
-    expect(shelter).to have(1).error_on(:phone)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:phone].size).to eq(1)
     expect(shelter.errors[:phone]).to match_array(["invalid phone number format"])
 
     shelter = Shelter.new :phone => "+011.999.00000"
-    expect(shelter).to have(1).error_on(:phone)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:phone].size).to eq(1)
     expect(shelter.errors[:phone]).to match_array(["invalid phone number format"])
   end
 
   it "validates uniqueness of email" do
     Shelter.gen :email => "test@test.com"
     shelter = Shelter.new :email => "test@test.com"
-    expect(shelter).to have(1).error_on(:email)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:email].size).to eq(1)
     expect(shelter.errors[:email]).to match_array(["has already been taken"])
   end
 
   it "validates format of email" do
     shelter = Shelter.new :email => "blah.com"
-    expect(shelter).to have(1).error_on(:email)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:email].size).to eq(1)
     expect(shelter.errors[:email]).to match_array(["format is incorrect"])
   end
 
   it "validates inclusion of timezone" do
     shelter = Shelter.new :time_zone => "London"
-    expect(shelter).to have(1).error_on(:time_zone)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:time_zone].size).to eq(1)
     expect(shelter.errors[:time_zone]).to match_array(["is not a valid US Time Zone"])
 
     shelter = Shelter.new :time_zone => "Eastern Time (US & Canada)"
-    expect(shelter).to have(0).error_on(:time_zone)
+    expect(shelter.errors[:time_zone].size).to eq(0)
   end
 
   it "validates url format for website" do
     shelter = Shelter.new :website => "save-the_doggies.com"
-    expect(shelter).to have(1).error_on(:website)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:website].size).to eq(1)
     expect(shelter.errors[:website]).to match_array(["format is incorrect"])
   end
 
   it "validates allows blank for website" do
     shelter = Shelter.new :website => nil
-    expect(shelter).to have(0).error_on(:website)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:website].size).to eq(0)
   end
 
   it "validates url format for facebook" do
     shelter = Shelter.new :facebook => "facebook.com/test"
-    expect(shelter).to have(1).error_on(:facebook)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:facebook].size).to eq(1)
     expect(shelter.errors[:facebook]).to match_array(["format is incorrect"])
   end
 
   it "validates allows blank for facebook" do
     shelter = Shelter.new :facebook => nil
-    expect(shelter).to have(0).error_on(:facebook)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:facebook].size).to eq(0)
   end
 
   it "validates twitter format for twitter" do
     shelter = Shelter.new :twitter => "savethedoggies"
-    expect(shelter).to have(1).error_on(:twitter)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:twitter].size).to eq(1)
     expect(shelter.errors[:twitter]).to match_array(["format is incorrect. Example @shelterexchange"])
   end
 
   it "validates allows blank for twitter" do
     shelter = Shelter.new :twitter => nil
-    expect(shelter).to have(0).error_on(:twitter)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:twitter].size).to eq(0)
   end
 
   it "validates uniqueness of access token" do
     Shelter.gen :access_token => "access-token"
     shelter = Shelter.gen :access_token => "access-token"
-    expect(shelter).to have(1).error_on(:access_token)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:access_token].size).to eq(1)
     expect(shelter.errors[:access_token]).to match_array(["has already been taken. Please generate another web token."])
   end
 
   it "validates allows blank for access_token" do
     shelter = Shelter.new :access_token => nil
-    expect(shelter).to have(0).error_on(:access_token)
+
+    expect(shelter.valid?).to be_falsey
+    expect(shelter.errors[:access_token].size).to eq(0)
   end
 
   context "Before Save" do

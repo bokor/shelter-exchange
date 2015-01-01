@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :account, :readonly => true
   has_many :shelters, :through => :account
 
-  devise :database_authenticatable, :recoverable, :token_authenticatable,
+  devise :database_authenticatable, :recoverable,
          :rememberable, :trackable, :lockable, :invitable, :validatable,
          :authentication_keys => [:email],
          :request_keys => [:subdomain]

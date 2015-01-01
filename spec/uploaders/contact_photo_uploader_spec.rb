@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ContactPhotoUploader do
 
@@ -6,10 +6,6 @@ describe ContactPhotoUploader do
     @file = File.open(Rails.root.join("spec/data/images/photo.jpg"))
     @contact = Contact.gen :photo => @file
     @uploader = ContactPhotoUploader.new @contact, :photo
-  end
-
-  it "contains a processor for setting content type" do
-    expect(@uploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do

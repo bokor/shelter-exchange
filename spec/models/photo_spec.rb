@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Photo do
 
@@ -16,7 +16,9 @@ describe Photo do
     Photo.gen(:attachable => note, :is_main_photo => false)
 
     photo = Photo.gen(:attachable => note)
-    expect(photo).to have(1).error
+
+    expect(photo.valid?).to be_falsey
+    expect(photo.errors[:base].size).to eq(1)
     expect(photo.errors[:base]).to match_array(["Max number of files exceeded"])
   end
 

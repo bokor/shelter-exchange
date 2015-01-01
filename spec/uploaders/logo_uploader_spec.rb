@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe LogoUploader do
 
@@ -6,10 +6,6 @@ describe LogoUploader do
     @file = File.open(Rails.root.join("spec/data/images/photo.jpg"))
     @shelter = Shelter.gen :logo => @file
     @uploader = LogoUploader.new @shelter, :logo
-  end
-
-  it "contains a processor for setting content type" do
-    expect(@uploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do

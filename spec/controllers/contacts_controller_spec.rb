@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ContactsController do
   login_user
@@ -477,8 +477,7 @@ describe ContactsController do
         csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2, @contact3], csv) }
 
         expect(controller).to receive(:send_data).
-          with(csv_string, :filename => "contacts.csv").
-          and_return { controller.render :nothing => true }
+          with(csv_string, :filename => "contacts.csv") { controller.render :nothing => true }
 
         post :export, :contact => { :by_role => "" }, :format => :csv
       end
@@ -490,8 +489,7 @@ describe ContactsController do
         csv_string = CSV.generate{|csv| Contact::ExportPresenter.as_csv([@contact1, @contact2], csv) }
 
         expect(controller).to receive(:send_data).
-          with(csv_string, :filename => "contacts.csv").
-          and_return { controller.render :nothing => true }
+          with(csv_string, :filename => "contacts.csv") { controller.render :nothing => true }
 
         post :export, :contact => { :by_role => "adopter" }, :format => :csv
       end
@@ -538,7 +536,7 @@ describe ContactsController do
 
     it "assigns @no_headers_warning" do
       post :import, :contact => { :file => @contacts_csv }
-      expect(assigns(:no_headers_warning)).to be_false
+      expect(assigns(:no_headers_warning)).to be_falsey
     end
 
     it "assigns @csv_filepath" do
@@ -574,7 +572,7 @@ describe ContactsController do
       it "assigns @no_headers_warning" do
         path = Rails.root.join("spec", "data", "documents", "contacts_without_headers.csv")
         post :import, :contact => { :file => Rack::Test::UploadedFile.new(path) }
-        expect(assigns(:no_headers_warning)).to be_true
+        expect(assigns(:no_headers_warning)).to be_truthy
       end
     end
   end
@@ -601,7 +599,14 @@ describe ContactsController do
         :zip_code_mapping => "Home Postal Code",
         :email_mapping  => "E-mail Address",
         :phone_mapping => "Home Phone",
-        :mobile_mapping => "Mobile Phone"
+        :mobile_mapping => "Mobile Phone",
+        :adopter_mapping => 1,
+        :foster_mapping => 0,
+        :volunteer_mapping => 1,
+        :transporter_mapping => 0,
+        :donor_mapping => 0,
+        :staff_mapping => 0,
+        :veterinarian_mapping => 1,
       }
     end
 
@@ -637,6 +642,13 @@ describe ContactsController do
       expect(contact.phone).to eq("6509999999")
       expect(contact.mobile).to eq("6509999999")
       expect(contact.email).to eq("bb_test@example.com")
+      expect(contact.adopter).to be_truthy
+      expect(contact.foster).to be_falsey
+      expect(contact.volunteer).to be_truthy
+      expect(contact.transporter).to be_falsey
+      expect(contact.donor).to be_falsey
+      expect(contact.staff).to be_falsey
+      expect(contact.veterinarian).to be_truthy
     end
 
     it "deletes the local temp file" do
@@ -671,16 +683,21 @@ describe ContactsController do
           :zip_code_mapping => "",
           :email_mapping  => "",
           :phone_mapping => "",
-          :mobile_mapping => ""
+          :mobile_mapping => "",
+          :adopter_mapping => 0,
+          :foster_mapping => 0,
+          :volunteer_mapping => 0,
+          :transporter_mapping => 0,
+          :donor_mapping => 0,
+          :staff_mapping => 0,
+          :veterinarian_mapping => 0,
         }
       end
 
       it "does not create contacts" do
         expect{
           post :import_mapping, :contact => @attributes
-        }.to_not change{
-          Contact.count
-        }.from(0).to(2)
+        }.to_not change(Contact, :count)
       end
 
       it "set a flash message" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Comment do
 
@@ -8,7 +8,9 @@ describe Comment do
 
   it "requires presence of comment" do
     comment = Comment.gen :comment => nil
-    expect(comment).to have(1).error_on(:comment)
+
+    expect(comment.valid?).to be_falsey
+    expect(comment.errors[:comment].size).to eq(1)
     expect(comment.errors[:comment]).to match_array(["cannot be blank"])
   end
 end

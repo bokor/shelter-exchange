@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Integration::AdoptAPet do
 
@@ -8,33 +8,43 @@ describe Integration::AdoptAPet do
 
   it "validates presence of username" do
     integration = Integration::AdoptAPet.new :username => nil
-    expect(integration).to have(1).error_on(:username)
+
+    expect(integration.valid?).to be_falsey
+    expect(integration.errors[:username].size).to eq(1)
     expect(integration.errors[:username]).to match_array(["cannot be blank"])
   end
 
   it "validates uniqueness of username" do
     Integration.gen :adopt_a_pet, :username => "test"
     integration = Integration::AdoptAPet.new :username => "test"
-    expect(integration).to have(1).error_on(:username)
+
+    expect(integration.valid?).to be_falsey
+    expect(integration.errors[:username].size).to eq(1)
     expect(integration.errors[:username]).to match_array(["Already in use with another shelter's account"])
   end
 
   it "validates presence of password" do
     integration = Integration::AdoptAPet.new :password => nil
-    expect(integration).to have(1).error_on(:password)
+
+    expect(integration.valid?).to be_falsey
+    expect(integration.errors[:password].size).to eq(1)
     expect(integration.errors[:password]).to match_array(["cannot be blank"])
   end
 
   it "validates the connection is successful" do
     integration = Integration::AdoptAPet.new :password => "test", :username => "test"
-    expect(integration).to have(0).error_on(:connection_failed)
+
+    expect(integration.valid?).to be_truthy
+    expect(integration.errors[:connection_failed].size).to eq(0)
   end
 
   it "validates the connection is failed" do
     allow(Net::FTP).to receive(:open).and_raise(Net::FTPPermError)
 
     integration = Integration::AdoptAPet.new :password => "test", :username => "test"
-    expect(integration).to have(1).error_on(:connection_failed)
+
+    expect(integration.valid?).to be_falsey
+    expect(integration.errors[:connection_failed].size).to eq(1)
     expect(integration.errors[:connection_failed]).to match_array(["Adopt a Pet FTP Username and/or FTP Password is incorrect.  Please Try again!"])
   end
 

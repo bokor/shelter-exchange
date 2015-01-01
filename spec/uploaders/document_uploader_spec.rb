@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DocumentUploader do
 
@@ -9,17 +9,13 @@ describe DocumentUploader do
     @uploader = DocumentUploader.new @document, :document
   end
 
-  it "contains a processor for setting content type" do
-    expect(DocumentUploader.processors).to include [:set_content_type, true, nil]
-  end
-
   it "has storage set correctly" do
     expect(DocumentUploader.storage).to eq(CarrierWave::Storage::Fog)
   end
 
   describe '#store_dir' do
     it "has a correct storage path" do
-      expect(@uploader.store_dir).to eq("notes/documents/#{@document.id}/original")
+      expect(@uploader.store_dir).to eq("notes/documents/#{@note.id}/original")
     end
   end
 

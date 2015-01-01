@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PhotoUploader do
 
@@ -7,10 +7,6 @@ describe PhotoUploader do
     @animal = Animal.gen
     @photo = Photo.gen :image => @file, :attachable => @animal
     @uploader = PhotoUploader.new @photo, :image
-  end
-
-  it "contains a processor for setting content type" do
-    expect(@uploader.processors).to include [:set_content_type, true, nil]
   end
 
   it "has storage set correctly" do
@@ -36,7 +32,7 @@ describe PhotoUploader do
 
   describe '#store_dir' do
     it "has a correct store directory" do
-      expect(@uploader.store_dir).to eq("animals/photos/#{@photo.id}/original")
+      expect(@uploader.store_dir).to eq("animals/photos/#{@animal.id}/original")
     end
   end
 

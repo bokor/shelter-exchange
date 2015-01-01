@@ -1,16 +1,15 @@
-require "spec_helper"
+require "rails_helper"
 
 describe MapsHelper, "#map_shelter_icon" do
 
   it "returns image with asset_host name" do
-    allow(Rails.application.config.action_controller).to receive(:asset_host).and_return("test.host")
+    allow(Rails).to receive_message_chain(:application, :config, :action_controller, :asset_host).and_return("test.host")
     expect(
       helper.map_shelter_icon
     ).to eq("http://test.host/assets/logo_xsmall.png")
   end
 
   it "returns default image path" do
-    allow(Rails.application.config.action_controller).to receive(:asset_host).and_return(nil)
     expect(
       helper.map_shelter_icon
     ).to eq("/assets/logo_xsmall.png")

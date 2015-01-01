@@ -20,7 +20,7 @@
 
 	<p>Welcome! Thank you for joining Shelter Exchange.</p>
 	<p>You will be required to enter your password when logging in so keep a copy for your records. Please also note, passwords are case sensitive.</p>
-	<p><strong><%= link_to 'Confirm my account', confirmation_url(@resource, :subdomain => @resource.account.subdomain, :confirmation_token => @resource.confirmation_token) %></strong> to get started.</p>
+	<p><strong><%= link_to 'Confirm my account', confirmation_url(@resource, :subdomain => @resource.account.subdomain, :confirmation_token => @token) %></strong> to get started.</p>
 	<p>Once again, welcome to the Shelter Exchange community!</p>
 
 	<h3>Shelter Exchange</h3>

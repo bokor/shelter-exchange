@@ -1,7 +1,6 @@
 RSpec.configure do |config|
-
   config.before :each do
-    ActionMailer::Base.deliveries = []
+    WebMock.disable_net_connect!(:allow_localhost => true)
   end
 end
 

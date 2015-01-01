@@ -4,6 +4,7 @@ defaults:
   migrate: false
   migration_command: rake db:migrate
   precompile_assets: true
+  shared_tmp: false
   copy_exclude:
     - .git
     - spec
@@ -12,11 +13,14 @@ defaults:
 # ------------------------------------------------
 environments:
 
-  shelter_exchange_app_production:
+  production:
     branch: production
 
   production_app:
     branch: production
+
+  staging:
+    branch: staging
 
   staging_app:
     branch: staging

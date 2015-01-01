@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe AlertsController do
   login_user
@@ -33,7 +33,7 @@ describe AlertsController do
 
     it "assigns @alert_validate" do
       get :index
-      expect(assigns(:alert_validate)).to be_true
+      expect(assigns(:alert_validate)).to be_truthy
     end
 
     it "renders the :index view" do
@@ -252,13 +252,13 @@ describe AlertsController do
     end
 
     it "stops an alert" do
-      expect(@alert.stopped).to be_false
+      expect(@alert.stopped).to be_falsey
 
       expect {
         post :stop, :id => @alert.id
       }.to change(Alert, :count).by(0)
 
-      expect(@alert.reload.stopped).to be_true
+      expect(@alert.reload.stopped).to be_truthy
     end
 
     it "sets the flash message" do

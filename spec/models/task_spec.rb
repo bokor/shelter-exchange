@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Task do
 
@@ -8,7 +8,9 @@ describe Task do
 
   it "requires presence of details" do
     task = Task.gen :details => nil
-    expect(task).to have(1).error_on(:details)
+
+    expect(task.valid?).to be_falsey
+    expect(task.errors[:details].size).to eq(1)
     expect(task.errors[:details]).to match_array(["cannot be blank"])
   end
 end

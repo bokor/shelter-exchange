@@ -129,7 +129,14 @@ class ContactsController < ApplicationController
         :zip_code => row[params[:contact][:zip_code_mapping]],
         :email => row[params[:contact][:email_mapping]],
         :phone => row[params[:contact][:phone_mapping]],
-        :mobile => row[params[:contact][:mobile_mapping]]
+        :mobile => row[params[:contact][:mobile_mapping]],
+        :adopter => params[:contact][:adopter_mapping],
+        :foster => params[:contact][:foster_mapping],
+        :volunteer => params[:contact][:volunteer_mapping],
+        :transporter => params[:contact][:transporter_mapping],
+        :donor => params[:contact][:donor_mapping],
+        :staff => params[:contact][:staff_mapping],
+        :veterinarian => params[:contact][:veterinarian_mapping],
       })
 
       row_count += 1 if contact.save

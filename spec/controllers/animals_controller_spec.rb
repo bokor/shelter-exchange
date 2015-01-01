@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe AnimalsController do
   login_user
@@ -188,6 +188,17 @@ describe AnimalsController do
     it "renders the :new view" do
       get :new
       expect(response).to render_template(:new)
+    end
+
+    context "with parameters" do
+
+      it "assigns a new animal as @animal" do
+        get :new, :animal => { :name => "Billy", :animal_status_id => "2", :animal_type_id => "3" }
+        expect(assigns(:animal)).to be_a_new(Animal)
+        expect(assigns(:animal).name).to eq("Billy")
+        expect(assigns(:animal).animal_status_id).to eq(2)
+        expect(assigns(:animal).animal_type_id).to eq(3)
+      end
     end
   end
 

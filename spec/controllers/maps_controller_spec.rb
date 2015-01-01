@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe MapsController do
   login_user
@@ -24,7 +24,7 @@ describe MapsController do
     end
 
     it "renders the :overlay view" do
-      controller.should_receive(:render_to_string).with('overlay', :format => :kml)
+      expect(controller).to receive(:render_to_string).with('overlay', :format => :kml)
 
       get :overlay, :format => :kml
       expect(response).to render_template(:overlay)

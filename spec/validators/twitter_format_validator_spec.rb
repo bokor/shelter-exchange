@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 class TwitterFormatValidatable
   include ActiveModel::Validations
@@ -12,13 +12,14 @@ describe TwitterFormatValidator do
 
   it "valid when correct format" do
     subject.twitter = "@shelterexchange"
-    expect(subject).to be_valid
+    expect(subject.valid?).to be_truthy
   end
 
   it "invalid when not correct format" do
     subject.twitter = "shelterexchange"
-    expect(subject).not_to be_valid
-    expect(subject).to have(1).error_on(:twitter)
+
+    expect(subject.valid?).to be_falsey
+    expect(subject.errors[:twitter].size).to eq(1)
     expect(subject.errors[:twitter]).to match_array(["format is incorrect. Example @shelterexchange"])
   end
 end

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Activity List: For Dashboard Index Page", :js => :true do
   login_user
