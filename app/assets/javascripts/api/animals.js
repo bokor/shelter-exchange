@@ -4,7 +4,19 @@
 var Animals = {
 	filterInitialize: function(){
     Animals.bindFilters();
-		Maps.breedAutoComplete(function(){Animals.findAnimalsForShelter()});
+
+    // Bind to chosen change
+    $("#filters_breed").chosen().change(function(e, params){
+      Animals.findAnimalsForShelter();
+    });
+
+    // Resize Chosen to be fluid
+    $('.chosen-container').each(function (index) {
+      $(this).css({
+        'min-width': '100%',
+        'max-width': '100%'
+      });
+    });
 	},
 	findAnimalsForShelter: function(){
     var version = $("#form_filters input[name='version']").val();
@@ -21,19 +33,27 @@ var Animals = {
 			return !(window.event && window.event.keyCode == 13);
 		});
 
-		$("#filters_animal_type").bind("change", function(e){
-			e.preventDefault();
+    $("#filters_animal_type").bind("change", function(e){
+      var animalTypeId = $(this).val();
 			$("#filters_breed").val("");
 
-			if($(this).val() == ""){
-				$("#filters_breed").attr("disabled", true);
-				$("#filters_breed").attr("placeholder", "Please select type first");
+			if(animalTypeId == ""){
+        $("#filters_breed").empty();
+        $("#filters_breed").prepend("<option/>");
+        $("#filters_breed").attr('disabled', true);
+        $("#filters_breed").attr('data-placeholder', "Please select type first");
+
+        $(".chosen-select").trigger("chosen:updated");
 			} else {
-				$("#filters_breed").attr("disabled", false);
-				$("#filters_breed").attr("placeholder", "Enter Breed Name");
+        $("#filters_breed").attr('disabled', false);
+        $("#filters_breed").attr('data-placeholder', "Type animal breed");
+        Breeds.updateChosenByType(animalTypeId, '#filters_breed');
+
+        $(".chosen-select").trigger("chosen:updated");
 			}
 
-			Animals.findAnimalsForShelter();
+		  Animals.findAnimalsForShelter();
+			e.preventDefault();
 		});
 
     $('#filters_breed').keyup(function(){
@@ -42,10 +62,12 @@ var Animals = {
       }
     });
 
-    // Enable breed auto complete when a type is already available
     if($("#filters_animal_type").val() != ""){
-	    $("#filters_breed").attr("disabled", false);
-			$("#filters_breed").attr("placeholder", "Enter Breed Name");
+      $("#filters_breed").attr('disabled', false);
+      $("#filters_breed").attr('data-placeholder', "Type animal breed");
+      Breeds.updateChosenByType(animalTypeId, '#filters_breed');
+
+      $(".chosen-select").trigger("chosen:updated");
     }
 
 		$("#filters_sex, #filters_size").bind("change", function(e){

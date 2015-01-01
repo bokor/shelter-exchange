@@ -15,8 +15,8 @@
 		<li id="breed_fields">
 			<div id="primary_breed_field">
 				<%= f.label :primary_breed, "Primary breed <span class='req'>*</span>".html_safe, :class => "desc" %>
-				<div>
-				<%= f.text_field :primary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+        <div>
+          <%= f.select :primary_breed, [@animal.primary_breed], {}, { "data-placeholder" => "Type animal breed", :class => "chosen-select field select medium" } %>
 				</div>
 				<%= has_error_message?(@animal, :primary_breed)%>
 			</div>
@@ -30,7 +30,7 @@
 			<div id="secondary_breed_field">
 				<%= f.label :secondary_breed, "Secondary breed", :class => "desc" %>
 				<div>
-				<%= f.text_field :secondary_breed, :autocomplete => :off, :class => "field text medium", :maxlength => 255, :placeholder => "Type animal breed" %>
+          <%= f.select :secondary_breed, [@animal.secondary_breed], {}, { "data-placeholder" => "Type animal breed", :class => "chosen-select field select medium" } %>
 				</div>
 				<%= has_error_message?(@animal, :secondary_breed)%>
 			</div>

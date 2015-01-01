@@ -90,3 +90,8 @@ Dog House Sides - #db8d4a
 .tabs.orange a:link, .tabs.orange a:visited {background: #762f0e;color: #fff;}
 .tabs.orange a:hover,.tabs.orange a:link.active, .tabs.orange a:visited.active {background: #dc7327;color: #eee; }
 
+
+/* Chose Hacks */
+/******************************************************************/
+#main form li .chosen-container li{width: 100%; }
+

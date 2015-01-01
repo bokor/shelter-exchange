@@ -22,12 +22,22 @@ var HelpAShelter = {
 	},
 	filterInitialize: function(){
 		HelpAShelter.bindFilters();
-		Maps.breedAutoComplete(function(){HelpAShelter.findAnimalsForShelter()});
 		HelpAShelter.findAnimalsForShelter();
 
+    // Bind to chosen change
+    $("#filters_breed").chosen().change(function(e, params){
+      HelpAShelter.findAnimalsForShelter();
+    });
+
+    // Resize Chosen to be fluid on the map view
+    $('.chosen-container').each(function (index) {
+      $(this).css({
+        'min-width': '100%',
+        'max-width': '100%'
+      });
+    });
 	},
 	searchByCityZipCode: function() {
-
 		// Add Google Map Listener
 		idleListener = google.maps.event.addListener(map, 'idle', function(e){
 			mapCenter = map.getCenter();
@@ -69,24 +79,28 @@ var HelpAShelter = {
 			return !(window.event && window.event.keyCode == 13);
 		});
 
-		$("#filters_animal_type").bind("change", function(e){
-			e.preventDefault();
+    $("#filters_animal_type").bind("change", function(e){
+      var animalTypeId = $(this).val();
 			$("#filters_breed").val("");
-			if($(this).val() == ""){
-				$("#filters_breed").attr("disabled", true);
-				$("#filters_breed").attr("placeholder", "Please select type first");
-			} else {
-				$("#filters_breed").attr("disabled", false);
-				$("#filters_breed").attr("placeholder", "Enter Breed Name");
-			}
-			HelpAShelter.findAnimalsForShelter();
-		});
 
-    $('#filters_breed').keyup(function(){
-      if(!$.trim(this.value).length){
-        HelpAShelter.findAnimalsForShelter();
-      }
-    });
+			if(animalTypeId == ""){
+        $("#filters_breed").empty();
+        $("#filters_breed").prepend("<option/>");
+        $("#filters_breed").attr('disabled', true);
+        $("#filters_breed").attr('data-placeholder', "Please select type first");
+
+        $(".chosen-select").trigger("chosen:updated");
+			} else {
+        $("#filters_breed").attr('disabled', false);
+        $("#filters_breed").attr('data-placeholder', "Type animal breed");
+        Breeds.updateChosenByType(animalTypeId, '#filters_breed');
+
+        $(".chosen-select").trigger("chosen:updated");
+			}
+
+      HelpAShelter.findAnimalsForShelter();
+			e.preventDefault();
+		});
 
 		$("#filters_sex, #filters_size").bind("change", function(e){
 			e.preventDefault();

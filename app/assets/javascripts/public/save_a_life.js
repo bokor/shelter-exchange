@@ -21,6 +21,14 @@ var SaveALife = {
 		});
 
 		SaveALife.searchByCityZipCode();
+
+    // Resize Chosen to be fluid
+    $('.chosen-container').each(function (index) {
+      $(this).css({
+        'min-width': '100%',
+        'max-width': '100%'
+      });
+    });
 	},
 	searchByCityZipCode: function() {
 
@@ -36,8 +44,12 @@ var SaveALife = {
 
 		// Set up forms
 		SaveALife.bindFilters();
-		Maps.breedAutoComplete(function(){SaveALife.findAnimalsInBounds()});
 		Maps.addressAutoComplete();
+
+    // Bind to chosen change
+    $("#filters_breed").chosen().change(function(e, params){
+      SaveALife.findAnimalsInBounds();
+    });
   },
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
@@ -69,16 +81,25 @@ var SaveALife = {
 		});
 
 		$("#filters_animal_type").bind("change", function(e){
-			e.preventDefault();
+      var animalTypeId = $(this).val();
 			$("#filters_breed").val("");
-			if($(this).val() == ""){
-				$("#filters_breed").attr("disabled", true);
-				$("#filters_breed").attr("placeholder", "Please select type first");
+
+			if(animalTypeId == ""){
+        $("#filters_breed").empty();
+        $("#filters_breed").prepend("<option/>");
+        $("#filters_breed").attr('disabled', true);
+        $("#filters_breed").attr('data-placeholder', "Please select type first");
+
+        $(".chosen-select").trigger("chosen:updated");
 			} else {
-				$("#filters_breed").attr("disabled", false);
-				$("#filters_breed").attr("placeholder", "Enter Breed Name");
+        $("#filters_breed").attr('disabled', false);
+        $("#filters_breed").attr('data-placeholder', "Type animal breed");
+        Breeds.updateChosenByType(animalTypeId, '#filters_breed');
+
+        $(".chosen-select").trigger("chosen:updated");
 			}
 			SaveALife.findAnimalsInBounds();
+			e.preventDefault();
 		});
 
 		$("#filters_sex, #filters_size").bind("change", function(e){
@@ -87,7 +108,7 @@ var SaveALife = {
 		});
 
 		$("#filters_euthanasia_only, #filters_special_needs_only").bind($.browser.msie? "propertychange" : "change", function(e) {
-		  	e.preventDefault();
+		  e.preventDefault();
 			SaveALife.findAnimalsInBounds();
 		});
 	}

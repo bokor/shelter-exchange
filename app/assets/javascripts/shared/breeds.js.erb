@@ -1,0 +1,30 @@
+/*!------------------------------------------------------------------------
+ * shared/breeds.js
+ * ------------------------------------------------------------------------ */
+var Breeds = {
+  byType: {
+    <% AnimalType.pluck(:id).each do |type_id| %>
+      <%= type_id %>: <%= Breed.where(:animal_type_id => type_id).collect(&:name) %>,
+    <% end %>
+  },
+  updateChosenByType: function(animal_type_id, element_id) {
+    var form_breed = $(element_id).val();
+
+    // Clear options and will be replaced with new breeds
+    $(element_id).empty();
+
+    // Add empty placeholder for chosen to not select the first item in the list
+    $(element_id).prepend("<option/>");
+
+    // Create new breed list for primary and secondary breed dropdowns
+    var breeds = Breeds.byType[animal_type_id];
+    for(var i = 0; i < breeds.length; i++) {
+      var breedOption = new Option(breeds[i], breeds[i]);
+      if (breeds[i] === form_breed ) { breedOption.selected = true; }
+      $(element_id).append(breedOption);
+    }
+
+    // Update Chosen with new list
+    $(element_id).trigger("chosen:updated");
+  }
+};

@@ -25,3 +25,7 @@ code,code pre,kbd {font: normal 12px  Monaco, Consolas, 'Lucida Console', 'Couri
 #footer h5{float:left;padding-left:5px;line-height:65px;}
 #footer:after { content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
+/* Chose Hacks */
+/******************************************************************/
+#main form li {width: 100%; }
+

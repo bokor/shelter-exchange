@@ -42,13 +42,13 @@ describe "Reports" do
 
     animal = Animal.gen :animal_type => animal_type, :animal_status => status1
 
+    Timecop.freeze(Time.parse("Feb 05, 2014"))
     @date_for_status_history = Date.civil(2013, 02, 05)
 
     @status_history1 = StatusHistory.gen :status_date => @date_for_status_history, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter1
     @status_history2 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter1
     @status_history3 = StatusHistory.gen :status_date => @date_for_status_history - 1.day, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:adopted], :shelter => shelter2
     @status_history4 = StatusHistory.gen :status_date => @date_for_status_history + 1.month, :animal => animal, :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption], :shelter => shelter2
-
   end
 
   describe StatusHistory, ".by_month" do
@@ -119,7 +119,7 @@ describe "Reports" do
       status_counts = StatusHistory.status_counts
 
       expect(MultiJson.load(status_counts.to_json)).to match_array([{
-        "status_history" => { "2012" => 0, "2013" => 2, "2014" => 1, "Status" => "Available for adoption", "Total" => 3 }
+        "status_history" => { "2012" => 0, "2013" => 2, "2014" => 0, "Status" => "Available for adoption", "Total" => 3 }
       }, {
         "status_history" => { "2012" => 0, "2013" => 2, "2014" => 0, "Status" => "Adopted", "Total" => 2 }
       }])
@@ -129,7 +129,7 @@ describe "Reports" do
       status_counts = StatusHistory.status_counts(1)
 
       expect(MultiJson.load(status_counts.to_json)).to match_array([{
-        "status_history" => { "2013" => 2, "2014" => 1, "Status" => "Available for adoption", "Total" => 3 }
+        "status_history" => { "2013" => 2, "2014" => 0, "Status" => "Available for adoption", "Total" => 3 }
       }, {
         "status_history" => { "2013" => 2, "2014" => 0, "Status" => "Adopted", "Total" => 2 }
       }])

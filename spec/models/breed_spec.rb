@@ -21,21 +21,6 @@ describe Breed, ".valid_for_animal" do
   end
 end
 
-describe Breed, ".auto_complete" do
-
-  it "returns the correct breeds per animal type" do
-    animal_type = AnimalType.gen
-
-    breed1 = Breed.gen :name => "Labrador Retriever", :animal_type => animal_type
-    breed2 = Breed.gen :name => "Labrador Husky", :animal_type => animal_type
-
-    breeds = Breed.auto_complete(animal_type.id, "Labrador").all
-
-    expect(breeds.count).to eq(2)
-    expect(breeds).to match_array([breed1, breed2])
-  end
-end
-
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Breed, "#animal_type" do

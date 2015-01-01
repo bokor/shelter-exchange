@@ -13,6 +13,7 @@
 //= require jquery-fileupload/locale
 //= require galleria/galleria-1.2.7.min
 //= require galleria/galleria.twelve.min
+//= require chosen.jquery.min
 //= require modernizr
 //= require date
 //= require highcharts

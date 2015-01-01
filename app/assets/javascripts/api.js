@@ -3,6 +3,7 @@
 //= require jquery.ui.autocomplete
 //= require jquery.blockUI.min
 //= require jquery.placeholder.min
+//= require chosen.jquery.min
 //= require modernizr
 //= require date
 //= require jquery_ujs

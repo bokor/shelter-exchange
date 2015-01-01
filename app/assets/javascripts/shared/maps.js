@@ -57,32 +57,6 @@ var Maps = {
 		  });
 		}
 	},
-	breedAutoComplete: function(closeFunction){
-		$("#filters_breed").autocomplete({
-			minLength: 3,
-			autoFocus: true,
-			delay: 500,
-			source: function( request, response ) {
-				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
-					dataType: "json",
-					data: { q: request.term, animal_type_id: $("#filters_animal_type").val() },
-					success: function( data ) {
-						response( $.map( data, function( item ) {
-							return {
-								label: item.name,
-								value: item.name
-							}
-						}));
-					}
-				});
-			},
-			close: function(event, ui) {
-				event.preventDefault();
-				closeFunction();
-			}
-		});
-	},
 	addressAutoComplete: function(){
 		$("#city_zipcode").autocomplete({
 			minLength: 3,

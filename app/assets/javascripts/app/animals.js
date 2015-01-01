@@ -12,6 +12,10 @@ var Animals = {
 			$('#breed_fields').show();
 			$('#primary_breed_field').show();
 			$('.accommodation_info').show();
+
+      // Update Breed List for Chosen Dropdown
+      Breeds.updateChosenByType(animal_type_id, '#animal_primary_breed');
+      Breeds.updateChosenByType(animal_type_id, '#animal_secondary_breed');
 		}
 	},
 	animalStatusSelected: function(changed, animal_status_was) {
@@ -58,8 +62,7 @@ var Animals = {
 			$('#secondary_breed_field').val("");
 		}
 	},
-	formInitialize: function(is_kill_shelter, has_status_history_reason_error, animal_status_was) {
-		Animals.autoComplete();
+  formInitialize: function(is_kill_shelter, has_status_history_reason_error, animal_status_was) {
 		Animals.animalTypeSelected();
 		Animals.specialNeedsSelected();
 		Animals.animalStatusSelected(has_status_history_reason_error, animal_status_was);
@@ -127,33 +130,6 @@ var Animals = {
 			data: {
 				animal_type_id: $('#animal_animal_type_id').val(),
 				animal_status_id: $('#animal_animal_status_id').val()
-			}
-		});
-	},
-	autoComplete: function(){
-		$("#animal_primary_breed, #animal_secondary_breed").autocomplete({
-			minLength: 3,
-			autoFocus: true,
-      selectFirst: true,
-      delay: 500,
-			source: function( request, response ) {
-				$.ajax({
-					url: "/shared/breeds/auto_complete.json",
-					dataType: "json",
-					data: {
-						q: request.term,
-						animal_type_id: $("#animal_animal_type_id").val()
-					},
-					success: function( data ) {
-						response( $.map( data, function( item ) {
-							return {
-								label: item.name,
-								value: item.name,
-								id: item.id
-							}
-						}));
-					}
-				});
 			}
 		});
 	},

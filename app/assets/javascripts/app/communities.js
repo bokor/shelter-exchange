@@ -45,6 +45,14 @@ var Communities = {
 		});
 
 		$("#search_by_city_zipcode").trigger("click", true);
+
+    // Resize Chosen to be fluid on the map view
+    $('.chosen-container').each(function (index) {
+      $(this).css({
+        'min-width': '100%',
+        'max-width': '100%'
+      });
+    });
 	},
 	resetAll: function() {
 		//Remove Listener
@@ -56,9 +64,6 @@ var Communities = {
 		$("#form_city_zipcode_search, #form_shelter_name_search").unbind("submit");
 		$("#filters_sex, #filters_size, #filters_animal_status, #filters_animal_type").unbind("change");
 		$("#filters_euthanasia_only, #filters_special_needs_only").unbind($.browser.msie? "propertychange" : "change");
-
-		//Destroy all AutoCompletes
-		$("#filters_breed").autocomplete("destroy");
 	},
 	searchByCityZipCode: function() {
 		// Add Google Map Listener
@@ -73,8 +78,12 @@ var Communities = {
 
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsInBounds()});
-		Maps.breedAutoComplete(function(){Communities.findAnimalsInBounds()});
 		Maps.addressAutoComplete();
+
+    // Bind Chosen change to find animals with breed value
+    $("#filters_breed").chosen().change(function(e, params){
+      Communities.findAnimalsInBounds();
+    });
   },
 	searchByShelterName: function() {
 		if($('#filters_shelter_id').val() != ""){
@@ -83,8 +92,11 @@ var Communities = {
 
 		// Set up forms
 		Communities.bindFilters(function(){Communities.findAnimalsForShelter()});
-		Maps.breedAutoComplete(function(){Communities.findAnimalsForShelter()});
 		Maps.shelterNameAutoComplete(function(){Communities.findAnimalsForShelter()});
+    // Bind Chosen change to find animals with breed value
+    $("#filters_breed").chosen().change(function(e, params){
+      Communities.findAnimalsForShelter();
+    });
   },
 	findAnimalsInBounds: function(){
 		var bounds = map.getBounds();
@@ -124,18 +136,30 @@ var Communities = {
 			e.preventDefault();
 		});
 
-		$("#filters_animal_type").bind("change", function(e){
-			e.preventDefault();
+    $("#filters_animal_type").bind("change", function(e){
+      var animalTypeId = $(this).val();
 			$("#filters_breed").val("");
-			if($(this).val() == ""){
-				$("#filters_breed").attr("disabled", true);
-				$("#filters_breed").attr("placeholder", "Please select type first");
+
+			if(animalTypeId == ""){
+        $("#filters_breed").empty();
+        $("#filters_breed").prepend("<option/>");
+        $("#filters_breed").attr('disabled', true);
+        $("#filters_breed").attr('data-placeholder', "Please select type first");
+
+        $(".chosen-select").trigger("chosen:updated");
 			} else {
-				$("#filters_breed").attr("disabled", false);
-				$("#filters_breed").attr("placeholder", "Enter Breed Name");
+        $("#filters_breed").attr('disabled', false);
+        $("#filters_breed").attr('data-placeholder', "Type animal breed");
+        Breeds.updateChosenByType(animalTypeId, '#filters_breed');
+
+        $(".chosen-select").trigger("chosen:updated");
 			}
-			findAnimalsFunction();
+
+      findAnimalsFunction();
+			e.preventDefault();
 		});
+
+
 
 		$("#filters_sex, #filters_size, #filters_animal_status").bind("change", function(e){
 			e.preventDefault();

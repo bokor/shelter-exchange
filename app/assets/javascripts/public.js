@@ -9,6 +9,7 @@
 //= require jquery.placeholder.min
 //= require galleria/galleria-1.2.7.min
 //= require galleria/galleria.twelve.min
+//= require chosen.jquery.min
 //= require modernizr
 //= require date
 //= require jquery_ujs

@@ -166,3 +166,9 @@ textarea.placeholder { color: #999; }
 /******************************************************************/
 .ui-autocomplete a.ui-corner-all{font-weight: normal;}
 
+
+/* Chosen Hacks */
+/******************************************************************/
+.index_save_a_life #main form li {width: 100%; }
+.show_help_a_shelter #main form li {width: 100%; }
+
