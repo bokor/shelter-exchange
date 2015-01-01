@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------*/
 .print_animals ul{list-style:none;}
 .print_animals ul li{padding-bottom: 10px;}
-.print_animals .page_content { font-size: 14px;}
+.print_animals .page_content { font-size: 16px;}
 
 /* Print Animals :: Print Options Layout
 -----------------------------------------------------------------------------*/
@@ -14,13 +14,13 @@
 
 /* Print Animals :: Page Layout
 -----------------------------------------------------------------------------*/
-.print_animals table.animal{width:100%;}
+.print_animals table.animal{width:100%; font-size: 16px;}
 .print_animals table.animal td{vertical-align:top;width:50%;}
 .print_animals table.animal td.status{text-align:right;}
 .print_animals table.animal td.shelter{text-align:right;padding-top:8px;}
 .print_animals table.animal td h1 {}
 .print_animals table.animal td h1 span{font-size:14px;padding-left:25px;position:relative;top:-3px;}
-.print_animals table.animal td p {font-size: 16px;font-weight: bold; letter-spacing:-1px;color:#000;}
+.print_animals table.animal td p {font-weight: bold; letter-spacing:-1px;color:#000;}
 
 
 
@@ -37,7 +37,7 @@
 .print_animals .animal_details ul li p{padding-bottom: 15px;margin:0;}
 .print_animals .animal_details ul p span{padding-left: 8px;}
 
-.print_animals .animal_details .type{font-size: 15px;font-weight: bold; letter-spacing:-1px;color:#222;padding-bottom: 20px;}
+.print_animals .animal_details .type{font-weight: bold; letter-spacing:-1px;color:#222;padding-bottom: 20px;}
 
 .print_animals .animal_details .media{float:right;width: 500px;margin-left:15px;}
 .print_animals .animal_details .media img {-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
