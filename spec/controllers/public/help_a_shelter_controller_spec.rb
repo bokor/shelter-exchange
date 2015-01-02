@@ -152,9 +152,9 @@ describe Public::HelpAShelterController do
       ])
 
       @shelter = Shelter.gen :street => "street", :street_2 => "street_2", :city => "city", :state => "state", :zip_code => "zip_code"
-      @animal1 = Animal.gen :shelter => @shelter, :animal_status_id => 1, :primary_breed => "Lab"
-      @animal2 = Animal.gen :shelter => @shelter, :animal_status_id => 1
-      @animal3 = Animal.gen :shelter => @shelter, :animal_status_id => 2
+      @animal1 = Animal.gen :name => "GG", :shelter => @shelter, :animal_status_id => 1, :primary_breed => "Lab"
+      @animal2 = Animal.gen :name => "BB", :shelter => @shelter, :animal_status_id => 1
+      @animal3 = Animal.gen :name => "AA", :shelter => @shelter, :animal_status_id => 2
 
       @filters = {
         :shelter_id => @shelter.id
@@ -172,9 +172,9 @@ describe Public::HelpAShelterController do
       expect(response).to render_template(:find_animals_for_shelter)
     end
 
-    it "assigns @animals" do
+    it "assigns @animals with order by name" do
       get :find_animals_for_shelter, :filters => @filters, :format => :js
-      expect(assigns(:animals)).to eq([@animal1, @animal2])
+      expect(assigns(:animals)).to eq([@animal2, @animal1])
     end
 
     context "with filters" do

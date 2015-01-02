@@ -39,6 +39,7 @@ class Public::HelpAShelterController < Public::ApplicationController
     @animals = Animal.
       community_animals(shelter_id, params[:filters]).
       available.
+      reorder("animals.name ASC").
       paginate(:page => params[:page], :per_page => 15).all || {}
   end
 
