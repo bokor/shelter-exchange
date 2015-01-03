@@ -78,13 +78,13 @@ describe SheltersController do
     end
 
     it "redirects to the :shelters_path" do
-      put :update, :alert => @update_attrs
+      put :update, :shelter => @update_attrs
       expect(response).to redirect_to(shelters_path)
     end
 
     context "with js format" do
       it "renders the :update view" do
-        put :update, :alert => @update_attrs, :format => :js
+        put :update, :shelter => @update_attrs, :format => :js
         expect(response).to render_template(:update)
       end
     end
@@ -93,7 +93,7 @@ describe SheltersController do
       it "does not set the flash message" do
         allow_any_instance_of(Shelter).to receive(:update_attributes).and_return(false)
 
-        put :update, :alert => @update_attrs
+        put :update, :shelter => @update_attrs
         expect(flash[:notice]).to be_nil
       end
     end

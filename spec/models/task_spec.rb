@@ -20,7 +20,7 @@ end
 describe Task, "::CATEGORIES" do
 
   it "contains a default list of Categories" do
-    expect(Task::CATEGORIES).to match_array(["call", "email", "follow-up", "meeting", "to-do", "educational", "behavioral", "medical"])
+    expect(Task::CATEGORIES).to match_array(["call", "email", "follow-up", "meeting", "to-do", "alert", "educational", "behavioral", "medical"])
   end
 end
 
@@ -35,7 +35,7 @@ end
 #----------------------------------------------------------------------------
 describe Task, ".active" do
 
-  it "returns only the active alerts" do
+  it "returns only the active tasks" do
     task1 = Task.gen :completed => false
     Task.gen :completed => true
 

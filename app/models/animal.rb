@@ -52,7 +52,6 @@ class Animal < ActiveRecord::Base
   belongs_to :shelter
 
   has_many :notes, :as => :notable, :dependent => :destroy
-  has_many :alerts, :as => :alertable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy

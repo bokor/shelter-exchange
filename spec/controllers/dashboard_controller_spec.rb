@@ -20,11 +20,10 @@ describe DashboardController do
 
     it "assigns @latest_activity" do
       task = Task.gen :shelter => current_shelter
-      alert = Alert.gen :shelter => current_shelter
       animal = Animal.gen :shelter => current_shelter
 
       get :index
-      expect(assigns(:latest_activity)).to match_array([task, alert, animal])
+      expect(assigns(:latest_activity)).to match_array([task, animal])
     end
 
     it "renders the :index view" do

@@ -76,12 +76,6 @@ ShelterExchangeApp::Application.routes.draw do
       post :complete, :on => :member
     end
 
-    # Alerts
-    #----------------------------------------------------------------------------
-    resources :alerts, :except => [:show] do
-      post :stop, :on => :member
-    end
-
     # Communities
     #----------------------------------------------------------------------------
     resources :communities do
@@ -127,7 +121,6 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :animals do
       resources :notes
-      resources :alerts
       resources :tasks
       resources :photos, :only => [:create, :destroy] do
         get :refresh_gallery, :on => :collection

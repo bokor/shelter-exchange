@@ -5,7 +5,6 @@ class Activity
 
   def self.recent(shelter)
     [].tap do |collection|
-      collection << shelter.alerts.recent_activity(LIMIT)
       collection << shelter.tasks.recent_activity(LIMIT)
       collection << shelter.animals.recent_activity(LIMIT)
     end.flatten.sort_by(&:updated_at).reverse.slice(0, PAGE_TOTAL)

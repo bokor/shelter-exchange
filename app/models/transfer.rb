@@ -99,7 +99,6 @@ class Transfer < ActiveRecord::Base
     # Delete all Records not needed
     self.animal.status_histories.where(:shelter_id => self.shelter.id).delete_all
     self.animal.tasks.delete_all
-    self.animal.alerts.delete_all
   end
 end
 

@@ -179,6 +179,7 @@ describe "Index: Task Page", :js => :true do
       follow_up_task   = Task.gen :details => "follow_up details", :shelter => current_shelter, :category => "follow-up"
       meeting_task     = Task.gen :details => "meeting details", :shelter => current_shelter, :category => "meeting"
       to_do_task       = Task.gen :details => "to_do details", :shelter => current_shelter, :category => "to-do"
+      alert_task       = Task.gen :details => "alert details", :shelter => current_shelter, :category => "alert"
       educational_task = Task.gen :details => "educational details", :shelter => current_shelter, :category => "educational"
       behavioral_task  = Task.gen :details => "behavioral details", :shelter => current_shelter, :category => "behavioral"
       medical_task     = Task.gen :details => "medical details", :shelter => current_shelter, :category => "medical"
@@ -192,6 +193,7 @@ describe "Index: Task Page", :js => :true do
       should_have_icon_and_tooltip_for(follow_up_task)
       should_have_icon_and_tooltip_for(meeting_task)
       should_have_icon_and_tooltip_for(to_do_task)
+      should_have_icon_and_tooltip_for(alert_task)
       should_have_icon_and_tooltip_for(educational_task)
       should_have_icon_and_tooltip_for(behavioral_task)
       should_have_icon_and_tooltip_for(medical_task)

@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
 
   # Constants
   #----------------------------------------------------------------------------
-  CATEGORIES = %w[call email follow-up meeting to-do educational behavioral medical].freeze
+  CATEGORIES = %w[call email follow-up meeting to-do alert educational behavioral medical].freeze
   DUE_CATEGORIES = %w[today tomorrow later specific_date].freeze
 
   # Associations

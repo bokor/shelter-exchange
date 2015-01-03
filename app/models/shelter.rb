@@ -23,7 +23,6 @@ class Shelter < ActiveRecord::Base
   has_many :animals, :dependent => :destroy
   has_many :notes, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
-  has_many :alerts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :items, :dependent => :destroy
   has_many :capacities, :dependent => :destroy

@@ -192,125 +192,6 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
   end
 
-  context "Alerts" do
-
-    it "should list alerts that were created" do
-      animal = Animal.gen :shelter => current_shelter, :name => "Billy"
-      alert1 = Alert.gen :shelter => current_shelter, :title => "a new alert", :severity => "low"
-      alert2 = Alert.gen :shelter => current_shelter, :title => "a new alert", :severity => "medium", :alertable => animal
-
-      visit dashboard_path
-
-      within "##{dom_id(alert1)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to eq("New - Low - a new alert.")
-
-        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
-      end
-
-      within "##{dom_id(alert2)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to   eq("New - Medium - a new alert for Billy.")
-        expect(find(".title a").text).to eq("Billy")
-        expect(find(".title a")[:href]).to include(animal_path(animal))
-
-        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
-      end
-    end
-
-    it "should list alerts that were stopped" do
-      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
-      alert1  = Alert.gen \
-        :shelter => current_shelter,
-        :title => "example alert",
-        :stopped => true,
-        :severity => "low",
-        :updated_at => Time.now + 1.hour
-      alert2  = Alert.gen \
-        :shelter => current_shelter,
-        :title => "example alertable alert",
-        :stopped => true,
-        :severity => "medium",
-        :alertable => animal,
-        :updated_at => Time.now + 2.hour
-
-      visit dashboard_path
-
-      within "##{dom_id(alert1)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to eq("Low - example alert has been stopped.")
-
-        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
-      end
-
-      within "##{dom_id(alert2)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to   eq("Medium - example alertable alert has been stopped for Billy.")
-        expect(find(".title a").text).to eq("Billy")
-        expect(find(".title a")[:href]).to include(animal_path(animal))
-
-        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
-      end
-    end
-
-    it "should list alerts that were updated" do
-      animal = Animal.gen :shelter => current_shelter, :name => "Billy", :updated_at => Time.now
-      alert1  = Alert.gen \
-        :shelter => current_shelter,
-        :title => "example alert",
-        :severity => "high",
-        :updated_at => Time.now + 1.hour
-      alert2  = Alert.gen \
-        :shelter => current_shelter,
-        :title => "example alertable alert",
-        :severity => "low",
-        :alertable => animal,
-        :updated_at => Time.now + 2.hour
-
-      visit dashboard_path
-
-      within "##{dom_id(alert1)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to eq("High - example alert was updated.")
-
-        expect(find(".created_at_date").text).to eq(alert1.updated_at.strftime("%b %d, %Y"))
-      end
-
-      within "##{dom_id(alert2)}" do
-        icon = find(".type img")
-        expect(icon[:src]).to include("icon_alert.png")
-        expect(icon[:class]).to include("tooltip")
-        expect(icon[:"data-tip"]).to eq("Alert")
-
-        expect(find(".title").text).to   eq("Low - example alertable alert was updated for Billy.")
-        expect(find(".title a").text).to eq("Billy")
-        expect(find(".title a")[:href]).to include(animal_path(animal))
-
-        expect(find(".created_at_date").text).to eq(alert2.updated_at.strftime("%b %d, %Y"))
-      end
-    end
-  end
-
   context "Sorting" do
 
     it "should sort activities by lasted updated" do
@@ -318,12 +199,10 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
       animal2 = Animal.gen :shelter => current_shelter, :name => "Animal2", :updated_at => Time.now - 2.minutes
       task1  = Task.gen :shelter => current_shelter, :details => "Task1", :updated_at => Time.now - 1.minutes
       task2  = Task.gen :shelter => current_shelter, :details => "Task2", :updated_at => Time.now + 1.minutes
-      alert1 = Alert.gen :shelter => current_shelter, :title => "Alert1", :updated_at => Time.now + 2.minutes
-      alert2 = Alert.gen :shelter => current_shelter, :title => "Alert2", :updated_at => Time.now + 3.minutes
 
       visit dashboard_path
 
-      expect(page.body).to match(/#{dom_id(alert2)}.*?#{dom_id(alert1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
+      expect(page.body).to match(/#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
     end
   end
 end

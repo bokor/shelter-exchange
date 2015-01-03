@@ -101,12 +101,6 @@ describe AnimalsController do
       expect(assigns(:status_histories)).to eq(@animal.status_histories)
     end
 
-    it "assigns @alerts" do
-      alert = Alert.gen :alertable => @animal
-      get :show, :id => @animal.id
-      expect(assigns(:alerts)).to eq([alert])
-    end
-
     it "assigns @overdue_tasks" do
       task = Task.gen :due_date => Date.today - 1.day, :taskable => @animal
       get :show, :id => @animal.id

@@ -14,17 +14,6 @@ module DashboardHelper
     end.html_safe
   end
 
-  def alert_message(alert)
-    title = alert.title.chomp('.')
-    if alert.updated_at == alert.created_at
-      "New - #{alert.severity.humanize} - #{title}#{show_polymorphic_link(alert)}."
-    elsif alert.stopped
-      "<span class='stopped'>#{alert.severity.humanize} - #{title} has been stopped#{show_polymorphic_link(alert)}.</span>"
-    else
-      "#{alert.severity.humanize} - #{title} was updated#{show_polymorphic_link(alert)}."
-    end.html_safe
-  end
-
   def task_message(task)
     details = task.details.chomp('.')
     category =  task.category.humanize + " -" unless task.category.blank?
@@ -39,10 +28,7 @@ module DashboardHelper
   end
 
   def show_polymorphic_link(object)
-    if object.is_a?(Alert) and object.alertable
-      link = link_to object.alertable.name, polymorphic_path(object.alertable)
-      " for <span class='polymorphic_link'>#{link}</span>".html_safe
-    elsif object.is_a?(Task) and object.taskable
+    if object.is_a?(Task) and object.taskable
       link = link_to object.taskable.name, polymorphic_path(object.taskable)
       " for <span class='polymorphic_link'>#{link}</span>".html_safe
     end

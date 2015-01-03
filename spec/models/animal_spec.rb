@@ -1305,26 +1305,6 @@ describe Animal, "#notes" do
   end
 end
 
-describe Animal, "#alerts" do
-
-  before do
-    @animal = Animal.gen
-    @alert1 = Alert.gen :alertable => @animal
-    @alert2 = Alert.gen :alertable => @animal
-  end
-
-  it "returns a list of alerts" do
-    expect(@animal.alerts.count).to eq(2)
-    expect(@animal.alerts).to match_array([@alert1, @alert2])
-  end
-
-  it "destroy all alerts associated to the animal" do
-    expect(@animal.alerts.count).to eq(2)
-    @animal.destroy
-    expect(@animal.alerts.count).to eq(0)
-  end
-end
-
 describe Animal, "#tasks" do
 
   before do

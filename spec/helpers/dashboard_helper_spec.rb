@@ -47,79 +47,6 @@ describe DashboardHelper, "#animal_message" do
   end
 end
 
-describe DashboardHelper, "#alert_message" do
-
-  it "returns text for a new alert record" do
-    alert = Alert.gen :title => "this is a new alert", :severity => "low"
-
-    expect(
-      helper.alert_message(alert)
-    ).to eq("New - Low - this is a new alert.")
-  end
-
-  it "returns text for a stopped alert" do
-    alert = Alert.gen \
-      :title => "this is a new alert",
-      :stopped => true,
-      :severity => "low",
-      :updated_at => Date.new(2014, 02, 14)
-
-    expect(
-      helper.alert_message(alert)
-    ).to eq("<span class='stopped'>Low - this is a new alert has been stopped.</span>")
-  end
-
-  it "returns text for a updated alert" do
-    alert = Alert.gen \
-      :title => "this is a new alert",
-      :severity => "low",
-      :updated_at => Date.new(2014, 02, 14)
-
-    expect(
-      helper.alert_message(alert)
-    ).to eq("Low - this is a new alert was updated.")
-  end
-
-  context "with polymorphic link" do
-
-    it "returns text for a new alert record" do
-      animal = Animal.gen :name => "Billy"
-      alert = Alert.gen :title => "this is a new alert", :severity => "low", :alertable => animal
-
-      expect(
-        helper.alert_message(alert)
-      ).to eq("New - Low - this is a new alert for <span class='polymorphic_link'><a href=\"/animals/#{animal.id}\">Billy</a></span>.")
-    end
-
-    it "returns text for a stopped alert" do
-      animal = Animal.gen :name => "Billy"
-      alert = Alert.gen \
-        :title => "this is a new alert",
-        :stopped => true,
-        :severity => "low",
-        :updated_at => Date.new(2014, 02, 14),
-        :alertable => animal
-
-      expect(
-        helper.alert_message(alert)
-      ).to eq("<span class='stopped'>Low - this is a new alert has been stopped for <span class='polymorphic_link'><a href=\"/animals/#{animal.id}\">Billy</a></span>.</span>")
-    end
-
-    it "returns text for a updated alert" do
-      animal = Animal.gen :name => "Billy"
-      alert = Alert.gen \
-        :title => "this is a new alert",
-        :severity => "low",
-        :updated_at => Date.new(2014, 02, 14),
-        :alertable => animal
-
-      expect(
-        helper.alert_message(alert)
-      ).to eq("Low - this is a new alert was updated for <span class='polymorphic_link'><a href=\"/animals/#{animal.id}\">Billy</a></span>.")
-    end
-  end
-end
-
 describe DashboardHelper, "#task_message" do
 
   it "returns text for a new task record" do
@@ -194,15 +121,6 @@ describe DashboardHelper, "#task_message" do
 end
 
 describe DashboardHelper, "#show_polymorphic_link" do
-
-  it "returns a link for an alert object" do
-    animal = Animal.gen :name => "Billy"
-    alert = Alert.gen :alertable => animal
-
-    expect(
-      helper.show_polymorphic_link(alert)
-    ).to eq(" for <span class='polymorphic_link'><a href=\"/animals/#{animal.id}\">Billy</a></span>")
-  end
 
   it "returns a link for an task object" do
     animal = Animal.gen :name => "Billy"

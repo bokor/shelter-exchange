@@ -162,9 +162,7 @@
 /* Show Animals :: Sidebar
 -----------------------------------------------------------------------------*/
 .show_animals #animal_tasks {padding: 15px 0 0 0;}
-.show_animals #animal_alerts {padding: 15px 0 0 0;}
 .show_animals #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
-.show_animals #animal_alerts h2{font-weight: bold;margin-bottom: 5px;}
 
 .show_animals #another_note_category{ display:none; }
 .show_animals #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
@@ -610,9 +608,7 @@
 /* Show Communities :: Sidebar
 -----------------------------------------------------------------------------*/
 .show_communities #animal_tasks {padding: 15px 0 0 0;}
-.show_communities #animal_alerts {padding: 15px 0 0 0;}
 .show_communities #animal_tasks h2{font-weight: bold; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #bbb;}
-.show_communities #animal_alerts h2{font-weight: bold;margin-bottom: 5px;}
 
 .show_communities #another_note_category{ display:none; }
 .show_communities #another_note_category .added_to_category{font-size: 18px; font-weight: bold; color: green; letter-spacing: -1px;}
@@ -884,62 +880,6 @@
 
 
 
-
-
-/******************************************************************/
-/* -------------------------- ALERTS  -------------------------- */
-/******************************************************************/
-
-/* Alerts :: Global */
-/******************************************************************/
-.alerts ul { list-style:none ;}
-
-/* New/Create Alerts :: Layout */
-/******************************************************************/
-.new_alerts #main, .create_alerts #main { margin: 1em 3em 0 3em; }
-.new_alerts #left, .create_alerts #left{ width: 100%;}
-.new_alerts #sidebar, .create_alerts #sidebar { display: none;width: 0; }
-
-/* Alerts :: Help
------------------------------------------------------------------------------*/
-.alerts ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
-.alerts ul.help li{margin-left: 20px;padding-bottom: 10px;}
-
-
-/* Alert List :: Layout */
-/******************************************************************/
-.alert_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
-
-.alert{width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
-
-.alert .stop{display:inline-block; text-align: left; }
-
-.alert .type{display:inline-block; padding: 0 5px; }
-	.alert .type div {display:inline-block; width: 75px; height: 20px; line-height: 20px; text-align:center; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #fff; font-size: 12px;}
-	.alert .type div.high{background-color:#ee3124; }
-	.alert .type div.medium{background-color:#f39500;}
-	.alert .type div.low{background-color:gray;}
-
-.alert .created_at_date{display:inline-block; font-weight: bold; font-size: 14px; letter-spacing: -1px; color: #000;}
-
-.alert .details{display:inline-block; width: 57%; vertical-align:top; }
-	.alert .title{display:inline-block; font-size: 13px; line-height: 1.75em; padding-top:5px; padding-left: 5px;}
-	.alert .alertable_link{display:inline-block; font-weight:bold; color: #000;}
-
-.alert .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
-
-.alert .description { clear:both; padding: 0 4%; width: 92%; display:none; line-height: 2em; }
-
-
-/* Show Animals :: Alert List */
-/******************************************************************/
-.show_animals .alert_list .details {width: 45%;}
-.show_animals .alert_list .details .alertable_link{display:none;}
-
-
-
-
-
 /******************************************************************/
 /* ---------------------------- TASKS --------------------------- */
 /******************************************************************/
@@ -977,7 +917,7 @@
 .task .action_links{display:inline-block; float:right; text-align:right;font-size: 10px;font-weight:bold;}
 .task .action_links:after{content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
 
-/* Show Animals :: Alert List */
+/* Show Animals :: Task List */
 /******************************************************************/
 .show_animals .task_list .details {width: 45%;}
 .show_animals .task_list .taskable_link{display:none;}

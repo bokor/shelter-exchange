@@ -464,26 +464,6 @@ describe Shelter, "#tasks" do
   end
 end
 
-describe Shelter, "#alerts" do
-
-  before do
-    @shelter = Shelter.gen
-    @alert1 = Alert.gen :shelter => @shelter
-    @alert2 = Alert.gen :shelter => @shelter
-  end
-
-  it "returns a list of alerts" do
-    expect(@shelter.alerts.count).to eq(2)
-    expect(@shelter.alerts).to match_array([@alert1, @alert2])
-  end
-
-  it "destroy all alerts associated to the shelter" do
-    expect(@shelter.alerts.count).to eq(2)
-    @shelter.destroy
-    expect(@shelter.alerts.count).to eq(0)
-  end
-end
-
 describe Shelter, "#comments" do
 
   before do

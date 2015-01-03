@@ -197,26 +197,10 @@
 
   <% if can?(:update, Animal) %>
     <ul class="action_links">
-      <li><%= link_to 'Add Alert', "#", :id => "add_alert_link", :class => "button" %></li>
       <li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
       <li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
     </ul>
   <% end %>
-
-	<div id="create_alert" class="box hide red">
-		<h2>Add an alert for <%= @animal.name %></h2>
-		<div id="create_alert_errors"></div>
-    <%= form_for ([@animal, @alert = @animal.alerts.build]), :remote => true, :format => :js, :html => { :id => "create_alert_form", :class => "create_alert_form" } do |f| %>
-			<ul>
-				<%= render "alerts/form", :f => f %>
-		    	<li class="buttons">
-					<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
-					&nbsp;or&nbsp;
-					<%= link_to "Cancel", "#", :id => "cancel_alert" %>
-				</li>
-			</ul>
-		<% end %>
-	</div>
 
 	<div id="create_note" class="box hide orange">
 		<h2>Add a note for <%= @animal.name %></h2>
@@ -246,13 +230,6 @@
 				</li>
 			</ul>
 		<% end %>
-	</div>
-
-	<div id="animal_alerts">
-		<h2>Alerts</h2>
-		<div id="alerts" class="alert_list">
-			<%= render :partial => 'alerts/alert', :collection => @alerts %>
-		</div>
 	</div>
 
 	<div id="animal_tasks">

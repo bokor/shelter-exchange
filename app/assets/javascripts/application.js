@@ -147,7 +147,7 @@ $(function() {
 /* Live - Hover, Click Events
 /*----------------------------------------------------------------------------*/
 $(function(){
-	$(".note, .status_history, .alert, .task, .location, .user").live('hover', function(e) {
+	$(".note, .status_history, .task, .location, .user").live('hover', function(e) {
 	  if (e.type == 'mouseover' || e.type == 'mouseenter') {
 	    $(this).addClass("hover");
 	  } else {
@@ -155,7 +155,7 @@ $(function(){
 	  }
 	});
 
-	$(".alert, .note").live("click", function(e){
+	$(".note").live("click", function(e){
 		var target = $(e.target);
         if(target.is("a") || target.is("input")) { //checks if other things are clicked first
             return;
@@ -177,9 +177,6 @@ $(function(){
 /*----------------------------------------------------------------------------*/
 $(function() {
 
-	$('#add_alert_link, #cancel_alert').click(function() {
-		$('#create_alert').slideToggle();
-	});
 	$('#add_note_link, #cancel_note').click(function() {
 		$('#create_note').slideToggle();
 	});
