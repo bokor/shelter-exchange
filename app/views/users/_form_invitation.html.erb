@@ -20,7 +20,7 @@
 			</div>
 		</li>
 		<li class="buttons">
-			<%= f.submit "Send an invitation", :disable_with => 'Submiting...', :class => "button"  %>
+			<%= f.submit "Send an invitation", 'data-disable-with' => 'Submiting...', :class => "button"  %>
 			&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", "#", :onclick => "$('#new_invitation').slideToggle(1000);" %>
 		</li>
 	</ul>

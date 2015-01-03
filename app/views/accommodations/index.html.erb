@@ -23,7 +23,7 @@
 					<%= form_for :accommodations, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 						<%= text_field_tag "q", ""  %>
 						<%# text_field_tag "q", "", :onkeyup =>"Accommodations.liveSearch(this);"  %>
-						<%= f.submit "Go", :disable_with => "..." %>
+						<%= f.submit "Go", 'data-disable-with' => "..." %>
 					<% end %>
 				</td>
 				<td class="filters">
@@ -64,7 +64,7 @@
         <ul>
           <%= render :partial => "form", :locals => { :f => f } %>
           <li class="buttons">
-            <%= f.submit "Create Accommodation", :disable_with => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
+            <%= f.submit "Create Accommodation", 'data-disable-with' => "Submitting...", :id => "create_accommodation_button", :class => "button"  %>
           </li>
         </ul>
       <% end %>

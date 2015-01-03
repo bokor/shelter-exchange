@@ -7,9 +7,9 @@
 	<div class="page_heading">
 		<h2>Resend unlock instructions</h2>
 	</div>
-		
+
 	<div class="page_content">
-		
+
 
 		<div id="reset_password_errors">
 			<%= render "shared/error_messages", :target => resource %>
@@ -24,14 +24,14 @@
 					<%= has_error_message?(resource, :email)%>
 				</li>
 				<li class="buttons">
-					<%= f.submit "Send me reset password instructions", :disable_with => 'Submiting...'
-					<%= f.submit "Resend unlock instructions", :disable_with => 'Submiting...', :class => "button" %>
+					<%= f.submit "Send me reset password instructions", 'data-disable-with' => 'Submiting...'
+					<%= f.submit "Resend unlock instructions", 'data-disable-with' => 'Submiting...', :class => "button" %>
 				</li>
 			</ul>
 		<% end %>
-		
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>

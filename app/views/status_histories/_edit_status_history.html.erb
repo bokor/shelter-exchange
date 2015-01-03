@@ -5,7 +5,7 @@
     <ul>
 	    <%= render "form", :f => f %>
       <li class="buttons">
-				<%= f.submit "Update status history", :disable_with => "Submitting...", :class => "button" %>
+				<%= f.submit "Update status history", 'data-disable-with' => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
 				<%= link_to 'Cancel', '#',:onclick => "StatusHistories.cancelForm(#{@status_history.id});"  %>
 			</li>

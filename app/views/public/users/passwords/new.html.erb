@@ -29,7 +29,7 @@
 				<%= has_error_message?(resource, :email)%>
 			</li>
 			<li class="buttons">
-				<%= f.submit "Send me reset password instructions", :disable_with => 'Submiting...', :class => "button" %>
+				<%= f.submit "Send me reset password instructions", 'data-disable-with' => 'Submiting...', :class => "button" %>
 			</li>
 		</ul>
 	<% end %>

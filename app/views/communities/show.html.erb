@@ -155,7 +155,7 @@
 				<ul>
 					<%= render "transfers/form", :f => f %>
 			    	<li class="buttons">
-						<%= f.submit "Create Transfer", :disable_with => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
+						<%= f.submit "Create Transfer", 'data-disable-with' => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
 						&nbsp;or&nbsp;
 						<%= link_to "Cancel", "#", :id => "cancel_transfer" %>
 					</li>

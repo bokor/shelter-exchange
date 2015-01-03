@@ -7,16 +7,16 @@
 	<div class="page_heading">
 		<h2>Forgot your password?</h2>
 	</div>
-		
+
 	<div class="page_content">
-		
+
 
 		<div id="reset_password_errors">
 			<%= render "shared/error_messages", :target => resource %>
 		</div>
-		
+
 		<%= form_for(resource, :as => :user, :url => password_path(:user), :html => { :method => :post, :id => "reset_password_form" }) do |f| %>
-			
+
 			<ul>
 		  		<li class="full">
 		  			<%= f.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
@@ -26,15 +26,15 @@
 					<%= has_error_message?(resource, :email)%>
 				</li>
 				<li class="buttons">
-					<%= f.submit "Send me reset password instructions", :disable_with => 'Submiting...', :class => "button" %>
+					<%= f.submit "Send me reset password instructions", 'data-disable-with' => 'Submiting...', :class => "button" %>
 				</li>
 			</ul>
 		<% end %>
-		
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %><% end %>
-			
+
 

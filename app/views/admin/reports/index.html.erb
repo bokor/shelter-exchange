@@ -32,7 +32,7 @@
         <%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year},{:onchange => ""})%>
       </span>
       <span class="leftPadded">
-        <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
+        <%= submit_tag "Go", 'data-disable-with' => '...', :id => "submit_report" %>
       </span>
     </div>
 

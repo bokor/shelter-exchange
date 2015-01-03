@@ -2,11 +2,11 @@
 
 
 <%= content_for :page_content do %>
-		
+
 	<div class="page_content">
-		
+
 		<%= render "shared/error_messages", :target => resource %>
-		
+
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<ul>
 		  		<li class="full">
@@ -27,21 +27,21 @@
 					<% if devise_mapping.rememberable? %>
 					<div>
 						<span>
-							<%= f.check_box :remember_me, :class => "field checkbox" %>  
+							<%= f.check_box :remember_me, :class => "field checkbox" %>
 							<%= f.label :remember_me, :class => "choice" %>
 						</span>
 					</div>
 					<% end %>
 				</li>
 				<li class="buttons">
-					<%= f.submit "Sign in", :disable_with => 'Submiting...', :class => "button" %>
+					<%= f.submit "Sign in", 'data-disable-with' => 'Submiting...', :class => "button" %>
 				</li>
 			</ul>
-		
+
 		<% end %>
-		
+
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>

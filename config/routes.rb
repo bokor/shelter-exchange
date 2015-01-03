@@ -161,8 +161,11 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Account Settings
     #----------------------------------------------------------------------------
-    resources :settings, :only => [:index]
-    match '/settings/:tab' => 'settings#index', :as => :setting
+    get '/settings' => 'settings#index', :as => :settings
+    get '/settings/:tab' => 'settings#index', :as => :setting
+    post '/settings/:tab' => 'settings#create', :as => :create_setting
+    put '/settings/:tab/:id' => 'settings#update', :as => :update_setting
+    delete '/settings/:tab/:id' => 'settings#destroy', :as => :delete_setting
 
     resources :token_authentications, :only => [:create, :destroy]
 

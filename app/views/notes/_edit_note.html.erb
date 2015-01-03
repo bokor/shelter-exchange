@@ -5,7 +5,7 @@
     <ul>
       <%= render "form", :f => f %>
       <li class="buttons">
-				<%= f.submit "Update Note", :disable_with => "Submitting...", :class => "button" %>
+				<%= f.submit "Update Note", 'data-disable-with' => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
 				<%= link_to 'Cancel', '#',:onclick => "Notes.cancelForm(#{@note.id});"  %>
 			</li>

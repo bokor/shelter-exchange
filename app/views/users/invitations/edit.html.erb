@@ -5,7 +5,7 @@
 		<h2>Accept invitation</h2>
 	</div>
 	<div class="page_content">
-		
+
 		<%= render "shared/error_messages", :target => resource %>
 
 		<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
@@ -27,18 +27,18 @@
 		  			<%= f.password_field :password_confirmation, :class => "field text large", :maxlength => 255, :placeholder => "Confirm password" %>
 				</li>
 				<li class="buttons">
-					<%= f.submit "Submit", :disable_with => 'Submiting...', :class => "button"  %>
+					<%= f.submit "Submit", 'data-disable-with' => 'Submiting...', :class => "button"  %>
 				</li>
 			</ul>
-			
+
 			<%= f.hidden_field :invitation_token %>
 		<% end %>
 	</div>
-	
+
 <% end %>
 
 <%= content_for :sidebar do %>
 <% end %>
-			
+
 
 

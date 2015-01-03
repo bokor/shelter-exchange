@@ -42,7 +42,7 @@
 				<% end %>
 			</li>
 			<li class="buttons">
-				<%= f.submit "Sign in", :disable_with => 'Submiting...', :class => "button" %>
+				<%= f.submit "Sign in", 'data-disable-with' => 'Submiting...', :class => "button" %>
 				<% if devise_mapping.recoverable? && controller_name != 'passwords' %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<%= link_to "Forgot your password?", new_password_path(:user) %><br /><br />

@@ -1,4 +1,5 @@
 //= require jquery.min
+//= require jquery_ujs
 //= require jquery-ui/jquery-ui.min
 //= require jquery.ui.autocomplete
 //= require qtip/jquery.qtip.min
@@ -17,7 +18,6 @@
 //= require modernizr
 //= require date
 //= require highcharts
-//= require jquery_ujs
 //
 //= require_tree ./shared/
 //= require_tree ./app/

@@ -5,7 +5,7 @@
 		<ul>
 			<%= render :partial => "form", :locals => { :f => f } %>
 	    	<li class="buttons">
-				<%= f.submit "Update Accommodation", :disable_with => "Submitting...", :class => "button" %>
+				<%= f.submit "Update Accommodation", 'data-disable-with' => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
 				<%= link_to 'Cancel', '#', :onclick => "Accommodations.cancelForm(#{@accommodation.id});return false;"  %>
 			</li>

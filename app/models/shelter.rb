@@ -30,6 +30,7 @@ class Shelter < ActiveRecord::Base
   has_many :status_histories, :dependent => :destroy
   has_many :transfers, :dependent => :destroy
   has_many :integrations, :dependent => :destroy
+  has_many :settings, :dependent => :destroy
 
 
   # Nested Attributes

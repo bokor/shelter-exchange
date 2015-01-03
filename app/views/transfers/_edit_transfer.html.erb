@@ -9,7 +9,7 @@
 				<%= has_error_message?(@transfer, :transfer_history_reason)%>
 			</li>
 			<li class="buttons">
-				<%= f.submit status_action_name(@transfer), :disable_with => "Submitting...", :class => "button" %>
+				<%= f.submit status_action_name(@transfer), 'data-disable-with' => "Submitting...", :class => "button" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;
 				<%= link_to 'Cancel', '#', :onclick => "Transfers.cancelForm(#{@transfer.id});return false;"  %>
 			</li>

@@ -1,11 +1,11 @@
 //= require jquery.min
+//= require jquery_ujs
 //= require jquery-ui/jquery-ui.min
 //= require jquery.ui.autocomplete
 //= require jquery.blockUI.min
 //= require modernizr
 //= require date
 //= require highcharts
-//= require jquery_ujs
 //
 //= require_tree ./shared/
 //= require_tree ./admin/

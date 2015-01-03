@@ -1,5 +1,5 @@
 <%= content_for :javascripts do %>
-	
+
 <% end %>
 
 <% if can?(:change_owner, User) %>
@@ -9,13 +9,13 @@
 	<p>Please note! If you change this authority to another individual you cannot revert this back without permission from the newly nominated Owner.</p>
 
 	<p>If the person you wish to change the Owner to does not show in the list, <a href="http://help.shelterexchange.org/help/kb/user-management/how-do-i-add-or-invite-a-new-user" target="_new">please follow these instructions to add another Admin</a>.</p>
-	
+
 	<div class="separator"></div>
-	
+
 	<div class="section">
 		<%=form_for(@owner, :url => change_owner_user_path(@owner), :html => {:method => :post, :id => "change_owner_user_#{@owner.id}", :class => "change_owner_user" }) do |f| %>
 			<%= collection_select(nil, :new_owner_id, @users, :id, :name, {:selected => @owner.id } ) %>
-			<%= f.submit "Change", :disable_with => '...', :confirm => "Are you sure?" %>
+			<%= f.submit "Change", 'data-disable-with' => '...', :confirm => "Are you sure?" %>
 		<% end %>
 	</div>
 <% else %>

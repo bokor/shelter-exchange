@@ -117,7 +117,7 @@
 	  </li>
 		<li class="buttons">
 		  <p id="submit_message"><%=image_tag("ajax-loader.gif", :width => "30", :height => "30")%>Large logo files may take a few seconds to upload!</p>
-		  <%= f.submit button_text, :disable_with => "Submitting...",
+		  <%= f.submit button_text, 'data-disable-with' => "Submitting...",
 								  :onclick => "$('#submit_message').delay(1500).slideToggle(1000);", :class => 'button' %>
 			<% unless action_name == "new" or action_name =="create" %>
 				&nbsp;&nbsp;or&nbsp;&nbsp;

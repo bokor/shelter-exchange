@@ -15,7 +15,7 @@
 			<%= form_for :shelters, :url => { :action => :search_by_shelter_or_rescue_group }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 				<span><%= text_field_tag "q", "", :placeholder => "Please type a shelter or rescue group name" %> </span>
 				<span><%= f.select :state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All States"}  %></span>
-				<span><%= f.submit "Go", :disable_with => '...' %></span>
+				<span><%= f.submit "Go", 'data-disable-with' => '...' %></span>
 			<% end %>
 			<ul class="toggle_buttons">
 				<li><%= link_to "By City or Zip code", public_help_a_shelter_index_path %></li>

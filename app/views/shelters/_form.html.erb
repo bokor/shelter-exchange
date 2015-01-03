@@ -101,7 +101,7 @@
 
 			<% if !@shelter.new_record? and @shelter.logo? %>
 				<br /><br />
-				<%= f.check_box :remove_logo %> 
+				<%= f.check_box :remove_logo %>
 				<%= f.label :remove_logo, "Delete logo", :class => "desc" %>
 			<% end %>
 		</span>
@@ -112,20 +112,20 @@
 				<%= f.label :logo, "Upload logo", :class => "desc" %>
 			<% end %>
 			<%= f.file_field :logo, :class => "field file" %>
-			
+
 		</span>
 		<%= has_error_message?(@shelter, :logo)%>
-		
+
 	</li>
 	<li class="section">
 		<section><h3></h3></section>
 	</li>
 	<li class="buttons">
 		<p id="submit_message"><%=image_tag("ajax-loader.gif", :width => "30", :height => "30")%>Large logo files may take a few seconds to upload!</p>
-		<%= f.submit button_text, :disable_with => "Submitting...", 
+		<%= f.submit button_text, 'data-disable-with' => "Submitting...",
 								  :onclick => "$('#submit_message').delay(1500).slideToggle(1000);", :class => 'button' %>
 		&nbsp;&nbsp;or&nbsp;&nbsp;
-		<%= link_to "Cancel", shelters_path %> 
+		<%= link_to "Cancel", shelters_path %>
 	</li>
 </ul>
 

@@ -4,7 +4,7 @@
 		             :remote => true, :format => :js, :html => { :id => "form_contact_search", :method => :get } do |f| %>
       <h2>Search for contact:</h2>
   		<%= text_field_tag "q", ""  %>
-			<%= f.submit "Go", :disable_with => "..." %>
+			<%= f.submit "Go", 'data-disable-with' => "..." %>
     <% end %>
 
     <div id="contacts"></div>

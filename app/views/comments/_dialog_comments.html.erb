@@ -18,7 +18,7 @@
 				<ul>
 					<%= render "comments/form", :f => f  %>
 					<li class="buttons">
-						<%= f.submit "Create Comment", :disable_with => "Submitting...", :id => "create_comment_button", :class => "button"  %>
+						<%= f.submit "Create Comment", 'data-disable-with' => "Submitting...", :id => "create_comment_button", :class => "button"  %>
 					</li>
 				</ul>
 				<%= f.hidden_field :commentable_id %>

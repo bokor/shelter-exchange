@@ -111,7 +111,7 @@
 			<ul>
 				<%= render "notes/form", :f => f, :default_category => true %>
 		    	<li class="buttons">
-					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+					<%= f.submit "Create Note", 'data-disable-with' => "Submitting...", :id => "create_note_button", :class => "button"  %>
 					&nbsp;or&nbsp;&nbsp;
 					<%= link_to "Cancel", "#", :id => "cancel_note" -%>
 				</li>

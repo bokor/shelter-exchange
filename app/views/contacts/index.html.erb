@@ -19,7 +19,7 @@
 						<h3>Search for contacts:</h3>
 						<%= form_for :contacts, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
 							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go", :disable_with => "..." %>
+							<%= f.submit "Go", 'data-disable-with' => "..." %>
 						<% end %>
 					</td>
 					<td class="filters">

@@ -210,7 +210,7 @@
 			<ul>
 				<%= render "alerts/form", :f => f %>
 		    	<li class="buttons">
-					<%= f.submit "Create Alert", :disable_with => "Submitting...", :id => "create_alert_button", :class => "button"  %>
+					<%= f.submit "Create Alert", 'data-disable-with' => "Submitting...", :id => "create_alert_button", :class => "button"  %>
 					&nbsp;or&nbsp;
 					<%= link_to "Cancel", "#", :id => "cancel_alert" %>
 				</li>
@@ -225,7 +225,7 @@
 			<ul>
         <%= render "notes/form", :f => f %>
 		    <li class="buttons">
-					<%= f.submit "Create Note", :disable_with => "Submitting...", :id => "create_note_button", :class => "button"  %>
+					<%= f.submit "Create Note", 'data-disable-with' => "Submitting...", :id => "create_note_button", :class => "button"  %>
 					&nbsp;or&nbsp;
 					<%= link_to "Cancel", "#", :id => "cancel_note" %>
 				</li>
@@ -241,7 +241,7 @@
 			<ul>
 				<%= render "tasks/form", :f => f %>
 		    	<li class="buttons">
-					<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+					<%= f.submit "Create Task", 'data-disable-with' => "Submitting...", :id => "create_task_button", :class => "button"  %>
 					&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_task" %>
 				</li>
 			</ul>

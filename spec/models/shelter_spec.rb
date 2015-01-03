@@ -604,6 +604,26 @@ describe Shelter, "#integrations" do
   end
 end
 
+describe Shelter, "#settings" do
+
+  before do
+    @shelter = Shelter.gen
+    @setting1 = Setting.gen :shelter => @shelter
+    @setting2 = Setting.gen :shelter => @shelter
+  end
+
+  it "returns a list of settings" do
+    expect(@shelter.settings.count).to eq(2)
+    expect(@shelter.settings).to match_array([@setting1, @setting2])
+  end
+
+  it "destroy all settings associated to the shelter" do
+    expect{
+      @shelter.destroy
+    }.to change(Setting, :count).by(-2)
+  end
+end
+
 describe Shelter, "#kill_shelter?" do
 
   it "returns true if the shelter is a kill shelter" do

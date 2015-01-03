@@ -1,0 +1,77 @@
+<h2>Add Adoption Contract</h2>
+<p>Automatically add an "Adopt me" link to every animal profile by uploading your adoption contract for each animal type.</p>
+
+<table class="adopt_me">
+  <tr>
+    <th>Adoption Contract</th>
+    <th>Type</th>
+    <th>File</th>
+    <th>Action</th>
+  </tr>
+  <% if @settings.size > 0 %>
+
+    <% @settings.each do |setting| %>
+      <%= form_for setting, :url => update_setting_path(setting, :tab => :animal_profile), :html => { :multipart => :true, :id => dom_id(setting, :edit), :method => :put } do |f| %>
+        <tr class="<%= cycle("odd", "even")%>">
+          <td class="adoption_contract">
+            <%= link_to setting.adoption_contract.file.filename, setting.adoption_contract.url, :target => "_new" %>
+          </td>
+          <td class="type">
+            <%= setting.animal_type.name %>
+          </td>
+          <td class="file">
+            <%= f.file_field :adoption_contract %>
+          </td>
+          <td class="action">
+            <%= f.submit "Upload", 'data-disable-with' => '...', :class => 'button' %>
+            <%= link_to "Delete", delete_setting_path(setting, :tab => :animal_profile), :method => :delete,
+                        :confirm => "Are you sure you want to delete? This task will no longer appear on the animal profile.", :class => "button" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    <% unless @settings.size == 1 && @settings.first.animal_type_id.blank? %>
+      <%= form_for @current_shelter.settings.build, :url => create_setting_path(:tab => :animal_profile), :html => { :multipart => :true, :id => "new_setting", :method => :post } do |f| %>
+        <tr class="<%= (@settings.size + 1).odd? ? 'odd' : 'even' %>">
+          <td class="adoption_contract"><b>No file uploaded...add new file?</b></td>
+          <td class="type">
+            <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:include_blank =>  "Select one"}, :class => "field select medium" %>
+          </td>
+          <td class="file"><%= f.file_field :adoption_contract %></td>
+          <td class="action">
+            <%= f.submit "Upload", 'data-disable-with' => '...', :class => 'button' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <%= form_for @current_shelter.settings.build, :url => create_setting_path(:tab => :animal_profile), :html => { :multipart => :true, :id => "new_setting", :method => :post } do |f| %>
+      <tr class="<%= @settings.size.odd? ? 'odd' : 'even' %>">
+        <td class="adoption_contract"><b>No file uploaded...add new file?</b></td>
+        <td class="type">
+          <%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:include_blank =>  "Select one"}, :class => "field select medium" %>
+        </td>
+        <td class="file"><%= f.file_field :adoption_contract %></td>
+        <td class="action">
+          <%= f.submit "Upload", 'data-disable-with' => '...', :class => 'button' %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<br><br>
+
+
+<%# <h2>Boilerplate Animal Description</h2> %>
+<%# <p>blah blah</p> %>
+<%# <% if @settings.size > 0 %1> %>
+<%#   settings exist %>
+<%# <% else %1> %>
+<%#   no settings %>
+<%# <% end %1> %>
+
+<br>
+

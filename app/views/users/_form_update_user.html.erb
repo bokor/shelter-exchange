@@ -50,7 +50,7 @@
 		<%  %>
 		<li class="buttons">
 			<% if show_update_button %>
-				<%= f.submit "Update user", :disable_with => 'Submiting...', :class => "button"  %>
+				<%= f.submit "Update user", 'data-disable-with' => 'Submiting...', :class => "button"  %>
 				&nbsp;or&nbsp;&nbsp;
 			<% end %>
 			<%= link_to 'Cancel', '#', :onclick => "Users.cancelForm(#{@user.id});return false;"  %>

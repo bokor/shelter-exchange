@@ -30,7 +30,7 @@
       <ul>
         <%= render "form", :f => f  %>
         <li class="buttons">
-          <%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
+          <%= f.submit "Create Task", 'data-disable-with' => "Submitting...", :id => "create_task_button", :class => "button"  %>
         </li>
       </ul>
       <% end %>
