@@ -54,7 +54,7 @@ var Tasks = {
 			changeYear: true,
 			dateFormat: 'yy-mm-dd',
 			altField: element + " .due_date_alt",
-			altFormat: "D MM d, yy",
+			altFormat: "D MM dd, yy",
 			onSelect: function(dateText,picker) {
 				//HIDDEN FIELD
 				$(element + " .hidden_due_date").val( dateText );

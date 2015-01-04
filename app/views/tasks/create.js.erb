@@ -12,10 +12,10 @@
 
 	// Clear up final functions
 	$('.due_date_field').parent().hide(); // Hide LI tag
-  $('#task_due_date').val( "<%=Time.zone.now.to_date%>" );
+  $('#task_due_date').val( "<%=Date.today%>" );
 
   // Update Date Picker to now
-  $('#create_task .date_picker').datepicker("setDate", "<%=Time.zone.now.to_date%>" );
+  $('#create_task .date_picker').datepicker("setDate", "<%=Date.today%>" );
 	var tempDate = $('#create_task .date_picker').datepicker("getDate");
 	var setDate = new Date(tempDate).toString('ddd MMMM dd, yyyy'); //DateJS formatting
 	$('#create_task .due_date_alt').html(setDate);
