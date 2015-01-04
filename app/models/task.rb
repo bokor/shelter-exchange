@@ -20,10 +20,10 @@ class Task < ActiveRecord::Base
   scope :active, where(:completed => false)
   scope :completed, where(:completed => true)
 
-  scope :overdue, where("due_date < ?", Time.zone.now.to_date)
-  scope :today, where("due_date = ?", Time.zone.now.to_date)
-  scope :tomorrow, where("due_date = ?", Time.zone.now.to_date + 1.day)
-  scope :later, where("due_category = ? OR due_date > ?", "later", Time.zone.now.to_date + 1.day).order("due_date DESC")
+  scope :overdue, where("due_date < ?", Date.today)
+  scope :today, where("due_date = ?", Date.today)
+  scope :tomorrow, where("due_date = ?", Date.today + 1.day)
+  scope :later, where("due_category = ? OR due_date > ?", "later", Date.today + 1.day).order("due_date DESC")
 
   # Scopes - Dashboard Only - Recent Activity
   #----------------------------------------------------------------------------
@@ -42,19 +42,19 @@ class Task < ActiveRecord::Base
   end
 
   def overdue?
-    self.due_date.present? && self.due_date < Time.zone.now.to_date
+    self.due_date.present? && self.due_date < Date.today
   end
 
   def today?
-    self.due_date.present? && self.due_date == Time.zone.now.to_date
+    self.due_date.present? && self.due_date == Date.today
   end
 
   def tomorrow?
-    self.due_date.present? && self.due_date == Time.zone.now.to_date + 1.day
+    self.due_date.present? && self.due_date == Date.today + 1.day
   end
 
   def later?
-    self.due_date.blank? || self.due_date > Time.zone.now.to_date + 1.day || self.due_category == "later"
+    self.due_date.blank? || self.due_date > Date.today + 1.day || self.due_category == "later"
   end
 
   def specific_date?
