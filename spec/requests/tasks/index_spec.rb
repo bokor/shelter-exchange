@@ -7,12 +7,12 @@ describe "Index: Task Page", :js => :true do
     @task = Task.gen :shelter => current_shelter # Create Task to get to the Index page
   end
 
-  it "should contain correct page title" do
+  it "contains correct page title" do
     visit tasks_path
     page_title_should_be "Tasks"
   end
 
-  it "should redirect to 'new' page when there are no tasks" do
+  it "redirects to 'new' page when there are no tasks" do
     @task.destroy
 
     visit tasks_path
@@ -20,7 +20,7 @@ describe "Index: Task Page", :js => :true do
     body_class_should_include "new_tasks"
   end
 
-  it "should not create a new task" do
+  it "does not create a new task" do
     visit tasks_path
 
     within "#create_task" do
@@ -34,11 +34,12 @@ describe "Index: Task Page", :js => :true do
     end
   end
 
-  it "should show overdue tasks" do
+  it "shows overdue tasks" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Overdue task details"
+      fill_in "Additional info", :with => "Overdue task additional info"
       select "Specific date", :from => "When is it due?"
 
       calendar_datepicker_from("#due_date_container .date_picker", :previous_month)
@@ -49,60 +50,69 @@ describe "Index: Task Page", :js => :true do
     within "#overdue_tasks" do
       previous_month = (Date.today - 1.month).strftime("%b")
       expect(page).to have_content "#{previous_month} 15"
-      expect(page).to have_content "Overdue task details"
+
+      find(".task .details .title", :text => "Overdue task details").click
+      expect(page).to have_content("Overdue task additional info")
     end
   end
 
-  it "should show today tasks" do
+  it "shows today tasks" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Today task details"
+      fill_in "Additional info", :with => "Today task additional info"
       select "Today", :from => "When is it due?"
 
       click_button "Create Task"
     end
 
     within "#today_tasks" do
-      expect(page).to have_content "Today task details"
+      find(".task .details .title", :text => "Today task details").click
+      expect(page).to have_content("Today task additional info")
     end
   end
 
-  it "should show tomorrow tasks" do
+  it "shows tomorrow tasks" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Tomorrow task details"
+      fill_in "Additional info", :with => "Tomorrow task additional info"
       select "Tomorrow", :from => "When is it due?"
 
       click_button "Create Task"
     end
 
     within "#tomorrow_tasks" do
-      expect(page).to have_content "Tomorrow task details"
+      find(".task .details .title", :text => "Tomorrow task details").click
+      expect(page).to have_content("Tomorrow task additional info")
     end
   end
 
-  it "should show later tasks" do
+  it "shows later tasks" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Later task details"
+      fill_in "Additional info", :with => "Later task additional info"
       select "Later", :from => "When is it due?"
 
       click_button "Create Task"
     end
 
     within "#later_tasks" do
-      expect(page).to have_content "Later task details"
+      find(".task .details .title", :text => "Later task details").click
+      expect(page).to have_content("Later task additional info")
     end
   end
 
-  it "should show specific date on overdue task" do
+  it "shows specific date on overdue task" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Specific date task details"
+      fill_in "Additional info", :with => "Specific date task additional info"
       select "Specific date", :from => "When is it due?"
 
       calendar_datepicker_from("#due_date_container .date_picker", :previous_month)
@@ -114,15 +124,18 @@ describe "Index: Task Page", :js => :true do
       previous_month = (Date.today - 1.month).strftime("%b")
       expect(page).to have_css "span.task_due_date"
       expect(page).to have_content "#{previous_month} 15"
-      expect(page).to have_content "Specific date task details"
+
+      find(".task .details .title", :text => "Specific date task details").click
+      expect(page).to have_content("Specific date task additional info")
     end
   end
 
-  it "should show specific date on later task" do
+  it "shows specific date on later task" do
     visit tasks_path
 
     within "#create_task" do
       fill_in "Details", :with => "Specific date task details"
+      fill_in "Additional info", :with => "Specific date task additional info"
       select "Specific date", :from => "When is it due?"
 
       calendar_datepicker_from("#due_date_container .date_picker", :next_month)
@@ -134,11 +147,13 @@ describe "Index: Task Page", :js => :true do
       previous_month = (Date.today + 1.month).strftime("%b")
       expect(page).to have_css "span.task_due_date"
       expect(page).to have_content "#{previous_month} 15"
-      expect(page).to have_content "Specific date task details"
+
+      find(".task .details .title", :text => "Specific date task details").click
+      expect(page).to have_content("Specific date task additional info")
     end
   end
 
-  it "should not show specific date on today task" do
+  it "does not show specific date on today task" do
     task = Task.gen :shelter => current_shelter, :due_category => "specific_date", :due_date => Date.today
 
     visit tasks_path
@@ -148,7 +163,7 @@ describe "Index: Task Page", :js => :true do
     end
   end
 
-  it "should not show specific date on tomorrow task" do
+  it "does not show specific date on tomorrow task" do
     task = Task.gen :shelter => current_shelter, :due_category => "specific_date", :due_date => Date.today + 1.day
 
     visit tasks_path
@@ -171,7 +186,7 @@ describe "Index: Task Page", :js => :true do
       end
     end
 
-    it "should show icons on each tasks with a specific category" do
+    it "shows icons on each tasks with a specific category" do
       @task.destroy
 
       call_task        = Task.gen :details => "call details", :shelter => current_shelter, :category => "call"
@@ -199,7 +214,7 @@ describe "Index: Task Page", :js => :true do
       should_have_icon_and_tooltip_for(medical_task)
     end
 
-    it "should not icons or tooltips for tasks without a category" do
+    it "does not show icons or tooltips for tasks without a category" do
       task = Task.gen :shelter => current_shelter, :category => nil
       visit tasks_path
 
@@ -211,7 +226,7 @@ describe "Index: Task Page", :js => :true do
 
   context "Taskable" do
 
-    it "should have a link to an animal record" do
+    it "has a link to an animal record" do
       animal = Animal.gen :shelter => current_shelter, :name => "Billy Bob"
       task = Task.gen :shelter => current_shelter, :taskable => animal
 
@@ -223,7 +238,7 @@ describe "Index: Task Page", :js => :true do
       end
     end
 
-    it "should not have a link to an animal record" do
+    it "does not have a link to an animal record" do
       task = Task.gen :shelter => current_shelter, :taskable => nil
 
       visit tasks_path

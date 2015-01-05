@@ -3,8 +3,8 @@ require "rails_helper"
 describe "Edit: From the Index Task Page", :js => :true do
   login_user
 
-  it "should update the details" do
-    task  = Task.gen :details => "old details", :shelter => current_shelter
+  it "updates the details and additional info" do
+    task  = Task.gen :details => "old details", :additional_info => "old info", :shelter => current_shelter
 
     visit tasks_path
 
@@ -14,15 +14,19 @@ describe "Edit: From the Index Task Page", :js => :true do
 
     within "##{dom_id(task, :edit)}" do
       fill_in "Details", :with => "new details"
+      fill_in "Additional info", :with => "new info"
       click_button "Update Task"
     end
 
+    find("##{dom_id(task)}").click
+
     within "##{dom_id(task)}" do
       expect(page).to have_content "new details"
+      expect(page).to have_content("new info")
     end
   end
 
-  it "should change the category icon" do
+  it "changes the category icon" do
     task  = Task.gen :details => "call details", :shelter => current_shelter, :category => "call"
 
     visit tasks_path

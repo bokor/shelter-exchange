@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Delete: From the Index Task Page", :js => :true do
   login_user
 
-  it "should delete a task" do
+  it "deletes a task" do
     task = Task.gen :shelter => current_shelter
 
     visit tasks_path

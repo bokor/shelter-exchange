@@ -50,7 +50,7 @@
 		<% end %>
   </span>
 
-  <div class="description" id="description_note_<%=note.id%>">
+  <div class="description">
     <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
     <% if @documents.present? && (note.shelter_id == @current_shelter.id) %>
       <ul><strong>Attachments:</strong>

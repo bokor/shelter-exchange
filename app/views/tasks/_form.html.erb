@@ -3,6 +3,11 @@
 	<div><%= f.text_field :details, :class => "field text large", :maxlength => 255 %></div>
 	<%= has_error_message?(@task, :details)%>
 </li>
+<li id="additional_info_container" class="full">
+	<%= f.label :additional_info, :class => "desc" %>
+	<div><%= f.text_area :additional_info, :class => "field textarea small" %></div>
+	<%= has_error_message?(@task, :additional_info)%>
+</li>
 <li id="category_container">
 	<%= f.label :category, "Category", :class => "desc" %>
 	<div>

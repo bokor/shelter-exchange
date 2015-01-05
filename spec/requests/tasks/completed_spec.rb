@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Completed: From the Index Task Page", :js => :true do
   login_user
 
-  it "should complete a task" do
+  it "completes a task" do
     task = Task.gen :shelter => current_shelter # Create Task to get to the Index page
 
     visit tasks_path

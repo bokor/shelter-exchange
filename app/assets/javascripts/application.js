@@ -164,6 +164,15 @@ $(function(){
 		}
 	});
 
+  $(".task").live("click", function(e){
+		var target = $(e.target);
+        if(target.is("a") || target.is("input")) { //checks if other things are clicked first
+            return;
+        } else {
+			$(".additional_info", this).slideToggle();
+		}
+	});
+
 	$(".user").live("click", function(e){
 	  var target = $(e.target);
     if(target.is("a") || target.is("input")) { //checks if other things are clicked first

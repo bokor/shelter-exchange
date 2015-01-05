@@ -81,7 +81,7 @@
                 <span class="title"><%= note.title %></span>
               </span>
 
-              <div class="description" id="description_note_<%=note.id%>">
+              <div class="description">
                 <p><%= note.description.blank? ? "No description provided" : auto_link( simple_format(note.description), :all, :target => '_blank') %></p>
                 <% unless note.documents.blank? %>
                   <ul class="attachments"><strong>Attachments:</strong>

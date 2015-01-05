@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141223184757) do
+ActiveRecord::Schema.define(:version => 20150105042023) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -409,11 +409,12 @@ ActiveRecord::Schema.define(:version => 20141223184757) do
     t.integer  "taskable_id"
     t.string   "taskable_type"
     t.string   "category"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "due_category"
-    t.boolean  "completed",     :default => false, :null => false
+    t.boolean  "completed",       :default => false, :null => false
     t.integer  "shelter_id"
+    t.text     "additional_info"
   end
 
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"

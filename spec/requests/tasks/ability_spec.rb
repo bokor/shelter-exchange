@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Ability: Permissions for the user role on the Index Task Page", :js => :true do
   login_user
 
-  it "should not be able to delete task" do
+  it "can not delete task" do
     current_user.update_attribute(:role, :user)
     Task.gen :shelter => current_shelter
 
