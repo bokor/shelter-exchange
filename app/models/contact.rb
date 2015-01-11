@@ -33,6 +33,12 @@ class Contact < ActiveRecord::Base
   validates :first_name, :presence => true, :unless => lambda {|contact| contact.last_name.present? }
   validates :last_name, :presence => true, :unless => lambda {|contact| contact.first_name.present? }
 
+  # Scopes - Dashboard Only - Recent Activity
+  #----------------------------------------------------------------------------
+  def self.recent_activity(limit=10)
+    reorder("contacts.updated_at DESC").limit(limit)
+  end
+
   # Class Methods
   #----------------------------------------------------------------------------
   def self.search(q)

@@ -151,6 +151,20 @@ describe Contact, ".filter_by_last_name_role" do
   end
 end
 
+describe Contact, ".recent_activity" do
+
+  it "returns only the most recent activity per limit" do
+    contact1 = Contact.gen :updated_at => Time.now - 1.hour
+    contact2 = Contact.gen :updated_at => Time.now
+    Contact.gen :updated_at => Time.now - 2.hour
+
+    results = Contact.recent_activity(2).all
+
+    expect(results.count).to eq(2)
+    expect(results).to match_array([contact1, contact2])
+  end
+end
+
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Contact, "#shelter" do

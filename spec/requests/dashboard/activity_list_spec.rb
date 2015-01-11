@@ -192,17 +192,65 @@ describe "Activity List: For Dashboard Index Page", :js => :true do
     end
   end
 
-  context "Sorting" do
+  context "Contacts" do
 
-    it "should sort activities by lasted updated" do
-      animal1 = Animal.gen :shelter => current_shelter, :name => "Animal1", :updated_at => Time.now - 3.minutes
-      animal2 = Animal.gen :shelter => current_shelter, :name => "Animal2", :updated_at => Time.now - 2.minutes
-      task1  = Task.gen :shelter => current_shelter, :details => "Task1", :updated_at => Time.now - 1.minutes
-      task2  = Task.gen :shelter => current_shelter, :details => "Task2", :updated_at => Time.now + 1.minutes
+    it "should list contacts that were created" do
+      contact = Contact.gen :shelter => current_shelter, :first_name => "Billy", :last_name => "Bob"
 
       visit dashboard_path
 
-      expect(page.body).to match(/#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
+      within "##{dom_id(contact)}" do
+        icon = find(".type img")
+        expect(icon[:src]).to include("icon_contact.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Contact")
+
+        expect(find(".title").text).to eq("A new contact record for Billy Bob has been created.")
+        expect(find(".title a").text).to eq("Billy Bob")
+        expect(find(".title a")[:href]).to include(contact_path(contact))
+
+        expect(find(".created_at_date").text).to eq(contact.updated_at.strftime("%b %d, %Y"))
+      end
+    end
+
+    it "should list contacts that were updated" do
+      contact = Contact.gen :shelter => current_shelter, :first_name => "Billy", :last_name => "Bob"
+
+      # Update any other field but status
+      contact.last_name = "Joe"
+      contact.updated_at = Date.today + 2.days
+      contact.save!
+
+      visit dashboard_path
+
+      within "##{dom_id(contact)}" do
+        icon = find(".type img")
+        expect(icon[:src]).to include("icon_contact.png")
+        expect(icon[:class]).to include("tooltip")
+        expect(icon[:"data-tip"]).to eq("Contact")
+
+        expect(find(".title").text).to eq("Billy Joe has been updated.")
+        expect(find(".title a").text).to eq("Billy Joe")
+        expect(find(".title a")[:href]).to include(contact_path(contact))
+
+        expect(find(".created_at_date").text).to eq(contact.updated_at.strftime("%b %d, %Y"))
+      end
+    end
+  end
+
+  context "Sorting" do
+
+    it "should sort activities by lasted updated" do
+      animal1 = Animal.gen :shelter => current_shelter, :updated_at => Time.now - 3.minutes
+      animal2 = Animal.gen :shelter => current_shelter, :updated_at => Time.now - 2.minutes
+      task1  = Task.gen :shelter => current_shelter, :updated_at => Time.now - 1.minutes
+      task2  = Task.gen :shelter => current_shelter,:updated_at => Time.now + 1.minutes
+      contact1 = Contact.gen :shelter => current_shelter, :updated_at => Time.now + 2.minutes
+      contact2 = Contact.gen :shelter => current_shelter,:updated_at => Time.now + 3.minutes
+
+      visit dashboard_path
+
+      expect(page.body).to match(/#{dom_id(contact2)}.*?#{dom_id(contact1)}.*?#{dom_id(task2)}.*?#{dom_id(task1)}.*?#{dom_id(animal2)}.*?#{dom_id(animal1)}/m)
     end
   end
 end

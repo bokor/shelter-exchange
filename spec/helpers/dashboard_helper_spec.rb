@@ -120,6 +120,25 @@ describe DashboardHelper, "#task_message" do
   end
 end
 
+describe DashboardHelper, "#contact_message" do
+
+  it "returns text for a new contact record" do
+    contact = Contact.gen :first_name => "Billy", :last_name => "Bob"
+
+    expect(
+      helper.contact_message(contact)
+    ).to eq("A new contact record for <a href=\"/contacts/#{contact.id}\">Billy Bob</a> has been created.")
+  end
+
+  it "returns text when an animal has been updated" do
+    contact = Contact.gen :first_name => "Billy", :last_name => "Bob", :updated_at => Date.new(2014, 02, 14)
+
+    expect(
+      helper.contact_message(contact)
+    ).to eq("<a href=\"/contacts/#{contact.id}\">Billy Bob</a> has been updated.")
+  end
+end
+
 describe DashboardHelper, "#show_polymorphic_link" do
 
   it "returns a link for an task object" do

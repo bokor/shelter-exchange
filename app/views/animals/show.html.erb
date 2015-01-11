@@ -23,24 +23,24 @@
 				</td>
         <td class="action_links">
           <% if can?(:create, Animal) %>
-            <%= link_to "Create new animal", new_animal_path %>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to "Create new", new_animal_path %>
+            &nbsp;|&nbsp;
           <% end %>
 
           <% if can?(:create, Animal) %>
-            <%= link_to "Duplicate", new_animal_path(:animal => @animal.attributes) %>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to "Copy", new_animal_path(:animal => @animal.duplicate) %>
+              &nbsp;|&nbsp;
           <% end %>
 
           <%= link_to "Print", print_animal_path(@animal)%>
 
           <% if can?(:update, Animal) %>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
+            &nbsp;|&nbsp;
             <%= link_to "Edit", edit_animal_path(@animal)%>
           <% end %>
 
 					<% if can?(:destroy, Animal) %>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
+            &nbsp;|&nbsp;
             <%= link_to "Delete", @animal, :confirm => "Are you sure you want to delete? Animal records should only be deleted if you have entered this record in by mistake, or this is a duplicate.", :method => :delete %>
 					<% end %>
 				</td>

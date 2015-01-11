@@ -1385,6 +1385,65 @@ describe Animal, "#photos" do
   end
 end
 
+describe Animal, "#duplicate" do
+  it "duplicates without certain keys" do
+    animal = Animal.gen
+    expect(animal.duplicate).to_not have_key("id")
+    expect(animal.duplicate).to_not have_key("name")
+    expect(animal.duplicate).to_not have_key("microchip")
+    expect(animal.duplicate).to_not have_key("video_url")
+    expect(animal.duplicate).to_not have_key("special_needs")
+    expect(animal.duplicate).to_not have_key("has_special_needs")
+    expect(animal.duplicate).to_not have_key("created_at")
+    expect(animal.duplicate).to_not have_key("updated_at")
+  end
+
+  it "returns attributes for existing animal" do
+    animal = Animal.gen({
+      :description => "Sweetest puppy!",
+      :sex => "female",
+      :weight => "50 lbs",
+      :date_of_birth => nil,
+      :is_sterilized => true,
+      :color => "black with white",
+      :is_mix_breed => true,
+      :primary_breed => "Border Collie",
+      :secondary_breed => "Lab",
+      :animal_type_id => 1,
+      :animal_status_id => 1,
+      :shelter_id => 1,
+      :status_change_date => Date.parse("01 Jan 2015"),
+      :arrival_date => Date.parse("02 Jan 2015"),
+      :hold_time => Date.parse("03 Jan 2015"),
+      :euthanasia_date => Date.parse("04 Jan 2015"),
+      :accommodation_id => 22,
+      :size => "XL",
+      :age => "adult"
+    })
+    expect(MultiJson.load(animal.duplicate.to_json)).to match_array({
+      "description" => "Sweetest puppy!",
+      "sex" => "female",
+      "weight" => "50 lbs",
+      "date_of_birth" => nil,
+      "is_sterilized" => true,
+      "color" => "black with white",
+      "is_mix_breed" => true,
+      "primary_breed" => "Border Collie",
+      "secondary_breed" => "Lab",
+      "animal_type_id" => 1,
+      "animal_status_id" => 1,
+      "shelter_id" => 1,
+      "status_change_date" => "2015-01-10",
+      "arrival_date" => nil,
+      "hold_time" => nil,
+      "euthanasia_date" => nil,
+      "accommodation_id" => 22,
+      "size" => "XL",
+      "age" => "adult"
+    })
+  end
+end
+
 describe Animal, "#full_breed" do
 
   it "returns the full breed when only primary breed" do

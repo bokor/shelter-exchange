@@ -434,10 +434,15 @@
 .import_contacts .no_header_warning h4{ font-size: 14px; margin-bottom: 0px; }
 .import_contacts .no_header_warning .cancel_import{ float:right; }
 
-.import_contacts table.mapping{width:100%;border-collapse:collapse;}
+.import_contacts table.mapping{width:100%;border-collapse:collapse; margin-bottom: 30px;}
 .import_contacts table.mapping tr{width:100%; line-height: 30px;}
 .import_contacts table.mapping th{ padding: 5px 5px 5px 10px; background-color: #efefef; border-bottom: 1px solid #dcdcdc; }
 .import_contacts table.mapping td{border-bottom: 1px solid #ededed; padding: 5px 5px 5px 10px; }
+
+.import_contacts .assign_roles { padding: 15px 0 10px 10px; margin:10px 0; border-top: 1px dotted #bbb; border-bottom: 1px dotted #bbb; }
+.import_contacts .assign_roles h4 { margin-bottom: 5px;}
+.import_contacts .assign_roles span { display:inline-block; padding-right: 15px; }
+.import_contacts .assign_roles label { margin-left:17px; }
 
 .import_contacts .buttons{margin-top: 15px;}
 

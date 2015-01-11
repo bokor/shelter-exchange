@@ -80,13 +80,9 @@
         </tr>
       </table>
 
-      <style>
-        .assign_roles { padding-left: 10px; margin:10px 0px; border-bottom: 1px dotted #bbb; }
-        .assign_roles span { display:inline-block; padding-right: 15px; }
-        .assign_roles label { margin-left:17px; }
-      </style>
       <div class="assign_roles">
-        <p>Assign all of these contacts with a role:</p>
+      <h4>Optional</h4>
+        <p>Assign all of these contacts with a specific role. By checking a box below you are assigning all contacts that you are currently importing with this role.</p>
         <% Contact::ROLES.each_with_index do |value, index| %>
           <span>
             <%= f.check_box value + "_mapping", :class =>"field checkbox" %>

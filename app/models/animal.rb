@@ -117,7 +117,7 @@ class Animal < ActiveRecord::Base
   end
   #----------------------------------------------------------------------------
 
-# API
+  # API
   #----------------------------------------------------------------------------
   def self.api_lookup(types, statuses)
     scope = self.scoped
@@ -307,6 +307,19 @@ class Animal < ActiveRecord::Base
 
   # Instance Methods
   #----------------------------------------------------------------------------
+  def duplicate
+    self.attributes.except(
+      "id",
+      "name",
+      "microchip",
+      "video_url",
+      "special_needs",
+      "has_special_needs",
+      "created_at",
+      "updated_at",
+    )
+  end
+
   def full_breed
     if mix_breed?
       self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"

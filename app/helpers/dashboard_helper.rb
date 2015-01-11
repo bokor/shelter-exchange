@@ -27,6 +27,14 @@ module DashboardHelper
     end.html_safe
   end
 
+  def contact_message(contact)
+    if contact.updated_at == contact.created_at
+      "A new contact record for #{link_to contact.first_name + " " + contact.last_name, contact} has been created."
+    else
+      "<a href=\"#{contact_path(contact)}\">#{contact.first_name} #{contact.last_name}</a> has been updated."
+    end.html_safe
+  end
+
   def show_polymorphic_link(object)
     if object.is_a?(Task) and object.taskable
       link = link_to object.taskable.name, polymorphic_path(object.taskable)
