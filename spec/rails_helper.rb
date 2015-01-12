@@ -21,16 +21,16 @@ RSpec.configure do |config|
   config.include Capybara::RSpecMatchers
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, :type => :controller
-  config.include Warden::Test::Helpers, :type => :request
+  config.include Warden::Test::Helpers, :type => :feature
   config.include CarrierWave::Test::Matchers
-  config.include ActionController::RecordIdentifier, :type => :request
+  config.include ActionController::RecordIdentifier, :type => :feature
 
   # Custom RSpec Extensions
   config.extend Authentication::Controller, :type => :controller
-  config.extend Authentication::Request, :type => :request
+  config.extend Authentication::Feature, :type => :feature
 
   # Custom Helper Files
-  config.include CapybaraHelper, :type => :request
+  config.include CapybaraHelper, :type => :feature
 
   config.before :each do
     # Remove later when Type and Status are moved to just lib or model rather than db

@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :item do
-    name "Sample item"
+    name nil
     shelter
   end
 end

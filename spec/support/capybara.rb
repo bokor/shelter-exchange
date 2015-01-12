@@ -5,18 +5,11 @@ Capybara.register_driver :firefox do |app|
   driver
 end
 
-# Register Chrome with Capybara - requires chromedriver installed
-Capybara.register_driver :chrome do |app|
-  driver = Capybara::Selenium::Driver.new(app, :browser => :chrome)
-  driver.browser.manage.window.resize_to 1200, 1200 # (width, height) wide enough to view the whole layout
-  driver
-end
-
 # Configure Capybara
 Capybara.configure do |config|
   config.default_selector    = :css
   config.current_driver      = :rack_test
-  config.javascript_driver   = :chrome
+  config.javascript_driver   = :firefox
   config.default_wait_time   = 5
 
   # Support for Rspec / Capybara subdomain integration testing
