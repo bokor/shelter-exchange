@@ -40,7 +40,7 @@ class Animal < ActiveRecord::Base
 
   def status_history_date
     if self.status_history_date_month.blank? && self.status_history_date_day.blank? && self.status_history_date_year.blank?
-      @status_history_date = Time.zone.today
+      @status_history_date = Date.today
     end
   end
 
