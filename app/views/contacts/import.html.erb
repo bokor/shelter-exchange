@@ -81,8 +81,9 @@
       </table>
 
       <div class="assign_roles">
-      <h4>Optional</h4>
-        <p>Assign all of these contacts with a specific role. By checking a box below you are assigning all contacts that you are currently importing with this role.</p>
+        <h4>Roles</h4>
+        <p>Select the roles that you would like to assign to the contacts from this import. <strong>(Optional)</strong></p>
+        <%# <p>Assign all of these contacts with a specific role. By checking a box below you are assigning all contacts that you are currently importing with this role.</p> %>
         <% Contact::ROLES.each_with_index do |value, index| %>
           <span>
             <%= f.check_box value + "_mapping", :class =>"field checkbox" %>
