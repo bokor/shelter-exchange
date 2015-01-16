@@ -2,8 +2,8 @@ class Admin::AnimalsController < Admin::ApplicationController
   respond_to :html, :js
 
   def index
-    @latest_adopted    = Animal.latest(:adopted, 50).all
-    @latest_euthanized = Animal.latest(:euthanized, 10).all
+    @latest_adopted    = Animal.latest(:adopted, 50).reorder("animals.status_change_date DESC").all
+    @latest_euthanized = Animal.latest(:euthanized, 10).reorder("animals.status_change_date DESC").all
   end
 
   def live_search

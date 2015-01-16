@@ -5,7 +5,7 @@ class Public::PagesController < Public::ApplicationController
   # caches_action :show
 
   def index
-    @animals = Animal.latest(:adopted, 3).all
+    @animals = Animal.latest(:adopted, 3).reorder("animals.status_change_date DESC").all
     @lives_saved = Animal.adopted.limit(nil).count + Animal.transferred.limit(nil).count + Transfer.completed.limit(nil).count
     @active_shelters = Shelter.active.count
   end
