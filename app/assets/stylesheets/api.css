@@ -5,7 +5,7 @@
  *
  *= require jquery-ui/jquery-ui.custom
  *= require wufoo/wufoo_form
- *= require chosen/chosen.min
+ *= require chosen/chosen
  *
  *= require shared/reset
  *= require shared/buttons

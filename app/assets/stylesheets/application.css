@@ -10,7 +10,7 @@
  *= require jquery-fileupload/jquery.fileupload-ui
  *= require qtip/jquery.qtip
  *= require wufoo/wufoo_form
- *= require chosen/chosen.min
+ *= require chosen/chosen
  *
  *= require shared/reset
  *= require shared/buttons
