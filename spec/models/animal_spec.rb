@@ -1439,7 +1439,7 @@ describe Animal, "#duplicate" do
       "animal_type_id" => 1,
       "animal_status_id" => 1,
       "shelter_id" => 1,
-      "status_change_date" => Date.today.strftime("%Y-%m-%d"),
+      "status_change_date" => "2015-01-10",
       "arrival_date" => "2015-01-11",
       "hold_time" => 20,
       "euthanasia_date" => "2015-01-20",

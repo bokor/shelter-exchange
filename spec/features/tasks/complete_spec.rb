@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Complete a task" do
   login_user
 
-  it "successfully completes a task", :js => :true do
+  scenario "successfully completes a task", :js => :true do
     # Create Task to get to the Index page
     task = Task.gen :shelter => current_shelter
 

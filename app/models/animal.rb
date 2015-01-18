@@ -91,7 +91,7 @@ class Animal < ActiveRecord::Base
 
   # General Scopes
   #----------------------------------------------------------------------------
-  scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).order("status_change_date DESC").limit(limit) }
+  scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).reorder("status_change_date DESC").limit(limit) }
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
 
   def self.search(q)
@@ -386,7 +386,8 @@ class Animal < ActiveRecord::Base
 
   def set_status_change_date
     if self.new_record? || self.animal_status_id_changed?
-      self.status_change_date = Time.zone.today
+      parsed_date = Date.parse("#{self.status_history_date_year}/#{self.status_history_date_month}/#{self.status_history_date_day}") rescue Time.zone.today
+      self.status_change_date = parsed_date
     end
   end
 
@@ -441,10 +442,6 @@ class Animal < ActiveRecord::Base
   def remove_special_needs
     self.special_needs = nil unless self.special_needs?
   end
-
-  # def remove_accommodation_for_non_active
-  #   self.accommodation_id = nil if AnimalStatus::NON_ACTIVE.include?(self.animal_status_id)
-  # end
 
   def lint_facebook_url
     if self.animal_status_id_changed? && Rails.env.production?
