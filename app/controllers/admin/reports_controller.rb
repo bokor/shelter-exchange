@@ -2,7 +2,7 @@ class Admin::ReportsController < Admin::ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @status_counts = StatusHistory.status_counts.all
+    @status_counts = StatusHistory.status_counts(3).all
   end
 
   def custom
