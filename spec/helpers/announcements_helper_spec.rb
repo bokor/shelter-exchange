@@ -3,9 +3,10 @@ require "rails_helper"
 describe AnnouncementsHelper, "#current_announcements" do
 
   it "returns no announcements" do
-    allow(controller).to receive(:current_user).and_return(User.gen)
+    user = User.gen
+    allow(controller).to receive(:current_user).and_return(user)
 
-    Announcement.gen
+    Announcement.gen :starts_at => Time.now - 1.month, :ends_at => Time.now + 1.month
 
     expect(
       helper.current_announcements
@@ -14,12 +15,12 @@ describe AnnouncementsHelper, "#current_announcements" do
 
   it "returns current announcements" do
     user = User.gen
-    user.update_attribute(:announcement_hide_time, nil)
+    user.update_attribute(:announcement_hide_time, DateTime.now - 1.year)
 
-    announcement1 = Announcement.gen
-    announcement2 = Announcement.gen
+    allow(controller).to receive(:current_user).and_return(user.reload)
 
-    allow(controller).to receive(:current_user).and_return(user)
+    announcement1 = Announcement.gen :starts_at => Time.now - 1.month, :ends_at => Time.now + 1.month
+    announcement2 = Announcement.gen :starts_at => Time.now - 1.month, :ends_at => Time.now + 1.month
 
     expect(
       helper.current_announcements

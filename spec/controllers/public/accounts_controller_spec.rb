@@ -84,6 +84,8 @@ describe Public::AccountsController do
     end
 
     it "sends account_created notification to owner" do
+      Delayed::Worker.delay_jobs = true
+
       post :create, :account => @attributes
 
       account = Account.last
@@ -93,9 +95,13 @@ describe Public::AccountsController do
       expect(mailer.args[1]).to eq(account.shelters.first)
       expect(mailer.args[2]).to eq(account.users.first)
       expect(mailer.method_name).to eq(:account_created)
+
+      Delayed::Worker.delay_jobs = false
     end
 
     it "sends welcome notification to the account" do
+      Delayed::Worker.delay_jobs = true
+
       post :create, :account => @attributes
 
       account = Account.last
@@ -105,6 +111,8 @@ describe Public::AccountsController do
       expect(mailer.args[1]).to eq(account.shelters.first)
       expect(mailer.args[2]).to eq(account.users.first)
       expect(mailer.method_name).to eq(:welcome)
+
+      Delayed::Worker.delay_jobs = false
     end
 
     it "sets the flash message" do

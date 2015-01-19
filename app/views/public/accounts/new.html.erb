@@ -69,12 +69,12 @@
 					<div>Please provide details below for your animal welfare organization</div>
 				</section>
 			</li>
-			<li class="full">
+			<li id="shelter_name_container" class="full">
 				<%= shelter_fields.label :name, "Organization Name <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div><%= shelter_fields.text_field :name, :class => "field text medium" %></div>
 				<%= has_error_message?(@account.shelters.first, :name)%>
 			</li>
-			<li class="full complex">
+			<li id="shelter_address_container" class="full complex">
 				<%= shelter_fields.label :address, "Address <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
 					<span class="full addr1">
@@ -100,7 +100,7 @@
 				</div>
 				<%= has_error_message?(@account.shelters.first, :address)%>
 			</li>
-			<li class="full">
+			<li id="shelter_phone_container" class="full">
 				<%= shelter_fields.label :phone, "Main phone <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
 					<%= shelter_fields.text_field :phone, :class => "field text medium", :maxlength => 12  %>
@@ -108,12 +108,12 @@
 				</div>
 				<%= has_error_message?(@account.shelters.first, :phone)%>
 			</li>
-			<li class="full">
+			<li id="shelter_email_container" class="full">
 				<%= shelter_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div><%= shelter_fields.text_field :email, :class => "field text medium", :type => "email", :maxlength => 255 %></div>
 				<%= has_error_message?(@account.shelters.first, :email)%>
 			</li>
-			<li>
+			<li id="shelter_is_kill_container">
 				<%= shelter_fields.label :is_kill_shelter, "Are you a kill shelter? <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
 					<span>
@@ -127,10 +127,10 @@
 				</div>
 				<%= has_error_message?(@account.shelters.first, :is_kill_shelter)%>
 			</li>
-			<li>
+			<li id="shelter_timezone_container">
 				<%= shelter_fields.label :time_zone, "Time Zone <span class='req'>*</span>".html_safe, :class => "desc" %>
 				<div>
-					<%= shelter_fields.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, :prompt => "Select Timezone", :class => "field select large" %>
+          <%= shelter_fields.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :name, {:prompt => "Select Timezone"}, {:class => "field select medium"} %>
 				</div>
 				<%= has_error_message?(@account.shelters.first, :time_zone)%>
 			</li>
@@ -143,19 +143,24 @@
 				</section>
 			</li>
 			<% end %>
-			<li>
+			<li id="account_document_type_container">
 				<%= account_form.label :document_type, "Document type", :class => "desc" %>
 				<div>
-					<% Account::DOCUMENT_TYPE.each_with_index do |value, index| %>
-						<span>
-							<%= account_form.radio_button :document_type, value, :class => "field radio" %>
-							<%= account_form.label "document_type_#{value}", value.humanize, :class => "choice" %>
-						</span>
-					<% end %>
+          <span>
+            <%= account_form.radio_button :document_type, "501(c)(3) determination letter", :class => "field radio" %>
+            <%= account_form.label :document_type_501c3_determination_letter, "501(c)(3) determination letter", :class => "choice" %>
+          </span>
+          <span>
+            <%= account_form.radio_button :document_type, "990 tax form", :class => "field radio" %>
+            <%= account_form.label :document_type_990_tax_form, "990 tax form", :class => "choice" %>
+           <span>
+            <%= account_form.radio_button :document_type, "Your adoption contract", :class => "field radio" %>
+            <%= account_form.label :document_type_your_adoption_contract, "Your adoption contract", :class => "choice" %>
+          </span>
 				</div>
 				<%= has_error_message?(@account, :document_type)%>
 			</li>
-			<li class="full">
+			<li id="account_document_container" class="full">
 				<%= account_form.label :document, (@account.document? ? "Document has been attached" : "Upload document"), :class => "desc" %>
 				<% unless @account.document? %>
 				<div>
@@ -175,22 +180,22 @@
 						<div>Please provide the details for the main contact who will manage this account</div>
 					</section>
 				</li>
-				<li class="full">
+				<li id="user_name_container" class="full">
 					<%= user_fields.label :name, "First and Last name <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= user_fields.text_field :name, :class => "field text medium" %></div>
 					<%= has_error_message?(@account.users.first, :name)%>
 				</li>
-				<li class="full">
+				<li id="user_email_container" class="full">
 					<%= user_fields.label :email, "Email <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= user_fields.text_field :email, :class => "field text medium" %></div>
 					<%= has_error_message?(@account.users.first, :email)%>
 				</li>
-				<li class="full">
+				<li id="user_password_container" class="full">
 					<%= user_fields.label :password, "Password <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= user_fields.password_field :password, :class => "field text medium" %></div>
 					<%= has_error_message?(@account.users.first, :password)%>
 				</li>
-				<li class="full">
+				<li id="user_password_confirmation_container" class="full">
 					<%= user_fields.label :password_confirmation, "Confirm Password <span class='req'>*</span>".html_safe, :class => "desc" %>
 					<div><%= user_fields.password_field :password_confirmation, :class => "field text medium" %></div>
 					<%= has_error_message?(@account.users.first, :password_confirmation)%>
@@ -205,7 +210,7 @@
           <div>Below is a personalized subdomain for your organization. You are welcome to edit if you want a different name. Please note: You can only use lowercase letters, numbers and dashes, but NO characters like # or %.</div>
 				</section>
 			</li>
-			<li class="full">
+			<li id="account_subdomain_container" class="full">
 				<%= account_form.label :subdomain, "Subdomain <span class='req'>*</span>".html_safe, :class => "desc" %>
 		  		<div>
 					<span>

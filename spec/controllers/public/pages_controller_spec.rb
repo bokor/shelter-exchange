@@ -11,13 +11,13 @@ describe Public::PagesController do
     end
 
     it "assigns @animals" do
-      animal1 = Animal.gen :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      animal2 = Animal.gen :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      animal3 = Animal.gen :animal_status_id => AnimalStatus::STATUSES[:adopted]
-      Animal.gen :animal_status_id => AnimalStatus::STATUSES[:adopted]
+      Animal.gen(:animal_status_id => 2, :status_history_date_month => "01", :status_history_date_day => "02", :status_history_date_year => "2015")
+      animal2 = Animal.gen(:animal_status_id => 2, :status_history_date_month => "01", :status_history_date_day => "03", :status_history_date_year => "2015")
+      animal3 = Animal.gen(:animal_status_id => 2, :status_history_date_month => "01", :status_history_date_day => "04", :status_history_date_year => "2015")
+      animal4 = Animal.gen(:animal_status_id => 2, :status_history_date_month => "01", :status_history_date_day => "05", :status_history_date_year => "2015")
 
       get :index
-      expect(assigns(:animals)).to match_array([animal1, animal2, animal3])
+      expect(assigns(:animals)).to match_array([animal4, animal3, animal2])
     end
 
     it "assigns @lives_saved" do

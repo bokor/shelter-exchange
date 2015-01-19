@@ -1,10 +1,9 @@
 require "rails_helper"
 
-feature "Announcements" do
+feature "Announcements displayed on all pages" do
   login_user
 
   xscenario "shows annoucements for valid dates range"
   xscenario "hides announcements"
-  xscenario "shows new ones"
 end
 
