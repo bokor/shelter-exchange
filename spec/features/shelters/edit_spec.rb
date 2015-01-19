@@ -24,21 +24,44 @@ feature "Update the Shelter Details" do
     expect(find(".page_heading .action_links a")[:href]).to include(shelter_path(current_shelter))
   end
 
+  scenario "cancel the update" do
+    visit edit_shelter_path(current_shelter)
+    click_link("Cancel")
+    expect(current_path).to eq(shelters_path)
+  end
+
   context "when form invalid" do
 
-    xscenario "errors are shown to the user" do
-      # visit new_task_path
+    scenario "errors are shown to the user" do
+      visit edit_shelter_path(current_shelter)
 
-      # click_button "Create Task"
+      fill_in "Name", :with => ""
+      fill_in "Street Address", :with => ""
+      fill_in "Address Line 2", :with => ""
+      fill_in "City", :with => ""
+      fill_in "Zip Code", :with => ""
+      fill_in "Phone", :with => ""
+      fill_in "Email", :with => ""
 
-      # expect(page).to have_content "There was a problem with your submission."
+      click_button "Update Shelter"
 
-      # within "#details_container" do
-      #   expect(find(".error").text).to eq("Cannot be blank")
-      # end
+      expect(page).to have_content "There was a problem with your submission."
 
-      # expect(current_path).to eq(tasks_path)
-      # body_class_should_include "create_tasks"
+      within "#name_container" do
+        expect(find(".error").text).to eq("Cannot be blank")
+      end
+
+      within "#address_container" do
+        expect(find(".error").text).to eq("Street, city, state and zip code are all required")
+      end
+
+      within "#phone_container" do
+        expect(find(".error").text).to eq("Cannot be blank")
+      end
+
+      within "#email_container" do
+        expect(find(".error").text).to eq("Cannot be blank")
+      end
     end
   end
 end
