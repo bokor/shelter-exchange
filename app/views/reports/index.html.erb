@@ -21,17 +21,17 @@
       <tr>
         <th>Status</th>
         <th>Total</th>
-        <th>2014</th>
-        <th>2013</th>
-        <th>2012</th>
+        <th><%= Time.zone.today.year %></th>
+        <th><%= Time.zone.today.year - 1 %></th>
+        <th><%= Time.zone.today.year - 2 %></th>
       </tr>
 			<% @status_counts.each do |status_history|  %>
 				<tr class="<%= cycle("odd", "even")%>">
 					<td class="status"><%= status_history["Status"] %></td>
 					<td class="center"><%= status_history["Total"] %></td>
-					<td class="center"><%= status_history["2014"] %></td>
-					<td class="center"><%= status_history["2013"] %></td>
-          <td class="center"><%= status_history["2012"] %></td>
+					<td class="center"><%= status_history[Time.zone.today.year] %></td>
+					<td class="center"><%= status_history[Time.zone.today.year - 1] %></td>
+          <td class="center"><%= status_history[Time.zone.today.year - 2] %></td>
 				</tr>
       <% end %>
     </table>
