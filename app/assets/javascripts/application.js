@@ -52,6 +52,27 @@ $(function() {
 		});
 	});
 
+  $(document).on('mouseover', '.tooltip_on_top', function(e) {
+    var width  = $(this).width();
+    var height = $(this).height();
+
+		$(this).qtip({
+			overwrite: false,
+			content: {
+				text: function(api) { return $(this).attr('data-tip'); }
+			},
+			show: {
+				event: e.type, // Use the same show event as the one that triggered the event handler
+				ready: true // Show the tooltip as soon as it's bound, vital so it shows up the first time you hover!
+			},
+			style: { classes: 'qtip-tipsy' },
+			position: {
+				my: 'bottom center',
+				at: 'top center',
+			}
+		}, e);
+	});
+
   $(document).on('click', '.tooltip_dialog', function(e) {
 		e.preventDefault();
 
