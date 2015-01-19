@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @status_counts = @current_shelter.status_histories.status_counts.all
+    @status_counts = @current_shelter.status_histories.status_counts(3).all
   end
 
   def custom
