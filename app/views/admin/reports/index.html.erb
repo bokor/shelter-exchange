@@ -16,27 +16,47 @@
 
   <div class="page_content">
 
-    <div class="separator"></div>
+    <h2>Animal Count Totals</h2>
+    <table class="status_counts">
+      <tr>
+        <th>Status</th>
+        <th>Total</th>
+        <th><%= Time.zone.today.year %></th>
+        <th><%= Time.zone.today.year - 1 %></th>
+        <th><%= Time.zone.today.year - 2 %></th>
+      </tr>
+			<% @status_counts.each do |status_history|  %>
+				<tr class="<%= cycle("odd", "even")%>">
+					<td class="status"><%= status_history["Status"] %></td>
+					<td class="center"><%= status_history["Total"] %></td>
+					<td class="center"><%= status_history[Time.zone.today.year] %></td>
+					<td class="center"><%= status_history[Time.zone.today.year - 1] %></td>
+          <td class="center"><%= status_history[Time.zone.today.year - 2] %></td>
+				</tr>
+      <% end %>
+    </table>
 
-    <div class="filters">
-      <span class="left">
-        <%= label_tag :selected_state, "Select State:" %>
-        <%= select "", :selected_state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All"}, {:onchange => ""}  %>
-      </span>
-      <span class="leftPadded">
-        <%= label_tag :selected_month, "Select month:" %>
-        <%= select_month(Time.zone.today, {:field_name => :selected_month, :prefix => "", :start_month => Time.zone.today.month},{:onchange => ""} )%>
-      </span>
-      <span class="leftPadded">
-        <%= label_tag :date_report_selected_year, "Select year:" %>
-        <%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year},{:onchange => ""})%>
-      </span>
-      <span class="leftPadded">
-        <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
-      </span>
+    <div class="stats">
+			<h2>Monthly Totals</h2>
+
+      <div class="filters">
+        <span class="left">
+          <%= label_tag :selected_state, "Select State:" %>
+          <%= select "", :selected_state, US_STATES.map {|k,v| [ v, k ] }, {:prompt => "All"}, {:onchange => ""}  %>
+        </span>
+        <span class="leftPadded">
+          <%= label_tag :selected_month, "Select month:" %>
+          <%= select_month(Time.zone.today, {:field_name => :selected_month, :prefix => "", :start_month => Time.zone.today.month},{:onchange => ""} )%>
+        </span>
+        <span class="leftPadded">
+          <%= label_tag :date_report_selected_year, "Select year:" %>
+          <%= select_year(Time.zone.today, {:field_name => :selected_year, :prefix => "", :start_year => Time.zone.today.year - 3, :end_year => Time.zone.today.year},{:onchange => ""})%>
+        </span>
+        <span class="leftPadded">
+          <%= submit_tag "Go", :disable_with => '...', :id => "submit_report" %>
+        </span>
+      </div>
     </div>
-
-    <div class="separator"></div>
 
 		<div id="status_by_month_year" class="report"></div>
 		<div class="separator"></div>

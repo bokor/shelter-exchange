@@ -2,7 +2,7 @@ class Admin::ReportsController < Admin::ApplicationController
   respond_to :html, :js, :json
 
   def index
-    # TODO: Add ongoing important counts
+    @status_counts = StatusHistory.status_counts.all
   end
 
   def custom

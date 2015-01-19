@@ -2,6 +2,7 @@
 //= require jquery-ui/jquery-ui.min
 //= require jquery.ui.autocomplete
 //= require jquery.blockUI.min
+//= require chosen.jquery.min
 //= require modernizr
 //= require date
 //= require highcharts
