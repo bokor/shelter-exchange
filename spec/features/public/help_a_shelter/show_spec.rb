@@ -43,33 +43,45 @@ feature "Shelter's public profile" do
 
     within "#shelter_details .address_info" do
 
+      # Shelter Name
+      expect(
+        find("h2[itemprop='name']").text
+      ).to eq("Cute Doggies")
 
-      # <div class="address_info">
-			# <h2 itemprop="name">Brian's Buddies</h2>
+      # Address Details
+      expect(page).to have_selector("#address[itemprop='address'][itemtype='http://schema.org/PostalAddress']")
+      expect(
+        find("#address li[itemprop='streetAddress']").text
+      ).to eq("123 Main st.")
+      expect(
+        find("span[itemprop='addressLocality']").text
+      ).to eq("Redwood city")
+      expect(
+        find("span[itemprop='addressRegion']").text
+      ).to eq("CA")
+      expect(
+        find("span[itemprop='postalCode']").text
+      ).to eq("94063")
 
-			# <ul itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-				# <li itemprop="streetAddress">730 Bair Island Rd  Apt 101</li>
-				# <li>
-					# <span itemprop="addressLocality">Redwood City</span>,
-					# <span itemprop="addressRegion">CA</span>  <span itemprop="postalCode">94063</span>
-				# </li>
-			# </ul>
-			# <br>
-			# <ul>
-				# <li>Phone: <span itemprop="telephone">999-999-9999</span></li>
-				# <li class="action_links">
-					# <span><a href="mailto:brian.bokor@shelterexchange.org?subject=From Shelter Exchange" itemprop="email">Email Us</a>|</span>
-						# <span><a href="http://www.brianbokor.com" target="_blank">Visit Website</a>|</span>
-					# <span class="get_directions_link">
-						# <a href="http://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=&amp;daddr=730%20Bair%20Island%20Rd%20%20Apt%20101++Redwood%20City+CA+94063&amp;hl=en" target="_blank" itemprop="maps">Get Directions</a>
-					# </span>
-				# </li>
-				# <li class="action_links">
-						# <span><a href="http://twitter.com/#!/brianbokor" target="_blank">Follow @brianbokor</a>|</span>
-						# <span><a href="http://www.facebook.com/brian.bokor" target="_blank">Facebook Page</a></span>
-				# </li>
-			# </ul>
-		# </div>
+      # Contact Details
+      expect(
+        find("#contact_info span[itemprop='telephone']").text
+      ).to eq("999-999-9999")
+      expect(
+        find_link("Email Us")[:href]
+      ).to eq("mailto:cute_doggies@example.org?subject=From Shelter Exchange")
+      expect(
+        find_link("Visit Website")[:href]
+      ).to eq("http://shelterexchange.org")
+      expect(
+        find_link("Get Directions")[:href]
+      ).to eq("http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=123%20Main%20st.+%23101+Redwood%20city+CA+94063&hl=en")
+      expect(
+        find_link("Follow @shelterexchange")[:href]
+      ).to eq("http://twitter.com/#!/shelterexchange")
+      expect(
+        find_link("Facebook Page")[:href]
+      ).to eq("http://facebook.com/shelterexchange")
     end
   end
 
@@ -109,11 +121,11 @@ feature "Shelter's public profile" do
   end
 
   xscenario "default list of animals available for adoption" do
-    # visit public_help_a_shelter_path(@shelter)
+    visit public_help_a_shelter_path(@shelter)
   end
 
   xscenario "filter animals available for adoption" do
-    # visit public_help_a_shelter_path(@shelter)
+    visit public_help_a_shelter_path(@shelter)
   end
 end
 
