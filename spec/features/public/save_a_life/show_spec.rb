@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "View the animal's public profile" do
+feature "Animal's public profile" do
 
   background do
     switch_to_subdomain("www")
