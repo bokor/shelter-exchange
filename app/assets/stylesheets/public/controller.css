@@ -625,8 +625,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .show_help_a_shelter .pagination{ margin: 0 auto; text-align:center;}
 
 .show_help_a_shelter .animal{width: 30%; min-height: 240px; display: inline-block; *display: inline; vertical-align: middle; padding: 10px 5px; margin: 0 8px 15px 8px; text-align:center; -moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px; border: 1px solid #ccc;}
-.show_help_a_shelter .animal .logo{height:150px; line-height:150px; vertical-align:middle; padding-bottom: 5px;}
-.show_help_a_shelter .animal .logo img{vertical-align:middle; -webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
+.show_help_a_shelter .animal .photo{height:150px; line-height:150px; vertical-align:middle; padding-bottom: 5px;}
+.show_help_a_shelter .animal .photo img{vertical-align:middle; -webkit-box-shadow: 0px 0px 6px #222;-moz-box-shadow: 0px 0px 6px #222;box-shadow: 0px 0px 6px #222;-webkit-border-radius: 8px;-moz-border-radius: 8px;	border-radius: 8px;}
 .show_help_a_shelter .animal.hover {border:1px solid #cf7019;-moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;}
 .show_help_a_shelter .animal a{color: #222; font-weight:normal;}
 .show_help_a_shelter .animal h3{margin-bottom:0;padding:5px 0;}
@@ -638,8 +638,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 
 /* Show Help a Shelter :: Animal List :: Layout :: IE ::  PIE */
 /******************************************************************/
-.ie7 .show_help_a_shelter .animal .logo img,
-.ie8 .show_help_a_shelter .animal .logo img{behavior: url(/assets/pie/PIE.htc);}
+.ie7 .show_help_a_shelter .animal .photo img,
+.ie8 .show_help_a_shelter .animal .photo img{behavior: url(/assets/pie/PIE.htc);}
 .ie7 .show_help_a_shelter .animal,
 .ie8 .show_help_a_shelter .animal{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 

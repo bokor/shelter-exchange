@@ -47,6 +47,7 @@ feature "User Authentication and Login Actions for the application" do
 
     attachments = ActionMailer::Base.deliveries.last.attachments
     body = ActionMailer::Base.deliveries.last.html_part
+    token = extract_token_from_email(body, :reset_password)
 
     allow(Devise).to receive(:friendly_token).and_return("abcdef")
 
@@ -54,7 +55,7 @@ feature "User Authentication and Login Actions for the application" do
     expect(body).to have_content("Dear Login Tester")
     expect(body).to have_content("You are receiving this email as you have requested assistance to reset your password.")
     expect(body).to have_content("Please click this link below to confirm your email address and reset your password.")
-    expect(body).to have_link("Change my password", :href => "http://login-test.se.test:9292/password/edit?reset_password_token=#{@user.reload.reset_password_token}")
+    expect(body).to have_link("Change my password", :href => "http://login-test.se.test:9292/password/edit?reset_password_token=#{token}")
     expect(body).to have_content("Many thanks,")
     expect(body).to have_content("Shelter Exchange")
     expect(body).to have_link("info@shelterexchange.org", :href => "mailto:info@shelterexchange.org")

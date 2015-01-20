@@ -31,6 +31,7 @@ RSpec.configure do |config|
 
   # Custom Helper Files
   config.include CapybaraHelper, :type => :feature
+  config.include MailerHelper, :type => :feature
 
   config.before :each do
     # Remove later when Type and Status are moved to just lib or model rather than db
