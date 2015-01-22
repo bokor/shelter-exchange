@@ -88,14 +88,11 @@ var HelpAShelter = {
         $("#filters_breed").prepend("<option/>");
         $("#filters_breed").attr('disabled', true);
         $("#filters_breed").attr('data-placeholder', "Please select type first");
-
         $(".chosen-select").trigger("chosen:updated");
 			} else {
         $("#filters_breed").attr('disabled', false);
         $("#filters_breed").attr('data-placeholder', "Type animal breed");
         Breeds.updateChosenByType(animalTypeId, '#filters_breed');
-
-        $(".chosen-select").trigger("chosen:updated");
 			}
 
       HelpAShelter.findAnimalsForShelter();
