@@ -49,15 +49,21 @@ describe Integration::AdoptAPet do
   end
 
   context "After Save" do
-    it "enqueues a job to update remote animals" do
+    it "enqueues a job to update remote animals", :delayed_job => true do
+      Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
+
       shelter = Shelter.gen
-      integration = Integration::AdoptAPet.new :username => "test", :password => "test", :shelter => shelter
-      adopt_a_pet_job = AdoptAPetJob.new(shelter.id)
+      integration = Integration.gen(
+        :adopt_a_pet_with_after_save_callback,
+        :username => "test", :password => "test", :shelter => shelter
+      )
 
-      allow(AdoptAPetJob).to receive(:new).and_return(adopt_a_pet_job)
-      expect(Delayed::Job).to receive(:enqueue).with(AdoptAPetJob.new(shelter.id))
-
-      integration.save!
+      job = YAML.load(Delayed::Job.last.handler)
+      expect(Delayed::Job.last.name).to eq("AdoptAPetJob")
+      expect(job.class).to eq(AdoptAPetJob)
+      expect(job.instance_variable_get(:@start_time)).to eq("2014-02-14 00:00:00 -0800")
+      expect(job.instance_variable_get(:@shelter)).to eq(shelter)
+      expect(job.instance_variable_get(:@integration)).to eq(integration)
     end
   end
 end

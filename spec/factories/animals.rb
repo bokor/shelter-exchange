@@ -26,6 +26,9 @@ FactoryGirl.define do
     secondary_breed  nil
 
     after(:build) do |animal|
+      animal.class.skip_callback(:update, :after, :lint_facebook_url)
+      animal.class.skip_callback(:update, :after, :enqueue_integrations)
+
       primary_breed = animal.primary_breed.strip unless animal.primary_breed.nil?
       primary_breed = Breed.where(:animal_type_id => animal.animal_type_id, :name => primary_breed).first
       Breed.gen(:animal_type_id => animal.animal_type_id, :name => animal.primary_breed) unless primary_breed
@@ -36,7 +39,13 @@ FactoryGirl.define do
         Breed.gen(:animal_type_id => animal.animal_type_id, :name => animal.secondary_breed) unless secondary_breed
       end
     end
+  end
 
+  factory :with_after_save_callback_animal, :parent => :animal, :class => "Animal" do
+    after(:build) { |animal|
+      animal.class.set_callback(:update, :after, :lint_facebook_url)
+      animal.class.set_callback(:update, :after, :enqueue_integrations)
+    }
   end
 end
 

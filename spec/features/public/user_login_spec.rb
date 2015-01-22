@@ -30,9 +30,7 @@ feature "User Authentication and Login Actions from the www site" do
     flash_message_should_be "Invalid email or password."
   end
 
-  scenario "user forgot their password" do
-    Delayed::Worker.delay_jobs = true
-
+  scenario "user forgot their password", :delayed_job => true do
     visit "/password/new"
 
     fill_in "Email", :with => "test@example.com"
@@ -43,7 +41,6 @@ feature "User Authentication and Login Actions from the www site" do
 
     expect(Delayed::Job.count).to eq(1)
     Delayed::Worker.new.work_off
-    Delayed::Worker.delay_jobs = false
 
     attachments = ActionMailer::Base.deliveries.last.attachments
     body = ActionMailer::Base.deliveries.last.html_part

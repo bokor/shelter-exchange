@@ -126,6 +126,7 @@ feature "Shelter's public profile" do
     background do
       dog = AnimalType.gen(:id => 1, :name => "Dog")
       cat = AnimalType.gen(:id => 2, :name => "Cat")
+
       @animal1 = Animal.gen(
         :name => "Jimmy", :animal_type => dog, :animal_status_id => 1,
         :primary_breed => "Labrador Retriever", :secondary_breed => "Golden Retriever", :sex => "male",

@@ -436,24 +436,26 @@ describe Animal do
 
     describe "#enqueue_integrations" do
 
-      it "enqueues a job to update remote animals" do
+      it "enqueues a job to update remote animals", :delayed_job => true do
         allow(Net::FTP).to receive(:open).and_return(true)
 
         shelter = Shelter.gen
-        Integration.gen :adopt_a_pet, :shelter => shelter
-        Integration.gen :petfinder, :shelter => shelter
-        animal = Animal.build :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
+        adopt_a_pet_integration = Integration.gen :adopt_a_pet, :shelter => shelter
+        petfinder_integration = Integration.gen :petfinder, :shelter => shelter
 
-        adopt_a_pet_job = AdoptAPetJob.new(shelter.id)
-        allow(AdoptAPetJob).to receive(:new).and_return(adopt_a_pet_job)
+        Animal.gen :with_after_save_callback, :shelter => shelter, :animal_status_id => AnimalStatus::AVAILABLE[0]
 
-        petfinder_job = PetfinderJob.new(shelter.id)
-        allow(PetfinderJob).to receive(:new).and_return(petfinder_job)
+        petfinder_job = YAML.load(Delayed::Job.last.handler)
+        expect(Delayed::Job.last.name).to eq("PetfinderJob")
+        expect(petfinder_job.class).to eq(PetfinderJob)
+        expect(petfinder_job.instance_variable_get(:@shelter)).to eq(shelter)
+        expect(petfinder_job.instance_variable_get(:@integration)).to eq(petfinder_integration)
 
-        expect(Delayed::Job).to receive(:enqueue).with(adopt_a_pet_job)
-        expect(Delayed::Job).to receive(:enqueue).with(petfinder_job)
-
-        animal.save!
+        adopt_a_pet_job = YAML.load(Delayed::Job.first.handler)
+        expect(Delayed::Job.first.name).to eq("AdoptAPetJob")
+        expect(adopt_a_pet_job.class).to eq(AdoptAPetJob)
+        expect(adopt_a_pet_job.instance_variable_get(:@shelter)).to eq(shelter)
+        expect(adopt_a_pet_job.instance_variable_get(:@integration)).to eq(adopt_a_pet_integration)
       end
     end
   end
@@ -462,16 +464,19 @@ describe Animal do
 
     describe "#lint_facebook_url" do
 
-      it "lints the facebook url for an updated animal" do
+      it "lints the facebook url for an updated animal", :delayed_job => true do
         shelter = Shelter.gen
-        animal_status_old = AnimalStatus.gen
-        animal_status_new = AnimalStatus.gen
-        animal = Animal.gen :shelter => shelter, :animal_status => animal_status_old
+        animal_status = AnimalStatus.gen
+        animal = Animal.gen :with_after_save_callback, :shelter => shelter, :animal_status => animal_status
 
         allow(Rails).to receive_message_chain(:env, :production?).and_return(true)
-        expect(Delayed::Job).to receive(:enqueue).with(FacebookLinterJob.new(animal.id))
 
-        animal.update_attribute(:animal_status_id, animal_status_new.id)
+        animal.update_attribute(:animal_status_id, AnimalStatus.gen.id)
+
+        job = YAML.load(Delayed::Job.last.handler)
+        expect(Delayed::Job.first.name).to eq("FacebookLinterJob")
+        expect(job.class).to eq(FacebookLinterJob)
+        expect(job.id).to eq(animal.id)
       end
     end
   end

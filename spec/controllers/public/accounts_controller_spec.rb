@@ -83,25 +83,19 @@ describe Public::AccountsController do
       expect(assigns(:account)).to be_persisted
     end
 
-    it "sends account_created notification to owner" do
-      Delayed::Worker.delay_jobs = true
-
+    it "sends account_created notification to owner", :delayed_job => true do
       post :create, :account => @attributes
 
       account = Account.last
-      mailer = YAML.load(Delayed::Job.all[1].handler)
+      mailer = YAML.load(Delayed::Job.first.handler)
       expect(mailer.object).to eq(OwnerMailer)
       expect(mailer.args[0]).to eq(account)
       expect(mailer.args[1]).to eq(account.shelters.first)
       expect(mailer.args[2]).to eq(account.users.first)
       expect(mailer.method_name).to eq(:account_created)
-
-      Delayed::Worker.delay_jobs = false
     end
 
-    it "sends welcome notification to the account" do
-      Delayed::Worker.delay_jobs = true
-
+    it "sends welcome notification to the account", :delayed_job => true do
       post :create, :account => @attributes
 
       account = Account.last
@@ -111,8 +105,6 @@ describe Public::AccountsController do
       expect(mailer.args[1]).to eq(account.shelters.first)
       expect(mailer.args[2]).to eq(account.users.first)
       expect(mailer.method_name).to eq(:welcome)
-
-      Delayed::Worker.delay_jobs = false
     end
 
     it "sets the flash message" do

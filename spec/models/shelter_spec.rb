@@ -159,11 +159,12 @@ describe Shelter do
   context "After Save" do
 
     describe "#update_map_details" do
-      it "enqueues map overlay job" do
-        job = MapOverlayJob.new
-        allow(MapOverlayJob).to receive(:new).and_return(job)
-        expect(Delayed::Job).to receive(:enqueue).with(job)
-        Shelter.gen
+      it "enqueues map overlay job", :delayed_job => true do
+
+        Shelter.gen :with_after_save_callback
+
+        job = YAML.load(Delayed::Job.last.handler)
+        expect(job.class).to eq(MapOverlayJob)
       end
     end
   end

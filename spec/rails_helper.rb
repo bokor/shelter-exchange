@@ -37,9 +37,6 @@ RSpec.configure do |config|
     # Remove later when Type and Status are moved to just lib or model rather than db
     allow_message_expectations_on_nil
 
-    # Reset Delayed Jobs if missed in the test
-    Delayed::Worker.delay_jobs = false
-
     # Clear out Mailers
     ActionMailer::Base.deliveries = []
   end

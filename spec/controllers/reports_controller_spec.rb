@@ -27,11 +27,17 @@ describe ReportsController do
       get :index
       status_counts_hash = MultiJson.load(assigns(:status_counts).to_json)
       expect(status_counts_hash).to match_array([{
-        "status_history" => { "2012" => 1, "2013" => 1, "2014" => 0, "Status" => "Available for adoption", "Total" => 2 }
+        "status_history" => {
+          "2011" => 0, "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Adopted", "Total" => 1
+        }
       }, {
-        "status_history" => { "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Adopted", "Total" => 1 }
+        "status_history" => {
+          "2011" => 0, "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Foster Care", "Total" => 1
+        }
       }, {
-        "status_history" => { "2012" => 0, "2013" => 0, "2014" => 1, "Status" => "Foster Care", "Total" => 1 }
+        "status_history" => {
+          "2011" => 0, "2012" => 1, "2013" => 1, "2014" => 0, "Status" => "Available for adoption", "Total" => 2
+        }
       }])
     end
 
