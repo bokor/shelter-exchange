@@ -2,8 +2,15 @@ class AnimalsController < ApplicationController
   respond_to :html, :js, :csv
 
   def index
+    query = params[:query]
+    order_by = params[:order_by]
+    type_id = params[:animal_type_id]
+    status_id = params[:animal_status_id]
+
     @total_animals = @current_shelter.animals.count
-    @animals = @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
+    @animals = @current_shelter.animals.search_and_filter(query, type_id, status_id)
+    @animals = @animals.reorder(order_by) unless order_by.blank?
+    @animals = @animals.paginate(:page => params[:page]).all
     respond_with(@animals)
   end
 
@@ -71,15 +78,6 @@ class AnimalsController < ApplicationController
     end
   end
 
-  def search
-    q = params[:q].strip.split.join("%")
-    @animals = if q.blank?
-      @current_shelter.animals.active.includes(:animal_type, :animal_status, :photos).paginate(:page => params[:page]).all
-    else
-      @current_shelter.animals.search(q).paginate(:page => params[:page]).all
-    end
-  end
-
   def filter_notes
     filter_param = params[:filter]
     @animal = Animal.find(params[:id])
@@ -88,19 +86,6 @@ class AnimalsController < ApplicationController
       @animal.notes.includes(:documents).all
     else
       @animal.notes.includes(:documents).where(:category => filter_param).all
-    end
-  end
-
-  def filter_by_type_status
-    @animals = @current_shelter.animals.filter_by_type_status(params[:animal_type_id], params[:animal_status_id]).paginate(:page => params[:page]).all
-  end
-
-  def find_animals_by_name
-    @animals = {}
-
-    unless params[:q].blank?
-      q = params[:q].strip
-      @animals = @current_shelter.animals.search_by_name(q).paginate(:page => params[:page]).all
     end
   end
 

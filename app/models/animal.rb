@@ -93,21 +93,6 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).reorder("status_change_date DESC").limit(limit) }
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
-
-  def self.search(q)
-    scope = self.scoped
-    scope = scope.includes(:animal_type, :animal_status, :photos)
-    if q.is_numeric?
-      scope = scope.where("animals.id = ? OR animals.microchip = ?", q, q)
-    else
-      scope = scope.where(
-        "animals.name LIKE ? OR animals.description LIKE ? OR animals.microchip LIKE ? OR animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
-        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%"
-      )
-    end
-
-    scope
-  end
   #----------------------------------------------------------------------------
 
   # Dashboard - Recent Activity
@@ -230,6 +215,34 @@ class Animal < ActiveRecord::Base
 
   # Searching
   #----------------------------------------------------------------------------
+  def self.search_and_filter(query, type, status)
+    scope = self.scoped
+    scope = scope.includes(:animal_type, :animal_status, :photos)
+
+    # Filter by type
+    scope = scope.where(:animal_type_id => type) unless type.blank?
+
+    # Filter by status
+    status = "active" if status.blank?
+    scope = (status == "active" || status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
+
+    # Search by query
+    unless query.blank?
+      query = query.strip.split.join("%")
+
+      if query.is_numeric?
+        scope = scope.where("animals.id = ? OR animals.microchip = ?", query, query)
+      else
+        scope = scope.where(
+          "animals.name LIKE ? OR animals.description LIKE ? OR animals.microchip LIKE ? OR animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
+          "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"
+        )
+      end
+    end
+
+    scope
+  end
+
   def self.search_by_name(q)
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
@@ -237,17 +250,6 @@ class Animal < ActiveRecord::Base
       scope = scope.where("animals.id = ?", q)
     else
       scope = scope.where("animals.name LIKE ?", "%#{q}%")
-    end
-
-    scope
-  end
-
-  def self.filter_by_type_status(type, status)
-    scope = self.scoped
-    scope = scope.includes(:animal_type, :animal_status, :photos)
-    scope = scope.where(:animal_type_id => type) unless type.blank?
-    unless status.blank?
-      scope = (status == "active" || status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
     end
 
     scope

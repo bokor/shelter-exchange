@@ -122,14 +122,16 @@ var Animals = {
 			$('#accommodation_remove_link').show();
 		}
 	},
-	filterByTypeStatus: function(){
+	search: function(){
 		$.ajax({
-			url: "/animals/filter_by_type_status.js",
+			url: "/animals.js",
 			type: "get",
 			dataType: 'script',
 			data: {
+				query: $('#query').val(),
 				animal_type_id: $('#animal_animal_type_id').val(),
-				animal_status_id: $('#animal_animal_status_id').val()
+				animal_status_id: $('#animal_animal_status_id').val(),
+        order_by: $('#order_by').val()
 			}
 		});
 	},

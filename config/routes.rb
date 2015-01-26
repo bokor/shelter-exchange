@@ -131,9 +131,7 @@ ShelterExchangeApp::Application.routes.draw do
       end
 
       collection do
-        get :search
         get :filter_notes
-        get :filter_by_type_status
         get :find_animals_by_name
         get :auto_complete
         post :export

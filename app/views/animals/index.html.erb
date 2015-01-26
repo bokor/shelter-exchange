@@ -17,9 +17,9 @@
 				<tr>
 					<td class="full_search">
 						<h3>Search for animals:</h3>
-						<%= form_for :animals, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
-							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go", :disable_with => "..." %>
+            <%= form_for :animals, :html => { :id => "form_search", :onsubmit => "Animals.search(); return false;" } do |f| %>
+							<%= text_field_tag "query", ""  %>
+							<%= f.submit "Go" %>
 						<% end %>
 					</td>
 					<td class="filters">
@@ -28,13 +28,13 @@
 							<tr>
 								<td><%= label_tag :animal_type_id, "Type" %></td>
 								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
-								       { :name => "animal_type_id", :onchange => "Animals.filterByTypeStatus();" } ) %><br /><br />
+								       { :name => "animal_type_id", :onchange => "Animals.search();" } ) %><br /><br />
 								</td>
 							</tr>
 							<tr>
 								<td><%= label_tag :animal_status_id, "Status" %></td>
 								<td><%= select(:animal, :animal_status_id, filter_by_animal_statuses, {},
-								        {:name => "animal_status_id", :onchange => "Animals.filterByTypeStatus();"} ) %>
+								        {:name => "animal_status_id", :onchange => "Animals.search();"} ) %>
 								</td>
 							</tr>
 						</table>
@@ -42,8 +42,14 @@
 				</tr>
 			</table>
 
-			<div class="help_text">
-				<strong>Below are the active animals at your facility. Search all other animals using status filter.</strong>
+      <div class="help_text">
+        <strong>Order by:</strong>
+        <select id="order_by" name="order_by" onchange="Animals.search();">
+          <option value="animals.name ASC">Name: A-Z</option>
+          <option value="animals.name DESC">Name: Z-A</option>
+          <option value="animals.updated_at DESC">Last updated: Newest-Oldest</option>
+          <option value="animals.updated_at ASC">Last updated: Oldest-Newest</option>
+        </select>
 			</div>
 
 			<div id="animals">
