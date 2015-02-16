@@ -29,7 +29,11 @@ class AnimalsController < ApplicationController
   end
 
   def new
-    @animal = @current_shelter.animals.build(params[:animal])
+    @animal = if params[:parent_id]
+      @current_shelter.animals.duplicate_from(params[:parent_id])
+    else
+      @current_shelter.animals.build(params[:animal])
+    end
     respond_with(@animal)
   end
 

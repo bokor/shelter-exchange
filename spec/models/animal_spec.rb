@@ -640,6 +640,77 @@ describe Animal, ".search" do
   end
 end
 
+describe Animal, ".duplicate_from" do
+
+  before do
+    @parent = Animal.gen({
+      :name => "Billy Boy",
+      :microchip => 123456789,
+      :special_needs => "he has special needs",
+      :has_special_needs => true,
+      :video_url => "http://youtube.com/watch?v=xxxx",
+      :description => "Sweetest puppy!",
+      :sex => "female",
+      :weight => "50 lbs",
+      :date_of_birth => nil,
+      :is_sterilized => true,
+      :color => "black with white",
+      :is_mix_breed => true,
+      :primary_breed => "Border Collie",
+      :secondary_breed => "Lab",
+      :animal_type_id => 1,
+      :animal_status_id => 1,
+      :shelter_id => 1,
+      :status_history_date_month => "01",
+      :status_history_date_day => "10",
+      :status_history_date_year => "2015",
+      :arrival_date_month => "01",
+      :arrival_date_day => "11",
+      :arrival_date_year => "2015",
+      :euthanasia_date_month => "01",
+      :euthanasia_date_day => "20",
+      :euthanasia_date_year => "2015",
+      :hold_time => 20,
+      :accommodation_id => 22,
+      :size => "XL",
+      :age => "adult"
+    })
+  end
+
+  it "returns a duplicated animal from parent" do
+    animal = Animal.duplicate_from(@parent.id)
+    expect(MultiJson.load(animal.attributes.to_json)).to match_array({
+      "id" => nil,
+      "name" => nil,
+      "description" => "Sweetest puppy!",
+      "sex" => "female",
+      "weight" => "50 lbs",
+      "date_of_birth" => nil,
+      "is_sterilized" => true,
+      "color" => "black with white",
+      "is_mix_breed" => true,
+      "primary_breed" => "Border Collie",
+      "secondary_breed" => "Lab",
+      "animal_type_id" => 1,
+      "animal_status_id" => 1,
+      "shelter_id" => 1,
+      "status_change_date" => "2015-01-10",
+      "arrival_date" => "2015-01-11",
+      "hold_time" => 20,
+      "euthanasia_date" => "2015-01-20",
+      "accommodation_id" => 22,
+      "size" => "XL",
+      "age" => "adult",
+      "has_special_needs" => false,
+      "microchip" => nil,
+      "special_needs" => nil,
+      "video_url" => nil,
+      "created_at" => nil,
+      "updated_at" => nil
+    })
+  end
+end
+
 describe Animal, ".recent_activity" do
 
   it "returns a limited number of recent animals" do
@@ -1387,71 +1458,6 @@ describe Animal, "#photos" do
     expect(@animal.photos.count).to eq(2)
     @animal.destroy
     expect(@animal.photos.count).to eq(0)
-  end
-end
-
-describe Animal, "#duplicate" do
-  it "duplicates without certain keys" do
-    animal = Animal.gen
-    expect(animal.duplicate).to_not have_key("id")
-    expect(animal.duplicate).to_not have_key("name")
-    expect(animal.duplicate).to_not have_key("microchip")
-    expect(animal.duplicate).to_not have_key("video_url")
-    expect(animal.duplicate).to_not have_key("special_needs")
-    expect(animal.duplicate).to_not have_key("has_special_needs")
-    expect(animal.duplicate).to_not have_key("created_at")
-    expect(animal.duplicate).to_not have_key("updated_at")
-  end
-
-  it "returns attributes for existing animal" do
-    animal = Animal.gen({
-      :description => "Sweetest puppy!",
-      :sex => "female",
-      :weight => "50 lbs",
-      :date_of_birth => nil,
-      :is_sterilized => true,
-      :color => "black with white",
-      :is_mix_breed => true,
-      :primary_breed => "Border Collie",
-      :secondary_breed => "Lab",
-      :animal_type_id => 1,
-      :animal_status_id => 1,
-      :shelter_id => 1,
-      :status_history_date_month => "01",
-      :status_history_date_day => "10",
-      :status_history_date_year => "2015",
-      :arrival_date_month => "01",
-      :arrival_date_day => "11",
-      :arrival_date_year => "2015",
-      :euthanasia_date_month => "01",
-      :euthanasia_date_day => "20",
-      :euthanasia_date_year => "2015",
-      :hold_time => 20,
-      :accommodation_id => 22,
-      :size => "XL",
-      :age => "adult"
-    })
-    expect(MultiJson.load(animal.duplicate.to_json)).to match_array({
-      "description" => "Sweetest puppy!",
-      "sex" => "female",
-      "weight" => "50 lbs",
-      "date_of_birth" => nil,
-      "is_sterilized" => true,
-      "color" => "black with white",
-      "is_mix_breed" => true,
-      "primary_breed" => "Border Collie",
-      "secondary_breed" => "Lab",
-      "animal_type_id" => 1,
-      "animal_status_id" => 1,
-      "shelter_id" => 1,
-      "status_change_date" => "2015-01-10",
-      "arrival_date" => "2015-01-11",
-      "hold_time" => 20,
-      "euthanasia_date" => "2015-01-20",
-      "accommodation_id" => 22,
-      "size" => "XL",
-      "age" => "adult"
-    })
   end
 end
 

@@ -108,6 +108,22 @@ class Animal < ActiveRecord::Base
 
     scope
   end
+
+  def self.duplicate_from(parent_id)
+    parent = self.find(parent_id)
+    animal = self.new
+    animal.attributes = parent.attributes.except(
+      "id",
+      "name",
+      "microchip",
+      "video_url",
+      "special_needs",
+      "has_special_needs",
+      "created_at",
+      "updated_at",
+    )
+    animal
+  end
   #----------------------------------------------------------------------------
 
   # Dashboard - Recent Activity
@@ -307,19 +323,6 @@ class Animal < ActiveRecord::Base
 
   # Instance Methods
   #----------------------------------------------------------------------------
-  def duplicate
-    self.attributes.except(
-      "id",
-      "name",
-      "microchip",
-      "video_url",
-      "special_needs",
-      "has_special_needs",
-      "created_at",
-      "updated_at",
-    )
-  end
-
   def full_breed
     if mix_breed?
       self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"

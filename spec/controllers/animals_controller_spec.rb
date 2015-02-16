@@ -184,12 +184,13 @@ describe AnimalsController do
       expect(response).to render_template(:new)
     end
 
-    context "with parameters" do
+    context "with a parent id" do
 
       it "assigns a new animal as @animal" do
-        get :new, :animal => { :name => "Billy", :animal_status_id => "2", :animal_type_id => "3" }
+        parent = Animal.gen :name => "Billy", :animal_status_id => "2", :animal_type_id => "3", :shelter => current_shelter
+        get :new, :parent_id => parent.id
         expect(assigns(:animal)).to be_a_new(Animal)
-        expect(assigns(:animal).name).to eq("Billy")
+        expect(assigns(:animal).name).to be_nil
         expect(assigns(:animal).animal_status_id).to eq(2)
         expect(assigns(:animal).animal_type_id).to eq(3)
       end
