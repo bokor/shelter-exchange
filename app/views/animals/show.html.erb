@@ -28,7 +28,7 @@
           <% end %>
 
           <% if can?(:create, Animal) %>
-            <%= link_to "Copy", new_animal_path(:animal => @animal.duplicate) %>
+            <%= link_to "Copy", new_animal_path(:parent_id => @animal.id) %>
               &nbsp;|&nbsp;
           <% end %>
 

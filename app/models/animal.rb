@@ -93,6 +93,37 @@ class Animal < ActiveRecord::Base
   #----------------------------------------------------------------------------
   scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).reorder("status_change_date DESC").limit(limit) }
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
+
+  def self.search(q)
+    scope = self.scoped
+    scope = scope.includes(:animal_type, :animal_status, :photos)
+    if q.is_numeric?
+      scope = scope.where("animals.id = ? OR animals.microchip = ?", q, q)
+    else
+      scope = scope.where(
+        "animals.name LIKE ? OR animals.description LIKE ? OR animals.microchip LIKE ? OR animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
+        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%"
+      )
+    end
+
+    scope
+  end
+
+  def self.duplicate_from(parent_id)
+    parent = self.find(parent_id)
+    animal = self.new
+    animal.attributes = parent.attributes.except(
+      "id",
+      "name",
+      "microchip",
+      "video_url",
+      "special_needs",
+      "has_special_needs",
+      "created_at",
+      "updated_at",
+    )
+    animal
+  end
   #----------------------------------------------------------------------------
 
   # Dashboard - Recent Activity
@@ -309,19 +340,6 @@ class Animal < ActiveRecord::Base
 
   # Instance Methods
   #----------------------------------------------------------------------------
-  def duplicate
-    self.attributes.except(
-      "id",
-      "name",
-      "microchip",
-      "video_url",
-      "special_needs",
-      "has_special_needs",
-      "created_at",
-      "updated_at",
-    )
-  end
-
   def full_breed
     if mix_breed?
       self.secondary_breed.blank? ? self.primary_breed + " Mix" : self.primary_breed + " & " + self.secondary_breed + " Mix"
