@@ -34,7 +34,7 @@
     <div class="roles">
       <% Contact::ROLES.each do |value| %>
         <% if @contact.send(value) %>
-          <span class="role"><%= value.humanize %></span>
+          <span class="role label"><%= value.humanize %></span>
         <% end %>
       <% end %>
     </div>
