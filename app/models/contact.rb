@@ -41,34 +41,32 @@ class Contact < ActiveRecord::Base
 
   # Class Methods
   #----------------------------------------------------------------------------
-  def self.search(q)
+  def self.search_and_filter(query, by_last_name, by_role, order_by)
     scope = self.scoped
 
-    unless q.blank?
-      phone = q.gsub(/\D/, "").blank? ? q : q.gsub(/\D/, "")
-      valid_phone = phone.is_numeric?
-      valid_email = (q =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i)
+    # Filter by last name
+    scope = scope.where("contacts.last_name like ?", "#{by_last_name}%") unless by_last_name.blank?
 
-      if valid_phone
+    # Filter by role
+    scope = scope.where(by_role.to_sym => true) unless by_role.blank?
+
+    # Search by query
+    unless query.blank?
+      phone = query.gsub(/\D/, "").blank? ? query : query.gsub(/\D/, "")
+
+      if phone.is_numeric? # Valid Phone
         scope = scope.where("contacts.phone = ? OR contacts.mobile = ?", phone, phone)
-      elsif valid_email
-        scope = scope.where(:email => q)
       else
-        q.split(" ").each do |word|
+        query.split(" ").each do |word|
           scope = scope.where(
-            "contacts.first_name LIKE ? OR contacts.last_name LIKE ? OR contacts.company_name LIKE ?",
-            "%#{word}%", "%#{word}%", "%#{word}%")
+            "contacts.first_name LIKE ? OR contacts.last_name LIKE ? OR contacts.company_name LIKE ? OR contacts.email LIKE ?",
+            "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%")
         end
       end
     end
 
-    scope
-  end
-
-  def self.filter_by_last_name_role(by_last_name, by_role)
-    scope = self.scoped
-    scope = scope.where("contacts.last_name like ?", "#{by_last_name}%") unless by_last_name.blank?
-    scope = scope.where(by_role.to_sym => true) unless by_role.blank?
+    # Order by
+    scope = scope.reorder(order_by) unless order_by.blank?
     scope
   end
 

@@ -557,7 +557,7 @@ describe Animal, ".search_and_filter" do
 
   context "with numeric search term" do
 
-    it "searches for animals exactly matching the id" do
+    it "searches exact match of the id" do
        Animal.gen :id => 1234567890, :animal_status_id => 1
        animal2 = Animal.gen :id => 1234567, :animal_status_id => 1
 
@@ -567,7 +567,7 @@ describe Animal, ".search_and_filter" do
        expect(animals).to match_array([animal2])
      end
 
-    it "searches for animals exactly matching the microchip" do
+    it "searches exact match of the microchip" do
        Animal.gen :microchip => 1234567890, :animal_status_id => 1
        animal2 = Animal.gen :microchip => 1234567, :animal_status_id => 1
 
@@ -580,7 +580,7 @@ describe Animal, ".search_and_filter" do
 
   context "with alphanumeric search term" do
 
-    it "searches for animals like the name" do
+    it "searches where term is like the name" do
       animal1 = Animal.gen :name => "DoggieTown", :animal_status_id => 1
       animal2 = Animal.gen :name => "DogTown", :animal_status_id => 1
       Animal.gen :name => "KittyTown", :animal_status_id => 1
@@ -591,7 +591,7 @@ describe Animal, ".search_and_filter" do
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "searches for animals like the microchip" do
+    it "searches where term is like the microchip" do
       animal1 = Animal.gen :microchip => "DoggieTown", :animal_status_id => 1
       animal2 = Animal.gen :microchip => "DogTown", :animal_status_id => 1
       Animal.gen :microchip => "KittyTown", :animal_status_id => 1
@@ -602,7 +602,7 @@ describe Animal, ".search_and_filter" do
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "searches for animals like the description" do
+    it "searches where term is like the description" do
       animal1 = Animal.gen :description => "DoggieTown", :animal_status_id => 1
       animal2 = Animal.gen :description => "DogTown", :animal_status_id => 1
       Animal.gen :description => "KittyTown", :animal_status_id => 1
@@ -613,7 +613,7 @@ describe Animal, ".search_and_filter" do
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "searches for animals like the primary breed" do
+    it "searches where term is like the primary breed" do
       animal1 = Animal.gen :primary_breed => "DoggieTown", :animal_status_id => 1
       animal2 = Animal.gen :primary_breed => "DogTown", :animal_status_id => 1
       Animal.gen :primary_breed => "KittyTown", :animal_status_id => 1
@@ -624,7 +624,7 @@ describe Animal, ".search_and_filter" do
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "searches for animals like the secondary breed" do
+    it "searches where term is like the secondary breed" do
       animal1 = Animal.gen :secondary_breed => "DoggieTown", :animal_status_id => 1
       animal2 = Animal.gen :secondary_breed => "DogTown", :animal_status_id => 1
       Animal.gen :secondary_breed => "KittyTown", :animal_status_id => 1

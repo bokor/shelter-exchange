@@ -94,8 +94,6 @@ ShelterExchangeApp::Application.routes.draw do
     resources :contacts do
       resources :notes
       collection do
-        get :search
-        get :filter_by_last_name_role
         get :filter_animals_by_status
         get :find_by_full_name
         post :export

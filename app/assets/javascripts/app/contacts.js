@@ -7,14 +7,16 @@ var Contacts = {
     $('#contacts').html('');
     $('#status_history_id').val(status_history_id);
   },
-	filterByLastNameRole: function(){
+	search: function(){
 		$.ajax({
-			url: '/contacts/filter_by_last_name_role.js',
+			url: '/contacts.js',
 			type: 'get',
 			dataType: 'script',
 			data: {
+				query: $('#query').val(),
 				by_last_name: $('#filters_by_last_name').val(),
-				by_role: $('#filters_by_role').val()
+				by_role: $('#filters_by_role').val(),
+        order_by: $('#filters_order_by').val()
 			}
 		});
 	},

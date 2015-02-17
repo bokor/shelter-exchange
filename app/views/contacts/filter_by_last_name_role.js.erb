@@ -1,6 +1,0 @@
-<% unless @contacts.blank? %>
-	$('#contacts').html( "<%= escape_javascript( render 'contact_list', :contacts => @contacts ) %>" );
-<% else %>
-	$('#contacts').html( "<%= escape_javascript( render 'no_contacts' ) %>" );
-<% end %>
-

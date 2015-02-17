@@ -5,49 +5,52 @@
 
 <%= content_for :page_content do %>
 
-	<% if @total_contacts > 0 %>
+	<% if @contacts.length > 0 %>
 
 		<div class="print_heading">
 			<h1>Contacts</h1>
 		</div>
 
 		<div class="page_content">
+      <div class="search">
+        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip_on_top", "data-tip" => "Based on name, description, etc" %></h3>
+        <%= form_for :contacts, :html => { :id => "form_search", :onsubmit => "Contacts.search(); return false;" } do |f| %>
+        <ul>
+		      <li class="full">
+            <%= text_field_tag "query", "", :placeholder => "Type search term(s)", :class => "field text"  %>
+            <%= f.submit "Go" %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
 
-			<table class="search">
-				<tr>
-					<td class="full_search">
-						<h3>Search for contacts:</h3>
-						<%= form_for :contacts, :url => { :action => :search }, :remote => true, :format => :js, :html => { :id => "form_search", :method => :get } do |f| %>
-							<%= text_field_tag "q", ""  %>
-							<%= f.submit "Go", :disable_with => "..." %>
-						<% end %>
-					</td>
-					<td class="filters">
-						<h3>Filter contacts by:</h3>
-						<table class="filter_table">
-							<tr>
-								<td><%= label_tag :by_last_name, "Last Name" %></td>
-                <td><%= select(:filters, :by_last_name, ('A'..'Z').to_a, {:prompt => "All"},
-								       { :name => "by_last_name", :onchange => "Contacts.filterByLastNameRole();" } ) %><br /><br />
-								</td>
-							</tr>
-							<tr>
-								<td><%= label_tag :by_role, "Role" %></td>
-								<td><%= collection_select(:filters, :by_role, Contact::ROLES, :to_s, :humanize, {:prompt => "All"},
-								        {:name => "by_role", :onchange => "Contacts.filterByLastNameRole();"} ) %>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+      <div class="filter_by">
+        <h3>Filter by:</h3>
+        <div class="filters">
+          <span class="text">Last name:</span>
+          <span class="choice">
+            <%= select(:filters, :by_last_name, ('A'..'Z').to_a, {:prompt => "All"},
+							 { :name => "by_last_name", :onchange => "Contacts.search();" } ) %>
+          </span>
+          <span class="text">Role:</span>
+          <span class="choice">
+            <%= collection_select(:filters, :by_role, Contact::ROLES, :to_s, :humanize, {:prompt => "All"},
+							  {:name => "by_role", :onchange => "Contacts.search();"} ) %>
+          </span>
+          <span class="text">Order by:</span>
+          <span class="choice">
+            <select id="filters_order_by" name="order_by" onchange="Contacts.search();">
+              <option value="contacts.last_name ASC">A-Z</option>
+              <option value="contacts.last_name DESC">Z-A</option>
+              <option value="contacts.updated_at DESC">Newest-Oldest</option>
+              <option value="contacts.updated_at ASC">Oldest-Newest</option>
+            </select>
+          </span>
+        </div>
+      </div>
 
 			<div id="contacts">
-				<% if @contacts %>
-					<%= render "contact_list", :contacts => @contacts %>
-				<% else %>
-					<%= render "no_contacts", :contacts => @contacts %>
-				<% end %>
+			  <%= render "contact_list", :contacts => @contacts %>
 			</div>
 
 		</div>

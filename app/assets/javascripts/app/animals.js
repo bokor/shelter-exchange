@@ -129,9 +129,9 @@ var Animals = {
 			dataType: 'script',
 			data: {
 				query: $('#query').val(),
-				animal_type_id: $('#animal_animal_type_id').val(),
-				animal_status_id: $('#animal_animal_status_id').val(),
-        order_by: $('#order_by').val()
+				animal_type_id: $('#filters_animal_type_id').val(),
+				animal_status_id: $('#filters_animal_status_id').val(),
+        order_by: $('#filters_order_by').val()
 			}
 		});
 	},

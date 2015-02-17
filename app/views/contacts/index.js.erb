@@ -4,3 +4,8 @@
 	$('#contacts').html( "<%= escape_javascript( render 'no_contacts' ) %>" );
 <% end %>
 
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/contacts/search_and_filter"]);
+<% end %>
+

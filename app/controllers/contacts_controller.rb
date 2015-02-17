@@ -2,8 +2,13 @@ class ContactsController < ApplicationController
   respond_to :html, :js, :csv
 
   def index
-    @total_contacts = @current_shelter.contacts.count
-    @contacts = @current_shelter.contacts.paginate(:page => params[:page]).all
+    query = params[:query]
+    by_last_name = params[:by_last_name]
+    by_role = params[:by_role]
+    order_by = params[:order_by]
+
+    @contacts = @current_shelter.contacts.search_and_filter(query, by_last_name, by_role, order_by)
+    @contacts = @contacts.paginate(:page => params[:page]).all
     respond_with(@contacts)
   end
 
@@ -47,16 +52,6 @@ class ContactsController < ApplicationController
     respond_with(@contact)
   end
 
-  def search
-    @contacts = @current_shelter.contacts.search(params[:q]).paginate(:page => params[:page]).all
-  end
-
-  def filter_by_last_name_role
-    @contacts = @current_shelter.contacts.
-      filter_by_last_name_role(params[:by_last_name], params[:by_role]).
-      paginate(:page => params[:page]).all
-  end
-
   def filter_animals_by_status
     contact = @current_shelter.contacts.find(params[:id])
     @animals = Animal.
@@ -71,7 +66,8 @@ class ContactsController < ApplicationController
 
   def find_by_full_name
     #TODO: merge with search but need to handle create_new_link for animal status history page
-    @contacts = @current_shelter.contacts.search(params[:q]).paginate(:page => params[:page]).all
+    @contacts = @current_shelter.contacts.search_and_filter(params[:q], nil, nil, nil)
+    @contacts.paginate(:page => params[:page]).all
   end
 
   def export

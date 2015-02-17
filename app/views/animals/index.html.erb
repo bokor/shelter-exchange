@@ -30,17 +30,17 @@
         <div class="filters">
           <span class="text">Type:</span>
           <span class="choice">
-            <%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
+            <%= collection_select(:filters, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
                 { :name => "animal_type_id", :onchange => "Animals.search();" } ) %>
           </span>
           <span class="text">Status:</span>
           <span class="choice">
-            <%= select(:animal, :animal_status_id, filter_by_animal_statuses, {},
+            <%= select(:filters, :animal_status_id, filter_by_animal_statuses, {},
                 { :name => "animal_status_id", :onchange => "Animals.search();" } ) %>
           </span>
           <span class="text">Order by:</span>
           <span class="choice">
-            <select id="order_by" name="order_by" onchange="Animals.search();">
+            <select id="filters_order_by" name="order_by" onchange="Animals.search();">
               <option value="animals.name ASC">A-Z</option>
               <option value="animals.name DESC">Z-A</option>
               <option value="animals.updated_at DESC">Newest-Oldest</option>
@@ -51,11 +51,7 @@
 			</div>
 
 			<div id="animals">
-				<% unless @animals.blank? %>
-					<%= render "animal_list", :animals => @animals %>
-				<% else %>
-					<div class='no_results'><h2>Currently, No active animals</h2></div>
-				<% end %>
+				<%= render "animal_list", :animals => @animals %>
 			</div>
 
 		</div>

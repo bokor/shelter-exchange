@@ -70,7 +70,9 @@ describe Contact, ".per_page" do
   end
 end
 
-describe Contact, ".search" do
+
+
+describe Contact, ".search_and_filter" do
 
   before do
     @contact1 = Contact.gen(
@@ -79,75 +81,104 @@ describe Contact, ".search" do
       :company_name => "Shelter Exchange, Inc",
       :email => "who@example.com",
       :phone => "123-456-7890",
-      :state => "CA"
+      :state => "CA",
+      :adopter => 1
     )
     @contact2 = Contact.gen(
       :first_name => "The",
       :last_name => "Dude",
       :company_name => "Shelter Exchange, Inc",
       :mobile => "666-777-8888",
-      :state => "CA"
+      :state => "CA",
+      :volunteer => 1
     )
   end
 
-  it "returns search results based on phone" do
-    contacts = Contact.search("123-456-7890")
-    expect(contacts).to match_array([@contact1])
-  end
+  it "returns all contacts when no params" do
+    contacts = Contact.search_and_filter(nil, nil, nil, nil)
 
-  it "returns search results based on mobile" do
-    contacts = Contact.search("666-777-8888")
-    expect(contacts).to match_array([@contact2])
-  end
-
-  it "returns search results based on email" do
-    contacts = Contact.search("who@example.com")
-    expect(contacts).to match_array([@contact1])
-  end
-
-  it "returns search results based on first_name" do
-    contacts = Contact.search("Jimmy")
-    expect(contacts).to match_array([@contact1])
-  end
-
-  it "returns search results based on last_name" do
-    contacts = Contact.search("dude")
-    expect(contacts).to match_array([@contact2])
-  end
-
-  it "returns search results based on company_name" do
-    contacts = Contact.search("Shelter Exchange, Inc")
+    expect(contacts.count).to eq(2)
     expect(contacts).to match_array([@contact1, @contact2])
   end
 
-  it "returns search results based on multiple query terms" do
-    contacts = Contact.search("Dude Shelter Exchange")
-    expect(contacts).to match_array([@contact2])
-  end
-end
+  context "with phone search term" do
 
-describe Contact, ".filter_by_last_name_role" do
+    it "searches for contacts exactly matching the phone" do
+      contacts = Contact.search_and_filter("123-456-7890", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
+    end
 
-  before do
-    @contact1 = Contact.gen :last_name => "A1", :adopter => "1", :foster => "0"
-    @contact2 = Contact.gen :last_name => "A2", :adopter => "0", :foster => "1"
-    @contact3 = Contact.gen :last_name => "B1", :adopter => "1", :foster => "0"
-    @contact4 = Contact.gen :last_name => "B2", :adopter => "0", :foster => "1"
-  end
-
-  it "returns results for last name initial" do
-    contacts = Contact.filter_by_last_name_role("A", "")
-    expect(contacts).to match_array([@contact1, @contact2])
+    it "searches for contacts exactly matching mobile" do
+      contacts = Contact.search_and_filter("666-777-8888", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact2])
+    end
   end
 
-  it "returns results for category" do
-    contacts = Contact.filter_by_last_name_role("", "adopter")
-    expect(contacts).to match_array([@contact1, @contact3])
+  context "with alphanumeric search term" do
+
+    it "searches where term is like the email" do
+      contacts = Contact.search_and_filter("who@example.com", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
+    end
+
+    it "searches where term is like the first_name" do
+      contacts = Contact.search_and_filter("Jimmy", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
+    end
+
+    it "searches where term is like the last_name" do
+      contacts = Contact.search_and_filter("dude", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact2])
+    end
+
+    it "searches where term is like the company_name" do
+      contacts = Contact.search_and_filter("Shelter Exchange, Inc", nil, nil, nil)
+      expect(contacts.count).to eq(2)
+      expect(contacts).to match_array([@contact1, @contact2])
+    end
+
+    it "searches where term is like multiple query words" do
+      contacts = Contact.search_and_filter("Dude Shelter Exchange", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact2])
+    end
   end
 
-  it "returns results for last name initial and category" do
-    contacts = Contact.filter_by_last_name_role("A", "adopter")
-    expect(contacts).to match_array([@contact1])
+  context "with last name" do
+    it "filters animals with last name" do
+      contacts = Contact.search_and_filter(nil, "S", nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
+    end
+  end
+
+  context "with role" do
+    it "filters animals with role" do
+      contacts = Contact.search_and_filter(nil, nil, "volunteer", nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact2])
+    end
+  end
+
+  context "with order by" do
+    it "Sorts the animals with the order by param" do
+      contacts = Contact.search_and_filter(nil, nil, nil, "contacts.last_name ASC")
+      expect(contacts.count).to eq(2)
+      expect(contacts).to eq([@contact2, @contact1])
+    end
+  end
+
+  context "with multiple search and filter criteria" do
+    it "filters contacts with last name and role" do
+      contacts = Contact.search_and_filter(nil, "S", "adopter", nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
+    end
   end
 end
 
