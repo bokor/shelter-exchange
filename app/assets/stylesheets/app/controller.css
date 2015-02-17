@@ -31,7 +31,6 @@
 
 .animals .icon_calendar{padding-left: 10px; cursor: pointer;}
 .animals .calendar{display:none;}
-.animals .help_text{font-weight:normal;font-size:11px;}
 
 /* Accommodation */
 .animals #accommodation_remove_link{display:none;padding-left: 5px;}
@@ -73,23 +72,22 @@
 
 /* Index Animals :: Search and Filters Layout
 -----------------------------------------------------------------------------*/
-.index_animals table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
-.index_animals table.search tr {vertical-align:top;}
-.index_animals table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
-.index_animals table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
-.index_animals table.search td.full_search input[type=submit] {margin-left: 5px;}
-.index_animals table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
-.index_animals table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_animals table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
-.index_animals table.search td.filters table.filter_table tr{vertical-align:top;}
-.index_animals table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
-.index_animals table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+.index_animals .search{margin: 5px 0 10px 0;}
+.index_animals .search img.tooltip_on_top { width 12px; height: 12px;}
+.index_animals .search h3 {font-size: 13px; margin-bottom: 0px;}
+.index_animals .search .text{width: 75%;}
 
 .index_animals #animals .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
 
-/* Index Animals :: Help Text
+/* Index Animals :: Filter By Layout
 -----------------------------------------------------------------------------*/
-.index_animals .help_text{width: 100%; padding: 15px 0; text-align:center;border-top: 1px dotted #ccc;}
+.index_animals .filter_by{width: 100%; padding: 15px 0; text-align:center; border-top: 1px dotted #ccc;font-weight:normal;font-size:11px;
+}
+.index_animals .filter_by {text-align: left;}
+.index_animals .filter_by h3 {font-size: 13px; margin-bottom: 5px;}
+.index_animals .filter_by .filters{margin-left: 10px; padding-bottom: 2px;}
+.index_animals .filter_by .text{font-weight: bold;}
+.index_animals .filter_by .choice{ margin-right: 15px;}
 
 /* Show Animals :: Page Layout
 -----------------------------------------------------------------------------*/
@@ -240,21 +238,24 @@
 .accommodations ul.help{padding-top: 10px; list-style: disc; margin-bottom: -20px;}
 .accommodations ul.help li{margin-left: 20px;padding-bottom: 10px;}
 
-
-/* Index Accommodations :: Search and Filters
+/* Index Accommodations :: Search and Filters Layout
 -----------------------------------------------------------------------------*/
-.index_accommodations table.search {width: 100%;vertical-align:top; padding-bottom: 10px;}
-.index_accommodations table.search tr {vertical-align:top;}
-.index_accommodations table.search td.full_search {width:50%;text-align:left;padding-top:10px;}
-.index_accommodations table.search td.full_search input[type=text] {margin-top:5px;width:80%;height:20px;font-size:14px;}
-.index_accommodations table.search td.full_search input[type=submit] {margin-left: 5px;}
-.index_accommodations table.search td.filters {width:50%;text-align:left;border-left:1px dotted #ccc;padding:10px 0 20px 10px;}
-.index_accommodations table.search td h3{font-weight: bold; font-size: 16px; letter-spacing: -1px;padding-bottom: 10px;}
-.index_accommodations table.search td.filters table.filter_table{width: 100%;padding-left: 20px;}
-.index_accommodations table.search td.filters table.filter_table tr{vertical-align:top;}
-.index_accommodations table.search td.filters table.filter_table tr td label {width: 25%;text-align:left;font-weight: bold; font-size: 13px; letter-spacing: -1px;}
-.index_accommodations table.search td.filters table.filter_table tr td select{width: 75%;text-align:left;}
+.index_accommodations .search{margin: 5px 0 10px 0;}
+.index_accommodations .search img.tooltip_on_top { width 12px; height: 12px;}
+.index_accommodations .search h3 {font-size: 13px; margin-bottom: 0px;}
+.index_accommodations .search .text{width: 75%;}
 
+.index_accommodations #accommodations .no_results {padding: 20px 0 0 0;border-top:1px #ccc dotted; }
+
+/* Index Accommodations :: Filter By Layout
+-----------------------------------------------------------------------------*/
+.index_accommodations .filter_by{width: 100%; padding: 15px 0; text-align:center; border-top: 1px dotted #ccc;font-weight:normal;font-size:11px;
+}
+.index_accommodations .filter_by {text-align: left;}
+.index_accommodations .filter_by h3 {font-size: 13px; margin-bottom: 5px;}
+.index_accommodations .filter_by .filters{margin-left: 10px; padding-bottom: 2px;}
+.index_accommodations .filter_by .text{font-weight: bold;}
+.index_accommodations .filter_by .choice{ margin-right: 15px;}
 
 /* Accommodations List :: Layout
 -----------------------------------------------------------------------------*/

@@ -19,20 +19,26 @@ class Accommodation < ActiveRecord::Base
   validates :name, :presence => true
   validates :max_capacity, :numericality => true
 
-  # Scopes
+  # Searching
   #----------------------------------------------------------------------------
-  scope :search, lambda { |q|
-    includes(:animal_type, :location, :animals => [:photos, :animal_status]).
-    where("accommodations.name LIKE ?", "%#{q}%")
-  }
-
-  # Class Methods
-  #----------------------------------------------------------------------------
-  def self.filter_by_type_location(type, location)
+  def self.search_and_filter(query, type_id, location_id, order_by)
     scope = self.scoped
     scope = scope.includes(:animal_type, :location, :animals => [:photos, :animal_status])
-    scope = scope.where(:animal_type_id => type) unless type.blank?
-    scope = scope.where(:location_id => location) unless location.blank?
+
+    # Filter by type
+    scope = scope.where(:animal_type_id => type_id) unless type_id.blank?
+
+    # Filter by location
+    scope = scope.where(:location_id => location_id) unless location_id.blank?
+
+    # Search by query
+    unless query.blank?
+      query = query.strip.split.join("%")
+      scope = scope.where("accommodations.name LIKE ?", "%#{query}%")
+    end
+
+    # Order by
+    scope = scope.reorder(order_by) unless order_by.blank?
     scope
   end
 end

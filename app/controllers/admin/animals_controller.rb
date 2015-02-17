@@ -8,7 +8,7 @@ class Admin::AnimalsController < Admin::ApplicationController
 
   def live_search
     q = params[:q].strip
-    animals = Animal.joins(:shelter).search_by_name(q)
+    animals = Animal.joins(:shelter).admin_search_by_name(q)
 
     if params[:shelters] && params[:shelters][:state].present?
       animals = animals.where(:shelters => params[:shelters])

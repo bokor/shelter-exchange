@@ -39,54 +39,88 @@ describe Accommodation, ".per_page" do
   end
 end
 
-describe Accommodation, ".search" do
+describe Accommodation, ".search_and_filter" do
 
-  it "returns search results" do
-    accommodation1 = Accommodation.gen :name => "Crate"
-    Accommodation.gen :name => "Cage"
+  it "returns all accommodations when no params" do
+    accommodation1 = Accommodation.gen
+    accommodation2 = Accommodation.gen
 
-    results = Accommodation.search("Cra")
-    expect(results.count).to eq(1)
-    expect(results).to match_array([accommodation1])
-  end
-end
+    accommodations = Accommodation.search_and_filter(nil, nil, nil, nil)
 
-describe Accommodation, ".filter_by_type_location" do
-
-  before do
-    @dog = AnimalType.gen :name => "Dog"
-    @cat = AnimalType.gen :name => "Cat"
-
-    @west_side = Location.gen :name => "West Side"
-    @east_side = Location.gen :name => "East Side"
-
-    @accommodation1 = Accommodation.gen \
-      :animal_type => @dog,
-      :location => @west_side
-    @accommodation2 = Accommodation.gen \
-      :animal_type => @dog,
-      :location => @west_side
-    @accommodation3 = Accommodation.gen \
-      :animal_type => @dog,
-      :location => @east_side
+    expect(accommodations.count).to eq(2)
+    expect(accommodations).to match_array([accommodation1, accommodation2])
   end
 
-  it "filters by animal type" do
-    results = Accommodation.filter_by_type_location(@dog, nil)
-    expect(results.count).to eq(3)
-    expect(results).to match_array([@accommodation1, @accommodation2, @accommodation3])
+  context "with alphanumeric search term" do
+
+    it "searches for accommodations like the name" do
+      accommodation1 = Accommodation.gen :name => "DoggieTown"
+      accommodation2 = Accommodation.gen :name => "DogTown"
+      Accommodation.gen :name => "KittyTown"
+
+      accommodations = Accommodation.search_and_filter("dog", nil, nil, nil)
+
+      expect(accommodations.count).to eq(2)
+      expect(accommodations).to match_array([accommodation1, accommodation2])
+    end
   end
 
-  it "filters by location" do
-    results = Accommodation.filter_by_type_location(nil, @west_side)
-    expect(results.count).to eq(2)
-    expect(results).to match_array([@accommodation1, @accommodation2])
+  context "with animal type" do
+
+    it "filters animals with specific type" do
+      accommodation1 = Accommodation.gen :name => "DoggieTown", :animal_type_id => 1
+      accommodation2 = Accommodation.gen :name => "DogTown", :animal_type_id => 1
+      Accommodation.gen :name => "KittyTown", :animal_type_id => 2
+
+      accommodations = Accommodation.search_and_filter(nil, "1", nil, nil)
+
+      expect(accommodations.count).to eq(2)
+      expect(accommodations).to match_array([accommodation1, accommodation2])
+    end
   end
 
-  it "filters by animal type and location" do
-    results = Accommodation.filter_by_type_location(@dog, @east_side)
-    expect(results.count).to eq(1)
-    expect(results).to match_array([@accommodation3])
+  context "with location" do
+
+    it "filters animals with specific location" do
+      location = Location.gen
+      accommodation1 = Accommodation.gen :name => "DoggieTown", :location => location
+      accommodation2 = Accommodation.gen :name => "DogTown", :location => location
+      Accommodation.gen :name => "KittyTown", :location => Location.gen
+
+      accommodations = Accommodation.search_and_filter(nil, nil, location.id, nil)
+
+      expect(accommodations.count).to eq(2)
+      expect(accommodations).to match_array([accommodation1, accommodation2])
+    end
+  end
+
+  context "with order by" do
+
+    it "Sorts the animals with the order by param" do
+      accommodation1 = Accommodation.gen :name => "Orange"
+      accommodation2 = Accommodation.gen :name => "Apple"
+      accommodation3 = Accommodation.gen :name => "Lettuce"
+
+      accommodations = Accommodation.search_and_filter(nil, nil, nil, "accommodations.name ASC")
+
+      expect(accommodations.count).to eq(3)
+      expect(accommodations).to eq([accommodation2, accommodation3, accommodation1])
+    end
+  end
+
+  context "with multiple search and filter criteria" do
+
+    it "filters animals with specific type and status" do
+      location = Location.gen
+      accommodation1 = Accommodation.gen :name => "DoggieTown", :animal_type_id => 1, :location => location
+      Accommodation.gen :name => "DogTown", :animal_type_id => 2, :location => location
+      Accommodation.gen :name => "KittyTown", :animal_type_id => 1
+
+      accommodations = Accommodation.search_and_filter(nil, "1", location.id, nil)
+
+      expect(accommodations.count).to eq(1)
+      expect(accommodations).to match_array([accommodation1])
+    end
   end
 end
 

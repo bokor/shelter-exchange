@@ -94,21 +94,8 @@ class Animal < ActiveRecord::Base
   scope :latest, lambda { |status, limit| includes(:shelter, :photos).send(status).reorder("status_change_date DESC").limit(limit) }
   scope :auto_complete, lambda { |q| includes(:animal_type, :animal_status).where("name LIKE ?", "%#{q}%") }
 
-  def self.search(q)
-    scope = self.scoped
-    scope = scope.includes(:animal_type, :animal_status, :photos)
-    if q.is_numeric?
-      scope = scope.where("animals.id = ? OR animals.microchip = ?", q, q)
-    else
-      scope = scope.where(
-        "animals.name LIKE ? OR animals.description LIKE ? OR animals.microchip LIKE ? OR animals.primary_breed LIKE ? OR animals.secondary_breed LIKE ?",
-        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%"
-      )
-    end
-
-    scope
-  end
-
+  # Class Methods
+  #----------------------------------------------------------------------------
   def self.duplicate_from(parent_id)
     parent = self.find(parent_id)
     animal = self.new
@@ -246,16 +233,20 @@ class Animal < ActiveRecord::Base
 
   # Searching
   #----------------------------------------------------------------------------
-  def self.search_and_filter(query, type, status)
+  def self.search_and_filter(query, type_id, status_id, order_by)
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
 
     # Filter by type
-    scope = scope.where(:animal_type_id => type) unless type.blank?
+    scope = scope.where(:animal_type_id => type_id) unless type_id.blank?
 
     # Filter by status
-    status = "active" if status.blank?
-    scope = (status == "active" || status == "non_active") ? scope.send(status) : scope.where(:animal_status_id => status)
+    status_id = "active" if status_id.blank?
+    scope = if status_id == "active" || status_id == "non_active"
+      scope.send(status_id)
+    else
+      scope.where(:animal_status_id => status_id)
+    end
 
     # Search by query
     unless query.blank?
@@ -271,10 +262,12 @@ class Animal < ActiveRecord::Base
       end
     end
 
+    # Order by
+    scope = scope.reorder(order_by) unless order_by.blank?
     scope
   end
 
-  def self.search_by_name(q)
+  def self.admin_search_by_name(q)
     scope = self.scoped
     scope = scope.includes(:animal_type, :animal_status, :photos)
     if q.is_numeric?

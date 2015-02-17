@@ -2,11 +2,16 @@ class AccommodationsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @accommodations = @current_shelter.accommodations.
-      includes(:location, :animal_type, :animals => [:animal_status, :photos]).
-      paginate(:page => params[:page])
+    query = params[:query]
+    type_id = params[:animal_type_id]
+    location_id = params[:location_id]
+    order_by = params[:order_by]
 
-    redirect_to new_accommodation_path if @accommodations.blank?
+    @accommodations = @current_shelter.accommodations.search_and_filter(query, type_id, location_id, order_by)
+    @accommodations = @accommodations.paginate(:page => params[:page]).all
+
+    redirect_to new_accommodation_path and return if request.format.html? && @accommodations.blank?
+    respond_with(@accommodations)
   end
 
   def edit
@@ -46,19 +51,6 @@ class AccommodationsController < ApplicationController
     @accommodation = @current_shelter.accommodations.find(params[:id])
     flash[:notice] = "#{@accommodation.name} accommodation has been deleted." if @accommodation.destroy
     respond_with(@accommodation)
-  end
-
-  def search
-    query = params[:q] ? params[:q].strip : ""
-    @accommodations = {}
-
-    unless query.blank?
-      @accommodations = @current_shelter.accommodations.search(query).paginate(:page => params[:page])
-    end
-  end
-
-  def filter_by_type_location
-    @accommodations = @current_shelter.accommodations.filter_by_type_location(params[:animal_type_id], params[:location_id]).paginate(:page => params[:page])
   end
 end
 

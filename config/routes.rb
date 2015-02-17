@@ -63,12 +63,7 @@ ShelterExchangeApp::Application.routes.draw do
 
     # Accommodations
     #----------------------------------------------------------------------------
-    resources :accommodations, :except => [:show] do
-      collection do
-        get :search
-        get :filter_by_type_location
-      end
-    end
+    resources :accommodations, :except => [:show]
 
     # Tasks
     #----------------------------------------------------------------------------
@@ -132,7 +127,6 @@ ShelterExchangeApp::Application.routes.draw do
 
       collection do
         get :filter_notes
-        get :find_animals_by_name
         get :auto_complete
         post :export
       end

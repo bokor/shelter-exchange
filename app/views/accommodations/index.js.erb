@@ -1,1 +1,10 @@
-$('#accommodations').html( "<%= escape_javascript( render 'accommodation_list', :accommodations => @accommodations ) %>" );
+<% unless @accommodations.blank? %>
+  $('#accommodations').html( "<%= escape_javascript( render 'accommodation_list', :accommodations => @accommodations ) %>" );
+<% else %>
+  $('#accommodations').html( "<div class='no_results'><h2>No Accommodations found</h2></div>" );
+<% end %>
+
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/accommodations/search_and_filter"]);
+<% end %>

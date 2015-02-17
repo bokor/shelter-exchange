@@ -543,38 +543,35 @@ describe Animal, ".auto_complete" do
   end
 end
 
-describe Animal, ".search" do
+describe Animal, ".search_and_filter" do
 
-  context "with no search term" do
+  it "returns all animals when no params" do
+    animal1 = Animal.gen :animal_status_id => 1
+    animal2 = Animal.gen :animal_status_id => 1
 
-    it "returns all animals when no params" do
-      animal1 = Animal.gen
-      animal2 = Animal.gen
+    animals = Animal.search_and_filter(nil, nil, nil, nil)
 
-      animals = Animal.search("")
-
-      expect(animals.count).to eq(2)
-      expect(animals).to match_array([animal1, animal2])
-    end
+    expect(animals.count).to eq(2)
+    expect(animals).to match_array([animal1, animal2])
   end
 
   context "with numeric search term" do
 
-    it "returns animal that matches id" do
-       Animal.gen :id => 1234567890
-       animal2 = Animal.gen :id => 1234567
+    it "searches for animals exactly matching the id" do
+       Animal.gen :id => 1234567890, :animal_status_id => 1
+       animal2 = Animal.gen :id => 1234567, :animal_status_id => 1
 
-       animals = Animal.search("1234567")
+       animals = Animal.search_and_filter("1234567", nil, nil, nil)
 
        expect(animals.count).to eq(1)
        expect(animals).to match_array([animal2])
      end
 
-    it "returns animal that matches microchip" do
-       Animal.gen :microchip => 1234567890
-       animal2 = Animal.gen :microchip => 1234567
+    it "searches for animals exactly matching the microchip" do
+       Animal.gen :microchip => 1234567890, :animal_status_id => 1
+       animal2 = Animal.gen :microchip => 1234567, :animal_status_id => 1
 
-       animals = Animal.search("1234567")
+       animals = Animal.search_and_filter("1234567", nil, nil, nil)
 
        expect(animals.count).to eq(1)
        expect(animals).to match_array([animal2])
@@ -583,59 +580,115 @@ describe Animal, ".search" do
 
   context "with alphanumeric search term" do
 
-    it "returns all animals with the name like" do
-      animal1 = Animal.gen :name => "DoggieTown"
-      animal2 = Animal.gen :name => "DogTown"
-      Animal.gen :name => "KittyTown"
+    it "searches for animals like the name" do
+      animal1 = Animal.gen :name => "DoggieTown", :animal_status_id => 1
+      animal2 = Animal.gen :name => "DogTown", :animal_status_id => 1
+      Animal.gen :name => "KittyTown", :animal_status_id => 1
 
-      animals = Animal.search("dog")
-
-      expect(animals.count).to eq(2)
-      expect(animals).to match_array([animal1, animal2])
-    end
-
-    it "returns all animals with the microchip like" do
-      animal1 = Animal.gen :microchip => "DoggieTown"
-      animal2 = Animal.gen :microchip => "DogTown"
-      Animal.gen :microchip => "KittyTown"
-
-      animals = Animal.search("dog")
+      animals = Animal.search_and_filter("dog", nil, nil, nil)
 
       expect(animals.count).to eq(2)
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "returns all animals with the description like" do
-      animal1 = Animal.gen :description => "DoggieTown"
-      animal2 = Animal.gen :description => "DogTown"
-      Animal.gen :description => "KittyTown"
+    it "searches for animals like the microchip" do
+      animal1 = Animal.gen :microchip => "DoggieTown", :animal_status_id => 1
+      animal2 = Animal.gen :microchip => "DogTown", :animal_status_id => 1
+      Animal.gen :microchip => "KittyTown", :animal_status_id => 1
 
-      animals = Animal.search("dog")
-
-      expect(animals.count).to eq(2)
-      expect(animals).to match_array([animal1, animal2])
-    end
-
-    it "returns all animals with the primary breed like" do
-      animal1 = Animal.gen :primary_breed => "DoggieTown"
-      animal2 = Animal.gen :primary_breed => "DogTown"
-      Animal.gen :primary_breed => "KittyTown"
-
-      animals = Animal.search("dog")
+      animals = Animal.search_and_filter("dog", nil, nil, nil)
 
       expect(animals.count).to eq(2)
       expect(animals).to match_array([animal1, animal2])
     end
 
-    it "returns all animals with the secondary breed like" do
-      animal1 = Animal.gen :secondary_breed => "DoggieTown"
-      animal2 = Animal.gen :secondary_breed => "DogTown"
-      Animal.gen :secondary_breed => "KittyTown"
+    it "searches for animals like the description" do
+      animal1 = Animal.gen :description => "DoggieTown", :animal_status_id => 1
+      animal2 = Animal.gen :description => "DogTown", :animal_status_id => 1
+      Animal.gen :description => "KittyTown", :animal_status_id => 1
 
-      animals = Animal.search("dog")
+      animals = Animal.search_and_filter("dog", nil, nil, nil)
 
       expect(animals.count).to eq(2)
       expect(animals).to match_array([animal1, animal2])
+    end
+
+    it "searches for animals like the primary breed" do
+      animal1 = Animal.gen :primary_breed => "DoggieTown", :animal_status_id => 1
+      animal2 = Animal.gen :primary_breed => "DogTown", :animal_status_id => 1
+      Animal.gen :primary_breed => "KittyTown", :animal_status_id => 1
+
+      animals = Animal.search_and_filter("dog", nil, nil, nil)
+
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
+    end
+
+    it "searches for animals like the secondary breed" do
+      animal1 = Animal.gen :secondary_breed => "DoggieTown", :animal_status_id => 1
+      animal2 = Animal.gen :secondary_breed => "DogTown", :animal_status_id => 1
+      Animal.gen :secondary_breed => "KittyTown", :animal_status_id => 1
+
+      animals = Animal.search_and_filter("dog", nil, nil, nil)
+
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
+    end
+  end
+
+  context "with animal type" do
+
+    it "filters animals with specific type" do
+      animal1 = Animal.gen :name => "DoggieTown", :animal_status_id => 1, :animal_type_id => 1
+      animal2 = Animal.gen :name => "DogTown", :animal_status_id => 1, :animal_type_id => 1
+      Animal.gen :name => "KittyTown", :animal_status_id => 1, :animal_type_id => 2
+
+      animals = Animal.search_and_filter(nil, "1", nil, nil)
+
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
+    end
+  end
+
+  context "with animal status" do
+
+    it "filters animals with specific status" do
+      animal1 = Animal.gen :name => "DoggieTown", :animal_status_id => 2, :animal_type_id => 1
+      animal2 = Animal.gen :name => "DogTown", :animal_status_id => 2, :animal_type_id => 1
+      Animal.gen :name => "KittyTown", :animal_status_id => 1, :animal_type_id => 2
+
+      animals = Animal.search_and_filter(nil, nil, "2", nil)
+
+      expect(animals.count).to eq(2)
+      expect(animals).to match_array([animal1, animal2])
+    end
+  end
+
+  context "with order by" do
+
+    it "Sorts the animals with the order by param" do
+      animal1 = Animal.gen :name => "Orange", :animal_status_id => 1
+      animal2 = Animal.gen :name => "Apple", :animal_status_id => 1
+      animal3 = Animal.gen :name => "Lettuce", :animal_status_id => 1
+
+      animals = Animal.search_and_filter(nil, nil, nil, "animals.name ASC")
+
+      expect(animals.count).to eq(3)
+      expect(animals).to eq([animal2, animal3, animal1])
+    end
+  end
+
+  context "with multiple search and filter criteria" do
+
+    it "filters animals with specific type and status" do
+      animal1 = Animal.gen :name => "DoggieTown", :animal_status_id => 1, :animal_type_id => 1
+      Animal.gen :name => "DogTown", :animal_status_id => 1, :animal_type_id => 2
+      Animal.gen :name => "KittyTown", :animal_status_id => 2, :animal_type_id => 1
+
+      animals = Animal.search_and_filter(nil, "1", "1", nil)
+
+      expect(animals.count).to eq(1)
+      expect(animals).to match_array([animal1])
     end
   end
 end
@@ -973,13 +1026,13 @@ describe Animal, ".community_animals" do
   end
 end
 
-describe Animal, ".search_by_name" do
+describe Animal, ".admin_search_by_name" do
 
   it "returns an animal based on the id" do
     animal1 = Animal.gen
     Animal.gen
 
-    animals = Animal.search_by_name(animal1.id.to_s)
+    animals = Animal.admin_search_by_name(animal1.id.to_s)
     expect(animals.count).to eq(1)
     expect(animals).to match_array([animal1])
   end
@@ -989,68 +1042,9 @@ describe Animal, ".search_by_name" do
     animal2 = Animal.gen :name => "dog"
     Animal.gen :name => "kittie"
 
-    animals = Animal.search_by_name("dog")
+    animals = Animal.admin_search_by_name("dog")
     expect(animals.count).to eq(2)
     expect(animals).to match_array([animal1, animal2])
-  end
-end
-
-describe Animal, ".filter_by_type_status" do
-
-  it "returns animals that are only active" do
-    animal1 = Animal.gen :animal_status_id => 1
-    animal2 = Animal.gen :animal_status_id => 3
-    Animal.gen :animal_status_id => 2
-
-    animals = Animal.filter_by_type_status(nil, "active")
-    expect(animals.count).to eq(2)
-    expect(animals).to match_array([animal1, animal2])
-  end
-
-  it "returns animals that are only non-active" do
-    animal1 = Animal.gen :animal_status_id => 2
-    Animal.gen :animal_status_id => 1
-    Animal.gen :animal_status_id => 3
-
-    animals = Animal.filter_by_type_status(nil, "non_active")
-    expect(animals.count).to eq(1)
-    expect(animals).to match_array([animal1])
-  end
-
-  it "returns a list of animals based on the type" do
-    animal_type1 = AnimalType.gen
-    animal_type2 = AnimalType.gen
-
-    animal1 = Animal.gen :animal_type => animal_type1
-    animal2 = Animal.gen :animal_type => animal_type1
-    Animal.gen :animal_type => animal_type2
-
-    animals = Animal.filter_by_type_status(animal_type1.id, nil)
-    expect(animals.count).to eq(2)
-    expect(animals).to match_array([animal1, animal2])
-  end
-
-  it "returns a list of animals based on the status" do
-    animal1 = Animal.gen :animal_status_id => 3
-    Animal.gen :animal_status_id => 1
-    Animal.gen :animal_status_id => 2
-
-    animals = Animal.filter_by_type_status(nil, 3)
-    expect(animals.count).to eq(1)
-    expect(animals).to match_array([animal1])
-  end
-
-  it "returns a list of animals based on the type and status" do
-    animal_type1 = AnimalType.gen
-    animal_type2 = AnimalType.gen
-
-    animal1 = Animal.gen :animal_type => animal_type1, :animal_status_id => 1
-    Animal.gen :animal_type => animal_type2, :animal_status_id => 2
-    Animal.gen :animal_type => animal_type1, :animal_status_id => 3
-
-    animals = Animal.filter_by_type_status(animal_type1.id, 1)
-    expect(animals.count).to eq(1)
-    expect(animals).to match_array([animal1])
   end
 end
 

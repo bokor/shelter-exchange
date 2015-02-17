@@ -5,7 +5,7 @@
 
 <%= content_for :page_content do %>
 
-	<% if @total_animals > 0 %>
+  <% if @animals.length > 0 %>
 
 		<div class="print_heading">
 			<h1>Animals</h1>
@@ -13,43 +13,41 @@
 
 		<div class="page_content">
 
-			<table class="search">
-				<tr>
-					<td class="full_search">
-						<h3>Search for animals:</h3>
-            <%= form_for :animals, :html => { :id => "form_search", :onsubmit => "Animals.search(); return false;" } do |f| %>
-							<%= text_field_tag "query", ""  %>
-							<%= f.submit "Go" %>
-						<% end %>
-					</td>
-					<td class="filters">
-						<h3>Filter animals by:</h3>
-						<table class="filter_table">
-							<tr>
-								<td><%= label_tag :animal_type_id, "Type" %></td>
-								<td><%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
-								       { :name => "animal_type_id", :onchange => "Animals.search();" } ) %><br /><br />
-								</td>
-							</tr>
-							<tr>
-								<td><%= label_tag :animal_status_id, "Status" %></td>
-								<td><%= select(:animal, :animal_status_id, filter_by_animal_statuses, {},
-								        {:name => "animal_status_id", :onchange => "Animals.search();"} ) %>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+      <div class="search">
+        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip_on_top", "data-tip" => "Based on name, description, etc" %></h3>
+        <%= form_for :animals, :html => { :id => "form_search", :onsubmit => "Animals.search(); return false;" } do |f| %>
+        <ul>
+		      <li class="full">
+            <%= text_field_tag "query", "", :placeholder => "Type search term(s)", :class => "field text"  %>
+            <%= f.submit "Go" %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
 
-      <div class="help_text">
-        <strong>Order by:</strong>
-        <select id="order_by" name="order_by" onchange="Animals.search();">
-          <option value="animals.name ASC">Name: A-Z</option>
-          <option value="animals.name DESC">Name: Z-A</option>
-          <option value="animals.updated_at DESC">Last updated: Newest-Oldest</option>
-          <option value="animals.updated_at ASC">Last updated: Oldest-Newest</option>
-        </select>
+      <div class="filter_by">
+        <h3>Filter by:</h3>
+        <div class="filters">
+          <span class="text">Type:</span>
+          <span class="choice">
+            <%= collection_select(:animal, :animal_type_id, AnimalType.all, :id, :name, {:prompt => "All"},
+                { :name => "animal_type_id", :onchange => "Animals.search();" } ) %>
+          </span>
+          <span class="text">Status:</span>
+          <span class="choice">
+            <%= select(:animal, :animal_status_id, filter_by_animal_statuses, {},
+                { :name => "animal_status_id", :onchange => "Animals.search();" } ) %>
+          </span>
+          <span class="text">Order by:</span>
+          <span class="choice">
+            <select id="order_by" name="order_by" onchange="Animals.search();">
+              <option value="animals.name ASC">A-Z</option>
+              <option value="animals.name DESC">Z-A</option>
+              <option value="animals.updated_at DESC">Newest-Oldest</option>
+              <option value="animals.updated_at ASC">Oldest-Newest</option>
+            </select>
+          </span>
+        </div>
 			</div>
 
 			<div id="animals">

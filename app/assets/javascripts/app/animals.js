@@ -124,8 +124,8 @@ var Animals = {
 	},
 	search: function(){
 		$.ajax({
-			url: "/animals.js",
-			type: "get",
+			url: '/animals.js',
+			type: 'get',
 			dataType: 'script',
 			data: {
 				query: $('#query').val(),

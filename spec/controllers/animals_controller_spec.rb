@@ -7,7 +7,7 @@ describe AnimalsController do
 
     before do
       @animal = Animal.gen :shelter => current_shelter
-    end
+   end
 
     it "responds successfully" do
       get :index
@@ -19,13 +19,6 @@ describe AnimalsController do
       get :index, :format => :js
       expect(response).to be_success
       expect(response.status).to eq(200)
-    end
-
-    it "assigns @total_animals" do
-      Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-
-      get :index
-      expect(assigns(:total_animals)).to eq(2)
     end
 
     it "assigns @animals" do
@@ -40,6 +33,35 @@ describe AnimalsController do
     it "renders the :index view" do
       get :index
       expect(response).to render_template(:index)
+    end
+
+    context "with search params" do
+
+      it "renders the :index view" do
+        get :index, :format => :js
+        expect(response).to render_template(:index)
+      end
+
+      it "assigns @animals" do
+        breed = Breed.gen :animal_type_id => 2
+        @animal.update_attributes({:name => "Banana Apple", :animal_status_id => 1, :animal_type_id => 2, :primary_breed => breed.name})
+        another_animal = Animal.gen(
+          :name => "Apple Banana",
+          :animal_status_id => 1,
+          :animal_type_id => 2,
+          :primary_breed => breed.name,
+          :shelter => current_shelter
+        )
+
+        get :index, {
+          :query => "Apple",
+          :animal_status_id => 1,
+          :animal_type_id => 2,
+          :order_by => "animals.name ASC",
+          :format => :js
+        }
+        expect(assigns(:animals)).to eq([another_animal, @animal])
+      end
     end
 
     context "with pagination" do
@@ -324,91 +346,6 @@ describe AnimalsController do
     end
   end
 
-  describe "GET search" do
-
-    before do
-      @animal1 = Animal.gen :name => "search_test", :shelter => current_shelter, :animal_status_id => AnimalStatus::NON_ACTIVE[0]
-      @animal2 = Animal.gen :name => "test_search", :shelter => current_shelter, :animal_status_id => AnimalStatus::NON_ACTIVE[0]
-      @animal3 = Animal.gen :shelter => current_shelter, :animal_status_id => AnimalStatus::ACTIVE[0]
-    end
-
-    it "responds successfully" do
-      get :search, :q => "", :format => :js
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "assigns @animals" do
-      get :search, :q => "search", :format => :js
-      expect(assigns(:animals)).to match_array([@animal1, @animal2])
-    end
-
-    it "renders the :search view" do
-      get :search, :q => "", :format => :js
-      expect(response).to render_template(:search)
-    end
-
-    context "with no parameters" do
-      it "assigns @animals" do
-        get :search, :q => "", :format => :js
-        expect(assigns(:animals)).to eq([@animal3])
-      end
-    end
-
-    context "with pagination" do
-      it "paginates :search results" do
-        animal = Animal.gen :name => "paginated_search", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
-
-        get :search, :q => "paginated_search", :page => 1, :format => :js
-        expect(assigns(:animals)).to eq([animal])
-      end
-    end
-  end
-
-  describe "GET filter_by_type_status" do
-
-    before do
-      @animal1 = Animal.gen :shelter => current_shelter
-      @animal2 = Animal.gen :shelter => current_shelter
-      @animal_type_id = @animal1.animal_type_id
-      @animal_status_id = @animal1.animal_status_id
-    end
-
-    it "responds successfully" do
-      get :filter_by_type_status, :format => :js
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "assigns @animals" do
-      get :filter_by_type_status, :animal_type_id => @animal_type_id, :animal_status_id => @animal_status_id, :format => :js
-      expect(assigns(:animals)).to eq([@animal1])
-    end
-
-    it "renders the :filter_by_type_status view" do
-      get :filter_by_type_status, :format => :js
-      expect(response).to render_template(:filter_by_type_status)
-    end
-
-    context "with no parameters" do
-      it "assigns @animals" do
-        get :filter_by_type_status, :format => :js
-        expect(assigns(:animals)).to match_array([@animal1, @animal2])
-      end
-    end
-
-    context "with pagination" do
-      it "paginates :filter_by_type_status results" do
-        animal = Animal.gen :name => "paginated_search", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
-
-        get :filter_by_type_status, :page => 1, :format => :js
-        expect(assigns(:animals)).to eq([animal])
-      end
-    end
-  end
-
   describe "GET auto_complete" do
 
     before do
@@ -476,48 +413,6 @@ describe AnimalsController do
       it "assigns @notes" do
         get :filter_notes, :id => @animal.id, :filter => "", :format => :js
         expect(assigns(:notes)).to match_array([@general_note, @medical_note])
-      end
-    end
-  end
-
-  describe "GET find_animals_by_name" do
-
-    before do
-      @animal1 = Animal.gen :name => "Billy", :shelter => current_shelter
-      @animal2 = Animal.gen :name => "Jimmy", :shelter => current_shelter
-    end
-
-    it "responds successfully" do
-      get :find_animals_by_name, :q => "", :format => :js
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "renders the :find_animals_by_name view" do
-      get :find_animals_by_name, :q => "", :format => :js
-      expect(response).to render_template(:find_animals_by_name)
-    end
-
-    it "assigns @animals" do
-      get :find_animals_by_name, :q => "billy", :format => :js
-      expect(assigns(:animals)).to eq([@animal1])
-    end
-
-    context "with no parameters" do
-      it "assigns @animals" do
-        get :find_animals_by_name, :q => "", :format => :js
-        expect(assigns(:animals)).to eq({})
-      end
-    end
-
-    context "with pagination" do
-      it "paginates :find_animals_by_name results" do
-        animal = Animal.gen :name => "paginated_animals", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [animal] }
-
-        get :find_animals_by_name, :q => "paginated_animals", :page => 1, :format => :js
-
-        expect(assigns(:animals)).to eq([animal])
       end
     end
   end

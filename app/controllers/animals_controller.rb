@@ -3,13 +3,11 @@ class AnimalsController < ApplicationController
 
   def index
     query = params[:query]
-    order_by = params[:order_by]
     type_id = params[:animal_type_id]
     status_id = params[:animal_status_id]
+    order_by = params[:order_by]
 
-    @total_animals = @current_shelter.animals.count
-    @animals = @current_shelter.animals.search_and_filter(query, type_id, status_id)
-    @animals = @animals.reorder(order_by) unless order_by.blank?
+    @animals = @current_shelter.animals.search_and_filter(query, type_id, status_id, order_by)
     @animals = @animals.paginate(:page => params[:page]).all
     respond_with(@animals)
   end

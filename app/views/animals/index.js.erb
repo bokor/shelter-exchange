@@ -3,3 +3,9 @@
 <% else %>
 	$('#animals').html( "<%= escape_javascript( render 'no_animals' ) %>" );
 <% end %>
+
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/animals/search_and_filter"]);
+<% end %>
+

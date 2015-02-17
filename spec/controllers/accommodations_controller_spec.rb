@@ -35,6 +35,34 @@ describe AccommodationsController do
       end
     end
 
+    context "with search params" do
+
+      it "renders the :index view" do
+        get :index, :format => :js
+        expect(response).to render_template(:index)
+      end
+
+      it "assigns @accommodations" do
+        location = Location.gen
+        @accommodation.update_attributes({:name => "Banana Apple", :animal_type_id => 1, :location_id => location.id})
+        another_accommodation = Accommodation.gen(
+          :name => "Apple Banana",
+          :animal_type_id => 1,
+          :location_id => location.id,
+          :shelter => current_shelter
+        )
+
+        get :index, {
+          :query => "Apple",
+          :animal_type_id => 1,
+          :location_id => location.id,
+          :order_by => "accommodations.name ASC",
+          :format => :js
+        }
+        expect(assigns(:accommodations)).to eq([another_accommodation, @accommodation])
+      end
+    end
+
     context "with pagination" do
       it "paginates :index results" do
         accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
@@ -222,80 +250,5 @@ describe AccommodationsController do
       end
     end
   end
-
-  describe "GET search" do
-
-    before do
-      @accommodation1 = Accommodation.gen :name => "search_test", :shelter => current_shelter
-      @accommodation2 = Accommodation.gen :name => "test_search", :shelter => current_shelter
-      @accommodation3 = Accommodation.gen :shelter => current_shelter
-    end
-
-    it "responds successfully" do
-      get :search, :format => :js
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "assigns @accommodations" do
-      get :search, :q => "search", :format => :js
-      expect(assigns(:accommodations)).to eq([@accommodation1, @accommodation2])
-    end
-
-    context "with no parameters" do
-      it "assigns @accommodations" do
-        get :search, :format => :js
-        expect(assigns(:accommodations)).to eq({})
-      end
-    end
-
-    context "with pagination" do
-      it "paginates :search results" do
-        accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 50) { [accommodation] }
-
-        get :search, :q => "paginated_search", :page => 1, :format => :js
-        expect(assigns(:accommodations)).to eq([accommodation])
-      end
-    end
-  end
-
-  describe "GET filter_by_type_location" do
-
-    before do
-      @accommodation1 = Accommodation.gen :shelter => current_shelter
-      @accommodation2 = Accommodation.gen :shelter => current_shelter
-      @animal_type_id = @accommodation1.animal_type_id
-      @location_id = @accommodation1.location_id
-    end
-
-    it "responds successfully" do
-      get :filter_by_type_location, :format => :js
-      expect(response).to be_success
-      expect(response.status).to eq(200)
-    end
-
-    it "assigns @accommodations" do
-      get :filter_by_type_location, :animal_type_id => @animal_type_id, :location_id => @location_id, :format => :js
-      expect(assigns(:accommodations)).to eq([@accommodation1])
-    end
-
-    context "with no parameters" do
-      it "assigns @accommodations" do
-        get :filter_by_type_location, :format => :js
-        expect(assigns(:accommodations)).to eq([@accommodation1, @accommodation2])
-      end
-    end
-
-    context "with pagination" do
-
-      it "paginates :filter_by_type_location results" do
-        accommodation = Accommodation.gen :name => "paginated_search", :shelter => current_shelter
-        allow(WillPaginate::Collection).to receive(:create).with(1, 50) { [accommodation] }
-
-        get :filter_by_type_location, :page => 1, :format => :js
-        expect(assigns(:accommodations)).to eq([accommodation])
-      end
-    end
-  end
 end
+
