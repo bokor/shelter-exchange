@@ -13,7 +13,7 @@
 
 		<div class="page_content">
       <div class="search">
-        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip_on_top", "data-tip" => "Search for the contacts name, telephone number, email address or by company name." %></h3>
+        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip", "data-tip" => "Search for the contacts name, telephone number, email address or by company name." %></h3>
         <%= form_for :contacts, :html => { :id => "form_search", :onsubmit => "Contacts.search(); return false;" } do |f| %>
         <ul>
 		      <li class="full">

@@ -14,7 +14,7 @@
 		<div class="page_content">
 
       <div class="search">
-        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip_on_top", "data-tip" => "Search for animal breed, name, microchip number or details in the description." %></h3>
+        <h3>Search: <%= image_tag "icon_help.png", :class =>"tooltip", "data-tip" => "Search for animal breed, name, microchip number or details in the description." %></h3>
         <%= form_for :animals, :html => { :id => "form_search", :onsubmit => "Animals.search(); return false;" } do |f| %>
         <ul>
 		      <li class="full">
