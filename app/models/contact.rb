@@ -59,8 +59,8 @@ class Contact < ActiveRecord::Base
       else
         query.split(" ").each do |word|
           scope = scope.where(
-            "contacts.first_name LIKE ? OR contacts.last_name LIKE ? OR contacts.company_name LIKE ? OR contacts.email LIKE ?",
-            "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%")
+            "contacts.first_name LIKE ? OR contacts.last_name LIKE ? OR contacts.company_name LIKE ? OR contacts.email LIKE ? OR contacts.city LIKE ?",
+            "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%")
         end
       end
     end

@@ -81,6 +81,7 @@ describe Contact, ".search_and_filter" do
       :company_name => "Shelter Exchange, Inc",
       :email => "who@example.com",
       :phone => "123-456-7890",
+      :city => "Redwood City",
       :state => "CA",
       :adopter => 1
     )
@@ -89,6 +90,7 @@ describe Contact, ".search_and_filter" do
       :last_name => "Dude",
       :company_name => "Shelter Exchange, Inc",
       :mobile => "666-777-8888",
+      :city => "San Bruno",
       :state => "CA",
       :volunteer => 1
     )
@@ -140,6 +142,12 @@ describe Contact, ".search_and_filter" do
       contacts = Contact.search_and_filter("Shelter Exchange, Inc", nil, nil, nil)
       expect(contacts.count).to eq(2)
       expect(contacts).to match_array([@contact1, @contact2])
+    end
+
+    it "searches where term is like the city" do
+      contacts = Contact.search_and_filter("Redwood", nil, nil, nil)
+      expect(contacts.count).to eq(1)
+      expect(contacts).to match_array([@contact1])
     end
 
     it "searches where term is like multiple query words" do
