@@ -357,24 +357,24 @@ describe ContactsController do
     end
 
     it "responds successfully" do
-      get :find_by_full_name, :q => "", :format => :js
+      get :find_by_full_name, :query => "", :format => :js
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
 
     it "renders the :find_by_full_name view" do
-      get :find_by_full_name, :q => "", :format => :js
+      get :find_by_full_name, :query => "", :format => :js
       expect(response).to render_template(:find_by_full_name)
     end
 
     it "assigns @contacts" do
-      get :find_by_full_name, :q => "jim smith", :format => :js
+      get :find_by_full_name, :query => "jim smith", :format => :js
       expect(assigns(:contacts)).to match_array([@contact1, @contact2])
     end
 
     context "with no parameters" do
       it "assigns @contacts" do
-        get :find_by_full_name, :q => "", :format => :js
+        get :find_by_full_name, :query => "", :format => :js
         expect(assigns(:contacts)).to match_array([@contact1, @contact2, @contact3])
       end
     end
@@ -384,7 +384,7 @@ describe ContactsController do
         contact = Contact.gen :first_name => "billy", :shelter => current_shelter
         allow(WillPaginate::Collection).to receive(:create).with(1, 25) { [contact] }
 
-        get :find_by_full_name, :q => "billy", :page => 1, :format => :js
+        get :find_by_full_name, :query => "billy", :page => 1, :format => :js
 
         expect(assigns(:contacts)).to eq([contact])
       end

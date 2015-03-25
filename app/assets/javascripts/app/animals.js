@@ -84,7 +84,7 @@ var Animals = {
 		$('#animal_animal_status_id').bind("change", function(event) {Animals.animalStatusSelected(true, animal_status_was);});
 		$('#animal_has_special_needs').bind("change", function(event) {Animals.specialNeedsSelected();});
 		$('#animal_is_mix_breed').bind("click", function(event) {Animals.showSecondaryBreed();});
-		$('#accommodation_search_link').bind("click",function(event) {Accommodations.filterByTypeLocation();});
+		$('#accommodation_search_link').bind("click",function(event) {Accommodations.search();});
 
 		// Arrival Date initialize
 		Animals.datePicker("#animal_arrival_date");

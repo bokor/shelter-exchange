@@ -66,8 +66,9 @@ class ContactsController < ApplicationController
 
   def find_by_full_name
     #TODO: merge with search but need to handle create_new_link for animal status history page
-    @contacts = @current_shelter.contacts.search_and_filter(params[:q], nil, nil, nil)
-    @contacts.paginate(:page => params[:page]).all
+    @contacts = @current_shelter.contacts.search_and_filter(params[:query], nil, nil, nil)
+    @contacts = @contacts.paginate(:page => params[:page]).all
+    respond_with(@contacts)
   end
 
   def export

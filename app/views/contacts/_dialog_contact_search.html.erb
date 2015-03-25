@@ -3,7 +3,7 @@
 		<%= form_for :contacts, :url => { :action => :find_by_full_name, :controller => :contacts },
 		             :remote => true, :format => :js, :html => { :id => "form_contact_search", :method => :get } do |f| %>
       <h2>Search for contact:</h2>
-  		<%= text_field_tag "q", ""  %>
+  		<%= text_field_tag "query", ""  %>
 			<%= f.submit "Go", :disable_with => "..." %>
     <% end %>
 
