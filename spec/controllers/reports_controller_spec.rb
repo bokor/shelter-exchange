@@ -11,6 +11,25 @@ describe ReportsController do
       expect(response.status).to eq(200)
     end
 
+    it "assigns @current_counts" do
+      foo_status = AnimalStatus.gen :id => 1, :name => "foo status"
+      bar_status = AnimalStatus.gen :id => 4, :name => "bar status"
+
+      Animal.gen :animal_status_id => foo_status.id, :shelter => current_shelter
+      Animal.gen :animal_status_id => foo_status.id, :shelter => current_shelter
+      Animal.gen :animal_status_id => bar_status.id, :shelter => current_shelter
+
+      get :index
+      current_counts_hash = MultiJson.load(assigns(:current_counts).to_json)
+      expect(current_counts_hash).to match_array([
+        {
+          "animal" => {"count" => 2, "name" => "foo status"}
+        },
+        {
+          "animal" => { "count" => 1, "name" => "bar status" }
+        }])
+    end
+
     it "assigns @status_counts" do
       Timecop.freeze(Time.parse("Fri, 14 Feb 2014"))
 

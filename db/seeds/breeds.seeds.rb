@@ -536,6 +536,7 @@ after :animal_types do
     { :animal_type_id => other.id, :name => "Alpaca" },
     { :animal_type_id => other.id, :name => "Chinchilla" },
     { :animal_type_id => other.id, :name => "Cow" },
+    { :animal_type_id => other.id, :name => "Degu" },
     { :animal_type_id => other.id, :name => "Ferret" },
     { :animal_type_id => other.id, :name => "Fish" },
     { :animal_type_id => other.id, :name => "Frog" },

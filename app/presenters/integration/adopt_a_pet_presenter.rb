@@ -153,6 +153,7 @@ class Integration::AdoptAPetPresenter < Presenter
       AnimalType::TYPES[:other] => {
         "Alpaca" => "Farm Animal",
         "Chinchilla" => "Small Animal",
+        "Degu" => "Small Animal",
         "Cow" => "Farm Animal",
         "Ferret" => "Small Animal",
         "Fish" => "Reptile",

@@ -147,6 +147,7 @@ class Integration::PetfinderPresenter < Presenter
       "Pig" => "Barnyard",
       "Sheep" => "Barnyard",
       "Chinchilla" => "Small & Furry",
+      "Degu" => "Small & Furry",
       "Ferret" => "Small & Furry",
       "Gerbil" => "Small & Furry",
       "Guinea Pig" => "Small & Furry",
