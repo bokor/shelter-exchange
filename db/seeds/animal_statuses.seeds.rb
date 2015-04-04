@@ -20,5 +20,6 @@ AnimalStatus.create([
   { :name => "Deceased", :sort_order => 14 },
   { :name => "Euthanized", :sort_order => 15 },
   { :name => "Transferred", :sort_order => 16 },
-  { :name => "Adoption Pending", :sort_order => 3 }
+  { :name => "Adoption Pending", :sort_order => 3 },
+  { :name => "Sanctuary", :sort_order => 17 }
 ])

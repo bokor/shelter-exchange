@@ -9,6 +9,7 @@ describe AnimalsHelper, "#filter_by_animal_statuses" do
     ).to match_array([
       ["All Active", :active],
       ["All Non-Active", :non_active],
+      ["All Active and Non-Active", :active_and_non_active],
       ["Testing status", status.id]
     ])
   end

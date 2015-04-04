@@ -1,19 +1,5 @@
 require "rails_helper"
 
-# Constants
-#----------------------------------------------------------------------------
-describe Activity, "::LIMIT" do
-  it "returns the limit of each activity" do
-    expect(Activity::LIMIT).to eq(10)
-  end
-end
-
-describe Activity, "::PAGE_TOTAL" do
-  it "returns the number of total activities per page" do
-    expect(Activity::PAGE_TOTAL).to eq(20)
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Activity, ".recent" do

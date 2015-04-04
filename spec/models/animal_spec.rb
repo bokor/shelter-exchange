@@ -483,31 +483,6 @@ describe Animal do
 
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Animal, "::SEX" do
-  it "contains a default list of genders" do
-    expect(Animal::SEX).to match_array(["male", "female"])
-  end
-end
-
-describe Animal, "::AGES" do
-  it "contains a default list of ages" do
-    expect(Animal::AGES).to match_array(["baby", "young", "adult", "senior"])
-  end
-end
-
-describe Animal, "::SIZES" do
-  it "contains a default list of sizes" do
-    expect(Animal::SIZES).to eq({
-      :S => "Small",
-      :M => "Medium",
-      :L => "Large",
-      :XL => "X-Large"
-    })
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Animal, ".latest" do
@@ -661,6 +636,18 @@ describe Animal, ".search_and_filter" do
 
       expect(animals.count).to eq(2)
       expect(animals).to match_array([animal1, animal2])
+    end
+
+    it "filters animals with active and non-active" do
+      animal1 = Animal.gen :animal_status_id => 1
+      animal2 = Animal.gen :animal_status_id => 2
+      animal3 = Animal.gen :animal_status_id => 3
+      animal4 = Animal.gen :animal_status_id => 4
+
+      animals = Animal.search_and_filter(nil, nil, "active_and_non_active", nil)
+
+      expect(animals.count).to eq(4)
+      expect(animals).to match_array([animal1, animal2, animal3, animal4])
     end
   end
 

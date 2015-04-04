@@ -46,22 +46,6 @@ describe Contact do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Contact, "::ROLES" do
-  it "contains a default list of roles" do
-    expect(Contact::ROLES).to match_array([
-      "adopter",
-      "foster",
-      "volunteer",
-      "transporter",
-      "donor",
-      "staff",
-      "veterinarian"
-    ])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Contact, ".per_page" do

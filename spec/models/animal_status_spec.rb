@@ -7,64 +7,6 @@ describe AnimalStatus do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe AnimalStatus, "::STATUSES" do
-  it "contains a default list of statuses" do
-    expect(AnimalStatus::STATUSES).to eq({
-      :available_for_adoption => 1,
-      :adopted => 2,
-      :foster_care => 3,
-      :new_intake => 4,
-      :in_transit => 5,
-      :rescue_candidate => 6,
-      :stray_intake => 7,
-      :on_hold_behavioral => 8,
-      :on_hold_medical => 9,
-      :on_hold_bite => 10,
-      :on_hold_custody => 11,
-      :reclaimed => 12,
-      :deceased => 13,
-      :euthanized => 14,
-      :transferred => 15,
-      :adoption_pending => 16
-    })
-  end
-end
-
-describe AnimalStatus, "::CAPACITY" do
-  it "contains a list of statuses for capacity counts" do
-    expect(AnimalStatus::CAPACITY).to match_array([1,4,5,6,7,8,9,10,11,16])
-  end
-end
-
-describe AnimalStatus, "::ACTIVE" do
-  it "contains a list active statuses" do
-    expect(AnimalStatus::ACTIVE).to match_array([1,3,4,5,6,7,8,9,10,11,16])
-  end
-end
-
-describe AnimalStatus, "::NON_ACTIVE" do
-  it "contains a list non active statuses" do
-    expect(AnimalStatus::NON_ACTIVE).to match_array([2,12,13,14,15])
-  end
-end
-
-describe AnimalStatus, "::AVAILABLE" do
-  it "contains a list available statuses" do
-    expect(AnimalStatus::AVAILABLE).to match_array([1,16])
-  end
-end
-
-describe AnimalStatus, "::EXTRA_STATUS_FILTERS" do
-  it "contains extra statuses for filter dropdowns" do
-    expect(AnimalStatus::EXTRA_STATUS_FILTERS).to match_array([
-      ["All Active", :active],
-      ["All Non-Active", :non_active]
-    ])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe AnimalStatus, ".active" do

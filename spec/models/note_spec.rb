@@ -23,22 +23,6 @@ describe Note do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Note, "::DEFAULT_CATEGORY" do
-  it "contains a single value for the default category" do
-    expect(Note::DEFAULT_CATEGORY).to eq("general")
-  end
-end
-
-describe Note, "::CATEGORIES" do
-  it "contains a default list of Categories" do
-    expect(Note::CATEGORIES).to match_array([
-      "general", "medical", "behavioral", "intake"
-    ])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Note, ".without_hidden" do

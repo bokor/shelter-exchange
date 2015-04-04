@@ -31,15 +31,6 @@ describe Document do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Document, "::MAX_TOTAL" do
-
-  it "returns the default max total of documents" do
-    expect(Document::MAX_TOTAL).to eq(4)
-  end
-end
-
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Document, "#attachable" do

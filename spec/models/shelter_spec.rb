@@ -191,14 +191,6 @@ describe Shelter do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Shelter, "::STATUSES" do
-  it "contains a default list of statuses" do
-    expect(Shelter::STATUSES).to match_array(["active", "suspended", "cancelled"])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Shelter, ".auto_complete" do

@@ -47,14 +47,6 @@ describe Announcement do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Announcement, "::CATEGORIES" do
-  it "contains a default list of Categories" do
-    expect(Announcement::CATEGORIES).to match_array(["general", "web_update", "help"])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Announcement, ".active" do

@@ -244,6 +244,8 @@ class Animal < ActiveRecord::Base
     status_id = "active" if status_id.blank?
     scope = if status_id == "active" || status_id == "non_active"
       scope.send(status_id)
+    elsif status_id == "active_and_non_active"
+      scope.where(:animal_status_id => AnimalStatus::STATUSES.values)
     else
       scope.where(:animal_status_id => status_id)
     end

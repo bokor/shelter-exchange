@@ -22,20 +22,6 @@ describe User do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe User, "::ROLES" do
-  it "contains a default list of roles" do
-    expect(User::ROLES).to match_array(["user", "admin", "read_only"])
-  end
-end
-
-describe User, "::OWNER" do
-  it "contains the owner value" do
-    expect(User::OWNER).to eq("owner")
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe User, ".admin_list" do

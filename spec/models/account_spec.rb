@@ -143,14 +143,6 @@ describe Account do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Account, "::DOCUMENT_TYPE" do
-  it "contains an array of document type values" do
-    expect(Account::DOCUMENT_TYPE).to match_array(["501(c)(3) determination letter", "990 tax form", "Your adoption contract"])
-  end
-end
-
 # Instance Methods
 #----------------------------------------------------------------------------
 describe Account, "#shelters" do

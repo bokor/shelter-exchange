@@ -15,8 +15,21 @@
 	</div>
 
   <div class="page_content">
+    <h2>Current Active Totals</h2>
+    <table class="status_counts">
+      <tr>
+        <th>Status</th>
+        <th>Total <%= image_tag "icon_help.png", :class =>"tooltip_on_top", "data-tip" => "Current totals of active animals." %></th>
+      </tr>
+      <% @current_counts.each do |current_count|  %>
+        <tr class="<%= cycle("odd", "even")%>">
+          <td class="status"><%= current_count.name %></td>
+          <td class="center"><%= current_count.count %></td>
+        </tr>
+      <% end %>
+    </table>
 
-    <h2>Animal Count Totals</h2>
+    <h2>Animal Yearly Totals by Status</h2>
     <table class="status_counts">
       <tr>
         <th>Status</th>

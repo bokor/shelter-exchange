@@ -15,22 +15,6 @@ describe Task do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Task, "::CATEGORIES" do
-
-  it "contains a default list of Categories" do
-    expect(Task::CATEGORIES).to match_array(["call", "email", "follow-up", "meeting", "to-do", "alert", "educational", "behavioral", "medical"])
-  end
-end
-
-describe Task, "::DUE_CATEGORIES" do
-
-  it "contains a default list of Due Categories" do
-    expect(Task::DUE_CATEGORIES).to match_array(["today", "tomorrow", "later", "specific_date"])
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Task, ".active" do

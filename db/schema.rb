@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150110193832) do
+ActiveRecord::Schema.define(:version => 20150113053800) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -37,26 +37,6 @@ ActiveRecord::Schema.define(:version => 20150110193832) do
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain"
-
-  create_table "alerts", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "alertable_id"
-    t.string   "alertable_type"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "stopped",        :default => false, :null => false
-    t.integer  "shelter_id"
-    t.string   "severity"
-  end
-
-  add_index "alerts", ["alertable_id", "alertable_type"], :name => "index_alerts_on_alertable_id_and_alertable_type"
-  add_index "alerts", ["alertable_id"], :name => "index_alerts_on_alertable_id"
-  add_index "alerts", ["alertable_type"], :name => "index_alerts_on_alertable_type"
-  add_index "alerts", ["created_at"], :name => "index_alerts_on_created_at"
-  add_index "alerts", ["shelter_id", "alertable_type"], :name => "index_alerts_on_shelter_id_and_alertable_type"
-  add_index "alerts", ["shelter_id"], :name => "index_alerts_on_shelter_id"
-  add_index "alerts", ["title"], :name => "index_alerts_on_title"
 
   create_table "animal_statuses", :force => true do |t|
     t.string   "name"

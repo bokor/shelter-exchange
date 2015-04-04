@@ -34,29 +34,6 @@ describe Photo do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Photo, "::TOTAL_MAIN" do
-
-  it "returns the total number of main photos" do
-    expect(Photo::TOTAL_MAIN).to eq(1)
-  end
-end
-
-describe Photo, "::TOTAL_ADDITIONAL" do
-
-  it "returns the total number of additional photos" do
-    expect(Photo::TOTAL_ADDITIONAL).to eq(3)
-  end
-end
-
-describe Photo, "::MAX_TOTAL" do
-
-  it "returns the total max total of photos" do
-    expect(Photo::MAX_TOTAL).to eq(4)
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Photo, ".main_photo" do

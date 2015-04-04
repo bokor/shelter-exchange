@@ -68,14 +68,6 @@ describe Integration::AdoptAPet do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Integration::AdoptAPet, "::FTP_URL" do
-  it "returns the ftp url for adopt a pet" do
-    expect(Integration::AdoptAPet::FTP_URL).to eq("autoupload.adoptapet.com")
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Integration::AdoptAPet, ".model_name" do

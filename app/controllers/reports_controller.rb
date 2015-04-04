@@ -2,6 +2,7 @@ class ReportsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
+    @current_counts = @current_shelter.animals.count_by_status.active
     @status_counts = @current_shelter.status_histories.status_counts(3).all
   end
 

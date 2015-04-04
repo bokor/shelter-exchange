@@ -1,24 +1,5 @@
 require "rails_helper"
 
-# Constants
-#----------------------------------------------------------------------------
-describe AnimalType, "::TYPES" do
-  it "contains a default list of types" do
-    expect(AnimalType::TYPES).to eq({
-      :dog => 1,
-      :cat => 2,
-      :horse => 3,
-      :rabbit => 4,
-      :bird => 5,
-      :reptile => 6,
-      :other => 7
-    })
-  end
-end
-
-# Class Methods
-#----------------------------------------------------------------------------
-
 # Instance Methods
 #----------------------------------------------------------------------------
 describe AnimalType, "#animals" do

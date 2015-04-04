@@ -79,14 +79,6 @@ describe Integration::Petfinder do
   end
 end
 
-# Constants
-#----------------------------------------------------------------------------
-describe Integration::Petfinder, "::FTP_URL" do
-  it "returns the ftp url for petfinder" do
-    expect(Integration::Petfinder::FTP_URL).to eq("members.petfinder.com")
-  end
-end
-
 # Class Methods
 #----------------------------------------------------------------------------
 describe Integration::Petfinder, ".model_name" do
