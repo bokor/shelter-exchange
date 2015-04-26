@@ -284,8 +284,9 @@ class Animal < ActiveRecord::Base
 
   # Reporting
   #----------------------------------------------------------------------------
-  scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id)
-  scope :count_by_status, select("count(*) count, animal_statuses.name").joins(:animal_status).group(:animal_status_id)
+  scope :count_by_type, select("count(*) count, animal_types.name").joins(:animal_type).group(:animal_type_id).reorder("animal_types.name ASC")
+  scope :count_by_status, select("count(*) count, animal_statuses.name").
+                          joins(:animal_status).group(:animal_status_id).reorder("animal_statuses.name ASC")
   scope :current_month, where(:status_change_date => Time.zone.today.beginning_of_month..Time.zone.today.end_of_month)
   scope :year_to_date, where(:status_change_date => Time.zone.today.beginning_of_year..Time.zone.today.end_of_year)
 

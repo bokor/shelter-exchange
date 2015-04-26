@@ -24,8 +24,8 @@ class AnimalStatus < ActiveRecord::Base
   }.freeze
 
   CAPACITY             = [1,4,5,6,7,8,9,10,11,16].freeze
-  ACTIVE               = [1,3,4,5,6,7,8,9,10,11,16].freeze
-  NON_ACTIVE           = [2,12,13,14,15,17].freeze
+  ACTIVE               = [1,3,4,5,6,7,8,9,10,11,16,17].freeze
+  NON_ACTIVE           = [2,12,13,14,15].freeze
   AVAILABLE            = [1,16].freeze
   EXTRA_STATUS_FILTERS = [
     ["All Active", :active],
