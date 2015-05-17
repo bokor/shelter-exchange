@@ -68,6 +68,11 @@ section.newsletter span.thank_you{width: 380px; font-weight:bold; text-transform
 section.newsletter .field{ width: 250px; padding-left: 10px; height: 18px; -moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px; }
 section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
 
+/* Address Details :: Layout */
+/******************************************************************/
+#address_details h3{border:none; padding: 0 0 5px 0; margin:0;}
+#address_details p{padding-bottom: 5px; margin-bottom: 0px;}
+#address_details div{padding-bottom: 15px;}
 
 /*******************************************************************/
 /* -------------------------- ACCOUNTS -------------------------- */
@@ -691,9 +696,7 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* -------------------------- PRIVACY -------------------------- */
 /*****************************************************************/
 .privacy_page h2{border-top: 1px #bbb dotted; padding-top: 10px;}
-.privacy_page #contact_details h3{border:none; padding: 0 0 5px 0; margin:0;}
-.privacy_page #contact_details p{padding-bottom: 5px; margin-bottom: 0px;}
-.privacy_page #contact_details div{padding-bottom: 15px;}
+
 
 /**************************************************************************/
 /* -------------------------- TERMS OF SERVICE -------------------------- */
