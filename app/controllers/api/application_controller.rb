@@ -1,20 +1,31 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
   before_filter :shelter_lookup, :shelter_inactive?
+  before_filter :cors_preflight_check
+  after_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
   layout :current_layout
 
 
   #-----------------------------------------------------------------------------
   private
 
+  def cors_preflight_check
+    if request.format.json? && request.method == :options
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Credentials'] = 'true'
+      headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = '*'
+      render :text => '', :content_type => 'text/plain'
+    end
+  end
+
   def cors_access_control_headers
     if request.format.json? || request.xhr?
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Credentials'] = 'true'
-      headers['Access-Control-Allow-Methods'] = 'GET'
-      headers['Access-Control-Allow-Headers'] = 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'
+      headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = 'Content-Type, Accept, X-Requested-With, Session, Keep-Alive, User-Agent, If-Modified-Since, Cache-Control'
     end
   end
 
