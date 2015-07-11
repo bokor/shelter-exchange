@@ -20,20 +20,25 @@ describe Api::ApplicationController do
   end
 
   context "setting CORS headers" do
+    it "performs the preflight check and returns :ok" do
+      process :index, nil, nil, nil, 'OPTIONS'
+      expect(response).to have_http_status(:ok)
+    end
+
     it "sets headers when json" do
       get :index, :format => :json
       expect(response.headers["Access-Control-Allow-Origin"]).to eq("*")
       expect(response.headers["Access-Control-Allow-Credentials"]).to eq("true")
-      expect(response.headers["Access-Control-Allow-Methods"]).to eq("GET")
-      expect(response.headers["Access-Control-Allow-Headers"]).to eq("DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type")
+      expect(response.headers["Access-Control-Allow-Methods"]).to eq("GET, OPTIONS")
+      expect(response.headers["Access-Control-Allow-Headers"]).to eq("Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, User-Agent, Keep-Alive, Cache-Control, If-Modified-Since")
     end
 
     it "sets headers when xhr" do
-      xhr :get, :index
+      xhr :get, :index, :format => :json
       expect(response.headers["Access-Control-Allow-Origin"]).to eq("*")
       expect(response.headers["Access-Control-Allow-Credentials"]).to eq("true")
-      expect(response.headers["Access-Control-Allow-Methods"]).to eq("GET")
-      expect(response.headers["Access-Control-Allow-Headers"]).to eq("DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type")
+      expect(response.headers["Access-Control-Allow-Methods"]).to eq("GET, OPTIONS")
+      expect(response.headers["Access-Control-Allow-Headers"]).to eq("Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, User-Agent, Keep-Alive, Cache-Control, If-Modified-Since")
     end
 
     it "does not set headers when html" do

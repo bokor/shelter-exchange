@@ -1,31 +1,22 @@
 class Api::ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :cors_access_control_headers
   before_filter :shelter_lookup, :shelter_inactive?
-  before_filter :cors_preflight_check
-  after_filter :cors_access_control_headers # Change to after_filter if we implement preflight check
+
   layout :current_layout
 
 
   #-----------------------------------------------------------------------------
   private
 
-  def cors_preflight_check
-    if request.format.json? && request.method == :options
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Credentials'] = 'true'
-      headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = '*'
-      head(:ok)
-    end
-  end
-
   def cors_access_control_headers
     if request.format.json? || request.xhr?
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Credentials'] = 'true'
       headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'Content-Type, Accept, X-Requested-With, Session, Keep-Alive, User-Agent, If-Modified-Since, Cache-Control'
+      headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, User-Agent, Keep-Alive, Cache-Control, If-Modified-Since'
+      head(:ok) if request.method == :options
     end
   end
 
@@ -49,24 +40,4 @@ class Api::ApplicationController < ActionController::Base
     end
   end
 end
-
-
-
-
-# before_filter :cors_preflight_check
-#
-# These would still need to be updated and reviewed if implemented
-#
-# If this is a preflight OPTIONS request, then short-circuit the
-# request, return only the necessary headers and return an empty
-# text/plain
-# def cors_preflight_check
-#   if request.method == :options
-#     headers['Access-Control-Allow-Origin'] = '*'
-#     headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS, PUT, DELETE'
-#     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-#     headers['Access-Control-Max-Age'] = '1728000'
-#     render :text => '', :content_type => 'text/plain'
-#   end
-# end
 
