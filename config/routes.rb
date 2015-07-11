@@ -284,8 +284,8 @@ ShelterExchangeApp::Application.routes.draw do
         end
       end
 
-      get '/:version/animals' => 'animals#index', :as => :list_animals
-      get '/:version/animals/search' => 'animals#search', :as => :search_animals
+      match '/:version/animals' => 'animals#index', via: [:get, :options], :as => :list_animals
+      match '/:version/animals/search' => 'animals#search', via: [:get, :options], :as => :search_animals
     end
 
   end
