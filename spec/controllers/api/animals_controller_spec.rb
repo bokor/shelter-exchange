@@ -77,7 +77,7 @@ describe Api::AnimalsController do
             "arrival_date" => nil,
             "hold_time" => "",
             "euthanasia_date" => nil,
-            "url" => "http://#{current_account.subdomain}.se.test/save_a_life/#{@animal.id}",
+            "url" => "http://www.se.test/save_a_life/#{@animal.id}",
             "video" => @animal.video_url,
             "photos" => []
           }
