@@ -11,13 +11,7 @@ class Api::ApplicationController < ActionController::Base
   private
 
   def cors_preflight_check
-    if request.format.json? && request.method == :options
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Credentials'] = 'true'
-      headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = '*'
-      render :text => '', :content_type => 'text/plain'
-    end
+    head(:ok) if request.method == "OPTIONS"
   end
 
   def cors_access_control_headers
