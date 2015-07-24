@@ -16,7 +16,7 @@
 				<div><%= collection_select :filters, :sex, Animal::SEX, :to_s, :humanize, {:prompt => "All"},{:class => "field select large"} %></div>
       </td>
 			<td class="size">
-        <%= label_tag :filter_size, "Size".html_safe, :class => "desc" %>
+        <%= label_tag :filters_size, "Size".html_safe, :class => "desc" %>
         <div><%= collection_select :filters, :size, Animal::SIZES, :first, :last, {:prompt => "All"}, {:class => "field select large" } %></div>
       </td>
 			<td class="extra_options">
