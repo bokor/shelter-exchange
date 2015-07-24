@@ -1,25 +1,25 @@
-<li>
+<li id="location_container">
 	<%= f.label :location_id, "Location", :class => "desc" %>
 	<div>
 	<%= f.collection_select :location_id, @current_shelter.locations.all, :id, :name, {:include_blank =>  "None"}, {:class => "field select medium" } %>
 	<% if can?(:update, Location) %>
-	<a href="#" class="tooltip_dialog" data-dialog-element="#dialog_locations" 
+	<a href="#" class="tooltip_dialog" data-dialog-element="#dialog_locations"
 	                                   data-dialog-blur="Locations.findAllLocations()"
 									   data-dialog-title="&nbsp;">Edit</a>
 	<% end %>
 	</div>
 </li>
-<li>
+<li id="animal_type_container">
 	<%= f.label :animal_type_id, "Animal type <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.collection_select :animal_type_id, AnimalType.all, :id, :name, {:include_blank =>  "Select one"}, {:class => "field select medium" } %></div>
 	<%= has_error_message?(@accommodation, :animal_type_id)%>
 </li>
-<li>
+<li id="name_container">
 	<%= f.label :name, "Name <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_field :name, :class => "field text medium", :maxlength => 255, :placeholder => "Crate 1 or Kennel 3" %></div>
 	<%= has_error_message?(@accommodation, :name)%>
 </li>
-<li>
+<li id="max_capacity_container">
 	<%= f.label :max_capacity, "Max number of animals <span class='req'>*</span>".html_safe, :class => "desc" %>
 	<div><%= f.text_field :max_capacity, :class => "field text small", :maxlength => 4, :placeholder => "4" %></div>
 	<%= has_error_message?(@accommodation, :max_capacity)%>
