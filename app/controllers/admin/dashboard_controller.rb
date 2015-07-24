@@ -17,3 +17,4 @@ class Admin::DashboardController < Admin::ApplicationController
     @latest_shelters = Shelter.latest(10)
   end
 end
+

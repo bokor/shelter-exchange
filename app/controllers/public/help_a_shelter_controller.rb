@@ -1,9 +1,6 @@
 class Public::HelpAShelterController < Public::ApplicationController
   respond_to :html, :js
 
-  # caches_action :index
-  # caches_action :show, :expires_in => 2.minutes
-
   def index
   end
 
