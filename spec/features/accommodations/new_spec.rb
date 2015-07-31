@@ -47,5 +47,88 @@ feature "Welcome page for accommodations" do
       body_class_should_include "create_accommodations"
     end
   end
+
+  context "with location" do
+
+    scenario "adding a new location", :js => true do
+      visit new_accommodation_path
+
+      click_link "Edit"
+
+      within "#dialog_locations" do
+        click_link "Add a location"
+        fill_in "Add a location *", :with => "West Coast"
+        click_button "Create Location"
+      end
+
+      find(".qtip-close").click
+
+      select "West Coast", :from => "Location"
+      select "Dog", :from => "Animal type *"
+      fill_in "Name *", :with => "Crate 1"
+      fill_in "Max number of animals *", :with => "2"
+
+      click_button "Create Accommodation"
+
+      expect(find(".location_details").text).to include("West Coast")
+    end
+
+    scenario "edit an existing location", :js => true do
+      location = Location.gen :name => "West Coast", :shelter => current_shelter
+
+      visit new_accommodation_path
+
+      click_link "Edit"
+
+      within "##{dom_id(location)}" do
+        click_link "Edit"
+      end
+
+      within "##{dom_id(location, :edit)}" do
+        fill_in "Add a location *", :with => "East Coast"
+        click_button "Update Location"
+      end
+
+      find(".qtip-close").click
+
+      expect(page).to have_select("accommodation_location_id", options: ["None", "East Coast"])
+
+      select "East Coast", :from => "Location"
+      select "Dog", :from => "Animal type *"
+      fill_in "Name *", :with => "Crate 1"
+      fill_in "Max number of animals *", :with => "2"
+
+      click_button "Create Accommodation"
+
+      expect(find(".location_details").text).to include("East Coast")
+    end
+
+    scenario "deleting an existing location", :js => true do
+      location1 = Location.gen :name => "West Coast", :shelter => current_shelter
+      location2 = Location.gen :name => "East Coast", :shelter => current_shelter
+
+      visit new_accommodation_path
+
+      click_link "Edit"
+
+      within "##{dom_id(location2)}" do
+        click_link "Delete"
+        accept_confirmation!
+      end
+
+      find(".qtip-close").click
+
+      expect(page).to have_select("accommodation_location_id", options: ["None", "West Coast"])
+
+      select "West Coast", :from => "Location"
+      select "Dog", :from => "Animal type *"
+      fill_in "Name *", :with => "Crate 1"
+      fill_in "Max number of animals *", :with => "2"
+
+      click_button "Create Accommodation"
+
+      expect(find(".location_details").text).to include("West Coast")
+    end
+  end
 end
 

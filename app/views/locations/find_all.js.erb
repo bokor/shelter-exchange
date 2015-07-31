@@ -1,2 +1,2 @@
-$('#accommodation_location_id').replaceWith( "<%= escape_javascript( collection_select(:accommodation, :location_id, @locations, :id, :name, {:include_blank =>  'None'}, {:class => 'field select medium' }) ) %>" );
-$('#location_location_id').replaceWith( "<%= escape_javascript( collection_select(:location, :location_id, @locations, :id, :name, {:prompt => 'All'}, { :name => 'location_id', :onchange => 'Accommodations.filterByTypeLocation();' } ) ) %>" );
+$('#accommodation_location_id').replaceWith( "<%= escape_javascript( collection_select('accommodation', 'location_id', @locations, :id, :name, {:include_blank =>  'None'}, {:class => 'field select medium' }) ) %>" );
+$('#filters_location_id').replaceWith( "<%= escape_javascript( collection_select('filters', 'location_id', @locations, :id, :name, {:prompt => 'All'}, { :name => 'location_id', :onchange => 'Accommodations.search();' } ) ) %>" );

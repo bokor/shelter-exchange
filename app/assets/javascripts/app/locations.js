@@ -10,8 +10,8 @@ var Locations = {
 	},
 	findAllLocations: function() {
 		$.ajax({
-			url: "/locations/find_all.js",
-			type: "get",
+			url: '/locations/find_all.js',
+			type: 'get',
 			dataType: 'script'
 		});
   	},
