@@ -37,8 +37,6 @@ gem "jquery-rails"
 gem "sitemap_generator"
 
 group :assets do
-  gem "sass-rails"
-  gem "coffee-rails"
   gem "uglifier"
   gem "yui-compressor"
   gem "asset_sync"
@@ -62,10 +60,6 @@ gem "geocoder"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "whenever", :require => false
-
-# Performance
-#----------------------------------------------------------------------------
-# gem "dalli"
 
 # Monitoring & Notification
 #----------------------------------------------------------------------------
