@@ -7,6 +7,7 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   # File Versions
   #----------------------------------------------------------------------------
+  process :fix_exif_orientation
   process :resize_to_limit => [500,500]
 
   version :small do

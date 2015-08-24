@@ -50,6 +50,10 @@ describe PhotoUploader do
 
   context "after processing versions" do
 
+    it "contains processor to fix exif orientation" do
+      expect(@uploader.processors).to include [:fix_exif_orientation, [], nil]
+    end
+
     it "contains processor to resize to limit" do
       expect(@uploader.processors).to include [:resize_to_limit, [800, 800], nil]
     end
