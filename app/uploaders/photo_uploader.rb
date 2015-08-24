@@ -7,6 +7,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # File Versions
   #----------------------------------------------------------------------------
+  process :fix_exif_orientation
   process :resize_to_limit => [800,800]
 
   version :large  do
