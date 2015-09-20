@@ -3,7 +3,6 @@
 //= require jquery.ui.autocomplete
 //= require jquery.blockUI.min
 //= require nivo-slider/jquery.nivo.slider.pack
-//= require jquery.rss_feed.min
 //= require fancybox/jquery.fancybox-1.3.4.pack
 //= require jquery.jscroll.min
 //= require jquery.placeholder.min

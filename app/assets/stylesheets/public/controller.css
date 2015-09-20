@@ -146,18 +146,6 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 	.home_page .stat_count{font-size: 48px;font-weight: bold; color:#cf7019; letter-spacing: -1px; padding-bottom: 10px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff; }
 	.home_page .stat_text{font-size:16px; -moz-text-shadow: 0px 2px 3px #fff; -webkit-text-shadow: 0px 2px 3px #fff;text-shadow: 0px 2px 3px #fff;}
 
-/* Home Page :: RSS-Feed */
-/******************************************************************/
-.home_page #rss-feed ul {list-style:none; padding: 25px 5px 15px 5px; margin-bottom: 20px; -moz-box-shadow:inset 0px 0px 10px #cf7019;-webkit-box-shadow:inset 0px 0px 10px #cf7019; box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;}
-.home_page #rss-feed ul li {padding-bottom: 15px; text-align:center;}
-.home_page #rss-feed ul li h3{ padding-bottom: 5px;}
-
-/* Home Page :: RSS-Feed :: PIE */
-/******************************************************************/
-.ie7 .home_page #rss-feed ul,
-.ie8 .home_page #rss-feed ul{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
-
-
 
 /* Home Page :: Homepage :: Mission Statement */
 /******************************************************************/

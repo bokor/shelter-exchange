@@ -70,19 +70,6 @@ feature "Home Page" do
       expect(page).to have_content("Adopted Shelter2, Blah City, PA")
     end
   end
-
-  xscenario "list the blog feed stories", :js => true do
-    # need to mock the blogfeed request
-    # /ajax/services/feed/load?v=1.0&output=json_xml&callback=jQuery18202857132207136601_1421612793024&q=http%3A%2F%2Fblog.shelterexchange.org%2Ffeed%2F&num=4&_=1421612793122
-    stub_request(:get, /.*ajax.googleapis.com.*/).
-      with(:query => {:q => "http://blog.shelterexchange.org/feed/"}).to_return({:body => "b"})
-
-    visit "/"
-    pry.binding
-    within "#rss-feed" do
-
-    end
-  end
 end
 
 feature "All Site static pages should be accessible" do
