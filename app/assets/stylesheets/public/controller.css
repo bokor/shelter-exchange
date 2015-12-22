@@ -8,10 +8,6 @@
 .social span{ display:block; float:left;height: 21px; line-height:21px; width: 90px; vertical-align: top;font-size: 12px;}
 .social:after{ content:"\0020"; display:block; height:0px; clear:both; visibility:hidden; overflow:hidden; }
 
-/*.social .facebook{width: 90px;}
-.social .twitter{width: 100px;}
-.social .pinterest{width: 90px;}*/
-
 /* Only FB Like Buttons */
 /******************************************************************/
 .pages .social,
@@ -56,7 +52,7 @@
 
 /* Newsletter :: Signup */
 /******************************************************************/
-section.newsletter{ width:100%;height: 50px; bottom: 250px; position:absolute;background-color: #db8d4a;}
+section.newsletter{ width:100%;height: 50px; bottom: 170px; position:absolute;background-color: #db8d4a;}
 section.newsletter div.content{position:relative; margin: 0 auto; text-align:center;}
 section.newsletter span{color: #fff; font-size: 14px; display: inline-block; line-height: 50px; padding-right: 15px;}
 section.newsletter form{display: inline-block; line-height: 50px;}
@@ -204,6 +200,21 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 .ie7 .about_us_board_of_directors_page .board_member img,
 .ie8 .about_us_board_of_directors_page .board_member img{ behavior: url(/assets/pie/PIE.htc);}
 
+/* About us :: FAQs */
+/******************************************************************/
+.about_us_faqs_page .list h3{border:none; padding-bottom:5px; margin: 0;}
+.about_us_faqs_page .list{list-style: none;padding-top: 30px;}
+.about_us_faqs_page .list li {margin-left:50px; padding-left: 20px; padding-bottom: 20px;}
+.about_us_faqs_page .list li span{position:absolute; left: 0px; /*border: 1px solid #CF7019;*/ color: #CF7019;font-size: 18px; width: 35px;height: 35px; line-height: 35px; text-align: center;background: #fff;
+	-moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px;
+	-moz-box-shadow: 0 0px 4px #000; -webkit-box-shadow: 0 0px 4px #000; box-shadow: 0 0px 4px #000;}
+
+/* About us :: FAQs :: IE :: List Fix :: PIE */
+/******************************************************************/
+.ie7 .about_us_faqs_page .list li span, .ie8 .about_us_faqs_page .list li span{behavior: url(/assets/pie/PIE.htc);}
+
+.about_us_faqs_page .list li ul li{ padding-bottom: 5px;}
+.about_us_faqs_page .list p{padding-bottom: 10px; margin:0;}
 
 /****************************************************************/
 /* -------------------------- DONATE -------------------------- */
@@ -260,77 +271,6 @@ section.mission_statement .social{display:block;position:absolute; top:auto; bot
 /* Shelters and Rescues :: IE Hack :: Screenshot :: PIE */
 /******************************************************************/
 .ie7 .shelters_and_rescues_page .feature .screenshot img, .ie8 .get_involved_shelters_and_rescues_page .feature .screenshot img{behavior: url(/assets/pie/PIE.htc);}
-
-/**********************************************************************/
-/* -------------------------- GET INVOLVED -------------------------- */
-/**********************************************************************/
-
-/* Get Involved */
-/******************************************************************/
-.get_involved_page .sections {list-style: none;}
-.get_involved_page .sections li{ margin-bottom: 40px;}
-
-.get_involved_page .box{display: inline-block; width: 300px; margin: 0 5px 0 10px; height: 160px;-moz-box-shadow: inset 0px 0px 10px #cf7019;-webkit-box-shadow: inset 0px 0px 10px #cf7019;box-shadow: inset 0px 0px 10px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
-.get_involved_page .box.odd{float:left; padding-right: 1%;}
-.get_involved_page .box.even{float:right; padding-left: 1%;}
-.get_involved_page .box:hover{ cursor: pointer; -moz-box-shadow:  0px 0px 10px #f16649; -webkit-box-shadow:  0px 0px 10px #f16649; box-shadow:  0px 0px 10px #f16649;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;}
-.get_involved_page .box div{padding: 25px;text-align:center; margin: 0 auto;}
-.get_involved_page .box div h2{padding-bottom: 5px;padding-top: 5px; margin:0;}
-
-.get_involved_page .box a{color:#cf7019; text-decoration:none;}
-.get_involved_page .box:hover a h2{text-decoration:underline;}
-.get_involved_page p{color: #222; text-decoration: none;}
-.get_involved_page .box:hover p{text-decoration: none;}
-
-/* Get Involved :: IE Hack :: Box Fix :: PIE */
-/******************************************************************/
-.ie7 .get_involved_page .box, .ie8 .get_involved_page .box{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
-.ie7 .get_involved_page .box:hover, .ie8 .get_involved_page .box:hover{behavior: url(/assets/pie/PIE.htc);}
-
-
-/******************************************************************************/
-/* -------------------------- WHY SHELTER EXCHANGE -------------------------- */
-/******************************************************************************/
-
-
-/* Why Shelter Exchange */
-/******************************************************************/
-
-
-/* Why Shelter Exchange :: FAQs */
-/******************************************************************/
-.why_shelter_exchange_faqs_page .list h3{border:none; padding-bottom:5px; margin: 0;}
-.why_shelter_exchange_faqs_page .list{list-style: none;padding-top: 30px;}
-.why_shelter_exchange_faqs_page .list li {margin-left:50px; padding-left: 20px; padding-bottom: 20px;}
-.why_shelter_exchange_faqs_page .list li span{position:absolute; left: 0px; /*border: 1px solid #CF7019;*/ color: #CF7019;font-size: 18px; width: 35px;height: 35px; line-height: 35px; text-align: center;background: #fff;
-	-moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px;
-	-moz-box-shadow: 0 0px 4px #000; -webkit-box-shadow: 0 0px 4px #000; box-shadow: 0 0px 4px #000;}
-
-/* Why Shelter Exchange :: FAQs :: IE :: List Fix :: PIE */
-/******************************************************************/
-.ie7 .why_shelter_exchange_faqs_page .list li span, .ie8 .why_shelter_exchange_faqs_page .list li span{behavior: url(/assets/pie/PIE.htc);}
-
-.why_shelter_exchange_faqs_page .list li ul li{ padding-bottom: 5px;}
-.why_shelter_exchange_faqs_page .list p{padding-bottom: 10px; margin:0;}
-
-/* Why Shelter Exchange :: Problems and Solutions */
-/******************************************************************/
-.why_shelter_exchange_problems_and_solutions_page .list h3{border-bottom: none; padding-bottom: 5px; margin:0;}
-.why_shelter_exchange_problems_and_solutions_page .list{list-style:none;}
-
-
-
-/* Why Shelter Exchange :: Community Support */
-/******************************************************************/
-.why_shelter_exchange_in_kind_donations_page .list {list-style: none; padding-top: 20px;}
-.why_shelter_exchange_in_kind_donations_page .list li{ border-bottom: 1px #bbb dotted; padding-bottom: 20px; margin-bottom: 20px;}
-.why_shelter_exchange_in_kind_donations_page .list li:after{ content:"\0020"; display:block; line-height:0; height:0; clear:both; visibility:hidden; overflow:hidden; }
-.why_shelter_exchange_in_kind_donations_page .list li:last-child{border:none;}
-.why_shelter_exchange_in_kind_donations_page .list img{float:left;}
-.why_shelter_exchange_in_kind_donations_page .list div{padding-left: 220px;}
-
-
-
 
 /********************************************************************/
 /* -------------------------- SAVE A LIFE -------------------------- */
@@ -408,13 +348,6 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Index Save a life :: Social buttons */
 /******************************************************************/
 .index_save_a_life .social {margin-top: 15px;}
-
-/* Show Save a life :: Social buttons */
-/******************************************************************/
-/*.show_save_a_life .social {display:inline-block; height: 30px;margin-left: 20px;}
-.show_save_a_life .social iframe{vertical-align:middle;}
-.show_save_a_life .social span {display:inline-block;}
-.show_save_a_life .social .pin-it-button{font-size: 12px;}*/
 
 /* Save a life :: Search by Shelter Name :: Animal List :: Layout
 -----------------------------------------------------------------------------*/
@@ -636,47 +569,6 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 .ie7 .show_help_a_shelter .animal,
 .ie8 .show_help_a_shelter .animal{ background: url(/assets/public/background-body.jpg) repeat;-moz-box-shadow:  0px 0px 5px #cf7019; -webkit-box-shadow:  0px 0px 5px #cf7019; box-shadow:  0px 0px 5px #cf7019;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;behavior: url(/assets/pie/PIE.htc);}
 
-
-
-
-
-
-
-
-/********************************************************************/
-/* -------------------------- CAPACITIES -------------------------- */
-/********************************************************************/
-
-/* Capacities :: Global
------------------------------------------------------------------------------*/
-.capacities ul {list-style:none;}
-
-/* Capacities List :: Layout */
-/******************************************************************/
-.capacity_list {border-top: 1px dotted #ccc;}
-.capacity {width: 100%; display:inline-block; line-height: 40px;text-align:left; border-bottom: 1px dotted #bbb; }
-
-.capacity .status {display:inline-block; vertical-align:top; padding: 5px 0; line-height: 60px; width: 60px;font-size: 13px; font-weight: bold; }
-.capacity .counts{display:inline-block;  padding-left: 60px;}
-	.capacity .counts ul{padding-top: 8px;}
-	.capacity .counts ul li{line-height: 25px; }
-
-.capacity .action_links {display:inline-block;float: right;  width: 15%; text-align: right;font-size: 10px;}
-
-
-/* Capacity Legend :: Layout
------------------------------------------------------------------------------*/
-.capacities .legend{width: 90px; margin-top: 20px; padding: 10px 15px; border: 1px solid #ccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
-.capacities .legend table { border-collapse: collapse; border-spacing: 0;  }
-.capacities .legend table th{font-size: 14px;}
-.capacities .legend table th, .capacities .legend table td{padding-bottom:8px;}
-.capacities .legend table td span{ margin-left: 20px; white-space: nowrap; }
-
-/* Save a life :: Capacity
------------------------------------------------------------------------------*/
-.index_save_a_life .capacity .action_links{display:none;}
-.index_save_a_life .capacities{padding: 15px 0 0 0; margin-top: 20px; border-top: 1px solid #ddd;}
-.index_save_a_life .capacities h2{padding-bottom: 10px; /*border-bottom: 1px solid #ddd;*/}
 
 
 

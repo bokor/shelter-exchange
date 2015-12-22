@@ -1,29 +1,28 @@
 <footer>
 	<div class="content">
-		<%= link_to "Donate Now", "/donate", :class=> "button" %>
 		<div class="column col_1">
-			<h4>Connect with us</h4>
-			<%= link_to image_tag("public/social/facebook.png", :width => "64", :height => "64", :alt => "Shelter Exchange's Facebook Page"),
+			<h5>Connect with us</h5>
+			<%= link_to image_tag("public/social/facebook.png", :width => "50", :height => "50", :alt => "Shelter Exchange's Facebook Page"),
 						"http://facebook.com/shelterexchange",
 						:target => "_blank" %>
-			<%= link_to image_tag("public/social/twitter.png", :width => "64", :height => "64", :alt => "Follow Shelter Exchange on Twitter"),
+			<%= link_to image_tag("public/social/twitter.png", :width => "50", :height => "50", :alt => "Follow Shelter Exchange on Twitter"),
 						"http://twitter.com/shelterexchange",
 						:target => "_blank" %>
 		</div>
 		<div class="column col_2">
 			<h5>Learn</h5>
 			<ul>
+				<li><a href="/about_us">About us</a></li>
 				<li><a href="/about_us/mission">Mission</a></li>
-				<li><a href="/why_shelter_exchange/faqs">FAQs</a></li>
-				<li><a href="/why_shelter_exchange/problems_and_solutions">Problems and Solutions</a></li>
+				<li><a href="/about_us/faqs">FAQs</a></li>
 			</ul>
 		</div>
 		<div class="column col_3">
 			<h5>Get Involved</h5>
 			<ul>
-				<li><a href="/contact_us">Contact us</a></li>
-				<li><a href="/get_involved/fundraise">Fundraise</a></li>
-				<li><a href="/get_involved/volunteer">Volunteer</a></li>
+        <li><a href="/save_a_life">Adopt</a></li>
+				<li><a href="/help_a_shelter">Find a shelter</a></li>
+				<li><a href="/donate">Donate</a></li>
 			</ul>
 		</div>
 		<div class="column col_4">
@@ -34,6 +33,10 @@
 				<li><a href="/login">Login</a></li>
 			</ul>
 		</div>
-		<div class="copyright">&copy;<%=Time.zone.today.year%> Shelter Exchange, Inc, 501(c)(3) Non-Profit Organization, All dontation are 100% tax deducible. All Rights Reserved. <a href="/terms_of_service">Terms of service</a>&nbsp;|&nbsp;<a href="/privacy">Privacy policy</a></div>
+    <div class="copyright">
+      &copy;<%=Time.zone.today.year%> Shelter Exchange, Inc, 501(c)(3) Non-Profit Organization, All dontation are 100% tax deducible. &nbsp;&nbsp;
+      <a href="/contact_us">Contact us</a>&nbsp;|&nbsp;
+      <a href="/terms_of_service">Terms of service</a>&nbsp;|&nbsp;
+      <a href="/privacy">Privacy policy</a></div>
 	</div>
 </footer>
