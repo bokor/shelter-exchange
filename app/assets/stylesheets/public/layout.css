@@ -47,8 +47,8 @@ a:hover{color:#f16649; text-decoration: underline;}
 header{height: 145px;}
 header nav { height: 45px; background-color: #222; position: relative; border-top: 5px solid #CD6E18; }
 header #banner { height: 100px;  position: relative; }/*f3f1ec*/
-section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 320px; position: relative; }
-footer{width:100%;height: 250px; bottom: 0; position:absolute; background-color: #222; }
+section#main {min-height:100%; height: auto !important; height: 100%; margin-top: 0px; padding-bottom: 245px; position: relative; }
+footer{width:100%;height: 170px; bottom: 0; position:absolute; background-color: #222; }
 
 /* Header :: Nav */
 /******************************************************************/
@@ -60,12 +60,12 @@ header nav .menu li:hover, header nav .menu li.current { background: url(/assets
 header nav .menu li:hover a, header nav .menu li.current a{ color: #000; text-shadow: inset 0px 0px 2px #fff; text-decoration: none;}
 
 header nav .side_menu{list-style:none;}
-header nav .side_menu li{ position:absolute;cursor: pointer;width: 123px;height: 75px; line-height: 65px;  margin: -15px 0; padding: -10px 0; text-align:center; }
+header nav .side_menu li{ position:absolute;cursor: pointer;width: 123px;height: 75px; line-height: 95px;  margin: -30px 0; padding: -10px 0; text-align:center; }
 
 header nav .side_menu li a{ }
 header nav .side_menu li a span{margin-top: -20px;height: 1;line-height:1em; display:block;text-transform: none; font-size: 9px;}
 
-header nav .side_menu li:hover, header nav .side_menu li.current { margin:-5px 0;color:#fff;text-decoration: none;}
+header nav .side_menu li:hover, header nav .side_menu li.current { margin:-24px 0;color:#fff;text-decoration: none;}
 header nav .side_menu li:hover a, header nav .side_menu li.current a{ color:#fff;text-decoration: none;}
 header nav .side_menu .save_a_life{right: 250px;background: url(/assets/public/tabs_save_a_life_header.png) no-repeat;}
 header nav .side_menu .help_a_shelter{right: 125px;background: url(/assets/public/tabs_help_a_shelter_header.png) no-repeat;}
@@ -92,19 +92,19 @@ footer h5{ text-shadow: none; color: #eee; font-size: 15px; padding-bottom: 10px
 footer .button{position:absolute; top: 140px; left: 520px;}
 footer .content{padding-top: 30px; list-style: none; position:relative;}
 
-footer .column{color: #eee; float:left; height: 120px;}
+footer .column{color: #eee; float:left; }
 footer .column ul{list-style: none;}
 footer .column a{color: #999; font-weight: normal;}
 footer .column a:hover{color: #eee; text-decoration: underline;}
 
-footer .col_1{width: 230px; padding-right: 10px; border-right: 1px #666 dotted; text-align: center;}
+footer .col_1{width: 200px; border-right: 1px #666 dotted; text-align: center;}
 footer .col_1 a{padding: 0 10px;}
 
-footer .col_2{width: 200px; padding: 0 23px;}
+footer .col_2{width: 200px; padding: 0 40px;}
 footer .col_3{width: 200px; padding: 0 23px;}
 footer .col_4{width: 200px; padding-left: 23px;}
 
-footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 40px;}
+footer .copyright{clear:both; text-align:center; color: #666; font-size: 11px; padding-top: 25px;}
 footer .copyright a{font-weight: normal; color: #999;}
 footer .copyright a:hover{color:#fff;}
 

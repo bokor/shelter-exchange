@@ -2,10 +2,7 @@
 <%= description "Discover how our web application can support rescue efforts within the animal welfare community. Sign up or Login for shelters and rescue groups." %>
 <%= keywords "animal shelters, animal rescue groups, animal rescue, homeless animals, donate, animal euthanasia, shelter exchange, nonprofit, non-profit, animal welfare community, euthanized, euthanized animals, find animals, search shelters, local shelters, adoptive parents, animals by euthanasia date, saving lives, age-oriented, breed-specific, special needs animals" %>
 
-<%= content_for :javascripts do %><% end %>
-
 <%= content_for :page_content do %>
-
 	<ul class="submenu">
 		<li><%= link_to "Sign Up", public_signup_path, :class=> "#{sub_navigation(:signup)} button" %></li>
 		<li><%= link_to "Login", "/login", :class=> "#{sub_navigation(:login)} button" %></li>
@@ -170,7 +167,5 @@
 		<p>Sign up your shelter or rescue group to benefit from our free application and be part of the growing community working together to saving more lives.</p>
 		<%= link_to "Sign Up", public_signup_path, :class=> "#{sub_navigation(:signup)} button" %>
 	</div>
-
 <% end %>
 
-<%= content_for :sidebar do %><% end %>
