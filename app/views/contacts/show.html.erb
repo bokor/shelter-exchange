@@ -1,12 +1,6 @@
 <%= title "#{@contact.name}" %>
 
 <%= content_for :javascripts do %>
-	<script type="text/javascript">
-		$(function() {
-			Comments.initializeDialog();
-		});
-  </script>
-
   <%= render "shared/file_uploader/upload_template" %>
 	<%= render "shared/file_uploader/download_template" %>
 <% end %>
@@ -91,9 +85,6 @@
 			<% end %>
 		</div>
   </div>
-
-	<%= render "comments/dialog_comments" %>
-
 <% end %>
 
 <%= content_for :sidebar do %>

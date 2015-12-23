@@ -19,13 +19,6 @@
           <span class="status"><%= status_history.animal_status.name %></span>
         </span>
         <span class="action_links">
-          <div class="view_comments_link">
-            <a href="#" class="tooltip_dialog"
-                  data-dialog-element="#dialog_comments"
-                  data-dialog-title="&nbsp;"
-                  data-dialog-show="Comments.updateCommentable(<%=status_history.id%>,'<%=status_history.class.name.to_s%>');StatusHistories.getComments(<%=status_history.id%>);"
-                  data-dialog-blur="$('#comments').html('')">View comments</a>
-          </div>
         </span>
         <div class="reason">
           <%= status_history.reason.blank? ? "No reason provided" : status_history.reason %>

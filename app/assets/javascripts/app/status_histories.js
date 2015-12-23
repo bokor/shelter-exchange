@@ -2,13 +2,6 @@
  * app/status_histories.js
  * ------------------------------------------------------------------------ */
 var StatusHistories = {
-	getComments: function(id){
-		$.ajax({
-			url: '/status_histories/' + id + '/comments.js',
-			type: 'get',
-			dataType: "script"
-		});
-	},
 	selectContact: function(contact_id, contact_name) {
     $('.qtip').qtip('hide');
 

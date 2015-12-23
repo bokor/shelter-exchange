@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150113053800) do
+ActiveRecord::Schema.define(:version => 20151223064322) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -137,22 +137,6 @@ ActiveRecord::Schema.define(:version => 20150113053800) do
   add_index "capacities", ["animal_type_id"], :name => "index_capacities_on_animal_type_id"
   add_index "capacities", ["shelter_id", "animal_type_id"], :name => "index_capacities_on_shelter_id_and_animal_type_id"
   add_index "capacities", ["shelter_id"], :name => "index_capacities_on_shelter_id"
-
-  create_table "comments", :force => true do |t|
-    t.text     "comment"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "shelter_id"
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
-  add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
-  add_index "comments", ["shelter_id", "commentable_type"], :name => "index_comments_on_shelter_id_and_commentable_type"
-  add_index "comments", ["shelter_id"], :name => "index_comments_on_shelter_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "first_name"

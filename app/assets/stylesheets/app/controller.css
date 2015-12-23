@@ -994,24 +994,6 @@
 
 
 /*******************************************************************/
-/* -------------------------- COMMENTS --------------------------- */
-/*******************************************************************/
-
-/* Comments List :: Layout */
-/******************************************************************/
-.comment_list {border-top: 1px dotted #ccc;}
-.comment {width: 100%; display:inline-block; line-height: 40px;text-align:left;border-bottom: 1px dotted #bbb; }
-
-.comment .created_date {display:inline-block;width: 10%;color:#666; font-size: 10px; letter-spacing: -1px;  }
-.comment .description{display:inline-block; width: 72%; vertical-align:top; padding-left: 5px;}
-	.comment .description p {display:inline-block;font-weight: bold;font-size: 13px; line-height: 1.75em; padding-top:8px; color: #222;}
-
-.comment .action_links {display:inline-block;float: right; width: 15%; text-align: right;font-size: 10px;}
-
-
-
-
-/*******************************************************************/
 /* -------------------------- LOCATIONS -------------------------- */
 /*******************************************************************/
 

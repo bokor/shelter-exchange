@@ -457,26 +457,6 @@ describe Shelter, "#tasks" do
   end
 end
 
-describe Shelter, "#comments" do
-
-  before do
-    @shelter = Shelter.gen
-    @comment1 = Comment.gen :shelter => @shelter
-    @comment2 = Comment.gen :shelter => @shelter
-  end
-
-  it "returns a list of comments" do
-    expect(@shelter.comments.count).to eq(2)
-    expect(@shelter.comments).to match_array([@comment1, @comment2])
-  end
-
-  it "destroy all comments associated to the shelter" do
-    expect(@shelter.comments.count).to eq(2)
-    @shelter.destroy
-    expect(@shelter.comments.count).to eq(0)
-  end
-end
-
 describe Shelter, "#items" do
 
   before do
