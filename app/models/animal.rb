@@ -54,7 +54,6 @@ class Animal < ActiveRecord::Base
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
-  has_many :transfers, :dependent => :destroy
 
   has_many :photos, :as => :attachable, :dependent => :destroy
   accepts_nested_attributes_for :photos, :limit => Photo::MAX_TOTAL,
@@ -355,6 +354,26 @@ class Animal < ActiveRecord::Base
   def sterilized?
     self.is_sterilized
   end
+
+# -  def transfer_animal_record!
+# -    self.animal_status_id      = AnimalStatus::STATUSES[:new_intake]
+# -    self.status_history_reason = "Transferred from #{self.shelter.name}"
+# -    self.status_change_date    = Time.zone.now.to_date
+# -    self.shelter_id            = self.requestor_shelter.id
+# -    self.arrival_date          = Time.zone.now.to_date
+# -    self.hold_time             = nil
+# -    self.euthanasia_date       = nil
+# -    self.accommodation_id      = nil
+# -    self.updated_at            = DateTime.now
+# -    self.save(:validate => false)
+# -
+# -    # Update Notes to new Shelter
+# -    self.notes.update_all(:shelter_id => self.requestor_shelter.id)
+# -
+# -    # Delete all Records not needed
+# -    self.status_histories.where(:shelter_id => self.shelter.id).delete_all
+# -    self.tasks.delete_all
+# -  end
 
 
   #-----------------------------------------------------------------------------

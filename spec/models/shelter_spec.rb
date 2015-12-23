@@ -517,26 +517,6 @@ describe Shelter, "#status_histories" do
   end
 end
 
-describe Shelter, "#transfers" do
-
-  before do
-    @shelter = Shelter.gen
-    @transfer1 = Transfer.gen :shelter => @shelter
-    @transfer2 = Transfer.gen :shelter => @shelter
-  end
-
-  it "returns a list of transfers" do
-    expect(@shelter.transfers.count).to eq(2)
-    expect(@shelter.transfers).to match_array([@transfer1, @transfer2])
-  end
-
-  it "destroy all transfers associated to the shelter" do
-    expect(@shelter.transfers.count).to eq(2)
-    @shelter.destroy
-    expect(@shelter.transfers.count).to eq(0)
-  end
-end
-
 describe Shelter, "#integrations" do
 
   before do

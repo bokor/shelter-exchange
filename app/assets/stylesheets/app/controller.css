@@ -624,7 +624,6 @@
 
 /* Communities :: Animal Page :: Sidebar
 -----------------------------------------------------------------------------*/
-.show_communities #sidebar .transfer_section {padding: 0 0 20px 0;}
 .show_communities #sidebar #animal_shelter {padding: 0;}
 .show_communities #sidebar #animal_shelter h2{border-bottom: 1px #bbb solid; font-weight: bold;}
 .show_communities #sidebar #animal_shelter .shelter_details h2{border:none;}
@@ -767,21 +766,6 @@
 .no.activity .title{font-size: 14px; font-weight:bold;}
 
 .activity .created_at_date{display:inline-block; width: 90px; float:right; text-align:right;font-size: 10px;font-weight:bold;}
-
-
-/* Transfer List :: Layout
------------------------------------------------------------------------------*/
-.transfer_list {border-top: 1px #bbb dotted; padding-bottom: 30px;}
-
-.transfer{clear:both;width: 100%; display:inline-block; line-height: 40px; text-align:left;border-bottom: 1px dotted #bbb;}
-
-.transfer .date_actions{ display:inline-block; width: 100%; font-size: 10px;font-weight:bold;line-height: 1em;}
-.transfer .date_actions:after{ content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden; }
-	.transfer .created_at_date{display:inline-block; float:left; }
-	.transfer .action_links{display:inline-block; float:right; }
-
-.transfer .details{display:inline-block; width: 100%; vertical-align:top; font-size: 13px;}
-
 
 
 /* Announcement List :: Layout

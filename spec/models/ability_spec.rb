@@ -85,10 +85,6 @@ describe Ability, ".user" do
     expect(@ability).to_not be_able_to(:view_settings, User)
   end
 
-  it "can not request a transfer of an animal" do
-    expect(@ability).to_not be_able_to(:request_transfer, Animal)
-  end
-
   it "can not export animals" do
     expect(@ability).to_not be_able_to(:export, Animal)
   end

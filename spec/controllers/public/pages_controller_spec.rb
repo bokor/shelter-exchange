@@ -23,12 +23,11 @@ describe Public::PagesController do
     it "assigns @lives_saved" do
       Animal.gen :animal_status_id => AnimalStatus::STATUSES[:adopted]
       Animal.gen :animal_status_id => AnimalStatus::STATUSES[:transferred]
-      Transfer.gen :status => "completed"
 
       Animal.gen :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption]
 
       get :index
-      expect(assigns(:lives_saved)).to eq(3)
+      expect(assigns(:lives_saved)).to eq(2)
     end
 
     it "assigns @active_shelters" do

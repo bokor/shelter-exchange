@@ -25,14 +25,6 @@ describe Admin::DashboardController do
       })
     end
 
-    it "assigns @counts_by_transfer_with_app" do
-      Transfer.gen :status => "completed"
-      Transfer.gen :status => "completed"
-
-      get :index
-      expect(assigns(:counts_by_transfer_with_app)).to eq(2)
-    end
-
     it "assigns @counts_by_transfer_without_app" do
       Animal.gen(:animal_status_id => AnimalStatus::STATUSES[:transferred])
 
