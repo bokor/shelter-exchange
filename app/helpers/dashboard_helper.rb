@@ -29,7 +29,8 @@ module DashboardHelper
 
   def contact_message(contact)
     if contact.updated_at == contact.created_at
-      "A new contact record for #{link_to contact.first_name + " " + contact.last_name, contact} has been created."
+      full_name = "#{contact.first_name} #{contact.last_name}"
+      "A new contact record for #{link_to full_name, contact} has been created."
     else
       "<a href=\"#{contact_path(contact)}\">#{contact.first_name} #{contact.last_name}</a> has been updated."
     end.html_safe
