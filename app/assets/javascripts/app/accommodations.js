@@ -3,13 +3,20 @@
  * ------------------------------------------------------------------------ */
 var Accommodations = {
 	search: function(){
-		$.ajax({
+    var animalTypeId = "";
+    if ($( "#filters_animal_type_id" ).length) {
+      animalTypeId = $('#filters_animal_type_id').val();
+    } else if ($('#animal_animal_type_id').length) {
+      animalTypeId = $('#animal_animal_type_id').val();
+    }
+
+    $.ajax({
 			url: '/accommodations.js',
 			type: 'get',
 			dataType: 'script',
 			data: {
 				query: $('#query').val(),
-				animal_type_id: $('#filters_animal_type_id').val(),
+				animal_type_id: animalTypeId,
 				location_id: $('#filters_location_id').val(),
         order_by: $('#filters_order_by').val()
 			}

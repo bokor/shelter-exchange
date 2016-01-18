@@ -1,7 +1,7 @@
 <div id="dialog_accommodation_search" class="dialog">
 	<div class="wrapper">
 		<h3>Filter by specific location:</h3>
-		<%= form_for :accommodations, :url => { :action => :filter_by_type_location, :controller => :accommodations }, :remote => true, :format => :js, :html => { :id => "form_find_by_location", :method => :get } do |f| %>
+		<%= form_for :accommodations, :url => { :action => :search, :controller => :accommodations }, :remote => true, :format => :js, :html => { :id => "form_find_by_location", :method => :get } do |f| %>
 
       <%= collection_select(:filters, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"},
           { :name => "location_id", :onchange => "Accommodations.search();" } ) %><br /><br />
