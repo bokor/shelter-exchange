@@ -16,16 +16,16 @@ class AnimalsController < ApplicationController
     @animal = @current_shelter.animals.includes(:animal_type, :animal_status, :photos, :accommodation => [:location]).find(params[:id])
 
     # Photos
-    @photos          = @animal.photos
-    @gallery_photos  = PhotoPresenter.as_gallery_collection(@photos)
+    @photos = @animal.photos
+    @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
     @uploader_photos = PhotoPresenter.as_uploader_collection(@photos)
 
-    @notes            = @animal.notes.includes(:documents).all
+    @notes = @animal.notes.includes(:documents).all
     @status_histories = @animal.status_histories.includes(:animal_status, :contact).all
-    @overdue_tasks    = @animal.tasks.overdue.active.all
-    @today_tasks      = @animal.tasks.today.active.all
-    @tomorrow_tasks   = @animal.tasks.tomorrow.active.all
-    @later_tasks      = @animal.tasks.later.active.all
+    @overdue_tasks = @animal.tasks.overdue.active.all
+    @today_tasks = @animal.tasks.today.active.all
+    @tomorrow_tasks = @animal.tasks.tomorrow.active.all
+    @later_tasks = @animal.tasks.later.active.all
   end
 
   def edit
@@ -118,6 +118,12 @@ class AnimalsController < ApplicationController
         send_data(csvfile, :filename => "#{@current_shelter.name.parameterize}-animals.csv")
       }
     end
+  end
+
+  def transfer
+    @animal = @current_shelter.animals.includes(:shelter).find(params[:id])
+    @animal.transfer!(params[:transfer][:shelter_id])
+    respond_with(@animal)
   end
 
   # goes at the top rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

@@ -355,25 +355,32 @@ class Animal < ActiveRecord::Base
     self.is_sterilized
   end
 
-# -  def transfer_animal_record!
-# -    self.animal_status_id      = AnimalStatus::STATUSES[:new_intake]
-# -    self.status_history_reason = "Transferred from #{self.shelter.name}"
-# -    self.status_change_date    = Time.zone.now.to_date
-# -    self.shelter_id            = self.requestor_shelter.id
-# -    self.arrival_date          = Time.zone.now.to_date
-# -    self.hold_time             = nil
-# -    self.euthanasia_date       = nil
-# -    self.accommodation_id      = nil
-# -    self.updated_at            = DateTime.now
-# -    self.save(:validate => false)
-# -
-# -    # Update Notes to new Shelter
-# -    self.notes.update_all(:shelter_id => self.requestor_shelter.id)
-# -
-# -    # Delete all Records not needed
-# -    self.status_histories.where(:shelter_id => self.shelter.id).delete_all
-# -    self.tasks.delete_all
-# -  end
+  def transfer!(transfer_shelter_id)
+    begin
+      transfer_shelter = Shelter.find(transfer_shelter_id)
+    rescue
+      self.errors.add(:transfer_shelter_name, "must contain a valid shelter")
+      return
+    end
+
+    self.animal_status_id = AnimalStatus::STATUSES[:transferred]
+    self.status_history_reason = "Transferred to #{transfer_shelter.name}"
+    self.save(:validate => false)
+
+    now = Time.zone.now.to_date
+    animal = self.dup
+    animal.status_change_date = now
+    animal.status_history_reason = "Transferred from #{self.shelter.name}"
+    animal.animal_status_id = AnimalStatus::STATUSES[:new_intake]
+    animal.shelter = transfer_shelter
+    animal.arrival_date_year = now.year
+    animal.arrival_date_month = now.month
+    animal.arrival_date_day = now.day
+    animal.hold_time = nil
+    animal.euthanasia_date = nil
+    animal.accommodation_id = nil
+    animal.save(:validate => false)
+  end
 
 
   #-----------------------------------------------------------------------------
@@ -427,6 +434,7 @@ class Animal < ActiveRecord::Base
   end
 
   def parse_and_set_dates
+    # TODO(bokor): If we can set the date directly, then this function should be updated to reflect that.
     unless errors.has_key?(:date_of_birth)
       self.date_of_birth = Date.parse("#{self.date_of_birth_year}/#{self.date_of_birth_month}/#{self.date_of_birth_day}") rescue nil
     end

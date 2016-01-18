@@ -6,7 +6,8 @@
 			Notes.filters();
 			Tasks.initialize("<%=Time.zone.now.utc_offset/60/60%>");
 			Photos.initGallery(<%=raw @gallery_photos %>);
-			Photos.initUploader(<%= raw @uploader_photos %>, <%=Photo::TOTAL_ADDITIONAL%>);
+      Photos.initUploader(<%= raw @uploader_photos %>, <%=Photo::TOTAL_ADDITIONAL%>);
+      Shelters.autoComplete("#transfer_shelter_name", "#transfer_shelter_id");
 		});
   </script>
   <%= render "shared/file_uploader/upload_template" %>
@@ -197,8 +198,11 @@
 
   <% if can?(:update, Animal) %>
     <ul class="action_links">
-      <li><%= link_to 'Add Note', "#", :id => "add_note_link", :class => "button" %></li>
-      <li><%= link_to 'Add Task', "#", :id => "add_task_link", :class => "button" %></li>
+      <li><%= link_to "Add Note", "#", :id => "add_note_link", :class => "button" %></li>
+      <li><%= link_to "Add Task", "#", :id => "add_task_link", :class => "button" %></li>
+      <% unless @animal.transferred? %>
+        <li><%= link_to "Transfer #{@animal.name}", "#", :id => "transfer_animal_link", :class => "button" %></li>
+      <% end %>
     </ul>
   <% end %>
 
@@ -224,9 +228,31 @@
     <%= form_for ([@animal, @task = @animal.tasks.build]), :remote => true, :format => :js, :html => { :id => "create_task_form", :class => "create_task_form" } do |f| %>
 			<ul>
 				<%= render "tasks/form", :f => f %>
-		    	<li class="buttons">
+		    <li class="buttons">
 					<%= f.submit "Create Task", :disable_with => "Submitting...", :id => "create_task_button", :class => "button"  %>
 					&nbsp;or&nbsp;<%= link_to "Cancel", "#", :id => "cancel_task" %>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+
+	<div id="transfer_animal" class="box hide green">
+		<h2>Transfer <%= @animal.name %> to another shelter</h2>
+    <p>Will mark the animal as transferred and copy the animal to the selected shelter.</p>
+		<div id="transfer_animal_errors"></div>
+    <%= form_for :animal, :url => transfer_animal_path(@animal, :format => :js), :remote => true, :format => :js, :html => { :id => "transfer_animal_form", :class => "transfer_animal_form" } do |f| %>
+      <ul>
+        <li>
+          <%= label_tag :shelter_name, "Shelter name <span class='req'>*</span>".html_safe, :class => "desc" %>
+			    <div>
+            <%= text_field_tag "transfer_shelter_name", "", :placeholder => "Please type a shelter name", :class => "field text large" %>
+          </div>
+        </li>
+        <li class="buttons">
+            <%= hidden_field_tag "transfer[shelter_id]" %>
+            <%= f.submit "Transfer to shelter", :disable_with => "Submitting...", :confirm => "Are you sure?", :id => "transfer_animal_button", :class => "button"  %>
+				  	&nbsp;or&nbsp;
+            <%= link_to "Cancel", "#", :id => "cancel_transfer_animal" %>
 				</li>
 			</ul>
 		<% end %>

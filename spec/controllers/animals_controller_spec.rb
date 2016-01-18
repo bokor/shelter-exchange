@@ -483,4 +483,45 @@ describe AnimalsController do
       end
     end
   end
+
+  describe "PUT transfer" do
+
+    before do
+      @new_shelter = Shelter.gen
+      @animal = Animal.gen(
+        :name => "Billy",
+        :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption],
+        :shelter => current_shelter
+      )
+      @update_attrs = { :shelter_id => @new_shelter.id }
+    end
+
+    it "assigns @animal" do
+      put :transfer, :id => @animal.id, :transfer => @update_attrs
+      expect(assigns(:animal)).to be_a(Animal)
+      expect(assigns(:animal)).to be_persisted
+    end
+
+    it "updates Animal status" do
+      expect {
+        put :transfer, :id => @animal.id, :transfer => @update_attrs
+        @animal.reload
+      }.to change(@animal, :animal_status_id).to(AnimalStatus::STATUSES[:transferred])
+    end
+
+    it "copies Animal to new shelter" do
+      expect {
+        put :transfer, :id => @animal.id, :transfer => @update_attrs
+      }.to change(@new_shelter.animals, :count).by(1)
+
+      animal = @new_shelter.animals.last
+      expect(animal.name).to eq("Billy")
+      expect(animal.animal_status_id).to eq(AnimalStatus::STATUSES[:new_intake])
+    end
+
+    it "renders the :index view" do
+      put :transfer, :id => @animal.id, :transfer => @update_attrs, :format => :js
+      expect(response).to render_template(:transfer)
+    end
+  end
 end

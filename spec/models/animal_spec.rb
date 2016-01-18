@@ -1481,3 +1481,46 @@ describe Animal, "#sterilized?" do
   end
 end
 
+describe Animal, "#transfer!" do
+
+  it "must contain a valid shelter" do
+    animal = Animal.gen
+    animal.transfer!(99999)
+    expect(animal.errors[:transfer_shelter_name].size).to eq(1)
+    expect(animal.errors[:transfer_shelter_name]).to match_array(["must contain a valid shelter"])
+  end
+
+  it "updates animal to transferred" do
+    shelter = Shelter.gen
+    transfer_shelter = Shelter.gen :name => "Puppy Rescue 1"
+    animal = Animal.gen :shelter => shelter
+
+    animal.transfer!(transfer_shelter.id)
+
+    expect(animal.animal_status_id).to eq(AnimalStatus::STATUSES[:transferred])
+    expect(animal.status_history_reason).to eq("Transferred to Puppy Rescue 1")
+  end
+
+  it "copies animal to the transfer shelter" do
+    now = Time.zone.now
+    Timecop.freeze(now)
+
+    shelter = Shelter.gen :name => "Kill Shelter"
+    transfer_shelter = Shelter.gen :name => "Puppy Rescue 1"
+    animal = Animal.gen :shelter => shelter
+
+    animal.transfer!(transfer_shelter.id)
+
+    animal_copy = transfer_shelter.animals.last
+    status_history = animal_copy.status_histories.last
+    expect(status_history.reason).to eq("Transferred from Kill Shelter")
+    expect(status_history.status_date).to eq(now.to_date)
+    expect(animal_copy.animal_status_id).to eq(AnimalStatus::STATUSES[:new_intake])
+    expect(animal_copy.shelter).to eq(transfer_shelter)
+    expect(animal_copy.arrival_date).to eq(now.to_date)
+    expect(animal_copy.hold_time).to be_nil
+    expect(animal_copy.euthanasia_date).to be_nil
+    expect(animal_copy.accommodation_id).to be_nil
+  end
+end
+

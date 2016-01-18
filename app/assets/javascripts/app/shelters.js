@@ -29,6 +29,34 @@ var Shelters = {
 		$("#edit_wish_list").bind("click", function(){
 			$(this).hide();
 		});
+	},
+	autoComplete: function(elementIdForBinding, elementIdToUpdate){
+		$(elementIdForBinding).autocomplete({
+			minLength: 3,
+			autoFocus: true,
+			delay: 500,
+			source: function( request, response ) {
+				$.ajax({
+					url: "/shared/shelters/auto_complete.json",
+					dataType: "json",
+					data: {
+						q: request.term
+					},
+					success: function( data ) {
+						response( $.map( data, function( item ) {
+							return {
+								label: item.name,
+								value: item.name,
+								id: item.id
+							}
+						}));
+					}
+				});
+			},
+			select: function(event, ui){
+				$(elementIdToUpdate).val(ui.item.id);
+			}
+		});
 	}
 };
 

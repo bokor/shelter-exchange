@@ -2,10 +2,18 @@ $("#<%= form_id %> li").removeClass("error");
 $("#<%= form_id %> p.error").replaceWith("");
 
 <% target.errors.each do |field, msg| %>
-	// Hack to fix nested forms but still not 100% correct
-	var elementName = "#<%= form_id %> #<%= target.class.model_name.downcase %>_<%= field %>".replace(".","_attributes_0_");
-	var element = $(elementName).parents("li");
-	element.addClass("error");
+  var elementId = "#<%= form_id %> #<%= target.class.model_name.downcase %>_<%= field %>";
+  // If the field doesn't exist with the model name prepended then try without.
+  // Example: animal_primary_breed or primary_breed
+  if($(elementId).length < 1) {
+    elementId = "#<%= form_id %> #<%= field %>";
+  }
+
+  // Hack to fix nested forms but still not 100% correct
+  elementId = elementId.replace(".","_attributes_0_")
+
+	var element = $(elementId).parent().closest('li');
+	element.addClass('error');
 	element.append("<%= escape_javascript(create_error_message(msg)) %>");
 <% end %>
 

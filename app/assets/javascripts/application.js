@@ -213,6 +213,9 @@ $(function() {
 	$('#add_task_link, #cancel_task').click(function() {
 		$('#create_task').slideToggle();
 	});
+	$('#transfer_animal_link, #cancel_transfer_animal').click(function() {
+		$('#transfer_animal').slideToggle();
+	});
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
 	});

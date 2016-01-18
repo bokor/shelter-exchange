@@ -112,6 +112,7 @@ ShelterExchangeApp::Application.routes.draw do
 
       member do
         match :print, :via => [:get, :post]
+        match :transfer, :via => [:post]
       end
 
       collection do
