@@ -37,9 +37,9 @@
               { :name => "animal_type_id", :onchange => "Accommodations.search();" } ) %>
         </span>
         <span class="text">Location:</span>
-        <span class="choice">
-          <%= collection_select(:filters, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"},
-              { :name => "location_id", :onchange => "Accommodations.search();" } ) %>
+          <span class="choice">
+            <%= collection_select(:filters, :location_id, @current_shelter.locations.all, :id, :name, {:prompt => "All"},
+                { :name => "location_id", :onchange => "Accommodations.search();" } ) %>
           </span>
           <span class="text">Order by:</span>
           <span class="choice">
