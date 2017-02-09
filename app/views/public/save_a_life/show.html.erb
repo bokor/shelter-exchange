@@ -1,16 +1,11 @@
 <% page_title = "#{@animal.name} - #{@animal.full_breed} | #{@shelter.city}, #{@shelter.state}" %>
-
 <%= title page_title  %>
-
 <%= description "#{@animal.name} is a #{@animal.sex.downcase} #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, located at #{@shelter.name} in #{@shelter.city}, #{US_STATES[@shelter.state.to_sym]}." %>
-
 <%= keywords "adopt a #{@animal.animal_type.name.downcase}, #{@animal.full_breed}, #{@shelter.name}, #{@shelter.city}, #{@shelter.state}, #{US_STATES[@shelter.state.to_sym]}, adopt animals, save animals, save a life, animal adoptions, animals in need, adopt a pet" %>
-
 <%= robots "noindex,follow" unless @animal.available? %>
 
 <%= open_graph_image image_path(polymorphic_photo_url(@photos.first, :original)) %>
 <%= open_graph_title "#{open_graph_title_status(@animal)} #{page_title}" %>
-
 
 <%= content_for :open_graph_meta do %>
 <!-- CURRENTLY NOT USING -->
@@ -28,9 +23,6 @@
     <meta property="og:phone_number" content="<%= number_to_phone(@shelter.phone, :delimiter => "-") %>"/>
 <% end %>
 
-
-
-
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
 		$(function() {
@@ -40,7 +32,6 @@
 <% end %>
 
 <%= content_for :page_content do %>
-
 	<h1><%= @animal.name %>
 		<span class="social">
 			<span class="facebook">
@@ -49,8 +40,8 @@
 			<span class="twitter">
 				<a href="//twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="shelterexchange<%=",#{@shelter.twitter.slice(1..-1)}" if @shelter.twitter %>">Tweet</a>
 			</span>
-			<span class="pinterest">
-				<a href="//pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+      <span class="pinterest">
+				<a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-save="true"></a>
 			</span>
 		</span>
 		<span class="status"><%= public_animal_status(@animal) %></span>
@@ -93,7 +84,6 @@
 		<p><%= @animal.description.blank? ? "No description provided" : auto_link( simple_format(@animal.description), :all, :target => "_blank").html_safe %></p>
 
 	</div>
-
 
 	<div class="animal_shelter">
 		<%= render "shelter_details" %>

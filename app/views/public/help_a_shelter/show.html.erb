@@ -19,7 +19,6 @@
     <meta property="og:phone_number" content="<%= number_to_phone(@shelter.phone, :delimiter => "-") %>"/>
 <% end %>
 
-
 <%= content_for :javascripts do %>
 	<script type="text/javascript">
 		$(function() {
@@ -29,7 +28,6 @@
 <% end %>
 
 <%= content_for :page_content do %>
-
 	<div id="shelter_details" itemscope itemtype="http://schema.org/AnimalShelter">
 		<div class="logo">
 			<%= image_tag @shelter.logo.url(:thumb), :alt => "#{@shelter.name} Logo", :itemprop => "image" %>
@@ -40,8 +38,8 @@
 				<span class="twitter">
 					<a href="//twitter.com/share" class="twitter-share-button" data-via="shelterexchange" data-related="<%=@shelter.twitter.slice(1..-1) if @shelter.twitter %>">Tweet</a>
 				</span>
-				<span class="pinterest">
-					<a href="//pinterest.com/pin/create/button/?url=<%=request.url %>&media=<%=@shelter.logo.url%>&description=<%=pinterest_shelter_description(@shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+        <span class="pinterest">
+				  <a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-save="true"></a>
 				</span>
 			</div>
 		</div>

@@ -502,7 +502,8 @@ border-bottom: 1px #bbb dotted;  margin-bottom: 10px;}
 /* Show Help a Shelter :: Social buttons */
 /******************************************************************/
 .show_help_a_shelter .social {padding-top: 10px;margin-left: 0px;}
-.show_help_a_shelter .social span {display:block;text-align:left;height: 25px; line-height: 25px;}
+.show_help_a_shelter .social span {display:block;text-align:left; padding-bottom:4px;}
+.show_help_a_shelter .social span.pinterest {width: 61px;}
 
 /* IE Fix :: Show Help a Shelter :: Social buttons */
 /******************************************************************/
