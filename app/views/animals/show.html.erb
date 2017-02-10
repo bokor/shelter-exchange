@@ -72,10 +72,6 @@
 					   data-url="<%= public_save_a_life_url(@animal, :subdomain => "www")%>"
 					   data-text="<%="#{@animal.name} - #{@animal.full_breed} - #{@current_shelter.city}, #{@current_shelter.state}" %>">Tweet</a>
 				</span>
-				<span class="pinterest">
-					<a href="//pinterest.com/pin/create/button/?url=<%= public_save_a_life_url(@animal, :subdomain => "www")%>&media=<%=polymorphic_photo_url(@photos.first, :original) %>&description=<%=pinterest_animal_description(@animal, @current_shelter)%>" class="pin-it-button" count-layout="horizontal">Pin It</a>
-				</span>
-				<!-- <span><%= link_to "Save a life", public_save_a_life_url(@animal, :subdomain => "www") %></span> -->
 			</div>
 		<% end %>
 
