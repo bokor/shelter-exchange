@@ -8,7 +8,7 @@
   });
 </script>
 
-<div id="<%= "note_#{note.id}" %>" class="note">
+<div id="<%= dom_id(note) %>" class="note">
   <span class="created_date"><%= format_date_for(note.created_at, :short) %></span>
 
   <% if @documents.present? && (note.shelter_id == @current_shelter.id) %>
