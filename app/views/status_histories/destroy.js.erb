@@ -1,0 +1,12 @@
+$('#status_history_<%= @status_history.id %>').fadeOut(1000, function() {
+	$(this).remove();
+});
+
+// Google Anayltics
+<% if Rails.env.production? %>
+  _gaq.push(['_trackPageview', "/status_histories/{id}/destroy"]);
+<% end %>
+
+// Discard Flash Message
+<% flash.discard %>
+

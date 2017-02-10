@@ -69,5 +69,34 @@ describe StatusHistoriesController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+
+    before do
+      @status_history = StatusHistory.gen :status_date => Date.new(2014, 02, 12), :shelter => current_shelter
+    end
+
+    it "responds successfully" do
+      delete :destroy, :id => @status_history.id, :format => :js
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it "deletes a StatusHistory" do
+      expect {
+        delete :destroy, :id => @status_history.id, :format => :js
+      }.to change(StatusHistory, :count).by(-1)
+    end
+
+    it "returns deleted @status_history" do
+      delete :destroy, :id => @status_history.id, :format => :js
+      expect(assigns(:status_history)).to eq(@status_history)
+    end
+
+    it "renders the :delete view" do
+      delete :destroy, :id => @status_history.id, :format => :js
+      expect(response).to render_template(:destroy)
+    end
+  end
 end
 

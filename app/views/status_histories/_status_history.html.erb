@@ -1,4 +1,4 @@
-<div id="<%= "status_history_#{status_history.id}" %>" class="status_history">
+<div id="<%= dom_id(status_history) %>" class="status_history">
 	<span class="status_date"><%= format_date_for(status_history.status_date, :short) %></span>
 
   <span class="status">
@@ -30,6 +30,15 @@
         <%= link_to "Change date", edit_status_history_path(status_history, :format => :js), :remote => true %>
       </span>
     <% end %>
+
+    <% if can?(:destroy, StatusHistory) %>
+      <span class="delete_link">
+          <%= link_to 'Delete', status_history,
+            :confirm => "Are you sure you want to delete? This status history will no longer be available.",
+            :method => :delete, :remote => true, :format => :js %>
+        </span>
+      <% end %>
+
 
   </span>
 

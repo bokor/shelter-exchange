@@ -33,12 +33,7 @@ feature "Shelter's public profile" do
       expect(twitter["data-related"]).to eq("shelterexchange")
 
       pinterest = find(".pinterest a")
-      expect(pinterest[:href]).to eq(
-        "//pinterest.com/pin/create/button/" +
-        "?url=http://www.se.test:9292/help_a_shelter/#{@shelter.id}" +
-        "&media=https://shelterexchange-test.s3.amazonaws.com/shelters/logos/#{@shelter.id}/original/#{@shelter.logo.filename}" +
-        "&description=Help the Cute Doggies, located in Redwood city, CA, " +
-        "by adopting an animal or donating items most needed at this shelter or rescue group.")
+      expect(pinterest[:href]).to eq("//pinterest.com/pin/create/button/")
     end
 
     within "#shelter_details .address_info" do
