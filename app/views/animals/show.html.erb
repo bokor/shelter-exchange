@@ -180,7 +180,7 @@
 
 	<div class="page_content">
 		<div id="status_histories" class="status_history_list">
-			<%= render @status_histories %>
+      <%= render @status_histories, :latest_status => @status_histories.first  %>
 		</div>
 	</div>
 
