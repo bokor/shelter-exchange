@@ -16,16 +16,17 @@ class Ability
 
   def user
     can [:read, :create, :update], :all
-    cannot :attach_files, Note
-    cannot :update, Shelter
-    cannot :generate_access_token, Shelter
-    cannot :invite, User
-    cannot :change_role, User
-    cannot :view_settings, User
     cannot :request_transfer, Animal
     cannot :export, Animal
     cannot :export, Contact
     cannot :import, Contact
+    cannot :attach_files, Note
+    cannot :update, Shelter
+    cannot :generate_access_token, Shelter
+    cannot :destroy, StatusHistory
+    cannot :invite, User
+    cannot :change_role, User
+    cannot :view_settings, User
   end
 
   def read_only

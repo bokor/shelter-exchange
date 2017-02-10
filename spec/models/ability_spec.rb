@@ -65,26 +65,6 @@ describe Ability, ".user" do
     expect(@ability).to be_able_to(:update, :all)
   end
 
-  it "can not attach a file to a note" do
-    expect(@ability).to_not be_able_to(:attach_files, Note)
-  end
-
-  it "can not generate access token for the shelter" do
-    expect(@ability).to_not be_able_to(:generate_access_token, Shelter)
-  end
-
-  it "can not invite a user" do
-    expect(@ability).to_not be_able_to(:intive, User)
-  end
-
-  it "can not change the role a user" do
-    expect(@ability).to_not be_able_to(:change_role, User)
-  end
-
-  it "can not view settings for a user" do
-    expect(@ability).to_not be_able_to(:view_settings, User)
-  end
-
   it "can not request a transfer of an animal" do
     expect(@ability).to_not be_able_to(:request_transfer, Animal)
   end
@@ -99,6 +79,34 @@ describe Ability, ".user" do
 
   it "can not import contacts" do
     expect(@ability).to_not be_able_to(:import, Contact)
+  end
+
+  it "can not attach a file to a note" do
+    expect(@ability).to_not be_able_to(:attach_files, Note)
+  end
+
+  it "can not generate access token for the shelter" do
+    expect(@ability).to_not be_able_to(:generate_access_token, Shelter)
+  end
+
+  it "can not update the shelter" do
+    expect(@ability).to_not be_able_to(:update, Shelter)
+  end
+
+  it "can not delete the status history" do
+    expect(@ability).to_not be_able_to(:destroy, StatusHistory)
+  end
+
+  it "can not invite a user" do
+    expect(@ability).to_not be_able_to(:intive, User)
+  end
+
+  it "can not change the role a user" do
+    expect(@ability).to_not be_able_to(:change_role, User)
+  end
+
+  it "can not view settings for a user" do
+    expect(@ability).to_not be_able_to(:view_settings, User)
   end
 end
 
