@@ -1,3 +1,5 @@
+<% latest_status = nil if local_assigns[:latest_status].nil? %>
+
 <div id="<%= dom_id(status_history) %>" class="status_history">
 	<span class="status_date"><%= format_date_for(status_history.status_date, :short) %></span>
 
