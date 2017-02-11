@@ -123,6 +123,12 @@ describe Integration::PetfinderPresenter do
       presenter = Integration::PetfinderPresenter.new(@animal)
       expect(presenter.description).to eq("hi&#10; bye&#10;&#10;&#10;&#10;#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.")
     end
+
+    it "returns a string with stripped html" do
+      @animal.update_column(:description, "<p>this is cool.  www.example.org</p><img src='' /><br>")
+      presenter = Integration::PetfinderPresenter.new(@animal)
+      expect(presenter.description).to eq("this is cool.  www.example.org&#10;&#10;#{@animal.name}, #{@animal.full_breed} has been shared from Shelter Exchange - http://www.shelterexchange.org.")
+    end
   end
 
   describe "#type" do

@@ -41,7 +41,7 @@ class Integration::PetfinderPresenter < Presenter
     description = description.gsub(/\n/, "&#10;")
     description = description.gsub(/\r/, "&#10;")
     description = description.gsub(/\n\r?/, "&#10;")
-    description
+    ActionView::Base.full_sanitizer.sanitize(description)
   end
 
   def type
