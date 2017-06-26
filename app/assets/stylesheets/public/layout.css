@@ -67,9 +67,8 @@ header nav .side_menu li a span{margin-top: -20px;height: 1;line-height:1em; dis
 
 header nav .side_menu li:hover, header nav .side_menu li.current { margin:-24px 0;color:#fff;text-decoration: none;}
 header nav .side_menu li:hover a, header nav .side_menu li.current a{ color:#fff;text-decoration: none;}
-header nav .side_menu .save_a_life{right: 250px;background: url(/assets/public/tabs_save_a_life_header.png) no-repeat;}
-header nav .side_menu .help_a_shelter{right: 125px;background: url(/assets/public/tabs_help_a_shelter_header.png) no-repeat;}
-header nav .side_menu .donate{right: 0px;background: url(/assets/public/tabs_donate_header.png) no-repeat;}
+header nav .side_menu .save_a_life{right: 125px;background: url(/assets/public/tabs_save_a_life_header.png) no-repeat;}
+header nav .side_menu .help_a_shelter{right: 0px;background: url(/assets/public/tabs_help_a_shelter_header.png) no-repeat;}
 
 
 /* IE Hack :: Header :: Nav */
