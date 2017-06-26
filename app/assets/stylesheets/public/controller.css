@@ -11,7 +11,6 @@
 /* Only FB Like Buttons */
 /******************************************************************/
 .pages .social,
-.accounts .social,
 .index_help_a_shelter .social{width: 65px;}
 
 .index_help_a_shelter .social{top: 2px;}
@@ -69,23 +68,6 @@ section.newsletter:after{ content:"\0020"; display:block; line-height:0; height:
 #address_details h3{border:none; padding: 0 0 5px 0; margin:0;}
 #address_details p{padding-bottom: 5px; margin-bottom: 0px;}
 #address_details div{padding-bottom: 15px;}
-
-/*******************************************************************/
-/* -------------------------- ACCOUNTS -------------------------- */
-/*******************************************************************/
-
-
-/* Accounts :: Global
------------------------------------------------------------------------------*/
-.accounts ul {list-style:none;}
-.accounts li:first-child h3{border-top:none; padding-top: 0px; margin-top: 0px;}
-.accounts h3{border-bottom:none;}
-.accounts .subdomain_highlight {padding: .1em .2em;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;-khtml-border-radius: 2px;background-color: #E1F1FA;color: #39C;text-shadow: 0 1px 0 white;}
-
-
-/* Accounts :: Social buttons */
-/******************************************************************/
-.create_accounts .social{display:none;}
 
 
 /*******************************************************************/

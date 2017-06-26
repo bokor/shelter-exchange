@@ -296,15 +296,6 @@ ShelterExchangeApp::Application.routes.draw do
 
     namespace :public, :path => "/" do
 
-      # Public :: Accounts
-      #----------------------------------------------------------------------------
-      resources :accounts, :only => [:new, :create] do  #:index, add if the error has been fixed
-        get :registered, :on => :member
-      end
-      get "signup" => "accounts#new", :path => :signup
-      post "signup" => "accounts#create", :path => :signup
-
-
       # Public :: Save A Life
       #----------------------------------------------------------------------------
       resources :save_a_life do

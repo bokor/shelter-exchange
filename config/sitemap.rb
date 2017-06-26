@@ -27,10 +27,6 @@ SitemapGenerator::Sitemap.create do
   end
   #---------------------------------------------
 
-  #-Signup Page--------------------------------------------
-  add public_signup_path, :changefreq => "monthly", :priority => "0.6"
-  #---------------------------------------------
-
   #-Login Page--------------------------------------------
   add new_public_user_session_path, :changefreq => "monthly", :priority => "0.5"
   #-------------------------------------------------------
