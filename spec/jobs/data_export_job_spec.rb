@@ -1,141 +1,120 @@
 require "rails_helper"
 
-describe AdoptAPetJob do
+describe DataExportJob do
 
   before do
     Timecop.freeze(Time.parse("Mon, 12 May 2014"))
-
     @shelter = Shelter.gen
-    Account.gen(:shelters => [@shelter])
-
-    @available_for_adoption = Animal.gen \
-      :animal_status_id => AnimalStatus::STATUSES[:available_for_adoption],
-      :shelter => @shelter
-    @adopted = Animal.gen \
-      :animal_status_id => AnimalStatus::STATUSES[:adopted],
-      :shelter => @shelter
-
-    # Mock FTP Connection and Enqueue
-    allow(Net::FTP).to receive(:open).and_return(true)
-    @integration = Integration.gen \
-      :adopt_a_pet,
-      :username => "username",
-      :password => "password",
-      :shelter => @shelter
   end
 
   describe "#initialize" do
 
     it "assigns @start_time" do
-      job = AdoptAPetJob.new(@shelter.id)
+      job = DataExportJob.new(@shelter.id)
       expect(job.instance_variable_get(:@start_time)).to eq(Time.now)
     end
 
     it "assigns @shelter" do
-      job = AdoptAPetJob.new(@shelter.id)
+      job = DataExportJob.new(@shelter.id)
       expect(job.instance_variable_get(:@shelter)).to eq(@shelter)
-    end
-
-    it "assigns @integration" do
-      job = AdoptAPetJob.new(@shelter.id)
-      expect(job.instance_variable_get(:@integration)).to eq(@integration)
     end
   end
 
   describe "#perform" do
 
-    context "with successful ftp connection" do
-
-      before do
-        stub_const("Integration::AdoptAPet::FTP_URL", "127.0.0.1")
-        stub_const("Net::FTP::FTP_PORT", "21212")
-        @ftp_server = FakeFtp::Server.new(21212, 21213)
-        @ftp_server.start
-      end
-
-      after do
-        @ftp_server.stop
-      end
-
-      it "connection to ftp server" do
-        ftp = double(Net::FTP).as_null_object
-        expect(Net::FTP).to receive(:new).and_return(ftp)
-        expect(ftp).to receive(:login).with(@integration.username, @integration.password)
-        AdoptAPetJob.new(@shelter.id).perform
-      end
-
-      it "created a temp directory for csv file per shelter" do
-        temp_dir = Rails.root.join("tmp/adopt_a_pet/#{@shelter.id}")
-        AdoptAPetJob.new(@shelter.id).perform
-        expect(temp_dir).to exist
-      end
-
-      it "assigns @animals" do
-        job = AdoptAPetJob.new(@shelter.id)
-        job.perform
-
-        expect(
-          job.instance_variable_get(:@animals)
-        ).to match_array([
-          @available_for_adoption
-        ])
-      end
-
-      it "uploads import config" do
-        AdoptAPetJob.new(@shelter.id).perform
-
-        import_cfg_file = @ftp_server.file('import.cfg')
-        expect(import_cfg_file.bytes).to eq(10809)
-        expect(import_cfg_file).to be_passive
-      end
-
-      it "creates and uploads CSV file" do
-        filepath = File.join(Rails.root, "tmp", "adopt_a_pet", "#{@shelter.id}", "pets.csv")
-        allow(CSV).to receive(:open).with(filepath, "w+:UTF-8").and_call_original
-
-        AdoptAPetJob.new(@shelter.id).perform
-
-        file = @ftp_server.file('pets.csv')
-        row1 = Integration::AdoptAPetPresenter.new(@available_for_adoption).to_csv
-
-        expect(file).to be_passive
-        expect(CSV.parse(file.data)).to match_array([
-          Integration::AdoptAPetPresenter.csv_header,
-          row1.map{|r| r.to_s unless r.nil? }
-        ])
-      end
-
-      it "closes ftp connection" do
-        expect_any_instance_of(Net::FTP).to receive(:close)
-        AdoptAPetJob.new(@shelter.id).perform
-      end
-
-      it "logs message when finished" do
-        expect(AdoptAPetJob.logger).to receive(:info).with("#{@shelter.id} :: #{@shelter.name} :: finished in 0.0")
-        AdoptAPetJob.new(@shelter.id).perform
-      end
+    before do
+      @temp_dir = Rails.root.join("tmp/data_export/#{@shelter.name}")
     end
 
-    context "with error ftp authentication" do
+    after do
+      FileUtils.rm_rf(@temp_dir)
+    end
 
-      before do
-        ftp = double("Net::FTP").as_null_object
-        allow(Net::FTP).to receive(:new).and_return(ftp)
-        allow(ftp).to receive(:last_response_code).and_return("530")
-        allow(ftp).to receive(:login).and_raise(Net::FTPPermError.new("530 Login Error"))
-      end
+    it "creates temp directories for csv file per shelter" do
+      DataExportJob.new(@shelter.id).perform
+      expect(@temp_dir).to exist
+      expect(File).to exist(File.join(@temp_dir, "photos"))
+      expect(File).to exist(File.join(@temp_dir, "documents"))
+    end
 
-      it "logs message when failure" do
-        expect(AdoptAPetJob.logger).to receive(:error).
-          with("#{@shelter.id} :: #{@shelter.name} :: failed :: 530 Login Error")
-        AdoptAPetJob.new(@shelter.id).perform
-      end
+    it "does not create csv files for empty db tables" do
+      DataExportJob.new(@shelter.id).perform
+
+      expect(File).not_to exist(File.join(@temp_dir, "accommodations.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "animals.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "contacts.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "notes.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "photos.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "status_histories.csv"))
+      expect(File).not_to exist(File.join(@temp_dir, "tasks.csv"))
+    end
+
+    it "creates an accomodations.csv file" do
+      Accommodation.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "accommodations.csv"))
+    end
+
+    it "creates an animals.csv file" do
+      Animal.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "animals.csv"))
+    end
+
+    it "creates an contacts.csv file" do
+      Contact.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "contacts.csv"))
+    end
+
+    it "creates an notes.csv file and downloads attachment" do
+      allow_any_instance_of(Document).to receive(:guid).and_return("1234abcd")
+
+      file = File.open("#{Rails.root}/spec/data/documents/testing.pdf")
+      note = Note.gen :shelter => @shelter
+      document = Document.gen :attachable => note, :document => file
+
+      stub_request(:get, "https://shelterexchange-test.s3.amazonaws.com/notes/documents/#{document.id}/original/1234abcd.pdf").
+         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+         to_return(:status => 200, :body => "", :headers => {})
+
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "notes.csv"))
+      expect(File).to exist(File.join(@temp_dir, "documents", "testing.pdf"))
+    end
+
+    it "creates an photos.csv file and downloads attachment" do
+      allow_any_instance_of(Photo).to receive(:guid).and_return("1234abcd")
+
+      file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
+      animal = Animal.gen :shelter => @shelter
+      Photo.gen :image => file, :attachable => animal
+
+      stub_request(:get, "https://shelterexchange-test.s3.amazonaws.com/animals/photos/#{animal.id}/original/1234abcd.jpg").
+         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+         to_return(:status => 200, :body => "", :headers => {})
+
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "photos.csv"))
+      expect(File).to exist(File.join(@temp_dir, "photos", "photo.jpg"))
+    end
+
+    it "creates an status_histories.csv file" do
+      StatusHistory.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "status_histories.csv"))
+    end
+
+    it "creates an tasks.csv file" do
+      Task.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+      expect(File).to exist(File.join(@temp_dir, "tasks.csv"))
     end
   end
 
   describe ".logger" do
     it "returns a logger" do
-      logger = AdoptAPetJob.logger
+      logger = DataExportJob.logger
       expect(logger).to be_instance_of(Logger)
       expect(Logger.respond_to?(:filename)).to be_falsey
     end
