@@ -23,16 +23,18 @@ describe DataExportJob do
   describe "#perform" do
 
     before do
-      @temp_dir = Rails.root.join("tmp/data_export/#{@shelter.name}")
+      @base_dir = File.join(Rails.root, "tmp", "data_export")
+      @temp_dir = File.join(@base_dir, "#{@shelter.name}")
+      allow(FileUtils).to receive(:rm_rf).and_return(true)
     end
 
     after do
-      FileUtils.rm_rf(@temp_dir)
+      allow(FileUtils).to receive(:rm_rf).and_call_original
+      FileUtils.rm_rf Dir.glob("#{@base_dir}/*")
     end
 
     it "creates temp directories for csv file per shelter" do
       DataExportJob.new(@shelter.id).perform
-      expect(@temp_dir).to exist
       expect(File).to exist(File.join(@temp_dir, "photos"))
       expect(File).to exist(File.join(@temp_dir, "documents"))
     end

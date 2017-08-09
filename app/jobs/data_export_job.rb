@@ -5,28 +5,28 @@ class DataExportJob
   def initialize(shelter_id)
     @start_time = Time.now
     @shelter = Shelter.find(shelter_id)
+    @base_dir = File.join(Rails.root, "tmp", "data_export")
+    @write_dir = File.join(@base_dir, "#{@shelter.name}")
   end
 
   def perform
-    # 1. Setup and create directories
-    csv_dir = File.join(Rails.root, "tmp", "data_export", "#{@shelter.name}")
-    photos_dir = File.join(csv_dir, "photos")
-    documents_dir = File.join(csv_dir, "documents")
-    FileUtils.mkdir_p(csv_dir)
+    # 1. Setup and create directories.
+    photos_dir = File.join(@write_dir, "photos")
+    documents_dir = File.join(@write_dir, "documents")
     FileUtils.mkdir_p(photos_dir)
     FileUtils.mkdir_p(documents_dir)
 
-    # 2. Build Accommodations CSV file
+    # 2. Build Accommodations CSV file.
     accommodations = @shelter.accommodations.includes(:animal_type, :location).all
     unless accommodations.blank?
-      accommodations_file = File.join(csv_dir, "accommodations.csv")
+      accommodations_file = File.join(@write_dir, "accommodations.csv")
       CSV.open(accommodations_file , "w+:UTF-8") do |csv|
         DataExport::AccommodationPresenter.as_csv(accommodations, csv)
       end
     end
 
-    # 3. Build Animals CSV file
-    animals_file = File.join(csv_dir, "animals.csv")
+    # 3. Build Animals CSV file.
+    animals_file = File.join(@write_dir, "animals.csv")
     animals = @shelter.animals.includes(:animal_type, :animal_status).all
     unless animals.blank?
       CSV.open(animals_file , "w+:UTF-8") do |csv|
@@ -34,8 +34,8 @@ class DataExportJob
       end
     end
 
-    # 4. Build Contacts CSV file
-    contacts_file = File.join(csv_dir, "contacts.csv")
+    # 4. Build Contacts CSV file.
+    contacts_file = File.join(@write_dir, "contacts.csv")
     contacts = @shelter.contacts.all
     unless contacts.blank?
       CSV.open(contacts_file , "w+:UTF-8") do |csv|
@@ -43,8 +43,8 @@ class DataExportJob
       end
     end
 
-    # 5. Build Notes CSV file
-    notes_file = File.join(csv_dir, "notes.csv")
+    # 5. Build Notes CSV file.
+    notes_file = File.join(@write_dir, "notes.csv")
     notes = @shelter.notes.includes(:documents).all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
@@ -63,8 +63,8 @@ class DataExportJob
       end
     end
 
-    # 6. Build Photos CSV file
-    photos_file = File.join(csv_dir, "photos.csv")
+    # 6. Build Photos CSV file.
+    photos_file = File.join(@write_dir, "photos.csv")
     animal_ids = @shelter.animals.pluck(:id)
     photos = Photo.where(:attachable_id => animal_ids).all
     unless photos.blank?
@@ -83,8 +83,8 @@ class DataExportJob
       end
     end
 
-    # 7. Build Status Histories CSV file
-    status_histories_file = File.join(csv_dir, "status_histories.csv")
+    # 7. Build Status Histories CSV file.
+    status_histories_file = File.join(@write_dir, "status_histories.csv")
     status_histories = @shelter.status_histories.includes(:animal_status).all
     unless status_histories.blank?
       CSV.open(status_histories_file , "w+:UTF-8") do |csv|
@@ -92,8 +92,8 @@ class DataExportJob
       end
     end
 
-    # 8. Build Tasks CSV file
-    tasks_file = File.join(csv_dir, "tasks.csv")
+    # 8. Build Tasks CSV file.
+    tasks_file = File.join(@write_dir, "tasks.csv")
     tasks = @shelter.tasks.all
     unless tasks.blank?
       CSV.open(tasks_file , "w+:UTF-8") do |csv|
@@ -101,9 +101,20 @@ class DataExportJob
       end
     end
 
+    # 9. Add all files to the zip file.
+    zip_filename = File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip")
+    FileUtils.rm_rf zip_filename
+    Zip::File.open(zip_filename, Zip::File::CREATE) do |zipfile|
+      Dir.chdir @write_dir
+      Dir.glob("**/*").reject {|fn| File.directory?(fn) }.each do |file|
+        zipfile.add(file.sub(@write_dir + '/', ''), file)
+      end
+    end
+
   rescue => e
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
+    FileUtils.rm_rf @write_dir
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
