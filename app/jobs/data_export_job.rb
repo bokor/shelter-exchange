@@ -102,13 +102,28 @@ class DataExportJob
     end
 
     # 9. Add all files to the zip file.
-    zip_filename = File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip")
-    FileUtils.rm_rf zip_filename
-    Zip::File.open(zip_filename, Zip::File::CREATE) do |zipfile|
-      Dir.chdir @write_dir
-      Dir.glob("**/*").reject {|fn| File.directory?(fn) }.each do |file|
-        zipfile.add(file.sub(@write_dir + '/', ''), file)
+    file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
+    if file_count > 0
+      zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
+      zip_file = File.join(@base_dir, zip_filename)
+      FileUtils.rm_rf zip_file
+      Zip::File.open(zip_file, Zip::File::CREATE) do |zipfile|
+        Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
+          zipfile.add(file.sub(@write_dir + '/', ''), file)
+        end
       end
+
+      # 10. Upload zip file to S3
+      fog_file_path = "data_export/#{zip_filename}"
+      FOG_BUCKET.files.create(
+        :key => fog_file_path,
+        :body => open(zip_file).read,
+        :public => false,
+        :content_type => Mime::ZIP
+      )
+
+      # 11. Send email to notify the completion of the data export.
+      DataExportMailer.completed(@shelter).deliver
     end
 
   rescue => e
