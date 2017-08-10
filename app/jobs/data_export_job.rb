@@ -121,6 +121,7 @@ class DataExportJob
         :public => false,
         :content_type => Mime::ZIP
       )
+      FileUtils.rm_rf zip_file
 
       # 11. Send email to notify the completion of the data export.
       DataExportMailer.completed(@shelter).deliver
