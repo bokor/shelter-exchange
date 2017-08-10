@@ -144,6 +144,10 @@ ShelterExchangeApp::Application.routes.draw do
 
     resources :token_authentications, :only => [:create, :destroy]
 
+    # Data Export
+    #----------------------------------------------------------------------------
+    match '/data_exports/download' => 'data_exports#download', :as => :download_data_exports
+    resources :data_exports, :only => [:create]
 
     # Integrations
     #----------------------------------------------------------------------------

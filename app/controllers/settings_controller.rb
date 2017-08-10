@@ -22,6 +22,11 @@ class SettingsController < ApplicationController
     @owner = @current_account.users.where(:role => :owner).first
   end
 
+  def export_data
+    export_filename = "data_export/#{@current_shelter.id}-#{@current_shelter.name.parameterize.dasherize}.zip"
+    @export_last_modified = FOG_BUCKET.files.head(export_filename).last_modified
+  end
+
   def web_access
   end
 

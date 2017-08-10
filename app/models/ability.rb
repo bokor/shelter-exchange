@@ -27,6 +27,7 @@ class Ability
     cannot :invite, User
     cannot :change_role, User
     cannot :view_settings, User
+    cannot :export_data, User
   end
 
   def read_only

@@ -108,6 +108,10 @@ describe Ability, ".user" do
   it "can not view settings for a user" do
     expect(@ability).to_not be_able_to(:view_settings, User)
   end
+
+  it "can not export data for a user" do
+    expect(@ability).to_not be_able_to(:export_data, User)
+  end
 end
 
 describe Ability, ".read_only" do
