@@ -5,7 +5,8 @@
 <body>
 
   <p>The data export has completed for <%=@shelter.name%>. To download the exported zip file, please go to:</p>
-  <p><%= link_to "'Export data' tab under 'Account Settings'", setting_url(:subdomain => @account.subdomain, :tab => :export_data) %></p>
+  <p><%= link_to "'Export data' tab under 'Account Settings'", setting_url(:subdomain => @account.subdomain, :tab => :export_data) %>
+     and click on the button <b>'Download zip file'</b></p>
   <p>The zip file contains all relevant csv files, photos and documents.</p>
 
 </body>

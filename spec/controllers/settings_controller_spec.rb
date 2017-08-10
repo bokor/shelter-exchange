@@ -29,6 +29,16 @@ describe SettingsController do
       end
     end
 
+    context "with tab as export_data" do
+      it "assigns @export_last_modified" do
+        last_modified = OpenStruct.new({ :last_modified => "12345" })
+        allow_any_instance_of(Fog::Storage::AWS::Files).to receive(:head).and_return(last_modified)
+
+        get :index, :tab => "export_data"
+        expect(assigns(:export_last_modified)).to eq("12345")
+      end
+    end
+
     context "with tab as auto_upload" do
 
       before do

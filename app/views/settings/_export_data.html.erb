@@ -1,0 +1,17 @@
+<% if can?(:export_data, User) %>
+  <% unless @export_last_modified.blank? %>
+    <p>Export has been completed!</p>
+    <p>Click on <b>'Download zip file'</b> to download the exported data's zip file (containing .csv files, photos, and documents) or click on <b>'Generate new export data'</b> to create a new up-to-date export zip file.</p>
+    <div class="separator"></div>
+    <p><%= link_to "Download zip file", download_data_exports_path(:format => :zip), :method => :get, :class => "button"  %>&nbsp;&nbsp;&nbsp;
+       last zip file created on: <b><%=@export_last_modified.strftime("%B %d, %Y at %I:%M%p") %></b></p>
+    <p><%= link_to "Generate new export data", data_exports_path, :method => :post, :class => "button" %></p>
+  <% else %>
+    <p>By clicking on <b>'Export Data'</b>, it will generate an up-to-date zip file. After the file has been created, a 'Download zip file' button will appear. The zip file will contain .csv files, photos, and documents of all stored data.</p>
+    <div class="separator"></div>
+    <p>Click <b>'Export Data'</b> and wait for the data export completed email.  Once you receive the email, either click the link in the email or refresh this page by clicking the refresh button on the browser.</p>
+    <p><%= link_to "Export Data", data_exports_path, :method => :post, :class => "button" %></p>
+  <% end %>
+<% else %>
+	<p>You don't have permission to export data.  Please ask the current owner, <%= link_to @owner.name, "mailto:#{@owner.email}?subject=Shelter Exchange - Export Data" %>, for permission.</p>
+<% end %>
