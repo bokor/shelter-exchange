@@ -5,14 +5,13 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos, :transfers).find(params[:id])
+    @animal = Animal.includes(:animal_type, :animal_status, :shelter, :photos).find(params[:id])
     @shelter = @animal.shelter
     raise Errors::ShelterInactive if @shelter.inactive?
     @photos = @animal.photos
     @gallery_photos = PhotoPresenter.as_gallery_collection(@photos)
 
     @notes = @animal.notes.includes(:documents).without_hidden.all
-    @transfer_requested = @animal.transfers.where(:requestor_shelter_id => @current_shelter.id).exists?
   end
 
   def filter_notes

@@ -4,7 +4,6 @@
 	<script type="text/javascript">
 		$(function() {
 			Notes.filters();
-			Transfers.hasRequest(<%=@transfer_requested %>);
 			Photos.initGallery(<%=raw @gallery_photos %>);
 		});
 	</script>
@@ -136,34 +135,6 @@
 <% end %>
 
 <%= content_for :sidebar do %>
-
-	<% unless @current_shelter.kill_shelter? %>
-		<div class="transfer_section">
-			<% if can?(:request_transfer, Animal) %>
-			<ul id="transfer_request_button" class="action_links">
-				<li><%= link_to 'Request Transfer', "#", :id => "add_transfer_link", :class => "button red" %></li>
-			</ul>
-			<% end %>
-			<div id="transfer_requested" class="box hide orange">
-				<h3>Request pending - awaiting approval for <%= @animal.name %></h3>
-			</div>
-
-			<div id="create_transfer" class="box hide green">
-				<h2>Create a transfer request for <%= @animal.name %></h2>
-				<div id="create_transfer_errors"></div>
-				<%= form_for (@transfer = Transfer.new), :remote => true, :format => :js, :html => { :id => "create_transfer_form", :class => "create_transfer_form" } do |f| %>
-				<ul>
-					<%= render "transfers/form", :f => f %>
-			    	<li class="buttons">
-						<%= f.submit "Create Transfer", :disable_with => "Submitting...", :id => "create_transfer_button", :class => "button"  %>
-						&nbsp;or&nbsp;
-						<%= link_to "Cancel", "#", :id => "cancel_transfer" %>
-					</li>
-				</ul>
-			<% end %>
-			</div>
-		</div>
-	<% end %>
 
 	<div id="animal_shelter">
 		<h2>Shelter details</h2>

@@ -91,14 +91,5 @@
 			<li><%= link_to image_tag("partners/logo_adopt_a_pet_medium.gif"), setting_path(:tab => :auto_upload) %></li>
 		</ul>
 	</div>
-
-  <% unless @transfers.blank? %>
-    <div class="transfer_requests">
-      <h2>Transfer Requests</h2>
-      <div id="transfers">
-        <%= render "transfers/transfer_list", :transfers => @transfers %>
-      </div>
-    </div>
-	<% end %>
 <% end %>
 

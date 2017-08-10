@@ -216,9 +216,6 @@ $(function() {
 	$('#add_capacity_link, #cancel_capacity').click(function() {
 		$('#create_capacity').slideToggle();
 	});
-	$('#add_transfer_link, #cancel_transfer').click(function() {
-		$('#create_transfer').slideToggle();
-	});
 	$('#import_contacts_link, #cancel_contact_import').click(function() {
 		$('#import_contacts').slideToggle();
 	});

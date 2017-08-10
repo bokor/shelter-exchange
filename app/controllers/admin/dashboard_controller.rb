@@ -3,7 +3,6 @@ class Admin::DashboardController < Admin::ApplicationController
 
   def index
     @counts_by_status = Animal.unscoped.joins(:animal_status).group("animal_statuses.name").limit(nil).count
-    @counts_by_transfer_with_app = Transfer.completed.count
     @counts_by_transfer_without_app = Animal.where(:animal_status_id => AnimalStatus::STATUSES[:transferred]).count
     @active_kill_shelters_count = Shelter.active.kill_shelters.count
     @active_no_kill_shelters_count = Shelter.active.no_kill_shelters.count

@@ -54,7 +54,6 @@ class Animal < ActiveRecord::Base
   has_many :notes, :as => :notable, :dependent => :destroy
   has_many :tasks, :as => :taskable, :dependent => :destroy
   has_many :status_histories, :dependent => :destroy
-  has_many :transfers, :dependent => :destroy
 
   has_many :photos, :as => :attachable, :dependent => :destroy
   accepts_nested_attributes_for :photos, :limit => Photo::MAX_TOTAL,
