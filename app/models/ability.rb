@@ -16,7 +16,6 @@ class Ability
 
   def user
     can [:read, :create, :update], :all
-    cannot :request_transfer, Animal
     cannot :export, Animal
     cannot :export, Contact
     cannot :import, Contact

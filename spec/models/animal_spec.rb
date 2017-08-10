@@ -1382,26 +1382,6 @@ describe Animal, "#tasks" do
   end
 end
 
-describe Animal, "#transfers" do
-
-  before do
-    @animal = Animal.gen
-    @transfer1 = Transfer.gen :animal => @animal
-    @transfer2 = Transfer.gen :animal => @animal
-  end
-
-  it "returns a list of transfers" do
-    expect(@animal.transfers.count).to eq(2)
-    expect(@animal.transfers).to match_array([@transfer1, @transfer2])
-  end
-
-  it "destroy all transfers associated to the animal" do
-    expect(@animal.transfers.count).to eq(2)
-    @animal.destroy
-    expect(@animal.transfers.count).to eq(0)
-  end
-end
-
 describe Animal, "#status_histories" do
 
   before do

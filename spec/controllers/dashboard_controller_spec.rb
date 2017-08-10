@@ -11,13 +11,6 @@ describe DashboardController do
       expect(response.status).to eq(200)
     end
 
-    it "assigns @transfers" do
-      transfer = Transfer.gen :shelter => current_shelter
-
-      get :index
-      expect(assigns(:transfers)).to eq([transfer])
-    end
-
     it "assigns @latest_activity" do
       task = Task.gen :shelter => current_shelter
       animal = Animal.gen :shelter => current_shelter

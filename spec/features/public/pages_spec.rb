@@ -11,15 +11,10 @@ feature "Home Page" do
       Animal.gen(:animal_status_id => status[1])
     end
 
-    transfer_animal = Animal.gen(:animal_status_id => 1)
-    Transfer.gen(:status => "completed", :animal => transfer_animal)
-    Transfer.gen(:status => "approved", :animal => transfer_animal)
-    Transfer.gen(:status => "rejected", :animal => transfer_animal)
-
     visit "/"
 
     within("#lives_saved .stat_count") do
-      expect(page).to have_content("3")
+      expect(page).to have_content("2")
     end
   end
 

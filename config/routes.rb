@@ -80,10 +80,6 @@ ShelterExchangeApp::Application.routes.draw do
     #----------------------------------------------------------------------------
     resources :maps, :only => [:overlay]
 
-    # Transfers
-    #----------------------------------------------------------------------------
-    resources :transfers, :except => [:index, :show]
-
     # Contacts
     #----------------------------------------------------------------------------
     resources :contacts do

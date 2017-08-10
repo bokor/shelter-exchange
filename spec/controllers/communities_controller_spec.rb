@@ -60,13 +60,6 @@ describe CommunitiesController do
       expect(assigns(:notes)).to eq([note])
     end
 
-    it "assigns @transfer_requested" do
-      Transfer.gen :requestor_shelter => current_shelter, :animal => @animal
-
-      get :show, :id => @animal.id
-      expect(assigns(:transfer_requested)).to be_truthy
-    end
-
     it "renders the :show view" do
       get :show, :id => @animal.id
       expect(response).to render_template(:show)
