@@ -24,7 +24,7 @@ class SettingsController < ApplicationController
 
   def export_data
     export_filename = "data_export/#{@current_shelter.id}-#{@current_shelter.name.parameterize.dasherize}.zip"
-    @export_last_modified = FOG_BUCKET.files.head(export_filename).last_modified
+    @export_last_modified = FOG_BUCKET.files.head(export_filename).last_modified rescue nil
   end
 
   def web_access
