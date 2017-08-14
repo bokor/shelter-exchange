@@ -115,7 +115,6 @@ class DataExportJob
 
       # 10. Upload zip file to S3
       fog_file_path = "data_export/#{zip_filename}"
-      Fog.timeout = 2400
       FOG_BUCKET.files.create(
         :key => fog_file_path,
         :body => open(@zip_file).read,
@@ -131,9 +130,8 @@ class DataExportJob
     DataExportMailer.failed(@shelter).deliver
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
-    FileUtils.rm_rf @write_dir
-    FileUtils.rm_rf @zip_file
-    Fog.timeout = 600
+    FileUtils.rm_rf @write_dir if @write_dir
+    FileUtils.rm_rf @zip_file if @zip_file
 
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end

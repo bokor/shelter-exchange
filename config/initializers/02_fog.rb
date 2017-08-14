@@ -1,6 +1,7 @@
 # Reusable Fog Connection
 #----------------------------------------------------------------------------
 Fog.mock! if Rails.env.test? # Mocking the connection for test environment
+Fog.timeout = 2400
 
 FOG_CONNECTION = Fog::Storage.new({
   :provider              => 'AWS',
