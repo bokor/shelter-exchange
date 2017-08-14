@@ -105,9 +105,9 @@ class DataExportJob
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
       zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
-      zip_file = File.join(@base_dir, zip_filename)
-      FileUtils.rm_rf zip_file
-      Zip::File.open(zip_file, Zip::File::CREATE) do |zipfile|
+      @zip_file = File.join(@base_dir, zip_filename)
+      FileUtils.rm_rf @zip_file
+      Zip::File.open(@zip_file, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
         end
@@ -117,20 +117,22 @@ class DataExportJob
       fog_file_path = "data_export/#{zip_filename}"
       FOG_BUCKET.files.create(
         :key => fog_file_path,
-        :body => open(zip_file).read,
+        :body => open(@zip_file).read,
         :public => false,
         :content_type => Mime::ZIP
       )
-      FileUtils.rm_rf zip_file
 
       # 11. Send email to notify the completion of the data export.
       DataExportMailer.completed(@shelter).deliver
     end
 
   rescue => e
+    DataExportMailer.failed(@shelter).deliver
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir
+    FileUtils.rm_rf @zip_file
+
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 

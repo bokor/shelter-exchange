@@ -18,7 +18,7 @@ class DataExport::NotePresenter < Presenter
   end
 
   def category
-    @note.category.humanize
+    @note.category.humanize if @note.category
   end
 
   def hidden

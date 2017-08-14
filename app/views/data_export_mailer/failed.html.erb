@@ -1,0 +1,12 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+  <p>An error has occured while exporting data for <%=@shelter.name%>. Please go to:</p>
+  <p><%= link_to "'Export data' tab under 'Account Settings'", setting_url(:subdomain => @account.subdomain, :tab => :export_data) %>
+     and click on the button <b>'Export Data'</b></p>
+</body>
+</html>
+

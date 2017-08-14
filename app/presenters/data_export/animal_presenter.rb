@@ -41,7 +41,7 @@ class DataExport::AnimalPresenter < Presenter
   end
 
   def sex
-    @animal.sex.humanize
+    @animal.sex.humanize if @animal.sex
   end
 
   def date_of_birth
@@ -61,7 +61,7 @@ class DataExport::AnimalPresenter < Presenter
   end
 
   def age
-    @animal.age.humanize
+    @animal.age.humanize if @animal.age
   end
 
   def special_needs

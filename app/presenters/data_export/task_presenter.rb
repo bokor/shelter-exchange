@@ -25,7 +25,7 @@ class DataExport::TaskPresenter < Presenter
   end
 
   def category
-    @task.category.humanize
+    @task.category.humanize if @task.category
   end
 
   def completed

@@ -4,7 +4,13 @@ describe DataExportJob do
 
   before do
     Timecop.freeze(Time.parse("Mon, 12 May 2014"))
-    @shelter = Shelter.gen
+    @owner = User.gen :email => "owner@example.com", :role => "owner"
+    @admin = User.gen :email => "admin@example.com", :role => "admin"
+    @user = User.gen :email => "user@example.com", :role => "user"
+    @account = Account.gen :users => [@owner, @admin, @user]
+    @shelter = Shelter.gen \
+      :account_id => @account.id,
+      :name => "Mailer Test Shelter"
   end
 
   describe "#initialize" do
@@ -49,24 +55,28 @@ describe DataExportJob do
       expect(File).not_to exist(File.join(@temp_dir, "photos.csv"))
       expect(File).not_to exist(File.join(@temp_dir, "status_histories.csv"))
       expect(File).not_to exist(File.join(@temp_dir, "tasks.csv"))
+      expect(File).not_to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an accomodations.csv file" do
       Accommodation.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "accommodations.csv"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an animals.csv file" do
       Animal.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "animals.csv"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an contacts.csv file" do
       Contact.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "contacts.csv"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an notes.csv file and downloads attachment" do
@@ -83,6 +93,7 @@ describe DataExportJob do
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "notes.csv"))
       expect(File).to exist(File.join(@temp_dir, "documents", "testing.pdf"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an photos.csv file and downloads attachment" do
@@ -99,18 +110,43 @@ describe DataExportJob do
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "photos.csv"))
       expect(File).to exist(File.join(@temp_dir, "photos", "photo.jpg"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an status_histories.csv file" do
       StatusHistory.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "status_histories.csv"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
     end
 
     it "creates an tasks.csv file" do
       Task.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "tasks.csv"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+    end
+
+    it "sends a completed email" do
+      Animal.gen :shelter => @shelter
+      DataExportJob.new(@shelter.id).perform
+
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("Mailer Test Shelter's export has completed!")
+    end
+
+    it "sends a failure email" do
+      allow_any_instance_of(Photo).to receive(:guid).and_return("1234abcd")
+
+      file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
+      animal = Animal.gen :shelter => @shelter
+      Photo.gen :image => file, :attachable => animal
+
+      stub_request(:get, "https://shelterexchange-test.s3.amazonaws.com/animals/photos/#{animal.id}/original/1234abcd.jpg").
+         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+         to_return(:status => 500, :body => "", :headers => {})
+
+      DataExportJob.new(@shelter.id).perform
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("Mailer Test Shelter's export has failed!")
     end
   end
 

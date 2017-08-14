@@ -51,5 +51,29 @@ describe DataExportMailer do
       expect(@email).to have_content("The zip file contains all relevant csv files, photos and documents.")
     end
   end
+
+  describe ".failed" do
+
+    before do
+      @email = DataExportMailer.failed(@shelter)
+    end
+
+    it "from the correct sender" do
+      expect(@email.from).to eq(["do-not-reply@shelterexchange.org"])
+    end
+
+    it "sending to the correct recipient" do
+      expect(@email.to).to eq(["owner@example.com", "admin@example.com"])
+    end
+
+    it "contains the correct subject" do
+      expect(@email.subject).to eq("Mailer Test Shelter's export has failed!")
+    end
+
+    it "contains the correct body" do
+      expect(@email).to have_content("An error has occured while exporting data for #{@shelter.name}.")
+      expect(@email).to have_link("'Export data' tab under 'Account Settings'", :href => "http://#{@account.subdomain}.se.test:9292/settings/export_data")
+    end
+  end
 end
 
