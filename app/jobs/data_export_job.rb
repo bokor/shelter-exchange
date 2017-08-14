@@ -115,7 +115,14 @@ class DataExportJob
 
       # 10. Upload zip file to S3
       fog_file_path = "data_export/#{zip_filename}"
-      FOG_BUCKET.files.create(
+      aws_connection = Fog::Storage.new({
+        :provider              => 'AWS',
+        :aws_access_key_id     => ShelterExchange.settings.aws_access_key_id,
+        :aws_secret_access_key => ShelterExchange.settings.aws_secret_access_key
+      })
+
+      bucket = aws_connection.directories.get(ShelterExchange.settings.s3_bucket) rescue nil
+      bucket.files.create(
         :key => fog_file_path,
         :body => open(@zip_file).read,
         :public => false,
