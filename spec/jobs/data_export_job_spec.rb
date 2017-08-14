@@ -30,7 +30,7 @@ describe DataExportJob do
 
     before do
       @base_dir = File.join(Rails.root, "tmp", "data_export")
-      @temp_dir = File.join(@base_dir, "#{@shelter.name}")
+      @temp_dir = File.join(@base_dir, "#{@shelter.id}")
       allow(FileUtils).to receive(:rm_rf).and_return(true)
     end
 

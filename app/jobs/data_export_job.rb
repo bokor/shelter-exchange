@@ -6,7 +6,7 @@ class DataExportJob
     @start_time = Time.now
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
-    @write_dir = File.join(@base_dir, "#{@shelter.name}")
+    @write_dir = File.join(@base_dir, "#{@shelter.id}")
   end
 
   def perform
