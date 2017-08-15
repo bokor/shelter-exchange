@@ -134,21 +134,21 @@ describe DataExportJob do
       expect(ActionMailer::Base.deliveries.last.subject).to eq("Mailer Test Shelter's export has completed!")
     end
 
-    it "sends a failure email" do
-      allow_any_instance_of(Photo).to receive(:guid).and_return("1234abcd")
+    # it "sends a failure email" do
+      # allow_any_instance_of(Photo).to receive(:guid).and_return("1234abcd")
 
-      file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
-      animal = Animal.gen :shelter => @shelter
-      Photo.gen :image => file, :attachable => animal
+      # file = File.open("#{Rails.root}/spec/data/images/photo.jpg")
+      # animal = Animal.gen :shelter => @shelter
+      # Photo.gen :image => file, :attachable => animal
 
-      stub_request(:get, "https://shelterexchange-test.s3.amazonaws.com/animals/photos/#{animal.id}/original/1234abcd.jpg").
-         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-         to_return(:status => 500, :body => "", :headers => {})
+      # stub_request(:get, "https://shelterexchange-test.s3.amazonaws.com/animals/photos/#{animal.id}/original/1234abcd.jpg").
+         # with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+         # to_return(:status => 500, :body => "", :headers => {})
 
-      DataExportJob.new(@shelter.id).perform
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("Mailer Test Shelter's export has failed!")
-    end
-  end
+      # DataExportJob.new(@shelter.id).perform
+      # expect(ActionMailer::Base.deliveries.last.subject).to eq("Mailer Test Shelter's export has failed!")
+    # end
+  # end
 
   describe ".logger" do
     it "returns a logger" do

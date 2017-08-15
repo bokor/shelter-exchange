@@ -127,7 +127,6 @@ class DataExportJob
     end
 
   rescue => e
-    DataExportMailer.failed(@shelter).deliver
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir if @write_dir
