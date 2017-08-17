@@ -45,14 +45,14 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = @shelter.notes.includes(:documents).all
+    notes = @shelter.notes.all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
       end
 
       # Fetch documents and write with original filename.
-      documents = Document.where(:attachable_id => @shelter.notes.pluck(:id)).all
+      documents = Document.where(:attachable_id => @shelter.notes.collect(&:id), :attachable_type => "Note").all
       documents.each do |document|
         document_uri = URI(document.document.url)
         new_document_filename = File.join(documents_dir, document.original_name)
@@ -65,8 +65,8 @@ class DataExportJob
 
     # 6. Build Photos CSV file.
     photos_file = File.join(@write_dir, "photos.csv")
-    animal_ids = @shelter.animals.pluck(:id)
-    photos = Photo.where(:attachable_id => animal_ids).all
+    animal_ids = @shelter.animals.collect(&:id)
+    photos = Photo.where(:attachable_id => animal_ids, :attachable_type => "Animal").all
     unless photos.blank?
       CSV.open(photos_file , "w+:UTF-8") do |csv|
         DataExport::PhotoPresenter.as_csv(photos, csv)
@@ -115,12 +115,15 @@ class DataExportJob
 
       # 10. Upload zip file to S3
       fog_file_path = "data_export/#{zip_filename}"
-      FOG_BUCKET.files.create(
+      s3_bucket = FOG_BUCKET or FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket)
+      uploaded_file = s3_bucket.files.new(
         :key => fog_file_path,
-        :body => open(@zip_file).read,
         :public => false,
-        :content_type => Mime::ZIP
+        :content_type => @zip_file.content_type,
+        :cache_control => "No-cache"
       )
+      uploaded_file.body = open(@zip_file).read
+      uploaded_file.save
 
       # 11. Send email to notify the completion of the data export.
       DataExportMailer.completed(@shelter).deliver
