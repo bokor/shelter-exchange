@@ -47,20 +47,21 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = Note.where(:shelter_id => @shelter.id).all
+    notes = @shelter.notes.includes(:documents).all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
       end
 
       # Fetch documents and write with original filename.
-      documents = Document.where(:attachable_id => notes.collect(&:id), :attachable_type => "Note").all
-      documents.each do |document|
-        document_uri = URI(document.document.url)
-        new_document_filename = File.join(documents_dir, document.original_name)
+      notes.each do |note|
+        note.documents.each do |document|
+          document_uri = URI(document.document.url)
+          new_document_filename = File.join(documents_dir, document.original_name)
 
-        open(new_document_filename, 'wb') do |file|
-          file << open(document_uri).read
+          open(new_document_filename, 'wb') do |file|
+            file << open(document_uri).read
+          end
         end
       end
     end
@@ -95,7 +96,7 @@ class DataExportJob
 
     # 8. Build Tasks CSV file.
     tasks_file = File.join(@write_dir, "tasks.csv")
-    tasks = Task.where(:shelter_id => @shelter.id).all
+    tasks = @shelter.tasks.all
     unless tasks.blank?
       CSV.open(tasks_file , "w+:UTF-8") do |csv|
         DataExport::TaskPresenter.as_csv(tasks, csv)
