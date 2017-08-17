@@ -47,14 +47,14 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = @shelter.notes.all
+    notes = Note.where(:shelter_id => @shelter.id).all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
       end
 
       # Fetch documents and write with original filename.
-      documents = Document.where(:attachable_id => @shelter.notes.collect(&:id), :attachable_type => "Note").all
+      documents = Document.where(:attachable_id => notes.collect(&:id), :attachable_type => "Note").all
       documents.each do |document|
         document_uri = URI(document.document.url)
         new_document_filename = File.join(documents_dir, document.original_name)
@@ -67,7 +67,7 @@ class DataExportJob
 
     # 6. Build Photos CSV file.
     photos_file = File.join(@write_dir, "photos.csv")
-    photos = Photo.where(:attachable_id => @shelter.animals.collect(&:id), :attachable_type => "Animal").all
+    photos = Photo.where(:attachable_id => animals.collect(&:id), :attachable_type => "Animal").all
     unless photos.blank?
       CSV.open(photos_file , "w+:UTF-8") do |csv|
         DataExport::PhotoPresenter.as_csv(photos, csv)
@@ -95,7 +95,7 @@ class DataExportJob
 
     # 8. Build Tasks CSV file.
     tasks_file = File.join(@write_dir, "tasks.csv")
-    tasks = @shelter.tasks.all
+    tasks = Task.where(:shelter_id => @shelter.id).all
     unless tasks.blank?
       CSV.open(tasks_file , "w+:UTF-8") do |csv|
         DataExport::TaskPresenter.as_csv(tasks, csv)
@@ -134,8 +134,7 @@ class DataExportJob
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir if @write_dir
-    # FileUtils.rm_rf @uploaded_file if @uploaded_file
-
+    FileUtils.rm_rf @uploaded_file if @uploaded_file
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
