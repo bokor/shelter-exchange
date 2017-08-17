@@ -8,7 +8,6 @@ class DataExportJob
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter.id}")
-    @file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     @zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
     @uploaded_file = File.join(@base_dir, @zip_filename)
   end
@@ -105,7 +104,8 @@ class DataExportJob
     end
 
     # 9. Add all files to the zip file.
-    if @file_count > 0
+    file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
+    if file_count > 0
       Zip::File.open(@uploaded_file, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
@@ -129,7 +129,7 @@ class DataExportJob
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir if @write_dir
-    FileUtils.rm_rf @uploaded_file if @uploaded_file
+    # FileUtils.rm_rf @uploaded_file if @uploaded_file
 
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
