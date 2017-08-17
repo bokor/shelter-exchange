@@ -4,9 +4,13 @@ class DataExportJob
 
   def initialize(shelter_id)
     @start_time = Time.now
+    @s3_bucket = FOG_BUCKET or FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket)
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter.id}")
+    @file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
+    @zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
+    @uploaded_file = File.join(@base_dir, @zip_filename)
   end
 
   def perform
@@ -65,8 +69,7 @@ class DataExportJob
 
     # 6. Build Photos CSV file.
     photos_file = File.join(@write_dir, "photos.csv")
-    animal_ids = @shelter.animals.collect(&:id)
-    photos = Photo.where(:attachable_id => animal_ids, :attachable_type => "Animal").all
+    photos = Photo.where(:attachable_id => @shelter.animals.collect(&:id), :attachable_type => "Animal").all
     unless photos.blank?
       CSV.open(photos_file , "w+:UTF-8") do |csv|
         DataExport::PhotoPresenter.as_csv(photos, csv)
@@ -102,28 +105,21 @@ class DataExportJob
     end
 
     # 9. Add all files to the zip file.
-    file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
-    if file_count > 0
-      zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
-      @zip_file = File.join(@base_dir, zip_filename)
-      FileUtils.rm_rf @zip_file
-      Zip::File.open(@zip_file, Zip::File::CREATE) do |zipfile|
+    if @file_count > 0
+      Zip::File.open(@uploaded_file, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
         end
       end
 
       # 10. Upload zip file to S3
-      fog_file_path = "data_export/#{zip_filename}"
-      s3_bucket = FOG_BUCKET or FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket)
-      uploaded_file = s3_bucket.files.new(
+      fog_file_path = "data_export/#{@zip_filename}"
+      @s3_bucket.files.create(
         :key => fog_file_path,
+        :body => open(@uploaded_file).read,
         :public => false,
-        :content_type => @zip_file.content_type,
-        :cache_control => "No-cache"
+        :content_type => Mime::ZIP
       )
-      uploaded_file.body = open(@zip_file).read
-      uploaded_file.save
 
       # 11. Send email to notify the completion of the data export.
       DataExportMailer.completed(@shelter).deliver
@@ -133,7 +129,7 @@ class DataExportJob
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir if @write_dir
-    FileUtils.rm_rf @zip_file if @zip_file
+    FileUtils.rm_rf @uploaded_file if @uploaded_file
 
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
