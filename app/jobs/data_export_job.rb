@@ -47,7 +47,7 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = @shelter.notes.includes(:documents).all
+    notes = @shelter.notes.includes(:notable, :documents).all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
