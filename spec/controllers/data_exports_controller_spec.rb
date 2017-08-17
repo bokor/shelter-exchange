@@ -38,7 +38,7 @@ describe DataExportsController do
     it "created a new generated zip file export", :delayed_job => true do
       Timecop.freeze(Time.parse("Mon, 12 May 2014"))
       base_dir = File.join(Rails.root, "tmp", "data_export")
-      write_dir = File.join(base_dir, "#{current_shelter.name}")
+      write_dir = File.join(base_dir, "#{current_shelter.id}")
       post :create
 
       job = YAML.load(Delayed::Job.last.handler)

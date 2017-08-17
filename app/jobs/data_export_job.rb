@@ -4,7 +4,6 @@ class DataExportJob
 
   def initialize(shelter_id)
     @start_time = Time.now
-    @s3_bucket = FOG_BUCKET or FOG_CONNECTION.directories.get(ShelterExchange.settings.s3_bucket)
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter.id}")
@@ -114,7 +113,13 @@ class DataExportJob
 
       # 10. Upload zip file to S3
       fog_file_path = "data_export/#{@zip_filename}"
-      @s3_bucket.files.create(
+      storage = Fog::Storage.new({
+        :provider              => 'AWS',
+        :aws_access_key_id     => ShelterExchange.settings.aws_access_key_id,
+        :aws_secret_access_key => ShelterExchange.settings.aws_secret_access_key
+      })
+      directories = storage.directories.get(ShelterExchange.settings.s3_bucket)
+      directories.files.create(
         :key => fog_file_path,
         :body => open(@uploaded_file).read,
         :public => false,
