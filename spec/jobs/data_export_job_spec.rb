@@ -55,28 +55,28 @@ describe DataExportJob do
       expect(File).not_to exist(File.join(@temp_dir, "photos.csv"))
       expect(File).not_to exist(File.join(@temp_dir, "status_histories.csv"))
       expect(File).not_to exist(File.join(@temp_dir, "tasks.csv"))
-      expect(File).not_to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).not_to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an accomodations.csv file" do
       Accommodation.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "accommodations.csv"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an animals.csv file" do
       Animal.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "animals.csv"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an contacts.csv file" do
       Contact.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "contacts.csv"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an notes.csv file and downloads attachment" do
@@ -93,7 +93,7 @@ describe DataExportJob do
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "notes.csv"))
       expect(File).to exist(File.join(@temp_dir, "documents", "testing.pdf"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an photos.csv file and downloads attachment" do
@@ -110,21 +110,21 @@ describe DataExportJob do
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "photos.csv"))
       expect(File).to exist(File.join(@temp_dir, "photos", "photo.jpg"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an status_histories.csv file" do
       StatusHistory.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "status_histories.csv"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "creates an tasks.csv file" do
       Task.gen :shelter => @shelter
       DataExportJob.new(@shelter.id).perform
       expect(File).to exist(File.join(@temp_dir, "tasks.csv"))
-      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"))
+      expect(File).to exist(File.join(@base_dir, "#{@shelter.id}.zip"))
     end
 
     it "sends a completed email" do

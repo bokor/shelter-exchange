@@ -5,7 +5,7 @@ describe DataExportsController do
 
   describe "GET download" do
     before do
-      @zip_filename = "#{current_shelter.id}-#{current_shelter.name.parameterize.dasherize}.zip"
+      @zip_filename = "#{current_shelter.id}.zip"
       FOG_BUCKET.files.create(
         :key => "data_export/#{@zip_filename}",
         :body => open(Rails.root.join("spec/data/documents/testing.zip")).read,

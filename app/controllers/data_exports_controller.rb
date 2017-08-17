@@ -1,7 +1,7 @@
 class DataExportsController < ApplicationController
 
   def download
-    export_filename = "#{@current_shelter.id}-#{@current_shelter.name.parameterize.dasherize}.zip"
+    export_filename = "#{@current_shelter.id}.zip"
     data_export_data = FOG_BUCKET.files.get("data_export/#{export_filename}").body
 
     respond_to do |format|

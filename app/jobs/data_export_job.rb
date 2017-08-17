@@ -7,7 +7,7 @@ class DataExportJob
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter.id}")
-    @zip_filename = "#{@shelter.id}-#{@shelter.name.parameterize.dasherize}.zip"
+    @zip_filename = "#{@shelter.id}.zip"
     @uploaded_file = File.join(@base_dir, @zip_filename)
   end
 
