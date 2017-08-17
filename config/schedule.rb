@@ -8,3 +8,9 @@ every 2.hours do
   rake "sitemap:refresh"
 end
 
+# Clean up Data export zip files.
+every 1.hour do
+  rake "data_export:clean"
+end
+
+

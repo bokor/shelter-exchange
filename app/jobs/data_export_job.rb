@@ -7,8 +7,6 @@ class DataExportJob
     @shelter = Shelter.find(shelter_id)
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter.id}")
-    @zip_filename = "#{@shelter.id}.zip"
-    @uploaded_file = File.join(@base_dir, @zip_filename)
   end
 
   def perform
@@ -106,14 +104,16 @@ class DataExportJob
     # 9. Add all files to the zip file.
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
-      Zip::File.open(@uploaded_file, Zip::File::CREATE) do |zipfile|
+      filename = "#{@shelter.id}.zip"
+      zipfile = File.join(@base_dir, filename)
+      Zip::File.open(zipfile, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
         end
       end
 
       # 10. Upload zip file to S3
-      fog_file_path = "data_export/#{@zip_filename}"
+      fog_file_path = "data_export/#{filename}"
       storage = Fog::Storage.new({
         :provider              => 'AWS',
         :aws_access_key_id     => ShelterExchange.settings.aws_access_key_id,
@@ -122,7 +122,7 @@ class DataExportJob
       directories = storage.directories.get(ShelterExchange.settings.s3_bucket)
       directories.files.create(
         :key => fog_file_path,
-        :body => open(@uploaded_file).read,
+        :body => open(zipfile).read,
         :public => false,
         :content_type => Mime::ZIP
       )
@@ -135,7 +135,6 @@ class DataExportJob
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
     FileUtils.rm_rf @write_dir if @write_dir
-    FileUtils.rm_rf @uploaded_file if @uploaded_file
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
