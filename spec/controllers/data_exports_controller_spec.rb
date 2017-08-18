@@ -5,9 +5,8 @@ describe DataExportsController do
 
   describe "GET download" do
     before do
-      @zip_filename = "shelter_exchange_data_export.zip"
       FOG_BUCKET.files.create(
-        :key => "data_export/#{@zip_filename}",
+        :key => "data_export/#{current_shelter.id}.zip",
         :body => open(Rails.root.join("spec/data/documents/testing.zip")).read,
         :public => false,
         :content_type => Mime::ZIP
@@ -23,7 +22,7 @@ describe DataExportsController do
     it "downloads zip file" do
       get :download, :format => :zip
       expect(response.headers["Content-Type"]).to eq("application/zip")
-      expect(response.headers["Content-Disposition"]).to eq("attachment; filename=\"#{@zip_filename}\"")
+      expect(response.headers["Content-Disposition"]).to eq("attachment; filename=\"shelter_exchange_data_export.zip\"")
       expect(response.status).to eq(200)
     end
   end
