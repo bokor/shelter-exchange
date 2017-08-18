@@ -9,11 +9,11 @@ class DataExport::PhotoPresenter < Presenter
   end
 
   def image
-    "photos/#{@photo.original_name}"
+    "photos/#{@photo.original_name}" rescue nil
   end
 
   def animal_id
-    @photo.attachable_id
+    @photo.attachable_id if @photo.attachable_id and @photo.attachable_type == "Animal"
   end
 
   def created_at
