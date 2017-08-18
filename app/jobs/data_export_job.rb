@@ -134,7 +134,7 @@ class DataExportJob
   rescue => e
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
-    FileUtils.rm_rf @write_dir if @write_dir
+    # FileUtils.rm_rf @write_dir if @write_dir
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
