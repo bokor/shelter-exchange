@@ -45,21 +45,18 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = @shelter.notes.includes(:notable, :documents).all
+    notes = @shelter.notes.all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
       end
 
       # Fetch documents and write with original filename.
-      notes.each do |note|
-        note.documents.each do |document|
-          document_uri = URI(document.document.url)
-          new_document_filename = File.join(documents_dir, document.original_name)
-
-          open(new_document_filename, 'wb') do |file|
-            file << open(document_uri).read
-          end
+      documents = Document.where(:attachable_id => notes.collect(&:id), :attachable_type => "Note").all
+      documents.each do |document|
+        new_document_filename = File.join(documents_dir, document.original_name)
+        open(new_document_filename, 'wb') do |file|
+          file << document.document.read
         end
       end
     end
@@ -74,11 +71,10 @@ class DataExportJob
 
       # Fetch photos and write with original filename.
       photos.each do |photo|
-        photo_uri = URI(photo.image.url)
         new_photo_filename = File.join(photos_dir, photo.original_name)
 
         open(new_photo_filename, 'wb') do |file|
-          file << open(photo_uri).read
+          file << photo.image.read
         end
       end
     end
@@ -105,8 +101,8 @@ class DataExportJob
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
       filename = "#{@shelter.id}.zip"
-      zipfile = File.join(@base_dir, filename)
-      Zip::File.open(zipfile, Zip::File::CREATE) do |zipfile|
+      data_export_file = File.join(@base_dir, filename)
+      Zip::File.open(data_export_file, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
         end
@@ -122,7 +118,7 @@ class DataExportJob
       directories = storage.directories.get(ShelterExchange.settings.s3_bucket)
       directories.files.create(
         :key => fog_file_path,
-        :body => open(zipfile).read,
+        :body => open(data_export_file).read,
         :public => false,
         :content_type => Mime::ZIP
       )
@@ -134,7 +130,7 @@ class DataExportJob
   rescue => e
     DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
   ensure
-    # FileUtils.rm_rf @write_dir if @write_dir
+    FileUtils.rm_rf @write_dir if @write_dir
     DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
