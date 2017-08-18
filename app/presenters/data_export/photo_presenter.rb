@@ -9,7 +9,7 @@ class DataExport::PhotoPresenter < Presenter
   end
 
   def image
-    "photos/#{@photo.original_name}" rescue nil
+    "photos/#{@photo.original_name}" if @photo.original_name
   end
 
   def animal_id
