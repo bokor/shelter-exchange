@@ -15,14 +15,9 @@ describe DataExportJob do
 
   describe "#initialize" do
 
-    it "assigns @start_time" do
+    it "assigns @shelter_id" do
       job = DataExportJob.new(@shelter.id)
-      expect(job.instance_variable_get(:@start_time)).to eq(Time.now)
-    end
-
-    it "assigns @shelter" do
-      job = DataExportJob.new(@shelter.id)
-      expect(job.instance_variable_get(:@shelter)).to eq(@shelter)
+      expect(job.instance_variable_get(:@shelter_id)).to eq(@shelter.id)
     end
   end
 

@@ -3,13 +3,33 @@ require "csv"
 class DataExportJob
 
   def initialize(shelter_id)
-    @start_time = Time.now
-    @shelter = Shelter.find(shelter_id)
+    @shelter_id = shelter_id
     @base_dir = File.join(Rails.root, "tmp", "data_export")
-    @write_dir = File.join(@base_dir, "#{@shelter.id}")
+    @write_dir = File.join(@base_dir, "#{@shelter_id}")
+    @zipfile_name = "#{@shelter_id}.zip"
+    @data_export_file = File.join(@base_dir, @zipfile_name)
+  end
+
+  def queue_name
+    'data_export_queue'
+  end
+
+  def after(job)
+    FileUtils.rm_rf @write_dir rescue nil
+    FileUtils.rm_rf @data_export_file rescue nil
+  end
+
+  def success(job)
+    DataExportJob.logger.info("#{@shelter_id} :: data export finished in #{Time.now - job.run_at}")
+  end
+
+  def failure(job)
+    DataExportJob.logger.error("#{@shelter_id} :: failed")
   end
 
   def perform
+    current_shelter = Shelter.find(@shelter_id)
+
     # 1. Setup and create directories.
     photos_dir = File.join(@write_dir, "photos")
     documents_dir = File.join(@write_dir, "documents")
@@ -17,7 +37,7 @@ class DataExportJob
     FileUtils.mkdir_p(documents_dir)
 
     # 2. Build Accommodations CSV file.
-    accommodations = @shelter.accommodations.includes(:animal_type, :location).all
+    accommodations = current_shelter.accommodations.includes(:animal_type, :location).all
     unless accommodations.blank?
       accommodations_file = File.join(@write_dir, "accommodations.csv")
       CSV.open(accommodations_file , "w+:UTF-8") do |csv|
@@ -27,7 +47,7 @@ class DataExportJob
 
     # 3. Build Animals CSV file.
     animals_file = File.join(@write_dir, "animals.csv")
-    animals = @shelter.animals.includes(:animal_type, :animal_status).all
+    animals = current_shelter.animals.includes(:animal_type, :animal_status).all
     unless animals.blank?
       CSV.open(animals_file , "w+:UTF-8") do |csv|
         DataExport::AnimalPresenter.as_csv(animals, csv)
@@ -36,7 +56,7 @@ class DataExportJob
 
     # 4. Build Contacts CSV file.
     contacts_file = File.join(@write_dir, "contacts.csv")
-    contacts = @shelter.contacts.all
+    contacts = current_shelter.contacts.all
     unless contacts.blank?
       CSV.open(contacts_file , "w+:UTF-8") do |csv|
         DataExport::ContactPresenter.as_csv(contacts, csv)
@@ -45,7 +65,7 @@ class DataExportJob
 
     # 5. Build Notes CSV file.
     notes_file = File.join(@write_dir, "notes.csv")
-    notes = @shelter.notes.all
+    notes = current_shelter.notes.all
     unless notes.blank?
       CSV.open(notes_file , "w+:UTF-8") do |csv|
         DataExport::NotePresenter.as_csv(notes, csv)
@@ -81,7 +101,7 @@ class DataExportJob
 
     # 7. Build Status Histories CSV file.
     status_histories_file = File.join(@write_dir, "status_histories.csv")
-    status_histories = @shelter.status_histories.includes(:animal_status).all
+    status_histories = current_shelter.status_histories.includes(:animal_status).all
     unless status_histories.blank?
       CSV.open(status_histories_file , "w+:UTF-8") do |csv|
         DataExport::StatusHistoryPresenter.as_csv(status_histories, csv)
@@ -90,7 +110,7 @@ class DataExportJob
 
     # 8. Build Tasks CSV file.
     tasks_file = File.join(@write_dir, "tasks.csv")
-    tasks = @shelter.tasks.all
+    tasks = current_shelter.tasks.all
     unless tasks.blank?
       CSV.open(tasks_file , "w+:UTF-8") do |csv|
         DataExport::TaskPresenter.as_csv(tasks, csv)
@@ -100,16 +120,14 @@ class DataExportJob
     # 9. Add all files to the zip file.
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
-      filename = "#{@shelter.id}.zip"
-      data_export_file = File.join(@base_dir, filename)
-      Zip::File.open(data_export_file, Zip::File::CREATE) do |zipfile|
+      Zip::File.open(@data_export_file, Zip::File::CREATE) do |zipfile|
         Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
           zipfile.add(file.sub(@write_dir + '/', ''), file)
         end
       end
 
       # 10. Upload zip file to S3
-      fog_file_path = "data_export/#{filename}"
+      fog_file_path = "data_export/#{@zipfile_name}"
       storage = Fog::Storage.new({
         :provider              => 'AWS',
         :aws_access_key_id     => ShelterExchange.settings.aws_access_key_id,
@@ -118,20 +136,14 @@ class DataExportJob
       directories = storage.directories.get(ShelterExchange.settings.s3_bucket)
       directories.files.create(
         :key => fog_file_path,
-        :body => open(data_export_file).read,
+        :body => open(@data_export_file).read,
         :public => false,
         :content_type => Mime::ZIP
       )
 
       # 11. Send email to notify the completion of the data export.
-      DataExportMailer.completed(@shelter).deliver
+      DataExportMailer.completed(current_shelter).deliver
     end
-
-  rescue => e
-    DataExportJob.logger.error("#{@shelter.id} :: #{@shelter.name} :: failed :: #{e.message}")
-  ensure
-    FileUtils.rm_rf @write_dir if @write_dir
-    DataExportJob.logger.info("#{@shelter.id} :: #{@shelter.name} :: data export finished in #{Time.now - @start_time}")
   end
 
   def self.logger
