@@ -38,8 +38,9 @@ class PetfinderJob
     ftp.chdir("photos")
     @animals.each do |animal|
       animal.photos.take(3).each_with_index do |photo, index|
-        temp_image = StringIO.new(photo.image.large.read)
-        ftp.storbinary("STOR #{animal.id}-#{index+1}#{File.extname(photo_url)}", temp_image, 1024)
+        large_photo = photo.image.large
+        temp_image = StringIO.new(large_photo.read)
+        ftp.storbinary("STOR #{animal.id}-#{index+1}#{File.extname(large_photo.file.extension)}", temp_image, 1024)
       end
     end
 
