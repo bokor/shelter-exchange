@@ -11,7 +11,7 @@ class DataExportJob
   end
 
   def queue_name
-    'data_export_queue'
+    "data_export_queue"
   end
 
   def after(job)
@@ -127,7 +127,6 @@ class DataExportJob
       end
 
       # 10. Upload zip file to S3
-      fog_file_path = "data_export/#{@zipfile_name}"
       storage = Fog::Storage.new({
         :provider              => 'AWS',
         :aws_access_key_id     => ShelterExchange.settings.aws_access_key_id,
@@ -135,7 +134,7 @@ class DataExportJob
       })
       directories = storage.directories.get(ShelterExchange.settings.s3_bucket)
       directories.files.create(
-        :key => fog_file_path,
+        :key => "data_export/#{@zipfile_name}",
         :body => open(@data_export_file).read,
         :public => false,
         :content_type => Mime::ZIP
