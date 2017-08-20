@@ -1,6 +1,7 @@
 require "csv"
 
 class DataExportJob
+  attr_reader :shelter_id
 
   def initialize(shelter_id)
     @shelter_id = shelter_id
