@@ -1,6 +1,6 @@
 # All Integrations every day at 2:00am
 every 1.day, :at => '2:00 am' do
-  rake "integrations:start"
+  rake "integrations:all"
 end
 
 # Refresh Sitemap and Ping Search Engines
