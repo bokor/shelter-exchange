@@ -16,8 +16,8 @@ class DataExportJob
   end
 
   def after(job)
-    FileUtils.rm_rf @write_dir rescue nil
-    FileUtils.rm_rf @data_export_file rescue nil
+    # FileUtils.rm_rf @write_dir rescue nil
+    # FileUtils.rm_rf @data_export_file rescue nil
   end
 
   def success(job)
