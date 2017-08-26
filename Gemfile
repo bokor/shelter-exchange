@@ -61,10 +61,6 @@ gem "daemons"
 gem "delayed_job_active_record"
 gem "whenever", :require => false
 
-# Monitoring & Notification
-#----------------------------------------------------------------------------
-gem "airbrake"
-
 # Local Testing and Tools
 #----------------------------------------------------------------------------
 group :development do
