@@ -17,7 +17,6 @@ class DataExportJob
 
   def success(job)
     FileUtils.rm_rf @write_dir rescue nil
-    FileUtils.rm_rf @data_export_file rescue nil
     DataExportJob.logger.info("#{@shelter_id} :: data export finished in #{Time.now - job.run_at}")
   end
 
@@ -118,11 +117,7 @@ class DataExportJob
     # 9. Add all files to the zip file.
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
-      Zip::File.open(@data_export_file, Zip::File::CREATE) do |zipfile|
-        Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
-          zipfile.add(file.sub(@write_dir + '/', ''), file)
-        end
-      end
+      system("zip #{@data_export_file} #{File.join(@write_dir, "**", "*")}")
 
       # 10. Upload zip file to S3
       storage = Fog::Storage.new({
