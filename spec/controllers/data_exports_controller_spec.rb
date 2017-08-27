@@ -43,8 +43,7 @@ describe DataExportsController do
       job = YAML.load(Delayed::Job.last.handler)
       expect(Delayed::Job.last.name).to eq("DataExportJob")
       expect(job.class).to eq(DataExportJob)
-      expect(job.instance_variable_get(:@start_time)).to eq("2014-05-12 00:00:00 -0700")
-      expect(job.instance_variable_get(:@shelter)).to eq(current_shelter)
+      expect(job.instance_variable_get(:@shelter_id)).to eq(current_shelter.id)
       expect(job.instance_variable_get(:@base_dir)).to eq(base_dir)
       expect(job.instance_variable_get(:@write_dir)).to eq(write_dir)
     end

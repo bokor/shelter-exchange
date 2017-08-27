@@ -72,7 +72,7 @@ class DataExportJob
       documents = Document.where(:attachable_id => notes.collect(&:id), :attachable_type => "Note").all
       documents.each do |document|
         new_document_filename = File.join(documents_dir, document.original_name)
-        open(new_document_filename, 'wb') do |file|
+        open(new_document_filename, 'wb+') do |file|
           file << document.document.read
         end
       end
@@ -90,7 +90,7 @@ class DataExportJob
       photos.each do |photo|
         new_photo_filename = File.join(photos_dir, photo.original_name)
 
-        open(new_photo_filename, 'wb') do |file|
+        open(new_photo_filename, 'wb+') do |file|
           file << photo.image.read
         end
       end
@@ -117,7 +117,11 @@ class DataExportJob
     # 9. Add all files to the zip file.
     file_count = Dir.glob(File.join(@write_dir, "**", "*")).select { |file| File.file?(file) }.count
     if file_count > 0
-      system("zip #{@data_export_file} #{File.join(@write_dir, "**", "*")}")
+      Zip::File.open(@data_export_file, Zip::File::CREATE) do |zipfile|
+        Dir.glob(File.join(@write_dir, "**", "*")).reject {|fn| File.directory?(fn) }.each do |file|
+          zipfile.add(file.sub(@write_dir + '/', ''), file)
+        end
+      end
 
       # 10. Upload zip file to S3
       storage = Fog::Storage.new({
