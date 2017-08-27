@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170810053635) do
+ActiveRecord::Schema.define(:version => 20170827172428) do
 
   create_table "accommodations", :force => true do |t|
     t.integer  "shelter_id"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20170810053635) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+  add_index "delayed_jobs", ["queue"], :name => "index_delayed_jobs_on_queue"
 
   create_table "documents", :force => true do |t|
     t.string   "document"

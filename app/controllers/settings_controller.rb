@@ -26,7 +26,7 @@ class SettingsController < ApplicationController
     @export_last_modified = FOG_BUCKET.files.head("data_export/#{@current_shelter.id}.zip").last_modified rescue nil
     @export_in_progress = Delayed::Job.where(:queue => "data_export_queue").any? do |job|
       (YAML.load(job.handler).shelter_id == @current_shelter.id)
-    end
+    end rescue nil
   end
 
   def web_access
