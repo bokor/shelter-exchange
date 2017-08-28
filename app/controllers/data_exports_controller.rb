@@ -2,12 +2,7 @@ class DataExportsController < ApplicationController
 
   def download
     file = FOG_BUCKET.files.get("data_export/#{@current_shelter.id}.zip")
-
-    respond_to do |format|
-      format.zip {
-        send_data(file.body, :type => Mime::ZIP, :filename => "shelter_exchange_data_export.zip")
-      }
-    end
+    send_data(file.body, :type => "application/zip", :filename => "shelter_exchange_data_export.zip")
   end
 
   def create
