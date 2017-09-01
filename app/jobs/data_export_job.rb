@@ -3,8 +3,9 @@ require "csv"
 class DataExportJob
   attr_reader :shelter_id
 
-  def initialize(shelter_id)
+  def initialize(shelter_id, notify_shelter=true)
     @shelter_id = shelter_id
+    @notify_shelter = notify_shelter
     @base_dir = File.join(Rails.root, "tmp", "data_export")
     @write_dir = File.join(@base_dir, "#{@shelter_id}")
     @zipfile_name = "#{@shelter_id}.zip"
@@ -140,7 +141,7 @@ class DataExportJob
       )
 
       # 11. Send email to notify the completion of the data export.
-      DataExportMailer.completed(current_shelter).deliver
+      DataExportMailer.completed(current_shelter).deliver if @notify_shelter
     end
   end
 
