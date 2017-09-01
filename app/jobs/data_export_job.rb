@@ -73,8 +73,10 @@ class DataExportJob
       documents = Document.where(:attachable_id => notes.collect(&:id), :attachable_type => "Note").all
       documents.each do |document|
         new_document_filename = File.join(documents_dir, document.original_name)
-        open(new_document_filename, 'wb+') do |file|
-          file << document.document.read
+        unless File.exists?(new_document_filename)
+          open(new_document_filename, 'wb+') do |file|
+            file << document.document.read
+          end
         end
       end
     end
@@ -91,8 +93,10 @@ class DataExportJob
       photos.each do |photo|
         new_photo_filename = File.join(photos_dir, photo.original_name)
 
-        open(new_photo_filename, 'wb+') do |file|
-          file << photo.image.read
+        unless File.exists?(new_photo_filename)
+          open(new_photo_filename, 'wb+') do |file|
+            file << photo.image.read
+          end
         end
       end
     end
