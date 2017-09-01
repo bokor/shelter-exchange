@@ -18,6 +18,7 @@ class DataExportJob
 
   def success(job)
     FileUtils.rm_rf @write_dir rescue nil
+    FileUtils.rm_rf @data_export_file rescue nil
     DataExportJob.logger.info("#{@shelter_id} :: data export finished in #{Time.now - job.run_at}")
   end
 
